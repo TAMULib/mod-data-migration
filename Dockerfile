@@ -14,16 +14,16 @@ RUN mvn package
 FROM openjdk:8u171-jre-alpine
 
 # set deployment directory
-WORKDIR /mod-external-reference-resolver
+WORKDIR /mod-data-migration
 
 # copy over the built artifact from the maven image
-COPY --from=maven /target/mod-external-reference-resolver*.jar ./mod-external-reference-resolver.jar
+COPY --from=maven /target/mod-data-migration*.jar ./mod-data-migration.jar
 
 #Settings
 ENV LOGGING_LEVEL_FOLIO='INFO'
 ENV SERVER_PORT='9003'
 ENV SPRING_DATASOURCE_PLATFORM='h2'
-ENV SPRING_DATASOURCE_URL='jdbc:h2:./mod-external-reference-resolver;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE'
+ENV SPRING_DATASOURCE_URL='jdbc:h2:./mod-data-migration;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE'
 ENV SPRING_DATASOURCE_DRIVERCLASSNAME='org.h2.Driver'
 ENV SPRING_DATASOURCE_USERNAME='folio'
 ENV SPRING_DATASOURCE_PASSWORD='folio'
@@ -38,7 +38,7 @@ ENV TENANT_INITIALIZE_DEFAULT_TENANT='false'
 EXPOSE ${SERVER_PORT}
 
 #run java command
-CMD java -jar ./mod-external-reference-resolver.jar \
+CMD java -jar ./mod-data-migration.jar \
   --logging.level.org.folio=${LOGGING_LEVEL_FOLIO} --server.port=${SERVER_PORT} --spring.datasource.platform=${SPRING_DATASOURCE_PLATFORM} \
   --spring.datasource.url=${SPRING_DATASOURCE_URL} --spring.datasource.driverClassName=${SPRING_DATASOURCE_DRIVERCLASSNAME} \
   --spring.datasource.username=${SPRING_DATASOURCE_USERNAME} --spring.datasource.password=${SPRING_DATASOURCE_PASSWORD} \
