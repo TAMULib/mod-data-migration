@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>mod-data-migration</artifactId>
+
+  <name>Data Migration Okapi Module</name>
+  <description>Okapi module for migrating data</description>
+
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+      <url>http://spdx.org/licenses/Apache-2.0</url>
+    </license>
+  </licenses>
+
+  <repositories>
+    <repository>
+      <id>folio-nexus</id>
+      <name>FOLIO Maven repository</name>
+      <url>https://repository.folio.org/repository/maven-folio</url>
+    </repository>
+  </repositories>
+
+  <parent>
+    <groupId>org.folio</groupId>
+    <artifactId>spring-module-core</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <packaging>jar</packaging>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+
+    <plugins>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>org.folio.spring.domain.generator.EntityJsonSchemaGenerator</mainClass>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <plugin>
+         <groupId>org.jsonschema2pojo</groupId>
+         <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+         <version>1.0.2</version>
+         <configuration>
+           <sourceDirectory>${basedir}/src/main/resources/schema</sourceDirectory>
+           <outputDirectory>${basedir}/src/main/java</outputDirectory>
+           <targetPackage>org.folio.rest.migration.model.generated</targetPackage>
+         </configuration>
+         <executions>
+           <execution>
+             <goals>
+               <goal>generate</goal>
+             </goals>
+           </execution>
+         </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+            <configuration>
+              <mainClass>org.folio.rest.SpringOkapiModule</mainClass>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+
+    <resources>
+      <resource>
+        <filtering>false</filtering>
+        <directory>ramls</directory>
+        <targetPath>ramls</targetPath>
+        <includes>
+          <include>*.json</include>
+          <include>*.raml</include>
+        </includes>
+      </resource>
+      <resource>
+        <filtering>false</filtering>
+        <directory>ramls</directory>
+        <targetPath>../ramls</targetPath>
+        <includes>
+          <include>*.json</include>
+          <include>*.raml</include>
+        </includes>
+      </resource>
+      <resource>
+        <filtering>false</filtering>
+        <directory>src/main/resources</directory>
+        <excludes>
+          <exclude>descriptors/**</exclude>
+        </excludes>
+      </resource>
+      <resource>
+        <filtering>true</filtering>
+        <directory>src/main/resources/descriptors</directory>
+        <targetPath>descriptors</targetPath>
+        <includes>
+          <include>DeploymentDescriptor.json</include>
+          <include>ModuleDescriptor.json</include>
+        </includes>
+      </resource>
+      <resource>
+        <filtering>true</filtering>
+        <directory>src/main/resources/descriptors</directory>
+        <targetPath>../descriptors</targetPath>
+        <includes>
+          <include>DeploymentDescriptor.json</include>
+          <include>ModuleDescriptor.json</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.folio</groupId>
+      <artifactId>spring-tenant</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.folio</groupId>
+      <artifactId>spring-domain</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webflux</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-rest-hal-browser</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-collections4</artifactId>
+      <version>4.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-text</artifactId>
+      <version>1.8</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.marc4j</groupId>
+      <artifactId>marc4j</artifactId>
+      <version>2.9.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.oracle.ojdbc</groupId>
+      <artifactId>ojdbc8</artifactId>
+    </dependency>
+
+  </dependencies>
+
+  <distributionManagement>
+    <repository>
+      <id>folio-nexus</id>
+      <name>FOLIO Release Repository</name>
+      <url>https://repository.folio.org/repository/maven-releases/</url>
+      <uniqueVersion>false</uniqueVersion>
+      <layout>default</layout>
+    </repository>
+    <snapshotRepository>
+      <id>folio-nexus</id>
+      <name>FOLIO Snapshot Repository</name>
+      <uniqueVersion>true</uniqueVersion>
+      <url>https://repository.folio.org/repository/maven-snapshots/</url>
+      <layout>default</layout>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <scm>
+    <url>https://github.com/folio-org/mod-data-migration</url>
+    <connection>scm:git:git://github.com:folio-org/mod-data-migration.git</connection>
+    <developerConnection>scm:git:git@github.com:folio-org/mod-data-migration.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+</project>

@@ -1,0 +1,100 @@
+logging:
+  file: logs/mod-data-migration.log
+  level:
+    com:
+      zaxxer:
+        hikari: INFO
+    org:
+      folio.rest: INFO
+      hibernate: INFO
+      springframework:
+        security: INFO
+        web: INFO
+
+server:
+  port: 9003
+  tomcat:
+    connection-timeout: -1
+    accept-count: 1000
+    max-connections: 100000
+    max-threads: 400
+
+spring:
+  data.rest:
+    returnBodyOnCreate: true
+    returnBodyOnUpdate: true
+  datasource:
+    hikari:
+      connectionTimeout: 172800000
+      idleTimeout: 3600000
+      maximumPoolSize: 16
+    platform: h2
+    url: jdbc:h2:./target/mod-data-migration;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    # platform: postgres
+    # driverClassName: org.postgresql.Driver
+    # url: jdbc:postgresql://localhost:5432/mod-data-migration
+
+    username: folio
+    password: folio
+  devtools:
+    add-properties: false
+    restart:
+      enabled: false
+      exclude: target
+  h2:
+    console:
+      enabled: false
+      path: /h2console
+      settings:
+        web-allow-others: false
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    # database-platform: org.hibernate.dialect.PostgreSQL82Dialect
+
+    properties:
+      hibernate:
+        order_inserts: true
+        order_updates: true
+        dialect: org.hibernate.dialect.H2Dialect
+        # dialect: org.hibernate.dialect.PostgreSQL82Dialect
+        jdbc:
+          batch_size: 100
+          lob.non_contextual_creation: true
+
+    generate-ddl: false
+    hibernate.ddl-auto: none
+    open-in-view: true
+    show-sql: true
+  profiles:
+    active: default
+  thymeleaf:
+    mode: TEXT
+    suffix: .sql
+
+okapi:
+  url: https://folio-okapi-q4-test.library.tamu.edu
+  credentials:
+    username:
+    password:
+
+tenant:
+  header-name: X-Okapi-Tenant
+  force-tenant: false
+  default-tenant: diku
+  initialize-default-tenant: true
+  domain-packages:
+  schema-scripts:
+
+connections:
+  settings:
+    - name: voyager
+      url: jdbc:oracle:thin:@surprise.tamu.edu:1521:VGER
+      username:
+      password:
+      driver-class-name: oracle.jdbc.OracleDriver
+    - name: folio
+      url: jdbc:postgresql://folio-db-test.library.tamu.edu:5432/okapi_modules
+      username:
+      password:
+      driver-class-name: org.postgresql.Driver

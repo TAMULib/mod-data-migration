@@ -1,0 +1,36 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "title" : "Reference Link",
+  "type" : "object",
+  "additionalProperties" : false,
+  "properties" : {
+    "id" : {
+      "type" : "string"
+    },
+    "folioReference" : {
+      "type" : "string"
+    },
+    "externalReference" : {
+      "type" : "string"
+    },
+    "type" : {
+      "$ref" : "#/definitions/ReferenceLinkType"
+    }
+  },
+  "required" : [ "folioReference", "externalReference", "type" ],
+  "definitions" : {
+    "ReferenceLinkType" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "name" ]
+    }
+  }
+}

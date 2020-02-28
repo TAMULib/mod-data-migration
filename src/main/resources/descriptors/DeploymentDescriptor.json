@@ -1,0 +1,7 @@
+{
+  "srvcId": "@project.artifactId@-@project.version@",
+  "nodeId": "localhost",
+  "descriptor": {
+    "exec": "java -jar ../mod-data-migration/target/mod-data-migration-@project.version@.jar -Dspring.config.location=classpath:/ --server.port=%p"
+  }
+}

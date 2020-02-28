@@ -1,0 +1,55 @@
+{
+  "id": "@project.artifactId@-@project.version@",
+  "name": "Data Migration",
+  "provides": [
+    {
+      "id": "_schemas",
+      "version": "1.0",
+      "interfaceType": "system",
+      "handlers": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "pathPattern": "/_/schemas"
+        },
+        {
+          "methods": [
+            "GET"
+          ],
+          "pathPattern": "/_/schemas/{schemaName}"
+        }
+      ]
+    },
+    {
+      "id": "_tenant",
+      "version": "1.0",
+      "interfaceType": "system",
+      "handlers": [
+        {
+          "methods": [
+            "POST",
+            "DELETE"
+          ],
+          "pathPattern": "/_/tenant"
+        }
+      ]
+    }
+  ],
+  "permissionSets": [],
+  "launchDescriptor": {
+    "dockerImage": "@project.artifactId@:@project.version@",
+    "dockerArgs": {
+      "HostConfig": {
+        "PortBindings": {
+          "8081/tcp": [
+            {
+              "HostPort": "%p"
+            }
+          ]
+        }
+      }
+    },
+    "dockerPull": false
+  }
+}
