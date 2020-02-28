@@ -49,15 +49,15 @@ spring:
       settings:
         web-allow-others: false
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    # database-platform: org.hibernate.dialect.PostgreSQL82Dialect
+    database-platform: org.folio.rest.dialect.CustomH2Dialect
+    # database-platform: org.folio.rest.dialect.CustomPostgreSQLDialect
 
     properties:
       hibernate:
         order_inserts: true
         order_updates: true
-        dialect: org.hibernate.dialect.H2Dialect
-        # dialect: org.hibernate.dialect.PostgreSQL82Dialect
+        dialect: org.folio.rest.dialect.CustomH2Dialect
+        # dialect: org.folio.rest.dialect.CustomPostgreSQLDialect
         jdbc:
           batch_size: 100
           lob.non_contextual_creation: true
