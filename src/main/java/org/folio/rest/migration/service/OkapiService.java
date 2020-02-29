@@ -62,7 +62,7 @@ public class OkapiService {
     headers.set("X-Okapi-Tenant", tenant);
     HttpEntity<Credentials> entity = new HttpEntity<>(okapi.getCredentials(), headers);
     ResponseEntity<Credentials> response = restTemplate.exchange(url, HttpMethod.POST, entity, Credentials.class);
-    log.info("get token time: " + TimingUtility.getDeltaInMilliseconds(startTime) + " milliseconds");
+    log.debug("get token: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 201) {
       return response.getHeaders().getFirst("X-Okapi-Token");
     }
@@ -80,7 +80,7 @@ public class OkapiService {
     HttpEntity<?> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + "/mapping-rules";
     ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonNode.class);
-    log.info("fetch rules time: " + TimingUtility.getDeltaInMilliseconds(startTime) + " milliseconds");
+    log.debug("fetch rules: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
     }
@@ -98,7 +98,7 @@ public class OkapiService {
     HttpEntity<?> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + "/hrid-settings-storage/hrid-settings";
     ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonNode.class);
-    log.info("fetch hrid settings time: " + TimingUtility.getDeltaInMilliseconds(startTime) + " milliseconds");
+    log.debug("fetch hrid settings: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
     }
@@ -115,7 +115,7 @@ public class OkapiService {
     HttpEntity<InitJobExecutionsRqDto> entity = new HttpEntity<>(jobExecutionDto, headers);
     String url = okapi.getUrl() + "/change-manager/jobExecutions";
     ResponseEntity<InitJobExecutionsRsDto> response = restTemplate.exchange(url, HttpMethod.POST, entity, InitJobExecutionsRsDto.class);
-    log.info("create job execution time: " + TimingUtility.getDeltaInMilliseconds(startTime) + " milliseconds");
+    log.debug("create job execution: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 201) {
       return response.getBody();
     }
@@ -132,7 +132,7 @@ public class OkapiService {
     HttpEntity<RawRecordsDto> entity = new HttpEntity<>(rawRecordsDto, headers);
     String url = okapi.getUrl() + "/change-manager/jobExecutions/" + jobExecutionId + "/records";
     ResponseEntity<JobExecution> response = restTemplate.exchange(url, HttpMethod.POST, entity, JobExecution.class);
-    log.info("finish job execution time: " + TimingUtility.getDeltaInMilliseconds(startTime) + " milliseconds");
+    log.debug("finish job execution: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 204) {
       return;
     }
@@ -175,7 +175,7 @@ public class OkapiService {
       }
     });
     // @formatter:on
-    log.info("get mapping parameters time: " + TimingUtility.getDeltaInMilliseconds(startTime) + " milliseconds");
+    log.debug("get mapping parameters: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     return mappingParameters;
   }
 

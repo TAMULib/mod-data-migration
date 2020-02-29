@@ -23,12 +23,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
@@ -85,6 +86,9 @@ public class BibMigration implements Migration {
 
   private static String TOKEN = "TOKEN";
   private static String HRID_PREFIX = "HRID_PREFIX";
+  private static String HRID_START_NUMBER = "HRID_START_NUMBER";
+  private static String HRID_STRIDE = "HRID_STRIDE";
+  private static String HRID_INDEX = "HRID_INDEX";
 
   private static String TOTAL = "TOTAL";
 
@@ -117,34 +121,33 @@ public class BibMigration implements Migration {
   // (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid)
   private static String INSTANCE_COPY_SQL = "COPY tern_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancetypeid) FROM STDIN";
 
-  private Context context;
+  private final ParallelTaskQueue taskQueue;
 
-  private String tenant;
+  private final Context context;
 
-  private AtomicInteger hrid;
+  private final String tenant;
 
   private BibMigration(Context context, String tenant) {
+    this.taskQueue = new ParallelTaskQueue(context);
     this.context = context;
     this.tenant = tenant;
   }
 
   @Override
-  public CompletableFuture<Boolean> run(MigrationService migrationService) {
-    long startTime = System.nanoTime();
+  public CompletableFuture<Boolean> run(MigrationService service) {
+    log.info("tenant: {}", tenant);
 
-    log.info("tenant: " + tenant);
+    log.info("context:\n{}", service.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
 
-    log.info("context:\n" + migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
+    String token = service.okapiService.getToken(tenant);
 
-    String token = migrationService.okapiService.getToken(tenant);
+    MappingParameters parameters = service.okapiService.getMappingParamaters(tenant, token);
 
-    MappingParameters mappingParameters = migrationService.okapiService.getMappingParamaters(tenant, token);
+    JsonNode rules = service.okapiService.fetchRules(tenant, token);
 
-    JsonNode rules = migrationService.okapiService.fetchRules(tenant, token);
+    JsonNode hridSettings = service.okapiService.fetchHridSettings(tenant, token);
 
-    JsonNode hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
-
-    Settings voyagerSettings = getSettings(migrationService.connections, "voyager");
+    Settings voyagerSettings = getSettings(service.connections, "voyager");
 
     Map<String, Object> countContext = new HashMap<>();
     countContext.put(EXTRACTOR, context.getExtraction().getCount());
@@ -154,49 +157,86 @@ public class BibMigration implements Migration {
     String hridPrefix = instancesHridSettings.get("prefix").asText();
     int hridStartNumber = instancesHridSettings.get("startNumber").asInt();
 
-    hrid = new AtomicInteger(hridStartNumber);
+    int hridIndex = 0;
+    for (Job job : context.getJobs()) {
 
-    try {
-      ExecutorService executorService = Executors.newFixedThreadPool(context.getParallelism());
+      countContext.put(SCHEMA, job.getSchema());
 
-      context.getJobs().stream().forEach(job -> {
+      int count = getCount(voyagerSettings, countContext);
 
-        countContext.put(SCHEMA, job.getSchema());
+      log.info("{} count: {}", job.getSchema(), count);
 
-        int count = getCount(voyagerSettings, countContext);
+      int partitions = job.getPartitions();
+      int limit = count / partitions;
+      int offset = 0;
 
-        log.info(job.getSchema() + " total: " + count);
-
-        int partitions = job.getPartitions();
-        int limit = count / partitions;
-        int offset = 0;
-
-        for (int i = 0; i < partitions; i++) {
-          Map<String, Object> partitionContext = new HashMap<String, Object>();
-          partitionContext.put(EXTRACTOR, context.getExtraction().getPage());
-          partitionContext.put(SCHEMA, job.getSchema());
-          partitionContext.put(OFFSET, offset);
-          partitionContext.put(LIMIT, limit);
-          partitionContext.put(TOKEN, token);
-          partitionContext.put(HRID_PREFIX, hridPrefix);
-          executorService.submit(new PartitionTask(migrationService, mappingParameters, partitionContext, rules, job));
-          offset += limit;
-        }
-      });
-
-      executorService.awaitTermination(context.getTimeout(), TimeUnit.MINUTES);
-      executorService.shutdown();
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+      for (int i = 0; i < partitions; i++) {
+        Map<String, Object> partitionContext = new HashMap<String, Object>();
+        partitionContext.put(EXTRACTOR, context.getExtraction().getPage());
+        partitionContext.put(SCHEMA, job.getSchema());
+        partitionContext.put(OFFSET, offset);
+        partitionContext.put(LIMIT, limit);
+        partitionContext.put(TOKEN, token);
+        partitionContext.put(HRID_PREFIX, hridPrefix);
+        partitionContext.put(HRID_START_NUMBER, hridStartNumber);
+        partitionContext.put(HRID_INDEX, hridIndex++);
+        partitionContext.put(HRID_STRIDE, partitions);
+        PartitionTask task = new PartitionTask(service, parameters, partitionContext, rules, job);
+        taskQueue.submit(task);
+        offset += limit;
+      }
     }
-
-    log.info("total time: " + TimingUtility.getDeltaInMilliseconds(startTime) + " milliseconds");
 
     return CompletableFuture.completedFuture(true);
   }
 
   public static BibMigration with(Context context, String tenant) {
     return new BibMigration(context, tenant);
+  }
+
+  private class ParallelTaskQueue {
+    private final long startTime = System.nanoTime();
+
+    private final Context context;
+
+    private final ExecutorService executorService;
+
+    private final BlockingQueue<PartitionTask> inProcess;
+
+    private final BlockingQueue<PartitionTask> inWait;
+
+    public ParallelTaskQueue(Context context) {
+      this.context = context;
+      this.executorService = Executors.newFixedThreadPool(context.getParallelism());
+      this.inProcess = new ArrayBlockingQueue<>(context.getParallelism());
+      this.inWait = new ArrayBlockingQueue<>(1024);
+    }
+
+    public synchronized void submit(PartitionTask task) {
+      log.debug("submit: {} {}", task.getSchema(), task.getIndex());
+      if (inProcess.size() < context.getParallelism()) {
+        log.debug("start: {} {}", task.getSchema(), task.getIndex());
+        inProcess.add(task);
+        executorService.submit(task);
+      } else {
+        log.debug("queue: {} {}", task.getSchema(), task.getIndex());
+        inWait.add(task);
+      }
+    }
+
+    public synchronized void complete(PartitionTask task) throws InterruptedException {
+      log.debug("end: {} {}", task.getSchema(), task.getIndex());
+      inProcess.remove(task);
+      if (inWait.isEmpty()) {
+        executorService.shutdown();
+        executorService.awaitTermination(context.getTimeout(), TimeUnit.MINUTES);
+        executorService.shutdownNow();
+        log.info("finished: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+      } else {
+        PartitionTask nextTask = inWait.take();
+        submit(nextTask);
+      }
+    }
   }
 
   private class PartitionTask implements Callable<Integer> {
@@ -220,13 +260,31 @@ public class BibMigration implements Migration {
       this.job = job;
     }
 
+    public int getIndex() {
+      return (int) partitionContext.get(HRID_INDEX);
+    }
+
+    public String getSchema() {
+      return (String) partitionContext.get(SCHEMA);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      return obj != null && ((PartitionTask) obj).getIndex() == this.getIndex();
+    }
+
     @Override
     public Integer call() throws Exception {
+
+      log.info("{} {} start", this.getSchema(), this.getIndex());
 
       long startTime = System.nanoTime();
 
       String token = (String) partitionContext.get(TOKEN);
       String hridPrefix = (String) partitionContext.get(HRID_PREFIX);
+      int hridStartNumber = (int) partitionContext.get(HRID_START_NUMBER);
+      int hridStride = (int) partitionContext.get(HRID_STRIDE);
+      int hridIndex = (int) partitionContext.get(HRID_INDEX);
 
       InitJobExecutionsRqDto jobExecutionRqDto = new InitJobExecutionsRqDto();
       jobExecutionRqDto.setSourceType(SourceType.ONLINE);
@@ -258,7 +316,7 @@ public class BibMigration implements Migration {
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
-      int currentHrid = hrid.getAndIncrement();
+      int hrid = hridStartNumber + (hridStride * hridIndex);
 
       int count = 0;
 
@@ -273,8 +331,8 @@ public class BibMigration implements Migration {
         PGCopyOutputStream recordOutput = new PGCopyOutputStream(threadConnections.getRecordConnection(), RECORDS_COPY_SQL);
         PrintWriter recordWriter = new PrintWriter(recordOutput, true);
 
-        PGCopyOutputStream instancesOutput = new PGCopyOutputStream(threadConnections.getInstanceConnection(), INSTANCE_COPY_SQL);
-        PrintWriter instanceWriter = new PrintWriter(instancesOutput, true);
+        PGCopyOutputStream instanceOutput = new PGCopyOutputStream(threadConnections.getInstanceConnection(), INSTANCE_COPY_SQL);
+        PrintWriter instanceWriter = new PrintWriter(instanceOutput, true);
 
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement marcStatement = threadConnections.getMarcConnection().createStatement();
@@ -348,7 +406,7 @@ public class BibMigration implements Migration {
               String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
               String createdByUserId = job.getUserId();
 
-              Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, currentHrid);
+              Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid++);
 
               String rrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(rawRecord)));
               String prUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(parsedRecord)));
@@ -362,18 +420,17 @@ public class BibMigration implements Migration {
               if (instance.getInstanceTypeId() != null) {
                 instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getInstanceTypeId()));
               } else {
-                log.error(bibId + ": missing instance type id");
+                log.debug("bib id {} missing instance type id", bibId);
               }
 
-              currentHrid = hrid.getAndIncrement();
               count++;
 
             } catch (IOException e) {
-              log.error(bibId + ": cannot serialize marc json");
+              log.debug("bib id {} cannot serialize marc json", bibId);
             }
 
           } else {
-            log.error(bibId + ": cannot parse record");
+            log.debug("bib id {} cannot parse record", bibId);
           }
 
         }
@@ -406,9 +463,11 @@ public class BibMigration implements Migration {
 
       migrationService.okapiService.finishJobExecution(tenant, token, jobExecutionId, rawRecordsDto);
 
-      log.info(job.getSchema() + " partition time: " + TimingUtility.getDeltaInMilliseconds(startTime) + " milliseconds");
+      log.info("{} {} finish: {} milliseconds", this.getSchema(), this.getIndex(), TimingUtility.getDeltaInMilliseconds(startTime));
 
-      return currentHrid;
+      taskQueue.complete(this);
+
+      return hrid;
     }
 
   }

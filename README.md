@@ -18,7 +18,7 @@ POST to http://localhost:9003/migrate/bibs
     "page": "SELECT bib_id, suppress_in_opac FROM ${SCHEMA}.bib_master ORDER BY bib_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "additional": "SELECT bib_id, seqnum, record_segment FROM ${SCHEMA}.bib_data WHERE bib_id = ${BIB_ID}"
   },
-  "parallelism": 24,
+  "parallelism": 12,
   "timeout": 120,
   "jobs": [
     {
@@ -26,7 +26,7 @@ POST to http://localhost:9003/migrate/bibs
       "partitions": 48,
       "userId": "9b909401-96be-484e-8efe-158521718114",
       "profileInfo": {
-        "id": "9079967e-3572-4c10-be90-8dd40e105601",
+        "id": "043ab092-d5f9-454a-87e1-8d879404367c",
         "name": "TAMU Bibligraphic Migration",
         "dataType": "MARC"
       },
@@ -41,7 +41,7 @@ POST to http://localhost:9003/migrate/bibs
       "partitions": 4,
       "userId": "9b909401-96be-484e-8efe-158521718114",
       "profileInfo": {
-        "id": "9079967e-3572-4c10-be90-8dd40e105601",
+        "id": "043ab092-d5f9-454a-87e1-8d879404367c",
         "name": "TAMU Bibligraphic Migration",
         "dataType": "MARC"
       },
