@@ -25,7 +25,6 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -199,7 +198,7 @@ public class BibMigration implements Migration {
 
     private final Context context;
 
-    private final ExecutorService executorService;
+    private final ExecutorService executor;
 
     private final BlockingQueue<PartitionTask> inProcess;
 
@@ -207,7 +206,7 @@ public class BibMigration implements Migration {
 
     public ParallelTaskQueue(Context context) {
       this.context = context;
-      this.executorService = Executors.newFixedThreadPool(context.getParallelism());
+      this.executor = Executors.newFixedThreadPool(context.getParallelism());
       this.inProcess = new ArrayBlockingQueue<>(context.getParallelism());
       this.inWait = new ArrayBlockingQueue<>(1024);
     }
@@ -215,31 +214,44 @@ public class BibMigration implements Migration {
     public synchronized void submit(PartitionTask task) {
       log.debug("submit: {} {}", task.getSchema(), task.getIndex());
       if (inProcess.size() < context.getParallelism()) {
-        log.debug("start: {} {}", task.getSchema(), task.getIndex());
-        inProcess.add(task);
-        executorService.submit(task);
+        start(task);
       } else {
         log.debug("queue: {} {}", task.getSchema(), task.getIndex());
         inWait.add(task);
       }
     }
 
-    public synchronized void complete(PartitionTask task) throws InterruptedException {
+    public synchronized void complete(PartitionTask task) {
       log.debug("end: {} {}", task.getSchema(), task.getIndex());
       inProcess.remove(task);
-      if (inWait.isEmpty()) {
-        executorService.shutdown();
-        executorService.awaitTermination(context.getTimeout(), TimeUnit.MINUTES);
-        executorService.shutdownNow();
-        log.info("finished: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
-      } else {
-        PartitionTask nextTask = inWait.take();
-        submit(nextTask);
+      try {
+        if (inWait.isEmpty()) {
+          shutdown();
+        } else {
+          start(inWait.take());
+        }
+      } catch (InterruptedException e) {
+        e.printStackTrace();
       }
     }
+
+    private void start(PartitionTask task) {
+      log.debug("start: {} {}", task.getSchema(), task.getIndex());
+      inProcess.add(task);
+      CompletableFuture.supplyAsync(task::execute, executor).thenAccept(this::complete);
+      System.out.println("in process: " + inProcess.stream().map(t -> t.getIndex()).collect(Collectors.toList()));
+    }
+
+    private void shutdown() throws InterruptedException {
+      executor.shutdown();
+      executor.awaitTermination(context.getTimeout(), TimeUnit.MINUTES);
+      executor.shutdownNow();
+      log.info("finished: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    }
+
   }
 
-  private class PartitionTask implements Callable<Integer> {
+  private class PartitionTask {
 
     private final MigrationService migrationService;
 
@@ -251,6 +263,8 @@ public class BibMigration implements Migration {
 
     private final Job job;
 
+    private int hrid;
+
     public PartitionTask(MigrationService migrationService, MappingParameters mappingParameters, Map<String, Object> partitionContext, JsonNode rules,
         Job job) {
       this.migrationService = migrationService;
@@ -258,6 +272,11 @@ public class BibMigration implements Migration {
       this.partitionContext = partitionContext;
       this.rules = rules;
       this.job = job;
+
+      int hridStartNumber = (int) partitionContext.get(HRID_START_NUMBER);
+      int hridStride = (int) partitionContext.get(HRID_STRIDE);
+      int hridIndex = (int) partitionContext.get(HRID_INDEX);
+      this.hrid = hridStartNumber + (hridStride * hridIndex);
     }
 
     public int getIndex() {
@@ -273,8 +292,7 @@ public class BibMigration implements Migration {
       return obj != null && ((PartitionTask) obj).getIndex() == this.getIndex();
     }
 
-    @Override
-    public Integer call() throws Exception {
+    public PartitionTask execute() {
 
       log.info("{} {} start", this.getSchema(), this.getIndex());
 
@@ -282,9 +300,6 @@ public class BibMigration implements Migration {
 
       String token = (String) partitionContext.get(TOKEN);
       String hridPrefix = (String) partitionContext.get(HRID_PREFIX);
-      int hridStartNumber = (int) partitionContext.get(HRID_START_NUMBER);
-      int hridStride = (int) partitionContext.get(HRID_STRIDE);
-      int hridIndex = (int) partitionContext.get(HRID_INDEX);
 
       InitJobExecutionsRqDto jobExecutionRqDto = new InitJobExecutionsRqDto();
       jobExecutionRqDto.setSourceType(SourceType.ONLINE);
@@ -315,8 +330,6 @@ public class BibMigration implements Migration {
       InstanceMapper instanceMapper = new InstanceMapper(mappingParameters, migrationService.objectMapper, rules);
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
-
-      int hrid = hridStartNumber + (hridStride * hridIndex);
 
       int count = 0;
 
@@ -440,8 +453,8 @@ public class BibMigration implements Migration {
         recordWriter.close();
         instanceWriter.close();
 
-        pageStatement.clearBatch();
-        marcStatement.clearBatch();
+        pageStatement.close();
+        marcStatement.close();
 
         pageResultSet.close();
 
@@ -465,9 +478,7 @@ public class BibMigration implements Migration {
 
       log.info("{} {} finish: {} milliseconds", this.getSchema(), this.getIndex(), TimingUtility.getDeltaInMilliseconds(startTime));
 
-      taskQueue.complete(this);
-
-      return hrid;
+      return this;
     }
 
   }
