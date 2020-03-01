@@ -29,7 +29,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
@@ -86,8 +85,11 @@ public class BibMigration implements Migration {
   private static String LIMIT = "LIMIT";
 
   private static String TOKEN = "TOKEN";
+
+  private static String INDEX = "INDEX";
+
   private static String HRID_PREFIX = "HRID_PREFIX";
-  private static String INDEX = "HRID_INDEX";
+  private static String HRID_START_NUMBER = "HRID_START_NUMBER";
 
   private static String TOTAL = "TOTAL";
 
@@ -101,6 +103,8 @@ public class BibMigration implements Migration {
   public static String SEQNUM = "SEQNUM";
 
   public static String EMPTY_JSON = "{}";
+
+  public static String SPACE = " ";
 
   public static String T_999 = "999";
 
@@ -125,8 +129,6 @@ public class BibMigration implements Migration {
   private final String tenant;
 
   private PartitionTaskQueue taskQueue;
-
-  private AtomicInteger hrid;
 
   private BibMigration(Context context, String tenant) {
     this.context = context;
@@ -171,8 +173,12 @@ public class BibMigration implements Migration {
 
     String hridPrefix = instancesHridSettings.get("prefix").asText();
 
-    hrid = new AtomicInteger(instancesHridSettings.get("startNumber").asInt());
+    int originalHridStartNumber = instancesHridSettings.get("startNumber").asInt();
+
+    int hridStartNumber = originalHridStartNumber;
+
     int index = 0;
+
     for (Job job : context.getJobs()) {
 
       countContext.put(SCHEMA, job.getSchema());
@@ -191,11 +197,18 @@ public class BibMigration implements Migration {
         partitionContext.put(SCHEMA, job.getSchema());
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);
-        partitionContext.put(INDEX, index++);
+        partitionContext.put(INDEX, index);
         partitionContext.put(TOKEN, token);
         partitionContext.put(HRID_PREFIX, hridPrefix);
+        partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         taskQueue.submit(new PartitionTask(migrationService, instanceMapper, partitionContext, job));
         offset += limit;
+        index++;
+        if (i < partitions - 1) {
+          hridStartNumber += limit;
+        } else {
+          hridStartNumber = originalHridStartNumber + count;
+        }
       }
     }
 
@@ -302,11 +315,14 @@ public class BibMigration implements Migration {
 
     private final Job job;
 
+    private int hrid;
+
     public PartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext, Job job) {
       this.migrationService = migrationService;
       this.instanceMapper = instanceMapper;
       this.partitionContext = partitionContext;
       this.job = job;
+      this.hrid = (int) partitionContext.get(HRID_START_NUMBER);
     }
 
     public int getIndex() {
@@ -448,7 +464,7 @@ public class BibMigration implements Migration {
               String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
               String createdByUserId = job.getUserId();
 
-              Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid.getAndIncrement());
+              Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid);
 
               String rrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(rawRecord)));
               String prUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(parsedRecord)));
@@ -460,11 +476,16 @@ public class BibMigration implements Migration {
               recordWriter.println(String.join("\t", recordModel.getId(), rmUtf8Json, createdAt, createdByUserId));
 
               if (instance.getInstanceTypeId() != null) {
-                instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getInstanceTypeId()));
+                if (!instance.getInstanceTypeId().contains(SPACE)) {
+                  instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getInstanceTypeId()));
+                } else {
+                  log.error("{} bib id {} instance type id mapped twice {}", schema, bibId, instance.getInstanceTypeId());
+                }
               } else {
                 log.error("{} bib id {} missing instance type id", schema, bibId);
               }
 
+              hrid++;
               count++;
 
             } else {
