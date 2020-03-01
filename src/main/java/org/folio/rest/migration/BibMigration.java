@@ -87,7 +87,6 @@ public class BibMigration implements Migration {
   private static String TOKEN = "TOKEN";
   private static String HRID_PREFIX = "HRID_PREFIX";
   private static String HRID_START_NUMBER = "HRID_START_NUMBER";
-  private static String HRID_STRIDE = "HRID_STRIDE";
   private static String HRID_INDEX = "HRID_INDEX";
 
   private static String TOTAL = "TOTAL";
@@ -180,7 +179,6 @@ public class BibMigration implements Migration {
         partitionContext.put(HRID_PREFIX, hridPrefix);
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(HRID_INDEX, hridIndex++);
-        partitionContext.put(HRID_STRIDE, partitions);
         PartitionTask task = new PartitionTask(service, parameters, partitionContext, rules, job);
         taskQueue.submit(task);
         offset += limit;
@@ -276,9 +274,9 @@ public class BibMigration implements Migration {
       this.job = job;
 
       int hridStartNumber = (int) partitionContext.get(HRID_START_NUMBER);
-      int hridStride = (int) partitionContext.get(HRID_STRIDE);
       int hridIndex = (int) partitionContext.get(HRID_INDEX);
-      this.hrid = hridStartNumber + (hridStride * hridIndex);
+      int limit = (int) partitionContext.get(LIMIT);
+      this.hrid = hridStartNumber + (hridIndex * limit);
     }
 
     public int getIndex() {
