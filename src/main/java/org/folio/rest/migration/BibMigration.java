@@ -227,7 +227,9 @@ public class BibMigration implements Migration {
       inProcess.remove(task);
       try {
         if (inWait.isEmpty()) {
-          shutdown();
+          if (inProcess.isEmpty()) {
+            shutdown();
+          }
         } else {
           start(inWait.take());
         }
@@ -244,7 +246,7 @@ public class BibMigration implements Migration {
 
     private void shutdown() throws InterruptedException {
       executor.shutdown();
-      executor.awaitTermination(context.getTimeout(), TimeUnit.MINUTES);
+      executor.awaitTermination(15, TimeUnit.SECONDS);
       executor.shutdownNow();
       log.info("finished: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     }

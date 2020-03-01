@@ -13,9 +13,6 @@ public class Context {
   @NotNull
   private int parallelism;
 
-  @NotNull
-  private int timeout;
-
   private List<Job> jobs;
 
   public Context() {
@@ -36,14 +33,6 @@ public class Context {
 
   public void setParallelism(int parallelism) {
     this.parallelism = parallelism;
-  }
-
-  public int getTimeout() {
-    return timeout;
-  }
-
-  public void setTimeout(int timeout) {
-    this.timeout = timeout;
   }
 
   public List<Job> getJobs() {

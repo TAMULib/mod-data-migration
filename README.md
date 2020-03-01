@@ -19,7 +19,6 @@ POST to http://localhost:9003/migrate/bibs
     "additional": "SELECT bib_id, seqnum, record_segment FROM ${SCHEMA}.bib_data WHERE bib_id = ${BIB_ID}"
   },
   "parallelism": 12,
-  "timeout": 120,
   "jobs": [
     {
       "schema": "AMDB",
