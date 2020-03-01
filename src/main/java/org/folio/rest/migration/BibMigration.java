@@ -527,7 +527,7 @@ public class BibMigration implements Migration {
 
       migrationService.okapiService.finishJobExecution(tenant, token, jobExecutionId, rawRecordsDto);
 
-      log.info("{} {} finish: {} milliseconds", schema, index, TimingUtility.getDeltaInMilliseconds(startTime));
+      log.info("{} {} finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
     }
