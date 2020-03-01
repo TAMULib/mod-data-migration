@@ -15,8 +15,14 @@ public class Context {
 
   private List<Job> jobs;
 
+  private List<String> preActions;
+
+  private List<String> postActions;
+
   public Context() {
     jobs = new ArrayList<Job>();
+    preActions = new ArrayList<String>();
+    postActions = new ArrayList<String>();
   }
 
   public Extraction getExtraction() {
@@ -41,6 +47,22 @@ public class Context {
 
   public void setJobs(List<Job> jobs) {
     this.jobs = jobs;
+  }
+
+  public List<String> getPreActions() {
+    return preActions;
+  }
+
+  public void setPreActions(List<String> preActions) {
+    this.preActions = preActions;
+  }
+
+  public List<String> getPostActions() {
+    return postActions;
+  }
+
+  public void setPostActions(List<String> postActions) {
+    this.postActions = postActions;
   }
 
 }
