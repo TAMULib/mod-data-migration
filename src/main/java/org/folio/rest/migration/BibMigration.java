@@ -223,12 +223,10 @@ public class BibMigration implements Migration {
 
         Connection connection = getConnection(settings);
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(actionSql);
 
     ) {
-      if (resultSet.next()) {
-
-      }
+      log.info(actionSql);
+      statement.executeQuery(actionSql);
     } catch (SQLException e) {
       e.printStackTrace();
     }
