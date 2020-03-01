@@ -290,7 +290,7 @@ public class BibMigration implements Migration {
 
     private void shutdown() throws InterruptedException {
       executor.shutdown();
-      executor.awaitTermination(15, TimeUnit.SECONDS);
+      executor.awaitTermination(1, TimeUnit.MINUTES);
       executor.shutdownNow();
       callback.complete();
       log.info("finished: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
