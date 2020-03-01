@@ -54,6 +54,7 @@ import org.folio.rest.migration.model.request.Job;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
+import org.marc4j.MarcException;
 import org.marc4j.MarcJsonWriter;
 import org.marc4j.MarcStreamReader;
 import org.marc4j.MarcStreamWriter;
@@ -359,48 +360,47 @@ public class BibMigration implements Migration {
 
           marcContext.put(BIB_ID, bibId);
 
-          String marc = getMarc(marcStatement, marcContext);
+          try {
+            String marc = getMarc(marcStatement, marcContext);
 
-          BibRecord bibRecord = new BibRecord(bibId, suppressInOpac);
+            BibRecord bibRecord = new BibRecord(bibId, suppressInOpac);
 
-          String sourceRecordId, instanceId;
-          if (job.isUseReferenceLinks()) {
-            Optional<ReferenceLink> sourceRecordRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(sourceRecordRLTypeId, bibId);
-            sourceRecordId = sourceRecordRL.isPresent() ? sourceRecordRL.get().getFolioReference() : UUID.randomUUID().toString();
-            Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, bibId);
-            instanceId = instanceRL.isPresent() ? instanceRL.get().getFolioReference() : UUID.randomUUID().toString();
-          } else {
-            sourceRecordId = UUID.randomUUID().toString();
-            instanceId = UUID.randomUUID().toString();
-          }
-
-          Optional<Record> potentialRecord = rawMarcToRecord(marc);
-
-          if (potentialRecord.isPresent()) {
-            Record record = potentialRecord.get();
-
-            DataField dataField = getDataField(factory, record);
-
-            bibRecord.setSourceRecordId(sourceRecordId);
-            dataField.addSubfield(factory.newSubfield(S, sourceRecordId));
-
-            bibRecord.setInstanceId(instanceId);
-            dataField.addSubfield(factory.newSubfield(I, instanceId));
-
-            record.addVariableField(dataField);
-
-            try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
-              MarcWriter streamWriter = new MarcStreamWriter(os, DEFAULT_CHARSET.name());
-              // use stream writer to recalculate leader
-              streamWriter.write(record);
-              streamWriter.close();
-            } catch (IOException e) {
-              e.printStackTrace();
+            String sourceRecordId, instanceId;
+            if (job.isUseReferenceLinks()) {
+              Optional<ReferenceLink> sourceRecordRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(sourceRecordRLTypeId, bibId);
+              sourceRecordId = sourceRecordRL.isPresent() ? sourceRecordRL.get().getFolioReference() : UUID.randomUUID().toString();
+              Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, bibId);
+              instanceId = instanceRL.isPresent() ? instanceRL.get().getFolioReference() : UUID.randomUUID().toString();
+            } else {
+              sourceRecordId = UUID.randomUUID().toString();
+              instanceId = UUID.randomUUID().toString();
             }
 
-            String marcJson = recordToJson(record);
+            Optional<Record> potentialRecord = rawMarcToRecord(marc);
 
-            try {
+            if (potentialRecord.isPresent()) {
+              Record record = potentialRecord.get();
+
+              DataField dataField = getDataField(factory, record);
+
+              bibRecord.setSourceRecordId(sourceRecordId);
+              dataField.addSubfield(factory.newSubfield(S, sourceRecordId));
+
+              bibRecord.setInstanceId(instanceId);
+              dataField.addSubfield(factory.newSubfield(I, instanceId));
+
+              record.addVariableField(dataField);
+
+              try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
+                MarcWriter streamWriter = new MarcStreamWriter(os, DEFAULT_CHARSET.name());
+                // use stream writer to recalculate leader
+                streamWriter.write(record);
+                streamWriter.close();
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
+
+              String marcJson = recordToJson(record);
 
               JsonNode marcJsonNode = migrationService.objectMapper.readTree(marcJson);
 
@@ -433,19 +433,20 @@ public class BibMigration implements Migration {
               if (instance.getInstanceTypeId() != null) {
                 instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getInstanceTypeId()));
               } else {
-                log.debug("bib id {} missing instance type id", bibId);
+                log.error("bib id {} missing instance type id", bibId);
               }
 
               count++;
 
-            } catch (IOException e) {
-              log.debug("bib id {} cannot serialize marc json", bibId);
+            } else {
+              log.error("bib id {} no record found", bibId);
             }
 
-          } else {
-            log.debug("bib id {} cannot parse record", bibId);
+          } catch (IOException e) {
+            log.error("bib id {} error processing marc", bibId);
+          } catch (MarcException e) {
+            log.error("bib id {} error reading marc", bibId);
           }
-
         }
 
         rawRecordWriter.close();
@@ -458,8 +459,6 @@ public class BibMigration implements Migration {
 
         pageResultSet.close();
 
-      } catch (IOException e) {
-        e.printStackTrace();
       } catch (SQLException e) {
         e.printStackTrace();
       }
@@ -558,7 +557,7 @@ public class BibMigration implements Migration {
     }
   }
 
-  private Optional<Record> rawMarcToRecord(String rawMarc) throws IOException {
+  private Optional<Record> rawMarcToRecord(String rawMarc) throws IOException, MarcException {
     try (InputStream in = new ByteArrayInputStream(rawMarc.getBytes(DEFAULT_CHARSET))) {
       MarcStreamReader reader = new MarcStreamReader(in, DEFAULT_CHARSET.name());
       if (reader.hasNext()) {
