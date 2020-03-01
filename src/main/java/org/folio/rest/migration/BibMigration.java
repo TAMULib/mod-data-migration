@@ -29,6 +29,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
@@ -86,8 +87,7 @@ public class BibMigration implements Migration {
 
   private static String TOKEN = "TOKEN";
   private static String HRID_PREFIX = "HRID_PREFIX";
-  private static String HRID_START_NUMBER = "HRID_START_NUMBER";
-  private static String HRID_INDEX = "HRID_INDEX";
+  private static String INDEX = "HRID_INDEX";
 
   private static String TOTAL = "TOTAL";
 
@@ -125,6 +125,8 @@ public class BibMigration implements Migration {
   private final String tenant;
 
   private PartitionTaskQueue taskQueue;
+
+  private AtomicInteger hrid;
 
   private BibMigration(Context context, String tenant) {
     this.context = context;
@@ -168,9 +170,9 @@ public class BibMigration implements Migration {
     JsonNode instancesHridSettings = hridSettings.get("instances");
 
     String hridPrefix = instancesHridSettings.get("prefix").asText();
-    int originalStartNumber = instancesHridSettings.get("startNumber").asInt();
-    int hridStartNumber = originalStartNumber;
-    int hridIndex = 0;
+
+    hrid = new AtomicInteger(instancesHridSettings.get("startNumber").asInt());
+    int index = 0;
     for (Job job : context.getJobs()) {
 
       countContext.put(SCHEMA, job.getSchema());
@@ -189,17 +191,11 @@ public class BibMigration implements Migration {
         partitionContext.put(SCHEMA, job.getSchema());
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);
+        partitionContext.put(INDEX, index++);
         partitionContext.put(TOKEN, token);
         partitionContext.put(HRID_PREFIX, hridPrefix);
-        partitionContext.put(HRID_START_NUMBER, hridStartNumber);
-        partitionContext.put(HRID_INDEX, hridIndex++);
         taskQueue.submit(new PartitionTask(migrationService, instanceMapper, partitionContext, job));
         offset += limit;
-        if (i < partitions - 1) {
-          hridStartNumber += limit;
-        } else {
-          hridStartNumber = originalStartNumber + count;
-        }
       }
     }
 
@@ -306,19 +302,15 @@ public class BibMigration implements Migration {
 
     private final Job job;
 
-    private int hrid;
-
     public PartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext, Job job) {
       this.migrationService = migrationService;
       this.instanceMapper = instanceMapper;
       this.partitionContext = partitionContext;
       this.job = job;
-
-      this.hrid = (int) partitionContext.get(HRID_START_NUMBER);
     }
 
     public int getIndex() {
-      return (int) partitionContext.get(HRID_INDEX);
+      return (int) partitionContext.get(INDEX);
     }
 
     public String getSchema() {
@@ -335,8 +327,6 @@ public class BibMigration implements Migration {
       String schema = this.getSchema();
 
       int index = this.getIndex();
-
-      log.info("{} {} start", schema, index);
 
       long startTime = System.nanoTime();
 
@@ -458,7 +448,7 @@ public class BibMigration implements Migration {
               String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
               String createdByUserId = job.getUserId();
 
-              Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid++);
+              Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid.getAndIncrement());
 
               String rrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(rawRecord)));
               String prUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(parsedRecord)));
