@@ -211,17 +211,14 @@ public class BibMigration implements Migration {
     }
 
     public synchronized void submit(PartitionTask task) {
-      log.debug("submit: {} {}", task.getSchema(), task.getIndex());
       if (inProcess.size() < context.getParallelism()) {
         start(task);
       } else {
-        log.debug("queue: {} {}", task.getSchema(), task.getIndex());
         inWait.add(task);
       }
     }
 
     public synchronized void complete(PartitionTask task) {
-      log.debug("end: {} {}", task.getSchema(), task.getIndex());
       inProcess.remove(task);
       try {
         if (inWait.isEmpty()) {
@@ -237,7 +234,6 @@ public class BibMigration implements Migration {
     }
 
     private void start(PartitionTask task) {
-      log.debug("start: {} {}", task.getSchema(), task.getIndex());
       inProcess.add(task);
       CompletableFuture.supplyAsync(task::execute, executor).thenAccept(this::complete);
     }
