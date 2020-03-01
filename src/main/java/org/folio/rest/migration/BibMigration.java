@@ -447,8 +447,10 @@ public class BibMigration implements Migration {
 
           } catch (IOException e) {
             log.error("{} bib id {} error processing marc", schema, bibId);
+            log.debug(e.getMessage());
           } catch (MarcException e) {
             log.error("{} bib id {} error reading marc", schema, bibId);
+            log.debug(e.getMessage());
           }
         }
 
