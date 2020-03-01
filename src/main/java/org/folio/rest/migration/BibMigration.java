@@ -120,33 +120,45 @@ public class BibMigration implements Migration {
   // (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid)
   private static String INSTANCE_COPY_SQL = "COPY tern_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancetypeid) FROM STDIN";
 
-  private final ParallelTaskQueue taskQueue;
-
   private final Context context;
 
   private final String tenant;
 
+  private PartitionTaskQueue taskQueue;
+
   private BibMigration(Context context, String tenant) {
-    this.taskQueue = new ParallelTaskQueue(context);
     this.context = context;
     this.tenant = tenant;
   }
 
   @Override
-  public CompletableFuture<Boolean> run(MigrationService service) {
+  public CompletableFuture<Boolean> run(MigrationService migrationService) {
     log.info("tenant: {}", tenant);
 
-    log.info("context:\n{}", service.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
+    log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
 
-    String token = service.okapiService.getToken(tenant);
+    String token = migrationService.okapiService.getToken(tenant);
 
-    MappingParameters parameters = service.okapiService.getMappingParamaters(tenant, token);
+    MappingParameters mappingParameters = migrationService.okapiService.getMappingParamaters(tenant, token);
 
-    JsonNode rules = service.okapiService.fetchRules(tenant, token);
+    JsonNode rules = migrationService.okapiService.fetchRules(tenant, token);
 
-    JsonNode hridSettings = service.okapiService.fetchHridSettings(tenant, token);
+    JsonNode hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
 
-    Settings voyagerSettings = getSettings(service.connections, "voyager");
+    Settings voyagerSettings = getSettings(migrationService.connections, "voyager");
+
+    Settings folioSettings = getSettings(migrationService.connections, "folio");
+
+    preActions(folioSettings, context.getPreActions());
+
+    taskQueue = new PartitionTaskQueue(context, new Callback() {
+
+      @Override
+      public void complete() {
+        postActions(folioSettings, context.getPostActions());
+      }
+
+    });
 
     Map<String, Object> countContext = new HashMap<>();
     countContext.put(EXTRACTOR, context.getExtraction().getCount());
@@ -179,7 +191,7 @@ public class BibMigration implements Migration {
         partitionContext.put(HRID_PREFIX, hridPrefix);
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(HRID_INDEX, hridIndex++);
-        PartitionTask task = new PartitionTask(service, parameters, partitionContext, rules, job);
+        PartitionTask task = new PartitionTask(migrationService, mappingParameters, partitionContext, rules, job);
         taskQueue.submit(task);
         offset += limit;
       }
@@ -192,10 +204,41 @@ public class BibMigration implements Migration {
     return new BibMigration(context, tenant);
   }
 
-  private class ParallelTaskQueue {
+  private void preActions(Settings settings, List<String> preActions) {
+    preActions.stream().forEach(actionSql -> action(settings, actionSql));
+  }
+
+  private void postActions(Settings settings, List<String> postActions) {
+    postActions.stream().forEach(actionSql -> action(settings, actionSql));
+  }
+
+  private void action(Settings settings, String actionSql) {
+    try (
+
+        Connection connection = getConnection(settings);
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(actionSql);
+
+    ) {
+      if (resultSet.next()) {
+
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @FunctionalInterface
+  private interface Callback {
+    public void complete();
+  }
+
+  private class PartitionTaskQueue {
     private final long startTime = System.nanoTime();
 
     private final Context context;
+
+    private final Callback callback;
 
     private final ExecutorService executor;
 
@@ -203,8 +246,9 @@ public class BibMigration implements Migration {
 
     private final BlockingQueue<PartitionTask> inWait;
 
-    public ParallelTaskQueue(Context context) {
+    public PartitionTaskQueue(Context context, Callback callback) {
       this.context = context;
+      this.callback = callback;
       this.executor = Executors.newFixedThreadPool(context.getParallelism());
       this.inProcess = new ArrayBlockingQueue<>(context.getParallelism());
       this.inWait = new ArrayBlockingQueue<>(1024);
@@ -242,6 +286,7 @@ public class BibMigration implements Migration {
       executor.shutdown();
       executor.awaitTermination(15, TimeUnit.SECONDS);
       executor.shutdownNow();
+      callback.complete();
       log.info("finished: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     }
 
