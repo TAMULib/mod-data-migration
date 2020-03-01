@@ -240,7 +240,6 @@ public class BibMigration implements Migration {
       log.debug("start: {} {}", task.getSchema(), task.getIndex());
       inProcess.add(task);
       CompletableFuture.supplyAsync(task::execute, executor).thenAccept(this::complete);
-      System.out.println("in process: " + inProcess.stream().map(t -> t.getIndex()).collect(Collectors.toList()));
     }
 
     private void shutdown() throws InterruptedException {
@@ -285,7 +284,7 @@ public class BibMigration implements Migration {
     }
 
     public String getSchema() {
-      return (String) partitionContext.get(SCHEMA);
+      return job.getSchema();
     }
 
     @Override
@@ -295,7 +294,11 @@ public class BibMigration implements Migration {
 
     public PartitionTask execute() {
 
-      log.info("{} {} start", this.getSchema(), this.getIndex());
+      String schema = this.getSchema();
+
+      int index = this.getIndex();
+
+      log.info("{} {} start", schema, index);
 
       long startTime = System.nanoTime();
 
@@ -323,7 +326,7 @@ public class BibMigration implements Migration {
 
       Map<String, Object> marcContext = new HashMap<>();
       marcContext.put(EXTRACTOR, context.getExtraction().getAdditional());
-      marcContext.put(SCHEMA, job.getSchema());
+      marcContext.put(SCHEMA, schema);
 
       String sourceRecordRLTypeId = job.getReferences().get(SOURCE_RECORD_REFERENCE_ID);
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
@@ -433,19 +436,19 @@ public class BibMigration implements Migration {
               if (instance.getInstanceTypeId() != null) {
                 instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getInstanceTypeId()));
               } else {
-                log.error("bib id {} missing instance type id", bibId);
+                log.error("{} bib id {} missing instance type id", schema, bibId);
               }
 
               count++;
 
             } else {
-              log.error("bib id {} no record found", bibId);
+              log.error("{} bib id {} no record found", schema, bibId);
             }
 
           } catch (IOException e) {
-            log.error("bib id {} error processing marc", bibId);
+            log.error("{} bib id {} error processing marc", schema, bibId);
           } catch (MarcException e) {
-            log.error("bib id {} error reading marc", bibId);
+            log.error("{} bib id {} error reading marc", schema, bibId);
           }
         }
 
@@ -475,7 +478,7 @@ public class BibMigration implements Migration {
 
       migrationService.okapiService.finishJobExecution(tenant, token, jobExecutionId, rawRecordsDto);
 
-      log.info("{} {} finish: {} milliseconds", this.getSchema(), this.getIndex(), TimingUtility.getDeltaInMilliseconds(startTime));
+      log.info("{} {} finish: {} milliseconds", schema, index, TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
     }
