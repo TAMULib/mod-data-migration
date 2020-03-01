@@ -226,9 +226,9 @@ public class BibMigration implements Migration {
 
     ) {
       log.info(actionSql);
-      statement.executeQuery(actionSql);
+      statement.execute(actionSql);
     } catch (SQLException e) {
-      e.printStackTrace();
+      log.warn(e.getMessage());
     }
   }
 
