@@ -155,7 +155,6 @@ public class BibMigration implements Migration {
 
     String hridPrefix = instancesHridSettings.get("prefix").asText();
     int hridStartNumber = instancesHridSettings.get("startNumber").asInt();
-
     int hridIndex = 0;
     for (Job job : context.getJobs()) {
 
@@ -182,6 +181,7 @@ public class BibMigration implements Migration {
         PartitionTask task = new PartitionTask(service, parameters, partitionContext, rules, job);
         taskQueue.submit(task);
         offset += limit;
+        hridStartNumber += limit;
       }
     }
 
@@ -269,10 +269,7 @@ public class BibMigration implements Migration {
       this.rules = rules;
       this.job = job;
 
-      int hridStartNumber = (int) partitionContext.get(HRID_START_NUMBER);
-      int hridIndex = (int) partitionContext.get(HRID_INDEX);
-      int limit = (int) partitionContext.get(LIMIT);
-      this.hrid = hridStartNumber + (hridIndex * limit);
+      this.hrid = (int) partitionContext.get(HRID_START_NUMBER);
     }
 
     public int getIndex() {
