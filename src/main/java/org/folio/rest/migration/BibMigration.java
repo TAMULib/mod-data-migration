@@ -149,6 +149,8 @@ public class BibMigration implements Migration {
 
     Settings folioSettings = getSettings(migrationService.connections, "folio");
 
+    InstanceMapper instanceMapper = new InstanceMapper(mappingParameters, migrationService.objectMapper, rules);
+
     preActions(folioSettings, context.getPreActions());
 
     taskQueue = new PartitionTaskQueue(context, new Callback() {
@@ -166,8 +168,8 @@ public class BibMigration implements Migration {
     JsonNode instancesHridSettings = hridSettings.get("instances");
 
     String hridPrefix = instancesHridSettings.get("prefix").asText();
-    int hridStartNumber = instancesHridSettings.get("startNumber").asInt();
-
+    int originalStartNumber = instancesHridSettings.get("startNumber").asInt();
+    int hridStartNumber = originalStartNumber;
     int hridIndex = 0;
     for (Job job : context.getJobs()) {
 
@@ -191,9 +193,13 @@ public class BibMigration implements Migration {
         partitionContext.put(HRID_PREFIX, hridPrefix);
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(HRID_INDEX, hridIndex++);
-        PartitionTask task = new PartitionTask(migrationService, mappingParameters, partitionContext, rules, job);
-        taskQueue.submit(task);
+        taskQueue.submit(new PartitionTask(migrationService, instanceMapper, partitionContext, job));
         offset += limit;
+        if (i < partitions - 1) {
+          hridStartNumber += limit;
+        } else {
+          hridStartNumber = originalStartNumber + count;
+        }
       }
     }
 
@@ -296,28 +302,21 @@ public class BibMigration implements Migration {
 
     private final MigrationService migrationService;
 
-    private final MappingParameters mappingParameters;
+    private final InstanceMapper instanceMapper;
 
     private final Map<String, Object> partitionContext;
-
-    private final JsonNode rules;
 
     private final Job job;
 
     private int hrid;
 
-    public PartitionTask(MigrationService migrationService, MappingParameters mappingParameters, Map<String, Object> partitionContext, JsonNode rules,
-        Job job) {
+    public PartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext, Job job) {
       this.migrationService = migrationService;
-      this.mappingParameters = mappingParameters;
+      this.instanceMapper = instanceMapper;
       this.partitionContext = partitionContext;
-      this.rules = rules;
       this.job = job;
 
-      int hridStartNumber = (int) partitionContext.get(HRID_START_NUMBER);
-      int hridIndex = (int) partitionContext.get(HRID_INDEX);
-      int limit = (int) partitionContext.get(LIMIT);
-      this.hrid = hridStartNumber + (hridIndex * limit);
+      this.hrid = (int) partitionContext.get(HRID_START_NUMBER);
     }
 
     public int getIndex() {
@@ -371,8 +370,6 @@ public class BibMigration implements Migration {
 
       String sourceRecordRLTypeId = job.getReferences().get(SOURCE_RECORD_REFERENCE_ID);
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
-
-      InstanceMapper instanceMapper = new InstanceMapper(mappingParameters, migrationService.objectMapper, rules);
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
