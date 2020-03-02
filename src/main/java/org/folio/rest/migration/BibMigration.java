@@ -191,7 +191,7 @@ public class BibMigration implements Migration {
       int limit = (int) Math.ceil(count / partitions);
       int offset = 0;
 
-      for (int i = 0; i < partitions; i++) {
+      for (int i = 0; i <= partitions; i++) {
         Map<String, Object> partitionContext = new HashMap<String, Object>();
         partitionContext.put(EXTRACTOR, context.getExtraction().getPage());
         partitionContext.put(SCHEMA, job.getSchema());
@@ -204,7 +204,7 @@ public class BibMigration implements Migration {
         taskQueue.submit(new PartitionTask(migrationService, instanceMapper, partitionContext, job));
         offset += limit;
         index++;
-        if (i < partitions - 1) {
+        if (i < partitions) {
           hridStartNumber += limit;
         } else {
           hridStartNumber = originalHridStartNumber + count;
@@ -471,25 +471,12 @@ public class BibMigration implements Migration {
               String rmUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(recordModel)));
               String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(instance)));
 
-              if (instance.getInstanceTypeId() != null) {
+              // TODO: validate rows
 
-                // TODO: validate rows
-
-                // TODO: debug double mapping instance type id
-                if (!instance.getInstanceTypeId().contains(SPACE)) {
-
-                  rawRecordWriter.println(String.join("\t", rawRecord.getId(), rrUtf8Json, createdAt, createdByUserId));
-                  parsedRecordWriter.println(String.join("\t", parsedRecord.getId(), prUtf8Json, createdAt, createdByUserId));
-                  recordWriter.println(String.join("\t", recordModel.getId(), rmUtf8Json, createdAt, createdByUserId));
-
-                  instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getInstanceTypeId()));
-
-                } else {
-                  log.error("{} bib id {} instance type id mapped twice {}", schema, bibId, instance.getInstanceTypeId());
-                }
-              } else {
-                log.error("{} bib id {} missing instance type id", schema, bibId);
-              }
+              rawRecordWriter.println(String.join("\t", rawRecord.getId(), rrUtf8Json, createdAt, createdByUserId));
+              parsedRecordWriter.println(String.join("\t", parsedRecord.getId(), prUtf8Json, createdAt, createdByUserId));
+              recordWriter.println(String.join("\t", recordModel.getId(), rmUtf8Json, createdAt, createdByUserId));
+              instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getInstanceTypeId()));
 
               hrid++;
               count++;
@@ -616,7 +603,10 @@ public class BibMigration implements Migration {
   }
 
   private Optional<Record> rawMarcToRecord(String rawMarc) throws IOException, MarcException {
-    try (InputStream in = new ByteArrayInputStream(rawMarc.getBytes(DEFAULT_CHARSET))) {
+    byte[] marcBytes = rawMarc.getBytes(DEFAULT_CHARSET);
+    // NOTE: leader/22 must be 0 to prevent missing field terminator at end of directory
+    marcBytes[22] = 0;
+    try (InputStream in = new ByteArrayInputStream(marcBytes)) {
       MarcStreamReader reader = new MarcStreamReader(in, DEFAULT_CHARSET.name());
       if (reader.hasNext()) {
         return Optional.of(reader.next());

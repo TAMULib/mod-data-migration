@@ -271,9 +271,16 @@ public class InstanceMapper {
 
     LinkedHashSet<DataAndDelimiter> concatedDataAndDelimiter = new LinkedHashSet<>();
 
+    Set<Character> processedSubfields = new HashSet<Character>();
     Iterator<Subfield> subfields = ruleExecutionContext.getDataField().getSubfields(sfSpec).iterator();
     while (subfields.hasNext()) {
       Subfield subfield = subfields.next();
+      // NOTE: preventing duplicate subfields
+      if (processedSubfields.contains(subfield.getCode())) {
+        continue;
+      } else {
+        processedSubfields.add(subfield.getCode());
+      }
 
       DataAndDelimiter dataAndDelimiter = new DataAndDelimiter();
 
