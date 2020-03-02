@@ -104,8 +104,6 @@ public class BibMigration implements Migration {
 
   public static String EMPTY_JSON = "{}";
 
-  public static String SPACE = " ";
-
   public static String T_999 = "999";
 
   public static char F = 'f';
@@ -603,10 +601,10 @@ public class BibMigration implements Migration {
   }
 
   private Optional<Record> rawMarcToRecord(String rawMarc) throws IOException, MarcException {
-    byte[] marcBytes = rawMarc.getBytes(DEFAULT_CHARSET);
-    // NOTE: leader/22 must be 0 to prevent missing field terminator at end of directory
-    marcBytes[22] = 0;
-    try (InputStream in = new ByteArrayInputStream(marcBytes)) {
+    StringBuilder marc = new StringBuilder(rawMarc);
+    // leader/22 must be 0 to avoid missing field terminator at end of directory
+    marc.setCharAt(22, '0');
+    try (InputStream in = new ByteArrayInputStream(marc.toString().getBytes(DEFAULT_CHARSET))) {
       MarcStreamReader reader = new MarcStreamReader(in, DEFAULT_CHARSET.name());
       if (reader.hasNext()) {
         return Optional.of(reader.next());
