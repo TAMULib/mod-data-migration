@@ -471,13 +471,19 @@ public class BibMigration implements Migration {
               String rmUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(recordModel)));
               String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(instance)));
 
-              rawRecordWriter.println(String.join("\t", rawRecord.getId(), rrUtf8Json, createdAt, createdByUserId));
-              parsedRecordWriter.println(String.join("\t", parsedRecord.getId(), prUtf8Json, createdAt, createdByUserId));
-              recordWriter.println(String.join("\t", recordModel.getId(), rmUtf8Json, createdAt, createdByUserId));
-
               if (instance.getInstanceTypeId() != null) {
+
+                // TODO: validate rows
+
+                // TODO: debug double mapping instance type id
                 if (!instance.getInstanceTypeId().contains(SPACE)) {
+
+                  rawRecordWriter.println(String.join("\t", rawRecord.getId(), rrUtf8Json, createdAt, createdByUserId));
+                  parsedRecordWriter.println(String.join("\t", parsedRecord.getId(), prUtf8Json, createdAt, createdByUserId));
+                  recordWriter.println(String.join("\t", recordModel.getId(), rmUtf8Json, createdAt, createdByUserId));
+
                   instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getInstanceTypeId()));
+
                 } else {
                   log.error("{} bib id {} instance type id mapped twice {}", schema, bibId, instance.getInstanceTypeId());
                 }
