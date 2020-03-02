@@ -188,7 +188,7 @@ public class BibMigration implements Migration {
       log.info("{} count: {}", job.getSchema(), count);
 
       int partitions = job.getPartitions();
-      int limit = count / partitions;
+      int limit = (int) Math.ceil(count / partitions);
       int offset = 0;
 
       for (int i = 0; i < partitions; i++) {
