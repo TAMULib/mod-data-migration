@@ -186,9 +186,11 @@ public class BibMigration implements Migration {
       log.info("{} count: {}", job.getSchema(), count);
 
       int partitions = job.getPartitions();
-      int limit = (int) Math.ceil(count / partitions);
+      int limit = count / partitions;
+      if (limit * partitions < count) {
+        limit++;
+      }
       int offset = 0;
-
       for (int i = 0; i <= partitions; i++) {
         Map<String, Object> partitionContext = new HashMap<String, Object>();
         partitionContext.put(EXTRACTOR, context.getExtraction().getPage());
@@ -235,7 +237,7 @@ public class BibMigration implements Migration {
       log.info(actionSql);
       statement.execute(actionSql);
     } catch (SQLException e) {
-      log.warn(e.getMessage());
+      log.error(e.getMessage());
     }
   }
 
@@ -534,6 +536,7 @@ public class BibMigration implements Migration {
     try {
       return DriverManager.getConnection(settings.getUrl(), settings.getUsername(), settings.getPassword());
     } catch (SQLException e) {
+      log.error(e.getMessage());
       throw new RuntimeException(e);
     }
   }
@@ -556,6 +559,7 @@ public class BibMigration implements Migration {
     ) {
       return resultSet.next() ? Integer.parseInt(resultSet.getBigDecimal(TOTAL).toString()) : 0;
     } catch (SQLException e) {
+      log.error(e.getMessage());
       throw new RuntimeException(e);
     }
   }
@@ -570,6 +574,7 @@ public class BibMigration implements Migration {
       threadConnections.setRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
       threadConnections.setInstanceConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
     } catch (SQLException e) {
+      log.error(e.getMessage());
       throw new RuntimeException(e);
     }
     return threadConnections;
@@ -706,6 +711,7 @@ public class BibMigration implements Migration {
         recordConnection.close();
         instanceConnection.close();
       } catch (SQLException e) {
+        log.error(e.getMessage());
         throw new RuntimeException(e);
       }
     }
