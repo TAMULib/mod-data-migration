@@ -6,15 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.SequenceInputStream;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -23,16 +19,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.text.StringSubstitutor;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.InstanceMapper;
 import org.folio.rest.migration.mapping.MappingParameters;
@@ -64,33 +54,14 @@ import org.marc4j.marc.Record;
 import org.marc4j.marc.VariableField;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
-public class BibMigration implements Migration {
-
-  private static final Logger log = LoggerFactory.getLogger(BibMigration.class);
-
-  private static DateTimeFormatter DATE_TIME_FOMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSXX");
-
-  private static Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
-
-  private static String SQL = "SQL";
-  private static String SCHEMA = "SCHEMA";
-  private static String OFFSET = "OFFSET";
-  private static String LIMIT = "LIMIT";
-
-  private static String TOKEN = "TOKEN";
-
-  private static String INDEX = "INDEX";
+public class BibMigration extends AbstractMigration<BibContext> {
 
   private static String HRID_PREFIX = "HRID_PREFIX";
   private static String HRID_START_NUMBER = "HRID_START_NUMBER";
-
-  private static String TOTAL = "TOTAL";
 
   private static String BIB_ID = "BIB_ID";
   private static String SUPPRESS_IN_OPAC = "SUPPRESS_IN_OPAC";
@@ -125,8 +96,6 @@ public class BibMigration implements Migration {
 
   private final String tenant;
 
-  private PartitionTaskQueue taskQueue;
-
   private BibMigration(BibContext context, String tenant) {
     this.context = context;
     this.tenant = tenant;
@@ -154,7 +123,7 @@ public class BibMigration implements Migration {
 
     preActions(folioSettings, context.getPreActions());
 
-    taskQueue = new PartitionTaskQueue(context, new Callback() {
+    taskQueue = new PartitionTaskQueue<BibContext>(context, new TaskCallback() {
 
       @Override
       public void complete() {
@@ -200,7 +169,7 @@ public class BibMigration implements Migration {
         partitionContext.put(TOKEN, token);
         partitionContext.put(HRID_PREFIX, hridPrefix);
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
-        taskQueue.submit(new PartitionTask(migrationService, instanceMapper, partitionContext, job));
+        taskQueue.submit(new BibPartitionTask(migrationService, instanceMapper, partitionContext, job));
         offset += limit;
         index++;
         if (i < partitions) {
@@ -240,71 +209,7 @@ public class BibMigration implements Migration {
     }
   }
 
-  @FunctionalInterface
-  private interface Callback {
-    public void complete();
-  }
-
-  private class PartitionTaskQueue {
-    private final long startTime = System.nanoTime();
-
-    private final BibContext context;
-
-    private final Callback callback;
-
-    private final ExecutorService executor;
-
-    private final BlockingQueue<PartitionTask> inProcess;
-
-    private final BlockingQueue<PartitionTask> inWait;
-
-    public PartitionTaskQueue(BibContext context, Callback callback) {
-      this.context = context;
-      this.callback = callback;
-      this.executor = Executors.newFixedThreadPool(context.getParallelism());
-      this.inProcess = new ArrayBlockingQueue<>(context.getParallelism());
-      this.inWait = new ArrayBlockingQueue<>(1024);
-    }
-
-    public synchronized void submit(PartitionTask task) {
-      if (inProcess.size() < context.getParallelism()) {
-        start(task);
-      } else {
-        inWait.add(task);
-      }
-    }
-
-    public synchronized void complete(PartitionTask task) {
-      inProcess.remove(task);
-      try {
-        if (inWait.isEmpty()) {
-          if (inProcess.isEmpty()) {
-            shutdown();
-          }
-        } else {
-          start(inWait.take());
-        }
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
-    }
-
-    private void start(PartitionTask task) {
-      inProcess.add(task);
-      CompletableFuture.supplyAsync(() -> task.execute(context), executor).thenAccept(this::complete);
-    }
-
-    private void shutdown() throws InterruptedException {
-      executor.shutdown();
-      executor.awaitTermination(1, TimeUnit.MINUTES);
-      executor.shutdownNow();
-      callback.complete();
-      log.info("finished: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
-    }
-
-  }
-
-  private class PartitionTask {
+  public class BibPartitionTask implements PartitionTask<BibContext> {
 
     private final MigrationService migrationService;
 
@@ -316,7 +221,7 @@ public class BibMigration implements Migration {
 
     private int hrid;
 
-    public PartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext, BibJob job) {
+    public BibPartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext, BibJob job) {
       this.migrationService = migrationService;
       this.instanceMapper = instanceMapper;
       this.partitionContext = partitionContext;
@@ -332,7 +237,7 @@ public class BibMigration implements Migration {
       return job.getSchema();
     }
 
-    public PartitionTask execute(BibContext context) {
+    public BibPartitionTask execute(BibContext context) {
 
       String schema = this.getSchema();
 
@@ -521,38 +426,9 @@ public class BibMigration implements Migration {
 
     @Override
     public boolean equals(Object obj) {
-      return obj != null && ((PartitionTask) obj).getIndex() == this.getIndex();
+      return obj != null && ((BibPartitionTask) obj).getIndex() == this.getIndex();
     }
 
-  }
-
-  private Connection getConnection(Database settings) {
-    try {
-      Class.forName(settings.getDriverClassName());
-    } catch (ClassNotFoundException e) {
-      throw new RuntimeException(e);
-    }
-    try {
-      return DriverManager.getConnection(settings.getUrl(), settings.getUsername(), settings.getPassword());
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-      throw new RuntimeException(e);
-    }
-  }
-
-  private int getCount(Database settings, Map<String, Object> countContext) {
-    try (
-
-        Connection connection = getConnection(settings);
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = getResultSet(statement, countContext);
-
-    ) {
-      return resultSet.next() ? Integer.parseInt(resultSet.getBigDecimal(TOTAL).toString()) : 0;
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-      throw new RuntimeException(e);
-    }
   }
 
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
@@ -569,16 +445,6 @@ public class BibMigration implements Migration {
       throw new RuntimeException(e);
     }
     return threadConnections;
-  }
-
-  private ResultSet getResultSet(Statement statement, Map<String, Object> context) throws SQLException {
-    String sql = templateSql((String) context.get(SQL), context);
-    return statement.executeQuery(sql);
-  }
-
-  private String templateSql(String template, Map<String, Object> context) {
-    StringSubstitutor sub = new StringSubstitutor(context);
-    return sub.replace(template);
   }
 
   private String getMarc(Statement statement, Map<String, Object> context) throws SQLException, IOException {
@@ -632,7 +498,7 @@ public class BibMigration implements Migration {
     return list.stream().filter(f -> ((DataField) f).getIndicator1() == ind1 && ((DataField) f).getIndicator2() == ind2).findFirst().orElse(null);
   }
 
-  public class ThreadConnections {
+  private class ThreadConnections {
     private Connection pageConnection;
     private Connection marcConnection;
 
@@ -708,7 +574,7 @@ public class BibMigration implements Migration {
     }
   }
 
-  public class SequencedMarc {
+  private class SequencedMarc {
     private Integer seqnum;
     private InputStream recordSegment;
 

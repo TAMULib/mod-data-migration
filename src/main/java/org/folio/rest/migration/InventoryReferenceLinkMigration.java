@@ -4,8 +4,12 @@ import java.util.concurrent.CompletableFuture;
 
 import org.folio.rest.migration.model.request.InventoryReferenceLinkContext;
 import org.folio.rest.migration.service.MigrationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class InventoryReferenceLinkMigration implements Migration {
+public class InventoryReferenceLinkMigration extends AbstractMigration<InventoryReferenceLinkContext> {
+
+  private static final Logger log = LoggerFactory.getLogger(InventoryReferenceLinkMigration.class);
 
   private final InventoryReferenceLinkContext context;
 
