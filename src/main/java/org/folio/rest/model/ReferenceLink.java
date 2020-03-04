@@ -66,21 +66,4 @@ public class ReferenceLink extends AbstractBaseEntity {
     this.type = type;
   }
 
-  public static ReferenceLink with(String folioReference, String externalReference, ReferenceLinkType type) {
-    ReferenceLink referenceLink = new ReferenceLink();
-    referenceLink.setFolioReference(folioReference);
-    referenceLink.setExternalReference(externalReference);
-    referenceLink.setType(type);
-    return referenceLink;
-  }
-  
-  public static ReferenceLink with(String id, String folioReference, String externalReference, ReferenceLinkType type) {
-    ReferenceLink referenceLink = new ReferenceLink();
-    referenceLink.setId(id);
-    referenceLink.setFolioReference(folioReference);
-    referenceLink.setExternalReference(externalReference);
-    referenceLink.setType(type);
-    return referenceLink;
-  }
-
 }

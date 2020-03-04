@@ -79,16 +79,16 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private static final char S = 's';
 
   // (_id,jsonb,creation_date,created_by)
-  private static String RAW_RECORDS_COPY_SQL = "COPY tern_mod_source_record_storage.raw_records (_id,jsonb,creation_date,created_by) FROM STDIN";
+  private static String RAW_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.raw_records (_id,jsonb,creation_date,created_by) FROM STDIN";
 
   // (_id,jsonb,creation_date,created_by)
-  private static String PARSED_RECORDS_COPY_SQL = "COPY tern_mod_source_record_storage.marc_records (_id,jsonb,creation_date,created_by) FROM STDIN";
+  private static String PARSED_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.marc_records (_id,jsonb,creation_date,created_by) FROM STDIN";
 
   // (_id,jsonb,creation_date,created_by,jobexecutionid)
-  private static String RECORDS_COPY_SQL = "COPY tern_mod_source_record_storage.records (_id,jsonb,creation_date,created_by) FROM STDIN";
+  private static String RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.records (_id,jsonb,creation_date,created_by) FROM STDIN";
 
   // (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid)
-  private static String INSTANCE_COPY_SQL = "COPY tern_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancetypeid) FROM STDIN";
+  private static String INSTANCE_COPY_SQL = "COPY %s_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancetypeid) FROM STDIN";
 
   private BibMigration(BibContext context, String tenant) {
     super(context, tenant);
@@ -251,16 +251,17 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       try {
 
-        PGCopyOutputStream rawRecordOutput = new PGCopyOutputStream(threadConnections.getRawRecordConnection(), RAW_RECORDS_COPY_SQL);
+        PGCopyOutputStream rawRecordOutput = new PGCopyOutputStream(threadConnections.getRawRecordConnection(), String.format(RAW_RECORDS_COPY_SQL, tenant));
         PrintWriter rawRecordWriter = new PrintWriter(rawRecordOutput, true);
 
-        PGCopyOutputStream parsedRecordOutput = new PGCopyOutputStream(threadConnections.getParsedRecordConnection(), PARSED_RECORDS_COPY_SQL);
+        PGCopyOutputStream parsedRecordOutput = new PGCopyOutputStream(threadConnections.getParsedRecordConnection(),
+            String.format(PARSED_RECORDS_COPY_SQL, tenant));
         PrintWriter parsedRecordWriter = new PrintWriter(parsedRecordOutput, true);
 
-        PGCopyOutputStream recordOutput = new PGCopyOutputStream(threadConnections.getRecordConnection(), RECORDS_COPY_SQL);
+        PGCopyOutputStream recordOutput = new PGCopyOutputStream(threadConnections.getRecordConnection(), String.format(RECORDS_COPY_SQL, tenant));
         PrintWriter recordWriter = new PrintWriter(recordOutput, true);
 
-        PGCopyOutputStream instanceOutput = new PGCopyOutputStream(threadConnections.getInstanceConnection(), INSTANCE_COPY_SQL);
+        PGCopyOutputStream instanceOutput = new PGCopyOutputStream(threadConnections.getInstanceConnection(), String.format(INSTANCE_COPY_SQL, tenant));
         PrintWriter instanceWriter = new PrintWriter(instanceOutput, true);
 
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
