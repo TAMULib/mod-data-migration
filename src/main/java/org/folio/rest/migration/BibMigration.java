@@ -60,25 +60,23 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 public class BibMigration extends AbstractMigration<BibContext> {
 
-  private static String HRID_PREFIX = "HRID_PREFIX";
-  private static String HRID_START_NUMBER = "HRID_START_NUMBER";
+  private static final String HRID_PREFIX = "HRID_PREFIX";
+  private static final String HRID_START_NUMBER = "HRID_START_NUMBER";
 
-  private static String BIB_ID = "BIB_ID";
-  private static String SUPPRESS_IN_OPAC = "SUPPRESS_IN_OPAC";
+  private static final String BIB_ID = "BIB_ID";
+  private static final String SUPPRESS_IN_OPAC = "SUPPRESS_IN_OPAC";
 
-  private static String SOURCE_RECORD_REFERENCE_ID = "sourceRecordTypeId";
-  private static String INSTANCE_REFERENCE_ID = "instanceTypeId";
+  private static final String SOURCE_RECORD_REFERENCE_ID = "sourceRecordTypeId";
+  private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
 
-  public static String RECORD_SEGMENT = "RECORD_SEGMENT";
-  public static String SEQNUM = "SEQNUM";
+  private static final String RECORD_SEGMENT = "RECORD_SEGMENT";
+  private static final String SEQNUM = "SEQNUM";
 
-  public static String EMPTY_JSON = "{}";
+  private static final String T_999 = "999";
 
-  public static String T_999 = "999";
-
-  public static char F = 'f';
-  public static char I = 'i';
-  public static char S = 's';
+  private static final char F = 'f';
+  private static final char I = 'i';
+  private static final char S = 's';
 
   // (_id,jsonb,creation_date,created_by)
   private static String RAW_RECORDS_COPY_SQL = "COPY tern_mod_source_record_storage.raw_records (_id,jsonb,creation_date,created_by) FROM STDIN";
@@ -92,13 +90,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
   // (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid)
   private static String INSTANCE_COPY_SQL = "COPY tern_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancetypeid) FROM STDIN";
 
-  private final BibContext context;
-
-  private final String tenant;
-
   private BibMigration(BibContext context, String tenant) {
-    this.context = context;
-    this.tenant = tenant;
+    super(context, tenant);
   }
 
   @Override
@@ -185,28 +178,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
   public static BibMigration with(BibContext context, String tenant) {
     return new BibMigration(context, tenant);
-  }
-
-  private void preActions(Database settings, List<String> preActions) {
-    preActions.stream().forEach(actionSql -> action(settings, actionSql));
-  }
-
-  private void postActions(Database settings, List<String> postActions) {
-    postActions.stream().forEach(actionSql -> action(settings, actionSql));
-  }
-
-  private void action(Database settings, String actionSql) {
-    try (
-
-        Connection connection = getConnection(settings);
-        Statement statement = connection.createStatement();
-
-    ) {
-      log.info(actionSql);
-      statement.execute(actionSql);
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-    }
   }
 
   public class BibPartitionTask implements PartitionTask<BibContext> {

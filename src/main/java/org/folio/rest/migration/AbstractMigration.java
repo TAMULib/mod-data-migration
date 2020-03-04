@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.text.StringSubstitutor;
@@ -18,27 +19,54 @@ import org.slf4j.LoggerFactory;
 
 public abstract class AbstractMigration<C extends AbstractContext> implements Migration {
 
+  static final DateTimeFormatter DATE_TIME_FOMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSXX");
+
+  static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
+
+  static final String SQL = "SQL";
+  static final String SCHEMA = "SCHEMA";
+  static final String OFFSET = "OFFSET";
+  static final String LIMIT = "LIMIT";
+
+  static final String TOKEN = "TOKEN";
+
+  static final String INDEX = "INDEX";
+
+  static final String TOTAL = "TOTAL";
+
   final Logger log = LoggerFactory.getLogger(this.getClass());
 
-  static DateTimeFormatter DATE_TIME_FOMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSXX");
+  final C context;
 
-  static Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
-
-  static String SQL = "SQL";
-  static String SCHEMA = "SCHEMA";
-  static String OFFSET = "OFFSET";
-  static String LIMIT = "LIMIT";
-
-  static String TOKEN = "TOKEN";
-
-  static String INDEX = "INDEX";
-
-  static String TOTAL = "TOTAL";
+  final String tenant;
 
   PartitionTaskQueue<C> taskQueue;
 
-  public AbstractMigration() {
+  public AbstractMigration(C context, String tenant) {
+    this.context = context;
+    this.tenant = tenant;
+  }
 
+  void preActions(Database settings, List<String> preActions) {
+    preActions.stream().forEach(actionSql -> action(settings, actionSql));
+  }
+
+  void postActions(Database settings, List<String> postActions) {
+    postActions.stream().forEach(actionSql -> action(settings, actionSql));
+  }
+
+  void action(Database settings, String actionSql) {
+    try (
+
+        Connection connection = getConnection(settings);
+        Statement statement = connection.createStatement();
+
+    ) {
+      log.info(actionSql);
+      statement.execute(actionSql);
+    } catch (SQLException e) {
+      log.error(e.getMessage());
+    }
   }
 
   Connection getConnection(Database settings) {
