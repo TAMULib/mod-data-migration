@@ -87,7 +87,7 @@ okapi:
     password:
   modules:
     database:
-      url: jdbc:postgresql://folio-db-test.library.tamu.edu:5432/okapi_modules
+      url: jdbc:postgresql://pg-folio/okapi_modules
       username:
       password:
       driver-class-name: org.postgresql.Driver
