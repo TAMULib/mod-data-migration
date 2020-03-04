@@ -7,13 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import org.folio.rest.migration.model.generated.common.ProfileInfo;
 
-public class Job {
-
-  @NotNull
-  private String schema;
-
-  @NotNull
-  private int partitions;
+public class BibJob extends AbstractJob {
 
   @NotNull
   private String userId;
@@ -25,25 +19,10 @@ public class Job {
 
   private Map<String, String> references;
 
-  public Job() {
+  public BibJob() {
+    super();
     useReferenceLinks = false;
     references = new HashMap<String, String>();
-  }
-
-  public String getSchema() {
-    return schema;
-  }
-
-  public void setSchema(String schema) {
-    this.schema = schema;
-  }
-
-  public int getPartitions() {
-    return partitions;
-  }
-
-  public void setPartitions(int partitions) {
-    this.partitions = partitions;
   }
 
   public String getUserId() {

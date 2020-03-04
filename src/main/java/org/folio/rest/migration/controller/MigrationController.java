@@ -1,7 +1,7 @@
 package org.folio.rest.migration.controller;
 
 import org.folio.rest.migration.BibMigration;
-import org.folio.rest.migration.model.request.Context;
+import org.folio.rest.migration.model.request.BibContext;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.spring.tenant.annotation.TenantHeader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class MigrationController {
   private MigrationService migrationService;
 
   @PostMapping("/bibs")
-  public void bibs(@RequestBody Context context, @TenantHeader String tenant) {
+  public void bibs(@RequestBody BibContext context, @TenantHeader String tenant) {
     migrationService.migrate(BibMigration.with(context, tenant));
   }
 

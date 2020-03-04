@@ -48,8 +48,8 @@ import org.folio.rest.migration.model.generated.source_record_manager.RawRecords
 import org.folio.rest.migration.model.generated.source_record_storage.ParsedRecord;
 import org.folio.rest.migration.model.generated.source_record_storage.RawRecord;
 import org.folio.rest.migration.model.generated.source_record_storage.RecordModel;
-import org.folio.rest.migration.model.request.Context;
-import org.folio.rest.migration.model.request.Job;
+import org.folio.rest.migration.model.request.BibContext;
+import org.folio.rest.migration.model.request.BibJob;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
@@ -78,7 +78,7 @@ public class BibMigration implements Migration {
 
   private static Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
-  private static String EXTRACTOR = "EXTRACTOR";
+  private static String SQL = "SQL";
   private static String SCHEMA = "SCHEMA";
   private static String OFFSET = "OFFSET";
   private static String LIMIT = "LIMIT";
@@ -121,13 +121,13 @@ public class BibMigration implements Migration {
   // (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid)
   private static String INSTANCE_COPY_SQL = "COPY tern_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancetypeid) FROM STDIN";
 
-  private final Context context;
+  private final BibContext context;
 
   private final String tenant;
 
   private PartitionTaskQueue taskQueue;
 
-  private BibMigration(Context context, String tenant) {
+  private BibMigration(BibContext context, String tenant) {
     this.context = context;
     this.tenant = tenant;
   }
@@ -164,7 +164,7 @@ public class BibMigration implements Migration {
     });
 
     Map<String, Object> countContext = new HashMap<>();
-    countContext.put(EXTRACTOR, context.getExtraction().getCount());
+    countContext.put(SQL, context.getExtraction().getCount());
 
     JsonNode instancesHridSettings = hridSettings.get("instances");
 
@@ -176,7 +176,7 @@ public class BibMigration implements Migration {
 
     int index = 0;
 
-    for (Job job : context.getJobs()) {
+    for (BibJob job : context.getJobs()) {
 
       countContext.put(SCHEMA, job.getSchema());
 
@@ -192,7 +192,7 @@ public class BibMigration implements Migration {
       int offset = 0;
       for (int i = 0; i <= partitions; i++) {
         Map<String, Object> partitionContext = new HashMap<String, Object>();
-        partitionContext.put(EXTRACTOR, context.getExtraction().getPage());
+        partitionContext.put(SQL, context.getExtraction().getPage());
         partitionContext.put(SCHEMA, job.getSchema());
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);
@@ -214,7 +214,7 @@ public class BibMigration implements Migration {
     return CompletableFuture.completedFuture(true);
   }
 
-  public static BibMigration with(Context context, String tenant) {
+  public static BibMigration with(BibContext context, String tenant) {
     return new BibMigration(context, tenant);
   }
 
@@ -248,7 +248,7 @@ public class BibMigration implements Migration {
   private class PartitionTaskQueue {
     private final long startTime = System.nanoTime();
 
-    private final Context context;
+    private final BibContext context;
 
     private final Callback callback;
 
@@ -258,7 +258,7 @@ public class BibMigration implements Migration {
 
     private final BlockingQueue<PartitionTask> inWait;
 
-    public PartitionTaskQueue(Context context, Callback callback) {
+    public PartitionTaskQueue(BibContext context, Callback callback) {
       this.context = context;
       this.callback = callback;
       this.executor = Executors.newFixedThreadPool(context.getParallelism());
@@ -312,11 +312,11 @@ public class BibMigration implements Migration {
 
     private final Map<String, Object> partitionContext;
 
-    private final Job job;
+    private final BibJob job;
 
     private int hrid;
 
-    public PartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext, Job job) {
+    public PartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext, BibJob job) {
       this.migrationService = migrationService;
       this.instanceMapper = instanceMapper;
       this.partitionContext = partitionContext;
@@ -332,7 +332,7 @@ public class BibMigration implements Migration {
       return job.getSchema();
     }
 
-    public PartitionTask execute(Context context) {
+    public PartitionTask execute(BibContext context) {
 
       String schema = this.getSchema();
 
@@ -363,7 +363,7 @@ public class BibMigration implements Migration {
       MarcFactory factory = MarcFactory.newInstance();
 
       Map<String, Object> marcContext = new HashMap<>();
-      marcContext.put(EXTRACTOR, context.getExtraction().getAdditional());
+      marcContext.put(SQL, context.getExtraction().getMarcSql());
       marcContext.put(SCHEMA, schema);
 
       String sourceRecordRLTypeId = job.getReferences().get(SOURCE_RECORD_REFERENCE_ID);
@@ -572,7 +572,7 @@ public class BibMigration implements Migration {
   }
 
   private ResultSet getResultSet(Statement statement, Map<String, Object> context) throws SQLException {
-    String sql = templateSql((String) context.get(EXTRACTOR), context);
+    String sql = templateSql((String) context.get(SQL), context);
     return statement.executeQuery(sql);
   }
 
