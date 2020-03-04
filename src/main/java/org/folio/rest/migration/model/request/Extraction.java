@@ -2,6 +2,8 @@ package org.folio.rest.migration.model.request;
 
 import javax.validation.constraints.NotNull;
 
+import org.folio.rest.migration.config.model.Database;
+
 public class Extraction {
 
   @NotNull
@@ -12,6 +14,9 @@ public class Extraction {
 
   @NotNull
   private String additional;
+
+  @NotNull
+  private Database database;
 
   public Extraction() {
 
@@ -39,6 +44,14 @@ public class Extraction {
 
   public void setAdditional(String additional) {
     this.additional = additional;
+  }
+
+  public Database getDatabase() {
+    return database;
+  }
+
+  public void setDatabase(Database database) {
+    this.database = database;
   }
 
 }

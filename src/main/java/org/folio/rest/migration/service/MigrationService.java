@@ -5,7 +5,6 @@ import java.util.concurrent.CompletableFuture;
 import javax.annotation.PostConstruct;
 
 import org.folio.rest.migration.Migration;
-import org.folio.rest.migration.config.model.Connections;
 import org.folio.rest.model.repo.ReferenceLinkRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -16,9 +15,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class MigrationService {
-
-  @Autowired
-  public Connections connections;
 
   @Autowired
   public ObjectMapper objectMapper;

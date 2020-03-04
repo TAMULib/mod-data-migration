@@ -11,6 +11,8 @@ public class Okapi {
 
   private Credentials credentials;
 
+  private Modules modules;
+
   public Okapi() {
 
   }
@@ -29,6 +31,14 @@ public class Okapi {
 
   public void setCredentials(Credentials credentials) {
     this.credentials = credentials;
+  }
+
+  public Modules getModules() {
+    return modules;
+  }
+
+  public void setModules(Modules modules) {
+    this.modules = modules;
   }
 
 }

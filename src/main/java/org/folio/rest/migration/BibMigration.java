@@ -33,8 +33,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.text.StringSubstitutor;
-import org.folio.rest.migration.config.model.Connections;
-import org.folio.rest.migration.config.model.Settings;
+import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.InstanceMapper;
 import org.folio.rest.migration.mapping.MappingParameters;
 import org.folio.rest.migration.model.BibRecord;
@@ -147,9 +146,9 @@ public class BibMigration implements Migration {
 
     JsonNode hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
 
-    Settings voyagerSettings = getSettings(migrationService.connections, "voyager");
+    Database voyagerSettings = context.getExtraction().getDatabase();
 
-    Settings folioSettings = getSettings(migrationService.connections, "folio");
+    Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
     InstanceMapper instanceMapper = new InstanceMapper(mappingParameters, migrationService.objectMapper, rules);
 
@@ -219,15 +218,15 @@ public class BibMigration implements Migration {
     return new BibMigration(context, tenant);
   }
 
-  private void preActions(Settings settings, List<String> preActions) {
+  private void preActions(Database settings, List<String> preActions) {
     preActions.stream().forEach(actionSql -> action(settings, actionSql));
   }
 
-  private void postActions(Settings settings, List<String> postActions) {
+  private void postActions(Database settings, List<String> postActions) {
     postActions.stream().forEach(actionSql -> action(settings, actionSql));
   }
 
-  private void action(Settings settings, String actionSql) {
+  private void action(Database settings, String actionSql) {
     try (
 
         Connection connection = getConnection(settings);
@@ -292,7 +291,7 @@ public class BibMigration implements Migration {
 
     private void start(PartitionTask task) {
       inProcess.add(task);
-      CompletableFuture.supplyAsync(task::execute, executor).thenAccept(this::complete);
+      CompletableFuture.supplyAsync(() -> task.execute(context), executor).thenAccept(this::complete);
     }
 
     private void shutdown() throws InterruptedException {
@@ -333,12 +332,7 @@ public class BibMigration implements Migration {
       return job.getSchema();
     }
 
-    @Override
-    public boolean equals(Object obj) {
-      return obj != null && ((PartitionTask) obj).getIndex() == this.getIndex();
-    }
-
-    public PartitionTask execute() {
+    public PartitionTask execute(Context context) {
 
       String schema = this.getSchema();
 
@@ -360,9 +354,9 @@ public class BibMigration implements Migration {
 
       String jobExecutionId = jobExecution.getId();
 
-      Settings voyagerSettings = getSettings(migrationService.connections, "voyager");
+      Database voyagerSettings = context.getExtraction().getDatabase();
 
-      Settings folioSettings = getSettings(migrationService.connections, "folio");
+      Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
 
@@ -525,9 +519,14 @@ public class BibMigration implements Migration {
       return this;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+      return obj != null && ((PartitionTask) obj).getIndex() == this.getIndex();
+    }
+
   }
 
-  private Connection getConnection(Settings settings) {
+  private Connection getConnection(Database settings) {
     try {
       Class.forName(settings.getDriverClassName());
     } catch (ClassNotFoundException e) {
@@ -541,15 +540,7 @@ public class BibMigration implements Migration {
     }
   }
 
-  private Settings getSettings(Connections connections, String name) {
-    Optional<Settings> settings = connections.get(name);
-    if (settings.isPresent()) {
-      return settings.get();
-    }
-    throw new RuntimeException("Could not find settings for " + name);
-  }
-
-  private int getCount(Settings settings, Map<String, Object> countContext) {
+  private int getCount(Database settings, Map<String, Object> countContext) {
     try (
 
         Connection connection = getConnection(settings);
@@ -564,7 +555,7 @@ public class BibMigration implements Migration {
     }
   }
 
-  private ThreadConnections getThreadConnections(Settings voyagerSettings, Settings folioSettings) {
+  private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     threadConnections.setMarcConnection(getConnection(voyagerSettings));

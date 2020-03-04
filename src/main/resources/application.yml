@@ -72,12 +72,6 @@ spring:
     mode: TEXT
     suffix: .sql
 
-okapi:
-  url: https://folio-okapi-q4-test.library.tamu.edu
-  credentials:
-    username:
-    password:
-
 tenant:
   header-name: X-Okapi-Tenant
   force-tenant: false
@@ -86,15 +80,15 @@ tenant:
   domain-packages:
   schema-scripts:
 
-connections:
-  settings:
-    - name: voyager
-      url: jdbc:oracle:thin:@surprise.tamu.edu:1521:VGER
-      username:
-      password:
-      driver-class-name: oracle.jdbc.OracleDriver
-    - name: folio
+okapi:
+  url: https://folio-okapi-q4-test.library.tamu.edu
+  credentials:
+    username:
+    password:
+  modules:
+    database:
       url: jdbc:postgresql://folio-db-test.library.tamu.edu:5432/okapi_modules
       username:
       password:
       driver-class-name: org.postgresql.Driver
+  

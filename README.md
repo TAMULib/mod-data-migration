@@ -16,7 +16,13 @@ POST to http://localhost:9003/migrate/bibs
   "extraction": {
     "count": "SELECT COUNT(*) AS total FROM ${SCHEMA}.bib_master",
     "page": "SELECT bib_id, suppress_in_opac FROM ${SCHEMA}.bib_master ORDER BY bib_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
-    "additional": "SELECT bib_id, seqnum, record_segment FROM ${SCHEMA}.bib_data WHERE bib_id = ${BIB_ID}"
+    "additional": "SELECT bib_id, seqnum, record_segment FROM ${SCHEMA}.bib_data WHERE bib_id = ${BIB_ID}",
+    "database": {
+    	"url": "jdbc:oracle:thin:@surprise.tamu.edu:1521:VGER",
+    	"username": "",
+    	"password": "",
+    	"driverClassName": "oracle.jdbc.OracleDriver"
+    }
   },
   "parallelism": 12,
   "jobs": [
