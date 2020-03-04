@@ -1,7 +1,9 @@
 package org.folio.rest.migration.controller;
 
 import org.folio.rest.migration.BibMigration;
+import org.folio.rest.migration.InventoryReferenceLinkMigration;
 import org.folio.rest.migration.model.request.BibContext;
+import org.folio.rest.migration.model.request.InventoryReferenceLinkContext;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.spring.tenant.annotation.TenantHeader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,11 @@ public class MigrationController {
 
   @Autowired
   private MigrationService migrationService;
+
+  @PostMapping("/inventory-reference-links")
+  public void inventoryReferenceLinks(@RequestBody InventoryReferenceLinkContext context, @TenantHeader String tenant) {
+    migrationService.migrate(InventoryReferenceLinkMigration.with(context, tenant));
+  }
 
   @PostMapping("/bibs")
   public void bibs(@RequestBody BibContext context, @TenantHeader String tenant) {

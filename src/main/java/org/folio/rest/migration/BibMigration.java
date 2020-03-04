@@ -164,7 +164,7 @@ public class BibMigration implements Migration {
     });
 
     Map<String, Object> countContext = new HashMap<>();
-    countContext.put(SQL, context.getExtraction().getCount());
+    countContext.put(SQL, context.getExtraction().getCountSql());
 
     JsonNode instancesHridSettings = hridSettings.get("instances");
 
@@ -192,7 +192,7 @@ public class BibMigration implements Migration {
       int offset = 0;
       for (int i = 0; i <= partitions; i++) {
         Map<String, Object> partitionContext = new HashMap<String, Object>();
-        partitionContext.put(SQL, context.getExtraction().getPage());
+        partitionContext.put(SQL, context.getExtraction().getPageSql());
         partitionContext.put(SCHEMA, job.getSchema());
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);

@@ -10,10 +10,10 @@ public abstract class AbstractExtraction {
   private Database database;
 
   @NotNull
-  private String count;
+  private String countSql;
 
   @NotNull
-  private String page;
+  private String pageSql;
 
   public AbstractExtraction() {
 
@@ -27,20 +27,20 @@ public abstract class AbstractExtraction {
     this.database = database;
   }
 
-  public String getCount() {
-    return count;
+  public String getCountSql() {
+    return countSql;
   }
 
-  public void setCount(String count) {
-    this.count = count;
+  public void setCountSql(String countSql) {
+    this.countSql = countSql;
   }
 
-  public String getPage() {
-    return page;
+  public String getPageSql() {
+    return pageSql;
   }
 
-  public void setPage(String page) {
-    this.page = page;
+  public void setPageSql(String pageSql) {
+    this.pageSql = pageSql;
   }
 
 }
