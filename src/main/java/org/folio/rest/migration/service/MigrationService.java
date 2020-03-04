@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 
 import org.folio.rest.migration.Migration;
 import org.folio.rest.model.repo.ReferenceLinkRepo;
+import org.folio.rest.model.repo.ReferenceLinkTypeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,9 @@ public class MigrationService {
 
   @Autowired
   public ReferenceLinkRepo referenceLinkRepo;
+
+  @Autowired
+  public ReferenceLinkTypeRepo referenceLinkTypeRepo;
 
   @PostConstruct
   public void init() {

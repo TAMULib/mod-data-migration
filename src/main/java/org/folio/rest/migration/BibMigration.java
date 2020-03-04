@@ -210,11 +210,11 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     public BibPartitionTask execute(BibContext context) {
 
+      long startTime = System.nanoTime();
+
       String schema = this.getSchema();
 
       int index = this.getIndex();
-
-      long startTime = System.nanoTime();
 
       String token = (String) partitionContext.get(TOKEN);
       String hridPrefix = (String) partitionContext.get(HRID_PREFIX);
