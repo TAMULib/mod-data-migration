@@ -7,17 +7,17 @@
     "id" : {
       "type" : "string"
     },
-    "folioReference" : {
+    "externalReference" : {
       "type" : "string"
     },
-    "externalReference" : {
+    "folioReference" : {
       "type" : "string"
     },
     "type" : {
       "$ref" : "#/definitions/ReferenceLinkType"
     }
   },
-  "required" : [ "folioReference", "externalReference", "type" ],
+  "required" : [ "externalReference", "folioReference", "type" ],
   "definitions" : {
     "ReferenceLinkType" : {
       "type" : "object",

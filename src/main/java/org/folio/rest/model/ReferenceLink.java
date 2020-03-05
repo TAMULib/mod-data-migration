@@ -27,11 +27,11 @@ public class ReferenceLink extends AbstractBaseEntity {
 
   @NotNull
   @Column(nullable = false)
-  private String folioReference;
+  private String externalReference;
 
   @NotNull
   @Column(nullable = false)
-  private String externalReference;
+  private String folioReference;
 
   @NotNull
   @ManyToOne
@@ -42,14 +42,6 @@ public class ReferenceLink extends AbstractBaseEntity {
     super();
   }
 
-  public String getFolioReference() {
-    return folioReference;
-  }
-
-  public void setFolioReference(String folioReference) {
-    this.folioReference = folioReference;
-  }
-
   public String getExternalReference() {
     return externalReference;
   }
@@ -58,12 +50,29 @@ public class ReferenceLink extends AbstractBaseEntity {
     this.externalReference = externalReference;
   }
 
+  public String getFolioReference() {
+    return folioReference;
+  }
+
+  public void setFolioReference(String folioReference) {
+    this.folioReference = folioReference;
+  }
+
   public ReferenceLinkType getType() {
     return type;
   }
 
   public void setType(ReferenceLinkType type) {
     this.type = type;
+  }
+
+  public static ReferenceLink with(String id, String externalReference, String folioReference, ReferenceLinkType type) {
+    ReferenceLink referenceLink = new ReferenceLink();
+    referenceLink.setId(id);
+    referenceLink.setExternalReference(externalReference);
+    referenceLink.setFolioReference(folioReference);
+    referenceLink.setType(type);
+    return referenceLink;
   }
 
 }
