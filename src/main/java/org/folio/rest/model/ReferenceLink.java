@@ -15,7 +15,7 @@ import org.folio.spring.domain.model.AbstractBaseEntity;
 // @formatter:off
 @Table(
   uniqueConstraints = {
-    @UniqueConstraint(columnNames = { "folioReference", "externalReference", "type_id" })
+    @UniqueConstraint(columnNames = { "externalReference", "folioReference", "type_id" })
   },
   indexes = {
     @Index(columnList = "type_id,externalReference"),
@@ -64,15 +64,6 @@ public class ReferenceLink extends AbstractBaseEntity {
 
   public void setType(ReferenceLinkType type) {
     this.type = type;
-  }
-
-  public static ReferenceLink with(String id, String externalReference, String folioReference, ReferenceLinkType type) {
-    ReferenceLink referenceLink = new ReferenceLink();
-    referenceLink.setId(id);
-    referenceLink.setExternalReference(externalReference);
-    referenceLink.setFolioReference(folioReference);
-    referenceLink.setType(type);
-    return referenceLink;
   }
 
 }

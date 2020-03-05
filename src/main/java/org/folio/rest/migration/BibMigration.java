@@ -152,7 +152,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
         limit++;
       }
       int offset = 0;
-      for (int i = 0; i <= partitions; i++) {
+      for (int i = 0; i < partitions; i++) {
         Map<String, Object> partitionContext = new HashMap<String, Object>();
         partitionContext.put(SQL, context.getExtraction().getPageSql());
         partitionContext.put(SCHEMA, job.getSchema());
@@ -209,7 +209,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
     }
 
     public BibPartitionTask execute(BibContext context) {
-
       long startTime = System.nanoTime();
 
       String schema = this.getSchema();

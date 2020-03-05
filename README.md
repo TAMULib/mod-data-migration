@@ -14,9 +14,7 @@ POST to http://localhost:9003/migrate/inventory-reference-links
 {
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.bib_master",
-    "pageSql": "SELECT bib_id FROM ${SCHEMA}.bib_master ORDER BY bib_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
-    "holdingIdsSql": "SELECT bib_id, mfhd_id FROM ${SCHEMA}.bib_mfhd WHERE bib_id = ${BIB_ID}",
-    "itemIdsSql": "SELECT mfhd_id, item_id FROM ${SCHEMA}.mfhd_item WHERE mfhd_id = ${MFHD_ID}",
+    "pageSql": "WITH bib_holdings_items AS (SELECT b.bib_id, bm.mfhd_id, mi.item_id FROM ${SCHEMA}.bib_master b LEFT JOIN ${SCHEMA}.bib_mfhd bm ON b.bib_id = bm.bib_id LEFT JOIN ${SCHEMA}.mfhd_item mi ON bm.mfhd_id = mi.mfhd_id) SELECT bhi.bib_id, CAST(COLLECT(bhi.mfhd_id || '::' || bhi.item_id) AS sys.odcivarchar2list) AS holding_items FROM bib_holdings_items bhi GROUP BY bhi.bib_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "database": {
       "url": "",
       "username": "",
@@ -28,7 +26,7 @@ POST to http://localhost:9003/migrate/inventory-reference-links
   "jobs": [
     {
       "schema": "AMDB",
-      "partitions": 48,
+      "partitions": 11,
       "references": {
         "sourceRecordTypeId": "96017110-47c5-4d55-8324-7dab1771749b",
         "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672",
@@ -40,7 +38,7 @@ POST to http://localhost:9003/migrate/inventory-reference-links
     },
     {
       "schema": "MSDB",
-      "partitions": 4,
+      "partitions": 1,
       "references": {
         "sourceRecordTypeId": "b9f633b3-22e4-4bad-8785-da09d9eaa6c8",
         "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8",
@@ -61,14 +59,14 @@ POST to http://localhost:9003/migrate/bibs
 ```
 {
   "extraction": {
-    "count": "SELECT COUNT(*) AS total FROM ${SCHEMA}.bib_master",
-    "page": "SELECT bib_id, suppress_in_opac FROM ${SCHEMA}.bib_master ORDER BY bib_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
-    "additional": "SELECT bib_id, seqnum, record_segment FROM ${SCHEMA}.bib_data WHERE bib_id = ${BIB_ID}",
+    "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.bib_master",
+    "pageSql": "SELECT bib_id, suppress_in_opac FROM ${SCHEMA}.bib_master ORDER BY bib_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "marcSql": "SELECT bib_id, seqnum, record_segment FROM ${SCHEMA}.bib_data WHERE bib_id = ${BIB_ID}",
     "database": {
-    	"url": "",
-    	"username": "",
-    	"password": "",
-    	"driverClassName": ""
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": ""
     }
   },
   "parallelism": 12,
