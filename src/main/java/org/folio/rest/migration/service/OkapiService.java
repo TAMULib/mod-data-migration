@@ -6,22 +6,22 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.collections4.list.UnmodifiableList;
+import org.folio.rest.jaxrs.model.Alternativetitletypes;
+import org.folio.rest.jaxrs.model.Classificationtypes;
+import org.folio.rest.jaxrs.model.Contributornametypes;
+import org.folio.rest.jaxrs.model.Contributortypes;
+import org.folio.rest.jaxrs.model.Electronicaccessrelationships;
+import org.folio.rest.jaxrs.model.Identifiertypes;
+import org.folio.rest.jaxrs.model.Instanceformats;
+import org.folio.rest.jaxrs.model.Instancenotetypes;
+import org.folio.rest.jaxrs.model.Instancetypes;
+import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
+import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRsDto;
+import org.folio.rest.jaxrs.model.dto.JobExecution;
+import org.folio.rest.jaxrs.model.dto.RawRecordsDto;
 import org.folio.rest.migration.config.model.Credentials;
 import org.folio.rest.migration.config.model.Okapi;
 import org.folio.rest.migration.mapping.MappingParameters;
-import org.folio.rest.migration.model.generated.settings.AlternativeTitleTypes;
-import org.folio.rest.migration.model.generated.settings.ClassificationTypes;
-import org.folio.rest.migration.model.generated.settings.ContributorNameTypes;
-import org.folio.rest.migration.model.generated.settings.ContributorTypes;
-import org.folio.rest.migration.model.generated.settings.ElectronicAccessRelationships;
-import org.folio.rest.migration.model.generated.settings.IdentifierTypes;
-import org.folio.rest.migration.model.generated.settings.InstanceFormats;
-import org.folio.rest.migration.model.generated.settings.InstanceNoteTypes;
-import org.folio.rest.migration.model.generated.settings.InstanceTypes;
-import org.folio.rest.migration.model.generated.source_record_manager.InitJobExecutionsRqDto;
-import org.folio.rest.migration.model.generated.source_record_manager.InitJobExecutionsRsDto;
-import org.folio.rest.migration.model.generated.source_record_manager.JobExecution;
-import org.folio.rest.migration.model.generated.source_record_manager.RawRecordsDto;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -144,15 +144,15 @@ public class OkapiService {
     final MappingParameters mappingParameters = new MappingParameters();
     // @formatter:off
     Arrays.asList(new ReferenceFetcher[] {
-      new ReferenceFetcher("/identifier-types?limit=" + SETTING_LIMIT, IdentifierTypes.class,  "identifierTypes"),
-      new ReferenceFetcher("/classification-types?limit=" + SETTING_LIMIT, ClassificationTypes.class,  "classificationTypes"),
-      new ReferenceFetcher("/instance-types?limit=" + SETTING_LIMIT, InstanceTypes.class, "instanceTypes"),
-      new ReferenceFetcher("/instance-formats?limit=" + SETTING_LIMIT, InstanceFormats.class,  "instanceFormats"),
-      new ReferenceFetcher("/contributor-types?limit=" + SETTING_LIMIT, ContributorTypes.class,  "contributorTypes"),
-      new ReferenceFetcher("/contributor-name-types?limit=" + SETTING_LIMIT, ContributorNameTypes.class,  "contributorNameTypes"),
-      new ReferenceFetcher("/electronic-access-relationships?limit=" + SETTING_LIMIT, ElectronicAccessRelationships.class,  "electronicAccessRelationships"),
-      new ReferenceFetcher("/instance-note-types?limit=" + SETTING_LIMIT, InstanceNoteTypes.class,  "instanceNoteTypes"),
-      new ReferenceFetcher("/alternative-title-types?limit=" + SETTING_LIMIT, AlternativeTitleTypes.class,  "alternativeTitleTypes")
+      new ReferenceFetcher("/identifier-types?limit=" + SETTING_LIMIT, Identifiertypes.class,  "identifierTypes"),
+      new ReferenceFetcher("/classification-types?limit=" + SETTING_LIMIT, Classificationtypes.class,  "classificationTypes"),
+      new ReferenceFetcher("/instance-types?limit=" + SETTING_LIMIT, Instancetypes.class, "instanceTypes"),
+      new ReferenceFetcher("/instance-formats?limit=" + SETTING_LIMIT, Instanceformats.class,  "instanceFormats"),
+      new ReferenceFetcher("/contributor-types?limit=" + SETTING_LIMIT, Contributortypes.class,  "contributorTypes"),
+      new ReferenceFetcher("/contributor-name-types?limit=" + SETTING_LIMIT, Contributornametypes.class,  "contributorNameTypes"),
+      new ReferenceFetcher("/electronic-access-relationships?limit=" + SETTING_LIMIT, Electronicaccessrelationships.class,  "electronicAccessRelationships"),
+      new ReferenceFetcher("/instance-note-types?limit=" + SETTING_LIMIT, Instancenotetypes.class,  "instanceNoteTypes"),
+      new ReferenceFetcher("/alternative-title-types?limit=" + SETTING_LIMIT, Alternativetitletypes.class,  "alternativeTitleTypes")
     }).forEach(fetcher -> {
       HttpHeaders headers = new HttpHeaders();
       headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));

@@ -1,101 +1,101 @@
 package org.folio.rest.migration.mapping;
 
 import org.apache.commons.collections4.list.UnmodifiableList;
-import org.folio.rest.migration.model.generated.settings.AlternativeTitleType;
-import org.folio.rest.migration.model.generated.settings.ClassificationType;
-import org.folio.rest.migration.model.generated.settings.ContributorNameType;
-import org.folio.rest.migration.model.generated.settings.ContributorType;
-import org.folio.rest.migration.model.generated.settings.ElectronicAccessRelationship;
-import org.folio.rest.migration.model.generated.settings.IdentifierType;
-import org.folio.rest.migration.model.generated.settings.InstanceFormat;
-import org.folio.rest.migration.model.generated.settings.InstanceNoteType;
-import org.folio.rest.migration.model.generated.settings.InstanceType;
+import org.folio.rest.jaxrs.model.Alternativetitletype;
+import org.folio.rest.jaxrs.model.Classificationtype;
+import org.folio.rest.jaxrs.model.Contributornametype;
+import org.folio.rest.jaxrs.model.Contributortype;
+import org.folio.rest.jaxrs.model.Electronicaccessrelationship;
+import org.folio.rest.jaxrs.model.Identifiertype;
+import org.folio.rest.jaxrs.model.Instanceformat;
+import org.folio.rest.jaxrs.model.Instancenotetype;
+import org.folio.rest.jaxrs.model.Instancetype;
 
 public class MappingParameters {
 
-  private UnmodifiableList<IdentifierType> identifierTypes;
-  private UnmodifiableList<ClassificationType> classificationTypes;
-  private UnmodifiableList<InstanceType> instanceTypes;
-  private UnmodifiableList<InstanceFormat> instanceFormats;
-  private UnmodifiableList<ContributorType> contributorTypes;
-  private UnmodifiableList<ContributorNameType> contributorNameTypes;
-  private UnmodifiableList<ElectronicAccessRelationship> electronicAccessRelationships;
-  private UnmodifiableList<InstanceNoteType> instanceNoteTypes;
-  private UnmodifiableList<AlternativeTitleType> alternativeTitleTypes;
+  private UnmodifiableList<Identifiertype> identifierTypes;
+  private UnmodifiableList<Classificationtype> classificationTypes;
+  private UnmodifiableList<Instancetype> instanceTypes;
+  private UnmodifiableList<Instanceformat> instanceFormats;
+  private UnmodifiableList<Contributortype> contributorTypes;
+  private UnmodifiableList<Contributornametype> contributorNameTypes;
+  private UnmodifiableList<Electronicaccessrelationship> electronicAccessRelationships;
+  private UnmodifiableList<Instancenotetype> instanceNoteTypes;
+  private UnmodifiableList<Alternativetitletype> alternativeTitleTypes;
 
   public MappingParameters() {
 
   }
 
-  public UnmodifiableList<IdentifierType> getIdentifierTypes() {
+  public UnmodifiableList<Identifiertype> getIdentifierTypes() {
     return identifierTypes;
   }
 
-  public void setIdentifierTypes(UnmodifiableList<IdentifierType> identifierTypes) {
+  public void setIdentifierTypes(UnmodifiableList<Identifiertype> identifierTypes) {
     this.identifierTypes = identifierTypes;
   }
 
-  public UnmodifiableList<ClassificationType> getClassificationTypes() {
+  public UnmodifiableList<Classificationtype> getClassificationTypes() {
     return classificationTypes;
   }
 
-  public void setClassificationTypes(UnmodifiableList<ClassificationType> classificationTypes) {
+  public void setClassificationTypes(UnmodifiableList<Classificationtype> classificationTypes) {
     this.classificationTypes = classificationTypes;
   }
 
-  public UnmodifiableList<InstanceType> getInstanceTypes() {
+  public UnmodifiableList<Instancetype> getInstanceTypes() {
     return instanceTypes;
   }
 
-  public void setInstanceTypes(UnmodifiableList<InstanceType> instanceTypes) {
+  public void setInstanceTypes(UnmodifiableList<Instancetype> instanceTypes) {
     this.instanceTypes = instanceTypes;
   }
 
-  public UnmodifiableList<InstanceFormat> getInstanceFormats() {
+  public UnmodifiableList<Instanceformat> getInstanceFormats() {
     return instanceFormats;
   }
 
-  public void setInstanceFormats(UnmodifiableList<InstanceFormat> instanceFormats) {
+  public void setInstanceFormats(UnmodifiableList<Instanceformat> instanceFormats) {
     this.instanceFormats = instanceFormats;
   }
 
-  public UnmodifiableList<ContributorType> getContributorTypes() {
+  public UnmodifiableList<Contributortype> getContributorTypes() {
     return contributorTypes;
   }
 
-  public void setContributorTypes(UnmodifiableList<ContributorType> contributorTypes) {
+  public void setContributorTypes(UnmodifiableList<Contributortype> contributorTypes) {
     this.contributorTypes = contributorTypes;
   }
 
-  public UnmodifiableList<ContributorNameType> getContributorNameTypes() {
+  public UnmodifiableList<Contributornametype> getContributorNameTypes() {
     return contributorNameTypes;
   }
 
-  public void setContributorNameTypes(UnmodifiableList<ContributorNameType> contributorNameTypes) {
+  public void setContributorNameTypes(UnmodifiableList<Contributornametype> contributorNameTypes) {
     this.contributorNameTypes = contributorNameTypes;
   }
 
-  public UnmodifiableList<ElectronicAccessRelationship> getElectronicAccessRelationships() {
+  public UnmodifiableList<Electronicaccessrelationship> getElectronicAccessRelationships() {
     return electronicAccessRelationships;
   }
 
-  public void setElectronicAccessRelationships(UnmodifiableList<ElectronicAccessRelationship> electronicAccessRelationships) {
+  public void setElectronicAccessRelationships(UnmodifiableList<Electronicaccessrelationship> electronicAccessRelationships) {
     this.electronicAccessRelationships = electronicAccessRelationships;
   }
 
-  public UnmodifiableList<InstanceNoteType> getInstanceNoteTypes() {
+  public UnmodifiableList<Instancenotetype> getInstanceNoteTypes() {
     return instanceNoteTypes;
   }
 
-  public void setInstanceNoteTypes(UnmodifiableList<InstanceNoteType> instanceNoteTypes) {
+  public void setInstanceNoteTypes(UnmodifiableList<Instancenotetype> instanceNoteTypes) {
     this.instanceNoteTypes = instanceNoteTypes;
   }
 
-  public UnmodifiableList<AlternativeTitleType> getAlternativeTitleTypes() {
+  public UnmodifiableList<Alternativetitletype> getAlternativeTitleTypes() {
     return alternativeTitleTypes;
   }
 
-  public void setAlternativeTitleTypes(UnmodifiableList<AlternativeTitleType> alternativeTitleTypes) {
+  public void setAlternativeTitleTypes(UnmodifiableList<Alternativetitletype> alternativeTitleTypes) {
     this.alternativeTitleTypes = alternativeTitleTypes;
   }
 

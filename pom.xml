@@ -66,15 +66,30 @@
          <artifactId>jsonschema2pojo-maven-plugin</artifactId>
          <version>1.0.2</version>
          <configuration>
-           <sourceDirectory>${basedir}/src/main/resources/schema</sourceDirectory>
-           <outputDirectory>${basedir}/src/main/java</outputDirectory>
-           <targetPackage>org.folio.rest.migration.model.generated</targetPackage>
+           <outputDirectory>${basedir}/target/generated-sources/raml-jaxrs</outputDirectory>
+           <targetPackage>org.folio.rest.jaxrs.model</targetPackage>
+           <includes>**/*.json</includes>
          </configuration>
          <executions>
            <execution>
+             <id>data-import-raml-storage/schemas</id>
+             <phase>generate-sources</phase>
              <goals>
                <goal>generate</goal>
              </goals>
+             <configuration>
+               <sourceDirectory>${basedir}/data-import-raml-storage/schemas</sourceDirectory>
+             </configuration>
+           </execution>
+           <execution>
+             <id>mod-inventory-storage/ramls</id>
+             <phase>generate-sources</phase>
+             <goals>
+               <goal>generate</goal>
+             </goals>
+             <configuration>
+               <sourceDirectory>${basedir}/mod-inventory-storage/ramls</sourceDirectory>
+             </configuration>
            </execution>
          </executions>
       </plugin>

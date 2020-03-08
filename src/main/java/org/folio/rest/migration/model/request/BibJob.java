@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
-import org.folio.rest.migration.model.generated.common.ProfileInfo;
+import org.folio.rest.jaxrs.model.common.ProfileInfo;
 
 public class BibJob extends AbstractJob {
 

@@ -23,21 +23,21 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
+import org.folio.rest.jaxrs.model.Instance;
+import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
+import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto.SourceType;
+import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRsDto;
+import org.folio.rest.jaxrs.model.dto.JobExecution;
+import org.folio.rest.jaxrs.model.dto.ParsedRecord;
+import org.folio.rest.jaxrs.model.dto.RawRecord;
+import org.folio.rest.jaxrs.model.dto.RawRecordsDto;
+import org.folio.rest.jaxrs.model.dto.RawRecordsMetadata;
+import org.folio.rest.jaxrs.model.dto.RawRecordsMetadata.ContentType;
+import org.folio.rest.jaxrs.model.mod_source_record_storage.RecordModel;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.InstanceMapper;
 import org.folio.rest.migration.mapping.MappingParameters;
 import org.folio.rest.migration.model.BibRecord;
-import org.folio.rest.migration.model.generated.inventory_storage.Instance;
-import org.folio.rest.migration.model.generated.source_record_manager.InitJobExecutionsRqDto;
-import org.folio.rest.migration.model.generated.source_record_manager.InitJobExecutionsRqDto.SourceType;
-import org.folio.rest.migration.model.generated.source_record_manager.InitJobExecutionsRsDto;
-import org.folio.rest.migration.model.generated.source_record_manager.JobExecution;
-import org.folio.rest.migration.model.generated.source_record_manager.RawRecordsDto;
-import org.folio.rest.migration.model.generated.source_record_manager.RawRecordsMetadata;
-import org.folio.rest.migration.model.generated.source_record_manager.RawRecordsMetadata.ContentType;
-import org.folio.rest.migration.model.generated.source_record_storage.ParsedRecord;
-import org.folio.rest.migration.model.generated.source_record_storage.RawRecord;
-import org.folio.rest.migration.model.generated.source_record_storage.RecordModel;
 import org.folio.rest.migration.model.request.BibContext;
 import org.folio.rest.migration.model.request.BibJob;
 import org.folio.rest.migration.service.MigrationService;
@@ -78,14 +78,14 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private static final char I = 'i';
   private static final char S = 's';
 
-  // (_id,jsonb,creation_date,created_by)
-  private static String RAW_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.raw_records (_id,jsonb,creation_date,created_by) FROM STDIN";
+  // (id,jsonb,creation_date,created_by)
+  private static String RAW_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.raw_records (id,jsonb,creation_date,created_by) FROM STDIN";
 
-  // (_id,jsonb,creation_date,created_by)
-  private static String PARSED_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.marc_records (_id,jsonb,creation_date,created_by) FROM STDIN";
+  // (id,jsonb,creation_date,created_by)
+  private static String PARSED_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.marc_records (id,jsonb,creation_date,created_by) FROM STDIN";
 
-  // (_id,jsonb,creation_date,created_by,jobexecutionid)
-  private static String RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.records (_id,jsonb,creation_date,created_by) FROM STDIN";
+  // (id,jsonb,creation_date,created_by,jobexecutionid)
+  private static String RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.records (id,jsonb,creation_date,created_by) FROM STDIN";
 
   // (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid)
   private static String INSTANCE_COPY_SQL = "COPY %s_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancetypeid) FROM STDIN";

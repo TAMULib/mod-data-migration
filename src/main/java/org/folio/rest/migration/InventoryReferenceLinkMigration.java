@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-import org.apache.commons.lang.StringUtils;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.InventoryReferenceLinkContext;
 import org.folio.rest.migration.model.request.InventoryReferenceLinkJob;
@@ -24,7 +23,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 public class InventoryReferenceLinkMigration extends AbstractMigration<InventoryReferenceLinkContext> {
 
   private static final String BIB_ID = "BIB_ID";
-  private static final String HOLDING_ITEMS = "HOLDING_ITEMS";
+  private static final String MFHD_ID = "MFHD_ID";
+  private static final String ITEM_ID = "ITEM_ID";
 
   private static final String SOURCE_RECORD_REFERENCE_ID = "sourceRecordTypeId";
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
@@ -131,6 +131,14 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
 
       Database voyagerSettings = context.getExtraction().getDatabase();
 
+      Map<String, Object> holdingContext = new HashMap<>();
+      holdingContext.put(SQL, context.getExtraction().getHoldingSql());
+      holdingContext.put(SCHEMA, schema);
+
+      Map<String, Object> itemContext = new HashMap<>();
+      itemContext.put(SQL, context.getExtraction().getItemSql());
+      itemContext.put(SCHEMA, schema);
+
       String sourceRecordRLTypeId = job.getReferences().get(SOURCE_RECORD_REFERENCE_ID);
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
       String holdingTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
@@ -147,13 +155,15 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
         PrintWriter referenceLinkWriter = new PrintWriter(referenceLinkOutput, true);
 
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
-        Statement holdingIdsStatement = threadConnections.getHoldingIdsConnection().createStatement();
-        Statement itemIdsStatement = threadConnections.getItemIdsConnection().createStatement();
+        Statement holdingStatement = threadConnections.getHoldingConnection().createStatement();
+        Statement itemStatement = threadConnections.getItemConnection().createStatement();
 
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
 
         while (pageResultSet.next()) {
           String bibId = pageResultSet.getString(BIB_ID);
+
+          holdingContext.put(BIB_ID, bibId);
 
           String sourceRecordRLId = UUID.randomUUID().toString();
           String sourceRecordFolioReference = UUID.randomUUID().toString();
@@ -163,27 +173,31 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
           referenceLinkWriter.println(String.join("\t", sourceRecordRLId, bibId, sourceRecordFolioReference, sourceRecordRLTypeId));
           referenceLinkWriter.println(String.join("\t", instanceRLId, bibId, instanceFolioReference, instanceRLTypeId));
 
-          String[] holdingItems = (String[]) pageResultSet.getArray(HOLDING_ITEMS).getArray();
+          try (ResultSet holdingIdsResultSet = getResultSet(holdingStatement, holdingContext)) {
 
-          String currentHoldingId = null;
+            while (holdingIdsResultSet.next()) {
 
-          for (int i = 0; i < holdingItems.length; i++) {
-            String[] holdingItem = holdingItems[i].split("::");
-            if (holdingItem.length > 0 && StringUtils.isNotEmpty(holdingItem[0])) {
-              String holdingId = holdingItem[0];
+              String holdingId = holdingIdsResultSet.getString(MFHD_ID);
+
+              itemContext.put(MFHD_ID, holdingId);
+
               String holdingRLId = UUID.randomUUID().toString();
-              if (!holdingId.equals(currentHoldingId)) {
-                String holdingFolioReference = UUID.randomUUID().toString();
-                referenceLinkWriter.println(String.join("\t", holdingRLId, holdingId, holdingFolioReference, holdingTypeId));
-                referenceLinkWriter.println(String.join("\t", UUID.randomUUID().toString(), instanceRLId, holdingRLId, holdingToBibTypeId));
-                currentHoldingId = holdingId;
-              }
-              if (holdingItem.length > 1 && StringUtils.isNotEmpty(holdingItem[1])) {
-                String itemId = holdingItem[1];
-                String itemRLId = UUID.randomUUID().toString();
-                String itemFolioReference = UUID.randomUUID().toString();
-                referenceLinkWriter.println(String.join("\t", itemRLId, itemId, itemFolioReference, itemTypeId));
-                referenceLinkWriter.println(String.join("\t", UUID.randomUUID().toString(), holdingRLId, itemRLId, itemToHoldingTypeId));
+              String holdingFolioReference = UUID.randomUUID().toString();
+
+              referenceLinkWriter.println(String.join("\t", holdingRLId, holdingId, holdingFolioReference, holdingTypeId));
+              referenceLinkWriter.println(String.join("\t", UUID.randomUUID().toString(), instanceRLId, holdingRLId, holdingToBibTypeId));
+
+              try (ResultSet itemIdsResultSet = getResultSet(itemStatement, itemContext)) {
+
+                while (itemIdsResultSet.next()) {
+
+                  String itemId = itemIdsResultSet.getString(ITEM_ID);
+
+                  String itemRLId = UUID.randomUUID().toString();
+                  String itemFolioReference = UUID.randomUUID().toString();
+                  referenceLinkWriter.println(String.join("\t", itemRLId, itemId, itemFolioReference, itemTypeId));
+                  referenceLinkWriter.println(String.join("\t", UUID.randomUUID().toString(), holdingRLId, itemRLId, itemToHoldingTypeId));
+                }
               }
             }
           }
@@ -192,8 +206,8 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
         referenceLinkWriter.close();
 
         pageStatement.close();
-        holdingIdsStatement.close();
-        itemIdsStatement.close();
+        holdingStatement.close();
+        itemStatement.close();
 
         pageResultSet.close();
 
@@ -213,8 +227,8 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database referenceLinkSettings) {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
-    threadConnections.setHoldingIdsConnection(getConnection(voyagerSettings));
-    threadConnections.setItemIdsConnection(getConnection(voyagerSettings));
+    threadConnections.setHoldingConnection(getConnection(voyagerSettings));
+    threadConnections.setItemConnection(getConnection(voyagerSettings));
     try {
       threadConnections.setReferenceLinkConnection(getConnection(referenceLinkSettings).unwrap(BaseConnection.class));
     } catch (SQLException e) {
@@ -226,8 +240,8 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
 
   private class ThreadConnections {
     private Connection pageConnection;
-    private Connection holdingIdsConnection;
-    private Connection itemIdsConnection;
+    private Connection holdingConnection;
+    private Connection itemConnection;
 
     private BaseConnection referenceLinkConnection;
 
@@ -243,20 +257,20 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
       this.pageConnection = pageConnection;
     }
 
-    public Connection getHoldingIdsConnection() {
-      return holdingIdsConnection;
+    public Connection getHoldingConnection() {
+      return holdingConnection;
     }
 
-    public void setHoldingIdsConnection(Connection holdingIdsConnection) {
-      this.holdingIdsConnection = holdingIdsConnection;
+    public void setHoldingConnection(Connection holdingConnection) {
+      this.holdingConnection = holdingConnection;
     }
 
-    public Connection getItemIdsConnection() {
-      return itemIdsConnection;
+    public Connection getItemConnection() {
+      return itemConnection;
     }
 
-    public void setItemIdsConnection(Connection itemIdsConnection) {
-      this.itemIdsConnection = itemIdsConnection;
+    public void setItemConnection(Connection itemConnection) {
+      this.itemConnection = itemConnection;
     }
 
     public BaseConnection getReferenceLinkConnection() {
@@ -270,8 +284,8 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
     public void closeAll() {
       try {
         pageConnection.close();
-        holdingIdsConnection.close();
-        itemIdsConnection.close();
+        holdingConnection.close();
+        itemConnection.close();
         referenceLinkConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());

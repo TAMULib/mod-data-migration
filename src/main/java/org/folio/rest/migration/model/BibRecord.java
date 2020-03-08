@@ -3,15 +3,14 @@ package org.folio.rest.migration.model;
 import java.util.Date;
 import java.util.UUID;
 
+import org.folio.rest.jaxrs.model.Instance;
+import org.folio.rest.jaxrs.model.common.ExternalIdsHolder;
+import org.folio.rest.jaxrs.model.dto.AdditionalInfo;
+import org.folio.rest.jaxrs.model.dto.ParsedRecord;
+import org.folio.rest.jaxrs.model.dto.RawRecord;
+import org.folio.rest.jaxrs.model.dto.Record.RecordType;
+import org.folio.rest.jaxrs.model.mod_source_record_storage.RecordModel;
 import org.folio.rest.migration.mapping.InstanceMapper;
-import org.folio.rest.migration.model.generated.common.ExternalIdsHolder;
-import org.folio.rest.migration.model.generated.inventory_storage.Instance;
-import org.folio.rest.migration.model.generated.inventory_storage.Metadata;
-import org.folio.rest.migration.model.generated.source_record_storage.AdditionalInfo;
-import org.folio.rest.migration.model.generated.source_record_storage.ParsedRecord;
-import org.folio.rest.migration.model.generated.source_record_storage.RawRecord;
-import org.folio.rest.migration.model.generated.source_record_storage.RecordModel;
-import org.folio.rest.migration.model.generated.source_record_storage.RecordModel.RecordType;
 import org.marc4j.marc.Record;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -128,7 +127,10 @@ public class BibRecord {
     ExternalIdsHolder externalIdsHolder = new ExternalIdsHolder();
     externalIdsHolder.setInstanceId(instanceId);
     recordModel.setExternalIdsHolder(externalIdsHolder);
-    recordModel.setMetadata(getMetadata());
+    org.folio.rest.jaxrs.model.dto.Metadata metadata = new org.folio.rest.jaxrs.model.dto.Metadata();
+    metadata.setCreatedByUserId(createdByUserId);
+    metadata.setCreatedDate(createdDate);
+    recordModel.setMetadata(metadata);
     return recordModel;
   }
 
@@ -150,15 +152,11 @@ public class BibRecord {
     final Instance instance = instanceMapper.getInstance(record);
     instance.setId(instanceId);
     instance.setHrid(String.format("%s%011d", hridPrefix, hrid));
-    instance.setMetadata(getMetadata());
-    return instance;
-  }
-
-  private Metadata getMetadata() {
-    Metadata metadata = new Metadata();
+    org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
-    return metadata;
+    instance.setMetadata(metadata);
+    return instance;
   }
 
 }

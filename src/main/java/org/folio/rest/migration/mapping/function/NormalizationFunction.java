@@ -8,17 +8,17 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import org.apache.commons.lang.StringUtils;
+import org.folio.rest.jaxrs.model.Alternativetitletype;
+import org.folio.rest.jaxrs.model.Classificationtype;
+import org.folio.rest.jaxrs.model.Contributornametype;
+import org.folio.rest.jaxrs.model.Contributortype;
+import org.folio.rest.jaxrs.model.Electronicaccessrelationship;
+import org.folio.rest.jaxrs.model.Identifiertype;
+import org.folio.rest.jaxrs.model.Instanceformat;
+import org.folio.rest.jaxrs.model.Instancenotetype;
+import org.folio.rest.jaxrs.model.Instancetype;
 import org.folio.rest.migration.mapping.RuleExecutionContext;
 import org.folio.rest.migration.mapping.model.RuleParameter;
-import org.folio.rest.migration.model.generated.settings.AlternativeTitleType;
-import org.folio.rest.migration.model.generated.settings.ClassificationType;
-import org.folio.rest.migration.model.generated.settings.ContributorNameType;
-import org.folio.rest.migration.model.generated.settings.ContributorType;
-import org.folio.rest.migration.model.generated.settings.ElectronicAccessRelationship;
-import org.folio.rest.migration.model.generated.settings.IdentifierType;
-import org.folio.rest.migration.model.generated.settings.InstanceFormat;
-import org.folio.rest.migration.model.generated.settings.InstanceNoteType;
-import org.folio.rest.migration.model.generated.settings.InstanceType;
 import org.marc4j.marc.DataField;
 
 /**
@@ -131,12 +131,12 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
   SET_INSTANCE_FORMAT_ID() {
     @Override
     public String apply(RuleExecutionContext context) {
-      List<InstanceFormat> instanceFormats = context.getMappingParameters().getInstanceFormats();
+      List<Instanceformat> instanceFormats = context.getMappingParameters().getInstanceFormats();
       if (instanceFormats == null) {
         return StringUtils.EMPTY;
       }
       return instanceFormats.stream().filter(instanceFormat -> instanceFormat.getCode().equalsIgnoreCase(context.getSubfieldValue())).findFirst()
-          .map(InstanceFormat::getId).orElse(StringUtils.EMPTY);
+          .map(Instanceformat::getId).orElse(StringUtils.EMPTY);
     }
   },
 
@@ -144,11 +144,11 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
     @Override
     public String apply(RuleExecutionContext context) {
       String typeName = context.getRuleParameter().getName();
-      List<ClassificationType> types = context.getMappingParameters().getClassificationTypes();
+      List<Classificationtype> types = context.getMappingParameters().getClassificationTypes();
       if (types == null || typeName == null) {
         return STUB_FIELD_TYPE_ID;
       }
-      return types.stream().filter(classificationType -> classificationType.getName().equalsIgnoreCase(typeName)).findFirst().map(ClassificationType::getId)
+      return types.stream().filter(classificationType -> classificationType.getName().equalsIgnoreCase(typeName)).findFirst().map(Classificationtype::getId)
           .orElse(STUB_FIELD_TYPE_ID);
     }
   },
@@ -156,11 +156,11 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
   SET_CONTRIBUTOR_TYPE_ID() {
     @Override
     public String apply(RuleExecutionContext context) {
-      List<ContributorType> types = context.getMappingParameters().getContributorTypes();
+      List<Contributortype> types = context.getMappingParameters().getContributorTypes();
       if (types == null) {
         return StringUtils.EMPTY;
       }
-      return types.stream().filter(type -> type.getCode().equalsIgnoreCase(context.getSubfieldValue())).findFirst().map(ContributorType::getId)
+      return types.stream().filter(type -> type.getCode().equalsIgnoreCase(context.getSubfieldValue())).findFirst().map(Contributortype::getId)
           .orElse(StringUtils.EMPTY);
     }
   },
@@ -168,11 +168,11 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
   SET_CONTRIBUTOR_TYPE_TEXT() {
     @Override
     public String apply(RuleExecutionContext context) {
-      List<ContributorType> types = context.getMappingParameters().getContributorTypes();
+      List<Contributortype> types = context.getMappingParameters().getContributorTypes();
       if (types == null) {
         return context.getSubfieldValue();
       }
-      return types.stream().filter(type -> type.getCode().equalsIgnoreCase(context.getSubfieldValue())).findFirst().map(ContributorType::getName)
+      return types.stream().filter(type -> type.getCode().equalsIgnoreCase(context.getSubfieldValue())).findFirst().map(Contributortype::getName)
           .orElse(context.getSubfieldValue());
     }
   },
@@ -181,30 +181,30 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
     @Override
     public String apply(RuleExecutionContext context) {
       String typeName = context.getRuleParameter().getName();
-      List<ContributorNameType> typeNames = context.getMappingParameters().getContributorNameTypes();
+      List<Contributornametype> typeNames = context.getMappingParameters().getContributorNameTypes();
       if (typeNames == null || typeName == null) {
         return STUB_FIELD_TYPE_ID;
       }
       return typeNames.stream().filter(contributorTypeName -> contributorTypeName.getName().equalsIgnoreCase(typeName)).findFirst()
-          .map(ContributorNameType::getId).orElse(STUB_FIELD_TYPE_ID);
+          .map(Contributornametype::getId).orElse(STUB_FIELD_TYPE_ID);
     }
   },
 
   SET_INSTANCE_TYPE_ID() {
     @Override
     public String apply(RuleExecutionContext context) {
-      List<InstanceType> types = context.getMappingParameters().getInstanceTypes();
+      List<Instancetype> types = context.getMappingParameters().getInstanceTypes();
       if (types == null) {
         return STUB_FIELD_TYPE_ID;
       }
       String unspecifiedTypeCode = context.getRuleParameter().getUnspecifiedInstanceTypeCode();
       String instanceTypeCode = context.getDataField() != null ? context.getSubfieldValue() : unspecifiedTypeCode;
 
-      return getInstanceTypeByCode(instanceTypeCode, types).map(InstanceType::getId)
-          .orElseGet(() -> getInstanceTypeByCode(unspecifiedTypeCode, types).map(InstanceType::getId).orElse(STUB_FIELD_TYPE_ID));
+      return getInstanceTypeByCode(instanceTypeCode, types).map(Instancetype::getId)
+          .orElseGet(() -> getInstanceTypeByCode(unspecifiedTypeCode, types).map(Instancetype::getId).orElse(STUB_FIELD_TYPE_ID));
     }
 
-    private Optional<InstanceType> getInstanceTypeByCode(String instanceTypeCode, List<InstanceType> instanceTypes) {
+    private Optional<Instancetype> getInstanceTypeByCode(String instanceTypeCode, List<Instancetype> instanceTypes) {
       return instanceTypes.stream().filter(instanceType -> instanceType.getCode().equalsIgnoreCase(instanceTypeCode)).findFirst();
     }
   },
@@ -212,14 +212,14 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
   SET_ELECTRONIC_ACCESS_RELATIONS_ID() {
     @Override
     public String apply(RuleExecutionContext context) {
-      List<ElectronicAccessRelationship> electronicAccessRelationships = context.getMappingParameters().getElectronicAccessRelationships();
+      List<Electronicaccessrelationship> electronicAccessRelationships = context.getMappingParameters().getElectronicAccessRelationships();
       if (electronicAccessRelationships == null || context.getDataField() == null) {
         return STUB_FIELD_TYPE_ID;
       }
       char ind2 = context.getDataField().getIndicator2();
       String name = ElectronicAccessRelationshipEnum.getNameByIndicator(ind2);
       return electronicAccessRelationships.stream().filter(electronicAccessRelationship -> electronicAccessRelationship.getName().equalsIgnoreCase(name))
-          .findFirst().map(ElectronicAccessRelationship::getId).orElse(STUB_FIELD_TYPE_ID);
+          .findFirst().map(Electronicaccessrelationship::getId).orElse(STUB_FIELD_TYPE_ID);
     }
   },
 
@@ -227,12 +227,12 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
     @Override
     public String apply(RuleExecutionContext context) {
       String typeName = context.getRuleParameter().getName();
-      List<IdentifierType> identifierTypes = context.getMappingParameters().getIdentifierTypes();
+      List<Identifiertype> identifierTypes = context.getMappingParameters().getIdentifierTypes();
       if (identifierTypes == null || typeName == null) {
         return STUB_FIELD_TYPE_ID;
       }
       return identifierTypes.stream().filter(identifierType -> identifierType.getName().trim().equalsIgnoreCase(typeName)).findFirst()
-          .map(IdentifierType::getId).orElse(STUB_FIELD_TYPE_ID);
+          .map(Identifiertype::getId).orElse(STUB_FIELD_TYPE_ID);
     }
   },
 
@@ -240,12 +240,12 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
     @Override
     public String apply(RuleExecutionContext context) {
       List<String> typeNames = context.getRuleParameter().getNames();
-      List<IdentifierType> identifierTypes = context.getMappingParameters().getIdentifierTypes();
+      List<Identifiertype> identifierTypes = context.getMappingParameters().getIdentifierTypes();
       if (identifierTypes == null || typeNames == null) {
         return STUB_FIELD_TYPE_ID;
       }
       String type = getIdentifierTypeName(context);
-      return identifierTypes.stream().filter(identifierType -> identifierType.getName().equalsIgnoreCase(type)).findFirst().map(IdentifierType::getId)
+      return identifierTypes.stream().filter(identifierType -> identifierType.getName().equalsIgnoreCase(type)).findFirst().map(Identifiertype::getId)
           .orElse(STUB_FIELD_TYPE_ID);
     }
 
@@ -266,15 +266,15 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
     @Override
     public String apply(RuleExecutionContext context) {
       String noteTypeName = context.getRuleParameter().getName();
-      List<InstanceNoteType> instanceNoteTypes = context.getMappingParameters().getInstanceNoteTypes();
+      List<Instancenotetype> instanceNoteTypes = context.getMappingParameters().getInstanceNoteTypes();
       if (instanceNoteTypes == null || noteTypeName == null) {
         return STUB_FIELD_TYPE_ID;
       }
-      return getNoteTypeByName(noteTypeName, instanceNoteTypes).map(InstanceNoteType::getId)
-          .orElseGet(() -> getNoteTypeByName(DEFAULT_NOTE_TYPE_NAME, instanceNoteTypes).map(InstanceNoteType::getId).orElse(STUB_FIELD_TYPE_ID));
+      return getNoteTypeByName(noteTypeName, instanceNoteTypes).map(Instancenotetype::getId)
+          .orElseGet(() -> getNoteTypeByName(DEFAULT_NOTE_TYPE_NAME, instanceNoteTypes).map(Instancenotetype::getId).orElse(STUB_FIELD_TYPE_ID));
     }
 
-    private Optional<InstanceNoteType> getNoteTypeByName(String noteTypeName, List<InstanceNoteType> noteTypes) {
+    private Optional<Instancenotetype> getNoteTypeByName(String noteTypeName, List<Instancenotetype> noteTypes) {
       return noteTypes.stream().filter(instanceNoteType -> instanceNoteType.getName().equalsIgnoreCase(noteTypeName)).findFirst();
     }
   },
@@ -283,12 +283,12 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
     @Override
     public String apply(RuleExecutionContext context) {
       String alternativeTitleTypeName = context.getRuleParameter().getName();
-      List<AlternativeTitleType> alternativeTitleTypes = context.getMappingParameters().getAlternativeTitleTypes();
+      List<Alternativetitletype> alternativeTitleTypes = context.getMappingParameters().getAlternativeTitleTypes();
       if (alternativeTitleTypes == null || alternativeTitleTypeName == null) {
         return STUB_FIELD_TYPE_ID;
       }
       return alternativeTitleTypes.stream().filter(alternativeTitleType -> alternativeTitleType.getName().equalsIgnoreCase(alternativeTitleTypeName))
-          .findFirst().map(AlternativeTitleType::getId).orElse(STUB_FIELD_TYPE_ID);
+          .findFirst().map(Alternativetitletype::getId).orElse(STUB_FIELD_TYPE_ID);
     }
   };
 

@@ -14,7 +14,9 @@ POST to http://localhost:9003/migrate/inventory-reference-links
 {
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.bib_master",
-    "pageSql": "WITH bib_holdings_items AS (SELECT b.bib_id, bm.mfhd_id, mi.item_id FROM ${SCHEMA}.bib_master b LEFT JOIN ${SCHEMA}.bib_mfhd bm ON b.bib_id = bm.bib_id LEFT JOIN ${SCHEMA}.mfhd_item mi ON bm.mfhd_id = mi.mfhd_id) SELECT bhi.bib_id, CAST(COLLECT(bhi.mfhd_id || '::' || bhi.item_id) AS sys.odcivarchar2list) AS holding_items FROM bib_holdings_items bhi GROUP BY bhi.bib_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "pageSql": "SELECT bib_id FROM ${SCHEMA}.bib_master OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "holdingSql": "SELECT mfhd_id FROM ${SCHEMA}.bib_mfhd WHERE bib_id = ${BIB_ID}",
+    "itemSql": "SELECT item_id FROM ${SCHEMA}.mfhd_item WHERE mfhd_id = ${MFHD_ID}",
     "database": {
       "url": "",
       "username": "",
