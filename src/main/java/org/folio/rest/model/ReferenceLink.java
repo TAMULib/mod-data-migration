@@ -14,11 +14,12 @@ import org.folio.spring.domain.model.AbstractBaseEntity;
 @Entity
 // @formatter:off
 @Table(
+  name = "reference_links",
   uniqueConstraints = {
-    @UniqueConstraint(columnNames = { "externalReference", "folioReference", "type_id" })
+    @UniqueConstraint(columnNames = { "externalreference", "folioreference", "type_id" })
   },
   indexes = {
-    @Index(columnList = "type_id,externalReference"),
+    @Index(columnList = "type_id,externalreference"),
     @Index(columnList = "type_id,id,externalreference")
   }
 )

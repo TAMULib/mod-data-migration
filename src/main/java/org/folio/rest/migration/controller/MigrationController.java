@@ -2,6 +2,7 @@ package org.folio.rest.migration.controller;
 
 import org.folio.rest.migration.BibMigration;
 import org.folio.rest.migration.InventoryReferenceLinkMigration;
+import org.folio.rest.migration.aspect.annotation.CreateReferenceLinkTypes;
 import org.folio.rest.migration.model.request.BibContext;
 import org.folio.rest.migration.model.request.InventoryReferenceLinkContext;
 import org.folio.rest.migration.service.MigrationService;
@@ -20,6 +21,7 @@ public class MigrationController {
   private MigrationService migrationService;
 
   @PostMapping("/inventory-reference-links")
+  @CreateReferenceLinkTypes(path = "classpath:/referenceLinkTypes/inventory/*.json")
   public void inventoryReferenceLinks(@RequestBody InventoryReferenceLinkContext context, @TenantHeader String tenant) {
     migrationService.migrate(InventoryReferenceLinkMigration.with(context, tenant));
   }

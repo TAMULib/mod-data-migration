@@ -34,7 +34,7 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
   private static final String ITEM_TO_HOLDING_REFERENCE_ID = "itemToHoldingTypeId";
 
   // (id,externalreference,folioreference,type_id)
-  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.referencelink (id,externalreference,folioreference,type_id) FROM STDIN";
+  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,externalreference,folioreference,type_id) FROM STDIN";
 
   private InventoryReferenceLinkMigration(InventoryReferenceLinkContext context, String tenant) {
     super(context, tenant);

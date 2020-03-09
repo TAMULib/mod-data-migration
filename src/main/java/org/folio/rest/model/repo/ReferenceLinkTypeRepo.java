@@ -7,4 +7,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface ReferenceLinkTypeRepo extends JpaRepository<ReferenceLinkType, String> {
 
+  public boolean existsByName(String name);
+
 }
