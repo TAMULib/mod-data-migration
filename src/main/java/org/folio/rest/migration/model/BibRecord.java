@@ -8,7 +8,7 @@ import org.folio.rest.jaxrs.model.common.ExternalIdsHolder;
 import org.folio.rest.jaxrs.model.dto.AdditionalInfo;
 import org.folio.rest.jaxrs.model.dto.ParsedRecord;
 import org.folio.rest.jaxrs.model.dto.RawRecord;
-import org.folio.rest.jaxrs.model.dto.Record.RecordType;
+import org.folio.rest.jaxrs.model.dto.ParsedRecordDto.RecordType;
 import org.folio.rest.jaxrs.model.mod_source_record_storage.RecordModel;
 import org.folio.rest.migration.mapping.InstanceMapper;
 import org.marc4j.marc.Record;
