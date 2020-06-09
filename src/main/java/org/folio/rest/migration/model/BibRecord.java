@@ -116,17 +116,17 @@ public class BibRecord {
   public RecordModel toRecordModel(String jobExecutionId) {
     final RecordModel recordModel = new RecordModel();
     recordModel.setId(sourceRecordId);
-    recordModel.setMatchedId(sourceRecordId);
-    recordModel.setParsedRecordId(parsedRecordId);
-    recordModel.setRawRecordId(rawRecordId);
-    recordModel.setRecordType(RecordType.MARC);
     recordModel.setSnapshotId(jobExecutionId);
-    AdditionalInfo additionalInfo = new AdditionalInfo();
-    additionalInfo.setSuppressDiscovery(suppressDiscovery);
-    recordModel.setAdditionalInfo(additionalInfo);
+    recordModel.setMatchedId(sourceRecordId);
+    recordModel.setRecordType(RecordType.MARC);
+    recordModel.setRawRecordId(rawRecordId);
+    recordModel.setParsedRecordId(parsedRecordId);
     ExternalIdsHolder externalIdsHolder = new ExternalIdsHolder();
     externalIdsHolder.setInstanceId(instanceId);
     recordModel.setExternalIdsHolder(externalIdsHolder);
+    AdditionalInfo additionalInfo = new AdditionalInfo();
+    additionalInfo.setSuppressDiscovery(suppressDiscovery);
+    recordModel.setAdditionalInfo(additionalInfo);
     org.folio.rest.jaxrs.model.dto.Metadata metadata = new org.folio.rest.jaxrs.model.dto.Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
@@ -152,6 +152,7 @@ public class BibRecord {
     final Instance instance = instanceMapper.getInstance(record);
     instance.setId(instanceId);
     instance.setHrid(String.format("%s%011d", hridPrefix, hrid));
+    instance.setDiscoverySuppress(suppressDiscovery);
     org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
