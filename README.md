@@ -22,6 +22,8 @@ Other FOLIO Developer documentation is at [dev.folio.org](https://dev.folio.org/
 
 ## Inventory Reference Link Migration
 
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
 POST to http://localhost:9003/migrate/inventory-reference-links
 ```
 {
@@ -68,6 +70,8 @@ POST to http://localhost:9003/migrate/inventory-reference-links
 ```
 
 ## MARC Bibliographic Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
 
 POST to http://localhost:9003/migrate/bibs
 
