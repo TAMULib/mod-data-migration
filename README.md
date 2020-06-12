@@ -24,7 +24,7 @@ Other FOLIO Developer documentation is at [dev.folio.org](https://dev.folio.org/
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
 
-POST to http://localhost:9003/migrate/inventory-reference-links
+POST to http://localhost:9000/migrate/inventory-reference-links
 ```
 {
   "extraction": {
@@ -73,7 +73,7 @@ POST to http://localhost:9003/migrate/inventory-reference-links
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
 
-POST to http://localhost:9003/migrate/bibs
+POST to http://localhost:9000/migrate/bibs
 
 ```
 {
@@ -125,6 +125,9 @@ POST to http://localhost:9003/migrate/bibs
 ```
 
 ## Docker deployment
+
+When deploying docker, be sure to set the appropriate ports for your environment (make the guest port matches the port specified in `src/main/resources/application.yml` file).
+In the example below, the `-p 9000:9000` represents `-p [host port]:[guest port]` with *guest* referring to the docker image and *host* referring to the system running docker.
 
 ```
 docker build -t folio/mod-data-migration .
