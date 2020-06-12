@@ -33,7 +33,7 @@ spring:
     # driverClassName: org.h2.Driver
     platform: postgres
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/mod-data-migration
+    url: jdbc:postgresql://localhost:5432/mod_data_migration
 
     username: folio
     password: folio
