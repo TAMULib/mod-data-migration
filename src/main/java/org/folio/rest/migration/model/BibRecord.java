@@ -1,6 +1,8 @@
 package org.folio.rest.migration.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import org.folio.rest.jaxrs.model.Instance;
@@ -17,6 +19,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 
 public class BibRecord {
+
+  private static final String STATISTICAL_CODES = "statisticalCodes";
 
   private final String bibId;
   private final Boolean suppressDiscovery;
@@ -148,11 +152,14 @@ public class BibRecord {
     return parsedRecord;
   }
 
-  public Instance toInstance(InstanceMapper instanceMapper, String hridPrefix, int hrid) throws JsonProcessingException {
+  public Instance toInstance(InstanceMapper instanceMapper, String hridPrefix, int hrid, Set<String> statisticalCodes) throws JsonProcessingException {
     final Instance instance = instanceMapper.getInstance(record);
     instance.setId(instanceId);
     instance.setHrid(String.format("%s%011d", hridPrefix, hrid));
     instance.setDiscoverySuppress(suppressDiscovery);
+    if (statisticalCodes.size() > 0) {
+      instance.setStatisticalCodeIds(statisticalCodes);
+    }
     org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);

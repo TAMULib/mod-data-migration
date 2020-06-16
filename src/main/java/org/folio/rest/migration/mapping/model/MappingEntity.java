@@ -17,6 +17,8 @@ public class MappingEntity {
 
   private boolean ignoreSubsequentFields = false;
 
+  private boolean ignoreSubsequentSubfields = false;
+
   private List<SubfieldDelimiter> subFieldDelimiter;
 
   private List<Character> subfield;
@@ -65,6 +67,14 @@ public class MappingEntity {
 
   public void setIgnoreSubsequentFields(boolean ignoreSubsequentFields) {
     this.ignoreSubsequentFields = ignoreSubsequentFields;
+  }
+
+  public boolean isIgnoreSubsequentSubFields() {
+    return ignoreSubsequentSubfields;
+  }
+
+  public void setIgnoreSubsequentSubfields(boolean ignoreSubsequentSubfields) {
+    this.ignoreSubsequentSubfields = ignoreSubsequentSubfields;
   }
 
   public List<SubfieldDelimiter> getSubFieldDelimiter() {

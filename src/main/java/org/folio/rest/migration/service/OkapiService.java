@@ -105,6 +105,23 @@ public class OkapiService {
     throw new RuntimeException("Failed to fetch hrid settings: " + response.getStatusCodeValue());
   }
 
+  public JsonNode fetchStatisticalCodes(String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpHeaders headers = new HttpHeaders();
+    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    headers.set("X-Okapi-Tenant", tenant);
+    headers.set("X-Okapi-Token", token);
+    HttpEntity<?> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + "/statistical-codes?limit=500&query=(statisticalCodeTypeId==\"1398f7a1-dfba-420d-a998-769ea234891d\")";
+    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonNode.class);
+    log.debug("fetch statistical codes: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to fetch statistical codes: " + response.getStatusCodeValue());
+  }
+
   public InitJobExecutionsRsDto createJobExecution(String tenant, String token, InitJobExecutionsRqDto jobExecutionDto) {
     long startTime = System.nanoTime();
     HttpHeaders headers = new HttpHeaders();

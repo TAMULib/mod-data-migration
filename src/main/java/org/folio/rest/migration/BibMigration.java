@@ -15,9 +15,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -108,6 +110,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     JsonNode hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
 
+    JsonNode statisticalCodes = migrationService.okapiService.fetchStatisticalCodes(tenant, token);
+
     Database voyagerSettings = context.getExtraction().getDatabase();
 
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
@@ -162,7 +166,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
         partitionContext.put(TOKEN, token);
         partitionContext.put(HRID_PREFIX, hridPrefix);
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
-        taskQueue.submit(new BibPartitionTask(migrationService, instanceMapper, partitionContext, job));
+        taskQueue.submit(new BibPartitionTask(migrationService, instanceMapper, partitionContext, statisticalCodes, job));
         offset += limit;
         index++;
         if (i < partitions) {
@@ -190,13 +194,16 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     private final BibJob job;
 
+    private final JsonNode statisticalCodes;
+
     private int hrid;
 
-    public BibPartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext, BibJob job) {
+    public BibPartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext, JsonNode statisticalCodes, BibJob job) {
       this.migrationService = migrationService;
       this.instanceMapper = instanceMapper;
       this.partitionContext = partitionContext;
       this.job = job;
+      this.statisticalCodes = statisticalCodes;
       this.hrid = (int) partitionContext.get(HRID_START_NUMBER);
     }
 
@@ -209,6 +216,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
     }
 
     public BibPartitionTask execute(BibContext context) {
+      log.info("starting execute for schema: {}", this.getSchema());
+
       long startTime = System.nanoTime();
 
       String schema = this.getSchema();
@@ -241,6 +250,10 @@ public class BibMigration extends AbstractMigration<BibContext> {
       marcContext.put(SQL, context.getExtraction().getMarcSql());
       marcContext.put(SCHEMA, schema);
 
+      Map<String, Object> bibHistoryContext = new HashMap<>();
+      bibHistoryContext.put(SQL, context.getExtraction().getBibHistorySql());
+      bibHistoryContext.put(SCHEMA, schema);
+
       String sourceRecordRLTypeId = job.getReferences().get(SOURCE_RECORD_REFERENCE_ID);
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
 
@@ -265,18 +278,26 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement marcStatement = threadConnections.getMarcConnection().createStatement();
+        Statement bibHistoryStatement = threadConnections.getBibHistoryConnection().createStatement();
+
+        log.info("getting page result set");
 
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
 
         while (pageResultSet.next()) {
+          log.info("bib: {}", pageResultSet.getString(BIB_ID));
 
           String bibId = pageResultSet.getString(BIB_ID);
           Boolean suppressInOpac = pageResultSet.getBoolean(SUPPRESS_IN_OPAC);
 
           marcContext.put(BIB_ID, bibId);
+          bibHistoryContext.put(BIB_ID, bibId);
 
           try {
             String marc = getMarc(marcStatement, marcContext);
+            String bibHistory = getBibHistory(bibHistoryStatement, bibHistoryContext);
+
+            Set<String> matchedCodes = getMatchingStatisticalCodes(bibHistory, statisticalCodes);
 
             BibRecord bibRecord = new BibRecord(bibId, suppressInOpac);
 
@@ -334,7 +355,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
               String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
               String createdByUserId = job.getUserId();
 
-              Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid);
+              Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid, matchedCodes);
 
               String rrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(rawRecord)));
               String prUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(parsedRecord)));
@@ -406,6 +427,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     threadConnections.setMarcConnection(getConnection(voyagerSettings));
+    threadConnections.setBibHistoryConnection(getConnection(voyagerSettings));
     try {
       threadConnections.setRawRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
       threadConnections.setParsedRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
@@ -431,6 +453,27 @@ public class BibMigration extends AbstractMigration<BibContext> {
       SequenceInputStream sequenceInputStream = new SequenceInputStream(Collections.enumeration(asciiStreams));
       return IOUtils.toString(sequenceInputStream, DEFAULT_CHARSET);
     }
+  }
+
+  private String getBibHistory(Statement statement, Map<String, Object> context) throws SQLException {
+    try (ResultSet resultSet = getResultSet(statement, context)) {
+      int count = 0;
+      while (resultSet.next()) {
+        count++;
+        log.info("\n\n\nresult: " + count + " " + resultSet.toString());
+        System.out.println("\n\n\nresult: " + count + " " + resultSet.toString());
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  private Set<String> getMatchingStatisticalCodes(String bibHistory, JsonNode statisticalCodes) {
+    Set<String> matchedCodes = new HashSet<>();
+    JsonNode codes = statisticalCodes.withArray("statisticalCodes");
+    log.info("Codes: {}", codes);
+    return matchedCodes;
   }
 
   private Optional<Record> rawMarcToRecord(String rawMarc) throws IOException, MarcException {
@@ -472,6 +515,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private class ThreadConnections {
     private Connection pageConnection;
     private Connection marcConnection;
+    private Connection bibHistoryConnection;
 
     private BaseConnection rawRecordConnection;
     private BaseConnection parsedRecordConnection;
@@ -496,6 +540,14 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     public void setMarcConnection(Connection marcConnection) {
       this.marcConnection = marcConnection;
+    }
+
+    public Connection getBibHistoryConnection() {
+      return bibHistoryConnection;
+    }
+
+    public void setBibHistoryConnection(Connection bibHistoryConnection) {
+      this.bibHistoryConnection = bibHistoryConnection;
     }
 
     public BaseConnection getRawRecordConnection() {
@@ -534,6 +586,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
       try {
         pageConnection.close();
         marcConnection.close();
+        bibHistoryConnection.close();
         rawRecordConnection.close();
         parsedRecordConnection.close();
         recordConnection.close();
