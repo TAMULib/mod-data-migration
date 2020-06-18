@@ -107,6 +107,63 @@ POST to http://localhost:9003/migrate/bibs
 }
 ```
 
+## MARC Holding Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/holdings
+
+```
+{
+  "extraction": {
+    "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.mfhd_master",
+    "pageSql": "SELECT mfhd_id, suppress_in_opac, location_id, display_call_no, call_no_type, record_type, receipt_status, field_008 FROM ${SCHEMA}.mfhd_master ORDER BY mfhd_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "marcSql": "SELECT mfhd_id, seqnum, record_segment FROM ${SCHEMA}.mfhd_data WHERE mfhd_id = ${MFHD_ID}",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": ""
+    }
+  },
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 48,
+      "userId": "9b909401-96be-484e-8efe-158521718114",
+      "profileInfo": {
+        "id": "043ab092-d5f9-454a-87e1-8d879404367c",
+        "name": "TAMU Holding Migration",
+        "dataType": "MARC"
+      },
+      "useReferenceLinks": true,
+      "references": {
+        "holdingsTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
+        "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672",
+        "permenentLocationTypeId": "608f8a9c-7061-467c-b1ba-906a723051dc"
+      }
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 4,
+      "userId": "9b909401-96be-484e-8efe-158521718114",
+      "profileInfo": {
+        "id": "043ab092-d5f9-454a-87e1-8d879404367c",
+        "name": "TAMU Holding Migration",
+        "dataType": "MARC"
+      },
+      "useReferenceLinks": true,
+      "references": {
+        "holdingsTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
+        "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8",
+        "permenentLocationTypeId": "f0e6f749-ccd9-4aa9-a81d-e79146b09ca8"
+      }
+    }
+  ]
+}
+```
+
 ## Docker deployment
 
 ```

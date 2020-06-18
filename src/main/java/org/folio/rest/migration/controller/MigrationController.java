@@ -1,9 +1,11 @@
 package org.folio.rest.migration.controller;
 
 import org.folio.rest.migration.BibMigration;
+import org.folio.rest.migration.HoldingMigration;
 import org.folio.rest.migration.InventoryReferenceLinkMigration;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceLinkTypes;
 import org.folio.rest.migration.model.request.BibContext;
+import org.folio.rest.migration.model.request.HoldingContext;
 import org.folio.rest.migration.model.request.InventoryReferenceLinkContext;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.spring.tenant.annotation.TenantHeader;
@@ -29,6 +31,11 @@ public class MigrationController {
   @PostMapping("/bibs")
   public void bibs(@RequestBody BibContext context, @TenantHeader String tenant) {
     migrationService.migrate(BibMigration.with(context, tenant));
+  }
+
+  @PostMapping("/holdings")
+  public void bibs(@RequestBody HoldingContext context, @TenantHeader String tenant) {
+    migrationService.migrate(HoldingMigration.with(context, tenant));
   }
 
 }
