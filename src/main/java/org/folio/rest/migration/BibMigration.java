@@ -103,21 +103,21 @@ public class BibMigration extends AbstractMigration<BibContext> {
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
 
     String token = migrationService.okapiService.getToken(tenant);
-
+    log.info("got token");
     MappingParameters mappingParameters = migrationService.okapiService.getMappingParamaters(tenant, token);
-
+    log.info("got mapping params");
     JsonNode rules = migrationService.okapiService.fetchRules(tenant, token);
-
+    log.info("after rules");
     JsonNode hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
-
+    log.info("fetched hrid settings");
     JsonNode statisticalCodes = migrationService.okapiService.fetchStatisticalCodes(tenant, token);
-
+    log.info("got statistical codes");
     Database voyagerSettings = context.getExtraction().getDatabase();
-
+    log.info("got voyager settings");
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
-
+    log.info("got folio settings");
     InstanceMapper instanceMapper = new InstanceMapper(mappingParameters, migrationService.objectMapper, rules);
-
+    log.info("pre pre actions");
     preActions(folioSettings, context.getPreActions());
 
     taskQueue = new PartitionTaskQueue<BibContext>(context, new TaskCallback() {
@@ -231,9 +231,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
       jobExecutionRqDto.setSourceType(SourceType.ONLINE);
       jobExecutionRqDto.setJobProfileInfo(job.getProfileInfo());
       jobExecutionRqDto.setUserId(job.getUserId());
-
+      log.info("about to create job execution");
       InitJobExecutionsRsDto JobExecutionRsDto = migrationService.okapiService.createJobExecution(tenant, token, jobExecutionRqDto);
-
+      log.info("got job execution");
       JobExecution jobExecution = JobExecutionRsDto.getJobExecutions().get(0);
 
       String jobExecutionId = jobExecution.getId();
@@ -241,7 +241,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
       Database voyagerSettings = context.getExtraction().getDatabase();
 
       Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
-
+      log.info("got folio settings");
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
 
       MarcFactory factory = MarcFactory.newInstance();
@@ -256,13 +256,13 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       String sourceRecordRLTypeId = job.getReferences().get(SOURCE_RECORD_REFERENCE_ID);
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
-
+      log.info("trying to get thread connecttions");
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
       int count = 0;
 
       try {
-
+        log.info("trying database connection");
         PGCopyOutputStream rawRecordOutput = new PGCopyOutputStream(threadConnections.getRawRecordConnection(), String.format(RAW_RECORDS_COPY_SQL, tenant));
         PrintWriter rawRecordWriter = new PrintWriter(rawRecordOutput, true);
 

@@ -23,11 +23,11 @@ public class BibExtraction extends AbstractExtraction {
   }
 
   public String getBibHistorySql() {
-    return marcSql;
+    return bibHistorySql;
   }
 
-  public void setBibHistorySql(String marcSql) {
-    this.marcSql = marcSql;
+  public void setBibHistorySql(String bibHistorySql) {
+    this.bibHistorySql = bibHistorySql;
   }
 
 }
