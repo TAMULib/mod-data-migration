@@ -119,6 +119,7 @@ POST to http://localhost:9000/migrate/holdings
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.mfhd_master",
     "pageSql": "SELECT mfhd_id, suppress_in_opac, location_id, display_call_no, call_no_type, record_type, receipt_status, field_008 FROM ${SCHEMA}.mfhd_master ORDER BY mfhd_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "marcSql": "SELECT mfhd_id, seqnum, record_segment FROM ${SCHEMA}.mfhd_data WHERE mfhd_id = ${MFHD_ID}",
+    "locationSql": "SELECT DISTINCT location_id AS id, location_code AS code FROM ${SCHEMA}.location",
     "database": {
       "url": "",
       "username": "",
@@ -139,9 +140,8 @@ POST to http://localhost:9000/migrate/holdings
       },
       "useReferenceLinks": true,
       "references": {
-        "holdingsTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
-        "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672",
-        "permenentLocationTypeId": "608f8a9c-7061-467c-b1ba-906a723051dc"
+        "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
+        "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672"
       }
     },
     {
@@ -155,9 +155,8 @@ POST to http://localhost:9000/migrate/holdings
       },
       "useReferenceLinks": true,
       "references": {
-        "holdingsTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
-        "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8",
-        "permenentLocationTypeId": "f0e6f749-ccd9-4aa9-a81d-e79146b09ca8"
+        "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
+        "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8"
       }
     }
   ]
