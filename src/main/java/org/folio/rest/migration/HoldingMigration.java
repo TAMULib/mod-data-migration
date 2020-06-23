@@ -24,9 +24,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
 import org.folio.rest.jaxrs.model.Holdingsrecord;
-import org.folio.rest.jaxrs.model.dto.RawRecordsDto;
-import org.folio.rest.jaxrs.model.dto.RawRecordsMetadata;
-import org.folio.rest.jaxrs.model.dto.RawRecordsMetadata.ContentType;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.HoldingMapper;
 import org.folio.rest.migration.model.HoldingRecord;
@@ -444,15 +441,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       }
 
       threadConnections.closeAll();
-
-      RawRecordsDto rawRecordsDto = new RawRecordsDto();
-      RawRecordsMetadata recordsMetadata = new RawRecordsMetadata();
-      recordsMetadata.setLast(true);
-      recordsMetadata.setCounter(count);
-      recordsMetadata.setTotal(count);
-      recordsMetadata.setContentType(ContentType.MARC_RAW);
-      rawRecordsDto.setRecordsMetadata(recordsMetadata);
-
 
       log.info("{} {} finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
 
