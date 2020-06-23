@@ -29,7 +29,6 @@ public class HoldingRecord {
 
   private String holdingId;
   private String instanceId;
-  private String permanentLocationId;
 
   private String createdByUserId;
   private Date createdDate;
@@ -47,7 +46,6 @@ public class HoldingRecord {
 
     this.holdingId = UUID.randomUUID().toString();
     this.instanceId = UUID.randomUUID().toString();
-    this.permanentLocationId = UUID.randomUUID().toString();
   }
 
   public String getMfhdId() {
@@ -118,14 +116,6 @@ public class HoldingRecord {
     this.instanceId = instanceId;
   }
 
-  public String getPermanentLocationId() {
-    return permanentLocationId;
-  }
-
-  public void setPermanentLocationId(String permanentLocationId) {
-    this.permanentLocationId = permanentLocationId;
-  }
-
   public String getCreatedByUserId() {
     return createdByUserId;
   }
@@ -148,7 +138,7 @@ public class HoldingRecord {
     holding.setId(holdingId);
     holding.setInstanceId(instanceId);
     holding.setHrid(String.format("%s%011d", hridPrefix, hrid));
-    holding.setPermanentLocationId(permanentLocationId);
+    holding.setPermanentLocationId(locationId);
 
     holding.setDiscoverySuppress(discoverySuppress);
     holding.setCallNumber(callNumber);
