@@ -5,11 +5,26 @@ Copyright (C) 2018 The Open Library Foundation
 This software is distributed under the terms of the Apache License, Version 2.0.
 See the file ["LICENSE"](LICENSE) for more information.
 
+## Git Submodules
+Developers wanting to work on this project must initialize the submodules before the module can correctly build.
+
+More information is available on the [developer site](https://dev.folio.org/guides/developer-setup/#update-git-submodules).
+
+```
+git submodule update --init --recursive
+```
+
 ## Additional information
+
+Other [modules](https://dev.folio.org/source-code/#server-side).
+
+Other FOLIO Developer documentation is at [dev.folio.org](https://dev.folio.org/).
 
 ## Inventory Reference Link Migration
 
-POST to http://localhost:9003/migrate/inventory-reference-links
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/inventory-reference-links
 ```
 {
   "extraction": {
@@ -56,7 +71,9 @@ POST to http://localhost:9003/migrate/inventory-reference-links
 
 ## MARC Bibliographic Migration
 
-POST to http://localhost:9003/migrate/bibs
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/bibs
 
 ```
 {
@@ -107,7 +124,19 @@ POST to http://localhost:9003/migrate/bibs
 }
 ```
 
+## Migration Notes
+
+The `parallelism` property designates the number of processes executed in parallel.
+Ideally this can be set to the number of the available cores but should not be set higher than the `spring.datasource.hikari.maximumPoolSize` from the `applications.yml` configuration file.
+
+Each *job* has a `partitions` property designating the number of partitions to divide a result set by when querying.
+Increasing this number increases the number of jobs waiting in the queue, for all jobs, and therefore the total `partitions` for all jobs should be no higher than `1024` (the max queue size).
+For a set of 200 rows of data with *job* `partitions` set to 10, there would be a total of 10 queries, each of which would retrieve 20 rows of data in their respective result sets.
+
 ## Docker deployment
+
+When deploying docker, be sure to set the appropriate ports for your environment (make the guest port matches the port specified in `src/main/resources/application.yml` file).
+In the example below, the `-p 9000:9000` represents `-p [host port]:[guest port]` with *guest* referring to the docker image and *host* referring to the system running docker.
 
 ```
 docker build -t folio/mod-data-migration .
