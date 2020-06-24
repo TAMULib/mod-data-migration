@@ -122,6 +122,23 @@ public class OkapiService {
     throw new RuntimeException("Failed to create job execution: " + response.getStatusCodeValue());
   }
 
+  public JsonNode fetchLocations(String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpHeaders headers = new HttpHeaders();
+    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    headers.set("X-Okapi-Tenant", tenant);
+    headers.set("X-Okapi-Token", token);
+    HttpEntity<?> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + "/locations";
+    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonNode.class);
+    log.debug("fetch locations: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to fetch location settings: " + response.getStatusCodeValue());
+  }
+
   public void finishJobExecution(String tenant, String token, String jobExecutionId, RawRecordsDto rawRecordsDto) {
     long startTime = System.nanoTime();
     HttpHeaders headers = new HttpHeaders();

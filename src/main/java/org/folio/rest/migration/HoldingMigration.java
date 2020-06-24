@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.SequenceInputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -73,14 +72,14 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
   private static final String CODE = "code";
 
+  private static final String LOCATIONS = "locations";
+
   private static final String T_999 = "999";
 
   private static final char F = 'f';
 
   //(id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
   private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,holdingstypeid,callnumbertypeid) FROM STDIN";
-
-  private static final String PERMANENT_LOCATION_SELECT_SQL = "SELECT id, jsonb->>'code' AS code FROM %s_mod_inventory_storage.location";
 
   private static final HashMap<String, String> CALL_NUMBER_MAP = new HashMap<>();
   static {
@@ -149,8 +148,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     RETENTION_POLICY_MAP.put("8", "Permanently retained");
   }
 
-  private static HashMap<String, HashMap<String, String>> PERMANENT_LOCATION_MAPS = new HashMap<>();
-
   private HoldingMigration(HoldingContext context, String tenant) {
     super(context, tenant);
   }
@@ -195,9 +192,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     int index = 0;
 
-    List<String> schemaNames = new ArrayList<>();
-
-    PERMANENT_LOCATION_MAPS.clear();
+    HashMap<String, HashMap<String, String>> permanentLocations = new HashMap<>();
 
     log.info("total jobs: {}", context.getJobs().size());
 
@@ -207,7 +202,10 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
-      preloadPermanentLocationsMap(voyagerSettings, folioSettings, job.getSchema());
+      if (!permanentLocations.containsKey(job.getSchema())) {
+        HashMap<String, String> locationsMap = preloadPermanentLocationsMap(voyagerSettings, migrationService, token, job.getSchema());
+        permanentLocations.put(job.getSchema(), locationsMap);
+      }
 
       int count = getCount(voyagerSettings, countContext);
 
@@ -228,7 +226,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         partitionContext.put(HRID_PREFIX, hridPrefix);
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
 
-        taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext, job));
+        taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext, job, permanentLocations.get(job.getSchema())));
         offset += limit;
         index++;
         if (i < partitions) {
@@ -246,13 +244,9 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     return new HoldingMigration(context, tenant);
   }
 
-  private void preloadPermanentLocationsMap(Database voyagerSettings, Database folioSettings, String schema) {
+  private HashMap<String, String> preloadPermanentLocationsMap(Database voyagerSettings, MigrationService migrationService, String token, String schema) {
     HashMap<String, String> codeToId = new HashMap<>();
     HashMap<String, String> idToUuid = new HashMap<>();
-
-    if (PERMANENT_LOCATION_MAPS.containsKey(schema)) {
-      return;
-    }
 
     log.info("Pre-loading Location data from schema: {}", schema);
 
@@ -287,33 +281,24 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       }
     }
 
-    Connection folioConnection = getConnection(folioSettings);
+    JsonNode fetchedNode = migrationService.okapiService.fetchLocations(schema, token);
 
-    try {
-      Statement st = folioConnection.createStatement();
-      ResultSet rs = st.executeQuery(String.format(PERMANENT_LOCATION_SELECT_SQL, tenant));
+    if (fetchedNode.has(LOCATIONS)) {
+      JsonNode locationsNode = fetchedNode.get(LOCATIONS);
 
-      while (rs.next()) {
-        String uuid = rs.getString(ID);
-        String code = rs.getString(CODE);
+      if (locationsNode.isArray()) {
+        for (JsonNode locationNode : locationsNode) {
+          String uuid = locationNode.get(ID).asText();
+          String code = locationNode.get(CODE).asText();
 
-        if (codeToId.containsKey(code)) {
-          idToUuid.put(codeToId.get(code), uuid);
+          if (codeToId.containsKey(code)) {
+            idToUuid.put(codeToId.get(code), uuid);
+          }
         }
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    } finally {
-      try {
-        if (!folioConnection.isClosed()) {
-          folioConnection.close();
-        }
-      } catch (SQLException e) {
-        e.printStackTrace();
       }
     }
 
-    PERMANENT_LOCATION_MAPS.put(schema, idToUuid);
+    return idToUuid;
   }
 
   public class HoldingPartitionTask implements PartitionTask<HoldingContext> {
@@ -326,13 +311,16 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     private final HoldingJob job;
 
+    private final HashMap<String, String> permanentLocations;
+
     private int hrid;
 
-    public HoldingPartitionTask(MigrationService migrationService, HoldingMapper holdingMapper, Map<String, Object> partitionContext, HoldingJob job) {
+    public HoldingPartitionTask(MigrationService migrationService, HoldingMapper holdingMapper, Map<String, Object> partitionContext, HoldingJob job, HashMap<String, String> permanentLocations) {
       this.migrationService = migrationService;
       this.holdingMapper = holdingMapper;
       this.partitionContext = partitionContext;
       this.job = job;
+      this.permanentLocations = permanentLocations;
       this.hrid = (int) partitionContext.get(HRID_START_NUMBER);
     }
 
@@ -364,11 +352,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       Map<String, Object> marcContext = new HashMap<>();
       marcContext.put(SQL, context.getExtraction().getMarcSql());
       marcContext.put(SCHEMA, schema);
-
-      HashMap<String, String> locationMap = new HashMap<>();
-      if (PERMANENT_LOCATION_MAPS.containsKey(schema)) {
-        locationMap = PERMANENT_LOCATION_MAPS.get(schema);
-      }
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
@@ -438,8 +421,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             }
           }
 
-          if (locationMap.containsKey(permanentLocation)) {
-            locationId = locationMap.get(permanentLocation);
+          if (permanentLocations.containsKey(permanentLocation)) {
+            locationId = permanentLocations.get(permanentLocation);
           }
 
           marcContext.put(MFHD_ID, mfhdId);
