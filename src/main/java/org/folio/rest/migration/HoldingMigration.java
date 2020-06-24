@@ -281,7 +281,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       }
     }
 
-    JsonNode fetchedNode = migrationService.okapiService.fetchLocations(schema, token);
+    JsonNode fetchedNode = migrationService.okapiService.fetchLocations(tenant, token);
 
     if (fetchedNode.has(LOCATIONS)) {
       JsonNode locationsNode = fetchedNode.get(LOCATIONS);
