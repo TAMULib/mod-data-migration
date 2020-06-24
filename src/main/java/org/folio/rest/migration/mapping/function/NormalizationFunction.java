@@ -149,7 +149,8 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
       if (types == null || typeName == null) {
         return STUB_FIELD_TYPE_ID;
       }
-      return types.stream().filter(classificationType -> classificationType.getName().equalsIgnoreCase(typeName)).findFirst().map(Classificationtype::getId).orElse(STUB_FIELD_TYPE_ID);
+      return types.stream().filter(classificationType -> classificationType.getName().equalsIgnoreCase(typeName)).findFirst().map(Classificationtype::getId)
+          .orElse(STUB_FIELD_TYPE_ID);
     }
   },
 
@@ -160,7 +161,8 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
       if (types == null) {
         return StringUtils.EMPTY;
       }
-      return types.stream().filter(type -> type.getCode().equalsIgnoreCase(context.getSubfieldValue())).findFirst().map(Contributortype::getId).orElse(StringUtils.EMPTY);
+      return types.stream().filter(type -> type.getCode().equalsIgnoreCase(context.getSubfieldValue())).findFirst().map(Contributortype::getId)
+          .orElse(StringUtils.EMPTY);
     }
   },
 
@@ -171,7 +173,8 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
       if (types == null) {
         return context.getSubfieldValue();
       }
-      return types.stream().filter(type -> type.getCode().equalsIgnoreCase(context.getSubfieldValue())).findFirst().map(Contributortype::getName).orElse(context.getSubfieldValue());
+      return types.stream().filter(type -> type.getCode().equalsIgnoreCase(context.getSubfieldValue())).findFirst().map(Contributortype::getName)
+          .orElse(context.getSubfieldValue());
     }
   },
 
@@ -199,7 +202,7 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
       String instanceTypeCode = context.getDataField() != null ? context.getSubfieldValue() : unspecifiedTypeCode;
 
       return getInstanceTypeByCode(instanceTypeCode, types).map(Instancetype::getId)
-      .orElseGet(() -> getInstanceTypeByCode(unspecifiedTypeCode, types).map(Instancetype::getId).orElse(STUB_FIELD_TYPE_ID));
+          .orElseGet(() -> getInstanceTypeByCode(unspecifiedTypeCode, types).map(Instancetype::getId).orElse(STUB_FIELD_TYPE_ID));
     }
 
     private Optional<Instancetype> getInstanceTypeByCode(String instanceTypeCode, List<Instancetype> instanceTypes) {
@@ -285,8 +288,8 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
       if (alternativeTitleTypes == null || alternativeTitleTypeName == null) {
         return STUB_FIELD_TYPE_ID;
       }
-      return alternativeTitleTypes.stream()
-          .filter(alternativeTitleType -> alternativeTitleType.getName().equalsIgnoreCase(alternativeTitleTypeName)).findFirst().map(Alternativetitletype::getId).orElse(STUB_FIELD_TYPE_ID);
+      return alternativeTitleTypes.stream().filter(alternativeTitleType -> alternativeTitleType.getName().equalsIgnoreCase(alternativeTitleTypeName))
+          .findFirst().map(Alternativetitletype::getId).orElse(STUB_FIELD_TYPE_ID);
     }
   },
 
