@@ -114,7 +114,7 @@ public class OkapiService {
     headers.set("X-Okapi-Tenant", tenant);
     headers.set("X-Okapi-Token", token);
     HttpEntity<?> entity = new HttpEntity<>(headers);
-    String url = okapi.getUrl() + "/statistical-codes?limit=500&query=(statisticalCodeTypeId==\"1398f7a1-dfba-420d-a998-769ea234891d\")";
+    String url = okapi.getUrl() + "/statistical-codes?limit=500&query=(statisticalCodeTypeId==\"b0c98509-f7e8-411c-94b5-494b4b4518c8\")";
     ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonNode.class);
     log.debug("fetch statistical codes: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
