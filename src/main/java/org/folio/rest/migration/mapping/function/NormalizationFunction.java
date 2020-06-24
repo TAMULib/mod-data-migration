@@ -317,7 +317,6 @@ public enum NormalizationFunction implements Function<RuleExecutionContext, Stri
     }
 
     private String findIssuanceModeId(List<IssuanceMode> issuanceModes, IssuanceModeEnum issuanceModeType, String defaultId) {
-      Log.info("issueancemodes: {}", issuanceModes);
       return issuanceModes.stream()
         .filter(issuanceMode -> issuanceMode.getName().equalsIgnoreCase(issuanceModeType.getValue()))
         .findFirst()

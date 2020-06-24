@@ -19,8 +19,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 public class BibRecord {
 
-  private static final String STATISTICAL_CODES = "statisticalCodes";
-
   private final String bibId;
   private final Boolean suppressDiscovery;
 

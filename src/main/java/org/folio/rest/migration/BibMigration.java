@@ -74,6 +74,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private static final String RECORD_SEGMENT = "RECORD_SEGMENT";
   private static final String SEQNUM = "SEQNUM";
 
+  private static final String OPERATOR_ID = "OPERATOR_ID";
+
   private static final String T_999 = "999";
 
   private static final char F = 'f';
@@ -103,21 +105,21 @@ public class BibMigration extends AbstractMigration<BibContext> {
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
 
     String token = migrationService.okapiService.getToken(tenant);
-    log.info("got token");
+
     MappingParameters mappingParameters = migrationService.okapiService.getMappingParamaters(tenant, token);
-    log.info("got mapping params");
+
     JsonNode rules = migrationService.okapiService.fetchRules(tenant, token);
-    log.info("after rules");
+
     JsonNode hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
-    log.info("fetched hrid settings");
+
     JsonNode statisticalCodes = migrationService.okapiService.fetchStatisticalCodes(tenant, token);
-    log.info("got statistical codes");
+
     Database voyagerSettings = context.getExtraction().getDatabase();
-    log.info("got voyager settings");
+
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
-    log.info("got folio settings");
+
     InstanceMapper instanceMapper = new InstanceMapper(mappingParameters, migrationService.objectMapper, rules);
-    log.info("pre pre actions");
+
     preActions(folioSettings, context.getPreActions());
 
     taskQueue = new PartitionTaskQueue<BibContext>(context, new TaskCallback() {
@@ -216,7 +218,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
     }
 
     public BibPartitionTask execute(BibContext context) {
-      log.info("starting execute for schema: {}", this.getSchema());
 
       long startTime = System.nanoTime();
 
@@ -231,9 +232,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
       jobExecutionRqDto.setSourceType(SourceType.ONLINE);
       jobExecutionRqDto.setJobProfileInfo(job.getProfileInfo());
       jobExecutionRqDto.setUserId(job.getUserId());
-      log.info("about to create job execution");
+
       InitJobExecutionsRsDto JobExecutionRsDto = migrationService.okapiService.createJobExecution(tenant, token, jobExecutionRqDto);
-      log.info("got job execution");
       JobExecution jobExecution = JobExecutionRsDto.getJobExecutions().get(0);
 
       String jobExecutionId = jobExecution.getId();
@@ -241,7 +241,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
       Database voyagerSettings = context.getExtraction().getDatabase();
 
       Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
-      log.info("got folio settings");
+
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
 
       MarcFactory factory = MarcFactory.newInstance();
@@ -256,13 +256,12 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       String sourceRecordRLTypeId = job.getReferences().get(SOURCE_RECORD_REFERENCE_ID);
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
-      log.info("trying to get thread connecttions");
+
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
       int count = 0;
 
       try {
-        log.info("trying database connection");
         PGCopyOutputStream rawRecordOutput = new PGCopyOutputStream(threadConnections.getRawRecordConnection(), String.format(RAW_RECORDS_COPY_SQL, tenant));
         PrintWriter rawRecordWriter = new PrintWriter(rawRecordOutput, true);
 
@@ -280,12 +279,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
         Statement marcStatement = threadConnections.getMarcConnection().createStatement();
         Statement bibHistoryStatement = threadConnections.getBibHistoryConnection().createStatement();
 
-        log.info("getting page result set");
-
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
 
         while (pageResultSet.next()) {
-          log.info("bib: {}", pageResultSet.getString(BIB_ID));
 
           String bibId = pageResultSet.getString(BIB_ID);
           Boolean suppressInOpac = pageResultSet.getBoolean(SUPPRESS_IN_OPAC);
@@ -295,9 +291,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
           try {
             String marc = getMarc(marcStatement, marcContext);
-            String bibHistory = getBibHistory(bibHistoryStatement, bibHistoryContext);
+            String operatorId = getOperatorId(bibHistoryStatement, bibHistoryContext);
 
-            Set<String> matchedCodes = getMatchingStatisticalCodes(bibHistory, statisticalCodes);
+            Set<String> matchedCodes = getMatchingStatisticalCodes(operatorId, statisticalCodes);
 
             BibRecord bibRecord = new BibRecord(bibId, suppressInOpac);
 
@@ -455,23 +451,30 @@ public class BibMigration extends AbstractMigration<BibContext> {
     }
   }
 
-  private String getBibHistory(Statement statement, Map<String, Object> context) throws SQLException {
+  private String getOperatorId(Statement statement, Map<String, Object> context) throws SQLException {
+    String operatorId = null;
     try (ResultSet resultSet = getResultSet(statement, context)) {
-      int count = 0;
       while (resultSet.next()) {
-        count++;
-        log.info("\n\n\nresult: " + count + " " + resultSet.toString());
-        System.out.println("\n\n\nresult: " + count + " " + resultSet.toString());
+        operatorId = resultSet.getString(OPERATOR_ID);
       }
     } catch (Exception e) {
       e.printStackTrace();
     }
-    return null;
+    return operatorId;
   }
 
-  private Set<String> getMatchingStatisticalCodes(String bibHistory, JsonNode statisticalCodes) {
+  private Set<String> getMatchingStatisticalCodes(String operatorId, JsonNode statisticalCodes) {
     Set<String> matchedCodes = new HashSet<>();
+    if (operatorId == null) {
+      return matchedCodes;
+    }
     JsonNode codes = statisticalCodes.withArray("statisticalCodes");
+    codes.forEach(code -> {
+      String codeString = code.get("code").toString();
+      if (codeString.equals(operatorId)) {
+        matchedCodes.add(codeString);
+      }
+    });
     log.info("Codes: {}", codes);
     return matchedCodes;
   }

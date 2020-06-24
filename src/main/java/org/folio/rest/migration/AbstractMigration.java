@@ -100,7 +100,6 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
 
   ResultSet getResultSet(Statement statement, Map<String, Object> context) throws SQLException {
     String sql = templateSql((String) context.get(SQL), context);
-    log.info("SQL: {}", sql);
     return statement.executeQuery(sql);
   }
 
