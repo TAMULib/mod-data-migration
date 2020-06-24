@@ -475,7 +475,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
         matchedCodes.add(codeString);
       }
     });
-    log.info("Codes: {}", codes);
     return matchedCodes;
   }
 
