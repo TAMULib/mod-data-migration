@@ -10,15 +10,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.collections4.list.UnmodifiableList;
 import org.folio.Issuancemodes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
-import org.folio.rest.jaxrs.model.Alternativetitletypes;
-import org.folio.rest.jaxrs.model.Classificationtypes;
-import org.folio.rest.jaxrs.model.Contributornametypes;
-import org.folio.rest.jaxrs.model.Contributortypes;
-import org.folio.rest.jaxrs.model.Electronicaccessrelationships;
-import org.folio.rest.jaxrs.model.Identifiertypes;
-import org.folio.rest.jaxrs.model.Instanceformats;
-import org.folio.rest.jaxrs.model.Instancenotetypes;
-import org.folio.rest.jaxrs.model.Instancetypes;
+import org.folio.Alternativetitletypes;
+import org.folio.Classificationtypes;
+import org.folio.Contributornametypes;
+import org.folio.Contributortypes;
+import org.folio.Electronicaccessrelationships;
+import org.folio.Identifiertypes;
+import org.folio.Instanceformats;
+import org.folio.Instancenotetypes;
+import org.folio.Instancetypes;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRsDto;
 import org.folio.rest.jaxrs.model.dto.JobExecution;
@@ -82,10 +82,10 @@ public class OkapiService {
     headers.set("X-Okapi-Token", token);
     HttpEntity<?> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + "/mapping-rules";
-    ResponseEntity<JsonObject> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonObject.class);
+    ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
     log.debug("fetch rules: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
-      return response.getBody();
+      return new JsonObject(response.getBody());
     }
     throw new RuntimeException("Failed to fetch rules: " + response.getStatusCodeValue());
   }
@@ -100,10 +100,10 @@ public class OkapiService {
     headers.set("X-Okapi-Token", token);
     HttpEntity<?> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + "/hrid-settings-storage/hrid-settings";
-    ResponseEntity<JsonObject> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonObject.class);
+    ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
     log.debug("fetch hrid settings: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
-      return response.getBody();
+      return new JsonObject(response.getBody());
     }
     throw new RuntimeException("Failed to fetch hrid settings: " + response.getStatusCodeValue());
   }

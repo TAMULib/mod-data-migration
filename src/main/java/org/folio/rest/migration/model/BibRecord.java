@@ -146,6 +146,7 @@ public class BibRecord {
     instance.setId(instanceId);
     instance.setHrid(String.format("%s%011d", hridPrefix, hrid));
     instance.setDiscoverySuppress(suppressDiscovery);
+    instance.setStatusId("9634a5ab-9228-4703-baf2-4d12ebc77d56");
     if (statisticalCodes.size() > 0) {
       instance.setStatisticalCodeIds(statisticalCodes);
     }
