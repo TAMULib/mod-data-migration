@@ -92,7 +92,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private static String RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.records (id,jsonb,creation_date,created_by) FROM STDIN";
 
   // (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid)
-  private static String INSTANCE_COPY_SQL = "COPY %s_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancetypeid) FROM STDIN";
+  private static String INSTANCE_COPY_SQL = "COPY %s_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid) FROM STDIN";
 
   private BibMigration(BibContext context, String tenant) {
     super(context, tenant);
@@ -363,7 +363,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
               rawRecordWriter.println(String.join("\t", rawRecord.getId(), rrUtf8Json, createdAt, createdByUserId));
               parsedRecordWriter.println(String.join("\t", parsedRecord.getId(), prUtf8Json, createdAt, createdByUserId));
               recordWriter.println(String.join("\t", recordModel.getId(), rmUtf8Json, createdAt, createdByUserId));
-              instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getInstanceTypeId()));
+              instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getStatusId(), instance.getModeOfIssuanceId(), instance.getInstanceTypeId()));
 
               hrid++;
               count++;
