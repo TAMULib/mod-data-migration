@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
 import org.folio.rest.jaxrs.model.Instance;
+import org.folio.rest.jaxrs.model.Statisticalcodes;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto.SourceType;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRsDto;
@@ -112,7 +113,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     JsonNode hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
 
-    JsonNode statisticalCodes = migrationService.okapiService.fetchStatisticalCodes(tenant, token);
+    Statisticalcodes statisticalCodes = migrationService.okapiService.fetchStatisticalCodes(tenant, token);
 
     Database voyagerSettings = context.getExtraction().getDatabase();
 
@@ -196,11 +197,11 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     private final BibJob job;
 
-    private final JsonNode statisticalCodes;
+    private final Statisticalcodes statisticalCodes;
 
     private int hrid;
 
-    public BibPartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext, JsonNode statisticalCodes, BibJob job) {
+    public BibPartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext, Statisticalcodes statisticalCodes, BibJob job) {
       this.migrationService = migrationService;
       this.instanceMapper = instanceMapper;
       this.partitionContext = partitionContext;
@@ -463,19 +464,15 @@ public class BibMigration extends AbstractMigration<BibContext> {
     return operatorId;
   }
 
-  private Set<String> getMatchingStatisticalCodes(String operatorId, JsonNode statisticalCodes) {
+  private Set<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalCodes) {
     Set<String> matchedCodes = new HashSet<>();
     if (operatorId == null) {
       return matchedCodes;
     }
-    JsonNode codes = statisticalCodes.withArray("statisticalCodes");
-    codes.forEach(code -> {
-      String codeString = code.get("code").toString();
-      if (codeString.equals(operatorId)) {
-        matchedCodes.add(codeString);
-      }
-    });
-    return matchedCodes;
+    return statisticalCodes.getStatisticalCodes().stream()
+      .map(sc -> sc.getCode())
+      .filter(code -> code.equals(operatorId))
+      .collect(Collectors.toSet());
   }
 
   private Optional<Record> rawMarcToRecord(String rawMarc) throws IOException, MarcException {

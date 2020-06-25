@@ -16,6 +16,7 @@ import org.folio.rest.jaxrs.model.Identifiertypes;
 import org.folio.rest.jaxrs.model.Instanceformats;
 import org.folio.rest.jaxrs.model.Instancenotetypes;
 import org.folio.rest.jaxrs.model.Instancetypes;
+import org.folio.rest.jaxrs.model.Statisticalcodes;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRsDto;
 import org.folio.rest.jaxrs.model.dto.JobExecution;
@@ -106,7 +107,7 @@ public class OkapiService {
     throw new RuntimeException("Failed to fetch hrid settings: " + response.getStatusCodeValue());
   }
 
-  public JsonNode fetchStatisticalCodes(String tenant, String token) {
+  public Statisticalcodes fetchStatisticalCodes(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpHeaders headers = new HttpHeaders();
     headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
@@ -115,7 +116,7 @@ public class OkapiService {
     headers.set("X-Okapi-Token", token);
     HttpEntity<?> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + "/statistical-codes?limit=500&query=(statisticalCodeTypeId==\"b0c98509-f7e8-411c-94b5-494b4b4518c8\")";
-    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonNode.class);
+    ResponseEntity<Statisticalcodes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Statisticalcodes.class);
     log.debug("fetch statistical codes: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
