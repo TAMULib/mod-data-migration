@@ -5,8 +5,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import org.apache.commons.collections4.list.UnmodifiableList;
 import org.folio.Issuancemodes;
+import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
 import org.folio.rest.jaxrs.model.Alternativetitletypes;
 import org.folio.rest.jaxrs.model.Classificationtypes;
 import org.folio.rest.jaxrs.model.Contributornametypes;
@@ -22,7 +25,6 @@ import org.folio.rest.jaxrs.model.dto.JobExecution;
 import org.folio.rest.jaxrs.model.dto.RawRecordsDto;
 import org.folio.rest.migration.config.model.Credentials;
 import org.folio.rest.migration.config.model.Okapi;
-import org.folio.rest.migration.mapping.MappingParameters;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +37,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import io.vertx.core.json.JsonObject;
 
 @Service
 public class OkapiService {
@@ -71,7 +73,7 @@ public class OkapiService {
   }
 
   // TODO: get JsonSchema for mapping-rules
-  public JsonNode fetchRules(String tenant, String token) {
+  public JsonObject fetchRules(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpHeaders headers = new HttpHeaders();
     headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
@@ -80,7 +82,7 @@ public class OkapiService {
     headers.set("X-Okapi-Token", token);
     HttpEntity<?> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + "/mapping-rules";
-    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonNode.class);
+    ResponseEntity<JsonObject> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonObject.class);
     log.debug("fetch rules: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
@@ -89,7 +91,7 @@ public class OkapiService {
   }
 
   // TODO: get JsonSchema for hrid-settings
-  public JsonNode fetchHridSettings(String tenant, String token) {
+  public JsonObject fetchHridSettings(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpHeaders headers = new HttpHeaders();
     headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
@@ -98,7 +100,7 @@ public class OkapiService {
     headers.set("X-Okapi-Token", token);
     HttpEntity<?> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + "/hrid-settings-storage/hrid-settings";
-    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonNode.class);
+    ResponseEntity<JsonObject> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonObject.class);
     log.debug("fetch hrid settings: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
@@ -165,10 +167,10 @@ public class OkapiService {
       new ReferenceFetcher("/identifier-types?limit=" + SETTING_LIMIT, Identifiertypes.class,  "identifierTypes"),
       new ReferenceFetcher("/classification-types?limit=" + SETTING_LIMIT, Classificationtypes.class,  "classificationTypes"),
       new ReferenceFetcher("/instance-types?limit=" + SETTING_LIMIT, Instancetypes.class, "instanceTypes"),
+      new ReferenceFetcher("/electronic-access-relationships?limit=" + SETTING_LIMIT, Electronicaccessrelationships.class,  "electronicAccessRelationships"),
       new ReferenceFetcher("/instance-formats?limit=" + SETTING_LIMIT, Instanceformats.class,  "instanceFormats"),
       new ReferenceFetcher("/contributor-types?limit=" + SETTING_LIMIT, Contributortypes.class,  "contributorTypes"),
       new ReferenceFetcher("/contributor-name-types?limit=" + SETTING_LIMIT, Contributornametypes.class,  "contributorNameTypes"),
-      new ReferenceFetcher("/electronic-access-relationships?limit=" + SETTING_LIMIT, Electronicaccessrelationships.class,  "electronicAccessRelationships"),
       new ReferenceFetcher("/instance-note-types?limit=" + SETTING_LIMIT, Instancenotetypes.class,  "instanceNoteTypes"),
       new ReferenceFetcher("/alternative-title-types?limit=" + SETTING_LIMIT, Alternativetitletypes.class,  "alternativeTitleTypes"),
       new ReferenceFetcher("/modes-of-issuance?limit=" + SETTING_LIMIT, Issuancemodes.class, "issuanceModes")
@@ -193,6 +195,7 @@ public class OkapiService {
         throw new RuntimeException(e);
       }
     });
+    mappingParameters.setInitialized(true);
     // @formatter:on
     log.debug("get mapping parameters: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     return mappingParameters;

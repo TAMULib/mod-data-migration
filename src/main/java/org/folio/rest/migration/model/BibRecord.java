@@ -1,21 +1,22 @@
 package org.folio.rest.migration.model;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
-import org.folio.rest.jaxrs.model.Instance;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import org.folio.Instance;
+import org.folio.Metadata;
 import org.folio.rest.jaxrs.model.common.ExternalIdsHolder;
 import org.folio.rest.jaxrs.model.dto.AdditionalInfo;
 import org.folio.rest.jaxrs.model.dto.ParsedRecord;
-import org.folio.rest.jaxrs.model.dto.RawRecord;
 import org.folio.rest.jaxrs.model.dto.ParsedRecordDto.RecordType;
+import org.folio.rest.jaxrs.model.dto.RawRecord;
 import org.folio.rest.jaxrs.model.mod_source_record_storage.RecordModel;
 import org.folio.rest.migration.mapping.InstanceMapper;
-import org.marc4j.marc.Record;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
+import io.vertx.core.json.JsonObject;
 
 public class BibRecord {
 
@@ -29,8 +30,7 @@ public class BibRecord {
   private String sourceRecordId;
   private String instanceId;
 
-  private Record record;
-  private JsonNode marcJson;
+  private JsonObject parsedRecord;
 
   private String createdByUserId;
   private Date createdDate;
@@ -82,20 +82,12 @@ public class BibRecord {
     this.instanceId = instanceId;
   }
 
-  public Record getRecord() {
-    return record;
+  public JsonObject getParsedRecord() {
+    return parsedRecord;
   }
 
-  public void setRecord(Record record) {
-    this.record = record;
-  }
-
-  public JsonNode getMarcJson() {
-    return marcJson;
-  }
-
-  public void setMarcJson(JsonNode marcJson) {
-    this.marcJson = marcJson;
+  public void setParsedRecord(JsonObject parsedRecord) {
+    this.parsedRecord = parsedRecord;
   }
 
   public String getCreatedByUserId() {
@@ -145,19 +137,19 @@ public class BibRecord {
   public ParsedRecord toParsedRecord() {
     final ParsedRecord parsedRecord = new ParsedRecord();
     parsedRecord.setId(parsedRecordId);
-    parsedRecord.setContent(marcJson);
+    parsedRecord.setContent(this.parsedRecord.getMap());
     return parsedRecord;
   }
 
-  public Instance toInstance(InstanceMapper instanceMapper, String hridPrefix, int hrid, Set<String> statisticalCodes) throws JsonProcessingException {
-    final Instance instance = instanceMapper.getInstance(record);
+  public Instance toInstance(InstanceMapper instanceMapper, String hridPrefix, int hrid, List<String> statisticalCodes) throws JsonProcessingException {
+    final Instance instance = instanceMapper.getInstance(parsedRecord);
     instance.setId(instanceId);
     instance.setHrid(String.format("%s%011d", hridPrefix, hrid));
     instance.setDiscoverySuppress(suppressDiscovery);
     if (statisticalCodes.size() > 0) {
       instance.setStatisticalCodeIds(statisticalCodes);
     }
-    org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
+    Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
     instance.setMetadata(metadata);

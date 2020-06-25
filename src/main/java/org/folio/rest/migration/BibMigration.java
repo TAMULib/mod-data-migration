@@ -15,17 +15,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.core.io.JsonStringEncoder;
+import com.fasterxml.jackson.databind.JsonNode;
+
 import org.apache.commons.io.IOUtils;
-import org.folio.rest.jaxrs.model.Instance;
+import org.folio.Instance;
+import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto.SourceType;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRsDto;
@@ -38,7 +40,6 @@ import org.folio.rest.jaxrs.model.dto.RawRecordsMetadata.ContentType;
 import org.folio.rest.jaxrs.model.mod_source_record_storage.RecordModel;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.InstanceMapper;
-import org.folio.rest.migration.mapping.MappingParameters;
 import org.folio.rest.migration.model.BibRecord;
 import org.folio.rest.migration.model.request.BibContext;
 import org.folio.rest.migration.model.request.BibJob;
@@ -57,9 +58,7 @@ import org.marc4j.marc.VariableField;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
 
-import com.fasterxml.jackson.core.io.JsonStringEncoder;
-import com.fasterxml.jackson.databind.JsonNode;
-
+import io.vertx.core.json.JsonObject;
 public class BibMigration extends AbstractMigration<BibContext> {
 
   private static final String HRID_PREFIX = "HRID_PREFIX";
@@ -108,9 +107,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     MappingParameters mappingParameters = migrationService.okapiService.getMappingParamaters(tenant, token);
 
-    JsonNode rules = migrationService.okapiService.fetchRules(tenant, token);
+    JsonObject mappingRules = migrationService.okapiService.fetchRules(tenant, token);
 
-    JsonNode hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
+    JsonObject hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
 
     JsonNode statisticalCodes = migrationService.okapiService.fetchStatisticalCodes(tenant, token);
 
@@ -118,7 +117,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
-    InstanceMapper instanceMapper = new InstanceMapper(mappingParameters, migrationService.objectMapper, rules);
+    InstanceMapper instanceMapper = new InstanceMapper(mappingParameters, mappingRules);
 
     preActions(folioSettings, context.getPreActions());
 
@@ -134,11 +133,11 @@ public class BibMigration extends AbstractMigration<BibContext> {
     Map<String, Object> countContext = new HashMap<>();
     countContext.put(SQL, context.getExtraction().getCountSql());
 
-    JsonNode instancesHridSettings = hridSettings.get("instances");
+    JsonObject instancesHridSettings = hridSettings.getJsonObject("instances");
 
-    String hridPrefix = instancesHridSettings.get("prefix").asText();
+    String hridPrefix = instancesHridSettings.getString("prefix");
 
-    int originalHridStartNumber = instancesHridSettings.get("startNumber").asInt();
+    int originalHridStartNumber = instancesHridSettings.getInteger("startNumber");
 
     int hridStartNumber = originalHridStartNumber;
 
@@ -265,8 +264,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
         PGCopyOutputStream rawRecordOutput = new PGCopyOutputStream(threadConnections.getRawRecordConnection(), String.format(RAW_RECORDS_COPY_SQL, tenant));
         PrintWriter rawRecordWriter = new PrintWriter(rawRecordOutput, true);
 
-        PGCopyOutputStream parsedRecordOutput = new PGCopyOutputStream(threadConnections.getParsedRecordConnection(),
-            String.format(PARSED_RECORDS_COPY_SQL, tenant));
+        PGCopyOutputStream parsedRecordOutput = new PGCopyOutputStream(threadConnections.getParsedRecordConnection(), String.format(PARSED_RECORDS_COPY_SQL, tenant));
         PrintWriter parsedRecordWriter = new PrintWriter(parsedRecordOutput, true);
 
         PGCopyOutputStream recordOutput = new PGCopyOutputStream(threadConnections.getRecordConnection(), String.format(RECORDS_COPY_SQL, tenant));
@@ -293,7 +291,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
             String marc = getMarc(marcStatement, marcContext);
             String operatorId = getOperatorId(bibHistoryStatement, bibHistoryContext);
 
-            Set<String> matchedCodes = getMatchingStatisticalCodes(operatorId, statisticalCodes);
+            List<String> matchedCodes = getMatchingStatisticalCodes(operatorId, statisticalCodes);
 
             BibRecord bibRecord = new BibRecord(bibId, suppressInOpac);
 
@@ -334,11 +332,10 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
               String marcJson = recordToJson(record);
 
-              JsonNode marcJsonNode = migrationService.objectMapper.readTree(marcJson);
+              JsonObject marcJsonObject = new JsonObject(marcJson);
 
               bibRecord.setMarc(marc);
-              bibRecord.setRecord(record);
-              bibRecord.setMarcJson(marcJsonNode);
+              bibRecord.setParsedRecord(marcJsonObject);
 
               Date currentDate = new Date();
               bibRecord.setCreatedByUserId(job.getUserId());
@@ -463,8 +460,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
     return operatorId;
   }
 
-  private Set<String> getMatchingStatisticalCodes(String operatorId, JsonNode statisticalCodes) {
-    Set<String> matchedCodes = new HashSet<>();
+  private List<String> getMatchingStatisticalCodes(String operatorId, JsonNode statisticalCodes) {
+    List<String> matchedCodes = new ArrayList<>();
     if (operatorId == null) {
       return matchedCodes;
     }
