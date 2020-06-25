@@ -134,7 +134,7 @@ POST to http://localhost:9000/migrate/holdings
 {
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.mfhd_master",
-    "pageSql": "SELECT mfhd_id, suppress_in_opac, location_id, display_call_no, call_no_type, record_type, receipt_status, field_008 FROM ${SCHEMA}.mfhd_master ORDER BY mfhd_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "pageSql": "SELECT mfhd_id, suppress_in_opac, location_id, display_call_no, call_no_type, record_type, field_008 FROM ${SCHEMA}.mfhd_master ORDER BY mfhd_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "marcSql": "SELECT mfhd_id, seqnum, record_segment FROM ${SCHEMA}.mfhd_data WHERE mfhd_id = ${MFHD_ID}",
     "locationSql": "SELECT DISTINCT location_id AS id, location_code AS code FROM ${SCHEMA}.location",
     "database": {
