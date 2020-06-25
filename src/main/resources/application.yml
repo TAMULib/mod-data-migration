@@ -29,11 +29,11 @@ spring:
       idleTimeout: 3600000
       maximumPoolSize: 16
     platform: h2
-    url: jdbc:h2:./target/mod-data-migration;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:./target/mod_data_migration;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driverClassName: org.h2.Driver
     # platform: postgres
     # driverClassName: org.postgresql.Driver
-    # url: jdbc:postgresql://localhost:5432/mod-data-migration
+    # url: jdbc:postgresql://localhost:5432/mod_data_migration
 
     username: folio
     password: folio
