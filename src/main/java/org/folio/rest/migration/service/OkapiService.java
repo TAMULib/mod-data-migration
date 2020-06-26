@@ -5,10 +5,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.collections4.list.UnmodifiableList;
-import org.folio.Issuancemodes;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 
-import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
+import org.apache.commons.collections4.list.UnmodifiableList;
 import org.folio.Alternativetitletypes;
 import org.folio.Classificationtypes;
 import org.folio.Contributornametypes;
@@ -18,6 +17,8 @@ import org.folio.Identifiertypes;
 import org.folio.Instanceformats;
 import org.folio.Instancenotetypes;
 import org.folio.Instancetypes;
+import org.folio.Issuancemodes;
+import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
 import org.folio.rest.jaxrs.model.Statisticalcodes;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRsDto;
@@ -43,8 +44,6 @@ import org.springframework.web.client.RestTemplate;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.json.jackson.DatabindCodec;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-
 @Service
 public class OkapiService {
 
@@ -65,11 +64,7 @@ public class OkapiService {
   public String getToken(String tenant) {
     long startTime = System.nanoTime();
     String url = okapi.getUrl() + "/authn/login";
-    HttpHeaders headers = new HttpHeaders();
-    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-    headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.set("X-Okapi-Tenant", tenant);
-    HttpEntity<Credentials> entity = new HttpEntity<>(okapi.getCredentials(), headers);
+    HttpEntity<Credentials> entity = new HttpEntity<>(okapi.getCredentials(), headers(tenant));
     ResponseEntity<Credentials> response = restTemplate.exchange(url, HttpMethod.POST, entity, Credentials.class);
     log.debug("get token: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 201) {
@@ -81,12 +76,7 @@ public class OkapiService {
   // TODO: get JsonSchema for mapping-rules
   public JsonObject fetchRules(String tenant, String token) {
     long startTime = System.nanoTime();
-    HttpHeaders headers = new HttpHeaders();
-    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-    headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.set("X-Okapi-Tenant", tenant);
-    headers.set("X-Okapi-Token", token);
-    HttpEntity<?> entity = new HttpEntity<>(headers);
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/mapping-rules";
     ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
     log.debug("fetch rules: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
@@ -99,12 +89,7 @@ public class OkapiService {
   // TODO: get JsonSchema for hrid-settings
   public JsonObject fetchHridSettings(String tenant, String token) {
     long startTime = System.nanoTime();
-    HttpHeaders headers = new HttpHeaders();
-    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-    headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.set("X-Okapi-Tenant", tenant);
-    headers.set("X-Okapi-Token", token);
-    HttpEntity<?> entity = new HttpEntity<>(headers);
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/hrid-settings-storage/hrid-settings";
     ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
     log.debug("fetch hrid settings: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
@@ -116,12 +101,7 @@ public class OkapiService {
 
   public Statisticalcodes fetchStatisticalCodes(String tenant, String token) {
     long startTime = System.nanoTime();
-    HttpHeaders headers = new HttpHeaders();
-    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-    headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.set("X-Okapi-Tenant", tenant);
-    headers.set("X-Okapi-Token", token);
-    HttpEntity<?> entity = new HttpEntity<>(headers);
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/statistical-codes?limit=999";
     ResponseEntity<Statisticalcodes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Statisticalcodes.class);
     log.debug("fetch statistical codes: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
@@ -133,12 +113,7 @@ public class OkapiService {
 
   public JobProfile getOrCreateJobProfile(String tenant, String token, JobProfile jobProfile) {
     long startTime = System.nanoTime();
-    HttpHeaders headers = new HttpHeaders();
-    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-    headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.set("X-Okapi-Tenant", tenant);
-    headers.set("X-Okapi-Token", token);
-    HttpEntity<?> entity = new HttpEntity<>(headers);
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = String.format("%s/data-import-profiles/jobProfiles?query=name='%s'", okapi.getUrl(), jobProfile.getName());
     ResponseEntity<JobProfileCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, JobProfileCollection.class);
     log.debug("fetch statistical codes: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
@@ -157,12 +132,7 @@ public class OkapiService {
 
   public JobProfile createJobProfile(String tenant, String token, JobProfileUpdateDto jobProfileUpdateDto) {
     long startTime = System.nanoTime();
-    HttpHeaders headers = new HttpHeaders();
-    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-    headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.set("X-Okapi-Tenant", tenant);
-    headers.set("X-Okapi-Token", token);
-    HttpEntity<JobProfileUpdateDto> entity = new HttpEntity<>(jobProfileUpdateDto, headers);
+    HttpEntity<JobProfileUpdateDto> entity = new HttpEntity<>(jobProfileUpdateDto, headers(tenant, token));
     String url = okapi.getUrl() + "/data-import-profiles/jobProfiles";
     ResponseEntity<JobProfileUpdateDto> response = restTemplate.exchange(url, HttpMethod.POST, entity, JobProfileUpdateDto.class);
     log.debug("create job execution: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
@@ -176,12 +146,7 @@ public class OkapiService {
 
   public InitJobExecutionsRsDto createJobExecution(String tenant, String token, InitJobExecutionsRqDto jobExecutionDto) {
     long startTime = System.nanoTime();
-    HttpHeaders headers = new HttpHeaders();
-    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-    headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.set("X-Okapi-Tenant", tenant);
-    headers.set("X-Okapi-Token", token);
-    HttpEntity<InitJobExecutionsRqDto> entity = new HttpEntity<>(jobExecutionDto, headers);
+    HttpEntity<InitJobExecutionsRqDto> entity = new HttpEntity<>(jobExecutionDto, headers(tenant, token));
     String url = okapi.getUrl() + "/change-manager/jobExecutions";
     ResponseEntity<InitJobExecutionsRsDto> response = restTemplate.exchange(url, HttpMethod.POST, entity, InitJobExecutionsRsDto.class);
     log.debug("create job execution: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
@@ -193,12 +158,7 @@ public class OkapiService {
 
   public void finishJobExecution(String tenant, String token, String jobExecutionId, RawRecordsDto rawRecordsDto) {
     long startTime = System.nanoTime();
-    HttpHeaders headers = new HttpHeaders();
-    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-    headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.set("X-Okapi-Tenant", tenant);
-    headers.set("X-Okapi-Token", token);
-    HttpEntity<RawRecordsDto> entity = new HttpEntity<>(rawRecordsDto, headers);
+    HttpEntity<RawRecordsDto> entity = new HttpEntity<>(rawRecordsDto, headers(tenant, token));
     String url = okapi.getUrl() + "/change-manager/jobExecutions/" + jobExecutionId + "/records";
     ResponseEntity<JobExecution> response = restTemplate.exchange(url, HttpMethod.POST, entity, JobExecution.class);
     log.debug("finish job execution: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
@@ -224,12 +184,7 @@ public class OkapiService {
       new ReferenceFetcher("/alternative-title-types?limit=" + SETTING_LIMIT, Alternativetitletypes.class,  "alternativeTitleTypes"),
       new ReferenceFetcher("/modes-of-issuance?limit=" + SETTING_LIMIT, Issuancemodes.class, "issuanceModes")
     }).forEach(fetcher -> {
-      HttpHeaders headers = new HttpHeaders();
-      headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-      headers.setContentType(MediaType.APPLICATION_JSON);
-      headers.set("X-Okapi-Tenant", tenant);
-      headers.set("X-Okapi-Token", token);
-      HttpEntity<Credentials> entity = new HttpEntity<Credentials>(headers);
+      HttpEntity<Credentials> entity = new HttpEntity<Credentials>(headers(tenant, token));
       String url = okapi.getUrl() + fetcher.getUrl();
       Class<?> collectionType = fetcher.getCollectionType();
       ResponseEntity<?> response = restTemplate.exchange(url, HttpMethod.GET, entity, collectionType);
@@ -248,6 +203,21 @@ public class OkapiService {
     // @formatter:on
     log.debug("get mapping parameters: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     return mappingParameters;
+  }
+
+  private HttpHeaders headers(String tenant, String token) {
+    HttpHeaders headers = headers(tenant);
+    headers.set("X-Okapi-Token", token);
+    return headers;
+  }
+
+  // NOTE: assuming all accept and content type will be application/json
+  private HttpHeaders headers(String tenant) {
+    HttpHeaders headers = new HttpHeaders();
+    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    headers.set("X-Okapi-Tenant", tenant);
+    return headers;
   }
 
   private class ReferenceFetcher {
