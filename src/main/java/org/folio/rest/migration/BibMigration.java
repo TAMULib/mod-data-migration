@@ -151,6 +151,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
+      JobProfile profile = migrationService.okapiService.getOrCreateJobProfile(tenant, token, job.getProfile());
+      job.setProfile(profile);
+
       int count = getCount(voyagerSettings, countContext);
 
       log.info("{} count: {}", job.getSchema(), count);
@@ -231,15 +234,15 @@ public class BibMigration extends AbstractMigration<BibContext> {
       String token = (String) partitionContext.get(TOKEN);
       String hridPrefix = (String) partitionContext.get(HRID_PREFIX);
 
-      JobProfile jobProfile = migrationService.okapiService.getOrCreateJobProfile(tenant, token, job.getProfile());
       ProfileInfo profileInfo = new ProfileInfo();
-      profileInfo.setId(jobProfile.getId());
-      jobProfile.setName(jobProfile.getName());
+      profileInfo.setId(job.getProfile().getId());
+      profileInfo.setName(job.getProfile().getName());
 
       InitJobExecutionsRqDto jobExecutionRqDto = new InitJobExecutionsRqDto();
       jobExecutionRqDto.setSourceType(SourceType.ONLINE);
       jobExecutionRqDto.setJobProfileInfo(profileInfo);
       jobExecutionRqDto.setUserId(job.getUserId());
+      log.info("jobExecutionRqDto {}", jobExecutionRqDto);
 
       InitJobExecutionsRsDto JobExecutionRsDto = migrationService.okapiService.createJobExecution(tenant, token, jobExecutionRqDto);
       JobExecution jobExecution = JobExecutionRsDto.getJobExecutions().get(0);

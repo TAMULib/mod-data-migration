@@ -17,13 +17,13 @@ import org.folio.rest.jaxrs.model.Instanceformats;
 import org.folio.rest.jaxrs.model.Instancenotetypes;
 import org.folio.rest.jaxrs.model.Instancetypes;
 import org.folio.rest.jaxrs.model.Statisticalcodes;
-import org.folio.rest.jaxrs.model.common.ProfileInfo;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRsDto;
 import org.folio.rest.jaxrs.model.dto.JobExecution;
 import org.folio.rest.jaxrs.model.dto.RawRecordsDto;
 import org.folio.rest.jaxrs.model.mod_data_import_converter_storage.JobProfile;
 import org.folio.rest.jaxrs.model.mod_data_import_converter_storage.JobProfileCollection;
+import org.folio.rest.jaxrs.model.mod_data_import_converter_storage.JobProfileUpdateDto;
 import org.folio.rest.migration.config.model.Credentials;
 import org.folio.rest.migration.config.model.Okapi;
 import org.folio.rest.migration.mapping.MappingParameters;
@@ -39,6 +39,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import io.vertx.core.json.jackson.DatabindCodec;
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 
 @Service
@@ -143,25 +146,29 @@ public class OkapiService {
       if (jobProfileCollection.getTotalRecords() > 0) {
         return jobProfileCollection.getJobProfiles().get(0);
       } else {
-        return createJobProfile(tenant, token, jobProfile);
+        JobProfileUpdateDto jobProfileUpdateDto = new JobProfileUpdateDto();
+        jobProfileUpdateDto.setProfile(jobProfile);
+        return createJobProfile(tenant, token, jobProfileUpdateDto);
       }
     }
     throw new RuntimeException("Failed to fetch statistical codes: " + response.getStatusCodeValue());
   }
 
-  public JobProfile createJobProfile(String tenant, String token, JobProfile jobProfile) {
+  public JobProfile createJobProfile(String tenant, String token, JobProfileUpdateDto jobProfileUpdateDto) {
     long startTime = System.nanoTime();
     HttpHeaders headers = new HttpHeaders();
     headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
     headers.setContentType(MediaType.APPLICATION_JSON);
     headers.set("X-Okapi-Tenant", tenant);
     headers.set("X-Okapi-Token", token);
-    HttpEntity<JobProfile> entity = new HttpEntity<>(jobProfile, headers);
+    HttpEntity<JobProfileUpdateDto> entity = new HttpEntity<>(jobProfileUpdateDto, headers);
     String url = okapi.getUrl() + "/data-import-profiles/jobProfiles";
-    ResponseEntity<JobProfile> response = restTemplate.exchange(url, HttpMethod.POST, entity, JobProfile.class);
+    ResponseEntity<JobProfileUpdateDto> response = restTemplate.exchange(url, HttpMethod.POST, entity, JobProfileUpdateDto.class);
     log.debug("create job execution: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 201) {
-      return response.getBody();
+      return DatabindCodec.mapper()
+        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+        .convertValue(response.getBody().getProfile(), JobProfile.class);
     }
     throw new RuntimeException("Failed to create job execution: " + response.getStatusCodeValue());
   }
