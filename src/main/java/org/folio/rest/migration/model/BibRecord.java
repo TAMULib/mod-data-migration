@@ -20,7 +20,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 public class BibRecord {
 
   private final String bibId;
+  private final String statusId;
   private final Boolean suppressDiscovery;
+  private final Set<String> statisticalCodes;
 
   private final String rawRecordId;
   private final String parsedRecordId;
@@ -35,9 +37,11 @@ public class BibRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public BibRecord(String bibId, Boolean suppressDiscovery) {
+  public BibRecord(String bibId, String statusId, Boolean suppressDiscovery, Set<String> statisticalCodes) {
     this.bibId = bibId;
+    this.statusId = statusId;
     this.suppressDiscovery = suppressDiscovery;
+    this.statisticalCodes = statisticalCodes;
     this.rawRecordId = UUID.randomUUID().toString();
     this.parsedRecordId = UUID.randomUUID().toString();
   }
@@ -149,14 +153,13 @@ public class BibRecord {
     return parsedRecord;
   }
 
-  public Instance toInstance(InstanceMapper instanceMapper, String hridPrefix, int hrid, Set<String> statisticalCodes) throws JsonProcessingException {
+  public Instance toInstance(InstanceMapper instanceMapper, String hridPrefix, int hrid) throws JsonProcessingException {
     final Instance instance = instanceMapper.getInstance(record);
     instance.setId(instanceId);
     instance.setHrid(String.format("%s%011d", hridPrefix, hrid));
     instance.setDiscoverySuppress(suppressDiscovery);
-    if (statisticalCodes.size() > 0) {
-      instance.setStatisticalCodeIds(statisticalCodes);
-    }
+    instance.setStatisticalCodeIds(statisticalCodes);
+    instance.setStatusId(statusId);
     org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);

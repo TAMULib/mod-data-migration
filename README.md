@@ -94,9 +94,10 @@ POST to http://localhost:9000/migrate/bibs
       "schema": "AMDB",
       "partitions": 48,
       "userId": "9b909401-96be-484e-8efe-158521718114",
-      "profileInfo": {
-        "id": "043ab092-d5f9-454a-87e1-8d879404367c",
-        "name": "TAMU Bibligraphic Migration",
+      "instanceStatusId": "9634a5ab-9228-4703-baf2-4d12ebc77d56",
+      "profile": {
+        "name": "TAMU AMDB Bibligraphic Migration",
+        "description": "Voyager migration profile",
         "dataType": "MARC"
       },
       "useReferenceLinks": true,
@@ -109,9 +110,10 @@ POST to http://localhost:9000/migrate/bibs
       "schema": "MSDB",
       "partitions": 4,
       "userId": "9b909401-96be-484e-8efe-158521718114",
-      "profileInfo": {
-        "id": "043ab092-d5f9-454a-87e1-8d879404367c",
-        "name": "TAMU Bibligraphic Migration",
+      "instanceStatusId": "9634a5ab-9228-4703-baf2-4d12ebc77d56",
+      "profile": {
+        "name": "TAMU MSDB Bibligraphic Migration",
+        "description": "Voyager migration profile",
         "dataType": "MARC"
       },
       "useReferenceLinks": true,
