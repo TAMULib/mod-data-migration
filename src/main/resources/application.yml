@@ -81,14 +81,14 @@ tenant:
   schema-scripts:
 
 okapi:
-  url: https://folio-okapi-q4-test.library.tamu.edu
+  url: http://localhost:9130
   credentials:
-    username:
-    password:
+    username: diku_admin
+    password: admin
   modules:
     database:
-      url: jdbc:postgresql://pg-folio/okapi_modules
-      username:
-      password:
+      url: jdbc:postgresql://localhost:5432/okapi_modules
+      username: folio_admin
+      password: folio_admin
       driver-class-name: org.postgresql.Driver
   

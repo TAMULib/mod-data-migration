@@ -31,6 +31,7 @@ import org.folio.Instance;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
 
 import org.folio.rest.jaxrs.model.Statisticalcodes;
+import org.folio.rest.jaxrs.model.common.ProfileInfo;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto.SourceType;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRsDto;
@@ -40,6 +41,7 @@ import org.folio.rest.jaxrs.model.dto.RawRecord;
 import org.folio.rest.jaxrs.model.dto.RawRecordsDto;
 import org.folio.rest.jaxrs.model.dto.RawRecordsMetadata;
 import org.folio.rest.jaxrs.model.dto.RawRecordsMetadata.ContentType;
+import org.folio.rest.jaxrs.model.mod_data_import_converter_storage.JobProfile;
 import org.folio.rest.jaxrs.model.mod_source_record_storage.RecordModel;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.InstanceMapper;
@@ -150,6 +152,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
+      JobProfile profile = migrationService.okapiService.getOrCreateJobProfile(tenant, token, job.getProfile());
+      job.setProfile(profile);
+
       int count = getCount(voyagerSettings, countContext);
 
       log.info("{} count: {}", job.getSchema(), count);
@@ -230,9 +235,13 @@ public class BibMigration extends AbstractMigration<BibContext> {
       String token = (String) partitionContext.get(TOKEN);
       String hridPrefix = (String) partitionContext.get(HRID_PREFIX);
 
+      ProfileInfo profileInfo = new ProfileInfo();
+      profileInfo.setId(job.getProfile().getId());
+      profileInfo.setName(job.getProfile().getName());
+
       InitJobExecutionsRqDto jobExecutionRqDto = new InitJobExecutionsRqDto();
       jobExecutionRqDto.setSourceType(SourceType.ONLINE);
-      jobExecutionRqDto.setJobProfileInfo(job.getProfileInfo());
+      jobExecutionRqDto.setJobProfileInfo(profileInfo);
       jobExecutionRqDto.setUserId(job.getUserId());
 
       InitJobExecutionsRsDto JobExecutionRsDto = migrationService.okapiService.createJobExecution(tenant, token, jobExecutionRqDto);
@@ -296,7 +305,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
             List<String> matchedCodes = getMatchingStatisticalCodes(operatorId, statisticalCodes);
 
-            BibRecord bibRecord = new BibRecord(bibId, suppressInOpac);
+            BibRecord bibRecord = new BibRecord(bibId, job.getInstanceStatusId(), suppressInOpac, matchedCodes);
 
             String sourceRecordId, instanceId;
             if (job.isUseReferenceLinks()) {
@@ -351,7 +360,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
               String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
               String createdByUserId = job.getUserId();
 
-              Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid, matchedCodes);
+              Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid);
 
               String rrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(rawRecord)));
               String prUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(parsedRecord)));
