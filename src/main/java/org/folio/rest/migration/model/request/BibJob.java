@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
-import org.folio.rest.jaxrs.model.common.ProfileInfo;
+import org.folio.rest.jaxrs.model.mod_data_import_converter_storage.JobProfile;
 
 public class BibJob extends AbstractJob {
 
@@ -13,7 +13,10 @@ public class BibJob extends AbstractJob {
   private String userId;
 
   @NotNull
-  private ProfileInfo profileInfo;
+  private String instanceStatusId;
+
+  @NotNull
+  private JobProfile profile;
 
   private boolean useReferenceLinks;
 
@@ -33,12 +36,20 @@ public class BibJob extends AbstractJob {
     this.userId = userId;
   }
 
-  public ProfileInfo getProfileInfo() {
-    return profileInfo;
+  public String getInstanceStatusId() {
+    return instanceStatusId;
   }
 
-  public void setProfileInfo(ProfileInfo profileInfo) {
-    this.profileInfo = profileInfo;
+  public void setInstanceStatusId(String instanceStatusId) {
+    this.instanceStatusId = instanceStatusId;
+  }
+
+  public JobProfile getProfile() {
+    return profile;
+  }
+
+  public void setProfile(JobProfile profile) {
+    this.profile = profile;
   }
 
   public boolean isUseReferenceLinks() {
