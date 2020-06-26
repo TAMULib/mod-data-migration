@@ -15,6 +15,7 @@ import org.folio.rest.jaxrs.model.Identifiertypes;
 import org.folio.rest.jaxrs.model.Instanceformats;
 import org.folio.rest.jaxrs.model.Instancenotetypes;
 import org.folio.rest.jaxrs.model.Instancetypes;
+import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRsDto;
 import org.folio.rest.jaxrs.model.dto.JobExecution;
@@ -122,7 +123,7 @@ public class OkapiService {
     throw new RuntimeException("Failed to create job execution: " + response.getStatusCodeValue());
   }
 
-  public JsonNode fetchLocations(String tenant, String token) {
+  public Locations fetchLocations(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpHeaders headers = new HttpHeaders();
     headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
@@ -131,7 +132,7 @@ public class OkapiService {
     headers.set("X-Okapi-Token", token);
     HttpEntity<?> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + "/locations";
-    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonNode.class);
+    ResponseEntity<Locations> response = restTemplate.exchange(url, HttpMethod.GET, entity, Locations.class);
     log.debug("fetch locations: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();

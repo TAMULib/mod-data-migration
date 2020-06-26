@@ -1,7 +1,6 @@
 package org.folio.rest.migration.model;
 
 import java.util.Date;
-import java.util.UUID;
 
 import org.folio.rest.jaxrs.model.Holdingsrecord;
 import org.folio.rest.migration.mapping.HoldingMapper;
@@ -43,9 +42,6 @@ public class HoldingRecord {
     this.receiptStatus = receiptStatus;
     this.acquisitionMethod = acquisitionMethod;
     this.retentionPolicy = retentionPolicy;
-
-    this.holdingId = UUID.randomUUID().toString();
-    this.instanceId = UUID.randomUUID().toString();
   }
 
   public String getMfhdId() {

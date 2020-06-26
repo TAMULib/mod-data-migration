@@ -11,6 +11,12 @@ public class HoldingContext extends AbstractContext {
 
   private List<HoldingJob> jobs;
 
+  @NotNull
+  private HoldingMaps maps;
+
+  @NotNull
+  private HoldingDefaults defaults;
+
   public HoldingContext() {
     super();
   }
@@ -29,6 +35,22 @@ public class HoldingContext extends AbstractContext {
 
   public void setJobs(List<HoldingJob> jobs) {
     this.jobs = jobs;
+  }
+
+  public HoldingMaps getHoldingMaps() {
+    return maps;
+  }
+
+  public void setHoldingMaps(HoldingMaps maps) {
+    this.maps = maps;
+  }
+
+  public HoldingDefaults getHoldingDefaults() {
+    return defaults;
+  }
+
+  public void setHoldingDefaults(HoldingDefaults defaults) {
+    this.defaults = defaults;
   }
 
 }

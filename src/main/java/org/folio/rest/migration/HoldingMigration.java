@@ -24,11 +24,15 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
 import org.folio.rest.jaxrs.model.Holdingsrecord;
+import org.folio.rest.jaxrs.model.Location;
+import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.HoldingMapper;
 import org.folio.rest.migration.model.HoldingRecord;
 import org.folio.rest.migration.model.request.HoldingContext;
+import org.folio.rest.migration.model.request.HoldingDefaults;
 import org.folio.rest.migration.model.request.HoldingJob;
+import org.folio.rest.migration.model.request.HoldingMaps;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
@@ -56,7 +60,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   private static final String LOCATION_ID = "LOCATION_ID";
 
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
-  private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
+  private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
 
   private static final String DISCOVERY_SUPPRESS = "SUPPRESS_IN_OPAC";
   private static final String CALL_NUMBER = "DISPLAY_CALL_NO";
@@ -72,81 +76,12 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
   private static final String CODE = "code";
 
-  private static final String LOCATIONS = "locations";
-
   private static final String T_999 = "999";
 
   private static final char F = 'f';
 
   //(id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
   private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,holdingstypeid,callnumbertypeid) FROM STDIN";
-
-  private static final HashMap<String, String> CALL_NUMBER_MAP = new HashMap<>();
-  static {
-    CALL_NUMBER_MAP.put(" ", "24badefa-4456-40c5-845c-3f45ffbc4c03");
-    CALL_NUMBER_MAP.put("0", "95467209-6d7b-468b-94df-0f5d7ad2747d");
-    CALL_NUMBER_MAP.put("1", "03dd64d0-5626-4ecd-8ece-4531e0069f35");
-    CALL_NUMBER_MAP.put("2", "054d460d-d6b9-4469-9e37-7a78a2266655");
-    CALL_NUMBER_MAP.put("3", "fc388041-6cd0-4806-8a74-ebe3b9ab4c6e");
-    CALL_NUMBER_MAP.put("4", "28927d76-e097-4f63-8510-e56f2b7a3ad0");
-    CALL_NUMBER_MAP.put("5", "5ba6b62e-6858-490a-8102-5b1369873835");
-    CALL_NUMBER_MAP.put("6", "cd70562c-dd0b-42f6-aa80-ce803d24d4a1");
-    CALL_NUMBER_MAP.put("8", "6caca63e-5651-4db6-9247-3205156e9699");
-  }
-
-  private static final String CALL_NUMBER_MAP_DEFAULT = "6caca63e-5651-4db6-9247-3205156e9699";
-
-  private static final HashMap<String, String> HOLDINGS_TYPE_MAP = new HashMap<>();
-  static {
-    HOLDINGS_TYPE_MAP.put("u", "61155a36-148b-4664-bb7f-64ad708e0b32");
-    HOLDINGS_TYPE_MAP.put("v", "dc35d0ae-e877-488b-8e97-6e41444e6d0a");
-    HOLDINGS_TYPE_MAP.put("x", "03c9c400-b9e3-4a07-ac0e-05ab470233ed");
-    HOLDINGS_TYPE_MAP.put("y", "e6da6c98-6dd0-41bc-8b4b-cfd4bbd9c3ae");
-  }
-
-  private static final HashMap<String, String> RECEIPT_STATUS_MAP = new HashMap<>();
-  static {
-    RECEIPT_STATUS_MAP.put("0", "Unknown");
-    RECEIPT_STATUS_MAP.put("1", "Other receipt or acquisition status");
-    RECEIPT_STATUS_MAP.put("2", "Received and complete or ceased");
-    RECEIPT_STATUS_MAP.put("3", "On order");
-    RECEIPT_STATUS_MAP.put("4", "Currently received");
-    RECEIPT_STATUS_MAP.put("5", "Not currently received");
-    RECEIPT_STATUS_MAP.put(" ", "Unknown");
-    RECEIPT_STATUS_MAP.put("|", "Unknown");
-  }
-
-  private static final HashMap<String, String> ACQ_METHOD_MAP = new HashMap<>();
-  static {
-    ACQ_METHOD_MAP.put("c", "Cooperative or consortial purchase");
-    ACQ_METHOD_MAP.put("d", "Deposit");
-    ACQ_METHOD_MAP.put("e", "Exchange");
-    ACQ_METHOD_MAP.put("f", "Free");
-    ACQ_METHOD_MAP.put("g", "Gift");
-    ACQ_METHOD_MAP.put("l", "Legal deposit");
-    ACQ_METHOD_MAP.put("m", "Membership");
-    ACQ_METHOD_MAP.put("n", "Non-library purchase");
-    ACQ_METHOD_MAP.put("p", "Purchase");
-    ACQ_METHOD_MAP.put("l", "Lease");
-    ACQ_METHOD_MAP.put("u", "Unknown");
-    ACQ_METHOD_MAP.put("z", "Other method of acquisition");
-    ACQ_METHOD_MAP.put("|", "Unknown");
-  }
-
-  private static final HashMap<String, String> RETENTION_POLICY_MAP = new HashMap<>();
-  static {
-    RETENTION_POLICY_MAP.put(" ", "Unknown");
-    RETENTION_POLICY_MAP.put("|", "Unknown");
-    RETENTION_POLICY_MAP.put("0", "Unknown");
-    RETENTION_POLICY_MAP.put("1", "Other general retention policy");
-    RETENTION_POLICY_MAP.put("2", "Retained except as replaced by updates");
-    RETENTION_POLICY_MAP.put("3", "Sample issue retained");
-    RETENTION_POLICY_MAP.put("4", "Retained until replaced by microform");
-    RETENTION_POLICY_MAP.put("5", "Retained until replaced by cumulation, replacement volume, or revision");
-    RETENTION_POLICY_MAP.put("6", "Retained for a limited period");
-    RETENTION_POLICY_MAP.put("7", "Not retained");
-    RETENTION_POLICY_MAP.put("8", "Permanently retained");
-  }
 
   private HoldingMigration(HoldingContext context, String tenant) {
     super(context, tenant);
@@ -192,8 +127,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     int index = 0;
 
-    HashMap<String, HashMap<String, String>> permanentLocations = new HashMap<>();
-
     log.info("total jobs: {}", context.getJobs().size());
 
     for (HoldingJob job : context.getJobs()) {
@@ -202,10 +135,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
-      if (!permanentLocations.containsKey(job.getSchema())) {
-        HashMap<String, String> locationsMap = preloadPermanentLocationsMap(voyagerSettings, migrationService, token, job.getSchema());
-        permanentLocations.put(job.getSchema(), locationsMap);
-      }
+      HashMap<String, String> locationsMap = preloadPermanentLocationsMap(voyagerSettings, migrationService, token, job.getSchema());
 
       int count = getCount(voyagerSettings, countContext);
 
@@ -226,7 +156,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         partitionContext.put(HRID_PREFIX, hridPrefix);
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
 
-        taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext, job, permanentLocations.get(job.getSchema())));
+        taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext, job, locationsMap));
         offset += limit;
         index++;
         if (i < partitions) {
@@ -281,20 +211,11 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       }
     }
 
-    JsonNode fetchedNode = migrationService.okapiService.fetchLocations(tenant, token);
+    Locations locations = migrationService.okapiService.fetchLocations(tenant, token);
 
-    if (fetchedNode.has(LOCATIONS)) {
-      JsonNode locationsNode = fetchedNode.get(LOCATIONS);
-
-      if (locationsNode.isArray()) {
-        for (JsonNode locationNode : locationsNode) {
-          String uuid = locationNode.get(ID).asText();
-          String code = locationNode.get(CODE).asText();
-
-          if (codeToId.containsKey(code)) {
-            idToUuid.put(codeToId.get(code), uuid);
-          }
-        }
+    for (Location location : locations.getLocations()) {
+      if (codeToId.containsKey(location.getCode())) {
+        idToUuid.put(codeToId.get(location.getCode()), location.getId());
       }
     }
 
@@ -311,7 +232,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     private final HoldingJob job;
 
-    private final HashMap<String, String> permanentLocations;
+    private final Map<String, String> permanentLocations;
 
     private int hrid;
 
@@ -353,6 +274,9 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       marcContext.put(SQL, context.getExtraction().getMarcSql());
       marcContext.put(SCHEMA, schema);
 
+      HoldingMaps holdingMaps = context.getHoldingMaps();
+      HoldingDefaults holdingDefaults = context.getHoldingDefaults();
+
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
       int count = 0;
@@ -369,7 +293,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         while (pageResultSet.next()) {
           String mfhdId = pageResultSet.getString(MFHD_ID);
 
-          log.debug("Processing page result with holding id: {}", mfhdId);
+          log.debug("Processing page result with mfhd id: {}", mfhdId);
 
           String permanentLocation = pageResultSet.getString(LOCATION_ID);
           String locationId = null;
@@ -381,48 +305,65 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
           String holdingsType = pageResultSet.getString(HOLDINGS_TYPE);
           String field008 = pageResultSet.getString(FIELD_008);
 
-          String receiptStatus = null;
-          String acquisitionMethod = null;
-          String retentionPolicy = null;
+          String receiptStatus;
+          String acquisitionMethod;
+          String retentionPolicy;
 
-          Boolean discoverySuppress = null;
+          Boolean discoverySuppress;
 
           if (discoverySuppressString != null) {
             if (discoverySuppressString.equalsIgnoreCase("y")) {
               discoverySuppress = true;
             } else if (discoverySuppressString.equalsIgnoreCase("n")) {
               discoverySuppress = false;
-            }
-          }
-
-          if (CALL_NUMBER_MAP.containsKey(callNumberType)) {
-            callNumberType = CALL_NUMBER_MAP.get(callNumberType);
-          } else {
-            callNumberType = CALL_NUMBER_MAP_DEFAULT;
-          }
-
-          if (holdingsType != null) {
-            if (HOLDINGS_TYPE_MAP.containsKey(holdingsType)) {
-              holdingsType = HOLDINGS_TYPE_MAP.get(holdingsType);
             } else {
-              holdingsType = null;
+              discoverySuppress = holdingDefaults.getDiscoverySuppress();
             }
+          } else {
+            discoverySuppress = holdingDefaults.getDiscoverySuppress();
+          }
+
+          if (holdingMaps.getCallNumberType().containsKey(callNumberType)) {
+            callNumberType = holdingMaps.getCallNumberType().get(callNumberType);
+          } else {
+            callNumberType = holdingDefaults.getCallNumberTypeId();
+          }
+
+          if (holdingMaps.getHoldingsType().containsKey(holdingsType)) {
+            holdingsType = holdingMaps.getHoldingsType().get(holdingsType);
+          } else {
+            holdingsType = holdingDefaults.getHoldingsTypeId();
           }
 
           if (field008 != null && field008.length() >= 8) {
-            receiptStatus = RECEIPT_STATUS_MAP.get(field008.substring(7, 8));
+            if (field008.length() >= 7) {
+              receiptStatus = holdingMaps.getAcqMethod().get(field008.substring(7, 8));
+            } else {
+              receiptStatus = holdingDefaults.getReceiptStatus();
+            }
 
             if (field008.length() >= 9) {
-              acquisitionMethod = ACQ_METHOD_MAP.get(field008.substring(8, 9));
+              acquisitionMethod = holdingMaps.getAcqMethod().get(field008.substring(8, 9));
+            } else {
+              acquisitionMethod = holdingDefaults.getAcqMethod();
             }
 
             if (field008.length() >= 14) {
-              retentionPolicy = RETENTION_POLICY_MAP.get(field008.substring(13, 14));
+              retentionPolicy = holdingMaps.getRetentionPolicy().get(field008.substring(13, 14));
+            } else {
+              retentionPolicy = holdingDefaults.getRetentionPolicy();
             }
+          } else {
+            receiptStatus = holdingDefaults.getReceiptStatus();
+            acquisitionMethod = holdingDefaults.getAcqMethod();
+            retentionPolicy = holdingDefaults.getRetentionPolicy();
           }
 
           if (permanentLocations.containsKey(permanentLocation)) {
             locationId = permanentLocations.get(permanentLocation);
+          }
+          else {
+            holdingDefaults.getPermanentLocationId();
           }
 
           marcContext.put(MFHD_ID, mfhdId);
@@ -432,20 +373,21 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
             HoldingRecord holdingRecord = new HoldingRecord(mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
-            String holdingId;
-            String instanceId;
-
             if (job.isUseReferenceLinks()) {
               String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
               Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
-              holdingId = holdingRL.isPresent() ? holdingRL.get().getFolioReference() : UUID.randomUUID().toString();
+              String holdingId = holdingRL.isPresent() ? holdingRL.get().getFolioReference() : UUID.randomUUID().toString();
 
-              String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
+              String instanceRLTypeId = job.getReferences().get(HOLDING_TO_BIB_REFERENCE_ID);
               Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, mfhdId);
-              instanceId = instanceRL.isPresent() ? instanceRL.get().getFolioReference() : UUID.randomUUID().toString();
+              String instanceId = instanceRL.isPresent() ? instanceRL.get().getFolioReference() : holdingDefaults.getInstanceId();
 
               holdingRecord.setHoldingId(holdingId);
               holdingRecord.setInstanceId(instanceId);
+            }
+            else {
+              holdingRecord.setHoldingId(UUID.randomUUID().toString());
+              holdingRecord.setInstanceId(holdingDefaults.getInstanceId());
             }
 
             Optional<Record> potentialRecord = rawMarcToRecord(marc);
