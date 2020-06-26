@@ -2,6 +2,8 @@ package org.folio.rest.migration.mapping.model;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+
 public class RuleCondition {
 
   @NotNull
@@ -12,7 +14,8 @@ public class RuleCondition {
 
   private String value;
 
-  private String LDR;
+  @JsonAlias("LDR")
+  private boolean ldr;
 
   public RuleCondition() {
 
@@ -42,12 +45,12 @@ public class RuleCondition {
     this.value = value;
   }
 
-  public String getLDR() {
-    return LDR;
+  public boolean getLdr() {
+    return ldr;
   }
 
-  public void setLDR(String lDR) {
-    LDR = lDR;
+  public void setLdr(boolean ldr) {
+    this.ldr = ldr;
   }
 
 }

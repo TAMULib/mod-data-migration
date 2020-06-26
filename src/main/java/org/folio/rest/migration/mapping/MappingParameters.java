@@ -1,6 +1,7 @@
 package org.folio.rest.migration.mapping;
 
 import org.apache.commons.collections4.list.UnmodifiableList;
+import org.folio.IssuanceMode;
 import org.folio.rest.jaxrs.model.Alternativetitletype;
 import org.folio.rest.jaxrs.model.Classificationtype;
 import org.folio.rest.jaxrs.model.Contributornametype;
@@ -22,6 +23,7 @@ public class MappingParameters {
   private UnmodifiableList<Electronicaccessrelationship> electronicAccessRelationships;
   private UnmodifiableList<Instancenotetype> instanceNoteTypes;
   private UnmodifiableList<Alternativetitletype> alternativeTitleTypes;
+  private UnmodifiableList<IssuanceMode> issuanceModes;
 
   public MappingParameters() {
 
@@ -97,6 +99,14 @@ public class MappingParameters {
 
   public void setAlternativeTitleTypes(UnmodifiableList<Alternativetitletype> alternativeTitleTypes) {
     this.alternativeTitleTypes = alternativeTitleTypes;
+  }
+
+  public UnmodifiableList<IssuanceMode> getIssuanceModes() {
+    return issuanceModes;
+  }
+
+  public void setIssuanceModes(UnmodifiableList<IssuanceMode> issuanceModes) {
+    this.issuanceModes = issuanceModes;
   }
 
 }

@@ -64,6 +64,7 @@ public class InstanceMapper {
     try {
       loadRules(rules);
     } catch (IOException e) {
+      e.printStackTrace();
       throw new RuntimeException(e);
     }
   }
@@ -347,7 +348,7 @@ public class InstanceMapper {
 
         String valueParam = mappingCondition.getValue();
 
-        if (mappingCondition.getLDR() != null) {
+        if (mappingCondition.getLdr()) {
           ruleExecutionContext.setSubfieldValue(ruleExecutionContext.getLeader().toString());
         }
 
