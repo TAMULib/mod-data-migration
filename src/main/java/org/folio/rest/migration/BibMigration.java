@@ -242,7 +242,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
       jobExecutionRqDto.setSourceType(SourceType.ONLINE);
       jobExecutionRqDto.setJobProfileInfo(profileInfo);
       jobExecutionRqDto.setUserId(job.getUserId());
-      log.info("jobExecutionRqDto {}", jobExecutionRqDto);
 
       InitJobExecutionsRsDto JobExecutionRsDto = migrationService.okapiService.createJobExecution(tenant, token, jobExecutionRqDto);
       JobExecution jobExecution = JobExecutionRsDto.getJobExecutions().get(0);
