@@ -453,7 +453,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
         int seqnum = resultSet.getInt(SEQNUM);
         marcSequence.add(new SequencedMarc(seqnum, recordSegment));
       }
-      List<InputStream> asciiStreams = marcSequence.stream().sorted((sm1, sm2) -> sm1.getSeqnum().compareTo(sm2.getSeqnum())).map(sm -> sm.getRecordSegment())
+      List<InputStream> asciiStreams = marcSequence.stream()
+        .sorted((sm1, sm2) -> sm1.getSeqnum().compareTo(sm2.getSeqnum()))
+        .map(sm -> sm.getRecordSegment())
           .collect(Collectors.toList());
       SequenceInputStream sequenceInputStream = new SequenceInputStream(Collections.enumeration(asciiStreams));
       return IOUtils.toString(sequenceInputStream, DEFAULT_CHARSET);
@@ -480,7 +482,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
     return statisticalCodes.getStatisticalCodes().stream()
       .map(sc -> sc.getCode())
       .filter(code -> code.equals(operatorId))
-      .collect(Collectors.toList());
+        .collect(Collectors.toList());
   }
 
   private Optional<Record> rawMarcToRecord(String rawMarc) throws IOException, MarcException {
