@@ -28,15 +28,15 @@ spring:
       connectionTimeout: 172800000
       idleTimeout: 3600000
       maximumPoolSize: 16
-    platform: h2
-    url: jdbc:h2:./target/mod_data_migration;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    driverClassName: org.h2.Driver
-    # platform: postgres
-    # driverClassName: org.postgresql.Driver
-    # url: jdbc:postgresql://localhost:5432/mod_data_migration
+    # platform: h2
+    # url: jdbc:h2:./target/okapi_modules;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    # driverClassName: org.h2.Driver
+    platform: postgres
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/okapi_modules
 
-    username: folio
-    password: folio
+    username: folio_admin
+    password: folio_admin
   devtools:
     add-properties: false
     restart:
@@ -49,15 +49,15 @@ spring:
       settings:
         web-allow-others: false
   jpa:
-    database-platform: org.folio.rest.dialect.CustomH2Dialect
-    # database-platform: org.folio.rest.dialect.CustomPostgreSQLDialect
+    # database-platform: org.folio.rest.dialect.CustomH2Dialect
+    database-platform: org.folio.rest.dialect.CustomPostgreSQLDialect
 
     properties:
       hibernate:
         order_inserts: true
         order_updates: true
-        dialect: org.folio.rest.dialect.CustomH2Dialect
-        # dialect: org.folio.rest.dialect.CustomPostgreSQLDialect
+        # dialect: org.folio.rest.dialect.CustomH2Dialect
+        dialect: org.folio.rest.dialect.CustomPostgreSQLDialect
         jdbc:
           batch_size: 100
           lob.non_contextual_creation: true
@@ -87,7 +87,7 @@ okapi:
     password: admin
   modules:
     database:
-      url: jdbc:postgresql://localhost:5432/okapi_modules
+      url: jdbc:postgresql://localhost:5433/okapi_modules
       username: folio_admin
       password: folio_admin
       driver-class-name: org.postgresql.Driver
