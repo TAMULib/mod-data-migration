@@ -15,10 +15,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -27,8 +29,8 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.io.IOUtils;
-import org.folio.Instance;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
+import org.folio.rest.jaxrs.model.Instance;
 import org.folio.rest.jaxrs.model.Statisticalcodes;
 import org.folio.rest.jaxrs.model.common.ProfileInfo;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
@@ -300,9 +302,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
             Optional<String> operatorId = getOperatorId(bibHistoryStatement, bibHistoryContext);
 
-            List<String> matchedCodes = operatorId.isPresent()
+            Set<String> matchedCodes = operatorId.isPresent()
               ? getMatchingStatisticalCodes(operatorId.get(), statisticalCodes)
-              : new ArrayList<>();
+              : new HashSet<>();
 
             BibRecord bibRecord = new BibRecord(bibId, job.getInstanceStatusId(), suppressInOpac, matchedCodes);
 
@@ -468,15 +470,11 @@ public class BibMigration extends AbstractMigration<BibContext> {
     }
   }
 
-  private List<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalCodes) {
-    List<String> matchedCodes = new ArrayList<>();
-    if (operatorId == null) {
-      return matchedCodes;
-    }
+  private Set<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalCodes) {
     return statisticalCodes.getStatisticalCodes().stream()
       .map(sc -> sc.getCode())
       .filter(code -> code.equals(operatorId))
-        .collect(Collectors.toList());
+        .collect(Collectors.toSet());
   }
 
   private Optional<Record> rawMarcToRecord(String rawMarc) throws IOException, MarcException {

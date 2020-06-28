@@ -1,13 +1,13 @@
 package org.folio.rest.migration.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import org.folio.Instance;
-import org.folio.Metadata;
+import org.folio.rest.jaxrs.model.Instance;
+import org.folio.rest.jaxrs.model.Metadata;
 import org.folio.rest.jaxrs.model.common.ExternalIdsHolder;
 import org.folio.rest.jaxrs.model.dto.AdditionalInfo;
 import org.folio.rest.jaxrs.model.dto.ParsedRecord;
@@ -23,7 +23,7 @@ public class BibRecord {
   private final String bibId;
   private final String statusId;
   private final Boolean suppressDiscovery;
-  private final List<String> statisticalCodes;
+  private final Set<String> statisticalCodes;
 
   private final String rawRecordId;
   private final String parsedRecordId;
@@ -37,7 +37,7 @@ public class BibRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public BibRecord(String bibId, String statusId, Boolean suppressDiscovery, List<String> statisticalCodes) {
+  public BibRecord(String bibId, String statusId, Boolean suppressDiscovery, Set<String> statisticalCodes) {
     this.bibId = bibId;
     this.statusId = statusId;
     this.suppressDiscovery = suppressDiscovery;
