@@ -37,11 +37,11 @@ POST to http://localhost:9000/migrate/vendor-reference-links
       "driverClassName": ""
     }
   },
-  "parallelism": 12,
+  "parallelism": 2,
   "jobs": [
     {
       "schema": "AMDB",
-      "partitions": 11,
+      "partitions": 1,
       "references": {
         "vendorTypeId": "08c7dd18-dbaf-11e9-8a34-2a2ae2dbcce4"
       }
