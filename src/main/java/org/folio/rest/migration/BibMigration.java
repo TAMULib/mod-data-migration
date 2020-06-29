@@ -352,15 +352,15 @@ public class BibMigration extends AbstractMigration<BibContext> {
             ParsedRecord parsedRecord = bibRecord.toParsedRecord();
             RecordModel recordModel = bibRecord.toRecordModel(jobExecutionId);
 
-            String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
-            String createdByUserId = job.getUserId();
-
             Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid);
 
             if (Objects.isNull(instance)) {
               log.error("schema {}, bib id {}, marcJson {} unable to map record to instance", schema, bibId, marcJson);
               continue;
             }
+
+            String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
+            String createdByUserId = job.getUserId();
 
             String rrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(rawRecord)));
             String prUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(parsedRecord)));

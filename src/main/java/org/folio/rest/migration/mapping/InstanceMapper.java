@@ -1,5 +1,7 @@
 package org.folio.rest.migration.mapping;
 
+import java.util.Objects;
+
 import org.folio.processing.mapping.defaultmapper.MarcToInstanceMapper;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
 import org.folio.rest.jaxrs.model.Instance;
@@ -20,9 +22,12 @@ public class InstanceMapper {
   }
 
   public Instance getInstance(JsonObject parsedRecord) {
+    Instance instance = null;
     org.folio.Instance mappedInstance = marcToInstanceMapper.mapRecord(parsedRecord, mappingParameters, mappingRules);
-    Instance instance = new Instance();
-    BeanUtils.copyProperties(mappedInstance, instance);
+    if (Objects.nonNull(mappedInstance)) {
+      instance = new Instance();
+      BeanUtils.copyProperties(mappedInstance, instance);
+    }
     return instance;
   }
 
