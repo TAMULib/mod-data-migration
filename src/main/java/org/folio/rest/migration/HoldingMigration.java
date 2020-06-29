@@ -265,8 +265,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       marcContext.put(SQL, context.getExtraction().getMarcSql());
       marcContext.put(SCHEMA, schema);
 
-      HoldingMaps holdingMaps = context.getHoldingMaps();
-      HoldingDefaults holdingDefaults = context.getHoldingDefaults();
+      HoldingMaps holdingMaps = context.getMaps();
+      HoldingDefaults holdingDefaults = context.getDefaults();
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 

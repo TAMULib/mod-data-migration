@@ -37,19 +37,19 @@ public class HoldingContext extends AbstractContext {
     this.jobs = jobs;
   }
 
-  public HoldingMaps getHoldingMaps() {
+  public HoldingMaps getMaps() {
     return maps;
   }
 
-  public void setHoldingMaps(HoldingMaps maps) {
+  public void setMaps(HoldingMaps maps) {
     this.maps = maps;
   }
 
-  public HoldingDefaults getHoldingDefaults() {
+  public HoldingDefaults getDefaults() {
     return defaults;
   }
 
-  public void setHoldingDefaults(HoldingDefaults defaults) {
+  public void setDefaults(HoldingDefaults defaults) {
     this.defaults = defaults;
   }
 
