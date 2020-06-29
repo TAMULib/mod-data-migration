@@ -7,6 +7,9 @@ public class BibExtraction extends AbstractExtraction {
   @NotNull
   private String marcSql;
 
+  @NotNull
+  private String bibHistorySql;
+
   public BibExtraction() {
     super();
   }
@@ -17,6 +20,14 @@ public class BibExtraction extends AbstractExtraction {
 
   public void setMarcSql(String marcSql) {
     this.marcSql = marcSql;
+  }
+
+  public String getBibHistorySql() {
+    return bibHistorySql;
+  }
+
+  public void setBibHistorySql(String bibHistorySql) {
+    this.bibHistorySql = bibHistorySql;
   }
 
 }
