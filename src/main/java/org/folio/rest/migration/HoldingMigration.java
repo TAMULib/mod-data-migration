@@ -51,6 +51,8 @@ import org.postgresql.core.BaseConnection;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import io.vertx.core.json.JsonObject;
+
 public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
   private static final String HRID_PREFIX = "HRID_PREFIX";
@@ -73,7 +75,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   private static final String SEQNUM = "SEQNUM";
 
   private static final String ID = "id";
-
   private static final String CODE = "code";
 
   private static final String T_999 = "999";
@@ -95,10 +96,9 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     String token = migrationService.okapiService.getToken(tenant);
 
-    JsonNode hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
+    JsonObject hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
 
     Database voyagerSettings = context.getExtraction().getDatabase();
-
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
     HoldingMapper holdingMapper = new HoldingMapper();
@@ -117,29 +117,26 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     Map<String, Object> countContext = new HashMap<>();
     countContext.put(SQL, context.getExtraction().getCountSql());
 
-    JsonNode holdingsHridSettings = hridSettings.get("holdings");
+    JsonObject holdingsHridSettings = hridSettings.getJsonObject("holdings");
+    String hridPrefix = holdingsHridSettings.getString("prefix");
 
-    String hridPrefix = holdingsHridSettings.get("prefix").asText();
-
-    int originalHridStartNumber = holdingsHridSettings.get("startNumber").asInt();
-
+    int originalHridStartNumber = holdingsHridSettings.getInteger("startNumber");
     int hridStartNumber = originalHridStartNumber;
-
     int index = 0;
 
-    log.info("total jobs: {}", context.getJobs().size());
+    log.info("total holding jobs: {}", context.getJobs().size());
 
     for (HoldingJob job : context.getJobs()) {
 
-      log.info("starting job: {}", job.getProfileInfo().getName());
+      log.info("starting holding job: {}", job.getProfileInfo().getName());
 
       countContext.put(SCHEMA, job.getSchema());
 
-      HashMap<String, String> locationsMap = preloadPermanentLocationsMap(voyagerSettings, migrationService, token, job.getSchema());
+      HashMap<String, String> locationsMap = preloadLocationsMap(voyagerSettings, migrationService, token, job.getSchema());
 
       int count = getCount(voyagerSettings, countContext);
 
-      log.info("{} count: {}", job.getSchema(), count);
+      log.info("{} holding count: {}", job.getSchema(), count);
 
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);
@@ -155,8 +152,9 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         partitionContext.put(TOKEN, token);
         partitionContext.put(HRID_PREFIX, hridPrefix);
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
+        partitionContext.put(JOB, job);
 
-        taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext, job, locationsMap));
+        taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext, locationsMap));
         offset += limit;
         index++;
         if (i < partitions) {
@@ -174,11 +172,11 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     return new HoldingMigration(context, tenant);
   }
 
-  private HashMap<String, String> preloadPermanentLocationsMap(Database voyagerSettings, MigrationService migrationService, String token, String schema) {
+  private HashMap<String, String> preloadLocationsMap(Database voyagerSettings, MigrationService migrationService, String token, String schema) {
     HashMap<String, String> codeToId = new HashMap<>();
     HashMap<String, String> idToUuid = new HashMap<>();
 
-    log.info("Pre-loading Location data from schema: {}", schema);
+    log.info("Pre-Loading location data for schema: {}", schema);
 
     Connection voyagerConnection = getConnection(voyagerSettings);
 
@@ -230,18 +228,15 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     private final Map<String, Object> partitionContext;
 
-    private final HoldingJob job;
-
-    private final Map<String, String> permanentLocations;
+    private final Map<String, String> locationsMap;
 
     private int hrid;
 
-    public HoldingPartitionTask(MigrationService migrationService, HoldingMapper holdingMapper, Map<String, Object> partitionContext, HoldingJob job, HashMap<String, String> permanentLocations) {
+    public HoldingPartitionTask(MigrationService migrationService, HoldingMapper holdingMapper, Map<String, Object> partitionContext, HashMap<String, String> locationsMap) {
       this.migrationService = migrationService;
       this.holdingMapper = holdingMapper;
       this.partitionContext = partitionContext;
-      this.job = job;
-      this.permanentLocations = permanentLocations;
+      this.locationsMap = locationsMap;
       this.hrid = (int) partitionContext.get(HRID_START_NUMBER);
     }
 
@@ -249,21 +244,17 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       return (int) partitionContext.get(INDEX);
     }
 
-    public String getSchema() {
-      return job.getSchema();
-    }
-
     public HoldingPartitionTask execute(HoldingContext context) {
       long startTime = System.nanoTime();
-
-      String schema = this.getSchema();
 
       int index = this.getIndex();
 
       String hridPrefix = (String) partitionContext.get(HRID_PREFIX);
+      HoldingJob job = (HoldingJob) partitionContext.get(JOB);
+
+      String schema = job.getSchema();
 
       Database voyagerSettings = context.getExtraction().getDatabase();
-
       Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
@@ -359,11 +350,11 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             retentionPolicy = holdingDefaults.getRetentionPolicy();
           }
 
-          if (permanentLocations.containsKey(permanentLocation)) {
-            locationId = permanentLocations.get(permanentLocation);
+          if (locationsMap.containsKey(permanentLocation)) {
+            locationId = locationsMap.get(permanentLocation);
           }
           else {
-            holdingDefaults.getPermanentLocationId();
+            locationId = holdingDefaults.getPermanentLocationId();
           }
 
           marcContext.put(MFHD_ID, mfhdId);
@@ -455,7 +446,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       threadConnections.closeAll();
 
-      log.info("{} {} finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
+      log.info("{} {} holding finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
     }
