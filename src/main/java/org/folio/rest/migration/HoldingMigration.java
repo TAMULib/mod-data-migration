@@ -232,7 +232,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     private int hrid;
 
-    public HoldingPartitionTask(MigrationService migrationService, HoldingMapper holdingMapper, Map<String, Object> partitionContext, HashMap<String, String> locationsMap) {
+    public HoldingPartitionTask(MigrationService migrationService, HoldingMapper holdingMapper, Map<String, Object> partitionContext, Map<String, String> locationsMap) {
       this.migrationService = migrationService;
       this.holdingMapper = holdingMapper;
       this.partitionContext = partitionContext;
