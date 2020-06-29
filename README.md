@@ -29,7 +29,7 @@ POST to http://localhost:9000/migrate/user-reference-links
 {
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.patron WHERE last_name IS NOT NULL",
-    "pageSql": "SELECT patron_id, NVL2(institution_id, regexp_replace(institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\1\2\3'), '${SCHEMA}_' || patron_id) AS external_system_id, FROM ${SCHEMA}.patron ap WHERE last_name IS NOT NULL OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "pageSql": "SELECT patron_id, NVL2(institution_id, regexp_replace(institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\\1\\2\\3'), '${SCHEMA}_' || patron_id) AS external_system_id FROM ${SCHEMA}.patron ap WHERE last_name IS NOT NULL OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "database": {
       "url": "",
       "username": "",
@@ -43,7 +43,7 @@ POST to http://localhost:9000/migrate/user-reference-links
       "schema": "AMDB",
       "partitions": 1,
       "references": {
-        "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7"
+        "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
         "userExternalTypeId": "0ed6f994-8dbd-4827-94c0-905504169c90"
       }
     },
@@ -51,7 +51,7 @@ POST to http://localhost:9000/migrate/user-reference-links
       "schema": "MSDB",
       "partitions": 1,
       "references": {
-        "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45"
+        "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
         "userExternalTypeId": "426ce32f-388c-4edf-9c79-d6b8348148a0"
       }
     }
