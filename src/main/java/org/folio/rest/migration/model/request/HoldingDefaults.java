@@ -18,8 +18,7 @@ public class HoldingDefaults {
 
   private String retentionPolicy;
 
-  public HoldingDefaults() {
-  }
+  public HoldingDefaults() { }
 
   public String getAcqMethod() {
     return acqMethod;

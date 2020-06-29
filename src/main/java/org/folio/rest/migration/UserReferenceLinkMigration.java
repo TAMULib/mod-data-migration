@@ -37,7 +37,6 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
 
   @Override
   public CompletableFuture<Boolean> run(MigrationService migrationService) {
-
     log.info("tenant: {}", tenant);
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
@@ -69,10 +68,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
       log.info("{} count: {}", job.getSchema(), count);
 
       int partitions = job.getPartitions();
-      int limit = count / partitions;
-      if (limit * partitions < count) {
-        limit++;
-      }
+      int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
       for (int i = 0; i < partitions; i++) {
         Map<String, Object> partitionContext = new HashMap<String, Object>();
@@ -130,6 +126,8 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
       String userExternalRLTypeId = job.getReferences().get(USER_EXTERNAL_REFERENCE_ID);
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, migrationService.referenceLinkSettings);
+
+      log.info("starting {} {}", schema, index);
 
       try {
 

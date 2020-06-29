@@ -155,10 +155,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
       log.info("{} count: {}", job.getSchema(), count);
 
       int partitions = job.getPartitions();
-      int limit = count / partitions;
-      if (limit * partitions < count) {
-        limit++;
-      }
+      int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
       for (int i = 0; i < partitions; i++) {
         Map<String, Object> partitionContext = new HashMap<String, Object>();

@@ -17,10 +17,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.core.io.JsonStringEncoder;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.io.IOUtils;
 import org.folio.rest.jaxrs.model.Holdingsrecord;
@@ -48,9 +52,6 @@ import org.marc4j.marc.VariableField;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
 
-import com.fasterxml.jackson.core.io.JsonStringEncoder;
-import com.fasterxml.jackson.databind.JsonNode;
-
 import io.vertx.core.json.JsonObject;
 
 public class HoldingMigration extends AbstractMigration<HoldingContext> {
@@ -63,6 +64,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
   private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
+  private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
 
   private static final String DISCOVERY_SUPPRESS = "SUPPRESS_IN_OPAC";
   private static final String CALL_NUMBER = "DISPLAY_CALL_NO";
@@ -136,11 +138,10 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       int count = getCount(voyagerSettings, countContext);
 
-      log.info("{} holding count: {}", job.getSchema(), count);
+      log.info("{} count: {}", job.getSchema(), count);
 
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);
-
       int offset = 0;
       for (int i = 0; i < partitions; i++) {
         Map<String, Object> partitionContext = new HashMap<String, Object>();
@@ -270,6 +271,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
+      log.info("starting {} {}", schema, index);
+
       int count = 0;
 
       try {
@@ -283,8 +286,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
         while (pageResultSet.next()) {
           String mfhdId = pageResultSet.getString(MFHD_ID);
-
-          log.debug("Processing page result with mfhd id: {}", mfhdId);
 
           String permanentLocation = pageResultSet.getString(LOCATION_ID);
           String locationId = null;
@@ -362,69 +363,78 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
           try {
             String marc = getMarc(marcStatement, marcContext);
 
+            Optional<Record> potentialRecord = rawMarcToRecord(marc);
+
+            if (!potentialRecord.isPresent()) {
+              log.error("schema {}, mfhd id {}, marc {} unable to read record", schema, mfhdId, marc);
+              continue;
+            }
+
             HoldingRecord holdingRecord = new HoldingRecord(mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
+            String holdingId = null, instanceId = null;
             if (job.isUseReferenceLinks()) {
               String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
               Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
-              String holdingId = holdingRL.isPresent() ? holdingRL.get().getFolioReference() : UUID.randomUUID().toString();
+              
+              if (holdingRL.isPresent()) {
 
-              String instanceRLTypeId = job.getReferences().get(HOLDING_TO_BIB_REFERENCE_ID);
-              Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, mfhdId);
-              String instanceId = instanceRL.isPresent() ? instanceRL.get().getFolioReference() : holdingDefaults.getInstanceId();
+                holdingId = holdingRL.get().getFolioReference();
 
-              holdingRecord.setHoldingId(holdingId);
-              holdingRecord.setInstanceId(instanceId);
-            }
-            else {
-              holdingRecord.setHoldingId(UUID.randomUUID().toString());
-              holdingRecord.setInstanceId(holdingDefaults.getInstanceId());
-            }
+                String holdingToBibRLTypeId = job.getReferences().get(HOLDING_TO_BIB_REFERENCE_ID);
+                Optional<ReferenceLink> holdingToBibRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToBibRLTypeId, holdingRL.get().getId());
 
-            Optional<Record> potentialRecord = rawMarcToRecord(marc);
+                if (holdingToBibRL.isPresent()) {
 
-            if (potentialRecord.isPresent()) {
-              Record record = potentialRecord.get();
+                  String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
+                  Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, holdingToBibRL.get().getFolioReference());
 
-              DataField dataField = getDataField(factory, record);
-
-              record.addVariableField(dataField);
-
-              try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
-                MarcWriter streamWriter = new MarcStreamWriter(os, DEFAULT_CHARSET.name());
-                // use stream writer to recalculate leader
-                streamWriter.write(record);
-                streamWriter.close();
-              } catch (IOException e) {
-                e.printStackTrace();
+                  if (instanceRL.isPresent()) {
+                    instanceId = instanceRL.get().getFolioReference();
+                  }
+                }
               }
-
-              String marcJson = recordToJson(record);
-
-              JsonNode marcJsonNode = migrationService.objectMapper.readTree(marcJson);
-
-              holdingRecord.setMarcRecord(record);
-              holdingRecord.setMarcJson(marcJsonNode);
-
-              Date currentDate = new Date();
-              holdingRecord.setCreatedByUserId(job.getUserId());
-              holdingRecord.setCreatedDate(currentDate);
-
-              String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
-              String createdByUserId = job.getUserId();
-
-              Holdingsrecord holdingsRecord = holdingRecord.toHolding(holdingMapper, hridPrefix, hrid);
-
-              String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(holdingRecord)));
-
-              // TODO: validate rows
-              holdingRecordWriter.println(String.join("\t", holdingsRecord.getId(), hrUtf8Json, createdAt, createdByUserId, holdingsRecord.getInstanceId(), holdingsRecord.getPermanentLocationId(), holdingsRecord.getHoldingsTypeId(), holdingsRecord.getCallNumberTypeId()));
-
-              hrid++;
-              count++;
-            } else {
-                log.error("{} holding id {} no record found", schema, mfhdId);
             }
+
+            holdingRecord.setHoldingId(Objects.nonNull(holdingId) ? holdingId : UUID.randomUUID().toString());
+            holdingRecord.setInstanceId(Objects.nonNull(instanceId) ? instanceId : holdingDefaults.getInstanceId());
+
+            Record record = potentialRecord.get();
+
+            DataField dataField = getDataField(factory, record);
+
+            record.addVariableField(dataField);
+
+            try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
+              MarcWriter streamWriter = new MarcStreamWriter(os, DEFAULT_CHARSET.name());
+              // use stream writer to recalculate leader
+              streamWriter.write(record);
+              streamWriter.close();
+            }
+
+            String marcJson = recordToJson(record);
+
+            JsonObject marcJsonObject = new JsonObject(marcJson);
+
+            holdingRecord.setParsedRecord(marcJsonObject);
+
+            Date currentDate = new Date();
+            holdingRecord.setCreatedByUserId(job.getUserId());
+            holdingRecord.setCreatedDate(currentDate);
+
+            String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
+            String createdByUserId = job.getUserId();
+
+            Holdingsrecord holdingsRecord = holdingRecord.toHolding(holdingMapper, hridPrefix, hrid);
+
+            String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(holdingRecord)));
+
+            // TODO: validate rows
+
+            holdingRecordWriter.println(String.join("\t", holdingsRecord.getId(), hrUtf8Json, createdAt, createdByUserId, holdingsRecord.getInstanceId(), holdingsRecord.getPermanentLocationId(), holdingsRecord.getHoldingsTypeId(), holdingsRecord.getCallNumberTypeId()));
+
+            hrid++;
+            count++;
 
           } catch (IOException e) {
               log.error("{} holding id {} error processing marc", schema, mfhdId);
