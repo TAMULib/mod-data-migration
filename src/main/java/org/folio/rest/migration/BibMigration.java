@@ -260,6 +260,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
+      log.info("starting {} {}", schema, index);
+
       int count = 0;
 
       try {
