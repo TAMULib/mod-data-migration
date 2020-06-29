@@ -20,6 +20,43 @@ Other [modules](https://dev.folio.org/source-code/#server-side).
 
 Other FOLIO Developer documentation is at [dev.folio.org](https://dev.folio.org/).
 
+## Vendor Reference Link Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/vendor-reference-links
+```
+{
+  "extraction": {
+    "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.vendor",
+    "pageSql": "SELECT vendor_id FROM ${SCHEMA}.vendor OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": ""
+    }
+  },
+  "parallelism": 2,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 1,
+      "references": {
+        "vendorTypeId": "08c7dd18-dbaf-11e9-8a34-2a2ae2dbcce4"
+      }
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 1,
+      "references": {
+        "vendorTypeId": "b427aa0a-96f2-4338-8b3c-2ddcdca6cfe4"
+      }
+    }
+  ]
+}
+```
+
 ## Inventory Reference Link Migration
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
