@@ -5,8 +5,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import org.folio.rest.jaxrs.model.Instance;
 import org.folio.rest.jaxrs.model.Metadata;
 import org.folio.rest.jaxrs.model.common.ExternalIdsHolder;
@@ -146,7 +144,7 @@ public class BibRecord {
     return parsedRecord;
   }
 
-  public Instance toInstance(InstanceMapper instanceMapper, String hridPrefix, int hrid) throws JsonProcessingException {
+  public Instance toInstance(InstanceMapper instanceMapper, String hridPrefix, int hrid) {
     final Instance instance = instanceMapper.getInstance(parsedRecord);
     if (Objects.nonNull(instance)) {
       instance.setId(instanceId);
