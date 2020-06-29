@@ -355,7 +355,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
             Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid);
 
             if (Objects.isNull(instance)) {
-              log.error("schema {}, bib id {}, marcJson {} unable to map record to instance", schema, bibId, marcJson);
+              log.error("schema {}, bib id {} unable to map record to instance", schema, bibId);
               continue;
             }
 
