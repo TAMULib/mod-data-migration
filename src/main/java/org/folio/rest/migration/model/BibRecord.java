@@ -1,6 +1,7 @@
 package org.folio.rest.migration.model;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -147,15 +148,17 @@ public class BibRecord {
 
   public Instance toInstance(InstanceMapper instanceMapper, String hridPrefix, int hrid) throws JsonProcessingException {
     final Instance instance = instanceMapper.getInstance(parsedRecord);
-    instance.setId(instanceId);
-    instance.setHrid(String.format("%s%011d", hridPrefix, hrid));
-    instance.setDiscoverySuppress(suppressDiscovery);
-    instance.setStatisticalCodeIds(statisticalCodes);
-    instance.setStatusId(statusId);
-    Metadata metadata = new Metadata();
-    metadata.setCreatedByUserId(createdByUserId);
-    metadata.setCreatedDate(createdDate);
-    instance.setMetadata(metadata);
+    if (Objects.nonNull(instance)) {
+      instance.setId(instanceId);
+      instance.setHrid(String.format("%s%011d", hridPrefix, hrid));
+      instance.setDiscoverySuppress(suppressDiscovery);
+      instance.setStatisticalCodeIds(statisticalCodes);
+      instance.setStatusId(statusId);
+      Metadata metadata = new Metadata();
+      metadata.setCreatedByUserId(createdByUserId);
+      metadata.setCreatedDate(createdDate);
+      instance.setMetadata(metadata);
+    }
     return instance;
   }
 
