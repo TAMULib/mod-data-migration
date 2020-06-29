@@ -20,6 +20,82 @@ Other [modules](https://dev.folio.org/source-code/#server-side).
 
 Other FOLIO Developer documentation is at [dev.folio.org](https://dev.folio.org/).
 
+## Vendor Reference Link Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/vendor-reference-links
+```
+{
+  "extraction": {
+    "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.vendor",
+    "pageSql": "SELECT vendor_id FROM ${SCHEMA}.vendor OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": ""
+    }
+  },
+  "parallelism": 2,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 1,
+      "references": {
+        "vendorTypeId": "08c7dd18-dbaf-11e9-8a34-2a2ae2dbcce4"
+      }
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 1,
+      "references": {
+        "vendorTypeId": "b427aa0a-96f2-4338-8b3c-2ddcdca6cfe4"
+      }
+    }
+  ]
+}
+```
+
+## User Reference Link Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/user-reference-links
+```
+{
+  "extraction": {
+    "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.patron WHERE last_name IS NOT NULL",
+    "pageSql": "SELECT patron_id, NVL2(institution_id, regexp_replace(institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\\1\\2\\3'), '${SCHEMA}_' || patron_id) AS external_system_id FROM ${SCHEMA}.patron ap WHERE last_name IS NOT NULL OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": ""
+    }
+  },
+  "parallelism": 2,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 1,
+      "references": {
+        "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
+        "userExternalTypeId": "0ed6f994-8dbd-4827-94c0-905504169c90"
+      }
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 1,
+      "references": {
+        "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
+        "userExternalTypeId": "426ce32f-388c-4edf-9c79-d6b8348148a0"
+      }
+    }
+  ]
+}
+```
+
 ## Inventory Reference Link Migration
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
