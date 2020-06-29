@@ -65,6 +65,7 @@ import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
 
 import io.vertx.core.json.JsonObject;
+
 public class BibMigration extends AbstractMigration<BibContext> {
 
   private static final String HRID_PREFIX = "HRID_PREFIX";
@@ -196,8 +197,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
     private final InstanceMapper instanceMapper;
 
     private final Map<String, Object> partitionContext;
-
-    
 
     private int hrid;
 
