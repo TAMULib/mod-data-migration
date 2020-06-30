@@ -10,8 +10,6 @@ public class HoldingDefaults {
 
   private String holdingsTypeId;
 
-  private String instanceId;
-
   private String permanentLocationId;
 
   private String receiptStatus;
@@ -50,14 +48,6 @@ public class HoldingDefaults {
 
   public void setHoldingsTypeId(String holdingsType) {
     this.holdingsTypeId = holdingsType;
-  }
-
-  public String getInstanceId() {
-    return instanceId;
-  }
-
-  public void setInstanceId(String instanceId) {
-    this.instanceId = instanceId;
   }
 
   public String getPermanentLocationId() {

@@ -2,7 +2,7 @@ package org.folio.rest.handler;
 
 import java.util.Optional;
 
-import org.folio.rest.exception.ExternalReferenceLinkExistsException;
+import org.folio.rest.exception.ReferenceLinkExistsException;
 import org.folio.rest.model.ReferenceLink;
 import org.folio.rest.model.repo.ReferenceLinkRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +17,11 @@ public class ReferenceLinkEventHandler {
 
   @HandleBeforeCreate
   public void handleReferenceLinkBeforeCreate(ReferenceLink referenceLink) {
-    Optional<ReferenceLink> existingReferenceLink = referenceLinkRepo.findByTypeIdAndExternalReferenceAndFolioReference(
-        referenceLink.getType().getId(), referenceLink.getExternalReference(), referenceLink.getFolioReference());
+    String typeId = referenceLink.getType().getId();
+    String externalReference = referenceLink.getExternalReference();
+    Optional<ReferenceLink> existingReferenceLink = referenceLinkRepo.findByTypeIdAndExternalReference(typeId, externalReference);
     if (existingReferenceLink.isPresent()) {
-      throw new ExternalReferenceLinkExistsException(existingReferenceLink.get());
+      throw new ReferenceLinkExistsException(existingReferenceLink.get());
     }
   }
 }

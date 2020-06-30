@@ -11,28 +11,24 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface ReferenceLinkRepo extends JpaRepository<ReferenceLink, String> {
 
+  public Boolean existsByTypeIdAndExternalReference(@Param("typeId") String typeId,
+      @Param("externalReference") String externalReference);
+
   public Optional<ReferenceLink> findByTypeIdAndExternalReference(@Param("typeId") String typeId,
       @Param("externalReference") String externalReference);
 
+  public List<ReferenceLink> findAllByTypeId(@Param("typeId") String typeId);
+
   public List<ReferenceLink> findAllByTypeName(@Param("typeName") String typeName);
 
-  public List<ReferenceLink> findAllByTypeNameAndExternalReference(@Param("typeName") String typeName,
-      @Param("externalReference") String externalReference);
+  public List<ReferenceLink> findAllByExternalReference(@Param("externalReference") String externalReference);
+
+  public List<ReferenceLink> findAllByFolioReference(@Param("folioReference") String folioReference);
 
   public List<ReferenceLink> findAllByTypeNameAndExternalReferenceIn(@Param("typeName") String typeName,
       @Param("externalReferences") List<String> externalReferences);
 
-  public List<ReferenceLink> findAllByTypeId(@Param("typeId") String typeId);
-
-  public List<ReferenceLink> findAllByTypeIdAndExternalReference(@Param("typeId") String typeId,
-      @Param("externalReference") String externalReference);
-
-  public List<ReferenceLink> findAllByFolioReference(@Param("folioReference") String folioReference);
-
-  public List<ReferenceLink> findAllByTypeIdAndFolioReference(@Param("typeId") String typeId,
-      @Param("folioReference") String folioReference);
-
-  public Optional<ReferenceLink> findByTypeIdAndExternalReferenceAndFolioReference(@Param("typeId") String typeId,
-      @Param("externalReference") String externalReference, @Param("folioReference") String folioReference);
+  public List<ReferenceLink> findAllByTypeNameAndFolioReferenceIn(@Param("typeName") String typeName,
+      @Param("folioReferences") List<String> folioReferences);
 
 }

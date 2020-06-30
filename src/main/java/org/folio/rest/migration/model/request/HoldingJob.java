@@ -5,20 +5,15 @@ import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
-import org.folio.rest.jaxrs.model.common.ProfileInfo;
-
 public class HoldingJob extends AbstractJob {
 
   @NotNull
   private String userId;
 
-  private boolean useReferenceLinks;
-
   private Map<String, String> references;
 
   public HoldingJob() {
     super();
-    useReferenceLinks = false;
     references = new HashMap<String, String>();
   }
 
@@ -28,14 +23,6 @@ public class HoldingJob extends AbstractJob {
 
   public void setUserId(String userId) {
     this.userId = userId;
-  }
-
-  public boolean isUseReferenceLinks() {
-    return useReferenceLinks;
-  }
-
-  public void setUseReferenceLinks(boolean useReferenceLinks) {
-    this.useReferenceLinks = useReferenceLinks;
   }
 
   public Map<String, String> getReferences() {

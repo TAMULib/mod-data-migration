@@ -228,7 +228,6 @@ POST to http://localhost:9000/migrate/holdings
       "schema": "AMDB",
       "partitions": 48,
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
-      "useReferenceLinks": true,
       "references": {
         "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
         "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc"
@@ -238,7 +237,6 @@ POST to http://localhost:9000/migrate/holdings
       "schema": "MSDB",
       "partitions": 4,
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
-      "useReferenceLinks": true,
       "references": {
         "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
         "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba"
@@ -307,7 +305,6 @@ POST to http://localhost:9000/migrate/holdings
     "callNumberTypeId": "24badefa-4456-40c5-845c-3f45ffbc4c03",
     "discoverySuppress": true,
     "holdingsTypeId": "61155a36-148b-4664-bb7f-64ad708e0b32",
-    "instanceId": "d1e8c984-f28c-48e0-b847-5ab35e957990",
     "permanentLocationId": "2b8f7d63-706a-4b56-8a5e-50ad24e33e4c",
     "receiptStatus": "Unknown",
     "retentionPolicy": "Unknown"

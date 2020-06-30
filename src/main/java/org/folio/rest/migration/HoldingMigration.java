@@ -147,8 +147,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     return new HoldingMigration(context, tenant);
   }
 
-  
-
   public class HoldingPartitionTask implements PartitionTask<HoldingContext> {
 
     private final MigrationService migrationService;
@@ -283,29 +281,38 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             HoldingRecord holdingRecord = new HoldingRecord(mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
             String holdingId = null, instanceId = null;
-            if (job.isUseReferenceLinks()) {
-              String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
-              Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
+            
+            String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
+            Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
 
-              if (holdingRL.isPresent()) {
+            if (holdingRL.isPresent()) {
 
-                holdingId = holdingRL.get().getFolioReference();
+              holdingId = holdingRL.get().getFolioReference();
 
-                String holdingToBibRLTypeId = job.getReferences().get(HOLDING_TO_BIB_REFERENCE_ID);
-                Optional<ReferenceLink> holdingToBibRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToBibRLTypeId, holdingRL.get().getId());
+              String holdingToBibRLTypeId = job.getReferences().get(HOLDING_TO_BIB_REFERENCE_ID);
+              Optional<ReferenceLink> holdingToBibRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToBibRLTypeId, holdingRL.get().getId());
 
-                if (holdingToBibRL.isPresent()) {
-                  Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findById(holdingToBibRL.get().getFolioReference());
+              if (holdingToBibRL.isPresent()) {
+                Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findById(holdingToBibRL.get().getFolioReference());
 
-                  if (instanceRL.isPresent()) {
-                    instanceId = instanceRL.get().getFolioReference();
-                  }
+                if (instanceRL.isPresent()) {
+                  instanceId = instanceRL.get().getFolioReference();
                 }
               }
             }
 
-            holdingRecord.setHoldingId(Objects.nonNull(holdingId) ? holdingId : UUID.randomUUID().toString());
-            holdingRecord.setInstanceId(Objects.nonNull(instanceId) ? instanceId : holdingDefaults.getInstanceId());
+            if (Objects.isNull(holdingId)) {
+              log.error("{} no folio reference found for mfhd id {}", schema, mfhdId);
+              continue;
+            }
+
+            if (Objects.isNull(instanceId)) {
+              log.error("{} no instance id found for mfhd id {}", schema, mfhdId);
+              continue;
+            }
+
+            holdingRecord.setHoldingId(holdingId);
+            holdingRecord.setInstanceId(instanceId);
 
             holdingRecord.setCreatedByUserId(job.getUserId());
             holdingRecord.setCreatedDate(new Date());
