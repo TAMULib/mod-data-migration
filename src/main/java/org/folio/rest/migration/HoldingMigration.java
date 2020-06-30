@@ -66,7 +66,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
   private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
-  private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
 
   private static final String DISCOVERY_SUPPRESS = "SUPPRESS_IN_OPAC";
   private static final String CALL_NUMBER = "DISPLAY_CALL_NO";
@@ -301,7 +300,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
           Boolean discoverySuppress;
 
-          if (discoverySuppressString != null) {
+          if (Objects.nonNull(discoverySuppressString)) {
             if (discoverySuppressString.equalsIgnoreCase("y")) {
               discoverySuppress = true;
             } else if (discoverySuppressString.equalsIgnoreCase("n")) {
@@ -325,7 +324,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             holdingsType = holdingDefaults.getHoldingsTypeId();
           }
 
-          if (field008 != null && field008.length() >= 8) {
+          if (Objects.nonNull(field008) && field008.length() >= 8) {
             if (field008.length() >= 7) {
               receiptStatus = holdingMaps.getAcqMethod().get(field008.substring(7, 8));
             } else {
@@ -374,7 +373,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             if (job.isUseReferenceLinks()) {
               String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
               Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
-              
+
               if (holdingRL.isPresent()) {
 
                 holdingId = holdingRL.get().getFolioReference();
@@ -383,9 +382,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
                 Optional<ReferenceLink> holdingToBibRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToBibRLTypeId, holdingRL.get().getId());
 
                 if (holdingToBibRL.isPresent()) {
-
-                  String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
-                  Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, holdingToBibRL.get().getFolioReference());
+                  Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findById(holdingToBibRL.get().getFolioReference());
 
                   if (instanceRL.isPresent()) {
                     instanceId = instanceRL.get().getFolioReference();

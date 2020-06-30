@@ -237,8 +237,7 @@ POST to http://localhost:9000/migrate/holdings
       "useReferenceLinks": true,
       "references": {
         "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
-        "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc",
-        "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672"
+        "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc"
       }
     },
     {
@@ -253,8 +252,7 @@ POST to http://localhost:9000/migrate/holdings
       "useReferenceLinks": true,
       "references": {
         "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
-        "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba",
-        "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8"
+        "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba"
       }
     }
   ],
