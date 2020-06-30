@@ -1,16 +1,16 @@
 package org.folio.rest.migration.mapping;
 
-import org.folio.rest.jaxrs.model.Holdingsrecord;
-import org.marc4j.marc.Record;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
+
+import org.folio.rest.jaxrs.model.Holdingsrecord;
+
+import io.vertx.core.json.JsonObject;
 
 public class HoldingMapper {
 
-  public HoldingMapper() {
-  }
+  public HoldingMapper() { }
 
-  public Holdingsrecord getHolding(Record record) throws JsonProcessingException {
+  public Holdingsrecord getHolding(JsonObject parsedRecord) throws JsonProcessingException {
     return new Holdingsrecord();
   }
 

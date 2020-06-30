@@ -155,10 +155,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
       log.info("{} count: {}", job.getSchema(), count);
 
       int partitions = job.getPartitions();
-      int limit = count / partitions;
-      if (limit * partitions < count) {
-        limit++;
-      }
+      int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
       for (int i = 0; i < partitions; i++) {
         Map<String, Object> partitionContext = new HashMap<String, Object>();
@@ -260,6 +257,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
+      log.info("starting {} {}", schema, index);
+
       int count = 0;
 
       try {
@@ -344,9 +343,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
             bibRecord.setMarc(marc);
             bibRecord.setParsedRecord(marcJsonObject);
 
-            Date currentDate = new Date();
             bibRecord.setCreatedByUserId(job.getUserId());
-            bibRecord.setCreatedDate(currentDate);
+            bibRecord.setCreatedDate(new Date());
 
             RawRecord rawRecord = bibRecord.toRawRecord();
             ParsedRecord parsedRecord = bibRecord.toParsedRecord();

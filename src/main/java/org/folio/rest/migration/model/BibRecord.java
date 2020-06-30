@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.folio.rest.jaxrs.model.Instance;
-import org.folio.rest.jaxrs.model.Metadata;
 import org.folio.rest.jaxrs.model.common.ExternalIdsHolder;
 import org.folio.rest.jaxrs.model.dto.AdditionalInfo;
 import org.folio.rest.jaxrs.model.dto.ParsedRecord;
@@ -152,7 +151,8 @@ public class BibRecord {
       instance.setDiscoverySuppress(suppressDiscovery);
       instance.setStatisticalCodeIds(statisticalCodes);
       instance.setStatusId(statusId);
-      Metadata metadata = new Metadata();
+
+      org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
       metadata.setCreatedByUserId(createdByUserId);
       metadata.setCreatedDate(createdDate);
       instance.setMetadata(metadata);

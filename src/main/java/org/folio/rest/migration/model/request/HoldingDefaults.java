@@ -10,16 +10,13 @@ public class HoldingDefaults {
 
   private String holdingsTypeId;
 
-  private String instanceId;
-
   private String permanentLocationId;
 
   private String receiptStatus;
 
   private String retentionPolicy;
 
-  public HoldingDefaults() {
-  }
+  public HoldingDefaults() { }
 
   public String getAcqMethod() {
     return acqMethod;
@@ -51,14 +48,6 @@ public class HoldingDefaults {
 
   public void setHoldingsTypeId(String holdingsType) {
     this.holdingsTypeId = holdingsType;
-  }
-
-  public String getInstanceId() {
-    return instanceId;
-  }
-
-  public void setInstanceId(String instanceId) {
-    this.instanceId = instanceId;
   }
 
   public String getPermanentLocationId() {

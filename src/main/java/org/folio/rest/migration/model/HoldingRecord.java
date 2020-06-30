@@ -1,13 +1,16 @@
 package org.folio.rest.migration.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.folio.rest.jaxrs.model.Holdingsrecord;
 import org.folio.rest.migration.mapping.HoldingMapper;
-import org.marc4j.marc.Record;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
+import io.vertx.core.json.JsonObject;
 
 public class HoldingRecord {
 
@@ -23,8 +26,7 @@ public class HoldingRecord {
   private final String acquisitionMethod;
   private final String retentionPolicy;
 
-  private Record marcRecord;
-  private JsonNode marcJson;
+  private JsonObject parsedRecord;
 
   private String holdingId;
   private String instanceId;
@@ -80,20 +82,12 @@ public class HoldingRecord {
     return retentionPolicy;
   }
 
-  public Record getMarcRecord() {
-    return marcRecord;
+  public JsonObject getParsedRecord() {
+    return parsedRecord;
   }
 
-  public void setMarcRecord(Record marcRecord) {
-    this.marcRecord = marcRecord;
-  }
-
-  public JsonNode getMarcJson() {
-    return marcJson;
-  }
-
-  public void setMarcJson(JsonNode marcJson) {
-    this.marcJson = marcJson;
+  public void setParsedRecord(JsonObject parsedRecord) {
+    this.parsedRecord = parsedRecord;
   }
 
   public String getHoldingId() {
@@ -129,26 +123,30 @@ public class HoldingRecord {
   }
 
   public Holdingsrecord toHolding(HoldingMapper holdingMapper, String hridPrefix, int hrid) throws JsonProcessingException {
-    final Holdingsrecord holding = holdingMapper.getHolding(marcRecord);
+    final Holdingsrecord holding = holdingMapper.getHolding(parsedRecord);
+    if (Objects.nonNull(holding)) {
+      holding.setId(holdingId);
+      holding.setInstanceId(instanceId);
+      holding.setHrid(String.format("%s%011d", hridPrefix, hrid));
+      holding.setPermanentLocationId(locationId);
 
-    holding.setId(holdingId);
-    holding.setInstanceId(instanceId);
-    holding.setHrid(String.format("%s%011d", hridPrefix, hrid));
-    holding.setPermanentLocationId(locationId);
+      holding.setDiscoverySuppress(discoverySuppress);
+      holding.setCallNumber(callNumber);
+      holding.setCallNumberTypeId(callNumberType);
+      holding.setHoldingsTypeId(holdingsType);
+      holding.setReceiptStatus(receiptStatus);
+      holding.setAcquisitionMethod(acquisitionMethod);
+      holding.setRetentionPolicy(retentionPolicy);
 
-    holding.setDiscoverySuppress(discoverySuppress);
-    holding.setCallNumber(callNumber);
-    holding.setCallNumberTypeId(callNumberType);
-    holding.setHoldingsTypeId(holdingsType);
-    holding.setReceiptStatus(receiptStatus);
-    holding.setAcquisitionMethod(acquisitionMethod);
-    holding.setRetentionPolicy(retentionPolicy);
+      Set<String> formerIds = new HashSet<>();
+      formerIds.add(mfhdId);
+      holding.setFormerIds(formerIds);
 
-    org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
-    metadata.setCreatedByUserId(createdByUserId);
-    metadata.setCreatedDate(createdDate);
-    holding.setMetadata(metadata);
-
+      org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
+      metadata.setCreatedByUserId(createdByUserId);
+      metadata.setCreatedDate(createdDate);
+      holding.setMetadata(metadata);
+    }
     return holding;
   }
 
