@@ -177,8 +177,6 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
           String instanceRLId = UUID.randomUUID().toString();
           String instanceFolioReference = UUID.randomUUID().toString();
 
-          
-
           referenceLinkWriter.println(String.join("\t", sourceRecordRLId, bibId, sourceRecordFolioReference, sourceRecordRLTypeId));
           referenceLinkWriter.println(String.join("\t", instanceRLId, bibId, instanceFolioReference, instanceRLTypeId));
 
