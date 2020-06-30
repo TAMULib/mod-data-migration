@@ -147,51 +147,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     return new HoldingMigration(context, tenant);
   }
 
-  private HashMap<String, String> preloadLocationsMap(Database voyagerSettings, MigrationService migrationService, String token, String schema) {
-    HashMap<String, String> codeToId = new HashMap<>();
-    HashMap<String, String> idToUuid = new HashMap<>();
-
-    Connection voyagerConnection = getConnection(voyagerSettings);
-
-    Map<String, Object> locationContext = new HashMap<>();
-
-    locationContext.put(SQL, context.getExtraction().getLocationSql());
-    locationContext.put(SCHEMA, schema);
-
-    try {
-      Statement st = voyagerConnection.createStatement();
-      ResultSet rs = getResultSet(st, locationContext);
-
-      while (rs.next()) {
-        String id = rs.getString(ID);
-        String code = rs.getString(CODE);
-
-        if (id != null) {
-          codeToId.put(code, id);
-        }
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    } finally {
-      try {
-        if (!voyagerConnection.isClosed()) {
-          voyagerConnection.close();
-        }
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    }
-
-    Locations locations = migrationService.okapiService.fetchLocations(tenant, token);
-
-    for (Location location : locations.getLocations()) {
-      if (codeToId.containsKey(location.getCode())) {
-        idToUuid.put(codeToId.get(location.getCode()), location.getId());
-      }
-    }
-
-    return idToUuid;
-  }
+  
 
   public class HoldingPartitionTask implements PartitionTask<HoldingContext> {
 
@@ -254,7 +210,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
           String mfhdId = pageResultSet.getString(MFHD_ID);
 
           String permanentLocation = pageResultSet.getString(LOCATION_ID);
-          String locationId = null;
 
           String discoverySuppressString = pageResultSet.getString(DISCOVERY_SUPPRESS);
           String callNumber = pageResultSet.getString(CALL_NUMBER);
@@ -263,6 +218,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
           String holdingsType = pageResultSet.getString(HOLDINGS_TYPE);
           String field008 = pageResultSet.getString(FIELD_008);
 
+          String locationId;
           String receiptStatus;
           String acquisitionMethod;
           String retentionPolicy;
@@ -293,8 +249,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             holdingsType = holdingDefaults.getHoldingsTypeId();
           }
 
-          if (Objects.nonNull(field008) && field008.length() >= 8) {
-            if (field008.length() >= 7) {
+          if (Objects.nonNull(field008) && field008.length() >= 7) {
+            if (field008.length() >= 8) {
               receiptStatus = holdingMaps.getAcqMethod().get(field008.substring(7, 8));
             } else {
               receiptStatus = holdingDefaults.getReceiptStatus();
@@ -319,8 +275,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
           if (locationsMap.containsKey(permanentLocation)) {
             locationId = locationsMap.get(permanentLocation);
-          }
-          else {
+          } else {
             locationId = holdingDefaults.getPermanentLocationId();
           }
 
@@ -352,19 +307,17 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             holdingRecord.setHoldingId(Objects.nonNull(holdingId) ? holdingId : UUID.randomUUID().toString());
             holdingRecord.setInstanceId(Objects.nonNull(instanceId) ? instanceId : holdingDefaults.getInstanceId());
 
-            Date currentDate = new Date();
             holdingRecord.setCreatedByUserId(job.getUserId());
-            holdingRecord.setCreatedDate(currentDate);
+            holdingRecord.setCreatedDate(new Date());
 
             String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
             String createdByUserId = job.getUserId();
 
             Holdingsrecord holdingsRecord = holdingRecord.toHolding(holdingMapper, hridPrefix, hrid);
 
-            String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(holdingRecord)));
+            String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(holdingsRecord)));
 
             // TODO: validate rows
-
             holdingRecordWriter.println(String.join("\t", holdingsRecord.getId(), hrUtf8Json, createdAt, createdByUserId, holdingsRecord.getInstanceId(), holdingsRecord.getPermanentLocationId(), holdingsRecord.getHoldingsTypeId(), holdingsRecord.getCallNumberTypeId()));
 
             hrid++;
@@ -447,6 +400,52 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         throw new RuntimeException(e);
       }
     }
+  }
+
+  private HashMap<String, String> preloadLocationsMap(Database voyagerSettings, MigrationService migrationService, String token, String schema) {
+    HashMap<String, String> codeToId = new HashMap<>();
+    HashMap<String, String> idToUuid = new HashMap<>();
+
+    Connection voyagerConnection = getConnection(voyagerSettings);
+
+    Map<String, Object> locationContext = new HashMap<>();
+
+    locationContext.put(SQL, context.getExtraction().getLocationSql());
+    locationContext.put(SCHEMA, schema);
+
+    try {
+      Statement st = voyagerConnection.createStatement();
+      ResultSet rs = getResultSet(st, locationContext);
+
+      while (rs.next()) {
+        String id = rs.getString(ID);
+        String code = rs.getString(CODE);
+
+        if (id != null) {
+          codeToId.put(code, id);
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (!voyagerConnection.isClosed()) {
+          voyagerConnection.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
+
+    Locations locations = migrationService.okapiService.fetchLocations(tenant, token);
+
+    for (Location location : locations.getLocations()) {
+      if (codeToId.containsKey(location.getCode())) {
+        idToUuid.put(codeToId.get(location.getCode()), location.getId());
+      }
+    }
+
+    return idToUuid;
   }
 
 }

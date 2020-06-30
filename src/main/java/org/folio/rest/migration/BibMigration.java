@@ -343,9 +343,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
             bibRecord.setMarc(marc);
             bibRecord.setParsedRecord(marcJsonObject);
 
-            Date currentDate = new Date();
             bibRecord.setCreatedByUserId(job.getUserId());
-            bibRecord.setCreatedDate(currentDate);
+            bibRecord.setCreatedDate(new Date());
 
             RawRecord rawRecord = bibRecord.toRawRecord();
             ParsedRecord parsedRecord = bibRecord.toParsedRecord();
