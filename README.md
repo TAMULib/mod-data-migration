@@ -303,7 +303,7 @@ POST to http://localhost:9000/migrate/holdings
   "defaults": {
     "acqMethod": "Cooperative or consortial purchase",
     "callNumberTypeId": "24badefa-4456-40c5-845c-3f45ffbc4c03",
-    "discoverySuppress": true,
+    "discoverySuppress": false,
     "holdingsTypeId": "61155a36-148b-4664-bb7f-64ad708e0b32",
     "permanentLocationId": "2b8f7d63-706a-4b56-8a5e-50ad24e33e4c",
     "receiptStatus": "Unknown",
