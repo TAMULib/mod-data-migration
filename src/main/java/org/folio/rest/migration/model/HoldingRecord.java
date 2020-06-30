@@ -1,7 +1,9 @@
 package org.folio.rest.migration.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -135,6 +137,10 @@ public class HoldingRecord {
       holding.setReceiptStatus(receiptStatus);
       holding.setAcquisitionMethod(acquisitionMethod);
       holding.setRetentionPolicy(retentionPolicy);
+
+      Set<String> formerIds = new HashSet<>();
+      formerIds.add(mfhdId);
+      holding.setFormerIds(formerIds);
 
       org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
       metadata.setCreatedByUserId(createdByUserId);
