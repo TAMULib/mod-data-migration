@@ -20,7 +20,7 @@ public class ReferenceLinkControllerAdvice {
   private static final Logger logger = LoggerFactory.getLogger(ReferenceLinkControllerAdvice.class);
 
   @ExceptionHandler(value = ReferenceLinkExistsException.class)
-  public ResponseEntity<ReferenceLink> handleInvalidValuePathException(ReferenceLinkExistsException exception) {
+  public ResponseEntity<ReferenceLink> handleReferenceLinkExistsException(ReferenceLinkExistsException exception) {
     return ResponseEntity.accepted().body(exception.getReferenceLink());
   }
 

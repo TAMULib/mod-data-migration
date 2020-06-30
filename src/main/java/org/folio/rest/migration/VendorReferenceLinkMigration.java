@@ -67,10 +67,7 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
       log.info("{} count: {}", job.getSchema(), count);
 
       int partitions = job.getPartitions();
-      int limit = count / partitions;
-      if (limit * partitions < count) {
-        limit++;
-      }
+      int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
       for (int i = 0; i < partitions; i++) {
         Map<String, Object> partitionContext = new HashMap<String, Object>();
@@ -127,6 +124,8 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
       String vendorRLTypeId = job.getReferences().get(VENDOR_REFERENCE_ID);
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, migrationService.referenceLinkSettings);
+
+      log.info("starting {} {}", schema, index);
 
       try {
         PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant));
