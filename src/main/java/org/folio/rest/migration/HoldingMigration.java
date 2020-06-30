@@ -59,6 +59,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   private static final String HRID_PREFIX = "HRID_PREFIX";
   private static final String HRID_START_NUMBER = "HRID_START_NUMBER";
 
+  private static final String LOCATIONS_MAP = "LOCATIONS_MAP";
+
   private static final String MFHD_ID = "MFHD_ID";
   private static final String LOCATION_ID = "LOCATION_ID";
 
@@ -124,13 +126,10 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     int originalHridStartNumber = holdingsHridSettings.getInteger("startNumber");
     int hridStartNumber = originalHridStartNumber;
+
     int index = 0;
 
-    log.info("total holding jobs: {}", context.getJobs().size());
-
     for (HoldingJob job : context.getJobs()) {
-
-      log.info("starting holding job: {}", job.getProfileInfo().getName());
 
       countContext.put(SCHEMA, job.getSchema());
 
@@ -154,8 +153,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         partitionContext.put(HRID_PREFIX, hridPrefix);
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(JOB, job);
-
-        taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext, locationsMap));
+        partitionContext.put(LOCATIONS_MAP, locationsMap);
+        taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext));
         offset += limit;
         index++;
         if (i < partitions) {
@@ -176,8 +175,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   private HashMap<String, String> preloadLocationsMap(Database voyagerSettings, MigrationService migrationService, String token, String schema) {
     HashMap<String, String> codeToId = new HashMap<>();
     HashMap<String, String> idToUuid = new HashMap<>();
-
-    log.info("Pre-Loading location data for schema: {}", schema);
 
     Connection voyagerConnection = getConnection(voyagerSettings);
 
@@ -229,15 +226,12 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     private final Map<String, Object> partitionContext;
 
-    private final Map<String, String> locationsMap;
-
     private int hrid;
 
-    public HoldingPartitionTask(MigrationService migrationService, HoldingMapper holdingMapper, Map<String, Object> partitionContext, Map<String, String> locationsMap) {
+    public HoldingPartitionTask(MigrationService migrationService, HoldingMapper holdingMapper, Map<String, Object> partitionContext) {
       this.migrationService = migrationService;
       this.holdingMapper = holdingMapper;
       this.partitionContext = partitionContext;
-      this.locationsMap = locationsMap;
       this.hrid = (int) partitionContext.get(HRID_START_NUMBER);
     }
 
@@ -248,14 +242,18 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     public HoldingPartitionTask execute(HoldingContext context) {
       long startTime = System.nanoTime();
 
-      int index = this.getIndex();
-
       String hridPrefix = (String) partitionContext.get(HRID_PREFIX);
+
       HoldingJob job = (HoldingJob) partitionContext.get(JOB);
+
+      Map<String, String> locationsMap = (Map<String, String>) partitionContext.get(LOCATIONS_MAP);
 
       String schema = job.getSchema();
 
+      int index = this.getIndex();
+
       Database voyagerSettings = context.getExtraction().getDatabase();
+
       Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
