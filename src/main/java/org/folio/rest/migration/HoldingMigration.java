@@ -1,32 +1,23 @@
 package org.folio.rest.migration;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.io.SequenceInputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
-import org.apache.commons.io.IOUtils;
 import org.folio.rest.jaxrs.model.Holdingsrecord;
 import org.folio.rest.jaxrs.model.Location;
 import org.folio.rest.jaxrs.model.Locations;
@@ -41,14 +32,6 @@ import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
 import org.marc4j.MarcException;
-import org.marc4j.MarcJsonWriter;
-import org.marc4j.MarcStreamReader;
-import org.marc4j.MarcStreamWriter;
-import org.marc4j.MarcWriter;
-import org.marc4j.marc.DataField;
-import org.marc4j.marc.MarcFactory;
-import org.marc4j.marc.Record;
-import org.marc4j.marc.VariableField;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
 
@@ -74,15 +57,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   private static final String HOLDINGS_TYPE = "RECORD_TYPE";
   private static final String FIELD_008 = "FIELD_008";
 
-  private static final String RECORD_SEGMENT = "RECORD_SEGMENT";
-  private static final String SEQNUM = "SEQNUM";
-
   private static final String ID = "id";
   private static final String CODE = "code";
-
-  private static final String T_999 = "999";
-
-  private static final char F = 'f';
 
   //(id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
   private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,holdingstypeid,callnumbertypeid) FROM STDIN";
@@ -257,12 +233,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
 
-      MarcFactory factory = MarcFactory.newInstance();
-
-      Map<String, Object> marcContext = new HashMap<>();
-      marcContext.put(SQL, context.getExtraction().getMarcSql());
-      marcContext.put(SCHEMA, schema);
-
       HoldingMaps holdingMaps = context.getMaps();
       HoldingDefaults holdingDefaults = context.getDefaults();
 
@@ -277,7 +247,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         PrintWriter holdingRecordWriter = new PrintWriter(holdingRecordOutput, true);
 
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
-        Statement marcStatement = threadConnections.getMarcConnection().createStatement();
 
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
 
@@ -355,18 +324,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             locationId = holdingDefaults.getPermanentLocationId();
           }
 
-          marcContext.put(MFHD_ID, mfhdId);
-
           try {
-            String marc = getMarc(marcStatement, marcContext);
-
-            Optional<Record> potentialRecord = rawMarcToRecord(marc);
-
-            if (!potentialRecord.isPresent()) {
-              log.error("schema {}, mfhd id {}, marc {} unable to read record", schema, mfhdId, marc);
-              continue;
-            }
-
             HoldingRecord holdingRecord = new HoldingRecord(mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
             String holdingId = null, instanceId = null;
@@ -393,25 +351,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
             holdingRecord.setHoldingId(Objects.nonNull(holdingId) ? holdingId : UUID.randomUUID().toString());
             holdingRecord.setInstanceId(Objects.nonNull(instanceId) ? instanceId : holdingDefaults.getInstanceId());
-
-            Record record = potentialRecord.get();
-
-            DataField dataField = getDataField(factory, record);
-
-            record.addVariableField(dataField);
-
-            try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
-              MarcWriter streamWriter = new MarcStreamWriter(os, DEFAULT_CHARSET.name());
-              // use stream writer to recalculate leader
-              streamWriter.write(record);
-              streamWriter.close();
-            }
-
-            String marcJson = recordToJson(record);
-
-            JsonObject marcJsonObject = new JsonObject(marcJson);
-
-            holdingRecord.setParsedRecord(marcJsonObject);
 
             Date currentDate = new Date();
             holdingRecord.setCreatedByUserId(job.getUserId());
@@ -441,7 +380,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         holdingRecordWriter.close();
 
         pageStatement.close();
-        marcStatement.close();
 
         pageResultSet.close();
 
@@ -466,7 +404,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
-    threadConnections.setMarcConnection(getConnection(voyagerSettings));
     try {
       threadConnections.setHoldingConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
     } catch (SQLException e) {
@@ -476,59 +413,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     return threadConnections;
   }
 
-  private String getMarc(Statement statement, Map<String, Object> context) throws SQLException, IOException {
-    try (ResultSet resultSet = getResultSet(statement, context)) {
-      List<SequencedMarc> marcSequence = new ArrayList<>();
-      while (resultSet.next()) {
-        InputStream recordSegment = resultSet.getBinaryStream(RECORD_SEGMENT);
-        int seqnum = resultSet.getInt(SEQNUM);
-        marcSequence.add(new SequencedMarc(seqnum, recordSegment));
-      }
-      List<InputStream> asciiStreams = marcSequence.stream().sorted((sm1, sm2) -> sm1.getSeqnum().compareTo(sm2.getSeqnum())).map(sm -> sm.getRecordSegment()).collect(Collectors.toList());
-      SequenceInputStream sequenceInputStream = new SequenceInputStream(Collections.enumeration(asciiStreams));
-      return IOUtils.toString(sequenceInputStream, DEFAULT_CHARSET);
-    }
-  }
-
-  private Optional<Record> rawMarcToRecord(String rawMarc) throws IOException, MarcException {
-    StringBuilder marc = new StringBuilder(rawMarc);
-    // leader/22 must be 0 to avoid missing field terminator at end of directory
-    marc.setCharAt(22, '0');
-    try (InputStream in = new ByteArrayInputStream(marc.toString().getBytes(DEFAULT_CHARSET))) {
-      MarcStreamReader reader = new MarcStreamReader(in, DEFAULT_CHARSET.name());
-      if (reader.hasNext()) {
-        return Optional.of(reader.next());
-      }
-    }
-    return Optional.empty();
-  }
-
-  private String recordToJson(Record record) throws IOException {
-    try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
-      MarcJsonWriter writer = new MarcJsonWriter(out);
-      writer.write(record);
-      writer.close();
-      return out.toString();
-    }
-  }
-
-  private DataField getDataField(MarcFactory factory, Record marcRecord) {
-    VariableField variableField = getSingleFieldByIndicators(marcRecord.getVariableFields(T_999), F, F);
-    if (variableField != null && ((DataField) variableField).getIndicator1() == F && ((DataField) variableField).getIndicator2() == F) {
-      marcRecord.removeVariableField(variableField);
-      return (DataField) variableField;
-    } else {
-      return factory.newDataField(T_999, F, F);
-    }
-  }
-
-  private VariableField getSingleFieldByIndicators(List<VariableField> list, char ind1, char ind2) {
-    return list.stream().filter(f -> ((DataField) f).getIndicator1() == ind1 && ((DataField) f).getIndicator2() == ind2).findFirst().orElse(null);
-  }
-
   private class ThreadConnections {
     private Connection pageConnection;
-    private Connection marcConnection;
 
     private BaseConnection holdingConnection;
 
@@ -544,14 +430,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       this.pageConnection = pageConnection;
     }
 
-    public Connection getMarcConnection() {
-      return marcConnection;
-    }
-
-    public void setMarcConnection(Connection marcConnection) {
-      this.marcConnection = marcConnection;
-    }
-
     public BaseConnection getHoldingConnection() {
       return holdingConnection;
     }
@@ -563,30 +441,11 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     public void closeAll() {
       try {
         pageConnection.close();
-        marcConnection.close();
         holdingConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
         throw new RuntimeException(e);
       }
-    }
-  }
-
-  private class SequencedMarc {
-    private Integer seqnum;
-    private InputStream recordSegment;
-
-    public SequencedMarc(Integer seqnum, InputStream recordSegment) {
-      this.seqnum = seqnum;
-      this.recordSegment = recordSegment;
-    }
-
-    public Integer getSeqnum() {
-      return seqnum;
-    }
-
-    public InputStream getRecordSegment() {
-      return recordSegment;
     }
   }
 

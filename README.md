@@ -170,7 +170,7 @@ POST to http://localhost:9000/migrate/bibs
     {
       "schema": "AMDB",
       "partitions": 48,
-      "userId": "9b909401-96be-484e-8efe-158521718114",
+      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "instanceStatusId": "9634a5ab-9228-4703-baf2-4d12ebc77d56",
       "profile": {
         "name": "TAMU AMDB Bibligraphic Migration",
@@ -186,7 +186,7 @@ POST to http://localhost:9000/migrate/bibs
     {
       "schema": "MSDB",
       "partitions": 4,
-      "userId": "9b909401-96be-484e-8efe-158521718114",
+      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "instanceStatusId": "9634a5ab-9228-4703-baf2-4d12ebc77d56",
       "profile": {
         "name": "TAMU MSDB Bibligraphic Migration",
@@ -214,7 +214,6 @@ POST to http://localhost:9000/migrate/holdings
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.mfhd_master",
     "pageSql": "SELECT mfhd_id, suppress_in_opac, location_id, display_call_no, call_no_type, record_type, field_008 FROM ${SCHEMA}.mfhd_master ORDER BY mfhd_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
-    "marcSql": "SELECT mfhd_id, seqnum, record_segment FROM ${SCHEMA}.mfhd_data WHERE mfhd_id = ${MFHD_ID}",
     "locationSql": "SELECT DISTINCT location_id AS id, location_code AS code FROM ${SCHEMA}.location",
     "database": {
       "url": "",
@@ -228,12 +227,7 @@ POST to http://localhost:9000/migrate/holdings
     {
       "schema": "AMDB",
       "partitions": 48,
-      "userId": "9b909401-96be-484e-8efe-158521718114",
-      "profileInfo": {
-        "id": "043ab092-d5f9-454a-87e1-8d879404367c",
-        "name": "TAMU Holding Migration",
-        "dataType": "MARC"
-      },
+      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "useReferenceLinks": true,
       "references": {
         "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
@@ -243,12 +237,7 @@ POST to http://localhost:9000/migrate/holdings
     {
       "schema": "MSDB",
       "partitions": 4,
-      "userId": "9b909401-96be-484e-8efe-158521718114",
-      "profileInfo": {
-        "id": "043ab092-d5f9-454a-87e1-8d879404367c",
-        "name": "TAMU Holding Migration",
-        "dataType": "MARC"
-      },
+      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "useReferenceLinks": true,
       "references": {
         "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",

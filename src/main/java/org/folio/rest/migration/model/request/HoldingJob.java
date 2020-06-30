@@ -12,9 +12,6 @@ public class HoldingJob extends AbstractJob {
   @NotNull
   private String userId;
 
-  @NotNull
-  private ProfileInfo profileInfo;
-
   private boolean useReferenceLinks;
 
   private Map<String, String> references;
@@ -31,14 +28,6 @@ public class HoldingJob extends AbstractJob {
 
   public void setUserId(String userId) {
     this.userId = userId;
-  }
-
-  public ProfileInfo getProfileInfo() {
-    return profileInfo;
-  }
-
-  public void setProfileInfo(ProfileInfo profileInfo) {
-    this.profileInfo = profileInfo;
   }
 
   public boolean isUseReferenceLinks() {
