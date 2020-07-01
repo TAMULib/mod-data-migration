@@ -310,6 +310,72 @@ POST to http://localhost:9000/migrate/holdings
 }
 ```
 
+## MARC Vendor Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/vendors
+
+```
+{
+  "extraction": {
+    "countSql": "SELECT COUNT(*) FROM ( SELECT DISTINCT v.vendor_id AS vendor_id, v.vendor_code AS vendor_code, v.vendor_name AS vendor_name, v.federal_tax_id AS federal_tax_id, v.institution_id AS institution_id, v.default_currency AS default_currency, v.claim_interval AS claim_interval, v.claim_count AS claim_count, v.cancel_interval AS cancel_interval, v.ship_via AS ship_via, v.create_date AS create_date, v.create_opid AS create_opid, v.update_date AS update_date, v.update_opid AS update_opid, v.vendor_type AS vendor_type FROM ${SCHEMA}.vendor v, ${SCHEMA}.invoice inv WHERE inv.vendor_id = v.vendor_id AND inv.invoice_date > SYSDATE - 1825 UNION SELECT DISTINCT v.vendor_id AS vendor_id, v.vendor_code AS vendor_code, v.vendor_name AS vendor_name, v.federal_tax_id AS federal_tax_id, v.institution_id AS institution_id, v.default_currency AS default_currency, v.claim_interval AS claim_interval, v.claim_count AS claim_count, v.cancel_interval AS cancel_interval, v.ship_via AS ship_via, v.create_date AS create_date, v.create_opid AS create_opid, v.update_date AS update_date, v.update_opid AS update_opid, v.vendor_type AS vendor_type FROM ${SCHEMA}.purchase_order po, ${SCHEMA}.location shipto, ${SCHEMA}.po_status stat, ${SCHEMA}.po_type, ${SCHEMA}.vendor v WHERE po.po_type = po_type.po_type AND po.ship_location = shipto.location_id AND shipto.location_code IN ( ${LOCATIONS} ) AND po.po_status = stat.po_status AND po_status_desc IN ( ${STATUSES} ) AND po_type_desc IN ( ${TYPES} ) AND po.vendor_id = v.vendor_id ORDER BY vendor_id )",
+    "pageSql": "SELECT DISTINCT v.vendor_id AS vendor_id, v.vendor_code AS vendor_code, v.vendor_name AS vendor_name, v.federal_tax_id AS federal_tax_id, v.institution_id AS institution_id, v.default_currency AS default_currency, v.claim_interval AS claim_interval, v.claim_count AS claim_count, v.cancel_interval AS cancel_interval, v.ship_via AS ship_via, v.create_date AS create_date, v.create_opid AS create_opid, v.update_date AS update_date, v.update_opid AS update_opid, v.vendor_type AS vendor_type FROM ${SCHEMA}.vendor v, ${SCHEMA}.invoice inv WHERE inv.vendor_id = v.vendor_id AND inv.invoice_date > SYSDATE - 1825 UNION SELECT DISTINCT v.vendor_id AS vendor_id, v.vendor_code AS vendor_code, v.vendor_name AS vendor_name, v.federal_tax_id AS federal_tax_id, v.institution_id AS institution_id, v.default_currency AS default_currency, v.claim_interval AS claim_interval, v.claim_count AS claim_count, v.cancel_interval AS cancel_interval, v.ship_via AS ship_via, v.create_date AS create_date, v.create_opid AS create_opid, v.update_date AS update_date, v.update_opid AS update_opid, v.vendor_type AS vendor_type FROM ${SCHEMA}.purchase_order po, ${SCHEMA}.location shipto, ${SCHEMA}.po_status stat, ${SCHEMA}.po_type, ${SCHEMA}.vendor v WHERE po.po_type = po_type.po_type AND po.ship_location = shipto.location_id AND shipto.location_code IN ( ${LOCATIONS} ) AND po.po_status = stat.po_status AND po_status_desc IN ( ${STATUSES} ) AND po_type_desc IN ( ${TYPES} ) AND po.vendor_id = v.vendor_id ORDER BY vendor_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "accountSql": "SELECT account_number, account_name, deposit, account_status, note FROM ${SCHEMA}.vendor_account va, account_note an WHERE va.vendor_id = ${VENDOR_ID} AND va.account_id = an.account_id(+) ORDER BY va.account_id",
+    "addressSql": "SELECT address_id, order_address, payment_address, return_address, claim_address, email_address, other_address, contact_name, contact_title, nvl2(contact_title, contact_title ||' '||address_line1,address_line1) AS address_line1_full, address_line1, TRIM(address_line2) ||' '|| TRIM(address_line3) ||' '|| TRIM(address_line4) ||' '|| TRIM(address_line5) AS address_line2, city, state_province, zip_postal, country FROM ${SCHEMA}.vendor_address WHERE vendor_id = ${VENDOR_ID} ORDER BY address_id",
+    "aliasSql": "SELECT alt_vendor_name FROM ${SCHEMA}.alt_vendor_names WHERE vendor_id = ${VENDOR_ID} ORDER BY vendor_id",
+    "noteSql": "SELECT note FROM ${SCHEMA}.vendor_note vn WHERE vn.vendor_id = ${VENDOR_ID}",
+    "phoneSql": "SELECT phone_number, phone_type FROM ${SCHEMA}.vendor_phone WHERE address_id = ${ADDRESS_ID}",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": ""
+    }
+  },
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 1,
+      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "references": {
+        "vendorTypeId": "08c7dd18-dbaf-11e9-8a34-2a2ae2dbcce4"
+      },
+      "locations": "'SR', 'SRDB', 'SRDBProcar', 'SRDIR', 'SRDIRM', 'SRDIRMP', 'SRDIRN', 'SRDIRO', 'SRDIRP', 'SRGFT', 'SRMSV', 'SRMSVM', 'SRMSVMO', 'SRMSVO', 'SRMSVP', 'SRMSVPM', 'SRMSVW', 'SRMSV WM', 'SRProcard', 'SRSOV', 'SRSOVM', 'SRVSVO'",
+      "statuses": "'Approved/Sent', 'Pending'",
+      "types": "'Approval', 'Firm Order', 'Gift', 'Exchange', 'Depository', 'Continuation'"
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 1,
+      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "references": {
+        "vendorTypeId": "b427aa0a-96f2-4338-8b3c-2ddcdca6cfe4"
+      },
+      "locations": "'AcqCleanUp'",
+      "statuses": "'Approved/Sent', 'Pending', 'Received Complete'",
+      "types": "'Continuation'"
+    }
+  ],
+  "maps": {
+    "categories": {
+      "claim": "d931bdc4-ef47-4871-98d7-2c48f5ff4fe0",
+      "order": "9718aa38-8fb4-49e4-910b-bbdc2b1aa579",
+      "other": "04f39c67-b212-4fe7-87f0-0875c8995d21",
+      "payment": "ac6528cc-8ba0-4678-9b08-627ca2314ffd",
+      "return": "544459af-fc5e-4e64-9b40-acb84ac4d3aa"
+    }
+  },
+  "defaults": {
+    "country": "USA",
+    "language": "en",
+    "paymentMethod": "EFT",
+    "status": "active"
+  }
+}
+```
+
 ## Migration Notes
 
 The `parallelism` property designates the number of processes executed in parallel.
