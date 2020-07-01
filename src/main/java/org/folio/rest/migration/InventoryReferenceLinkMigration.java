@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -39,8 +38,8 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
   // (id,externalreference,folioreference,type_id)
   private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,externalreference,folioreference,type_id) FROM STDIN";
 
-  private static Map<String, Set<String>> HOLDING_EXTERNAL_REFERENCES = new ConcurrentHashMap<>();
-  private static Map<String, Set<String>> ITEM_EXTERNAL_REFERENCES = new ConcurrentHashMap<>();
+  private static Map<String, Set<String>> HOLDING_EXTERNAL_REFERENCES = new HashMap<>();
+  private static Map<String, Set<String>> ITEM_EXTERNAL_REFERENCES = new HashMap<>();
 
   private InventoryReferenceLinkMigration(InventoryReferenceLinkContext context, String tenant) {
     super(context, tenant);
@@ -60,6 +59,8 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
       @Override
       public void complete() {
         postActions(migrationService.referenceLinkSettings, context.getPostActions());
+        HOLDING_EXTERNAL_REFERENCES.clear();
+        ITEM_EXTERNAL_REFERENCES.clear();
       }
 
     });
@@ -187,14 +188,9 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
               String holdingRLId = UUID.randomUUID().toString();
               String holdingFolioReference = UUID.randomUUID().toString();
 
-              synchronized(this) {
-                Set<String> holdingIds = HOLDING_EXTERNAL_REFERENCES.get(schema);
-                if (!holdingIds.contains(holdingId)) {
-                  referenceLinkWriter.println(String.join("\t", holdingRLId, holdingId, holdingFolioReference, holdingTypeId));
-                  holdingIds.add(holdingId);
-                }
+              if (!holdingAlreadyProcessed(schema, holdingId)) {
+                referenceLinkWriter.println(String.join("\t", holdingRLId, holdingId, holdingFolioReference, holdingTypeId));
               }
-
               referenceLinkWriter.println(String.join("\t", UUID.randomUUID().toString(), holdingRLId, instanceRLId, holdingToBibTypeId));
 
               itemContext.put(MFHD_ID, holdingId);
@@ -206,14 +202,9 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
                   String itemRLId = UUID.randomUUID().toString();
                   String itemFolioReference = UUID.randomUUID().toString();
 
-                  synchronized(this) {
-                    Set<String> itemIds = ITEM_EXTERNAL_REFERENCES.get(schema);
-                    if (!itemIds.contains(itemId)) {
-                      referenceLinkWriter.println(String.join("\t", itemRLId, itemId, itemFolioReference, itemTypeId));
-                      itemIds.add(itemId);
-                    }
+                  if (!itemAlreadyProcessed(schema, itemId)) {
+                    referenceLinkWriter.println(String.join("\t", itemRLId, itemId, itemFolioReference, itemTypeId));
                   }
-
                   referenceLinkWriter.println(String.join("\t", UUID.randomUUID().toString(), itemRLId, holdingRLId, itemToHoldingTypeId));
                 }
               }
@@ -240,6 +231,24 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
       return this;
     }
 
+  }
+
+  private synchronized Boolean holdingAlreadyProcessed(String schema, String holdingId) {
+    Set<String> holdingIds = HOLDING_EXTERNAL_REFERENCES.get(schema);
+    boolean alreadyProcessed = holdingIds.contains(holdingId);
+    if (!alreadyProcessed) {
+      holdingIds.add(holdingId);
+    }
+    return alreadyProcessed;
+  }
+
+  private synchronized Boolean itemAlreadyProcessed(String schema, String itemId) {
+    Set<String> itemIds = ITEM_EXTERNAL_REFERENCES.get(schema);
+    boolean alreadyProcessed = itemIds.contains(itemId);
+    if (!alreadyProcessed) {
+      itemIds.add(itemId);
+    }
+    return alreadyProcessed;
   }
 
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database referenceLinkSettings) {
