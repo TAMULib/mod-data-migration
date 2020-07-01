@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -306,16 +305,21 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
             BibRecord bibRecord = new BibRecord(bibId, job.getInstanceStatusId(), suppressInOpac, matchedCodes);
 
-            String sourceRecordId, instanceId;
-            if (job.isUseReferenceLinks()) {
-              Optional<ReferenceLink> sourceRecordRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(sourceRecordRLTypeId, bibId);
-              sourceRecordId = sourceRecordRL.isPresent() ? sourceRecordRL.get().getFolioReference() : UUID.randomUUID().toString();
-              Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, bibId);
-              instanceId = instanceRL.isPresent() ? instanceRL.get().getFolioReference() : UUID.randomUUID().toString();
-            } else {
-              sourceRecordId = UUID.randomUUID().toString();
-              instanceId = UUID.randomUUID().toString();
+            Optional<ReferenceLink> sourceRecordRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(sourceRecordRLTypeId, bibId);
+            if (!sourceRecordRL.isPresent()) {
+              log.error("{} no source record id found for bib id {}", schema, bibId);
+              continue;
             }
+
+            Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, bibId);
+            if (!instanceRL.isPresent()) {
+              log.error("{} no instance id found for bib id {}", schema, bibId);
+              continue;
+            }
+
+            String sourceRecordId = sourceRecordRL.get().getFolioReference();
+
+            String instanceId = instanceRL.get().getFolioReference();
 
             Record record = potentialRecord.get();
 

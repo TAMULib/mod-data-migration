@@ -18,8 +18,6 @@ public class BibJob extends AbstractJob {
   @NotNull
   private JobProfile profile;
 
-  private boolean useReferenceLinks;
-
   private Map<String, String> references;
 
   public BibJob() {
@@ -50,14 +48,6 @@ public class BibJob extends AbstractJob {
 
   public void setProfile(JobProfile profile) {
     this.profile = profile;
-  }
-
-  public boolean isUseReferenceLinks() {
-    return useReferenceLinks;
-  }
-
-  public void setUseReferenceLinks(boolean useReferenceLinks) {
-    this.useReferenceLinks = useReferenceLinks;
   }
 
   public Map<String, String> getReferences() {
