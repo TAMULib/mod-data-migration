@@ -6,22 +6,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.OffsetDateTime;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.UserRecord;
-import org.folio.rest.migration.model.request.HoldingJob;
 import org.folio.rest.migration.model.request.UserContext;
 import org.folio.rest.migration.model.request.UserJob;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
+import org.folio.rest.model.ReferenceLink;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
 
@@ -34,8 +35,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
   private static final String MIDDLE_NAME = "MIDDLE_NAME";
   private static final String ACTIVE_DATE = "ACTIVE_DATE";
   private static final String EXPIRE_DATE = "EXPIRE_DATE";
-  private static final String PURGE_DATE = "PURGE_DATE";
   private static final String SMS_NUMBER = "SMS_NUMBER";
+  private static final String CURRENT_CHARGES = "CURRENT_CHARGES";
 
   private static final String USER_REFERENCE_ID = "userTypeId";
   private static final String USER_EXTERNAL_REFERENCE_ID = "userExternalTypeId";
@@ -137,6 +138,9 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
 
+      String userIdRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
+      String userExternalIdRLTypeId = job.getReferences().get(USER_EXTERNAL_REFERENCE_ID);
+
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
       log.info("starting {} {}", schema, index);
@@ -151,19 +155,31 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
         while (pageResultSet.next()) {
 
-          // int patronId = pageResultSet.getInt(PATRON_ID);
-          // String externalSystemId = pageResultSet.getString(EXTERNAL_SYSTEM_ID);
-          // String lastName = pageResultSet.getString(LAST_NAME);
-          // String firstName = pageResultSet.getString(FIRST_NAME);
-          // String middleName = pageResultSet.getString(MIDDLE_NAME);
-          // Date activeDate = pageResultSet.getDate(ACTIVE_DATE);
-          // Date expireDate = pageResultSet.getDate(EXPIRE_DATE);
-          // Date purgeDate = pageResultSet.getDate(PURGE_DATE);
-          // String smsNumber = pageResultSet.getString(SMS_NUMBER);
+          String patronId = pageResultSet.getString(PATRON_ID);
+          String externalSystemId = pageResultSet.getString(EXTERNAL_SYSTEM_ID);
+          String lastName = pageResultSet.getString(LAST_NAME);
+          String firstName = pageResultSet.getString(FIRST_NAME);
+          String middleName = pageResultSet.getString(MIDDLE_NAME);
+          String activeDate = pageResultSet.getString(ACTIVE_DATE);
+          String expireDate = pageResultSet.getString(EXPIRE_DATE);
+          String smsNumber = pageResultSet.getString(SMS_NUMBER);
+          String currentCharges = pageResultSet.getString(CURRENT_CHARGES);
 
-          // System.out.println(String.join(",", String.valueOf(patronId), externalSystemId, lastName, firstName, middleName, activeDate.toString(), expireDate.toString(), purgeDate.toString(), smsNumber));
+          System.out.println(String.join(",", String.valueOf(patronId), externalSystemId, lastName, firstName, middleName, activeDate != null ? activeDate.toString() : null, expireDate != null ? expireDate.toString() : null, smsNumber, currentCharges));
 
-          String userId = null;
+          Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
+          if (!userRL.isPresent()) {
+            log.error("{} no user id found for patron id {}", schema, patronId);
+            continue;
+          }
+
+          Optional<ReferenceLink> userExternalRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userExternalIdRLTypeId, patronId);
+          if (!userExternalRL.isPresent()) {
+            log.error("{} no user external id found for external system id {}", schema, externalSystemId);
+            continue;
+          }
+
+          String userId = userRL.get().getFolioReference().toString();
           String patronGroup = null;
 
           UserRecord userRecord = new UserRecord(userId);
@@ -171,14 +187,16 @@ public class UserMigration extends AbstractMigration<UserContext> {
           String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
           String createdByUserId = job.getUserId();
 
-          // try {
-          //   String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userRecord.toUser())));
+          try {
+            String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userRecord.toUser())));
 
-          //   // TODO: validate rows
-          //   userRecordWriter.println(String.join("\t", userId, userUtf8Json, createdAt, createdByUserId, patronGroup));
-          // } catch (JsonProcessingException e) {
-          //   log.error("{} user id {} error serializing user", schema, userId);
-          // }
+            System.out.println("\n" + userUtf8Json + "\n");
+
+            // TODO: validate rows
+            // userRecordWriter.println(String.join("\t", userId, userUtf8Json, createdAt, createdByUserId, patronGroup));
+          } catch (JsonProcessingException e) {
+            log.error("{} user id {} error serializing user", schema, userId);
+          }
         }
 
         userRecordWriter.close();

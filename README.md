@@ -106,7 +106,7 @@ POST to http://localhost:9000/migrate/users
 {
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.patron WHERE last_name IS NOT NULL",
-    "pageSql": "SELECT patron_id, Nvl2(institution_id, Regexp_replace(institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\\1\\2\\3'), '${SCHEMA}_' || patron_id) AS external_system_id, last_name, first_name, middle_name, Nvl2(expire_date, expire_date, purge_date) AS active_date, Nvl2(expire_date, expire_date, purge_date) AS expire_date, purge_date, sms_number FROM ${SCHEMA}.patron WHERE last_name IS NOT NULL OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "pageSql": "SELECT patron_id, nvl2(institution_id, regexp_replace(institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\\1\\2\\3'), '${SCHEMA}_' || patron_id) AS external_system_id, last_name, first_name, middle_name, nvl2(expire_date, to_char(expire_date,'YYYYMMDD'), to_char(purge_date,'YYYYMMDD')) AS active_date, nvl2(expire_date, to_char(expire_date,'YYYY-MM-DD'), to_char(purge_date,'YYYY-MM-DD')) AS expire_date, sms_number, current_charges FROM ${SCHEMA}.patron WHERE last_name IS NOT NULL ORDER BY patron_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "database": {
       "url": "",
       "username": "",
