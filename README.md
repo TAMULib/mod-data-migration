@@ -96,6 +96,48 @@ POST to http://localhost:9000/migrate/user-reference-links
 }
 ```
 
+## User Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/users
+
+```
+{
+  "extraction": {
+    "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.patron WHERE last_name IS NOT NULL",
+    "pageSql": "SELECT patron_id, Nvl2(institution_id, Regexp_replace(institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\\1\\2\\3'), '${SCHEMA}_' || patron_id) AS external_system_id, last_name, first_name, middle_name, Nvl2(expire_date, expire_date, purge_date) AS active_date, Nvl2(expire_date, expire_date, purge_date) AS expire_date, purge_date, sms_number FROM ${SCHEMA}.patron WHERE last_name IS NOT NULL OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": ""
+    }
+  },
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 11,
+      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "references": {
+        "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
+        "userExternalTypeId": "0ed6f994-8dbd-4827-94c0-905504169c90"
+      }
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 1,
+      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "references": {
+        "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
+        "userExternalTypeId": "426ce32f-388c-4edf-9c79-d6b8348148a0"
+      }
+    }
+  ]
+}
+```
+
 ## Inventory Reference Link Migration
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
