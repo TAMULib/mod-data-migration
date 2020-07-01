@@ -3,12 +3,14 @@ package org.folio.rest.migration.controller;
 import org.folio.rest.migration.BibMigration;
 import org.folio.rest.migration.HoldingMigration;
 import org.folio.rest.migration.InventoryReferenceLinkMigration;
+import org.folio.rest.migration.UserMigration;
 import org.folio.rest.migration.UserReferenceLinkMigration;
 import org.folio.rest.migration.VendorReferenceLinkMigration;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceLinkTypes;
 import org.folio.rest.migration.model.request.BibContext;
 import org.folio.rest.migration.model.request.HoldingContext;
 import org.folio.rest.migration.model.request.InventoryReferenceLinkContext;
+import org.folio.rest.migration.model.request.UserContext;
 import org.folio.rest.migration.model.request.UserReferenceLinkContext;
 import org.folio.rest.migration.model.request.VendorReferenceLinkContext;
 import org.folio.rest.migration.service.MigrationService;
@@ -30,6 +32,11 @@ public class MigrationController {
   @CreateReferenceLinkTypes(path = "classpath:/referenceLinkTypes/users/*.json")
   public void userReferenceLinks(@RequestBody UserReferenceLinkContext context, @TenantHeader String tenant) {
     migrationService.migrate(UserReferenceLinkMigration.with(context, tenant));
+  }
+
+  @PostMapping("/users")
+  public void users(@RequestBody UserContext context, @TenantHeader String tenant) {
+    migrationService.migrate(UserMigration.with(context, tenant));
   }
 
   @PostMapping("/vendor-reference-links")
