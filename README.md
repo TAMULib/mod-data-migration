@@ -177,7 +177,6 @@ POST to http://localhost:9000/migrate/bibs
         "description": "Voyager migration profile",
         "dataType": "MARC"
       },
-      "useReferenceLinks": true,
       "references": {
         "sourceRecordTypeId": "96017110-47c5-4d55-8324-7dab1771749b",
         "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672"
@@ -193,7 +192,6 @@ POST to http://localhost:9000/migrate/bibs
         "description": "Voyager migration profile",
         "dataType": "MARC"
       },
-      "useReferenceLinks": true,
       "references": {
         "sourceRecordTypeId": "b9f633b3-22e4-4bad-8785-da09d9eaa6c8",
         "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8"

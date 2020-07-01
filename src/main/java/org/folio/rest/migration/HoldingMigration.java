@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
@@ -302,7 +301,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             }
 
             if (Objects.isNull(holdingId)) {
-              log.error("{} no folio reference found for mfhd id {}", schema, mfhdId);
+              log.error("{} no holdings record id found for mfhd id {}", schema, mfhdId);
               continue;
             }
 
