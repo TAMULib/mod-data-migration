@@ -22,7 +22,6 @@ public class BibJob extends AbstractJob {
 
   public BibJob() {
     super();
-    useReferenceLinks = false;
     references = new HashMap<String, String>();
   }
 
