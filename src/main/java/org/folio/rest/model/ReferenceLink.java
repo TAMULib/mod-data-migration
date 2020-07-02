@@ -20,8 +20,7 @@ import org.folio.spring.domain.model.AbstractBaseEntity;
   },
   indexes = {
     @Index(columnList = "type_id,external_reference"),
-    @Index(columnList = "type_id,id,external_reference"),
-    @Index(columnList = "type_id,folio_reference")
+    @Index(columnList = "folio_reference")
   }
 )
 //@formatter:on
