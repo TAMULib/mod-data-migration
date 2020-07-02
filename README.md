@@ -124,6 +124,49 @@ POST to http://localhost:9000/migrate/bibs
 }
 ```
 
+## Item Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/items
+
+```
+{
+  "extraction": {
+    "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.item",
+    "pageSql": "SELECT item_id, item_type_id, perm_location, pieces, temp_location, temp_item_type_id FROM ${SCHEMA}.item ORDER BY item_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "mfhdSql": "SELECT chron, item_enum FROM ${SCHEMA}.MFHD_ITEM WHERE item_id = ${ITEM_ID}",
+    "barcodeSql": "SELECT item_barcode FROM ${SCHEMA}.item_barcode WHERE item_id = ${ITEM_ID}",
+    "itemTypeSql": "SELECT item_type_id, item_type_code FROM ${SCHEMA}.item_type",
+    "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": ""
+    }
+  },
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 48,
+      "userId": "9b909401-96be-484e-8efe-158521718114",
+      "materialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25",
+      "itemRLTypeId": ""
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 4,
+      "userId": "9b909401-96be-484e-8efe-158521718114",
+      "materialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25",
+      "itemRLTypeId": ""
+    }
+  ]
+}
+```
+
+
 ## Migration Notes
 
 The `parallelism` property designates the number of processes executed in parallel.

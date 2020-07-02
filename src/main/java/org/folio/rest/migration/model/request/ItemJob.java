@@ -13,8 +13,6 @@ public class ItemJob extends AbstractJob {
     private String materialTypeId;
 
     @NotNull
-    private ProfileInfo profileInfo;
-
     private String itemRLTypeId;
 
     public String getUserId() {
@@ -31,14 +29,6 @@ public class ItemJob extends AbstractJob {
     
     public void setMaterialTypeId(String materialTypeId) {
         this.materialTypeId = materialTypeId;
-    }
-
-    public ProfileInfo getProfileInfo() {
-        return profileInfo;
-    }
-
-    public void setProfileInfo(ProfileInfo profileInfo) {
-        this.profileInfo = profileInfo;
     }
 
     public String getItemRLTypeId() {

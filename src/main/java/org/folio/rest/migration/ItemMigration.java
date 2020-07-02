@@ -24,8 +24,6 @@ import org.folio.rest.jaxrs.model.Loantypes;
 import org.folio.rest.jaxrs.model.Location;
 import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.jaxrs.model.Status.Name;
-import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
-import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto.SourceType;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.Item;
 import org.folio.rest.migration.model.request.ItemContext;
@@ -123,6 +121,10 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         return CompletableFuture.completedFuture(true);
     }
 
+    public static ItemMigration with(ItemContext context, String tenant) {
+        return new ItemMigration(context, tenant);
+    }
+
     public class ItemPartitionTask implements PartitionTask<ItemContext> {
 
         private final MigrationService migrationService;
@@ -154,11 +156,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             int index = this.getIndex();
 
             String token = (String) partitionContext.get(TOKEN);
-
-            InitJobExecutionsRqDto jobExecutionRqDto = new InitJobExecutionsRqDto();
-            jobExecutionRqDto.setSourceType(SourceType.ONLINE);
-            jobExecutionRqDto.setJobProfileInfo(job.getProfileInfo());
-            jobExecutionRqDto.setUserId(job.getUserId());
 
             Database voyagerSettings = context.getExtraction().getDatabase();
 
