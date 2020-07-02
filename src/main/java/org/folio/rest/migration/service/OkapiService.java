@@ -15,6 +15,8 @@ import org.folio.rest.jaxrs.model.Identifiertypes;
 import org.folio.rest.jaxrs.model.Instanceformats;
 import org.folio.rest.jaxrs.model.Instancenotetypes;
 import org.folio.rest.jaxrs.model.Instancetypes;
+import org.folio.rest.jaxrs.model.Loantypes;
+import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRsDto;
 import org.folio.rest.jaxrs.model.dto.JobExecution;
@@ -103,6 +105,40 @@ public class OkapiService {
       return response.getBody();
     }
     throw new RuntimeException("Failed to fetch hrid settings: " + response.getStatusCodeValue());
+  }
+
+  public Loantypes fetchLoanTypes(String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpHeaders headers = new HttpHeaders();
+    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    headers.set("X-Okapi-Tenant", tenant);
+    headers.set("X-Okapi-Token", token);
+    HttpEntity<?> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + "/loan-types";
+    ResponseEntity<Loantypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Loantypes.class);
+    log.debug("fetch loan types: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to fetch loan types: " + response.getStatusCodeValue());
+  }
+
+  public Locations fetchLocations(String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpHeaders headers = new HttpHeaders();
+    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    headers.set("X-Okapi-Tenant", tenant);
+    headers.set("X-Okapi-Token", token);
+    HttpEntity<?> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + "/locations";
+    ResponseEntity<Locations> response = restTemplate.exchange(url, HttpMethod.GET, entity, Locations.class);
+    log.debug("fetch locations: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to fetch locations: " + response.getStatusCodeValue());
   }
 
   public InitJobExecutionsRsDto createJobExecution(String tenant, String token, InitJobExecutionsRqDto jobExecutionDto) {
