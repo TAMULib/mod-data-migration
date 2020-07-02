@@ -62,6 +62,7 @@ import org.marc4j.marc.Record;
 import org.marc4j.marc.VariableField;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
+import org.springframework.cache.annotation.Cacheable;
 
 import io.vertx.core.json.JsonObject;
 
@@ -74,14 +75,13 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
   private static final String BIB_ID = "BIB_ID";
   private static final String SUPPRESS_IN_OPAC = "SUPPRESS_IN_OPAC";
-
-  private static final String SOURCE_RECORD_REFERENCE_ID = "sourceRecordTypeId";
-  private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
+  private static final String OPERATOR_ID = "OPERATOR_ID";
 
   private static final String RECORD_SEGMENT = "RECORD_SEGMENT";
   private static final String SEQNUM = "SEQNUM";
 
-  private static final String OPERATOR_ID = "OPERATOR_ID";
+  private static final String SOURCE_RECORD_REFERENCE_ID = "sourceRecordTypeId";
+  private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
 
   private static final String T_999 = "999";
 
@@ -247,10 +247,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
       marcContext.put(SQL, context.getExtraction().getMarcSql());
       marcContext.put(SCHEMA, schema);
 
-      Map<String, Object> bibHistoryContext = new HashMap<>();
-      bibHistoryContext.put(SQL, context.getExtraction().getBibHistorySql());
-      bibHistoryContext.put(SCHEMA, schema);
-
       String sourceRecordRLTypeId = job.getReferences().get(SOURCE_RECORD_REFERENCE_ID);
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
 
@@ -275,7 +271,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement marcStatement = threadConnections.getMarcConnection().createStatement();
-        Statement bibHistoryStatement = threadConnections.getBibHistoryConnection().createStatement();
 
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
 
@@ -283,9 +278,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
           String bibId = pageResultSet.getString(BIB_ID);
           Boolean suppressInOpac = pageResultSet.getBoolean(SUPPRESS_IN_OPAC);
+          String operatorId = pageResultSet.getString(OPERATOR_ID);
 
           marcContext.put(BIB_ID, bibId);
-          bibHistoryContext.put(BIB_ID, bibId);
 
           try {
             String marc = getMarc(marcStatement, marcContext);
@@ -297,10 +292,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
               continue;
             }
 
-            Optional<String> operatorId = getOperatorId(bibHistoryStatement, bibHistoryContext);
-
-            Set<String> matchedCodes = operatorId.isPresent()
-              ? getMatchingStatisticalCodes(operatorId.get(), statisticalCodes)
+            Set<String> matchedCodes = Objects.nonNull(operatorId)
+              ? getMatchingStatisticalCodes(operatorId, statisticalCodes)
               : new HashSet<>();
 
             BibRecord bibRecord = new BibRecord(bibId, job.getInstanceStatusId(), suppressInOpac, matchedCodes);
@@ -430,7 +423,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     threadConnections.setMarcConnection(getConnection(voyagerSettings));
-    threadConnections.setBibHistoryConnection(getConnection(voyagerSettings));
     try {
       threadConnections.setRawRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
       threadConnections.setParsedRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
@@ -460,17 +452,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
     }
   }
 
-  private Optional<String> getOperatorId(Statement statement, Map<String, Object> context) throws SQLException {
-    try (ResultSet resultSet = getResultSet(statement, context)) {
-      Optional<String> operatorId = Optional.empty();
-      while (resultSet.next()) {
-        operatorId = Optional.ofNullable(resultSet.getString(OPERATOR_ID));
-        break;
-      }
-      return operatorId;
-    }
-  }
-
+  @Cacheable(key = "operatorId")
   private Set<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalCodes) {
     return statisticalCodes.getStatisticalCodes().stream()
       .map(sc -> sc.getCode())
@@ -517,7 +499,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private class ThreadConnections {
     private Connection pageConnection;
     private Connection marcConnection;
-    private Connection bibHistoryConnection;
 
     private BaseConnection rawRecordConnection;
     private BaseConnection parsedRecordConnection;
@@ -542,14 +523,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     public void setMarcConnection(Connection marcConnection) {
       this.marcConnection = marcConnection;
-    }
-
-    public Connection getBibHistoryConnection() {
-      return bibHistoryConnection;
-    }
-
-    public void setBibHistoryConnection(Connection bibHistoryConnection) {
-      this.bibHistoryConnection = bibHistoryConnection;
     }
 
     public BaseConnection getRawRecordConnection() {
@@ -588,7 +561,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
       try {
         pageConnection.close();
         marcConnection.close();
-        bibHistoryConnection.close();
         rawRecordConnection.close();
         parsedRecordConnection.close();
         recordConnection.close();

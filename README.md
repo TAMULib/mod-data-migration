@@ -155,9 +155,8 @@ POST to http://localhost:9000/migrate/bibs
 {
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.bib_master",
-    "pageSql": "SELECT bib_id, suppress_in_opac FROM ${SCHEMA}.bib_master ORDER BY bib_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "pageSql": "WITH bibs AS (SELECT bib_id, suppress_in_opac FROM ${SCHEMA}.bib_master ORDER BY bib_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY), operators AS (SELECT bib_id, operator_id FROM ${SCHEMA}.bib_history WHERE action_type_id = 1 AND bib_id IN (SELECT bib_id FROM bibs)) SELECT b.bib_id, b.suppress_in_opac, o.operator_id FROM bibs b LEFT JOIN operators o ON b.bib_id = o.bib_id",
     "marcSql": "SELECT bib_id, seqnum, record_segment FROM ${SCHEMA}.bib_data WHERE bib_id = ${BIB_ID}",
-    "bibHistorySql": "SELECT operator_id FROM ${SCHEMA}.bib_history WHERE action_type_id = 1 AND bib_id = ${BIB_ID}",
     "database": {
       "url": "",
       "username": "",
