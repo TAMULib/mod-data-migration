@@ -28,8 +28,8 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
   private static final String USER_REFERENCE_ID = "userTypeId";
   private static final String USER_EXTERNAL_REFERENCE_ID = "userExternalTypeId";
 
-  // (id,externalreference,folioreference,type_id)
-  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,externalreference,folioreference,type_id) FROM STDIN";
+  // (id,external_reference,folioreference,type_id)
+  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,external_reference,folio_reference,type_id) FROM STDIN";
 
   private UserReferenceLinkMigration(UserReferenceLinkContext context, String tenant) {
     super(context, tenant);
@@ -131,7 +131,8 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
 
       try {
 
-        PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant));
+        PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(),
+            String.format(REFERENCE_LINK_COPY_SQL, tenant));
         PrintWriter referenceLinkWriter = new PrintWriter(referenceLinkOutput, true);
 
         Statement pageStatement = threadConnections.getPageConnection().createStatement();

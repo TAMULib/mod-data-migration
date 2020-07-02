@@ -26,8 +26,8 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
 
   private static final String VENDOR_REFERENCE_ID = "vendorTypeId";
 
-  // (id,externalreference,folioreference,type_id)
-  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,externalreference,folioreference,type_id) FROM STDIN";
+  // (id,external_reference,folioreference,type_id)
+  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,external_reference,folio_reference,type_id) FROM STDIN";
 
   private VendorReferenceLinkMigration(VendorReferenceLinkContext context, String tenant) {
     super(context, tenant);
@@ -128,7 +128,8 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
       log.info("starting {} {}", schema, index);
 
       try {
-        PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant));
+        PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(),
+            String.format(REFERENCE_LINK_COPY_SQL, tenant));
         PrintWriter referenceLinkWriter = new PrintWriter(referenceLinkOutput, true);
 
         Statement pageStatement = threadConnections.getPageConnection().createStatement();

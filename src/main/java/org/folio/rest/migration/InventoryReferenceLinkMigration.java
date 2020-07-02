@@ -35,8 +35,8 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
   private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
   private static final String ITEM_TO_HOLDING_REFERENCE_ID = "itemToHoldingTypeId";
 
-  // (id,externalreference,folioreference,type_id)
-  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,externalreference,folioreference,type_id) FROM STDIN";
+  // (id,external_reference,folio_reference,type_id)
+  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,external_reference,folio_reference,type_id) FROM STDIN";
 
   private static Map<String, Set<String>> HOLDING_EXTERNAL_REFERENCES = new HashMap<>();
   private static Map<String, Set<String>> ITEM_EXTERNAL_REFERENCES = new HashMap<>();
@@ -159,7 +159,8 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
 
       try {
 
-        PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant));
+        PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(),
+            String.format(REFERENCE_LINK_COPY_SQL, tenant));
         PrintWriter referenceLinkWriter = new PrintWriter(referenceLinkOutput, true);
 
         Statement pageStatement = threadConnections.getPageConnection().createStatement();

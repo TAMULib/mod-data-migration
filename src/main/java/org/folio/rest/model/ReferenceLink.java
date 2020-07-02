@@ -16,27 +16,28 @@ import org.folio.spring.domain.model.AbstractBaseEntity;
 @Table(
   name = "reference_links",
   uniqueConstraints = {
-    @UniqueConstraint(columnNames = { "type_id", "externalreference" })
+    @UniqueConstraint(columnNames = { "type_id", "external_reference" })
   },
   indexes = {
-    @Index(columnList = "type_id,externalreference"),
-    @Index(columnList = "type_id,folioreference")
+    @Index(columnList = "type_id,external_reference"),
+    @Index(columnList = "type_id,id,external_reference"),
+    @Index(columnList = "type_id,folio_reference")
   }
 )
 //@formatter:on
 public class ReferenceLink extends AbstractBaseEntity {
 
   @NotNull
-  @Column(nullable = false)
+  @Column(name = "external_reference", nullable = false)
   private String externalReference;
 
   @NotNull
-  @Column(nullable = false)
+  @Column(name = "folio_reference", nullable = false)
   private String folioReference;
 
   @NotNull
   @ManyToOne
-  @JoinColumn(name = "type_id")
+  @JoinColumn(name = "type_id", nullable = false)
   private ReferenceLinkType type;
 
   public ReferenceLink() {
