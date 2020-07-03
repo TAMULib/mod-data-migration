@@ -154,6 +154,26 @@ POST to http://localhost:9000/migrate/bibs
 ```
 {
   "extraction": {
+    "preActions": [
+      "ALTER TABLE ${TENANT}_mod_source_record_storage.raw_records SET (autovacuum_enabled = false, toast.autovacuum_enabled = false)",
+      "ALTER TABLE ${TENANT}_mod_source_record_storage.marc_records SET (autovacuum_enabled = false, toast.autovacuum_enabled = false)",
+      "ALTER TABLE ${TENANT}_mod_source_record_storage.records SET (autovacuum_enabled = false, toast.autovacuum_enabled = false)",
+      "ALTER TABLE ${TENANT}_mod_inventory_storage.instance SET (autovacuum_enabled = false, toast.autovacuum_enabled = false)",
+      "ALTER TABLE ${TENANT}_mod_source_record_storage.raw_records DISABLE TRIGGER ALL",
+      "ALTER TABLE ${TENANT}_mod_source_record_storage.marc_records DISABLE TRIGGER ALL",
+      "ALTER TABLE ${TENANT}_mod_source_record_storage.records DISABLE TRIGGER ALL",
+      "ALTER TABLE ${TENANT}_mod_inventory_storage.instance DISABLE TRIGGER ALL"
+    ],
+    "postActions": [
+      "ALTER TABLE ${TENANT}_mod_source_record_storage.raw_records SET (autovacuum_enabled = true, toast.autovacuum_enabled = true)",
+      "ALTER TABLE ${TENANT}_mod_source_record_storage.marc_records SET (autovacuum_enabled = true, toast.autovacuum_enabled = true)",
+      "ALTER TABLE ${TENANT}_mod_source_record_storage.records SET (autovacuum_enabled = true, toast.autovacuum_enabled = true)",
+      "ALTER TABLE ${TENANT}_mod_inventory_storage.instance SET (autovacuum_enabled = true, toast.autovacuum_enabled = true)",
+      "ALTER TABLE ${TENANT}_mod_source_record_storage.raw_records ENABLE TRIGGER ALL",
+      "ALTER TABLE ${TENANT}_mod_source_record_storage.marc_records ENABLE TRIGGER ALL",
+      "ALTER TABLE ${TENANT}_mod_source_record_storage.records ENABLE TRIGGER ALL",
+      "ALTER TABLE ${TENANT}_mod_inventory_storage.instance ENABLE TRIGGER ALL"
+    ],
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.bib_master",
     "pageSql": "WITH bibs AS (SELECT bib_id, suppress_in_opac FROM ${SCHEMA}.bib_master ORDER BY bib_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY), operators AS (SELECT bib_id, operator_id FROM ${SCHEMA}.bib_history WHERE action_type_id = 1 AND bib_id IN (SELECT bib_id FROM bibs)) SELECT b.bib_id, b.suppress_in_opac, o.operator_id FROM bibs b LEFT JOIN operators o ON b.bib_id = o.bib_id",
     "marcSql": "SELECT bib_id, seqnum, record_segment FROM ${SCHEMA}.bib_data WHERE bib_id = ${BIB_ID}",
@@ -209,6 +229,14 @@ POST to http://localhost:9000/migrate/holdings
 ```
 {
   "extraction": {
+    "preActions": [
+      "ALTER TABLE ${TENANT}_mod_inventory_storage.holdings_record SET (autovacuum_enabled = false, toast.autovacuum_enabled = false)",
+      "ALTER TABLE ${TENANT}_mod_inventory_storage.holdings_record DISABLE TRIGGER ALL"
+    ],
+    "postActions": [
+      "ALTER TABLE ${TENANT}_mod_inventory_storage.holdings_record SET (autovacuum_enabled = true, toast.autovacuum_enabled = true)",
+      "ALTER TABLE ${TENANT}_mod_inventory_storage.holdings_record ENABLE TRIGGER ALL"
+    ],
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.mfhd_master",
     "pageSql": "SELECT mfhd_id, suppress_in_opac, location_id, display_call_no, call_no_type, record_type, field_008 FROM ${SCHEMA}.mfhd_master ORDER BY mfhd_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "locationSql": "SELECT DISTINCT location_id, location_code FROM ${SCHEMA}.location",
