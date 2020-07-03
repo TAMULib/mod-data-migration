@@ -429,6 +429,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     Database voyagerSettings = context.getExtraction().getDatabase();
 
+    Map<String, String> locConv = context.getMaps().getLocation(); 
+
     try(
       Connection voyagerConnection = getConnection(voyagerSettings);
       Statement st = voyagerConnection.createStatement();
@@ -438,6 +440,10 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         String id = rs.getString(LOCATION_ID);
         String code = rs.getString(LOCATION_CODE);
         if (Objects.nonNull(id)) {
+          String key = String.format("%s-%s", schema, id);
+          if (locConv.containsKey(key)) {
+            code = locConv.get(key);
+          }
           codeToId.put(code, id);
         }
       }

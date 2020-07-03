@@ -12,6 +12,9 @@ public class ItemContext extends AbstractContext {
   private List<ItemJob> jobs;
 
   @NotNull
+  private ItemMaps maps;
+
+  @NotNull
   private ItemDefaults defaults;
 
   public ItemContext() {
@@ -32,6 +35,14 @@ public class ItemContext extends AbstractContext {
 
   public void setJobs(List<ItemJob> jobs) {
     this.jobs = jobs;
+  }
+
+  public ItemMaps getMaps() {
+    return maps;
+  }
+
+  public void setMaps(ItemMaps maps) {
+    this.maps = maps;
   }
 
   public ItemDefaults getDefaults() {

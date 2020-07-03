@@ -457,6 +457,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
     Database voyagerSettings = context.getExtraction().getDatabase();
 
+    Map<String, String> ltConv = context.getMaps().getLoanType();
+
     try(
       Connection voyagerConnection = getConnection(voyagerSettings);
       Statement st = voyagerConnection.createStatement();
@@ -466,6 +468,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         String id = rs.getString(ITEM_TYPE_ID);
         String code = rs.getString(ITEM_TYPE_CODE);
         if (Objects.nonNull(id)) {
+          if (ltConv.containsKey(code)) {
+            code = ltConv.get(code);
+          }
           codeToId.put(code, id);
         }
       }
@@ -489,6 +494,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
     Database voyagerSettings = context.getExtraction().getDatabase();
 
+    Map<String, String> locConv = context.getMaps().getLocation();
+
     try(
       Connection voyagerConnection = getConnection(voyagerSettings);
       Statement st = voyagerConnection.createStatement();
@@ -498,6 +505,10 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         String id = rs.getString(LOCATION_ID);
         String code = rs.getString(LOCATION_CODE);
         if (Objects.nonNull(id)) {
+          String key = String.format("%s-%s", schema, id);
+          if (locConv.containsKey(key)) {
+            code = locConv.get(key);
+          }
           codeToId.put(code, id);
         }
       }
