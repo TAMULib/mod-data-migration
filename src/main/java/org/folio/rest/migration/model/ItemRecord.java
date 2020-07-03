@@ -17,15 +17,15 @@ public class ItemRecord {
   private final String enumeration;
   private final String chronology;
 
-  private final String permanentLoanTypeId;
-  private final String temporaryLoanTypeId;
-
-  private final String permanentLocationId;
-  private final String temporaryLocationId;
-    
   private final int numberOfPieces;
   private final String materialTypeId;
   private final Status status;
+
+  private String permanentLoanTypeId;
+  private String temporaryLoanTypeId;
+
+  private String permanentLocationId;
+  private String temporaryLocationId;
   
   private String id;
   private String holdingId;
@@ -33,15 +33,11 @@ public class ItemRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public ItemRecord(String itemId, String barcode, MfhdItem mfhdItem, String permanentLoanTypeId, String temporaryLoanTypeId, String permanentLocationId,  String temporaryLocationId, int numberOfPieces, String materialTypeId, Name status) {
+  public ItemRecord(String itemId, String barcode, MfhdItem mfhdItem, int numberOfPieces, String materialTypeId, Name status) {
     this.itemId = itemId;
     this.barcode = barcode;
     this.enumeration = mfhdItem.getItemEnum();
     this.chronology = mfhdItem.getChron();
-    this.permanentLoanTypeId = permanentLoanTypeId;
-    this.temporaryLoanTypeId = temporaryLoanTypeId;
-    this.permanentLocationId = permanentLocationId;
-    this.temporaryLocationId = temporaryLocationId;
     this.numberOfPieces = numberOfPieces;
     this.materialTypeId = materialTypeId;
     this.status = new Status();
@@ -64,10 +60,6 @@ public class ItemRecord {
     return chronology;
   }
 
-  public String getPermanentLocationId() {
-    return permanentLocationId;
-  }
-
   public int getNumberOfPieces() {
     return numberOfPieces;
   }
@@ -84,12 +76,32 @@ public class ItemRecord {
     return permanentLoanTypeId;
   }
 
+  public void setPermanentLoanTypeId(String permanentLoanTypeId) {
+    this.permanentLoanTypeId = permanentLoanTypeId;
+  }
+
   public String getTemporaryLoanTypeId() {
     return temporaryLoanTypeId;
   }
 
+  public void setTemporaryLoanTypeId(String temporaryLoanTypeId) {
+    this.temporaryLoanTypeId = temporaryLoanTypeId;
+  }
+
+  public String getPermanentLocationId() {
+    return permanentLocationId;
+  }
+
+  public void setPermanentLocationId(String permanentLocationId) {
+    this.permanentLocationId = permanentLocationId;
+  }
+
   public String getTemporaryLocationId() {
     return temporaryLocationId;
+  }
+
+  public void setTemporaryLocationId(String temporaryLocationId) {
+    this.temporaryLocationId = temporaryLocationId;
   }
 
   public String getId() {

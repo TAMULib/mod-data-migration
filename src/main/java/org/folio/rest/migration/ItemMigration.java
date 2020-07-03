@@ -9,21 +9,16 @@ import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.folio.rest.jaxrs.model.Item;
-import org.folio.rest.jaxrs.model.Loantype;
 import org.folio.rest.jaxrs.model.Loantypes;
-import org.folio.rest.jaxrs.model.Location;
 import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.jaxrs.model.Status.Name;
 import org.folio.rest.migration.config.model.Database;
@@ -69,7 +64,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String ITEM_TO_HOLDING_REFERENCE_ID = "itemToHoldingTypeId";
 
   // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
-  private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid) FROM STDIN";
+  private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,materialtypeid,permanentlocationid) FROM STDIN";
 
   private ItemMigration(ItemContext context, String tenant) {
     super(context, tenant);
@@ -84,6 +79,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     String token = migrationService.okapiService.getToken(tenant);
 
     JsonObject hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
+
+    Loantypes loanTypes = migrationService.okapiService.fetchLoanTypes(tenant, token);
+    Locations locations = migrationService.okapiService.fetchLocations(tenant, token);
 
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
@@ -114,18 +112,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
-      Map<String, String> voyagerLoanTypes = getVoyagerLoanTypesMap(job.getSchema());
-      Map<String, String> voyagerLocations = getVoyagerLocationsMap(job.getSchema());
-
-      Map<String, Loantype> folioLoantypes = buildLoanTypeMap(migrationService.okapiService.fetchLoanTypes(tenant, token));
-      Map<String, Location> folioLocations = buildLocationMap(migrationService.okapiService.fetchLocations(tenant, token));
-
-      Map<String, Loantype> loanTypesMap = voyagerLoanTypes.entrySet().stream()
-        .filter(e -> folioLoantypes.containsKey(e.getValue()))
-        .collect(Collectors.toMap(Entry::getKey, e -> folioLoantypes.get(e.getValue())));
-      Map<String, Location> locationsMap = voyagerLocations.entrySet().stream()
-        .filter(e -> folioLoantypes.containsKey(e.getValue()))
-        .collect(Collectors.toMap(Entry::getKey, e -> folioLocations.get(e.getValue())));
+      Map<String, String> loanTypesMap = getLoanTypesMap(loanTypes, job.getSchema());
+      Map<String, String> locationsMap = getLocationsMap(locations, job.getSchema());
 
       int count = getCount(voyagerSettings, countContext);
 
@@ -192,8 +180,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       ItemJob job = (ItemJob) partitionContext.get(JOB);
 
-      Map<String, Loantype> loanTypesMap = (Map<String, Loantype>) partitionContext.get(LOAN_TYPES_MAP);
-      Map<String, Location> locationsMap = (Map<String, Location>) partitionContext.get(LOCATIONS_MAP);
+      Map<String, String> loanTypesMap = (Map<String, String>) partitionContext.get(LOAN_TYPES_MAP);
+      Map<String, String> locationsMap = (Map<String, String>) partitionContext.get(LOCATIONS_MAP);
 
       String schema = job.getSchema();
 
@@ -233,18 +221,19 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         while (pageResultSet.next()) {
           String itemId = pageResultSet.getString(ITEM_ID);
 
-          String permTypeId = pageResultSet.getString(PERM_ITEM_TYPE_ID);
-          String permLocationId = pageResultSet.getString(PERM_LOCATION_ID);
-          String tempLocationId = pageResultSet.getString(TEMP_LOCATION_ID);
-          String tempTypeId = pageResultSet.getString(TEMP_TYPE_ID);
+          String voyagerPermTypeId = pageResultSet.getString(PERM_ITEM_TYPE_ID);
+          String voyagerPermLocationId = pageResultSet.getString(PERM_LOCATION_ID);
+
+          String voyagerTempTypeId = pageResultSet.getString(TEMP_TYPE_ID);
+          String voyagerTempLocationId = pageResultSet.getString(TEMP_LOCATION_ID);
 
           int numberOfPieces = pageResultSet.getInt(PIECES);
 
-          Loantype permLoanType = loanTypesMap.get(permTypeId);
-          Location permLocation = locationsMap.get(permLocationId);
-          
-          Location tempLocation = locationsMap.get(tempLocationId);
-          Loantype tempLoantype = loanTypesMap.get(tempTypeId);
+          String permLoanTypeId = loanTypesMap.get(voyagerPermTypeId);
+          String permLocationId = locationsMap.get(voyagerPermLocationId);
+
+          String tempLoanTypeId = loanTypesMap.get(voyagerTempTypeId);
+          String tempLocationId = locationsMap.get(voyagerTempLocationId);
 
           mfhdContext.put(ITEM_ID, itemId);
           barcodeContext.put(ITEM_ID, itemId);
@@ -253,7 +242,13 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             MfhdItem mfhdItem = getMfhdItem(mfhdItemStatement, mfhdContext);
             String barcode = getItemBarcode(barcodeStatement, barcodeContext);
 
-            ItemRecord itemRecord = new ItemRecord(itemId, barcode, mfhdItem, permLoanType.getId(), tempLoantype.getId(), permLocation.getId(), tempLocation.getId(), numberOfPieces, job.getMaterialTypeId(), Name.AVAILABLE);
+            ItemRecord itemRecord = new ItemRecord(itemId, barcode, mfhdItem, numberOfPieces, job.getMaterialTypeId(), Name.AVAILABLE);
+
+            itemRecord.setPermanentLoanTypeId(permLoanTypeId);
+            itemRecord.setPermanentLocationId(permLocationId);
+
+            itemRecord.setTemporaryLoanTypeId(tempLoanTypeId);
+            itemRecord.setTemporaryLocationId(tempLocationId);
 
             String id = null, holdingId = null;
 
@@ -298,7 +293,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
             String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(item)));
 
-            // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
+            // // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
             itemWriter.println(String.join("\t",
               item.getId(),
               iUtf8Json,
@@ -306,10 +301,10 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
               createdByUserId,
               item.getHoldingsRecordId(),
               item.getPermanentLoanTypeId(),
-              item.getTemporaryLoanTypeId(),
+              // item.getTemporaryLoanTypeId(),
               item.getMaterialTypeId(),
-              item.getPermanentLocationId(),
-              item.getTemporaryLocationId()
+              item.getPermanentLocationId()
+              // item.getTemporaryLocationId()
               // item.getEffectiveLocationId()
             ));
 
@@ -437,20 +432,15 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     return itemBarcode;
   }
 
-  private Map<String, Loantype> buildLoanTypeMap(Loantypes loanTypes) {
-    return loanTypes.getLoantypes().stream().collect(Collectors.toMap(Loantype::getName, Function.identity()));
-  }
-
-  private Map<String, Location> buildLocationMap(Locations locations) {
-    return locations.getLocations().stream().collect(Collectors.toMap(Location::getCode, Function.identity()));
-  }
-
-  private Map<String, String> getVoyagerLoanTypesMap(String schema) {
-    Map<String, String> vgrTypeMap = new HashMap<>();
+  private Map<String, String> getLoanTypesMap(Loantypes loanTypes, String schema) {
+    Map<String, String> codeToId = new HashMap<>();
+    Map<String, String> idToUuid = new HashMap<>();
     Map<String, Object> itemTypeContext = new HashMap<>();
     itemTypeContext.put(SQL, context.getExtraction().getItemTypeSql());
     itemTypeContext.put(SCHEMA, schema);
+
     Database voyagerSettings = context.getExtraction().getDatabase();
+
     try(
       Connection voyagerConnection = getConnection(voyagerSettings);
       Statement st = voyagerConnection.createStatement();
@@ -459,20 +449,30 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       while (rs.next()) {
         String id = rs.getString(ITEM_TYPE_ID);
         String code = rs.getString(ITEM_TYPE_CODE);
-        vgrTypeMap.put(id, code);
+        if (Objects.nonNull(id)) {
+          codeToId.put(code, id);
+        }
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return vgrTypeMap;
+
+    loanTypes.getLoantypes().stream()
+      .filter(loanType -> codeToId.containsKey(loanType.getName()))
+      .forEach(loanType -> idToUuid.put(codeToId.get(loanType.getName()), loanType.getId()));
+
+    return idToUuid;
   }
 
-  private Map<String, String> getVoyagerLocationsMap(String schema) {
-    Map<String, String> vgrLocationMap = new HashMap<>();
+  private Map<String, String> getLocationsMap(Locations locations, String schema) {
+    Map<String, String> codeToId = new HashMap<>();
+    Map<String, String> idToUuid = new HashMap<>();
     Map<String, Object> locationContext = new HashMap<>();
     locationContext.put(SQL, context.getExtraction().getLocationSql());
     locationContext.put(SCHEMA, schema);
+
     Database voyagerSettings = context.getExtraction().getDatabase();
+
     try(
       Connection voyagerConnection = getConnection(voyagerSettings);
       Statement st = voyagerConnection.createStatement();
@@ -481,12 +481,19 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       while (rs.next()) {
         String id = rs.getString(LOCATION_ID);
         String code = rs.getString(LOCATION_CODE);
-        vgrLocationMap.put(id, code);
+        if (Objects.nonNull(id)) {
+          codeToId.put(code, id);
+        }
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return vgrLocationMap;
+
+    locations.getLocations().stream()
+      .filter(location -> codeToId.containsKey(location.getCode()))
+      .forEach(location -> idToUuid.put(codeToId.get(location.getCode()), location.getId()));
+
+    return idToUuid;
   }
 
 }

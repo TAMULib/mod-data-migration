@@ -104,7 +104,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
-      HashMap<String, String> locationsMap = preloadLocationsMap(locations, job.getSchema());
+      Map<String, String> locationsMap = getLocationsMap(locations, job.getSchema());
 
       int count = getCount(voyagerSettings, countContext);
 
@@ -419,9 +419,9 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     }
   }
 
-  private HashMap<String, String> preloadLocationsMap(Locations locations, String schema) {
-    HashMap<String, String> codeToId = new HashMap<>();
-    HashMap<String, String> idToUuid = new HashMap<>();
+  private Map<String, String> getLocationsMap(Locations locations, String schema) {
+    Map<String, String> codeToId = new HashMap<>();
+    Map<String, String> idToUuid = new HashMap<>();
     Map<String, Object> locationContext = new HashMap<>();
     locationContext.put(SQL, context.getExtraction().getLocationSql());
     locationContext.put(SCHEMA, schema);
