@@ -1,42 +1,41 @@
 package org.folio.rest.migration.model.request;
 
-import javax.validation.constraints.NotNull;
+import java.util.Map;
 
-import org.folio.rest.jaxrs.model.common.ProfileInfo;
+import javax.validation.constraints.NotNull;
 
 public class ItemJob extends AbstractJob {
 
-    @NotNull
-    private String userId;
+  @NotNull
+  private String userId;
 
-    @NotNull
-    private String materialTypeId;
+  @NotNull
+  private String materialTypeId;
 
-    @NotNull
-    private String itemRLTypeId;
+  private Map<String, String> references;
 
-    public String getUserId() {
-        return userId;
-    }
-    
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+  public String getUserId() {
+    return userId;
+  }
 
-    public String getMaterialTypeId() {
-        return materialTypeId;
-    }
-    
-    public void setMaterialTypeId(String materialTypeId) {
-        this.materialTypeId = materialTypeId;
-    }
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
 
-    public String getItemRLTypeId() {
-        return itemRLTypeId;
-    }
+  public String getMaterialTypeId() {
+    return materialTypeId;
+  }
 
-    public void setItemRLTypeId(String itemRLTypeId) {
-        this.itemRLTypeId = itemRLTypeId;
-    }
+  public void setMaterialTypeId(String materialTypeId) {
+    this.materialTypeId = materialTypeId;
+  }
+
+  public Map<String, String> getReferences() {
+    return references;
+  }
+
+  public void setReferences(Map<String, String> references) {
+    this.references = references;
+  }
 
 }

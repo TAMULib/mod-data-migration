@@ -187,6 +187,9 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       HoldingMaps holdingMaps = context.getMaps();
       HoldingDefaults holdingDefaults = context.getDefaults();
 
+      String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
+      String holdingToBibRLTypeId = job.getReferences().get(HOLDING_TO_BIB_REFERENCE_ID);
+
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
       int count = 0;
@@ -276,15 +279,13 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             HoldingRecord holdingRecord = new HoldingRecord(mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
             String holdingId = null, instanceId = null;
-            
-            String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
+
             Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
 
             if (holdingRL.isPresent()) {
 
               holdingId = holdingRL.get().getFolioReference();
 
-              String holdingToBibRLTypeId = job.getReferences().get(HOLDING_TO_BIB_REFERENCE_ID);
               Optional<ReferenceLink> holdingToBibRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToBibRLTypeId, holdingRL.get().getId());
 
               if (holdingToBibRL.isPresent()) {
@@ -327,8 +328,10 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
           } catch (IOException e) {
               log.error("{} holding id {} error processing marc", schema, mfhdId);
+              log.debug(e.getMessage());
           } catch (MarcException e) {
               log.error("{} holding id {} error reading marc", schema, mfhdId);
+              log.debug(e.getMessage());
           }
         }
 

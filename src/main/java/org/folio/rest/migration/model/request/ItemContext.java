@@ -5,30 +5,30 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 
 public class ItemContext extends AbstractContext {
-    
-    @NotNull
-    private ItemExtraction extraction;
-  
-    private List<ItemJob> jobs;
 
-    public ItemContext() {
-        super();
-    }
+  @NotNull
+  private ItemExtraction extraction;
 
-    public ItemExtraction getExtraction() {
-        return extraction;
-    }
+  private List<ItemJob> jobs;
 
-    public void setExtraction(ItemExtraction extraction) {
-        this.extraction = extraction;
-    }
+  public ItemContext() {
+    super();
+  }
 
-    public List<ItemJob> getJobs() {
-        return jobs;
-    }
+  public ItemExtraction getExtraction() {
+    return extraction;
+  }
 
-    public void setJobs(List<ItemJob> jobs) {
-        this.jobs = jobs;
-    }
+  public void setExtraction(ItemExtraction extraction) {
+    this.extraction = extraction;
+  }
+
+  public List<ItemJob> getJobs() {
+    return jobs;
+  }
+
+  public void setJobs(List<ItemJob> jobs) {
+    this.jobs = jobs;
+  }
 
 }

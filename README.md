@@ -359,21 +359,37 @@ POST to http://localhost:9000/migrate/items
       "driverClassName": ""
     }
   },
+  "preActions": [
+    "ALTER TABLE ${TENANT}_mod_inventory_storage.item SET ( autovacuum_enabled = false, toast.autovacuum_enabled = false )",
+    "ALTER TABLE ${TENANT}_mod_inventory_storage.item DISABLE TRIGGER ALL"
+  ],
+  "postActions": [
+    "ALTER TABLE ${TENANT}_mod_inventory_storage.item SET ( autovacuum_enabled = true, toast.autovacuum_enabled = true )",
+    "ALTER TABLE ${TENANT}_mod_inventory_storage.item ENABLE TRIGGER ALL"
+  ],
   "parallelism": 12,
   "jobs": [
     {
       "schema": "AMDB",
       "partitions": 48,
-      "userId": "9b909401-96be-484e-8efe-158521718114",
+      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "materialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25",
-      "itemRLTypeId": ""
+      "references": {
+        "itemTypeId": "53e72510-dc82-4caa-a272-1522cca70bc2",
+        "itemToHoldingTypeId": "39670cf7-de23-4473-b5e3-abf6d79735e1",
+        "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc"
+      }
     },
     {
       "schema": "MSDB",
       "partitions": 4,
-      "userId": "9b909401-96be-484e-8efe-158521718114",
+      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "materialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25",
-      "itemRLTypeId": ""
+      "references": {
+        "itemTypeId": "0014559d-39f6-45c7-9406-03643459aaf0",
+        "itemToHoldingTypeId": "492fea54-399a-4822-8d4b-242096c2ab12",
+        "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba"
+      }
     }
   ]
 }
