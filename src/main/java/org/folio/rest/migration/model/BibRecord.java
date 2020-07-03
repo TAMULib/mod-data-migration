@@ -147,10 +147,11 @@ public class BibRecord {
     final Instance instance = instanceMapper.getInstance(parsedRecord);
     if (Objects.nonNull(instance)) {
       instance.setId(instanceId);
-      instance.setHrid(String.format("%s%011d", hridPrefix, hrid));
       instance.setDiscoverySuppress(suppressDiscovery);
       instance.setStatisticalCodeIds(statisticalCodes);
       instance.setStatusId(statusId);
+
+      instance.setHrid(String.format("%s%011d", hridPrefix, hrid));
 
       org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
       metadata.setCreatedByUserId(createdByUserId);

@@ -127,16 +127,19 @@ public class HoldingRecord {
     if (Objects.nonNull(holding)) {
       holding.setId(holdingId);
       holding.setInstanceId(instanceId);
-      holding.setHrid(String.format("%s%011d", hridPrefix, hrid));
       holding.setPermanentLocationId(locationId);
+      // holding.setTemporaryLocationId(null);
+      holding.setHoldingsTypeId(holdingsType);
+      holding.setCallNumberTypeId(callNumberType);
+      // holding.setIllPolicyId(null);
 
       holding.setDiscoverySuppress(discoverySuppress);
       holding.setCallNumber(callNumber);
-      holding.setCallNumberTypeId(callNumberType);
-      holding.setHoldingsTypeId(holdingsType);
       holding.setReceiptStatus(receiptStatus);
       holding.setAcquisitionMethod(acquisitionMethod);
       holding.setRetentionPolicy(retentionPolicy);
+
+      holding.setHrid(String.format("%s%011d", hridPrefix, hrid));
 
       Set<String> formerIds = new HashSet<>();
       formerIds.add(mfhdId);

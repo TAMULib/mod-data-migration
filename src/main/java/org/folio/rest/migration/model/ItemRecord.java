@@ -1,6 +1,8 @@
 package org.folio.rest.migration.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.folio.rest.jaxrs.model.Item;
 import org.folio.rest.jaxrs.model.Status;
@@ -15,35 +17,35 @@ public class ItemRecord {
   private final String enumeration;
   private final String chronology;
 
+  private final String permanentLoanTypeId;
+  private final String temporaryLoanTypeId;
+
   private final String permanentLocationId;
-  private final String[] formerIds;
+  private final String temporaryLocationId;
+    
   private final int numberOfPieces;
   private final String materialTypeId;
   private final Status status;
-  private final String permanentLoanTypeId;
-  private final String temporaryLoanTypeId;
-  private final String temporaryLocationId;
-
+  
+  private String id;
   private String holdingId;
-  private String instanceId;
 
   private String createdByUserId;
   private Date createdDate;
 
-  public ItemRecord(String itemId, String barcode, MfhdItem mfhdItem, String permanentLocationId, String formerId, int numberOfPieces, String materialTypeId, Name status, String permanentLoanTypeId, String temporaryLoanTypeId, String temporaryLocationId) {
+  public ItemRecord(String itemId, String barcode, MfhdItem mfhdItem, String permanentLoanTypeId, String temporaryLoanTypeId, String permanentLocationId,  String temporaryLocationId, int numberOfPieces, String materialTypeId, Name status) {
     this.itemId = itemId;
     this.barcode = barcode;
     this.enumeration = mfhdItem.getItemEnum();
     this.chronology = mfhdItem.getChron();
+    this.permanentLoanTypeId = permanentLoanTypeId;
+    this.temporaryLoanTypeId = temporaryLoanTypeId;
     this.permanentLocationId = permanentLocationId;
-    this.formerIds = new String[] { formerId };
+    this.temporaryLocationId = temporaryLocationId;
     this.numberOfPieces = numberOfPieces;
     this.materialTypeId = materialTypeId;
     this.status = new Status();
     this.status.setName(status);
-    this.permanentLoanTypeId = permanentLoanTypeId;
-    this.temporaryLoanTypeId = temporaryLoanTypeId;
-    this.temporaryLocationId = temporaryLocationId;
   }
 
   public String getItemId() {
@@ -64,10 +66,6 @@ public class ItemRecord {
 
   public String getPermanentLocationId() {
     return permanentLocationId;
-  }
-
-  public String[] getFormerIds() {
-    return formerIds;
   }
 
   public int getNumberOfPieces() {
@@ -94,20 +92,20 @@ public class ItemRecord {
     return temporaryLocationId;
   }
 
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
   public String getHoldingId() {
     return holdingId;
   }
 
   public void setHoldingId(String holdingId) {
     this.holdingId = holdingId;
-  }
-
-  public String getInstanceId() {
-    return instanceId;
-  }
-
-  public void setInstanceId(String instanceId) {
-    this.instanceId = instanceId;
   }
 
   public String getCreatedByUserId() {
@@ -128,7 +126,27 @@ public class ItemRecord {
 
   public Item toItem(String hridPrefix, int hrid) {
     final Item item = new Item();
-    item.setId(itemId);
+    item.setId(id);
+    item.setHoldingsRecordId(holdingId);
+    item.setPermanentLoanTypeId(permanentLoanTypeId);
+    item.setTemporaryLoanTypeId(temporaryLoanTypeId);
+    item.setMaterialTypeId(materialTypeId);
+    item.setPermanentLocationId(permanentLocationId);
+    item.setTemporaryLocationId(temporaryLocationId);
+    // item.setEffectiveLocationId(null);
+
+    item.setBarcode(barcode);
+    item.setChronology(chronology);
+    item.setNumberOfPieces(String.valueOf(numberOfPieces));
+    item.setEnumeration(enumeration);
+    item.setStatus(status);
+
+    item.setHrid(String.format("%s%011d", hridPrefix, hrid));
+
+    Set<String> formerIds = new HashSet<>();
+    formerIds.add(itemId);
+    item.setFormerIds(formerIds);
+
     org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);

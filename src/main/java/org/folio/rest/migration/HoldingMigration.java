@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,7 +54,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
   private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
 
-  //(id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
+  // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
   private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,holdingstypeid,callnumbertypeid) FROM STDIN";
 
   private HoldingMigration(HoldingContext context, String tenant) {
@@ -310,18 +310,30 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             holdingRecord.setHoldingId(holdingId);
             holdingRecord.setInstanceId(instanceId);
 
+            Date createdDate = new Date();
             holdingRecord.setCreatedByUserId(job.getUserId());
-            holdingRecord.setCreatedDate(new Date());
+            holdingRecord.setCreatedDate(createdDate);
 
-            String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
+            String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
 
             Holdingsrecord holdingsRecord = holdingRecord.toHolding(holdingMapper, hridPrefix, hrid);
 
             String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(holdingsRecord)));
 
-            // TODO: validate rows
-            holdingRecordWriter.println(String.join("\t", holdingsRecord.getId(), hrUtf8Json, createdAt, createdByUserId, holdingsRecord.getInstanceId(), holdingsRecord.getPermanentLocationId(), holdingsRecord.getHoldingsTypeId(), holdingsRecord.getCallNumberTypeId()));
+            // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
+            holdingRecordWriter.println(String.join("\t",
+              holdingsRecord.getId(),
+              hrUtf8Json,
+              createdAt,
+              createdByUserId,
+              holdingsRecord.getInstanceId(),
+              holdingsRecord.getPermanentLocationId(),
+              holdingsRecord.getTemporaryLocationId(),
+              holdingsRecord.getHoldingsTypeId(),
+              holdingsRecord.getCallNumberTypeId(),
+              holdingsRecord.getIllPolicyId()
+            ));
 
             hrid++;
             count++;

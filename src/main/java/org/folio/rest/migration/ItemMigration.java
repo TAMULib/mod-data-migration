@@ -5,13 +5,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -67,10 +67,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
   private static final String ITEM_REFERENCE_ID = "itemTypeId";
   private static final String ITEM_TO_HOLDING_REFERENCE_ID = "itemToHoldingTypeId";
-  private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
 
   // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,meterialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
-  private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by) FROM STDIN";
+  private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,meterialtypeid,permanentlocationid,temporarylocationid,effectivelocationid) FROM STDIN";
 
   private ItemMigration(ItemContext context, String tenant) {
     super(context, tenant);
@@ -212,7 +211,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       String itemRLTypeId = job.getReferences().get(ITEM_REFERENCE_ID);
       String itemToHoldingRLTypeId = job.getReferences().get(ITEM_TO_HOLDING_REFERENCE_ID);
-      String holdingToBibRLTypeId = job.getReferences().get(HOLDING_TO_BIB_REFERENCE_ID);
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
@@ -236,7 +234,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           String tempLocationId = pageResultSet.getString(TEMP_LOCATION_ID);
           String tempTypeId = pageResultSet.getString(TEMP_TYPE_ID);
 
-          int pieces = pageResultSet.getInt(PIECES);
+          int numberOfPieces = pageResultSet.getInt(PIECES);
 
           Loantype permLoanType = loanTypesMap.get(permTypeId);
           Location permLocation = locationsMap.get(permLocationId);
@@ -251,25 +249,65 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             MfhdItem mfhdItem = getMfhdItem(mfhdItemStatement, mfhdContext);
             String barcode = getItemBarcode(barcodeStatement, barcodeContext);
 
+            ItemRecord itemRecord = new ItemRecord(itemId, barcode, mfhdItem, permLoanType.getId(), tempLoantype.getId(), permLocation.getId(), tempLocation.getId(), numberOfPieces, job.getMaterialTypeId(), Name.AVAILABLE);
+
+            String id = null, holdingId = null;
+
             Optional<ReferenceLink> itemRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId);
-            String id = itemRL.isPresent() ? itemRL.get().getFolioReference() : UUID.randomUUID().toString();
 
-            // TODO: get item, holding, and instance id
+            if (itemRL.isPresent()) {
 
-            ItemRecord itemRecord = new ItemRecord(id, barcode, mfhdItem, permLocation.getId(), itemId, pieces, job.getMaterialTypeId(), Name.AVAILABLE, permLoanType.getId(), tempLoantype.getId(), tempLocation.getId());
+              id = itemRL.get().getFolioReference();
 
+              Optional<ReferenceLink> itemToHoldingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemToHoldingRLTypeId, itemRL.get().getId());
 
+              if (itemToHoldingRL.isPresent()) {
+                Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findById(itemToHoldingRL.get().getFolioReference());
+
+                if (holdingRL.isPresent()) {
+                  holdingId = holdingRL.get().getFolioReference();
+                }
+              }
+            }
+
+            if (Objects.isNull(id)) {
+              log.error("{} no item record id found for item id {}", schema, itemId);
+              continue;
+            }
+
+            if (Objects.isNull(holdingId)) {
+              log.error("{} no holdings record id found for item id {}", schema, itemId);
+              continue;
+            }
+
+            itemRecord.setId(id);
+            itemRecord.setHoldingId(holdingId);
+
+            Date createdDate = new Date();
             itemRecord.setCreatedByUserId(job.getUserId());
-            itemRecord.setCreatedDate(new Date());
+            itemRecord.setCreatedDate(createdDate);
 
-            String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
+            String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
 
             Item item = itemRecord.toItem(hridPrefix, hrid);
 
-            String itemJson = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(item)));
+            String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(item)));
 
-            itemWriter.println(String.join("\t", item.getId(), itemJson, createdAt, createdByUserId));
+            // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,meterialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
+            itemWriter.println(String.join("\t",
+              item.getId(),
+              iUtf8Json,
+              createdAt,
+              createdByUserId,
+              item.getHoldingsRecordId(),
+              item.getPermanentLoanTypeId(),
+              item.getTemporaryLoanTypeId(),
+              item.getMaterialTypeId(),
+              item.getPermanentLocationId(),
+              item.getTemporaryLocationId(),
+              item.getEffectiveLocationId()
+            ));
 
             hrid++;
             count++;
