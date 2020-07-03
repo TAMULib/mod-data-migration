@@ -161,7 +161,7 @@ public class OkapiService {
   public Locations fetchLocations(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
-    String url = okapi.getUrl() + "/locations";
+    String url = okapi.getUrl() + "/locations?limit=9999";
     ResponseEntity<Locations> response = restTemplate.exchange(url, HttpMethod.GET, entity, Locations.class);
     log.debug("fetch locations: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
@@ -173,7 +173,7 @@ public class OkapiService {
   public Loantypes fetchLoanTypes(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
-    String url = okapi.getUrl() + "/loan-types";
+    String url = okapi.getUrl() + "/loan-types?limit=999";
     ResponseEntity<Loantypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Loantypes.class);
     log.debug("fetch loan types: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
