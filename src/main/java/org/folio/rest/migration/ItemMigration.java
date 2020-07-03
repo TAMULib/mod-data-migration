@@ -69,7 +69,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String ITEM_TO_HOLDING_REFERENCE_ID = "itemToHoldingTypeId";
 
   // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,meterialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
-  private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,meterialtypeid,permanentlocationid,temporarylocationid,effectivelocationid) FROM STDIN";
+  private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,meterialtypeid,permanentlocationid,temporarylocationid) FROM STDIN";
 
   private ItemMigration(ItemContext context, String tenant) {
     super(context, tenant);
@@ -305,8 +305,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
               item.getTemporaryLoanTypeId(),
               item.getMaterialTypeId(),
               item.getPermanentLocationId(),
-              item.getTemporaryLocationId(),
-              item.getEffectiveLocationId()
+              item.getTemporaryLocationId()
+              // item.getEffectiveLocationId()
             ));
 
             hrid++;
