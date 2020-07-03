@@ -78,7 +78,7 @@ tenant:
   header-name: X-Okapi-Tenant
   force-tenant: false
   default-tenant: diku
-  initialize-default-tenant: false
+  initialize-default-tenant: true
   domain-packages:
   schema-scripts:
 
