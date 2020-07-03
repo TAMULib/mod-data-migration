@@ -236,7 +236,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
           String permLoanTypeId, permLocationId;
 
-          String voyagerPermTypeIdKey = String.format("%s-%s", schema, voyagerPermTypeId);
+          String voyagerPermTypeIdKey = String.format(KEY_TEMPLATE, schema, voyagerPermTypeId);
           if (loanTypesMap.containsKey(voyagerPermTypeIdKey)) {
             permLoanTypeId = loanTypesMap.get(voyagerPermTypeIdKey);
           } else {
@@ -244,7 +244,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             permLoanTypeId = itemDefaults.getPermanentLoanTypeId();
           }
 
-          String voyagerPermLocationIdKey = String.format("%s-%s", schema, voyagerPermLocationId);
+          String voyagerPermLocationIdKey = String.format(KEY_TEMPLATE, schema, voyagerPermLocationId);
           if (locationsMap.containsKey(voyagerPermLocationIdKey)) {
             permLocationId = locationsMap.get(voyagerPermLocationIdKey);
           } else {
@@ -264,12 +264,12 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             itemRecord.setPermanentLoanTypeId(permLoanTypeId);
             itemRecord.setPermanentLocationId(permLocationId);
 
-            String voyagerTempTypeIdKey = String.format("%s-%s", schema, voyagerTempTypeId);
+            String voyagerTempTypeIdKey = String.format(KEY_TEMPLATE, schema, voyagerTempTypeId);
             if (loanTypesMap.containsKey(voyagerTempTypeIdKey)) {
               itemRecord.setTemporaryLoanTypeId(loanTypesMap.get(voyagerTempTypeIdKey));
             }
 
-            String voyagerTempLocationIdKey = String.format("%s-%s", schema, voyagerTempLocationId);
+            String voyagerTempLocationIdKey = String.format(KEY_TEMPLATE, schema, voyagerTempLocationId);
             if (locationsMap.containsKey(voyagerTempLocationIdKey)) {
               itemRecord.setTemporaryLocationId(locationsMap.get(voyagerTempLocationIdKey));
             }
@@ -475,7 +475,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           String code = ltConv.containsKey(originalCode) ? ltConv.get(originalCode) : rs.getString(ITEM_TYPE_CODE);
           Optional<Loantype> loanType = loanTypes.getLoantypes().stream().filter(lt -> lt.getName().equals(code)).findFirst();
           if (loanType.isPresent()) {
-            String key = String.format("%s-%s", schema, id);
+            String key = String.format(KEY_TEMPLATE, schema, id);
             idToUuid.put(key, loanType.get().getId());
           }
         }
@@ -501,7 +501,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       while (rs.next()) {
         String id = rs.getString(LOCATION_ID);
         if (Objects.nonNull(id)) {
-          String key = String.format("%s-%s", schema, id);
+          String key = String.format(KEY_TEMPLATE, schema, id);
           String code = locConv.containsKey(key) ? locConv.get(key) : rs.getString(LOCATION_CODE);
           Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
           if (location.isPresent()) {

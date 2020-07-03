@@ -270,7 +270,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             retentionPolicy = holdingDefaults.getRetentionPolicy();
           }
 
-          String permanentLocationIdKey = String.format("%s-%s", schema, permanentLocationId);
+          String permanentLocationIdKey = String.format(KEY_TEMPLATE, schema, permanentLocationId);
           if (locationsMap.containsKey(permanentLocationIdKey)) {
             locationId = locationsMap.get(permanentLocationIdKey);
           } else {
@@ -437,7 +437,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       while (rs.next()) {
         String id = rs.getString(LOCATION_ID);
         if (Objects.nonNull(id)) {
-          String key = String.format("%s-%s", schema, id);
+          String key = String.format(KEY_TEMPLATE, schema, id);
           String code = locConv.containsKey(key) ? locConv.get(key) : rs.getString(LOCATION_CODE);
           Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
           if (location.isPresent()) {
