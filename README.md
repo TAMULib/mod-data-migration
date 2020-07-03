@@ -14,11 +14,15 @@ More information is available on the [developer site](https://dev.folio.org/guid
 git submodule update --init --recursive
 ```
 
-## Additional information
+## Additional Information
 
 Other [modules](https://dev.folio.org/source-code/#server-side).
 
 Other FOLIO Developer documentation is at [dev.folio.org](https://dev.folio.org/).
+
+## Migration Information
+
+Be sure to use the correct user id and other various ids from reference data.
 
 ## Vendor Reference Link Migration
 
@@ -360,11 +364,11 @@ POST to http://localhost:9000/migrate/items
     }
   },
   "preActions": [
-    "ALTER TABLE ${TENANT}_mod_inventory_storage.item SET ( autovacuum_enabled = false, toast.autovacuum_enabled = false )",
+    "ALTER TABLE ${TENANT}_mod_inventory_storage.item SET (autovacuum_enabled = false, toast.autovacuum_enabled = false)",
     "ALTER TABLE ${TENANT}_mod_inventory_storage.item DISABLE TRIGGER ALL"
   ],
   "postActions": [
-    "ALTER TABLE ${TENANT}_mod_inventory_storage.item SET ( autovacuum_enabled = true, toast.autovacuum_enabled = true )",
+    "ALTER TABLE ${TENANT}_mod_inventory_storage.item SET (autovacuum_enabled = true, toast.autovacuum_enabled = true)",
     "ALTER TABLE ${TENANT}_mod_inventory_storage.item ENABLE TRIGGER ALL"
   ],
   "parallelism": 12,
