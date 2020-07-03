@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -159,6 +160,11 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
       log.info("{} {} finished in {} milliseconds", schema, index, TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      return Objects.nonNull(obj) && ((VendorReferenceLinkPartitionTask) obj).getIndex() == this.getIndex();
     }
 
   }

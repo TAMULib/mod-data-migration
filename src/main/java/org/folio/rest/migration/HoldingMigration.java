@@ -355,7 +355,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     @Override
     public boolean equals(Object obj) {
-      return obj != null && ((HoldingPartitionTask) obj).getIndex() == this.getIndex();
+      return Objects.nonNull(obj) && ((HoldingPartitionTask) obj).getIndex() == this.getIndex();
     }
 
   }

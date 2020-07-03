@@ -414,7 +414,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     @Override
     public boolean equals(Object obj) {
-      return obj != null && ((BibPartitionTask) obj).getIndex() == this.getIndex();
+      return Objects.nonNull(obj) && ((BibPartitionTask) obj).getIndex() == this.getIndex();
     }
 
   }
