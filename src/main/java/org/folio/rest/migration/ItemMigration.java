@@ -18,7 +18,9 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.folio.rest.jaxrs.model.Item;
+import org.folio.rest.jaxrs.model.Loantype;
 import org.folio.rest.jaxrs.model.Loantypes;
+import org.folio.rest.jaxrs.model.Location;
 import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.jaxrs.model.Status.Name;
 import org.folio.rest.migration.config.model.Database;
@@ -232,24 +234,23 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
           int numberOfPieces = pageResultSet.getInt(PIECES);
 
-          String permLoanTypeId, permLocationId, tempLoanTypeId, tempLocationId;
+          String permLoanTypeId, permLocationId;
 
-          if (loanTypesMap.containsKey(schema + "-" + voyagerPermTypeId)) {
-            permLoanTypeId = loanTypesMap.get(schema + "-" + voyagerPermTypeId);
+          String voyagerPermTypeIdKey = String.format("%s-%s", schema, voyagerPermTypeId);
+          if (loanTypesMap.containsKey(voyagerPermTypeIdKey)) {
+            permLoanTypeId = loanTypesMap.get(voyagerPermTypeIdKey);
           } else {
             log.warn("using default permanent loan type for schema {} itemId {} type {}", schema, itemId, voyagerPermTypeId);
             permLoanTypeId = itemDefaults.getPermanentLoanTypeId();
           }
 
-          if (locationsMap.containsKey(schema + "-" + voyagerPermLocationId)) {
-            permLocationId = locationsMap.get(schema + "-" + voyagerPermLocationId);
+          String voyagerPermLocationIdKey = String.format("%s-%s", schema, voyagerPermLocationId);
+          if (locationsMap.containsKey(voyagerPermLocationIdKey)) {
+            permLocationId = locationsMap.get(voyagerPermLocationIdKey);
           } else {
             log.warn("using default permanent location for schema {} itemId {} location {}", schema, itemId, voyagerPermLocationId);
             permLocationId = itemDefaults.getPermanentLocationId();
           }
-
-          tempLoanTypeId = loanTypesMap.get(schema + "-" + voyagerTempTypeId);
-          tempLocationId = locationsMap.get(schema + "-" + voyagerTempLocationId);
 
           mfhdContext.put(ITEM_ID, itemId);
           barcodeContext.put(ITEM_ID, itemId);
@@ -263,8 +264,15 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             itemRecord.setPermanentLoanTypeId(permLoanTypeId);
             itemRecord.setPermanentLocationId(permLocationId);
 
-            itemRecord.setTemporaryLoanTypeId(tempLoanTypeId);
-            itemRecord.setTemporaryLocationId(tempLocationId);
+            String voyagerTempTypeIdKey = String.format("%s-%s", schema, voyagerTempTypeId);
+            if (loanTypesMap.containsKey(voyagerTempTypeIdKey)) {
+              itemRecord.setTemporaryLoanTypeId(loanTypesMap.get(voyagerTempTypeIdKey));
+            }
+
+            String voyagerTempLocationIdKey = String.format("%s-%s", schema, voyagerTempLocationId);
+            if (locationsMap.containsKey(voyagerTempLocationIdKey)) {
+              itemRecord.setTemporaryLocationId(locationsMap.get(voyagerTempLocationIdKey));
+            }
 
             String id = null, holdingId = null;
 
@@ -449,16 +457,12 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   }
 
   private Map<String, String> getLoanTypesMap(Loantypes loanTypes, String schema) {
-    Map<String, String> codeToId = new HashMap<>();
     Map<String, String> idToUuid = new HashMap<>();
     Map<String, Object> itemTypeContext = new HashMap<>();
     itemTypeContext.put(SQL, context.getExtraction().getItemTypeSql());
     itemTypeContext.put(SCHEMA, schema);
-
     Database voyagerSettings = context.getExtraction().getDatabase();
-
     Map<String, String> ltConv = context.getMaps().getLoanType();
-
     try(
       Connection voyagerConnection = getConnection(voyagerSettings);
       Statement st = voyagerConnection.createStatement();
@@ -466,36 +470,29 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     ) {
       while (rs.next()) {
         String id = rs.getString(ITEM_TYPE_ID);
-        String code = rs.getString(ITEM_TYPE_CODE);
         if (Objects.nonNull(id)) {
-          if (ltConv.containsKey(code)) {
-            code = ltConv.get(code);
+          String originalCode = rs.getString(ITEM_TYPE_CODE);
+          String code = ltConv.containsKey(originalCode) ? ltConv.get(originalCode) : rs.getString(ITEM_TYPE_CODE);
+          Optional<Loantype> loanType = loanTypes.getLoantypes().stream().filter(lt -> lt.getName().equals(code)).findFirst();
+          if (loanType.isPresent()) {
+            String key = String.format("%s-%s", schema, id);
+            idToUuid.put(key, loanType.get().getId());
           }
-          codeToId.put(code, id);
         }
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
-    loanTypes.getLoantypes().stream()
-      .filter(loanType -> codeToId.containsKey(loanType.getName()))
-      .forEach(loanType -> idToUuid.put(schema + "-" + codeToId.get(loanType.getName()), loanType.getId()));
-
     return idToUuid;
   }
 
   private Map<String, String> getLocationsMap(Locations locations, String schema) {
-    Map<String, String> codeToId = new HashMap<>();
     Map<String, String> idToUuid = new HashMap<>();
     Map<String, Object> locationContext = new HashMap<>();
     locationContext.put(SQL, context.getExtraction().getLocationSql());
     locationContext.put(SCHEMA, schema);
-
     Database voyagerSettings = context.getExtraction().getDatabase();
-
     Map<String, String> locConv = context.getMaps().getLocation();
-
     try(
       Connection voyagerConnection = getConnection(voyagerSettings);
       Statement st = voyagerConnection.createStatement();
@@ -503,23 +500,18 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     ) {
       while (rs.next()) {
         String id = rs.getString(LOCATION_ID);
-        String code = rs.getString(LOCATION_CODE);
         if (Objects.nonNull(id)) {
           String key = String.format("%s-%s", schema, id);
-          if (locConv.containsKey(key)) {
-            code = locConv.get(key);
+          String code = locConv.containsKey(key) ? locConv.get(key) : rs.getString(LOCATION_CODE);
+          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
+          if (location.isPresent()) {
+            idToUuid.put(key, location.get().getId());
           }
-          codeToId.put(code, id);
         }
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
-    locations.getLocations().stream()
-      .filter(location -> codeToId.containsKey(location.getCode()))
-      .forEach(location -> idToUuid.put(schema + "-" + codeToId.get(location.getCode()), location.getId()));
-
     return idToUuid;
   }
 

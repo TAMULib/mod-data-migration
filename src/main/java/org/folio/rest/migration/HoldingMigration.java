@@ -18,6 +18,7 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.folio.rest.jaxrs.model.Holdingsrecord;
+import org.folio.rest.jaxrs.model.Location;
 import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.HoldingMapper;
@@ -205,7 +206,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         while (pageResultSet.next()) {
           String mfhdId = pageResultSet.getString(MFHD_ID);
 
-          String permanentLocation = pageResultSet.getString(LOCATION_ID);
+          String permanentLocationId = pageResultSet.getString(LOCATION_ID);
 
           String discoverySuppressString = pageResultSet.getString(DISCOVERY_SUPPRESS);
           String callNumber = pageResultSet.getString(CALL_NUMBER);
@@ -269,11 +270,11 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             retentionPolicy = holdingDefaults.getRetentionPolicy();
           }
 
-          if (locationsMap.containsKey(schema + "-" + permanentLocation)) {
-            locationId = locationsMap.get(schema + "-" + permanentLocation);
+          String permanentLocationIdKey = String.format("%s-%s", schema, permanentLocationId);
+          if (locationsMap.containsKey(permanentLocationIdKey)) {
+            locationId = locationsMap.get(permanentLocationIdKey);
           } else {
-            System.out.println("\n\n" + locationsMap + "\n\n");
-            log.warn("using default permanent location for schema {} mfhdId {} location {}", schema, mfhdId, permanentLocation);
+            log.warn("using default permanent location for schema {} mfhdId {} location {}", schema, mfhdId, permanentLocationId);
             locationId = holdingDefaults.getPermanentLocationId();
           }
 
@@ -422,16 +423,12 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   }
 
   private Map<String, String> getLocationsMap(Locations locations, String schema) {
-    Map<String, String> codeToId = new HashMap<>();
     Map<String, String> idToUuid = new HashMap<>();
     Map<String, Object> locationContext = new HashMap<>();
     locationContext.put(SQL, context.getExtraction().getLocationSql());
     locationContext.put(SCHEMA, schema);
-
     Database voyagerSettings = context.getExtraction().getDatabase();
-
     Map<String, String> locConv = context.getMaps().getLocation(); 
-
     try(
       Connection voyagerConnection = getConnection(voyagerSettings);
       Statement st = voyagerConnection.createStatement();
@@ -439,24 +436,18 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     ) {
       while (rs.next()) {
         String id = rs.getString(LOCATION_ID);
-        String code = rs.getString(LOCATION_CODE);
-        // location 126, 67, 102, 153
         if (Objects.nonNull(id)) {
           String key = String.format("%s-%s", schema, id);
-          if (locConv.containsKey(key)) {
-            code = locConv.get(key);
+          String code = locConv.containsKey(key) ? locConv.get(key) : rs.getString(LOCATION_CODE);
+          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
+          if (location.isPresent()) {
+            idToUuid.put(key, location.get().getId());
           }
-          codeToId.put(code, id);
         }
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
-    locations.getLocations().stream()
-      .filter(location -> codeToId.containsKey(location.getCode()))
-      .forEach(location -> idToUuid.put(schema + "-" + codeToId.get(location.getCode()), location.getId()));
-
     return idToUuid;
   }
 
