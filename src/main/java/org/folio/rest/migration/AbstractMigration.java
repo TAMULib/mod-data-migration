@@ -86,11 +86,9 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
 
   int getCount(Database settings, Map<String, Object> countContext) {
     try (
-
         Connection connection = getConnection(settings);
         Statement statement = connection.createStatement();
         ResultSet resultSet = getResultSet(statement, countContext);
-
     ) {
       return resultSet.next() ? Integer.parseInt(resultSet.getBigDecimal(TOTAL).toString()) : 0;
     } catch (SQLException e) {
