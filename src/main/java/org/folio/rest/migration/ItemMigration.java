@@ -44,6 +44,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String HRID_PREFIX = "HRID_PREFIX";
   private static final String HRID_START_NUMBER = "HRID_START_NUMBER";
 
+  private static final String LOAN_TYPES_MAP = "LOAN_TYPES_MAP";
+  private static final String LOCATIONS_MAP = "LOCATIONS_MAP";
+
   private static final String ITEM_ID = "ITEM_ID";
   private static final String PERM_ITEM_TYPE_ID = "ITEM_TYPE_ID";
   private static final String PERM_LOCATION_ID = "PERM_LOCATION";
@@ -112,6 +115,15 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
+      Map<String, String> voyagerItemTypes = getVoyagerLoanTypesMap(job.getSchema());
+      Map<String, String> voyagerLocations = getVoyagerLocationsMap(job.getSchema());
+
+      Map<String, Loantype> folioLoantypes = buildLoanTypeMap(migrationService.okapiService.fetchLoanTypes(tenant, token));
+      Map<String, Location> folioLocations = buildLocationMap(migrationService.okapiService.fetchLocations(tenant, token));
+
+      Map<String, Loantype> loanTypesMap = voyagerItemTypes.entrySet().stream().collect(Collectors.toMap(Entry::getKey, e -> folioLoantypes.get(e.getValue())));
+      Map<String, Location> locationsMap = voyagerLocations.entrySet().stream().collect(Collectors.toMap(Entry::getKey, e -> folioLocations.get(e.getValue())));
+
       int count = getCount(voyagerSettings, countContext);
 
       log.info("{} count: {}", job.getSchema(), count);
@@ -130,6 +142,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         partitionContext.put(HRID_PREFIX, hridPrefix);
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(JOB, job);
+        partitionContext.put(LOAN_TYPES_MAP, loanTypesMap);
+        partitionContext.put(LOCATIONS_MAP, locationsMap);
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new ItemPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -175,11 +189,12 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       ItemJob job = (ItemJob) partitionContext.get(JOB);
 
+      Map<String, Loantype> loanTypesMap = (Map<String, Loantype>) partitionContext.get(LOAN_TYPES_MAP);
+      Map<String, Location> locationsMap = (Map<String, Location>) partitionContext.get(LOCATIONS_MAP);
+
       String schema = job.getSchema();
 
       int index = this.getIndex();
-
-      String token = (String) partitionContext.get(TOKEN);
 
       Database voyagerSettings = context.getExtraction().getDatabase();
 
@@ -194,14 +209,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       Map<String, Object> barcodeContext = new HashMap<>();
       barcodeContext.put(SQL, context.getExtraction().getBarcodeSql());
       barcodeContext.put(SCHEMA, schema);
-
-      Map<String, Object> itemTypeContext = new HashMap<>();
-      itemTypeContext.put(SQL, context.getExtraction().getItemTypeSql());
-      itemTypeContext.put(SCHEMA, schema);
-
-      Map<String, Object> locationContext = new HashMap<>();
-      locationContext.put(SQL, context.getExtraction().getLocationSql());
-      locationContext.put(SCHEMA, schema);
 
       String itemRLTypeId = job.getReferences().get(ITEM_REFERENCE_ID);
       String itemToHoldingRLTypeId = job.getReferences().get(ITEM_TO_HOLDING_REFERENCE_ID);
@@ -218,19 +225,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement mfhdItemStatement = threadConnections.getMfhdConnection().createStatement();
         Statement barcodeStatement = threadConnections.getBarcodeConnection().createStatement();
-        Statement locationStatement = threadConnections.getLocationConnection().createStatement();
-        Statement itemTypeStatement = threadConnections.getItemTypeConnection().createStatement();
 
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
-
-        Map<String, String> voyagerItemTypes = buildVoyagerItemTypeMap(itemTypeStatement, itemTypeContext);
-        Map<String, String> voyagerLocations = buildVoyagerLocationMap(locationStatement, locationContext);
-
-        Map<String, Loantype> folioLoantypes = buildLoanTypeMap(this.migrationService.okapiService.fetchLoanTypes(tenant, token));
-        Map<String, Location> folioLocations = buildLocationMap(this.migrationService.okapiService.fetchLocations(tenant, token));
-
-        Map<String, Loantype> loanTypeMap = voyagerItemTypes.entrySet().stream().collect(Collectors.toMap(Entry::getKey, e -> folioLoantypes.get(e.getValue())));
-        Map<String, Location> locationMap = voyagerLocations.entrySet().stream().collect(Collectors.toMap(Entry::getKey, e -> folioLocations.get(e.getValue())));
 
         while (pageResultSet.next()) {
           String itemId = pageResultSet.getString(ITEM_ID);
@@ -240,11 +236,13 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           String tempLocationId = pageResultSet.getString(TEMP_LOCATION_ID);
           String tempTypeId = pageResultSet.getString(TEMP_TYPE_ID);
 
-          Loantype permLoanType = loanTypeMap.get(permTypeId);
-          Location permLocation = locationMap.get(permLocationId);
           int pieces = pageResultSet.getInt(PIECES);
-          Location tempLocation = locationMap.get(tempLocationId);
-          Loantype tempLoantype = loanTypeMap.get(tempTypeId);
+
+          Loantype permLoanType = loanTypesMap.get(permTypeId);
+          Location permLocation = locationsMap.get(permLocationId);
+          
+          Location tempLocation = locationsMap.get(tempLocationId);
+          Loantype tempLoantype = loanTypesMap.get(tempTypeId);
 
           mfhdContext.put(ITEM_ID, itemId);
           barcodeContext.put(ITEM_ID, itemId);
@@ -288,8 +286,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         pageStatement.close();
         mfhdItemStatement.close();
         barcodeStatement.close();
-        locationStatement.close();
-        itemTypeStatement.close();
 
         pageResultSet.close();
 
@@ -311,8 +307,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     threadConnections.setBarcodeConnection(getConnection(voyagerSettings));
     threadConnections.setMfhdConnection(getConnection(voyagerSettings));
-    threadConnections.setItemTypeConnection(getConnection(voyagerSettings));
-    threadConnections.setLocationConnection(getConnection(voyagerSettings));
     try {
       threadConnections.setItemConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
     } catch (SQLException e) {
@@ -326,8 +320,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     private Connection pageConnection;
     private Connection mfhdConnection;
     private Connection barcodeConnection;
-    private Connection locationConnection;
-    private Connection itemTypeConnection;
 
     private BaseConnection itemConnection;
 
@@ -359,22 +351,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       this.barcodeConnection = barcodeConnection;
     }
 
-    public Connection getLocationConnection() {
-      return locationConnection;
-    }
-
-    public void setLocationConnection(Connection locationConnection) {
-      this.locationConnection = locationConnection;
-    }
-
-    public Connection getItemTypeConnection() {
-      return itemTypeConnection;
-    }
-
-    public void setItemTypeConnection(Connection itemTypeConnection) {
-      this.itemTypeConnection = itemTypeConnection;
-    }
-
     public BaseConnection getItemConnection() {
       return itemConnection;
     }
@@ -388,8 +364,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         pageConnection.close();
         mfhdConnection.close();
         barcodeConnection.close();
-        locationConnection.close();
-        itemTypeConnection.close();
         itemConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
@@ -429,12 +403,20 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     return locations.getLocations().stream().collect(Collectors.toMap(Location::getCode, Function.identity()));
   }
 
-  private Map<String, String> buildVoyagerItemTypeMap(Statement statement, Map<String, Object> context) {
+  private Map<String, String> getVoyagerLoanTypesMap(String schema) {
     Map<String, String> vgrTypeMap = new HashMap<>();
-    try (ResultSet resultSet = getResultSet(statement, context)) {
-      while (resultSet.next()) {
-        String id = resultSet.getString(ITEM_TYPE_ID);
-        String code = resultSet.getString(ITEM_TYPE_CODE);
+    Map<String, Object> itemTypeContext = new HashMap<>();
+    itemTypeContext.put(SQL, context.getExtraction().getItemTypeSql());
+    itemTypeContext.put(SCHEMA, schema);
+    Database voyagerSettings = context.getExtraction().getDatabase();
+    try(
+      Connection voyagerConnection = getConnection(voyagerSettings);
+      Statement st = voyagerConnection.createStatement();
+      ResultSet rs = getResultSet(st, itemTypeContext);
+    ) {
+      while (rs.next()) {
+        String id = rs.getString(ITEM_TYPE_ID);
+        String code = rs.getString(ITEM_TYPE_CODE);
         vgrTypeMap.put(id, code);
       }
     } catch (SQLException e) {
@@ -443,12 +425,20 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     return vgrTypeMap;
   }
 
-  private Map<String, String> buildVoyagerLocationMap(Statement statement, Map<String, Object> context) {
+  private Map<String, String> getVoyagerLocationsMap(String schema) {
     Map<String, String> vgrLocationMap = new HashMap<>();
-    try (ResultSet resultSet = getResultSet(statement, context)) {
-      while (resultSet.next()) {
-        String id = resultSet.getString(LOCATION_ID);
-        String code = resultSet.getString(LOCATION_CODE);
+    Map<String, Object> locationContext = new HashMap<>();
+    locationContext.put(SQL, context.getExtraction().getLocationSql());
+    locationContext.put(SCHEMA, schema);
+    Database voyagerSettings = context.getExtraction().getDatabase();
+    try(
+      Connection voyagerConnection = getConnection(voyagerSettings);
+      Statement st = voyagerConnection.createStatement();
+      ResultSet rs = getResultSet(st, locationContext);
+    ) {
+      while (rs.next()) {
+        String id = rs.getString(LOCATION_ID);
+        String code = rs.getString(LOCATION_CODE);
         vgrLocationMap.put(id, code);
       }
     } catch (SQLException e) {
