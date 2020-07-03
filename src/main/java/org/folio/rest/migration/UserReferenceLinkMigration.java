@@ -128,8 +128,6 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, migrationService.referenceLinkSettings);
 
-      log.info("starting {} {}", schema, index);
-
       try {
 
         PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant));

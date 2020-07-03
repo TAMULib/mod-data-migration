@@ -188,8 +188,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
-      log.info("starting {} {}", schema, index);
-
       int count = 0;
 
       try {

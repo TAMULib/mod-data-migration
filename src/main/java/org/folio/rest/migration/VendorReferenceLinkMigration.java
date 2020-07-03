@@ -126,8 +126,6 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, migrationService.referenceLinkSettings);
 
-      log.info("starting {} {}", schema, index);
-
       try {
         PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant));
         PrintWriter referenceLinkWriter = new PrintWriter(referenceLinkOutput, true);
