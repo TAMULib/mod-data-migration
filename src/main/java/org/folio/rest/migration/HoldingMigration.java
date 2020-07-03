@@ -272,6 +272,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
           if (locationsMap.containsKey(permanentLocation)) {
             locationId = locationsMap.get(permanentLocation);
           } else {
+            log.warn("using default permanent location for schema {} mfhdId {} location {}", schema, mfhdId, permanentLocation);
             locationId = holdingDefaults.getPermanentLocationId();
           }
 

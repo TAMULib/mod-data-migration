@@ -24,6 +24,7 @@ import org.folio.rest.jaxrs.model.Status.Name;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.ItemRecord;
 import org.folio.rest.migration.model.request.ItemContext;
+import org.folio.rest.migration.model.request.ItemDefaults;
 import org.folio.rest.migration.model.request.ItemJob;
 import org.folio.rest.migration.model.request.MfhdItem;
 import org.folio.rest.migration.service.MigrationService;
@@ -193,6 +194,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
 
+      ItemDefaults itemDefaults = context.getDefaults();
+
       Map<String, Object> mfhdContext = new HashMap<>();
       mfhdContext.put(SQL, context.getExtraction().getMfhdSql());
       mfhdContext.put(SCHEMA, schema);
@@ -229,11 +232,24 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
           int numberOfPieces = pageResultSet.getInt(PIECES);
 
-          String permLoanTypeId = loanTypesMap.get(voyagerPermTypeId);
-          String permLocationId = locationsMap.get(voyagerPermLocationId);
+          String permLoanTypeId, permLocationId, tempLoanTypeId, tempLocationId;
 
-          String tempLoanTypeId = loanTypesMap.get(voyagerTempTypeId);
-          String tempLocationId = locationsMap.get(voyagerTempLocationId);
+          if (loanTypesMap.containsKey(voyagerPermTypeId)) {
+            permLoanTypeId = loanTypesMap.get(voyagerPermTypeId);
+          } else {
+            log.warn("using default permanent loan type for schema {} itemId {} type {}", schema, itemId, voyagerPermTypeId);
+            permLoanTypeId = itemDefaults.getPermanentLoanTypeId();
+          }
+
+          if (locationsMap.containsKey(voyagerPermLocationId)) {
+            permLocationId = locationsMap.get(voyagerPermLocationId);
+          } else {
+            log.warn("using default permanent location for schema {} itemId {} location {}", schema, itemId, voyagerPermLocationId);
+            permLocationId = itemDefaults.getPermanentLocationId();
+          }
+
+          tempLoanTypeId = loanTypesMap.get(voyagerTempTypeId);
+          tempLocationId = locationsMap.get(voyagerTempLocationId);
 
           mfhdContext.put(ITEM_ID, itemId);
           barcodeContext.put(ITEM_ID, itemId);

@@ -11,6 +11,9 @@ public class ItemContext extends AbstractContext {
 
   private List<ItemJob> jobs;
 
+  @NotNull
+  private ItemDefaults defaults;
+
   public ItemContext() {
     super();
   }
@@ -29,6 +32,14 @@ public class ItemContext extends AbstractContext {
 
   public void setJobs(List<ItemJob> jobs) {
     this.jobs = jobs;
+  }
+
+  public ItemDefaults getDefaults() {
+    return defaults;
+  }
+
+  public void setDefaults(ItemDefaults defaults) {
+    this.defaults = defaults;
   }
 
 }

@@ -393,7 +393,11 @@ POST to http://localhost:9000/migrate/items
         "itemToHoldingTypeId": "492fea54-399a-4822-8d4b-242096c2ab12"
       }
     }
-  ]
+  ],
+  "defaults": {
+    "permanentLoanTypeId": "dcdb0cef-c30f-4a3b-b0b6-757d1400535d",
+    "permanentLocationId": "2b8f7d63-706a-4b56-8a5e-50ad24e33e4c"
+  }
 }
 ```
 
