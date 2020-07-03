@@ -52,7 +52,7 @@ public class MigrationController {
   }
 
   @PostMapping("/holdings")
-  public void bibs(@RequestBody HoldingContext context, @TenantHeader String tenant) {
+  public void holdings(@RequestBody HoldingContext context, @TenantHeader String tenant) {
     migrationService.migrate(HoldingMigration.with(context, tenant));
   }
 
