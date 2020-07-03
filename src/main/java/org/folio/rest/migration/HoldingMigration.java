@@ -18,7 +18,6 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.folio.rest.jaxrs.model.Holdingsrecord;
-import org.folio.rest.jaxrs.model.Location;
 import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.HoldingMapper;
@@ -45,19 +44,15 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
   private static final String MFHD_ID = "MFHD_ID";
   private static final String LOCATION_ID = "LOCATION_ID";
-
-  private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
-  private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
-
+  private static final String LOCATION_CODE = "LOCATION_CODE";
   private static final String DISCOVERY_SUPPRESS = "SUPPRESS_IN_OPAC";
   private static final String CALL_NUMBER = "DISPLAY_CALL_NO";
-
   private static final String CALL_NUMBER_TYPE = "CALL_NO_TYPE";
   private static final String HOLDINGS_TYPE = "RECORD_TYPE";
   private static final String FIELD_008 = "FIELD_008";
 
-  private static final String ID = "id";
-  private static final String CODE = "code";
+  private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
+  private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
 
   //(id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
   private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,holdingstypeid,callnumbertypeid) FROM STDIN";
@@ -75,6 +70,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     String token = migrationService.okapiService.getToken(tenant);
 
     JsonObject hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
+
+    Locations locations = migrationService.okapiService.fetchLocations(tenant, token);
 
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
@@ -107,7 +104,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
-      HashMap<String, String> locationsMap = preloadLocationsMap(voyagerSettings, migrationService, token, job.getSchema());
+      HashMap<String, String> locationsMap = preloadLocationsMap(locations, job.getSchema());
 
       int count = getCount(voyagerSettings, countContext);
 
@@ -128,6 +125,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(JOB, job);
         partitionContext.put(LOCATIONS_MAP, locationsMap);
+        log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext));
         offset += limit;
         index++;
@@ -190,8 +188,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       HoldingDefaults holdingDefaults = context.getDefaults();
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
-
-      log.info("starting {} {}", schema, index);
 
       int count = 0;
 
@@ -355,7 +351,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     @Override
     public boolean equals(Object obj) {
-      return obj != null && ((HoldingPartitionTask) obj).getIndex() == this.getIndex();
+      return Objects.nonNull(obj) && ((HoldingPartitionTask) obj).getIndex() == this.getIndex();
     }
 
   }
@@ -408,48 +404,34 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     }
   }
 
-  private HashMap<String, String> preloadLocationsMap(Database voyagerSettings, MigrationService migrationService, String token, String schema) {
+  private HashMap<String, String> preloadLocationsMap(Locations locations, String schema) {
     HashMap<String, String> codeToId = new HashMap<>();
     HashMap<String, String> idToUuid = new HashMap<>();
-
-    Connection voyagerConnection = getConnection(voyagerSettings);
-
     Map<String, Object> locationContext = new HashMap<>();
-
     locationContext.put(SQL, context.getExtraction().getLocationSql());
     locationContext.put(SCHEMA, schema);
 
-    try {
+    Database voyagerSettings = context.getExtraction().getDatabase();
+
+    try(
+      Connection voyagerConnection = getConnection(voyagerSettings);
       Statement st = voyagerConnection.createStatement();
       ResultSet rs = getResultSet(st, locationContext);
-
+    ) {
       while (rs.next()) {
-        String id = rs.getString(ID);
-        String code = rs.getString(CODE);
-
-        if (id != null) {
+        String id = rs.getString(LOCATION_ID);
+        String code = rs.getString(LOCATION_CODE);
+        if (Objects.nonNull(id)) {
           codeToId.put(code, id);
         }
       }
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
-      try {
-        if (!voyagerConnection.isClosed()) {
-          voyagerConnection.close();
-        }
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
     }
 
-    Locations locations = migrationService.okapiService.fetchLocations(tenant, token);
-
-    for (Location location : locations.getLocations()) {
-      if (codeToId.containsKey(location.getCode())) {
-        idToUuid.put(codeToId.get(location.getCode()), location.getId());
-      }
-    }
+    locations.getLocations().stream()
+      .filter(location -> codeToId.containsKey(location.getCode()))
+      .forEach(location -> idToUuid.put(codeToId.get(location.getCode()), location.getId()));
 
     return idToUuid;
   }

@@ -28,7 +28,4 @@ public interface ReferenceLinkRepo extends JpaRepository<ReferenceLink, String> 
   public List<ReferenceLink> findAllByTypeNameAndExternalReferenceIn(@Param("typeName") String typeName,
       @Param("externalReferences") List<String> externalReferences);
 
-  public List<ReferenceLink> findAllByTypeNameAndFolioReferenceIn(@Param("typeName") String typeName,
-      @Param("folioReferences") List<String> folioReferences);
-
 }

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -28,8 +29,8 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
   private static final String USER_REFERENCE_ID = "userTypeId";
   private static final String USER_EXTERNAL_REFERENCE_ID = "userExternalTypeId";
 
-  // (id,externalreference,folioreference,type_id)
-  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,externalreference,folioreference,type_id) FROM STDIN";
+  // (id,external_reference,folioreference,type_id)
+  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,external_reference,folio_reference,type_id) FROM STDIN";
 
   private UserReferenceLinkMigration(UserReferenceLinkContext context, String tenant) {
     super(context, tenant);
@@ -77,6 +78,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
+        log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new UserReferenceLinkPartitionTask(migrationService, partitionContext, job));
         offset += limit;
         index++;
@@ -127,8 +129,6 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, migrationService.referenceLinkSettings);
 
-      log.info("starting {} {}", schema, index);
-
       try {
 
         PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant));
@@ -152,7 +152,9 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
         }
 
         referenceLinkWriter.close();
+
         pageStatement.close();
+
         pageResultSet.close();
 
       } catch (SQLException e) {
@@ -164,6 +166,11 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
       log.info("{} {} finished in {} milliseconds", schema, index, TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      return Objects.nonNull(obj) && ((UserReferenceLinkPartitionTask) obj).getIndex() == this.getIndex();
     }
 
   }

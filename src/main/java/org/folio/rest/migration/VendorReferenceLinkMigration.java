@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -26,8 +27,8 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
 
   private static final String VENDOR_REFERENCE_ID = "vendorTypeId";
 
-  // (id,externalreference,folioreference,type_id)
-  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,externalreference,folioreference,type_id) FROM STDIN";
+  // (id,external_reference,folioreference,type_id)
+  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,external_reference,folio_reference,type_id) FROM STDIN";
 
   private VendorReferenceLinkMigration(VendorReferenceLinkContext context, String tenant) {
     super(context, tenant);
@@ -76,6 +77,7 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
+        log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new VendorReferenceLinkPartitionTask(migrationService, partitionContext, job));
         offset += limit;
         index++;
@@ -125,8 +127,6 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, migrationService.referenceLinkSettings);
 
-      log.info("starting {} {}", schema, index);
-
       try {
         PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant));
         PrintWriter referenceLinkWriter = new PrintWriter(referenceLinkOutput, true);
@@ -158,6 +158,11 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
       log.info("{} {} finished in {} milliseconds", schema, index, TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      return Objects.nonNull(obj) && ((VendorReferenceLinkPartitionTask) obj).getIndex() == this.getIndex();
     }
 
   }
