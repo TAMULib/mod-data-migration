@@ -234,22 +234,22 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
           String permLoanTypeId, permLocationId, tempLoanTypeId, tempLocationId;
 
-          if (loanTypesMap.containsKey(voyagerPermTypeId)) {
-            permLoanTypeId = loanTypesMap.get(voyagerPermTypeId);
+          if (loanTypesMap.containsKey(schema + "-" + voyagerPermTypeId)) {
+            permLoanTypeId = loanTypesMap.get(schema + "-" + voyagerPermTypeId);
           } else {
             log.warn("using default permanent loan type for schema {} itemId {} type {}", schema, itemId, voyagerPermTypeId);
             permLoanTypeId = itemDefaults.getPermanentLoanTypeId();
           }
 
-          if (locationsMap.containsKey(voyagerPermLocationId)) {
-            permLocationId = locationsMap.get(voyagerPermLocationId);
+          if (locationsMap.containsKey(schema + "-" + voyagerPermLocationId)) {
+            permLocationId = locationsMap.get(schema + "-" + voyagerPermLocationId);
           } else {
             log.warn("using default permanent location for schema {} itemId {} location {}", schema, itemId, voyagerPermLocationId);
             permLocationId = itemDefaults.getPermanentLocationId();
           }
 
-          tempLoanTypeId = loanTypesMap.get(voyagerTempTypeId);
-          tempLocationId = locationsMap.get(voyagerTempLocationId);
+          tempLoanTypeId = loanTypesMap.get(schema + "-" + voyagerTempTypeId);
+          tempLocationId = locationsMap.get(schema + "-" + voyagerTempLocationId);
 
           mfhdContext.put(ITEM_ID, itemId);
           barcodeContext.put(ITEM_ID, itemId);
@@ -480,7 +480,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
     loanTypes.getLoantypes().stream()
       .filter(loanType -> codeToId.containsKey(loanType.getName()))
-      .forEach(loanType -> idToUuid.put(codeToId.get(loanType.getName()), loanType.getId()));
+      .forEach(loanType -> idToUuid.put(schema + "-" + codeToId.get(loanType.getName()), loanType.getId()));
 
     return idToUuid;
   }
@@ -518,7 +518,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
     locations.getLocations().stream()
       .filter(location -> codeToId.containsKey(location.getCode()))
-      .forEach(location -> idToUuid.put(codeToId.get(location.getCode()), location.getId()));
+      .forEach(location -> idToUuid.put(schema + "-" + codeToId.get(location.getCode()), location.getId()));
 
     return idToUuid;
   }

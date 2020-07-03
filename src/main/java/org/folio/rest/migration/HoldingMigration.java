@@ -269,9 +269,10 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             retentionPolicy = holdingDefaults.getRetentionPolicy();
           }
 
-          if (locationsMap.containsKey(permanentLocation)) {
-            locationId = locationsMap.get(permanentLocation);
+          if (locationsMap.containsKey(schema + "-" + permanentLocation)) {
+            locationId = locationsMap.get(schema + "-" + permanentLocation);
           } else {
+            System.out.println("\n\n" + locationsMap + "\n\n");
             log.warn("using default permanent location for schema {} mfhdId {} location {}", schema, mfhdId, permanentLocation);
             locationId = holdingDefaults.getPermanentLocationId();
           }
@@ -439,6 +440,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       while (rs.next()) {
         String id = rs.getString(LOCATION_ID);
         String code = rs.getString(LOCATION_CODE);
+        // location 126, 67, 102, 153
         if (Objects.nonNull(id)) {
           String key = String.format("%s-%s", schema, id);
           if (locConv.containsKey(key)) {
@@ -453,7 +455,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     locations.getLocations().stream()
       .filter(location -> codeToId.containsKey(location.getCode()))
-      .forEach(location -> idToUuid.put(codeToId.get(location.getCode()), location.getId()));
+      .forEach(location -> idToUuid.put(schema + "-" + codeToId.get(location.getCode()), location.getId()));
 
     return idToUuid;
   }
