@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,14 +25,14 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
   static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
   static final String SQL = "SQL";
+  static final String JOB = "JOB";
   static final String SCHEMA = "SCHEMA";
   static final String OFFSET = "OFFSET";
   static final String LIMIT = "LIMIT";
 
+  static final String TENANT = "TENANT";
   static final String TOKEN = "TOKEN";
-
   static final String INDEX = "INDEX";
-
   static final String TOTAL = "TOTAL";
 
   final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -48,20 +49,21 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
   }
 
   void preActions(Database settings, List<String> preActions) {
-    preActions.stream().forEach(actionSql -> action(settings, actionSql));
+    preActions.stream().forEach(actionSqlTemplate -> action(settings, actionSqlTemplate));
   }
 
   void postActions(Database settings, List<String> postActions) {
-    postActions.stream().forEach(actionSql -> action(settings, actionSql));
+    postActions.stream().forEach(actionSqlTemplate -> action(settings, actionSqlTemplate));
   }
 
-  void action(Database settings, String actionSql) {
+  void action(Database settings, String actionSqlTemplate) {
+    Map<String, Object> actionContext = new HashMap<>();
+    actionContext.put(TENANT, tenant);
     try (
-
-        Connection connection = getConnection(settings);
-        Statement statement = connection.createStatement();
-
+      Connection connection = getConnection(settings);
+      Statement statement = connection.createStatement();
     ) {
+      String actionSql = templateSql(actionSqlTemplate, actionContext);
       log.info(actionSql);
       statement.execute(actionSql);
     } catch (SQLException e) {
@@ -85,11 +87,9 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
 
   int getCount(Database settings, Map<String, Object> countContext) {
     try (
-
-        Connection connection = getConnection(settings);
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = getResultSet(statement, countContext);
-
+      Connection connection = getConnection(settings);
+      Statement statement = connection.createStatement();
+      ResultSet resultSet = getResultSet(statement, countContext);
     ) {
       return resultSet.next() ? Integer.parseInt(resultSet.getBigDecimal(TOTAL).toString()) : 0;
     } catch (SQLException e) {

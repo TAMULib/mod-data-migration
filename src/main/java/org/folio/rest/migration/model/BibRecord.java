@@ -1,25 +1,27 @@
 package org.folio.rest.migration.model;
 
 import java.util.Date;
+import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 import org.folio.rest.jaxrs.model.Instance;
 import org.folio.rest.jaxrs.model.common.ExternalIdsHolder;
 import org.folio.rest.jaxrs.model.dto.AdditionalInfo;
 import org.folio.rest.jaxrs.model.dto.ParsedRecord;
-import org.folio.rest.jaxrs.model.dto.RawRecord;
 import org.folio.rest.jaxrs.model.dto.ParsedRecordDto.RecordType;
+import org.folio.rest.jaxrs.model.dto.RawRecord;
 import org.folio.rest.jaxrs.model.mod_source_record_storage.RecordModel;
 import org.folio.rest.migration.mapping.InstanceMapper;
-import org.marc4j.marc.Record;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
+import io.vertx.core.json.JsonObject;
 
 public class BibRecord {
 
   private final String bibId;
+  private final String statusId;
   private final Boolean suppressDiscovery;
+  private final Set<String> statisticalCodes;
 
   private final String rawRecordId;
   private final String parsedRecordId;
@@ -28,15 +30,16 @@ public class BibRecord {
   private String sourceRecordId;
   private String instanceId;
 
-  private Record record;
-  private JsonNode marcJson;
+  private JsonObject parsedRecord;
 
   private String createdByUserId;
   private Date createdDate;
 
-  public BibRecord(String bibId, Boolean suppressDiscovery) {
+  public BibRecord(String bibId, String statusId, Boolean suppressDiscovery, Set<String> statisticalCodes) {
     this.bibId = bibId;
+    this.statusId = statusId;
     this.suppressDiscovery = suppressDiscovery;
+    this.statisticalCodes = statisticalCodes;
     this.rawRecordId = UUID.randomUUID().toString();
     this.parsedRecordId = UUID.randomUUID().toString();
   }
@@ -81,20 +84,12 @@ public class BibRecord {
     this.instanceId = instanceId;
   }
 
-  public Record getRecord() {
-    return record;
+  public JsonObject getParsedRecord() {
+    return parsedRecord;
   }
 
-  public void setRecord(Record record) {
-    this.record = record;
-  }
-
-  public JsonNode getMarcJson() {
-    return marcJson;
-  }
-
-  public void setMarcJson(JsonNode marcJson) {
-    this.marcJson = marcJson;
+  public void setParsedRecord(JsonObject parsedRecord) {
+    this.parsedRecord = parsedRecord;
   }
 
   public String getCreatedByUserId() {
@@ -144,19 +139,24 @@ public class BibRecord {
   public ParsedRecord toParsedRecord() {
     final ParsedRecord parsedRecord = new ParsedRecord();
     parsedRecord.setId(parsedRecordId);
-    parsedRecord.setContent(marcJson);
+    parsedRecord.setContent(this.parsedRecord.getMap());
     return parsedRecord;
   }
 
-  public Instance toInstance(InstanceMapper instanceMapper, String hridPrefix, int hrid) throws JsonProcessingException {
-    final Instance instance = instanceMapper.getInstance(record);
-    instance.setId(instanceId);
-    instance.setHrid(String.format("%s%011d", hridPrefix, hrid));
-    instance.setDiscoverySuppress(suppressDiscovery);
-    org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
-    metadata.setCreatedByUserId(createdByUserId);
-    metadata.setCreatedDate(createdDate);
-    instance.setMetadata(metadata);
+  public Instance toInstance(InstanceMapper instanceMapper, String hridPrefix, int hrid) {
+    final Instance instance = instanceMapper.getInstance(parsedRecord);
+    if (Objects.nonNull(instance)) {
+      instance.setId(instanceId);
+      instance.setHrid(String.format("%s%011d", hridPrefix, hrid));
+      instance.setDiscoverySuppress(suppressDiscovery);
+      instance.setStatisticalCodeIds(statisticalCodes);
+      instance.setStatusId(statusId);
+
+      org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
+      metadata.setCreatedByUserId(createdByUserId);
+      metadata.setCreatedDate(createdDate);
+      instance.setMetadata(metadata);
+    }
     return instance;
   }
 

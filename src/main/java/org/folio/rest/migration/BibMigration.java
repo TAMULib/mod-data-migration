@@ -15,15 +15,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.core.io.JsonStringEncoder;
+import com.fasterxml.jackson.databind.JsonNode;
+
 import org.apache.commons.io.IOUtils;
+import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
 import org.folio.rest.jaxrs.model.Instance;
+import org.folio.rest.jaxrs.model.Statisticalcodes;
+import org.folio.rest.jaxrs.model.common.ProfileInfo;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto.SourceType;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRsDto;
@@ -33,10 +41,10 @@ import org.folio.rest.jaxrs.model.dto.RawRecord;
 import org.folio.rest.jaxrs.model.dto.RawRecordsDto;
 import org.folio.rest.jaxrs.model.dto.RawRecordsMetadata;
 import org.folio.rest.jaxrs.model.dto.RawRecordsMetadata.ContentType;
+import org.folio.rest.jaxrs.model.mod_data_import_converter_storage.JobProfile;
 import org.folio.rest.jaxrs.model.mod_source_record_storage.RecordModel;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.InstanceMapper;
-import org.folio.rest.migration.mapping.MappingParameters;
 import org.folio.rest.migration.model.BibRecord;
 import org.folio.rest.migration.model.request.BibContext;
 import org.folio.rest.migration.model.request.BibJob;
@@ -54,23 +62,26 @@ import org.marc4j.marc.Record;
 import org.marc4j.marc.VariableField;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
+import org.springframework.cache.annotation.Cacheable;
 
-import com.fasterxml.jackson.core.io.JsonStringEncoder;
-import com.fasterxml.jackson.databind.JsonNode;
+import io.vertx.core.json.JsonObject;
 
 public class BibMigration extends AbstractMigration<BibContext> {
 
   private static final String HRID_PREFIX = "HRID_PREFIX";
   private static final String HRID_START_NUMBER = "HRID_START_NUMBER";
 
+  private static final String STATISTICAL_CODES = "STATISTICAL_CODES";
+
   private static final String BIB_ID = "BIB_ID";
   private static final String SUPPRESS_IN_OPAC = "SUPPRESS_IN_OPAC";
-
-  private static final String SOURCE_RECORD_REFERENCE_ID = "sourceRecordTypeId";
-  private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
+  private static final String OPERATOR_ID = "OPERATOR_ID";
 
   private static final String RECORD_SEGMENT = "RECORD_SEGMENT";
   private static final String SEQNUM = "SEQNUM";
+
+  private static final String SOURCE_RECORD_REFERENCE_ID = "sourceRecordTypeId";
+  private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
 
   private static final String T_999 = "999";
 
@@ -85,10 +96,10 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private static String PARSED_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.marc_records (id,jsonb,creation_date,created_by) FROM STDIN";
 
   // (id,jsonb,creation_date,created_by,jobexecutionid)
-  private static String RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.records (id,jsonb,creation_date,created_by) FROM STDIN";
+  private static String RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.records (id,jsonb,creation_date,created_by,jobexecutionid) FROM STDIN";
 
   // (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid)
-  private static String INSTANCE_COPY_SQL = "COPY %s_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancetypeid) FROM STDIN";
+  private static String INSTANCE_COPY_SQL = "COPY %s_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid) FROM STDIN";
 
   private BibMigration(BibContext context, String tenant) {
     super(context, tenant);
@@ -101,18 +112,13 @@ public class BibMigration extends AbstractMigration<BibContext> {
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
 
     String token = migrationService.okapiService.getToken(tenant);
-
     MappingParameters mappingParameters = migrationService.okapiService.getMappingParamaters(tenant, token);
-
-    JsonNode rules = migrationService.okapiService.fetchRules(tenant, token);
-
-    JsonNode hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
-
+    JsonObject mappingRules = migrationService.okapiService.fetchRules(tenant, token);
+    JsonObject hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
+    Statisticalcodes statisticalCodes = migrationService.okapiService.fetchStatisticalCodes(tenant, token);
     Database voyagerSettings = context.getExtraction().getDatabase();
-
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
-
-    InstanceMapper instanceMapper = new InstanceMapper(mappingParameters, migrationService.objectMapper, rules);
+    InstanceMapper instanceMapper = new InstanceMapper(mappingParameters, mappingRules);
 
     preActions(folioSettings, context.getPreActions());
 
@@ -128,11 +134,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
     Map<String, Object> countContext = new HashMap<>();
     countContext.put(SQL, context.getExtraction().getCountSql());
 
-    JsonNode instancesHridSettings = hridSettings.get("instances");
-
-    String hridPrefix = instancesHridSettings.get("prefix").asText();
-
-    int originalHridStartNumber = instancesHridSettings.get("startNumber").asInt();
+    JsonObject instancesHridSettings = hridSettings.getJsonObject("instances");
+    String hridPrefix = instancesHridSettings.getString("prefix");
+    int originalHridStartNumber = instancesHridSettings.getInteger("startNumber");
 
     int hridStartNumber = originalHridStartNumber;
 
@@ -142,15 +146,15 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
+      JobProfile profile = migrationService.okapiService.getOrCreateJobProfile(tenant, token, job.getProfile());
+      job.setProfile(profile);
+
       int count = getCount(voyagerSettings, countContext);
 
       log.info("{} count: {}", job.getSchema(), count);
 
       int partitions = job.getPartitions();
-      int limit = count / partitions;
-      if (limit * partitions < count) {
-        limit++;
-      }
+      int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
       for (int i = 0; i < partitions; i++) {
         Map<String, Object> partitionContext = new HashMap<String, Object>();
@@ -162,7 +166,10 @@ public class BibMigration extends AbstractMigration<BibContext> {
         partitionContext.put(TOKEN, token);
         partitionContext.put(HRID_PREFIX, hridPrefix);
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
-        taskQueue.submit(new BibPartitionTask(migrationService, instanceMapper, partitionContext, job));
+        partitionContext.put(JOB, job);
+        partitionContext.put(STATISTICAL_CODES, statisticalCodes);
+        log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
+        taskQueue.submit(new BibPartitionTask(migrationService, instanceMapper, partitionContext));
         offset += limit;
         index++;
         if (i < partitions) {
@@ -188,15 +195,12 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     private final Map<String, Object> partitionContext;
 
-    private final BibJob job;
-
     private int hrid;
 
-    public BibPartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext, BibJob job) {
+    public BibPartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext) {
       this.migrationService = migrationService;
       this.instanceMapper = instanceMapper;
       this.partitionContext = partitionContext;
-      this.job = job;
       this.hrid = (int) partitionContext.get(HRID_START_NUMBER);
     }
 
@@ -204,27 +208,30 @@ public class BibMigration extends AbstractMigration<BibContext> {
       return (int) partitionContext.get(INDEX);
     }
 
-    public String getSchema() {
-      return job.getSchema();
-    }
-
     public BibPartitionTask execute(BibContext context) {
       long startTime = System.nanoTime();
-
-      String schema = this.getSchema();
-
-      int index = this.getIndex();
 
       String token = (String) partitionContext.get(TOKEN);
       String hridPrefix = (String) partitionContext.get(HRID_PREFIX);
 
+      BibJob job = (BibJob) partitionContext.get(JOB);
+
+      Statisticalcodes statisticalCodes = (Statisticalcodes) partitionContext.get(STATISTICAL_CODES);
+
+      String schema = job.getSchema();
+
+      int index = this.getIndex();
+
+      ProfileInfo profileInfo = new ProfileInfo();
+      profileInfo.setId(job.getProfile().getId());
+      profileInfo.setName(job.getProfile().getName());
+
       InitJobExecutionsRqDto jobExecutionRqDto = new InitJobExecutionsRqDto();
       jobExecutionRqDto.setSourceType(SourceType.ONLINE);
-      jobExecutionRqDto.setJobProfileInfo(job.getProfileInfo());
+      jobExecutionRqDto.setJobProfileInfo(profileInfo);
       jobExecutionRqDto.setUserId(job.getUserId());
 
       InitJobExecutionsRsDto JobExecutionRsDto = migrationService.okapiService.createJobExecution(tenant, token, jobExecutionRqDto);
-
       JobExecution jobExecution = JobExecutionRsDto.getJobExecutions().get(0);
 
       String jobExecutionId = jobExecution.getId();
@@ -249,12 +256,10 @@ public class BibMigration extends AbstractMigration<BibContext> {
       int count = 0;
 
       try {
-
         PGCopyOutputStream rawRecordOutput = new PGCopyOutputStream(threadConnections.getRawRecordConnection(), String.format(RAW_RECORDS_COPY_SQL, tenant));
         PrintWriter rawRecordWriter = new PrintWriter(rawRecordOutput, true);
 
-        PGCopyOutputStream parsedRecordOutput = new PGCopyOutputStream(threadConnections.getParsedRecordConnection(),
-            String.format(PARSED_RECORDS_COPY_SQL, tenant));
+        PGCopyOutputStream parsedRecordOutput = new PGCopyOutputStream(threadConnections.getParsedRecordConnection(), String.format(PARSED_RECORDS_COPY_SQL, tenant));
         PrintWriter parsedRecordWriter = new PrintWriter(parsedRecordOutput, true);
 
         PGCopyOutputStream recordOutput = new PGCopyOutputStream(threadConnections.getRecordConnection(), String.format(RECORDS_COPY_SQL, tenant));
@@ -272,88 +277,99 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
           String bibId = pageResultSet.getString(BIB_ID);
           Boolean suppressInOpac = pageResultSet.getBoolean(SUPPRESS_IN_OPAC);
+          String operatorId = pageResultSet.getString(OPERATOR_ID);
 
           marcContext.put(BIB_ID, bibId);
 
           try {
             String marc = getMarc(marcStatement, marcContext);
 
-            BibRecord bibRecord = new BibRecord(bibId, suppressInOpac);
-
-            String sourceRecordId, instanceId;
-            if (job.isUseReferenceLinks()) {
-              Optional<ReferenceLink> sourceRecordRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(sourceRecordRLTypeId, bibId);
-              sourceRecordId = sourceRecordRL.isPresent() ? sourceRecordRL.get().getFolioReference() : UUID.randomUUID().toString();
-              Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, bibId);
-              instanceId = instanceRL.isPresent() ? instanceRL.get().getFolioReference() : UUID.randomUUID().toString();
-            } else {
-              sourceRecordId = UUID.randomUUID().toString();
-              instanceId = UUID.randomUUID().toString();
-            }
-
             Optional<Record> potentialRecord = rawMarcToRecord(marc);
 
-            if (potentialRecord.isPresent()) {
-              Record record = potentialRecord.get();
-
-              DataField dataField = getDataField(factory, record);
-
-              bibRecord.setSourceRecordId(sourceRecordId);
-              dataField.addSubfield(factory.newSubfield(S, sourceRecordId));
-
-              bibRecord.setInstanceId(instanceId);
-              dataField.addSubfield(factory.newSubfield(I, instanceId));
-
-              record.addVariableField(dataField);
-
-              try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
-                MarcWriter streamWriter = new MarcStreamWriter(os, DEFAULT_CHARSET.name());
-                // use stream writer to recalculate leader
-                streamWriter.write(record);
-                streamWriter.close();
-              } catch (IOException e) {
-                e.printStackTrace();
-              }
-
-              String marcJson = recordToJson(record);
-
-              JsonNode marcJsonNode = migrationService.objectMapper.readTree(marcJson);
-
-              bibRecord.setMarc(marc);
-              bibRecord.setRecord(record);
-              bibRecord.setMarcJson(marcJsonNode);
-
-              Date currentDate = new Date();
-              bibRecord.setCreatedByUserId(job.getUserId());
-              bibRecord.setCreatedDate(currentDate);
-
-              RawRecord rawRecord = bibRecord.toRawRecord();
-              ParsedRecord parsedRecord = bibRecord.toParsedRecord();
-              RecordModel recordModel = bibRecord.toRecordModel(jobExecutionId);
-
-              String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
-              String createdByUserId = job.getUserId();
-
-              Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid);
-
-              String rrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(rawRecord)));
-              String prUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(parsedRecord)));
-              String rmUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(recordModel)));
-              String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(instance)));
-
-              // TODO: validate rows
-
-              rawRecordWriter.println(String.join("\t", rawRecord.getId(), rrUtf8Json, createdAt, createdByUserId));
-              parsedRecordWriter.println(String.join("\t", parsedRecord.getId(), prUtf8Json, createdAt, createdByUserId));
-              recordWriter.println(String.join("\t", recordModel.getId(), rmUtf8Json, createdAt, createdByUserId));
-              instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getInstanceTypeId()));
-
-              hrid++;
-              count++;
-
-            } else {
-              log.error("{} bib id {} no record found", schema, bibId);
+            if (!potentialRecord.isPresent()) {
+              log.error("schema {}, bib id {}, marc {} unable to read record", schema, bibId, marc);
+              continue;
             }
+
+            Set<String> matchedCodes = Objects.nonNull(operatorId)
+              ? getMatchingStatisticalCodes(operatorId, statisticalCodes)
+              : new HashSet<>();
+
+            BibRecord bibRecord = new BibRecord(bibId, job.getInstanceStatusId(), suppressInOpac, matchedCodes);
+
+            Optional<ReferenceLink> sourceRecordRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(sourceRecordRLTypeId, bibId);
+            if (!sourceRecordRL.isPresent()) {
+              log.error("{} no source record id found for bib id {}", schema, bibId);
+              continue;
+            }
+
+            Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, bibId);
+            if (!instanceRL.isPresent()) {
+              log.error("{} no instance id found for bib id {}", schema, bibId);
+              continue;
+            }
+
+            String sourceRecordId = sourceRecordRL.get().getFolioReference();
+
+            String instanceId = instanceRL.get().getFolioReference();
+
+            Record record = potentialRecord.get();
+
+            DataField dataField = getDataField(factory, record);
+
+            bibRecord.setSourceRecordId(sourceRecordId);
+            dataField.addSubfield(factory.newSubfield(S, sourceRecordId));
+
+            bibRecord.setInstanceId(instanceId);
+            dataField.addSubfield(factory.newSubfield(I, instanceId));
+
+            record.addVariableField(dataField);
+
+            try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
+              MarcWriter streamWriter = new MarcStreamWriter(os, DEFAULT_CHARSET.name());
+              // use stream writer to recalculate leader
+              streamWriter.write(record);
+              streamWriter.close();
+            }
+
+            String marcJson = recordToJson(record);
+
+            JsonObject marcJsonObject = new JsonObject(marcJson);
+
+            bibRecord.setMarc(marc);
+            bibRecord.setParsedRecord(marcJsonObject);
+
+            bibRecord.setCreatedByUserId(job.getUserId());
+            bibRecord.setCreatedDate(new Date());
+
+            RawRecord rawRecord = bibRecord.toRawRecord();
+            ParsedRecord parsedRecord = bibRecord.toParsedRecord();
+            RecordModel recordModel = bibRecord.toRecordModel(jobExecutionId);
+
+            Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid);
+
+            if (Objects.isNull(instance)) {
+              log.error("schema {}, bib id {} unable to map record to instance", schema, bibId);
+              continue;
+            }
+
+            String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
+            String createdByUserId = job.getUserId();
+
+            String rrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(rawRecord)));
+            String prUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(parsedRecord)));
+            String rmUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(recordModel)));
+            String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(instance)));
+
+            // TODO: validate rows
+
+            rawRecordWriter.println(String.join("\t", rawRecord.getId(), rrUtf8Json, createdAt, createdByUserId));
+            parsedRecordWriter.println(String.join("\t", parsedRecord.getId(), prUtf8Json, createdAt, createdByUserId));
+            recordWriter.println(String.join("\t", recordModel.getId(), rmUtf8Json, createdAt, createdByUserId, recordModel.getSnapshotId()));
+            instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getStatusId(), instance.getModeOfIssuanceId(), instance.getInstanceTypeId()));
+
+            hrid++;
+            count++;
 
           } catch (IOException e) {
             log.error("{} bib id {} error processing marc", schema, bibId);
@@ -397,7 +413,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     @Override
     public boolean equals(Object obj) {
-      return obj != null && ((BibPartitionTask) obj).getIndex() == this.getIndex();
+      return Objects.nonNull(obj) && ((BibPartitionTask) obj).getIndex() == this.getIndex();
     }
 
   }
@@ -426,11 +442,21 @@ public class BibMigration extends AbstractMigration<BibContext> {
         int seqnum = resultSet.getInt(SEQNUM);
         marcSequence.add(new SequencedMarc(seqnum, recordSegment));
       }
-      List<InputStream> asciiStreams = marcSequence.stream().sorted((sm1, sm2) -> sm1.getSeqnum().compareTo(sm2.getSeqnum())).map(sm -> sm.getRecordSegment())
+      List<InputStream> asciiStreams = marcSequence.stream()
+        .sorted((sm1, sm2) -> sm1.getSeqnum().compareTo(sm2.getSeqnum()))
+        .map(sm -> sm.getRecordSegment())
           .collect(Collectors.toList());
       SequenceInputStream sequenceInputStream = new SequenceInputStream(Collections.enumeration(asciiStreams));
       return IOUtils.toString(sequenceInputStream, DEFAULT_CHARSET);
     }
+  }
+
+  @Cacheable(key = "operatorId")
+  private Set<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalCodes) {
+    return statisticalCodes.getStatisticalCodes().stream()
+      .map(sc -> sc.getCode())
+      .filter(code -> code.equals(operatorId))
+        .collect(Collectors.toSet());
   }
 
   private Optional<Record> rawMarcToRecord(String rawMarc) throws IOException, MarcException {
