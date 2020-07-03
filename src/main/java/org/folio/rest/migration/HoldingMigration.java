@@ -55,7 +55,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
 
   // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
-  private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,holdingstypeid,callnumbertypeid,illpolicyid) FROM STDIN";
+  private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid) FROM STDIN";
 
   private HoldingMigration(HoldingContext context, String tenant) {
     super(context, tenant);
