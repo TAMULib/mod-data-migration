@@ -94,6 +94,7 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
+        log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new InventoryReferenceLinkPartitionTask(migrationService, partitionContext, job));
         offset += limit;
         index++;

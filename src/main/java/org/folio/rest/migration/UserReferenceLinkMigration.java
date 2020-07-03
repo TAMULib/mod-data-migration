@@ -78,6 +78,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
+        log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new UserReferenceLinkPartitionTask(migrationService, partitionContext, job));
         offset += limit;
         index++;

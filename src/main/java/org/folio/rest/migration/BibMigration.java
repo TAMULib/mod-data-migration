@@ -168,6 +168,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(JOB, job);
         partitionContext.put(STATISTICAL_CODES, statisticalCodes);
+        log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new BibPartitionTask(migrationService, instanceMapper, partitionContext));
         offset += limit;
         index++;

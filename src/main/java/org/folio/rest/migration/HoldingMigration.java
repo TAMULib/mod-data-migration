@@ -125,6 +125,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(JOB, job);
         partitionContext.put(LOCATIONS_MAP, locationsMap);
+        log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext));
         offset += limit;
         index++;
