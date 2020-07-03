@@ -68,8 +68,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String ITEM_REFERENCE_ID = "itemTypeId";
   private static final String ITEM_TO_HOLDING_REFERENCE_ID = "itemToHoldingTypeId";
 
-  // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,meterialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
-  private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,meterialtypeid,permanentlocationid,temporarylocationid) FROM STDIN";
+  // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
+  private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid) FROM STDIN";
 
   private ItemMigration(ItemContext context, String tenant) {
     super(context, tenant);
@@ -114,14 +114,18 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
-      Map<String, String> voyagerItemTypes = getVoyagerLoanTypesMap(job.getSchema());
+      Map<String, String> voyagerLoanTypes = getVoyagerLoanTypesMap(job.getSchema());
       Map<String, String> voyagerLocations = getVoyagerLocationsMap(job.getSchema());
 
       Map<String, Loantype> folioLoantypes = buildLoanTypeMap(migrationService.okapiService.fetchLoanTypes(tenant, token));
       Map<String, Location> folioLocations = buildLocationMap(migrationService.okapiService.fetchLocations(tenant, token));
 
-      Map<String, Loantype> loanTypesMap = voyagerItemTypes.entrySet().stream().collect(Collectors.toMap(Entry::getKey, e -> folioLoantypes.get(e.getValue())));
-      Map<String, Location> locationsMap = voyagerLocations.entrySet().stream().collect(Collectors.toMap(Entry::getKey, e -> folioLocations.get(e.getValue())));
+      Map<String, Loantype> loanTypesMap = voyagerLoanTypes.entrySet().stream()
+        .filter(e -> folioLoantypes.containsKey(e.getValue()))
+        .collect(Collectors.toMap(Entry::getKey, e -> folioLoantypes.get(e.getValue())));
+      Map<String, Location> locationsMap = voyagerLocations.entrySet().stream()
+        .filter(e -> folioLoantypes.containsKey(e.getValue()))
+        .collect(Collectors.toMap(Entry::getKey, e -> folioLocations.get(e.getValue())));
 
       int count = getCount(voyagerSettings, countContext);
 
@@ -294,7 +298,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
             String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(item)));
 
-            // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,meterialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
+            // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
             itemWriter.println(String.join("\t",
               item.getId(),
               iUtf8Json,
