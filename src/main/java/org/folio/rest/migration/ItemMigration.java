@@ -22,13 +22,11 @@ import org.folio.rest.jaxrs.model.Loantype;
 import org.folio.rest.jaxrs.model.Loantypes;
 import org.folio.rest.jaxrs.model.Location;
 import org.folio.rest.jaxrs.model.Locations;
-import org.folio.rest.jaxrs.model.Status.Name;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.ItemRecord;
 import org.folio.rest.migration.model.request.ItemContext;
 import org.folio.rest.migration.model.request.ItemDefaults;
 import org.folio.rest.migration.model.request.ItemJob;
-import org.folio.rest.migration.model.request.MfhdItem;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
@@ -259,7 +257,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             MfhdItem mfhdItem = getMfhdItem(mfhdItemStatement, mfhdContext);
             String barcode = getItemBarcode(barcodeStatement, barcodeContext);
 
-            ItemRecord itemRecord = new ItemRecord(itemId, barcode, mfhdItem, numberOfPieces, job.getMaterialTypeId(), Name.AVAILABLE);
+            ItemRecord itemRecord = new ItemRecord(itemId, barcode, mfhdItem.getChron(), mfhdItem.getItemEnum(), numberOfPieces, job.getMaterialTypeId());
 
             itemRecord.setPermanentLoanTypeId(permLoanTypeId);
             itemRecord.setPermanentLocationId(permLocationId);
@@ -513,6 +511,26 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       e.printStackTrace();
     }
     return idToUuid;
+  }
+
+  public class MfhdItem {
+
+    private final String chron;
+    private final String itemEnum;
+
+    public MfhdItem(String chron, String itemEnum) {
+        this.chron = chron;
+        this.itemEnum = itemEnum;
+    }
+
+    public String getChron() {
+        return chron;
+    }
+
+    public String getItemEnum() {
+        return itemEnum;
+    }
+
   }
 
 }

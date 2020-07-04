@@ -8,7 +8,6 @@ import java.util.Set;
 import org.folio.rest.jaxrs.model.Item;
 import org.folio.rest.jaxrs.model.Status;
 import org.folio.rest.jaxrs.model.Status.Name;
-import org.folio.rest.migration.model.request.MfhdItem;
 
 public class ItemRecord {
 
@@ -20,7 +19,8 @@ public class ItemRecord {
 
   private final int numberOfPieces;
   private final String materialTypeId;
-  private final Status status;
+
+  private Status status;
 
   private String permanentLoanTypeId;
   private String temporaryLoanTypeId;
@@ -34,15 +34,13 @@ public class ItemRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public ItemRecord(String itemId, String barcode, MfhdItem mfhdItem, int numberOfPieces, String materialTypeId, Name status) {
+  public ItemRecord(String itemId, String barcode, String enumeration, String chronology, int numberOfPieces, String materialTypeId) {
     this.itemId = itemId;
     this.barcode = barcode;
-    this.enumeration = mfhdItem.getItemEnum();
-    this.chronology = mfhdItem.getChron();
+    this.enumeration = enumeration;
+    this.chronology = chronology;
     this.numberOfPieces = numberOfPieces;
     this.materialTypeId = materialTypeId;
-    this.status = new Status();
-    this.status.setName(status);
   }
 
   public String getItemId() {
@@ -71,6 +69,10 @@ public class ItemRecord {
 
   public Status getStatus() {
     return status;
+  }
+
+  public void setStatus(Status status) {
+    this.status = status;
   }
 
   public String getPermanentLoanTypeId() {
@@ -152,6 +154,12 @@ public class ItemRecord {
     }
     // item.setEffectiveLocationId(null);
 
+    // TODO: get year caption
+    // item.setYearCaption(null);
+
+    // TODO: get volume
+    // item.setVolume(null);
+
     // TODO: get item damaged status id
     // item.setItemDamagedStatusId(null);
 
@@ -173,6 +181,14 @@ public class ItemRecord {
     item.setChronology(chronology);
     item.setNumberOfPieces(String.valueOf(numberOfPieces));
     item.setEnumeration(enumeration);
+
+    // TODO: get appropriate status
+    Status status = new Status();
+    status.setName(Name.AVAILABLE);
+
+    // TODO: get status date
+    // status.setDate(null);
+
     item.setStatus(status);
 
     item.setHrid(String.format("%s%011d", hridPrefix, hrid));
