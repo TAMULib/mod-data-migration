@@ -2,6 +2,7 @@ package org.folio.rest.migration.model;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import org.folio.rest.jaxrs.model.Item;
@@ -141,11 +142,32 @@ public class ItemRecord {
     item.setId(id);
     item.setHoldingsRecordId(holdingId);
     item.setPermanentLoanTypeId(permanentLoanTypeId);
-    item.setTemporaryLoanTypeId(temporaryLoanTypeId);
+    if (Objects.nonNull(temporaryLoanTypeId)) {
+      item.setTemporaryLoanTypeId(temporaryLoanTypeId);
+    }
     item.setMaterialTypeId(materialTypeId);
     item.setPermanentLocationId(permanentLocationId);
-    item.setTemporaryLocationId(temporaryLocationId);
+    if (Objects.nonNull(temporaryLocationId)) {
+      item.setTemporaryLocationId(temporaryLocationId);
+    }
     // item.setEffectiveLocationId(null);
+
+    // TODO: get item damaged status id
+    // item.setItemDamagedStatusId(null);
+
+    // TODO: get suppress from discovery
+    // item.setDiscoverySuppress(null);
+
+    // TODO: get statistical code ids
+    // item.setStatisticalCodeIds(null);
+
+    // TODO: get circulation notes
+    // item.setCirculationNotes(null);
+
+    // TODO: get notes
+    // item.setNotes(null);
+
+    // TODO: go over extract_item_voyager.pl
 
     item.setBarcode(barcode);
     item.setChronology(chronology);
