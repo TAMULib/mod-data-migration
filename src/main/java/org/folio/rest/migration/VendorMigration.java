@@ -20,6 +20,8 @@ import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Organization;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.VendorAccountRecord;
 import org.folio.rest.migration.model.VendorAddressRecord;
+import org.folio.rest.migration.model.VendorAliasRecord;
+import org.folio.rest.migration.model.VendorPhoneRecord;
 import org.folio.rest.migration.model.VendorRecord;
 import org.folio.rest.migration.model.request.VendorContext;
 import org.folio.rest.migration.model.request.VendorDefaults;
@@ -74,6 +76,13 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
   private static final String ADDRESS_STATE_PROVINCE = "STATE_PROVINCE";
   private static final String ADDRESS_STD_ADDRESS_NUMBER = "STD_ADDRESS_NUMBER";
   private static final String ADDRESS_ZIP_POSTAL = "ZIP_POSTAL";
+
+  private static final String ALIAS_ALT_VENDOR_NAME = "ALT_VENDOR_NAME";
+
+  private static final String PHONE_NUMBER = "PHONE_NUMBER";
+  private static final String PHONE_TYPE = "PHONE_TYPE";
+
+  private static final String NOTE_NOTE = "NOTE";
 
   private static final String MAPS = "MAPS";
   private static final String DEFAULTS = "DEFAULTS";
@@ -218,22 +227,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       Database voyagerSettings = context.getExtraction().getDatabase();
       Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
-      Map<String, Object> addressContext = new HashMap<>();
-      addressContext.put(SQL, context.getExtraction().getAddressSql());
-      addressContext.put(SCHEMA, schema);
-
-      Map<String, Object> aliasContext = new HashMap<>();
-      aliasContext.put(SQL, context.getExtraction().getAliasSql());
-      aliasContext.put(SCHEMA, schema);
-
-      Map<String, Object> noteContext = new HashMap<>();
-      noteContext.put(SQL, context.getExtraction().getNoteSql());
-      noteContext.put(SCHEMA, schema);
-
-      Map<String, Object> phoneContext = new HashMap<>();
-      phoneContext.put(SQL, context.getExtraction().getPhoneSql());
-      phoneContext.put(SCHEMA, schema);
-
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
@@ -282,14 +275,11 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
           VendorRecord vendorRecord = new VendorRecord(vendorId, vendorCode, vendorType, vendorName, vendorStatus, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
 
-          addressContext.put(VENDOR_ID, vendorId);
-          aliasContext.put(VENDOR_ID, vendorId);
-          noteContext.put(VENDOR_ID, vendorId);
-          phoneContext.put(VENDOR_ID, vendorId);
-
           try {
             processVendorAccounts(context, accountStatement, vendorRecord);
-            processVendorAddresses(context, addressStatement, vendorRecord, contactsRecordOutput, contactsRecordWriter, jsonStringEncoder);
+            processVendorAddresses(context, addressStatement, phoneStatement, vendorRecord, contactsRecordOutput, contactsRecordWriter, jsonStringEncoder);
+            processVendorAliases(context, aliasStatement, vendorRecord);
+            processVendorNotes(context, noteStatement, vendorRecord);
 
             String vendorRLTypeId = job.getReferences().get(VENDOR_REFERENCE_ID);
             Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(vendorRLTypeId, vendorId);
@@ -380,7 +370,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       resultSet.close();
     }
 
-    private void processVendorAddresses(VendorContext vendorContext, Statement statement, VendorRecord vendorRecord, PGCopyOutputStream contactsRecordOutput, PrintWriter contactsRecordWriter, JsonStringEncoder jsonStringEncoder) throws SQLException, JsonProcessingException {
+    private void processVendorAddresses(VendorContext vendorContext, Statement statement, Statement phoneStatement, VendorRecord vendorRecord, PGCopyOutputStream contactsRecordOutput, PrintWriter contactsRecordWriter, JsonStringEncoder jsonStringEncoder) throws SQLException, JsonProcessingException {
       Map<String, Object> context = new HashMap<>();
       context.put(SQL, vendorContext.getExtraction().getAddressSql());
       context.put(SCHEMA, job.getSchema());
@@ -401,6 +391,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         String stateProvince = resultSet.getString(ADDRESS_STATE_PROVINCE);
         String stdAddressNumber = resultSet.getString(ADDRESS_STD_ADDRESS_NUMBER);
         String zipPostal = resultSet.getString(ADDRESS_ZIP_POSTAL);
+        String phoneAddressId = vendorRecord.getVendorId();
 
         List<String> categories = buildVendorAddressesCategories(resultSet);
 
@@ -422,6 +413,8 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
           String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(contact)));
 
+          phoneAddressId = contact.getId();
+
           // TODO: validate rows
           contactsRecordWriter.println(String.join("\t", contact.getId(), hrUtf8Json, createdAt, createdByUserId));
 
@@ -432,7 +425,78 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           vendorRecord.addUrl(record.toUrl());
         } else {
           log.error("{} no known address type for address id {} for vendor id {}", job.getSchema(), id, vendorRecord.getVendorId());
+          continue;
         }
+
+        processAddressPhoneNumbers(vendorContext, phoneStatement, vendorRecord, categories, phoneAddressId);
+      }
+
+      resultSet.close();
+    }
+
+    private void processVendorAliases(VendorContext vendorContext, Statement statement, VendorRecord vendorRecord) throws SQLException {
+      Map<String, Object> context = new HashMap<>();
+      context.put(SQL, vendorContext.getExtraction().getAliasSql());
+      context.put(SCHEMA, job.getSchema());
+      context.put(VENDOR_ID, vendorRecord.getVendorId());
+
+      ResultSet resultSet = getResultSet(statement, context);
+
+      while (resultSet.next()) {
+        String altVendorName = resultSet.getString(ALIAS_ALT_VENDOR_NAME);
+
+        VendorAliasRecord record = new VendorAliasRecord(altVendorName);
+        record.setMaps(vendorContext.getMaps());
+        record.setDefaults(vendorContext.getDefaults());
+
+        vendorRecord.addAlias(record.toAlias());
+      }
+
+      resultSet.close();
+    }
+
+    private void processVendorNotes(VendorContext vendorContext, Statement statement, VendorRecord vendorRecord) throws SQLException {
+      Map<String, Object> context = new HashMap<>();
+      context.put(SQL, vendorContext.getExtraction().getNoteSql());
+      context.put(SCHEMA, job.getSchema());
+      context.put(VENDOR_ID, vendorRecord.getVendorId());
+
+      ResultSet resultSet = getResultSet(statement, context);
+
+      while (resultSet.next()) {
+        String note = resultSet.getString(NOTE_NOTE);
+
+        if (!Objects.isNull(note)) {
+          vendorRecord.setNotes(vendorRecord.getNotes() + " " + note);
+        }
+      }
+
+      resultSet.close();
+    }
+
+    private void processAddressPhoneNumbers(VendorContext vendorContext, Statement statement, VendorRecord vendorRecord, List<String> categories, String addressId) throws SQLException {
+      Map<String, Object> context = new HashMap<>();
+      context.put(SQL, vendorContext.getExtraction().getPhoneSql());
+      context.put(SCHEMA, job.getSchema());
+      context.put(VENDOR_ID, vendorRecord.getVendorId());
+      context.put(ADDRESS_ID, addressId);
+
+      ResultSet resultSet = getResultSet(statement, context);
+
+      while (resultSet.next()) {
+        String phoneNumber = resultSet.getString(PHONE_NUMBER);
+        String phoneType = resultSet.getString(PHONE_TYPE);
+        
+        if (phoneNumber.contains("@") || phoneNumber.matches("www\\.")) {
+          log.error("{} phone number {} is an e-mail or URL for address id {} vendor id {}", job.getSchema(), phoneNumber, addressId, vendorRecord.getVendorId());
+          continue;
+        }
+
+        VendorPhoneRecord record = new VendorPhoneRecord(vendorRecord.getVendorId(), addressId, phoneNumber, phoneType, categories);
+        record.setMaps(vendorContext.getMaps());
+        record.setDefaults(vendorContext.getDefaults());
+
+        vendorRecord.addPhoneNumber(record.toPhoneNumber());
       }
 
       resultSet.close();

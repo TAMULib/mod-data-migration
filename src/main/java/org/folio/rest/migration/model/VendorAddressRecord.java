@@ -12,12 +12,10 @@ import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Address;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Contact;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Email;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Url;
-import org.folio.rest.migration.model.request.VendorDefaults;
-import org.folio.rest.migration.model.request.VendorMaps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class VendorAddressRecord {
+public class VendorAddressRecord extends AbstractVendorRecord {
 
   private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -38,9 +36,6 @@ public class VendorAddressRecord {
 
   private String createdByUserId;
   private Date createdDate;
-
-  private VendorMaps maps;
-  private VendorDefaults defaults;
 
   public VendorAddressRecord(String id, String vendorId, String addressLine1, String addressLine1Full, String addressLine2, String city, String contactName, String contactTitle, String country, String emailAddress, String stateProvince, String zipPostal, List<String> categories) {
     this.id = id;
@@ -121,22 +116,6 @@ public class VendorAddressRecord {
 
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
-  }
-
-  public VendorMaps getMaps() {
-    return maps;
-  }
-
-  public void setMaps(VendorMaps vendorMaps) {
-    this.maps = vendorMaps;
-  }
-
-  public VendorDefaults getDefaults() {
-    return defaults;
-  }
-
-  public void setDefaults(VendorDefaults vendorDefaults) {
-    this.defaults = vendorDefaults;
   }
 
   public boolean isAddress() {
@@ -245,8 +224,8 @@ public class VendorAddressRecord {
 
     Map<String, String> countryCodesMap = maps.getCountryCodes();
 
-    if (!Objects.isNull(countryCodesMap) && countryCodesMap.containsKey(country)) {
-      address.setCountry(defaults.getCountry());
+    if (!Objects.isNull(countryCodesMap) && countryCodesMap.containsKey(match)) {
+      address.setCountry(countryCodesMap.get(match));
     } else {
       log.error("unknown country code {} for address id {} for vendor id {}", match, id, vendorId);
     }

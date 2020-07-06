@@ -8,6 +8,8 @@ public class VendorDefaults {
 
   private String paymentMethod;
 
+  private String phoneType;
+
   private String status;
 
   public VendorDefaults() { }
@@ -34,6 +36,14 @@ public class VendorDefaults {
 
   public void setPaymentMethod(String paymentMethod) {
     this.paymentMethod = paymentMethod;
+  }
+
+  public String getPhoneType() {
+    return phoneType;
+  }
+
+  public void setPhoneType(String phoneType) {
+    this.phoneType = phoneType;
   }
 
   public String getStatus() {

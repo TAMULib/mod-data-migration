@@ -11,19 +11,19 @@ import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Address;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Alias;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Email;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Organization;
+import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.PhoneNumber;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Url;
 import org.folio.rest.migration.model.request.VendorDefaults;
-import org.folio.rest.migration.model.request.VendorMaps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class VendorRecord {
+public class VendorRecord extends AbstractVendorRecord {
 
   private final Logger log = LoggerFactory.getLogger(this.getClass());
 
   private final String vendorId;
   private final String code;
-  private final String description;
+  private final String type;
   private final String name;
   private final String status;
   private final String taxId;
@@ -31,6 +31,7 @@ public class VendorRecord {
 
   private final Integer claimingInterval;
 
+  private String notes;
   private String stdAddressNumber;
 
   private List<Account> accounts;
@@ -38,18 +39,16 @@ public class VendorRecord {
   private List<Alias> aliases;
   private List<String> contacts;
   private List<Email> emails;
+  private List<PhoneNumber> phoneNumbers;
   private List<Url> urls;
 
   private String createdByUserId;
   private Date createdDate;
 
-  private VendorMaps maps;
-  private VendorDefaults defaults;
-
-  public VendorRecord(String vendorId, String code, String description, String name, String status, String taxId, String defaultCurrency, Integer claimingInterval) {
+  public VendorRecord(String vendorId, String code, String type, String name, String status, String taxId, String defaultCurrency, Integer claimingInterval) {
     this.vendorId = vendorId;
     this.code = code;
-    this.description = description;
+    this.type = type;
     this.name = name;
     this.status = status;
     this.taxId = taxId;
@@ -72,8 +71,8 @@ public class VendorRecord {
     return code;
   }
 
-  public String getDescription() {
-    return description;
+  public String getType() {
+    return type;
   }
 
   public String getName() {
@@ -96,6 +95,22 @@ public class VendorRecord {
     return claimingInterval;
   }
 
+  public String getNotes() {
+    return notes;
+  }
+
+  public void setNotes(String notes) {
+    this.notes = notes;
+  }
+
+  public String getStdAddressNumber() {
+    return stdAddressNumber;
+  }
+
+  public void setStdAddressNumber(String stdAddressNumber) {
+    this.stdAddressNumber = stdAddressNumber;
+  }
+
   public List<Account> getAccounts() {
     return accounts;
   }
@@ -116,9 +131,7 @@ public class VendorRecord {
     return aliases;
   }
 
-  public void addAlias(String value) {
-    Alias alias = new Alias();
-    alias.setValue(value);
+  public void addAlias(Alias alias) {
     aliases.add(alias);
   }
 
@@ -134,12 +147,16 @@ public class VendorRecord {
     return emails;
   }
 
-  public void setEmails(List<Email> emails) {
-    this.emails = emails;
-  }
-
   public void addEmail(Email email) {
     emails.add(email);
+  }
+
+  public List<PhoneNumber> getPhoneNumbers() {
+    return phoneNumbers;
+  }
+
+  public void addPhoneNumber(PhoneNumber PhoneNumber) {
+    phoneNumbers.add(PhoneNumber);
   }
 
   public List<Url> getUrls() {
@@ -152,14 +169,6 @@ public class VendorRecord {
 
   public void addUrl(Url url) {
     urls.add(url);
-  }
-
-  public String getStdAddressNumber() {
-    return stdAddressNumber;
-  }
-
-  public void setStdAddressNumber(String stdAddressNumber) {
-    this.stdAddressNumber = stdAddressNumber;
   }
 
   public String getCreatedByUserId() {
@@ -178,28 +187,11 @@ public class VendorRecord {
     this.createdDate = createdDate;
   }
 
-  public VendorMaps getMaps() {
-    return maps;
-  }
-
-  public void setMaps(VendorMaps vendorMaps) {
-    this.maps = vendorMaps;
-  }
-
-  public VendorDefaults getDefaults() {
-    return defaults;
-  }
-
-  public void setDefaults(VendorDefaults vendorDefaults) {
-    this.defaults = vendorDefaults;
-  }
-
   public Organization toOrganization(String hridPrefix, int hrid) {
     final Organization organization = new Organization();
 
     organization.setId(vendorId);
     organization.setIsVendor(true);
-    organization.setDescription(description);
     organization.setName(name);
     organization.setTaxId(taxId);
     organization.setClaimingInterval(claimingInterval);
@@ -213,6 +205,7 @@ public class VendorRecord {
 
     setCode(organization);
     setCurrencies(organization);
+    setDescription(organization);
     setStatus(organization, defaults);
     setLanguage(organization);
     setSanCode(organization);
@@ -231,6 +224,20 @@ public class VendorRecord {
     currencies.add(defaultCurrency);
 
     organization.setVendorCurrencies(currencies);
+  }
+
+  private void setDescription(Organization organization) {
+    String description = type;
+
+    if (!Objects.isNull(notes)) {
+      if (Objects.isNull(description)) {
+        description = notes;
+      } else {
+        description += " " + notes;
+      }
+    }
+
+    organization.setDescription(description);
   }
 
   private void setStatus(Organization organization, VendorDefaults defaults) {

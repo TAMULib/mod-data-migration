@@ -4,12 +4,10 @@ import java.util.Objects;
 
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Account;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Account.PaymentMethod;
-import org.folio.rest.migration.model.request.VendorDefaults;
-import org.folio.rest.migration.model.request.VendorMaps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class VendorAccountRecord {
+public class VendorAccountRecord extends AbstractVendorRecord {
 
   private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -19,9 +17,6 @@ public class VendorAccountRecord {
   private final String notes;
   private final String number;
   private final String status;
-
-  private VendorMaps maps;
-  private VendorDefaults defaults;
 
   public VendorAccountRecord(String vendorId, String deposit, String name, String notes, String number, String status) {
     this.vendorId = vendorId;
@@ -50,22 +45,6 @@ public class VendorAccountRecord {
 
   public String getStatus() {
     return status;
-  }
-
-  public VendorMaps getMaps() {
-    return maps;
-  }
-
-  public void setMaps(VendorMaps vendorMaps) {
-    this.maps = vendorMaps;
-  }
-
-  public VendorDefaults getDefaults() {
-    return defaults;
-  }
-
-  public void setDefaults(VendorDefaults vendorDefaults) {
-    this.defaults = vendorDefaults;
   }
 
   public Account toAccount() {

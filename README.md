@@ -638,6 +638,7 @@ POST to http://localhost:9000/migrate/vendors
     "country": "USA",
     "language": "en",
     "paymentMethod": "EFT",
+    "phoneType": "Other",
     "status": "active"
   }
 }
