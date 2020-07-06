@@ -211,15 +211,13 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       int count = 0;
 
-      try {
-        PGCopyOutputStream itemOutput = new PGCopyOutputStream(threadConnections.getItemConnection(), String.format(ITEM_COPY_SQL, tenant));
-        PrintWriter itemWriter = new PrintWriter(itemOutput, true);
-
+      try (
+        PrintWriter itemWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getItemConnection(), String.format(ITEM_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement mfhdItemStatement = threadConnections.getMfhdConnection().createStatement();
         Statement barcodeStatement = threadConnections.getBarcodeConnection().createStatement();
-
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
+      ) {
 
         while (pageResultSet.next()) {
           String itemId = pageResultSet.getString(ITEM_ID);
@@ -340,19 +338,11 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
         }
 
-        itemWriter.close();
-
-        pageStatement.close();
-        mfhdItemStatement.close();
-        barcodeStatement.close();
-
-        pageResultSet.close();
-
       } catch (SQLException e) {
         e.printStackTrace();
+      } finally {
+        threadConnections.closeAll();
       }
-
-      threadConnections.closeAll();
 
       log.info("{} {} item finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
 

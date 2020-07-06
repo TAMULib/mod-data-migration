@@ -127,33 +127,22 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, migrationService.referenceLinkSettings);
 
-      try {
-        PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant));
-        PrintWriter referenceLinkWriter = new PrintWriter(referenceLinkOutput, true);
-
+      try (
+        PrintWriter referenceLinkWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
-
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
-
+      ) {
         while (pageResultSet.next()) {
           String vendorId = pageResultSet.getString(VENDOR_ID);
           String vendorRLId = UUID.randomUUID().toString();
           String vendorFolioReference = UUID.randomUUID().toString();
-
           referenceLinkWriter.println(String.join("\t", vendorRLId, vendorId, vendorFolioReference, vendorRLTypeId));
         }
-
-        referenceLinkWriter.close();
-
-        pageStatement.close();
-
-        pageResultSet.close();
-
       } catch (SQLException e) {
         e.printStackTrace();
+      } finally {
+        threadConnections.closeAll();
       }
-
-      threadConnections.closeAll();
 
       log.info("{} {} finished in {} milliseconds", schema, index, TimingUtility.getDeltaInMilliseconds(startTime));
 
