@@ -14,8 +14,12 @@ import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Organization;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Url;
 import org.folio.rest.migration.model.request.VendorDefaults;
 import org.folio.rest.migration.model.request.VendorMaps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class VendorRecord {
+
+  private final Logger log = LoggerFactory.getLogger(this.getClass());
 
   private final String vendorId;
   private final String code;
@@ -26,6 +30,8 @@ public class VendorRecord {
   private final String defaultCurrency;
 
   private final Integer claimingInterval;
+
+  private String stdAddressNumber;
 
   private List<Account> accounts;
   private List<Address> addresses;
@@ -148,6 +154,14 @@ public class VendorRecord {
     urls.add(url);
   }
 
+  public String getStdAddressNumber() {
+    return stdAddressNumber;
+  }
+
+  public void setStdAddressNumber(String stdAddressNumber) {
+    this.stdAddressNumber = stdAddressNumber;
+  }
+
   public String getCreatedByUserId() {
     return createdByUserId;
   }
@@ -201,6 +215,7 @@ public class VendorRecord {
     setCurrencies(organization);
     setStatus(organization, defaults);
     setLanguage(organization);
+    setSanCode(organization);
     setMetadata(organization);
 
     return organization;
@@ -237,6 +252,7 @@ public class VendorRecord {
       organization.setStatus(Organization.Status.INACTIVE);
     } else {
       organization.setStatus(Organization.Status.ACTIVE);
+      log.error("unknown status {} for vendor id {}, defaulting to {}", match, Organization.Status.ACTIVE, vendorId);
     }
   }
 
@@ -244,6 +260,12 @@ public class VendorRecord {
     String language = defaults.getLanguage();
     if (!Objects.isNull(language)) {
       organization.setLanguage(defaults.getLanguage());
+    }
+  }
+
+  private void setSanCode(Organization organization) {
+    if (!Objects.isNull(stdAddressNumber)) {
+      organization.setSanCode(stdAddressNumber);
     }
   }
 

@@ -6,9 +6,14 @@ import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Account;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Account.PaymentMethod;
 import org.folio.rest.migration.model.request.VendorDefaults;
 import org.folio.rest.migration.model.request.VendorMaps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class VendorAccountRecord {
 
+  private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+  private final String vendorId;
   private final String deposit;
   private final String name;
   private final String notes;
@@ -18,7 +23,8 @@ public class VendorAccountRecord {
   private VendorMaps maps;
   private VendorDefaults defaults;
 
-  public VendorAccountRecord(String deposit, String name, String notes, String number, String status) {
+  public VendorAccountRecord(String vendorId, String deposit, String name, String notes, String number, String status) {
+    this.vendorId = vendorId;
     this.deposit = deposit;
     this.name = name;
     this.notes = notes;
@@ -121,6 +127,8 @@ public class VendorAccountRecord {
         account.setPaymentMethod(PaymentMethod.INTERNAL_TRANSFER);
       } else if (defaultPayment.equalsIgnoreCase(PaymentMethod.OTHER.value())) {
         account.setPaymentMethod(PaymentMethod.OTHER);
+      } else {
+        log.error("unknown default paymentMethod {} for vendor id {}", defaultPayment, vendorId);
       }
     }
   }

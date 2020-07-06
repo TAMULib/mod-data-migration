@@ -10,6 +10,9 @@ public class VendorMaps {
   @NotNull
   private Map<String, String> categories;
 
+  @NotNull
+  private Map<String, String> countryCodes;
+
   public VendorMaps() {
     categories = new HashMap<String, String>();
   }
@@ -20,6 +23,14 @@ public class VendorMaps {
 
   public void setCategories(Map<String, String> categories) {
     this.categories = categories;
+  }
+
+  public Map<String, String> getCountryCodes() {
+    return countryCodes;
+  }
+
+  public void setCountryCodes(Map<String, String> countryCodes) {
+    this.countryCodes = countryCodes;
   }
 
 }

@@ -3,6 +3,7 @@ package org.folio.rest.migration.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -13,10 +14,15 @@ import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Email;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Url;
 import org.folio.rest.migration.model.request.VendorDefaults;
 import org.folio.rest.migration.model.request.VendorMaps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class VendorAddressRecord {
 
+  private final Logger log = LoggerFactory.getLogger(this.getClass());
+
   private final String id;
+  private final String vendorId;
   private final String addressLine1;
   private final String addressLine1Full;
   private final String addressLine2;
@@ -36,8 +42,9 @@ public class VendorAddressRecord {
   private VendorMaps maps;
   private VendorDefaults defaults;
 
-  public VendorAddressRecord(String id, String addressLine1, String addressLine1Full, String addressLine2, String city, String contactName, String contactTitle, String country, String emailAddress, String stateProvince, String zipPostal, List<String> categories) {
+  public VendorAddressRecord(String id, String vendorId, String addressLine1, String addressLine1Full, String addressLine2, String city, String contactName, String contactTitle, String country, String emailAddress, String stateProvince, String zipPostal, List<String> categories) {
     this.id = id;
+    this.vendorId = vendorId;
     this.addressLine1 = addressLine1;
     this.addressLine1Full = addressLine1Full;
     this.addressLine2 = addressLine2;
@@ -226,13 +233,22 @@ public class VendorAddressRecord {
   }
 
   private void setCountry(Address address) {
-    // TODO: get the valid country codes and map them here, if not in map then do not assign.
+    String match = "";
+
     if (Objects.isNull(country)) {
-      if (!Objects.isNull(defaults.getCountry())) {
-        address.setCountry(defaults.getCountry());
+      if (!Objects.isNull(defaults.getStatus())) {
+        match = defaults.getStatus();
       }
     } else {
-      address.setCountry(country);
+      match = country;
+    }
+
+    Map<String, String> countryCodesMap = maps.getCountryCodes();
+
+    if (!Objects.isNull(countryCodesMap) && countryCodesMap.containsKey(country)) {
+      address.setCountry(defaults.getCountry());
+    } else {
+      log.error("unknown country code {} for address id {} for vendor id {}", match, id, vendorId);
     }
   }
 

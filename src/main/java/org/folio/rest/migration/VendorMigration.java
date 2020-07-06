@@ -72,6 +72,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
   private static final String ADDRESS_PAYMENT_ADDRESS = "PAYMENT_ADDRESS";
   private static final String ADDRESS_RETURN_ADDRESS = "RETURN_ADDRESS";
   private static final String ADDRESS_STATE_PROVINCE = "STATE_PROVINCE";
+  private static final String ADDRESS_STD_ADDRESS_NUMBER = "STD_ADDRESS_NUMBER";
   private static final String ADDRESS_ZIP_POSTAL = "ZIP_POSTAL";
 
   private static final String MAPS = "MAPS";
@@ -369,7 +370,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         String number = resultSet.getString(ACCOUNT_NUMBER);
         String status = resultSet.getString(ACCOUNT_STATUS);
 
-        VendorAccountRecord record = new VendorAccountRecord(deposit, name, note, number, status);
+        VendorAccountRecord record = new VendorAccountRecord(vendorRecord.getVendorId(), deposit, name, note, number, status);
         record.setMaps(vendorContext.getMaps());
         record.setDefaults(vendorContext.getDefaults());
 
@@ -398,11 +399,16 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         String country = resultSet.getString(ADDRESS_COUNTRY);
         String emailAddress = resultSet.getString(ADDRESS_EMAIL_ADDRESS);
         String stateProvince = resultSet.getString(ADDRESS_STATE_PROVINCE);
+        String stdAddressNumber = resultSet.getString(ADDRESS_STD_ADDRESS_NUMBER);
         String zipPostal = resultSet.getString(ADDRESS_ZIP_POSTAL);
 
         List<String> categories = buildVendorAddressesCategories(resultSet);
 
-        VendorAddressRecord record = new VendorAddressRecord(id, addressLine1, addressLine1Full, addressLine2, city, contactName, contactTitle, country, emailAddress, stateProvince, zipPostal, categories);
+        if (!Objects.isNull(stdAddressNumber)) {
+          vendorRecord.setStdAddressNumber(stdAddressNumber);
+        }
+
+        VendorAddressRecord record = new VendorAddressRecord(id, vendorRecord.getVendorId(), addressLine1, addressLine1Full, addressLine2, city, contactName, contactTitle, country, emailAddress, stateProvince, zipPostal, categories);
         record.setMaps(vendorContext.getMaps());
         record.setDefaults(vendorContext.getDefaults());
 
