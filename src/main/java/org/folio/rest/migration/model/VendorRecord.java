@@ -229,7 +229,7 @@ public class VendorRecord extends AbstractVendorRecord {
   private void setDescription(Organization organization) {
     String description = type;
 
-    if (!Objects.isNull(notes)) {
+    if (Objects.nonNull(notes)) {
       if (Objects.isNull(description)) {
         description = notes;
       } else {
@@ -244,7 +244,7 @@ public class VendorRecord extends AbstractVendorRecord {
     String match = "";
 
     if (Objects.isNull(status)) {
-      if (!Objects.isNull(defaults.getStatus())) {
+      if (Objects.nonNull(defaults.getStatus())) {
         match = defaults.getStatus();
       }
     } else {
@@ -265,13 +265,13 @@ public class VendorRecord extends AbstractVendorRecord {
 
   private void setLanguage(Organization organization) {
     String language = defaults.getLanguage();
-    if (!Objects.isNull(language)) {
+    if (Objects.nonNull(language)) {
       organization.setLanguage(defaults.getLanguage());
     }
   }
 
   private void setSanCode(Organization organization) {
-    if (!Objects.isNull(stdAddressNumber)) {
+    if (Objects.nonNull(stdAddressNumber)) {
       organization.setSanCode(stdAddressNumber);
     }
   }

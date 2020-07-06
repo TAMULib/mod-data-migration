@@ -58,7 +58,7 @@ public class VendorPhoneRecord extends AbstractVendorRecord {
 
   private void setLanguage(PhoneNumber phoneNumber) {
     String language = defaults.getLanguage();
-    if (!Objects.isNull(language)) {
+    if (Objects.nonNull(language)) {
       phoneNumber.setLanguage(defaults.getLanguage());
     }
   }
@@ -67,7 +67,7 @@ public class VendorPhoneRecord extends AbstractVendorRecord {
     String match = "";
 
     if (Objects.isNull(type)) {
-      if (!Objects.isNull(defaults.getPhoneType())) {
+      if (Objects.nonNull(defaults.getPhoneType())) {
         match = defaults.getPhoneType();
       }
     } else {

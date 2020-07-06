@@ -372,7 +372,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
         List<String> categories = buildVendorAddressesCategories(resultSet);
 
-        if (!Objects.isNull(stdAddressNumber)) {
+        if (Objects.nonNull(stdAddressNumber)) {
           vendorRecord.setStdAddressNumber(stdAddressNumber);
         }
 
@@ -443,7 +443,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       while (resultSet.next()) {
         String note = resultSet.getString(NOTE_NOTE);
 
-        if (!Objects.isNull(note)) {
+        if (Objects.nonNull(note)) {
           vendorRecord.setNotes(vendorRecord.getNotes() + " " + note);
         }
       }
@@ -489,23 +489,23 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       String paymentAddress = resultSet.getString(ADDRESS_PAYMENT_ADDRESS);
       String returnAddress = resultSet.getString(ADDRESS_RETURN_ADDRESS);
 
-      if (!Objects.isNull(claimAddress) && claimAddress.equalsIgnoreCase("y")) {
+      if (Objects.nonNull(claimAddress) && claimAddress.equalsIgnoreCase("y")) {
         categories.add(categoriesMap.get(CLAIM));
       }
 
-      if (!Objects.isNull(orderAddress) && orderAddress.equalsIgnoreCase("y")) {
+      if (Objects.nonNull(orderAddress) && orderAddress.equalsIgnoreCase("y")) {
         categories.add(categoriesMap.get(ORDER));
       }
 
-      if (!Objects.isNull(otherAddress) && otherAddress.equalsIgnoreCase("y")) {
+      if (Objects.nonNull(otherAddress) && otherAddress.equalsIgnoreCase("y")) {
         categories.add(categoriesMap.get(OTHER));
       }
 
-      if (!Objects.isNull(paymentAddress) && paymentAddress.equalsIgnoreCase("y")) {
+      if (Objects.nonNull(paymentAddress) && paymentAddress.equalsIgnoreCase("y")) {
         categories.add(categoriesMap.get(PAYMENT));
       }
 
-      if (!Objects.isNull(returnAddress) && returnAddress.equalsIgnoreCase("y")) {
+      if (Objects.nonNull(returnAddress) && returnAddress.equalsIgnoreCase("y")) {
         categories.add(categoriesMap.get(RETURN));
       }
 
@@ -515,7 +515,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
   }
 
   private void closePrintWriter(PrintWriter writer) {
-    if (!Objects.isNull(writer)) {
+    if (Objects.nonNull(writer)) {
       writer.close();
     }
   }
@@ -633,7 +633,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
     public void closeStatement(Statement statement) {
       try {
-        if (!Objects.isNull(statement) && !statement.isClosed()) {
+        if (Objects.nonNull(statement) && !statement.isClosed()) {
           statement.close();
         }
       } catch (SQLException e) {

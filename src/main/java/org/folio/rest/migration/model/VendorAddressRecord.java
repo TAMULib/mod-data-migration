@@ -119,11 +119,11 @@ public class VendorAddressRecord extends AbstractVendorRecord {
   }
 
   public boolean isAddress() {
-    return Objects.isNull(contactName) && !Objects.isNull(city) && !Objects.isNull(country);
+    return Objects.isNull(contactName) && Objects.nonNull(city) && Objects.nonNull(country);
   }
 
   public boolean isContact() {
-    return !Objects.isNull(contactName);
+    return Objects.nonNull(contactName);
   }
 
   public boolean isEmail() {
@@ -206,7 +206,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
   }
 
   private void setAddressLine2(Address address) {
-    if (!Objects.isNull(addressLine2) && addressLine2.matches("\\S")) {
+    if (Objects.nonNull(addressLine2) && addressLine2.matches("\\S")) {
       address.setAddressLine2(addressLine2);
     }
   }
@@ -215,7 +215,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     String match = "";
 
     if (Objects.isNull(country)) {
-      if (!Objects.isNull(defaults.getStatus())) {
+      if (Objects.nonNull(defaults.getStatus())) {
         match = defaults.getStatus();
       }
     } else {
@@ -224,7 +224,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
 
     Map<String, String> countryCodesMap = maps.getCountryCodes();
 
-    if (!Objects.isNull(countryCodesMap) && countryCodesMap.containsKey(match)) {
+    if (Objects.nonNull(countryCodesMap) && countryCodesMap.containsKey(match)) {
       address.setCountry(countryCodesMap.get(match));
     } else {
       log.error("unknown country code {} for address id {} for vendor id {}", match, id, vendorId);
@@ -233,7 +233,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
 
   private void setLanguage(Address address) {
     String language = defaults.getLanguage();
-    if (!Objects.isNull(language)) {
+    if (Objects.nonNull(language)) {
       address.setLanguage(defaults.getLanguage());
     }
   }
@@ -253,11 +253,11 @@ public class VendorAddressRecord extends AbstractVendorRecord {
       contact.setEmails(emails);
 
       String notes = "";
-      if (!Objects.isNull(addressLine2)) {
+      if (Objects.nonNull(addressLine2)) {
         notes += addressLine2;
       }
 
-      if (!Objects.isNull(contactTitle)) {
+      if (Objects.nonNull(contactTitle)) {
         notes += contactTitle;
       }
 
@@ -271,7 +271,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     if (Objects.isNull(addressLine2)) {
       String description = "";
 
-      if (!Objects.isNull(email.getDescription())) {
+      if (Objects.nonNull(email.getDescription())) {
         description = email.getDescription() + " ";
       }
       description += addressLine2;
@@ -284,7 +284,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     if (Objects.isNull(addressLine2)) {
       String description = "";
 
-      if (!Objects.isNull(url.getDescription())) {
+      if (Objects.nonNull(url.getDescription())) {
         description = url.getDescription() + " ";
       }
       description += addressLine2;

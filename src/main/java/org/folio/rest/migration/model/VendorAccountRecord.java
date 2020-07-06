@@ -71,7 +71,7 @@ public class VendorAccountRecord extends AbstractVendorRecord {
   }
 
   private void setNotes(Account account) {
-    if (!Objects.isNull(number)) {
+    if (Objects.nonNull(number)) {
       account.setNotes(notes);
     }
   }
@@ -87,7 +87,7 @@ public class VendorAccountRecord extends AbstractVendorRecord {
   private void setPaymentMethod(Account account) {
     if (deposit.equalsIgnoreCase("y")) {
       account.setPaymentMethod(PaymentMethod.DEPOSIT_ACCOUNT);
-    } else if (!Objects.isNull(defaults.getPaymentMethod())) {
+    } else if (Objects.nonNull(defaults.getPaymentMethod())) {
       String defaultPayment = defaults.getPaymentMethod();
       
       if (defaultPayment.equalsIgnoreCase(PaymentMethod.CASH.value())) {
@@ -113,7 +113,7 @@ public class VendorAccountRecord extends AbstractVendorRecord {
   }
 
   private void setStatus(Account account) {
-    if (!Objects.isNull(status) && status.contentEquals("1")) {
+    if (Objects.nonNull(status) && status.contentEquals("1")) {
       account.setAccountStatus("active");
     } else {
       account.setAccountStatus("inactive");
