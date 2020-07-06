@@ -187,7 +187,7 @@ public class VendorRecord extends AbstractVendorRecord {
     this.createdDate = createdDate;
   }
 
-  public Organization toOrganization(String hridPrefix, int hrid) {
+  public Organization toOrganization() {
     final Organization organization = new Organization();
 
     organization.setId(vendorId);

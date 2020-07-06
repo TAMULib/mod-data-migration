@@ -37,12 +37,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
-import io.vertx.core.json.JsonObject;
-
 public class VendorMigration extends AbstractMigration<VendorContext> {
-
-  private static final String HRID_PREFIX = "HRID_PREFIX";
-  private static final String HRID_START_NUMBER = "HRID_START_NUMBER";
 
   private static final String VENDOR_ID = "VENDOR_ID";
   private static final String VENDOR_CODE = "VENDOR_CODE";
@@ -117,8 +112,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
     String token = migrationService.okapiService.getToken(tenant);
 
-    JsonObject hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
-
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
@@ -135,12 +128,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
     Map<String, Object> countContext = new HashMap<>();
     countContext.put(SQL, context.getExtraction().getCountSql());
-
-    JsonObject vendorsHridSettings = hridSettings.getJsonObject("vendors");
-    String hridPrefix = vendorsHridSettings.getString("prefix");
-
-    int originalHridStartNumber = vendorsHridSettings.getInteger("startNumber");
-    int hridStartNumber = originalHridStartNumber;
 
     int index = 0;
 
@@ -163,8 +150,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
         partitionContext.put(TOKEN, token);
-        partitionContext.put(HRID_PREFIX, hridPrefix);
-        partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(JOB, job);
         partitionContext.put(MAPS, context.getMaps());
         partitionContext.put(DEFAULTS, context.getDefaults());
@@ -175,11 +160,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         taskQueue.submit(new VendorPartitionTask(migrationService, partitionContext));
         offset += limit;
         index++;
-        if (i < partitions) {
-          hridStartNumber += limit;
-        } else {
-          hridStartNumber = originalHridStartNumber + count;
-        }
       }
     }
 
@@ -200,12 +180,9 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
     private final VendorMaps maps;
     private final VendorDefaults defaults;
 
-    private int hrid;
-
     public VendorPartitionTask(MigrationService migrationService, Map<String, Object> partitionContext) {
       this.migrationService = migrationService;
       this.partitionContext = partitionContext;
-      this.hrid = (int) partitionContext.get(HRID_START_NUMBER);
       this.job = (VendorJob) partitionContext.get(JOB);
       this.maps = (VendorMaps) partitionContext.get(MAPS);
       this.defaults = (VendorDefaults) partitionContext.get(DEFAULTS);
@@ -217,8 +194,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
     public VendorPartitionTask execute(VendorContext context) {
       long startTime = System.nanoTime();
-
-      String hridPrefix = (String) partitionContext.get(HRID_PREFIX);
 
       String schema = job.getSchema();
 
@@ -301,14 +276,13 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
             String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
             String createdByUserId = job.getUserId();
 
-            Organization organization = vendorRecord.toOrganization(hridPrefix, hrid);
+            Organization organization = vendorRecord.toOrganization();
 
             String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(organization)));
 
             // TODO: validate rows
             organizationsRecordWriter.println(String.join("\t", organization.getId(), hrUtf8Json, createdAt, createdByUserId));
 
-            hrid++;
             count++;
           } catch (JsonProcessingException e) {
             log.error("{} vendor id {} error processing json", schema, vendorId);
@@ -335,7 +309,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
       threadConnections.closeAll();
 
-      log.info("{} {} vendor finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
+      log.info("{} {} vendor finished {} in {} milliseconds", schema, index, count, TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
     }
