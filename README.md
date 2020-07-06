@@ -168,26 +168,8 @@ POST to http://localhost:9000/migrate/bibs
       "driverClassName": ""
     }
   },
-  "preActions": [
-    "ALTER TABLE ${TENANT}_mod_source_record_storage.raw_records SET (autovacuum_enabled = false, toast.autovacuum_enabled = false)",
-    "ALTER TABLE ${TENANT}_mod_source_record_storage.marc_records SET (autovacuum_enabled = false, toast.autovacuum_enabled = false)",
-    "ALTER TABLE ${TENANT}_mod_source_record_storage.records SET (autovacuum_enabled = false, toast.autovacuum_enabled = false)",
-    "ALTER TABLE ${TENANT}_mod_inventory_storage.instance SET (autovacuum_enabled = false, toast.autovacuum_enabled = false)",
-    "ALTER TABLE ${TENANT}_mod_source_record_storage.raw_records DISABLE TRIGGER ALL",
-    "ALTER TABLE ${TENANT}_mod_source_record_storage.marc_records DISABLE TRIGGER ALL",
-    "ALTER TABLE ${TENANT}_mod_source_record_storage.records DISABLE TRIGGER ALL",
-    "ALTER TABLE ${TENANT}_mod_inventory_storage.instance DISABLE TRIGGER ALL"
-  ],
-  "postActions": [
-    "ALTER TABLE ${TENANT}_mod_source_record_storage.raw_records SET (autovacuum_enabled = true, toast.autovacuum_enabled = true)",
-    "ALTER TABLE ${TENANT}_mod_source_record_storage.marc_records SET (autovacuum_enabled = true, toast.autovacuum_enabled = true)",
-    "ALTER TABLE ${TENANT}_mod_source_record_storage.records SET (autovacuum_enabled = true, toast.autovacuum_enabled = true)",
-    "ALTER TABLE ${TENANT}_mod_inventory_storage.instance SET (autovacuum_enabled = true, toast.autovacuum_enabled = true)",
-    "ALTER TABLE ${TENANT}_mod_source_record_storage.raw_records ENABLE TRIGGER ALL",
-    "ALTER TABLE ${TENANT}_mod_source_record_storage.marc_records ENABLE TRIGGER ALL",
-    "ALTER TABLE ${TENANT}_mod_source_record_storage.records ENABLE TRIGGER ALL",
-    "ALTER TABLE ${TENANT}_mod_inventory_storage.instance ENABLE TRIGGER ALL"
-  ],
+  "preActions": [],
+  "postActions": [],
   "parallelism": 12,
   "jobs": [
     {
@@ -243,14 +225,8 @@ POST to http://localhost:9000/migrate/holdings
       "driverClassName": ""
     }
   },
-  "preActions": [
-    "ALTER TABLE ${TENANT}_mod_inventory_storage.holdings_record SET (autovacuum_enabled = false, toast.autovacuum_enabled = false)",
-    "ALTER TABLE ${TENANT}_mod_inventory_storage.holdings_record DISABLE TRIGGER ALL"
-  ],
-  "postActions": [
-    "ALTER TABLE ${TENANT}_mod_inventory_storage.holdings_record SET (autovacuum_enabled = true, toast.autovacuum_enabled = true)",
-    "ALTER TABLE ${TENANT}_mod_inventory_storage.holdings_record ENABLE TRIGGER ALL"
-  ],
+  "preActions": [],
+  "postActions": [],
   "parallelism": 12,
   "jobs": [
     {
@@ -392,14 +368,8 @@ POST to http://localhost:9000/migrate/items
       "driverClassName": ""
     }
   },
-  "preActions": [
-    "ALTER TABLE ${TENANT}_mod_inventory_storage.item SET (autovacuum_enabled = false, toast.autovacuum_enabled = false)",
-    "ALTER TABLE ${TENANT}_mod_inventory_storage.item DISABLE TRIGGER ALL"
-  ],
-  "postActions": [
-    "ALTER TABLE ${TENANT}_mod_inventory_storage.item SET (autovacuum_enabled = true, toast.autovacuum_enabled = true)",
-    "ALTER TABLE ${TENANT}_mod_inventory_storage.item ENABLE TRIGGER ALL"
-  ],
+  "preActions": [],
+  "postActions": [],
   "parallelism": 12,
   "jobs": [
     {
