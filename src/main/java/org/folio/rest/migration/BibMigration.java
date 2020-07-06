@@ -255,23 +255,15 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       int count = 0;
 
-      try {
-        PGCopyOutputStream rawRecordOutput = new PGCopyOutputStream(threadConnections.getRawRecordConnection(), String.format(RAW_RECORDS_COPY_SQL, tenant));
-        PrintWriter rawRecordWriter = new PrintWriter(rawRecordOutput, true);
-
-        PGCopyOutputStream parsedRecordOutput = new PGCopyOutputStream(threadConnections.getParsedRecordConnection(), String.format(PARSED_RECORDS_COPY_SQL, tenant));
-        PrintWriter parsedRecordWriter = new PrintWriter(parsedRecordOutput, true);
-
-        PGCopyOutputStream recordOutput = new PGCopyOutputStream(threadConnections.getRecordConnection(), String.format(RECORDS_COPY_SQL, tenant));
-        PrintWriter recordWriter = new PrintWriter(recordOutput, true);
-
-        PGCopyOutputStream instanceOutput = new PGCopyOutputStream(threadConnections.getInstanceConnection(), String.format(INSTANCE_COPY_SQL, tenant));
-        PrintWriter instanceWriter = new PrintWriter(instanceOutput, true);
-
+      try (
+        PrintWriter rawRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getRawRecordConnection(), String.format(RAW_RECORDS_COPY_SQL, tenant)), true);
+        PrintWriter parsedRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getParsedRecordConnection(), String.format(PARSED_RECORDS_COPY_SQL, tenant)), true);
+        PrintWriter recordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getRecordConnection(), String.format(RECORDS_COPY_SQL, tenant)), true);
+        PrintWriter instanceWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getInstanceConnection(), String.format(INSTANCE_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement marcStatement = threadConnections.getMarcConnection().createStatement();
-
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
+      ) {
 
         while (pageResultSet.next()) {
 
@@ -381,21 +373,11 @@ public class BibMigration extends AbstractMigration<BibContext> {
           }
         }
 
-        rawRecordWriter.close();
-        parsedRecordWriter.close();
-        recordWriter.close();
-        instanceWriter.close();
-
-        pageStatement.close();
-        marcStatement.close();
-
-        pageResultSet.close();
-
       } catch (SQLException e) {
         e.printStackTrace();
+      } finally {
+        threadConnections.closeAll();
       }
-
-      threadConnections.closeAll();
 
       RawRecordsDto rawRecordsDto = new RawRecordsDto();
       RawRecordsMetadata recordsMetadata = new RawRecordsMetadata();

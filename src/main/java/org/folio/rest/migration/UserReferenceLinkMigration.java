@@ -129,39 +129,26 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, migrationService.referenceLinkSettings);
 
-      try {
-
-        PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant));
-        PrintWriter referenceLinkWriter = new PrintWriter(referenceLinkOutput, true);
-
+      try (
+        PrintWriter referenceLinkWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
-
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
-
+      ) {
         while (pageResultSet.next()) {
           String userId = pageResultSet.getString(USER_ID);
           String userExternalId = pageResultSet.getString(USER_EXTERNAL_ID);
-
           String userRLId = UUID.randomUUID().toString();
           String userFolioReference = UUID.randomUUID().toString();
           String userExternalRLId = UUID.randomUUID().toString();
           String userExternalFolioReference = UUID.randomUUID().toString();
-
           referenceLinkWriter.println(String.join("\t", userRLId, userId, userFolioReference, userRLTypeId));
           referenceLinkWriter.println(String.join("\t", userExternalRLId, userExternalId, userExternalFolioReference, userExternalRLTypeId));
         }
-
-        referenceLinkWriter.close();
-
-        pageStatement.close();
-
-        pageResultSet.close();
-
       } catch (SQLException e) {
         e.printStackTrace();
+      } finally {
+        threadConnections.closeAll();
       }
-
-      threadConnections.closeAll();
 
       log.info("{} {} finished in {} milliseconds", schema, index, TimingUtility.getDeltaInMilliseconds(startTime));
 

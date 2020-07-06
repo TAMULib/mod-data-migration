@@ -195,13 +195,11 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       int count = 0;
 
-      try {
-        PGCopyOutputStream holdingRecordOutput = new PGCopyOutputStream(threadConnections.getHoldingConnection(), String.format(HOLDING_RECORDS_COPY_SQL, tenant));
-        PrintWriter holdingRecordWriter = new PrintWriter(holdingRecordOutput, true);
-
+      try (
+        PrintWriter holdingRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getHoldingConnection(), String.format(HOLDING_RECORDS_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
-
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
+      ) {
 
         while (pageResultSet.next()) {
           String mfhdId = pageResultSet.getString(MFHD_ID);
@@ -350,17 +348,11 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
           }
         }
 
-        holdingRecordWriter.close();
-
-        pageStatement.close();
-
-        pageResultSet.close();
-
       } catch (SQLException e) {
         e.printStackTrace();
+      } finally {
+        threadConnections.closeAll();
       }
-
-      threadConnections.closeAll();
 
       log.info("{} {} holding finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
 
