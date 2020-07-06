@@ -134,6 +134,9 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
     for (VendorJob job : context.getJobs()) {
 
       countContext.put(SCHEMA, job.getSchema());
+      countContext.put(LOCATIONS, job.getLocations());
+      countContext.put(STATUSES, job.getStatuses());
+      countContext.put(TYPES, job.getTypes());
 
       int count = getCount(voyagerSettings, countContext);
 
