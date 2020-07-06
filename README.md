@@ -14,11 +14,15 @@ More information is available on the [developer site](https://dev.folio.org/guid
 git submodule update --init --recursive
 ```
 
-## Additional information
+## Additional Information
 
 Other [modules](https://dev.folio.org/source-code/#server-side).
 
 Other FOLIO Developer documentation is at [dev.folio.org](https://dev.folio.org/).
+
+## Migration Information
+
+Be sure to use the correct user id and other various ids from reference data.
 
 ## Vendor Reference Link Migration
 
@@ -183,7 +187,7 @@ POST to http://localhost:9000/migrate/bibs
     "ALTER TABLE ${TENANT}_mod_source_record_storage.marc_records ENABLE TRIGGER ALL",
     "ALTER TABLE ${TENANT}_mod_source_record_storage.records ENABLE TRIGGER ALL",
     "ALTER TABLE ${TENANT}_mod_inventory_storage.instance ENABLE TRIGGER ALL"
-],
+  ],
   "parallelism": 12,
   "jobs": [
     {
@@ -231,7 +235,7 @@ POST to http://localhost:9000/migrate/holdings
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.mfhd_master",
     "pageSql": "SELECT mfhd_id, suppress_in_opac, location_id, display_call_no, call_no_type, record_type, field_008 FROM ${SCHEMA}.mfhd_master ORDER BY mfhd_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
-    "locationSql": "SELECT DISTINCT location_id, location_code FROM ${SCHEMA}.location",
+    "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
     "database": {
       "url": "",
       "username": "",
@@ -269,6 +273,35 @@ POST to http://localhost:9000/migrate/holdings
     }
   ],
   "maps": {
+    "location": {
+      "AMDB-36": "media",
+      "AMDB-37": "media,res",
+      "AMDB-47": "ils,borr",
+      "AMDB-48": "ils,lend",
+      "AMDB-132": "blcc,circ",
+      "AMDB-134": "blcc,stk",
+      "AMDB-135": "blcc,ref",
+      "AMDB-136": "blcc,res",
+      "AMDB-137": "blcc,rndx",
+      "AMDB-138": "www_evans",
+      "AMDB-182": "media,arcv",
+      "AMDB-201": "blcc,stand",
+      "AMDB-225": "blcc,nbs",
+      "AMDB-228": "blcc,audio",
+      "AMDB-241": "blcc,udoc",
+      "AMDB-244": "blcc,schk",
+      "AMDB-264": "evans_pda",
+      "AMDB-278": "learn_outreach",
+      "AMDB-285": "blcc,ebc",
+      "AMDB-288": "evans_withdrawn",
+      "MSDB-5": "AbstractIndex",
+      "MSDB-40": "www_msl",
+      "MSDB-44": "msl_withdrawn",
+      "MSDB-68": "Mobile",
+      "MSDB-126": "rs,hdr",
+      "MSDB-127": "rs,hdr",
+      "MSDB-186": "msl_pda"
+    },
     "callNumberType": {
       " ": "24badefa-4456-40c5-845c-3f45ffbc4c03",
       "0": "95467209-6d7b-468b-94df-0f5d7ad2747d",
@@ -333,6 +366,140 @@ POST to http://localhost:9000/migrate/holdings
     "permanentLocationId": "2b8f7d63-706a-4b56-8a5e-50ad24e33e4c",
     "receiptStatus": "Unknown",
     "retentionPolicy": "Unknown"
+  }
+}
+```
+
+## Item Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/items
+
+```
+{
+  "extraction": {
+    "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.item",
+    "pageSql": "SELECT item_id, item_type_id, perm_location, pieces, temp_location, temp_item_type_id FROM ${SCHEMA}.item ORDER BY item_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "mfhdSql": "SELECT chron, item_enum FROM ${SCHEMA}.mfhd_item WHERE item_id = ${ITEM_ID}",
+    "barcodeSql": "SELECT item_barcode FROM ${SCHEMA}.item_barcode WHERE item_id = ${ITEM_ID}",
+    "itemTypeSql": "SELECT item_type_id, item_type_code FROM ${SCHEMA}.item_type",
+    "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": ""
+    }
+  },
+  "preActions": [
+    "ALTER TABLE ${TENANT}_mod_inventory_storage.item SET (autovacuum_enabled = false, toast.autovacuum_enabled = false)",
+    "ALTER TABLE ${TENANT}_mod_inventory_storage.item DISABLE TRIGGER ALL"
+  ],
+  "postActions": [
+    "ALTER TABLE ${TENANT}_mod_inventory_storage.item SET (autovacuum_enabled = true, toast.autovacuum_enabled = true)",
+    "ALTER TABLE ${TENANT}_mod_inventory_storage.item ENABLE TRIGGER ALL"
+  ],
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 48,
+      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "materialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25",
+      "references": {
+        "itemTypeId": "53e72510-dc82-4caa-a272-1522cca70bc2",
+        "itemToHoldingTypeId": "39670cf7-de23-4473-b5e3-abf6d79735e1"
+      }
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 4,
+      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "materialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25",
+      "references": {
+        "itemTypeId": "0014559d-39f6-45c7-9406-03643459aaf0",
+        "itemToHoldingTypeId": "492fea54-399a-4822-8d4b-242096c2ab12"
+      }
+    }
+  ],
+  "maps": {
+    "location": {
+      "AMDB-36": "media",
+      "AMDB-37": "media,res",
+      "AMDB-47": "ils,borr",
+      "AMDB-48": "ils,lend",
+      "AMDB-132": "blcc,circ",
+      "AMDB-134": "blcc,stk",
+      "AMDB-135": "blcc,ref",
+      "AMDB-136": "blcc,res",
+      "AMDB-137": "blcc,rndx",
+      "AMDB-138": "www_evans",
+      "AMDB-182": "media,arcv",
+      "AMDB-201": "blcc,stand",
+      "AMDB-225": "blcc,nbs",
+      "AMDB-228": "blcc,audio",
+      "AMDB-241": "blcc,udoc",
+      "AMDB-244": "blcc,schk",
+      "AMDB-264": "evans_pda",
+      "AMDB-278": "learn_outreach",
+      "AMDB-285": "blcc,ebc",
+      "AMDB-288": "evans_withdrawn",
+      "MSDB-5": "AbstractIndex",
+      "MSDB-40": "www_msl",
+      "MSDB-44": "msl_withdrawn",
+      "MSDB-68": "Mobile",
+      "MSDB-126": "rs,hdr",
+      "MSDB-127": "rs,hdr",
+      "MSDB-186": "msl_pda"
+    },
+    "loanType": {
+      "non": "noncirc",
+      "ser": "serial",
+      "14d": "14_day",
+      "4h": "4_hour",
+      "3d": "3_day",
+      "2h": "2_hour",
+      "24h": "1_day",
+      "1h": "1_hour",
+      "curr": "normal",
+      "120d": "120_day",
+      "7d": "7_day",
+      "1d": "1_day",
+      "blu": "bluray",
+      "cass": "cassette",
+      "calc": "calculator",
+      "head": "headphones",
+      "acc": "accessory",
+      "proj": "projector",
+      "mic": "microphone",
+      "cam": "camera",
+      "voice": "voice_recorder",
+      "norm": "normal",
+      "book": "normal",
+      "reference": "4_hour",
+      "archives": "noncirc",
+      "reserve": "4_hour",
+      "CoP2wk": "14_day",
+      "CoP24hr": "24_hour",
+      "CoP2hr": "2_hour",
+      "CoPnocirc": "noncirc",
+      "eReader": "reader",
+      "HSCbook": "normal",
+      "HSCjournal": "journal",
+      "HSCmedia": "media",
+      "HSCreserve": "reserve",
+      "rare": "noncirc",
+      "HSCnocirc": "noncirc",
+      "preserv": "preservation",
+      "HSCtablet": "tablet",
+      "7day": "7_day",
+      "4hour": "4_hour"
+    }
+  },
+  "defaults": {
+    "permanentLoanTypeId": "dcdb0cef-c30f-4a3b-b0b6-757d1400535d",
+    "permanentLocationId": "2b8f7d63-706a-4b56-8a5e-50ad24e33e4c"
   }
 }
 ```

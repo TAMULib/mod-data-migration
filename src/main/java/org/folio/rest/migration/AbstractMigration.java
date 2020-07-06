@@ -24,6 +24,7 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
 
   static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
+  static final String KEY_TEMPLATE = "%s-%s";
   static final String SQL = "SQL";
   static final String JOB = "JOB";
   static final String SCHEMA = "SCHEMA";

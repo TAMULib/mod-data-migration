@@ -127,16 +127,39 @@ public class HoldingRecord {
     if (Objects.nonNull(holding)) {
       holding.setId(holdingId);
       holding.setInstanceId(instanceId);
-      holding.setHrid(String.format("%s%011d", hridPrefix, hrid));
       holding.setPermanentLocationId(locationId);
+      // holding.setTemporaryLocationId(null);
+      holding.setHoldingsTypeId(holdingsType);
+      holding.setCallNumberTypeId(callNumberType);
+      // holding.setIllPolicyId(null);
 
       holding.setDiscoverySuppress(discoverySuppress);
       holding.setCallNumber(callNumber);
-      holding.setCallNumberTypeId(callNumberType);
-      holding.setHoldingsTypeId(holdingsType);
       holding.setReceiptStatus(receiptStatus);
       holding.setAcquisitionMethod(acquisitionMethod);
       holding.setRetentionPolicy(retentionPolicy);
+
+      // TODO: get holding statements for indexes
+      // holding.setHoldingsStatementsForIndexes(null);
+
+      // TODO: get holding statements for supplements
+      // holding.setHoldingsStatementsForSupplements(null);
+
+      // TODO: get shelving title
+      // holding.setShelvingTitle(null);
+
+      // TODO: get call number prefix
+      // holding.setCallNumberPrefix(null);
+
+      // TODO: get statistical code ids
+      // holding.setStatisticalCodeIds(null);
+
+      // TODO: get notes
+      // holding.setNotes(null);
+
+      // TODO: go over TAMU_FOLIO.pm
+
+      holding.setHrid(String.format("%s%011d", hridPrefix, hrid));
 
       Set<String> formerIds = new HashSet<>();
       formerIds.add(mfhdId);

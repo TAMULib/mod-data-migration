@@ -3,12 +3,14 @@ package org.folio.rest.migration.controller;
 import org.folio.rest.migration.BibMigration;
 import org.folio.rest.migration.HoldingMigration;
 import org.folio.rest.migration.InventoryReferenceLinkMigration;
+import org.folio.rest.migration.ItemMigration;
 import org.folio.rest.migration.UserReferenceLinkMigration;
 import org.folio.rest.migration.VendorReferenceLinkMigration;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceLinkTypes;
 import org.folio.rest.migration.model.request.BibContext;
 import org.folio.rest.migration.model.request.HoldingContext;
 import org.folio.rest.migration.model.request.InventoryReferenceLinkContext;
+import org.folio.rest.migration.model.request.ItemContext;
 import org.folio.rest.migration.model.request.UserReferenceLinkContext;
 import org.folio.rest.migration.model.request.VendorReferenceLinkContext;
 import org.folio.rest.migration.service.MigrationService;
@@ -50,8 +52,13 @@ public class MigrationController {
   }
 
   @PostMapping("/holdings")
-  public void bibs(@RequestBody HoldingContext context, @TenantHeader String tenant) {
+  public void holdings(@RequestBody HoldingContext context, @TenantHeader String tenant) {
     migrationService.migrate(HoldingMigration.with(context, tenant));
+  }
+
+  @PostMapping("/items")
+  public void items(@RequestBody ItemContext context, @TenantHeader String tenant) {
+    migrationService.migrate(ItemMigration.with(context, tenant));
   }
 
 }

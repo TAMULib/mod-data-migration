@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +18,7 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.folio.rest.jaxrs.model.Holdingsrecord;
+import org.folio.rest.jaxrs.model.Location;
 import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.HoldingMapper;
@@ -54,7 +55,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
   private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
 
-  //(id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
+  // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
   private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,holdingstypeid,callnumbertypeid) FROM STDIN";
 
   private HoldingMigration(HoldingContext context, String tenant) {
@@ -104,7 +105,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
-      HashMap<String, String> locationsMap = preloadLocationsMap(locations, job.getSchema());
+      Map<String, String> locationsMap = getLocationsMap(locations, job.getSchema());
 
       int count = getCount(voyagerSettings, countContext);
 
@@ -187,6 +188,9 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       HoldingMaps holdingMaps = context.getMaps();
       HoldingDefaults holdingDefaults = context.getDefaults();
 
+      String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
+      String holdingToBibRLTypeId = job.getReferences().get(HOLDING_TO_BIB_REFERENCE_ID);
+
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
       int count = 0;
@@ -202,7 +206,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         while (pageResultSet.next()) {
           String mfhdId = pageResultSet.getString(MFHD_ID);
 
-          String permanentLocation = pageResultSet.getString(LOCATION_ID);
+          String permanentLocationId = pageResultSet.getString(LOCATION_ID);
 
           String discoverySuppressString = pageResultSet.getString(DISCOVERY_SUPPRESS);
           String callNumber = pageResultSet.getString(CALL_NUMBER);
@@ -266,9 +270,11 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             retentionPolicy = holdingDefaults.getRetentionPolicy();
           }
 
-          if (locationsMap.containsKey(permanentLocation)) {
-            locationId = locationsMap.get(permanentLocation);
+          String permanentLocationIdKey = String.format(KEY_TEMPLATE, schema, permanentLocationId);
+          if (locationsMap.containsKey(permanentLocationIdKey)) {
+            locationId = locationsMap.get(permanentLocationIdKey);
           } else {
+            log.warn("using default permanent location for schema {} mfhdId {} location {}", schema, mfhdId, permanentLocationId);
             locationId = holdingDefaults.getPermanentLocationId();
           }
 
@@ -276,15 +282,13 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             HoldingRecord holdingRecord = new HoldingRecord(mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
             String holdingId = null, instanceId = null;
-            
-            String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
+
             Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
 
             if (holdingRL.isPresent()) {
 
               holdingId = holdingRL.get().getFolioReference();
 
-              String holdingToBibRLTypeId = job.getReferences().get(HOLDING_TO_BIB_REFERENCE_ID);
               Optional<ReferenceLink> holdingToBibRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToBibRLTypeId, holdingRL.get().getId());
 
               if (holdingToBibRL.isPresent()) {
@@ -309,26 +313,40 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             holdingRecord.setHoldingId(holdingId);
             holdingRecord.setInstanceId(instanceId);
 
+            Date createdDate = new Date();
             holdingRecord.setCreatedByUserId(job.getUserId());
-            holdingRecord.setCreatedDate(new Date());
+            holdingRecord.setCreatedDate(createdDate);
 
-            String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
+            String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
 
             Holdingsrecord holdingsRecord = holdingRecord.toHolding(holdingMapper, hridPrefix, hrid);
 
             String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(holdingsRecord)));
 
-            // TODO: validate rows
-            holdingRecordWriter.println(String.join("\t", holdingsRecord.getId(), hrUtf8Json, createdAt, createdByUserId, holdingsRecord.getInstanceId(), holdingsRecord.getPermanentLocationId(), holdingsRecord.getHoldingsTypeId(), holdingsRecord.getCallNumberTypeId()));
+            // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
+            holdingRecordWriter.println(String.join("\t",
+              holdingsRecord.getId(),
+              hrUtf8Json,
+              createdAt,
+              createdByUserId,
+              holdingsRecord.getInstanceId(),
+              holdingsRecord.getPermanentLocationId(),
+              // holdingsRecord.getTemporaryLocationId(),
+              holdingsRecord.getHoldingsTypeId(),
+              holdingsRecord.getCallNumberTypeId()
+              // holdingsRecord.getIllPolicyId()
+            ));
 
             hrid++;
             count++;
 
           } catch (IOException e) {
               log.error("{} holding id {} error processing marc", schema, mfhdId);
+              log.debug(e.getMessage());
           } catch (MarcException e) {
               log.error("{} holding id {} error reading marc", schema, mfhdId);
+              log.debug(e.getMessage());
           }
         }
 
@@ -404,15 +422,13 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     }
   }
 
-  private HashMap<String, String> preloadLocationsMap(Locations locations, String schema) {
-    HashMap<String, String> codeToId = new HashMap<>();
-    HashMap<String, String> idToUuid = new HashMap<>();
+  private Map<String, String> getLocationsMap(Locations locations, String schema) {
+    Map<String, String> idToUuid = new HashMap<>();
     Map<String, Object> locationContext = new HashMap<>();
     locationContext.put(SQL, context.getExtraction().getLocationSql());
     locationContext.put(SCHEMA, schema);
-
     Database voyagerSettings = context.getExtraction().getDatabase();
-
+    Map<String, String> locConv = context.getMaps().getLocation(); 
     try(
       Connection voyagerConnection = getConnection(voyagerSettings);
       Statement st = voyagerConnection.createStatement();
@@ -420,19 +436,18 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     ) {
       while (rs.next()) {
         String id = rs.getString(LOCATION_ID);
-        String code = rs.getString(LOCATION_CODE);
         if (Objects.nonNull(id)) {
-          codeToId.put(code, id);
+          String key = String.format(KEY_TEMPLATE, schema, id);
+          String code = locConv.containsKey(key) ? locConv.get(key) : rs.getString(LOCATION_CODE);
+          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
+          if (location.isPresent()) {
+            idToUuid.put(key, location.get().getId());
+          }
         }
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
-    locations.getLocations().stream()
-      .filter(location -> codeToId.containsKey(location.getCode()))
-      .forEach(location -> idToUuid.put(codeToId.get(location.getCode()), location.getId()));
-
     return idToUuid;
   }
 

@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -339,8 +339,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
             bibRecord.setMarc(marc);
             bibRecord.setParsedRecord(marcJsonObject);
 
+            Date createdDate = new Date();
             bibRecord.setCreatedByUserId(job.getUserId());
-            bibRecord.setCreatedDate(new Date());
+            bibRecord.setCreatedDate(createdDate);
 
             RawRecord rawRecord = bibRecord.toRawRecord();
             ParsedRecord parsedRecord = bibRecord.toParsedRecord();
@@ -353,7 +354,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
               continue;
             }
 
-            String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
+            String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
 
             String rrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(rawRecord)));
