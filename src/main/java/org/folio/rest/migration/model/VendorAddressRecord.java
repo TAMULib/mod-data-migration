@@ -224,8 +224,10 @@ public class VendorAddressRecord extends AbstractVendorRecord {
 
     Map<String, String> countryCodesMap = maps.getCountryCodes();
 
-    if (Objects.nonNull(countryCodesMap) && countryCodesMap.containsKey(match)) {
+    if (countryCodesMap.containsKey(match)) {
       address.setCountry(countryCodesMap.get(match));
+    } else if (countryCodesMap.containsValue(match)) {
+      address.setCountry(match);
     } else {
       log.error("unknown country code {} for address id {} for vendor id {}", match, id, vendorId);
     }
