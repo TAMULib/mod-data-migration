@@ -212,34 +212,19 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
       int count = 0;
 
-      PGCopyOutputStream contactsRecordOutput = null;
-      PGCopyOutputStream organizationsRecordOutput = null;
+      try (
+        PrintWriter contactsRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getContactsRecordConnection(), String.format(CONTACTS_RECORDS_COPY_SQL, tenant)), true);
+        PrintWriter organizationsRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getOrganizationRecordConnection(), String.format(ORGANIZATIONS_RECORDS_COPY_SQL, tenant)), true);
 
-      PrintWriter contactsRecordWriter = null;
-      PrintWriter organizationsRecordWriter = null;
-
-      Statement pageStatement = null;
-      Statement accountStatement = null;
-      Statement addressStatement = null;
-      Statement aliasStatement = null;
-      Statement noteStatement = null;
-      Statement phoneStatement = null;
-
-      try {
-        contactsRecordOutput = new PGCopyOutputStream(threadConnections.getContactsRecordConnection(), String.format(CONTACTS_RECORDS_COPY_SQL, tenant));
-        contactsRecordWriter = new PrintWriter(contactsRecordOutput, true);
-
-        organizationsRecordOutput = new PGCopyOutputStream(threadConnections.getOrganizationRecordConnection(), String.format(ORGANIZATIONS_RECORDS_COPY_SQL, tenant));
-        organizationsRecordWriter = new PrintWriter(organizationsRecordOutput, true);
-
-        pageStatement = threadConnections.getPageConnection().createStatement();
-        accountStatement = threadConnections.getAccountConnection().createStatement();
-        addressStatement = threadConnections.getAddressConnection().createStatement();
-        aliasStatement = threadConnections.getAliasConnection().createStatement();
-        noteStatement = threadConnections.getNoteConnection().createStatement();
-        phoneStatement = threadConnections.getPhoneConnection().createStatement();
+        Statement pageStatement = threadConnections.getPageConnection().createStatement();
+        Statement accountStatement = threadConnections.getAccountConnection().createStatement();
+        Statement addressStatement = threadConnections.getAddressConnection().createStatement();
+        Statement aliasStatement = threadConnections.getAliasConnection().createStatement();
+        Statement noteStatement = threadConnections.getNoteConnection().createStatement();
+        Statement phoneStatement = threadConnections.getPhoneConnection().createStatement();
 
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
+      ) {
 
         while (pageResultSet.next()) {
           String vendorId = pageResultSet.getString(VENDOR_ID);
@@ -255,7 +240,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
           try {
             processVendorAccounts(context, accountStatement, vendorRecord);
-            processVendorAddresses(context, addressStatement, phoneStatement, vendorRecord, contactsRecordOutput, contactsRecordWriter, jsonStringEncoder);
+            processVendorAddresses(context, addressStatement, phoneStatement, vendorRecord, contactsRecordWriter, jsonStringEncoder);
             processVendorAliases(context, aliasStatement, vendorRecord);
             processVendorNotes(context, noteStatement, vendorRecord);
 
@@ -294,23 +279,11 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           }
         }
 
-        pageResultSet.close();
-
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
-        threadConnections.closeStatement(pageStatement);
-        threadConnections.closeStatement(accountStatement);
-        threadConnections.closeStatement(addressStatement);
-        threadConnections.closeStatement(aliasStatement);
-        threadConnections.closeStatement(noteStatement);
-        threadConnections.closeStatement(phoneStatement);
-
-        closePrintWriter(contactsRecordWriter);
-        closePrintWriter(organizationsRecordWriter);
+        threadConnections.closeAll();
       }
-
-      threadConnections.closeAll();
 
       log.info("{} {} vendor finished {} in {} milliseconds", schema, index, count, TimingUtility.getDeltaInMilliseconds(startTime));
 
@@ -347,68 +320,75 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       resultSet.close();
     }
 
-    private void processVendorAddresses(VendorContext vendorContext, Statement statement, Statement phoneStatement, VendorRecord vendorRecord, PGCopyOutputStream contactsRecordOutput, PrintWriter contactsRecordWriter, JsonStringEncoder jsonStringEncoder) throws SQLException, JsonProcessingException {
+    private void processVendorAddresses(VendorContext vendorContext, Statement statement, Statement phoneStatement, VendorRecord vendorRecord, PrintWriter contactsRecordWriter, JsonStringEncoder jsonStringEncoder) throws JsonProcessingException, SQLException {
       Map<String, Object> context = new HashMap<>();
       context.put(SQL, vendorContext.getExtraction().getAddressSql());
       context.put(SCHEMA, job.getSchema());
       context.put(VENDOR_ID, vendorRecord.getVendorId());
 
-      ResultSet resultSet = getResultSet(statement, context);
+      try (
+        ResultSet resultSet = getResultSet(statement, context);
+      ) {
 
-      while (resultSet.next()) {
-        String id = resultSet.getString(ADDRESS_ID);
-        String addressLine1 = resultSet.getString(ADDRESS_LINE1);
-        String addressLine1Full = resultSet.getString(ADDRESS_LINE1_FULL);
-        String addressLine2 = resultSet.getString(ADDRESS_LINE2);
-        String city = resultSet.getString(ADDRESS_CITY);
-        String contactName = resultSet.getString(ADDRESS_CONTACT_NAME);
-        String contactTitle = resultSet.getString(ADDRESS_CONTACT_TITLE);
-        String country = resultSet.getString(ADDRESS_COUNTRY);
-        String emailAddress = resultSet.getString(ADDRESS_EMAIL_ADDRESS);
-        String stateProvince = resultSet.getString(ADDRESS_STATE_PROVINCE);
-        String stdAddressNumber = resultSet.getString(ADDRESS_STD_ADDRESS_NUMBER);
-        String zipPostal = resultSet.getString(ADDRESS_ZIP_POSTAL);
-        String phoneAddressId = vendorRecord.getVendorId();
+        while (resultSet.next()) {
+          String id = resultSet.getString(ADDRESS_ID);
+          String addressLine1 = resultSet.getString(ADDRESS_LINE1);
+          String addressLine1Full = resultSet.getString(ADDRESS_LINE1_FULL);
+          String addressLine2 = resultSet.getString(ADDRESS_LINE2);
+          String city = resultSet.getString(ADDRESS_CITY);
+          String contactName = resultSet.getString(ADDRESS_CONTACT_NAME);
+          String contactTitle = resultSet.getString(ADDRESS_CONTACT_TITLE);
+          String country = resultSet.getString(ADDRESS_COUNTRY);
+          String emailAddress = resultSet.getString(ADDRESS_EMAIL_ADDRESS);
+          String stateProvince = resultSet.getString(ADDRESS_STATE_PROVINCE);
+          String stdAddressNumber = resultSet.getString(ADDRESS_STD_ADDRESS_NUMBER);
+          String zipPostal = resultSet.getString(ADDRESS_ZIP_POSTAL);
+          String phoneAddressId = vendorRecord.getVendorId();
 
-        List<String> categories = buildVendorAddressesCategories(resultSet);
+          List<String> categories = buildVendorAddressesCategories(resultSet);
 
-        if (Objects.nonNull(stdAddressNumber)) {
-          vendorRecord.setStdAddressNumber(stdAddressNumber);
+          if (Objects.nonNull(stdAddressNumber)) {
+            vendorRecord.setStdAddressNumber(stdAddressNumber);
+          }
+
+          VendorAddressRecord record = new VendorAddressRecord(id, vendorRecord.getVendorId(), addressLine1, addressLine1Full, addressLine2, city, contactName, contactTitle, country, emailAddress, stateProvince, zipPostal, categories);
+          record.setMaps(vendorContext.getMaps());
+          record.setDefaults(vendorContext.getDefaults());
+
+          if (record.isAddress()) {
+            vendorRecord.addAddress(record.toAddress());
+          } else if (record.isContact()) {
+            Contact contact = record.toContact();
+
+            String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
+            String createdByUserId = job.getUserId();
+
+            String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(contact)));
+
+            phoneAddressId = contact.getId();
+
+            // TODO: validate rows
+            contactsRecordWriter.println(String.join("\t", contact.getId(), hrUtf8Json, createdAt, createdByUserId));
+
+            vendorRecord.addContact(contact.getId());
+          } else if (record.isEmail()) {
+            vendorRecord.addEmail(record.toEmail());
+          } else if (record.isUrl()) {
+            vendorRecord.addUrl(record.toUrl());
+          } else {
+            log.error("{} no known address type for address id {} for vendor id {}", job.getSchema(), id, vendorRecord.getVendorId());
+            continue;
+          }
+
+          processAddressPhoneNumbers(vendorContext, phoneStatement, vendorRecord, categories, phoneAddressId);
         }
 
-        VendorAddressRecord record = new VendorAddressRecord(id, vendorRecord.getVendorId(), addressLine1, addressLine1Full, addressLine2, city, contactName, contactTitle, country, emailAddress, stateProvince, zipPostal, categories);
-        record.setMaps(vendorContext.getMaps());
-        record.setDefaults(vendorContext.getDefaults());
+      } catch (SQLException e) {
+        log.error("{} vendor id {} SQL error while processing addresses", job.getSchema(), vendorRecord.getVendorId());
+        log.debug(e.getMessage());
 
-        if (record.isAddress()) {
-          vendorRecord.addAddress(record.toAddress());
-        } else if (record.isContact()) {
-          Contact contact = record.toContact();
-
-          String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
-          String createdByUserId = job.getUserId();
-
-          String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(contact)));
-
-          phoneAddressId = contact.getId();
-
-          // TODO: validate rows
-          contactsRecordWriter.println(String.join("\t", contact.getId(), hrUtf8Json, createdAt, createdByUserId));
-
-          vendorRecord.addContact(contact.getId());
-        } else if (record.isEmail()) {
-          vendorRecord.addEmail(record.toEmail());
-        } else if (record.isUrl()) {
-          vendorRecord.addUrl(record.toUrl());
-        } else {
-          log.error("{} no known address type for address id {} for vendor id {}", job.getSchema(), id, vendorRecord.getVendorId());
-          continue;
-        }
-
-        processAddressPhoneNumbers(vendorContext, phoneStatement, vendorRecord, categories, phoneAddressId);
+        throw e;
       }
-
-      resultSet.close();
     }
 
     private void processVendorAliases(VendorContext vendorContext, Statement statement, VendorRecord vendorRecord) throws SQLException {
@@ -417,19 +397,26 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       context.put(SCHEMA, job.getSchema());
       context.put(VENDOR_ID, vendorRecord.getVendorId());
 
-      ResultSet resultSet = getResultSet(statement, context);
+      try (
+        ResultSet resultSet = getResultSet(statement, context);
+      ) {
 
-      while (resultSet.next()) {
-        String altVendorName = resultSet.getString(ALIAS_ALT_VENDOR_NAME);
+        while (resultSet.next()) {
+          String altVendorName = resultSet.getString(ALIAS_ALT_VENDOR_NAME);
 
-        VendorAliasRecord record = new VendorAliasRecord(altVendorName);
-        record.setMaps(vendorContext.getMaps());
-        record.setDefaults(vendorContext.getDefaults());
+          VendorAliasRecord record = new VendorAliasRecord(altVendorName);
+          record.setMaps(vendorContext.getMaps());
+          record.setDefaults(vendorContext.getDefaults());
 
-        vendorRecord.addAlias(record.toAlias());
+          vendorRecord.addAlias(record.toAlias());
+        }
+
+      } catch (SQLException e) {
+        log.error("{} vendor id {} SQL error while processing aliases", job.getSchema(), vendorRecord.getVendorId());
+        log.debug(e.getMessage());
+
+        throw e;
       }
-
-      resultSet.close();
     }
 
     private void processVendorNotes(VendorContext vendorContext, Statement statement, VendorRecord vendorRecord) throws SQLException {
@@ -438,17 +425,24 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       context.put(SCHEMA, job.getSchema());
       context.put(VENDOR_ID, vendorRecord.getVendorId());
 
-      ResultSet resultSet = getResultSet(statement, context);
+      try (
+        ResultSet resultSet = getResultSet(statement, context);
+      ) {
 
-      while (resultSet.next()) {
-        String note = resultSet.getString(NOTE_NOTE);
+        while (resultSet.next()) {
+          String note = resultSet.getString(NOTE_NOTE);
 
-        if (Objects.nonNull(note)) {
-          vendorRecord.setNotes(vendorRecord.getNotes() + " " + note);
+          if (Objects.nonNull(note)) {
+            vendorRecord.setNotes(vendorRecord.getNotes() + " " + note);
+          }
         }
-      }
 
-      resultSet.close();
+      } catch (SQLException e) {
+        log.error("{} vendor id {} SQL error while processing notes", job.getSchema(), vendorRecord.getVendorId());
+        log.debug(e.getMessage());
+
+        throw e;
+      }
     }
 
     private void processAddressPhoneNumbers(VendorContext vendorContext, Statement statement, VendorRecord vendorRecord, List<String> categories, String addressId) throws SQLException {
@@ -458,25 +452,32 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       context.put(VENDOR_ID, vendorRecord.getVendorId());
       context.put(ADDRESS_ID, addressId);
 
-      ResultSet resultSet = getResultSet(statement, context);
+      try (
+        ResultSet resultSet = getResultSet(statement, context);
+      ) {
 
-      while (resultSet.next()) {
-        String phoneNumber = resultSet.getString(PHONE_NUMBER);
-        String phoneType = resultSet.getString(PHONE_TYPE);
+        while (resultSet.next()) {
+          String phoneNumber = resultSet.getString(PHONE_NUMBER);
+          String phoneType = resultSet.getString(PHONE_TYPE);
 
-        if (phoneNumber.contains("@") || phoneNumber.matches("www\\.")) {
-          log.error("{} phone number {} is an e-mail or URL for address id {} vendor id {}", job.getSchema(), phoneNumber, addressId, vendorRecord.getVendorId());
-          continue;
+          if (phoneNumber.contains("@") || phoneNumber.matches("www\\.")) {
+            log.error("{} phone number {} is an e-mail or URL for address id {} vendor id {}", job.getSchema(), phoneNumber, addressId, vendorRecord.getVendorId());
+            continue;
+          }
+
+          VendorPhoneRecord record = new VendorPhoneRecord(vendorRecord.getVendorId(), addressId, phoneNumber, phoneType, categories);
+          record.setMaps(vendorContext.getMaps());
+          record.setDefaults(vendorContext.getDefaults());
+
+          vendorRecord.addPhoneNumber(record.toPhoneNumber());
         }
 
-        VendorPhoneRecord record = new VendorPhoneRecord(vendorRecord.getVendorId(), addressId, phoneNumber, phoneType, categories);
-        record.setMaps(vendorContext.getMaps());
-        record.setDefaults(vendorContext.getDefaults());
+      } catch (SQLException e) {
+        log.error("{} vendor id {} SQL error while processing phone numbers", job.getSchema(), vendorRecord.getVendorId());
+        log.debug(e.getMessage());
 
-        vendorRecord.addPhoneNumber(record.toPhoneNumber());
+        throw e;
       }
-
-      resultSet.close();
     }
 
     private List<String> buildVendorAddressesCategories(ResultSet resultSet) throws SQLException {
@@ -512,12 +513,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       return categories;
     }
 
-  }
-
-  private void closePrintWriter(PrintWriter writer) {
-    if (Objects.nonNull(writer)) {
-      writer.close();
-    }
   }
 
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
@@ -631,25 +626,9 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       closeBaseConnection(organizationRecordConnection);
     }
 
-    public void closeStatement(Statement statement) {
-      try {
-        if (Objects.nonNull(statement) && !statement.isClosed()) {
-          statement.close();
-        }
-      } catch (SQLException e) {
-        log.error(e.getMessage());
-        throw new RuntimeException(e);
-      }
-    }
-
     private void closeBaseConnection(BaseConnection baseConnection) {
       try {
-        if (!baseConnection.isClosed()) {
-          if (!baseConnection.getAutoCommit()) {
-            baseConnection.commit();
-          }
-          baseConnection.close();
-        }
+        baseConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
         throw new RuntimeException(e);
@@ -658,12 +637,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
     private void closeConnection(Connection connection) {
       try {
-        if (!connection.isClosed()) {
-          if (!connection.getAutoCommit()) {
-            connection.commit();
-          }
-          connection.close();
-        }
+        connection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
         throw new RuntimeException(e);
