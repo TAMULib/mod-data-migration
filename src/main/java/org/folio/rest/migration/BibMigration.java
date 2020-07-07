@@ -1,18 +1,13 @@
 package org.folio.rest.migration;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.io.SequenceInputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.ZoneOffset;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,7 +22,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
-import org.apache.commons.io.IOUtils;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
 import org.folio.rest.jaxrs.model.Instance;
 import org.folio.rest.jaxrs.model.Statisticalcodes;
@@ -53,7 +47,6 @@ import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
 import org.marc4j.MarcException;
 import org.marc4j.MarcJsonWriter;
-import org.marc4j.MarcStreamReader;
 import org.marc4j.MarcStreamWriter;
 import org.marc4j.MarcWriter;
 import org.marc4j.marc.DataField;
@@ -76,9 +69,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private static final String BIB_ID = "BIB_ID";
   private static final String SUPPRESS_IN_OPAC = "SUPPRESS_IN_OPAC";
   private static final String OPERATOR_ID = "OPERATOR_ID";
-
-  private static final String RECORD_SEGMENT = "RECORD_SEGMENT";
-  private static final String SEQNUM = "SEQNUM";
 
   private static final String SOURCE_RECORD_REFERENCE_ID = "sourceRecordTypeId";
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
@@ -417,42 +407,12 @@ public class BibMigration extends AbstractMigration<BibContext> {
     return threadConnections;
   }
 
-  private String getMarc(Statement statement, Map<String, Object> context) throws SQLException, IOException {
-    try (ResultSet resultSet = getResultSet(statement, context)) {
-      List<SequencedMarc> marcSequence = new ArrayList<>();
-      while (resultSet.next()) {
-        InputStream recordSegment = resultSet.getBinaryStream(RECORD_SEGMENT);
-        int seqnum = resultSet.getInt(SEQNUM);
-        marcSequence.add(new SequencedMarc(seqnum, recordSegment));
-      }
-      List<InputStream> asciiStreams = marcSequence.stream()
-        .sorted((sm1, sm2) -> sm1.getSeqnum().compareTo(sm2.getSeqnum()))
-        .map(sm -> sm.getRecordSegment())
-          .collect(Collectors.toList());
-      SequenceInputStream sequenceInputStream = new SequenceInputStream(Collections.enumeration(asciiStreams));
-      return IOUtils.toString(sequenceInputStream, DEFAULT_CHARSET);
-    }
-  }
-
   @Cacheable(key = "operatorId")
   private Set<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalCodes) {
     return statisticalCodes.getStatisticalCodes().stream()
       .map(sc -> sc.getCode())
       .filter(code -> code.equals(operatorId))
         .collect(Collectors.toSet());
-  }
-
-  private Optional<Record> rawMarcToRecord(String rawMarc) throws IOException, MarcException {
-    StringBuilder marc = new StringBuilder(rawMarc);
-    // leader/22 must be 0 to avoid missing field terminator at end of directory
-    marc.setCharAt(22, '0');
-    try (InputStream in = new ByteArrayInputStream(marc.toString().getBytes(DEFAULT_CHARSET))) {
-      MarcStreamReader reader = new MarcStreamReader(in, DEFAULT_CHARSET.name());
-      if (reader.hasNext()) {
-        return Optional.of(reader.next());
-      }
-    }
-    return Optional.empty();
   }
 
   private String recordToJson(Record record) throws IOException {
@@ -552,25 +512,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
         throw new RuntimeException(e);
       }
     }
-  }
-
-  private class SequencedMarc {
-    private Integer seqnum;
-    private InputStream recordSegment;
-
-    public SequencedMarc(Integer seqnum, InputStream recordSegment) {
-      this.seqnum = seqnum;
-      this.recordSegment = recordSegment;
-    }
-
-    public Integer getSeqnum() {
-      return seqnum;
-    }
-
-    public InputStream getRecordSegment() {
-      return recordSegment;
-    }
-
   }
 
 }
