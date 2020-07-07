@@ -42,7 +42,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
   private static final String VENDOR_ID = "VENDOR_ID";
   private static final String VENDOR_CODE = "VENDOR_CODE";
   private static final String VENDOR_NAME = "VENDOR_NAME";
-  private static final String VENDOR_STATUS = "STATUS";
   private static final String VENDOR_FEDERAL_TAX_ID = "FEDERAL_TAX_ID";
   private static final String VENDOR_DEFAULT_CURRENCY = "DEFAULT_CURRENCY";
   private static final String VENDOR_CLAIMING_INTERVAL = "CLAIM_INTERVAL";
@@ -230,13 +229,12 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           String vendorId = pageResultSet.getString(VENDOR_ID);
           String vendorCode = pageResultSet.getString(VENDOR_CODE);
           String vendorName = pageResultSet.getString(VENDOR_NAME);
-          String vendorStatus = pageResultSet.getString(VENDOR_STATUS);
           String vendorTaxId = pageResultSet.getString(VENDOR_FEDERAL_TAX_ID);
           String vendorType = pageResultSet.getString(VENDOR_TYPE);
           String vendorDefaultCurrency = pageResultSet.getString(VENDOR_DEFAULT_CURRENCY);
           Integer vendorClaimingInterval = pageResultSet.getInt(VENDOR_CLAIMING_INTERVAL);
 
-          VendorRecord vendorRecord = new VendorRecord(vendorId, vendorCode, vendorType, vendorName, vendorStatus, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
+          VendorRecord vendorRecord = new VendorRecord(vendorId, vendorCode, vendorType, vendorName, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
 
           try {
             processVendorAccounts(context, accountStatement, vendorRecord);

@@ -25,7 +25,6 @@ public class VendorRecord extends AbstractVendorRecord {
   private final String code;
   private final String type;
   private final String name;
-  private final String status;
   private final String taxId;
   private final String defaultCurrency;
 
@@ -45,12 +44,11 @@ public class VendorRecord extends AbstractVendorRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public VendorRecord(String vendorId, String code, String type, String name, String status, String taxId, String defaultCurrency, Integer claimingInterval) {
+  public VendorRecord(String vendorId, String code, String type, String name, String taxId, String defaultCurrency, Integer claimingInterval) {
     this.vendorId = vendorId;
     this.code = code;
     this.type = type;
     this.name = name;
-    this.status = status;
     this.taxId = taxId;
     this.defaultCurrency = defaultCurrency;
     this.claimingInterval = claimingInterval;
@@ -77,10 +75,6 @@ public class VendorRecord extends AbstractVendorRecord {
 
   public String getName() {
     return name;
-  }
-
-  public String getStatus() {
-    return status;
   }
 
   public String getTaxId() {
@@ -243,12 +237,8 @@ public class VendorRecord extends AbstractVendorRecord {
   private void setStatus(Organization organization, VendorDefaults defaults) {
     String match = "";
 
-    if (Objects.isNull(status)) {
-      if (Objects.nonNull(defaults.getStatus())) {
-        match = defaults.getStatus();
-      }
-    } else {
-      match = status;
+    if (Objects.nonNull(defaults.getStatus())) {
+      match = defaults.getStatus();
     }
 
     if (match.equalsIgnoreCase(Organization.Status.ACTIVE.name())) {
