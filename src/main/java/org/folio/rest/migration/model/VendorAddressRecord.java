@@ -215,8 +215,8 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     String match = "";
 
     if (Objects.isNull(country)) {
-      if (Objects.nonNull(defaults.getStatus())) {
-        match = defaults.getStatus();
+      if (Objects.nonNull(defaults.getCountry())) {
+        match = defaults.getCountry();
       }
     } else {
       match = country;
