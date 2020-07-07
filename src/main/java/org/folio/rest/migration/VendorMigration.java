@@ -458,7 +458,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           String phoneNumber = resultSet.getString(PHONE_NUMBER);
           String phoneType = resultSet.getString(PHONE_TYPE);
 
-          if (phoneNumber.contains("@") || phoneNumber.matches("www\\.")) {
+          if (phoneNumber.contains("@") || phoneNumber.toLowerCase().matches("www\\.")) {
             log.error("{} phone number {} is an e-mail or URL for address id {} vendor id {}", job.getSchema(), phoneNumber, addressId, vendorRecord.getVendorId());
             continue;
           }
