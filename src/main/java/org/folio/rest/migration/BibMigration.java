@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -62,6 +62,7 @@ import org.marc4j.marc.Record;
 import org.marc4j.marc.VariableField;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
+import org.springframework.cache.annotation.Cacheable;
 
 import io.vertx.core.json.JsonObject;
 
@@ -74,14 +75,13 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
   private static final String BIB_ID = "BIB_ID";
   private static final String SUPPRESS_IN_OPAC = "SUPPRESS_IN_OPAC";
-
-  private static final String SOURCE_RECORD_REFERENCE_ID = "sourceRecordTypeId";
-  private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
+  private static final String OPERATOR_ID = "OPERATOR_ID";
 
   private static final String RECORD_SEGMENT = "RECORD_SEGMENT";
   private static final String SEQNUM = "SEQNUM";
 
-  private static final String OPERATOR_ID = "OPERATOR_ID";
+  private static final String SOURCE_RECORD_REFERENCE_ID = "sourceRecordTypeId";
+  private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
 
   private static final String T_999 = "999";
 
@@ -96,7 +96,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private static String PARSED_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.marc_records (id,jsonb,creation_date,created_by) FROM STDIN";
 
   // (id,jsonb,creation_date,created_by,jobexecutionid)
-  private static String RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.records (id,jsonb,creation_date,created_by) FROM STDIN";
+  private static String RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.records (id,jsonb,creation_date,created_by,jobexecutionid) FROM STDIN";
 
   // (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid)
   private static String INSTANCE_COPY_SQL = "COPY %s_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid) FROM STDIN";
@@ -168,6 +168,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(JOB, job);
         partitionContext.put(STATISTICAL_CODES, statisticalCodes);
+        log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new BibPartitionTask(migrationService, instanceMapper, partitionContext));
         offset += limit;
         index++;
@@ -247,45 +248,30 @@ public class BibMigration extends AbstractMigration<BibContext> {
       marcContext.put(SQL, context.getExtraction().getMarcSql());
       marcContext.put(SCHEMA, schema);
 
-      Map<String, Object> bibHistoryContext = new HashMap<>();
-      bibHistoryContext.put(SQL, context.getExtraction().getBibHistorySql());
-      bibHistoryContext.put(SCHEMA, schema);
-
       String sourceRecordRLTypeId = job.getReferences().get(SOURCE_RECORD_REFERENCE_ID);
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
-      log.info("starting {} {}", schema, index);
-
       int count = 0;
 
-      try {
-        PGCopyOutputStream rawRecordOutput = new PGCopyOutputStream(threadConnections.getRawRecordConnection(), String.format(RAW_RECORDS_COPY_SQL, tenant));
-        PrintWriter rawRecordWriter = new PrintWriter(rawRecordOutput, true);
-
-        PGCopyOutputStream parsedRecordOutput = new PGCopyOutputStream(threadConnections.getParsedRecordConnection(), String.format(PARSED_RECORDS_COPY_SQL, tenant));
-        PrintWriter parsedRecordWriter = new PrintWriter(parsedRecordOutput, true);
-
-        PGCopyOutputStream recordOutput = new PGCopyOutputStream(threadConnections.getRecordConnection(), String.format(RECORDS_COPY_SQL, tenant));
-        PrintWriter recordWriter = new PrintWriter(recordOutput, true);
-
-        PGCopyOutputStream instanceOutput = new PGCopyOutputStream(threadConnections.getInstanceConnection(), String.format(INSTANCE_COPY_SQL, tenant));
-        PrintWriter instanceWriter = new PrintWriter(instanceOutput, true);
-
+      try (
+        PrintWriter rawRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getRawRecordConnection(), String.format(RAW_RECORDS_COPY_SQL, tenant)), true);
+        PrintWriter parsedRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getParsedRecordConnection(), String.format(PARSED_RECORDS_COPY_SQL, tenant)), true);
+        PrintWriter recordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getRecordConnection(), String.format(RECORDS_COPY_SQL, tenant)), true);
+        PrintWriter instanceWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getInstanceConnection(), String.format(INSTANCE_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement marcStatement = threadConnections.getMarcConnection().createStatement();
-        Statement bibHistoryStatement = threadConnections.getBibHistoryConnection().createStatement();
-
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
+      ) {
 
         while (pageResultSet.next()) {
 
           String bibId = pageResultSet.getString(BIB_ID);
           Boolean suppressInOpac = pageResultSet.getBoolean(SUPPRESS_IN_OPAC);
+          String operatorId = pageResultSet.getString(OPERATOR_ID);
 
           marcContext.put(BIB_ID, bibId);
-          bibHistoryContext.put(BIB_ID, bibId);
 
           try {
             String marc = getMarc(marcStatement, marcContext);
@@ -297,10 +283,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
               continue;
             }
 
-            Optional<String> operatorId = getOperatorId(bibHistoryStatement, bibHistoryContext);
-
-            Set<String> matchedCodes = operatorId.isPresent()
-              ? getMatchingStatisticalCodes(operatorId.get(), statisticalCodes)
+            Set<String> matchedCodes = Objects.nonNull(operatorId)
+              ? getMatchingStatisticalCodes(operatorId, statisticalCodes)
               : new HashSet<>();
 
             BibRecord bibRecord = new BibRecord(bibId, job.getInstanceStatusId(), suppressInOpac, matchedCodes);
@@ -347,8 +331,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
             bibRecord.setMarc(marc);
             bibRecord.setParsedRecord(marcJsonObject);
 
+            Date createdDate = new Date();
             bibRecord.setCreatedByUserId(job.getUserId());
-            bibRecord.setCreatedDate(new Date());
+            bibRecord.setCreatedDate(createdDate);
 
             RawRecord rawRecord = bibRecord.toRawRecord();
             ParsedRecord parsedRecord = bibRecord.toParsedRecord();
@@ -361,7 +346,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
               continue;
             }
 
-            String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
+            String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
 
             String rrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(rawRecord)));
@@ -373,7 +358,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
             rawRecordWriter.println(String.join("\t", rawRecord.getId(), rrUtf8Json, createdAt, createdByUserId));
             parsedRecordWriter.println(String.join("\t", parsedRecord.getId(), prUtf8Json, createdAt, createdByUserId));
-            recordWriter.println(String.join("\t", recordModel.getId(), rmUtf8Json, createdAt, createdByUserId));
+            recordWriter.println(String.join("\t", recordModel.getId(), rmUtf8Json, createdAt, createdByUserId, recordModel.getSnapshotId()));
             instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getStatusId(), instance.getModeOfIssuanceId(), instance.getInstanceTypeId()));
 
             hrid++;
@@ -388,21 +373,11 @@ public class BibMigration extends AbstractMigration<BibContext> {
           }
         }
 
-        rawRecordWriter.close();
-        parsedRecordWriter.close();
-        recordWriter.close();
-        instanceWriter.close();
-
-        pageStatement.close();
-        marcStatement.close();
-
-        pageResultSet.close();
-
       } catch (SQLException e) {
         e.printStackTrace();
+      } finally {
+        threadConnections.closeAll();
       }
-
-      threadConnections.closeAll();
 
       RawRecordsDto rawRecordsDto = new RawRecordsDto();
       RawRecordsMetadata recordsMetadata = new RawRecordsMetadata();
@@ -421,7 +396,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     @Override
     public boolean equals(Object obj) {
-      return obj != null && ((BibPartitionTask) obj).getIndex() == this.getIndex();
+      return Objects.nonNull(obj) && ((BibPartitionTask) obj).getIndex() == this.getIndex();
     }
 
   }
@@ -430,7 +405,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     threadConnections.setMarcConnection(getConnection(voyagerSettings));
-    threadConnections.setBibHistoryConnection(getConnection(voyagerSettings));
     try {
       threadConnections.setRawRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
       threadConnections.setParsedRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
@@ -460,17 +434,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
     }
   }
 
-  private Optional<String> getOperatorId(Statement statement, Map<String, Object> context) throws SQLException {
-    try (ResultSet resultSet = getResultSet(statement, context)) {
-      Optional<String> operatorId = Optional.empty();
-      while (resultSet.next()) {
-        operatorId = Optional.ofNullable(resultSet.getString(OPERATOR_ID));
-        break;
-      }
-      return operatorId;
-    }
-  }
-
+  @Cacheable(key = "operatorId")
   private Set<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalCodes) {
     return statisticalCodes.getStatisticalCodes().stream()
       .map(sc -> sc.getCode())
@@ -517,7 +481,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private class ThreadConnections {
     private Connection pageConnection;
     private Connection marcConnection;
-    private Connection bibHistoryConnection;
 
     private BaseConnection rawRecordConnection;
     private BaseConnection parsedRecordConnection;
@@ -542,14 +505,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     public void setMarcConnection(Connection marcConnection) {
       this.marcConnection = marcConnection;
-    }
-
-    public Connection getBibHistoryConnection() {
-      return bibHistoryConnection;
-    }
-
-    public void setBibHistoryConnection(Connection bibHistoryConnection) {
-      this.bibHistoryConnection = bibHistoryConnection;
     }
 
     public BaseConnection getRawRecordConnection() {
@@ -588,7 +543,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
       try {
         pageConnection.close();
         marcConnection.close();
-        bibHistoryConnection.close();
         rawRecordConnection.close();
         parsedRecordConnection.close();
         recordConnection.close();

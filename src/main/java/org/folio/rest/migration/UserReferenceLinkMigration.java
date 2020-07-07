@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -28,8 +29,8 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
   private static final String USER_REFERENCE_ID = "userTypeId";
   private static final String USER_EXTERNAL_REFERENCE_ID = "userExternalTypeId";
 
-  // (id,externalreference,folioreference,type_id)
-  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,externalreference,folioreference,type_id) FROM STDIN";
+  // (id,external_reference,folioreference,type_id)
+  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,external_reference,folio_reference,type_id) FROM STDIN";
 
   private UserReferenceLinkMigration(UserReferenceLinkContext context, String tenant) {
     super(context, tenant);
@@ -77,6 +78,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
+        log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new UserReferenceLinkPartitionTask(migrationService, partitionContext, job));
         offset += limit;
         index++;
@@ -127,43 +129,35 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, migrationService.referenceLinkSettings);
 
-      log.info("starting {} {}", schema, index);
-
-      try {
-
-        PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant));
-        PrintWriter referenceLinkWriter = new PrintWriter(referenceLinkOutput, true);
-
+      try (
+        PrintWriter referenceLinkWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
-
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
-
+      ) {
         while (pageResultSet.next()) {
           String userId = pageResultSet.getString(USER_ID);
           String userExternalId = pageResultSet.getString(USER_EXTERNAL_ID);
-
           String userRLId = UUID.randomUUID().toString();
           String userFolioReference = UUID.randomUUID().toString();
           String userExternalRLId = UUID.randomUUID().toString();
           String userExternalFolioReference = UUID.randomUUID().toString();
-
           referenceLinkWriter.println(String.join("\t", userRLId, userId, userFolioReference, userRLTypeId));
           referenceLinkWriter.println(String.join("\t", userExternalRLId, userExternalId, userExternalFolioReference, userExternalRLTypeId));
         }
-
-        referenceLinkWriter.close();
-        pageStatement.close();
-        pageResultSet.close();
-
       } catch (SQLException e) {
         e.printStackTrace();
+      } finally {
+        threadConnections.closeAll();
       }
-
-      threadConnections.closeAll();
 
       log.info("{} {} finished in {} milliseconds", schema, index, TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      return Objects.nonNull(obj) && ((UserReferenceLinkPartitionTask) obj).getIndex() == this.getIndex();
     }
 
   }

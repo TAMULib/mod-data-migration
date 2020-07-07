@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -35,8 +36,8 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
   private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
   private static final String ITEM_TO_HOLDING_REFERENCE_ID = "itemToHoldingTypeId";
 
-  // (id,externalreference,folioreference,type_id)
-  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,externalreference,folioreference,type_id) FROM STDIN";
+  // (id,external_reference,folio_reference,type_id)
+  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,external_reference,folio_reference,type_id) FROM STDIN";
 
   private static Map<String, Set<String>> HOLDING_EXTERNAL_REFERENCES = new HashMap<>();
   private static Map<String, Set<String>> ITEM_EXTERNAL_REFERENCES = new HashMap<>();
@@ -93,6 +94,7 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
+        log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new InventoryReferenceLinkPartitionTask(migrationService, partitionContext, job));
         offset += limit;
         index++;
@@ -155,18 +157,13 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, migrationService.referenceLinkSettings);
 
-      log.info("starting {} {}", schema, index);
-
-      try {
-
-        PGCopyOutputStream referenceLinkOutput = new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant));
-        PrintWriter referenceLinkWriter = new PrintWriter(referenceLinkOutput, true);
-
+      try (
+        PrintWriter referenceLinkWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement holdingStatement = threadConnections.getHoldingConnection().createStatement();
         Statement itemStatement = threadConnections.getItemConnection().createStatement();
-
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
+      ) {
 
         while (pageResultSet.next()) {
           String bibId = pageResultSet.getString(BIB_ID);
@@ -211,24 +208,20 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
             }
           }
         }
-
-        referenceLinkWriter.close();
-
-        pageStatement.close();
-        holdingStatement.close();
-        itemStatement.close();
-
-        pageResultSet.close();
-
       } catch (SQLException e) {
         e.printStackTrace();
+      } finally {
+        threadConnections.closeAll();
       }
-
-      threadConnections.closeAll();
 
       log.info("{} {} finished in {} milliseconds", schema, index, TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      return Objects.nonNull(obj) && ((InventoryReferenceLinkPartitionTask) obj).getIndex() == this.getIndex();
     }
 
   }

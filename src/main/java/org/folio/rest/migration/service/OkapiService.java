@@ -19,6 +19,7 @@ import org.folio.Instancenotetypes;
 import org.folio.Instancetypes;
 import org.folio.Issuancemodes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
+import org.folio.rest.jaxrs.model.Loantypes;
 import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.jaxrs.model.Statisticalcodes;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
@@ -160,13 +161,25 @@ public class OkapiService {
   public Locations fetchLocations(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
-    String url = okapi.getUrl() + "/locations";
+    String url = okapi.getUrl() + "/locations?limit=9999";
     ResponseEntity<Locations> response = restTemplate.exchange(url, HttpMethod.GET, entity, Locations.class);
     log.debug("fetch locations: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
     }
     throw new RuntimeException("Failed to fetch locations: " + response.getStatusCodeValue());
+  }
+
+  public Loantypes fetchLoanTypes(String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/loan-types?limit=999";
+    ResponseEntity<Loantypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Loantypes.class);
+    log.debug("fetch loan types: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to fetch loan types: " + response.getStatusCodeValue());
   }
 
   public void finishJobExecution(String tenant, String token, String jobExecutionId, RawRecordsDto rawRecordsDto) {

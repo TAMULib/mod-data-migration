@@ -29,12 +29,12 @@ spring:
       idleTimeout: 600000
       maxLifetime: 1800000
       maximumPoolSize: 16
-    platform: h2
-    url: jdbc:h2:./target/mod_data_migration;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    driverClassName: org.h2.Driver
-    # platform: postgres
-    # driverClassName: org.postgresql.Driver
-    # url: jdbc:postgresql://localhost:5432/mod_data_migration
+    # platform: h2
+    # url: jdbc:h2:./target/mod_data_migration;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    # driverClassName: org.h2.Driver
+    platform: postgres
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mod_data_migration
 
     username: folio_admin
     password: folio_admin
@@ -50,15 +50,15 @@ spring:
       settings:
         web-allow-others: false
   jpa:
-    database-platform: org.folio.rest.dialect.CustomH2Dialect
-    # database-platform: org.folio.rest.dialect.CustomPostgreSQLDialect
+    # database-platform: org.folio.rest.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
     properties:
       hibernate:
         order_inserts: true
         order_updates: true
-        dialect: org.folio.rest.dialect.CustomH2Dialect
-        # dialect: org.folio.rest.dialect.CustomPostgreSQLDialect
+        # dialect: org.folio.rest.dialect.H2Dialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         jdbc:
           batch_size: 100
           lob.non_contextual_creation: true
@@ -67,6 +67,7 @@ spring:
     hibernate.ddl-auto: none
     open-in-view: true
     show-sql: true
+
   profiles:
     active: default
   thymeleaf:
@@ -92,4 +93,3 @@ okapi:
       username: folio_admin
       password: folio_admin
       driver-class-name: org.postgresql.Driver
-  

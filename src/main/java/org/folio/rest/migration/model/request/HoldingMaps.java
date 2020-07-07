@@ -8,6 +8,9 @@ import javax.validation.constraints.NotNull;
 public class HoldingMaps {
 
   @NotNull
+  private Map<String, String> location;
+
+  @NotNull
   private Map<String, String> acqMethod;
 
   @NotNull
@@ -23,11 +26,20 @@ public class HoldingMaps {
   private Map<String, String> retentionPolicy;
 
   public HoldingMaps() {
+    location = new HashMap<String, String>();
     acqMethod = new HashMap<String, String>();
     callNumberType = new HashMap<String, String>();
     holdingsType = new HashMap<String, String>();
     receiptStatus = new HashMap<String, String>();
     retentionPolicy = new HashMap<String, String>();
+  }
+
+  public Map<String, String> getLocation() {
+    return location;
+  }
+
+  public void setLocation(Map<String, String> location) {
+    this.location = location;
   }
 
   public Map<String, String> getAcqMethod() {
@@ -42,8 +54,8 @@ public class HoldingMaps {
     return callNumberType;
   }
 
-  public void setCallNumberType(Map<String, String> callNumber) {
-    this.callNumberType = callNumber;
+  public void setCallNumberType(Map<String, String> callNumberType) {
+    this.callNumberType = callNumberType;
   }
 
   public Map<String, String> getHoldingsType() {
@@ -69,4 +81,5 @@ public class HoldingMaps {
   public void setRetentionPolicy(Map<String, String> retentionPolicy) {
     this.retentionPolicy = retentionPolicy;
   }
+
 }
