@@ -119,7 +119,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
   }
 
   public boolean isAddress() {
-    return Objects.isNull(contactName) && Objects.nonNull(city) && Objects.nonNull(country);
+    return Objects.isNull(contactName) && (Objects.nonNull(city) || Objects.nonNull(country));
   }
 
   public boolean isContact() {
