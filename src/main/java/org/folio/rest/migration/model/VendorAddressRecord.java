@@ -19,8 +19,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
 
   private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-  private final String id;
-  private final String vendorId;
+  private final String addressId;
   private final String addressLine1;
   private final String addressLine1Full;
   private final String addressLine2;
@@ -34,12 +33,13 @@ public class VendorAddressRecord extends AbstractVendorRecord {
 
   private final List<String> categories;
 
+  private String vendorId;
+
   private String createdByUserId;
   private Date createdDate;
 
-  public VendorAddressRecord(String id, String vendorId, String addressLine1, String addressLine1Full, String addressLine2, String city, String contactName, String contactTitle, String country, String emailAddress, String stateProvince, String zipPostal, List<String> categories) {
-    this.id = id;
-    this.vendorId = vendorId;
+  public VendorAddressRecord(String addressId, String addressLine1, String addressLine1Full, String addressLine2, String city, String contactName, String contactTitle, String country, String emailAddress, String stateProvince, String zipPostal, List<String> categories) {
+    this.addressId = addressId;
     this.addressLine1 = addressLine1;
     this.addressLine1Full = addressLine1Full;
     this.addressLine2 = addressLine2;
@@ -54,8 +54,8 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     this.categories = categories;
   }
 
-  public String getId() {
-    return id;
+  public String getAddressId() {
+    return addressId;
   }
 
   public String getAddressLine1() {
@@ -102,6 +102,14 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     return categories;
   }
 
+  public String getVendorId() {
+    return vendorId;
+  }
+
+  public void setVendorId(String vendorId) {
+    this.vendorId = vendorId;
+  }
+
   public String getCreatedByUserId() {
     return createdByUserId;
   }
@@ -145,7 +153,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
   public Address toAddress() {
     final Address address = new Address();
 
-    address.setId(id);
+    address.setId(addressId);
     address.setAddressLine1(addressLine1Full);
     address.setCity(city);
     address.setStateRegion(stateProvince);
@@ -180,7 +188,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
   public Email toEmail() {
     final Email email = new Email();
 
-    email.setId(id);
+    email.setId(addressId);
     email.setValue(addressLine1);
 
     email.setCategories(categories);
@@ -194,7 +202,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
   public Url toUrl() {
     final Url url = new Url();
 
-    url.setId(id);
+    url.setId(addressId);
 
     url.setCategories(categories);
 
@@ -229,7 +237,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     } else if (countryCodesMap.containsValue(match)) {
       address.setCountry(match);
     } else {
-      log.error("unknown country code {} for address id {} for vendor id {}", match, id, vendorId);
+      log.error("unknown country code {} for address id {} for vendor id {}", match, addressId, vendorId);
     }
   }
 
