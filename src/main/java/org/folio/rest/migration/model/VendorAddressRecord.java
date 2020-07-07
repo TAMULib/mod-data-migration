@@ -119,7 +119,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
   }
 
   public boolean isAddress() {
-    return Objects.isNull(contactName) && Objects.nonNull(city) && Objects.nonNull(country);
+    return Objects.isNull(contactName) && (Objects.nonNull(city) || Objects.nonNull(country));
   }
 
   public boolean isContact() {
@@ -136,7 +136,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
 
   public boolean isUrl() {
     if (Objects.isNull(city) || Objects.isNull(country)) {
-      return addressLine1.matches("^(http|www)");
+      return addressLine1.toLowerCase().matches("^(http|www)");
     }
 
     return false;
@@ -294,7 +294,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
   }
 
   private void setValue(Url url) {
-    if (addressLine1.matches("^http")) {
+    if (addressLine1.toLowerCase().matches("^http")) {
       url.setValue(addressLine1);
     } else {
       url.setValue("http://" + addressLine1);
