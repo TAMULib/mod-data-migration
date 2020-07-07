@@ -30,6 +30,8 @@ public class VendorRecord extends AbstractVendorRecord {
 
   private final Integer claimingInterval;
 
+  private String organizationId;
+
   private String notes;
   private String stdAddressNumber;
 
@@ -88,6 +90,14 @@ public class VendorRecord extends AbstractVendorRecord {
 
   public Integer getClaimingInterval() {
     return claimingInterval;
+  }
+
+  public String getOrganizationId() {
+    return organizationId;
+  }
+
+  public void setOrganizationId(String organizationId) {
+    this.organizationId = organizationId;
   }
 
   public String getNotes() {
@@ -185,7 +195,7 @@ public class VendorRecord extends AbstractVendorRecord {
   public Organization toOrganization() {
     final Organization organization = new Organization();
 
-    organization.setId(vendorId);
+    organization.setId(organizationId);
     organization.setIsVendor(true);
     organization.setName(name);
     organization.setTaxId(taxId);
