@@ -136,7 +136,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
 
   public boolean isUrl() {
     if (Objects.isNull(city) || Objects.isNull(country)) {
-      return addressLine1.toLowerCase().matches("^(http|www)");
+      return addressLine1.toLowerCase().matches("^((https?|ftp)://|(www|ftp)\\.)?[\\w-]+(\\.[\\w-]+)+([/?].*)?$");
     }
 
     return false;
@@ -219,7 +219,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
         match = defaults.getCountry();
       }
     } else {
-      match = country;
+      match = country.toUpperCase();
     }
 
     Map<String, String> countryCodesMap = maps.getCountryCodes();
