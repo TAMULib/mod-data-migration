@@ -21,10 +21,6 @@ public class UserJob extends AbstractJob {
     return userId;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
-  }
-
   public Map<String, String> getReferences() {
     return references;
   }
