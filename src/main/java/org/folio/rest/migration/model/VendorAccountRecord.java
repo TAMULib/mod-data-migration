@@ -85,7 +85,7 @@ public class VendorAccountRecord extends AbstractVendorRecord {
   }
 
   private void setPaymentMethod(Account account) {
-    if (deposit.equalsIgnoreCase("y")) {
+    if (Objects.nonNull(deposit) && deposit.equalsIgnoreCase("y")) {
       account.setPaymentMethod(PaymentMethod.DEPOSIT_ACCOUNT);
     } else if (Objects.nonNull(defaults.getPaymentMethod())) {
       String defaultPayment = defaults.getPaymentMethod();
