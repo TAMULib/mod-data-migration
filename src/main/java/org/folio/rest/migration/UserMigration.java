@@ -207,7 +207,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
           Map<String, Object> usernameContext = new HashMap<>();
           usernameContext.put(SQL, context.getExtraction().getUsernameSql());
           usernameContext.put(SCHEMA, schema);
-          usernameContext.put(PATRON_ID, patronId);
+          usernameContext.put(EXTERNAL_SYSTEM_ID, externalSystemId);
 
           Map<String, Object> addressesContext = new HashMap<>();
           addressesContext.put(SQL, context.getExtraction().getAddressesSql());
@@ -227,7 +227,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
           }
 
           Optional<ReferenceLink> userExternalRL = migrationService.referenceLinkRepo
-              .findByTypeIdAndExternalReference(userExternalIdRLTypeId, patronId);
+              .findByTypeIdAndExternalReference(userExternalIdRLTypeId, externalSystemId);
           if (!userExternalRL.isPresent()) {
             log.error("{} no user external id found for external system id {}", schema, externalSystemId);
             continue;
@@ -243,7 +243,9 @@ public class UserMigration extends AbstractMigration<UserContext> {
           personal.setFirstName(firstName);
           personal.setMiddleName(middleName);
           personal.setLastName(lastName);
+
           populateAddressesAndEmails(addressesStatement, addressesContext, personal);
+
           if (StringUtils.isNotEmpty(smsNumber)) {
             personal.setPreferredContactTypeId(TEXT);
           }
