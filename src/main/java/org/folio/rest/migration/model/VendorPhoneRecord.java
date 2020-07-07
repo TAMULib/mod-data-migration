@@ -8,23 +8,17 @@ import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.PhoneNumber.Type;
 
 public class VendorPhoneRecord extends AbstractVendorRecord {
 
-  private final String vendorId;
   private final String addressId;
   private final String number;
   private final String type;
 
   private final List<String> categories;
 
-  public VendorPhoneRecord(String vendorId, String addressId, String number, String type, List<String> categories) {
-    this.vendorId = vendorId;
+  public VendorPhoneRecord(String addressId, String number, String type, List<String> categories) {
     this.addressId = addressId;
     this.number = number;
     this.type = type;
     this.categories = categories;
-  }
-
-  public String getVendorId() {
-    return vendorId;
   }
 
   public String getAddressId() {

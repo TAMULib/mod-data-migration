@@ -14,12 +14,8 @@ import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Organization;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.PhoneNumber;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Url;
 import org.folio.rest.migration.model.request.VendorDefaults;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class VendorRecord extends AbstractVendorRecord {
-
-  private final Logger log = LoggerFactory.getLogger(this.getClass());
 
   private final String vendorId;
   private final String code;
@@ -260,7 +256,6 @@ public class VendorRecord extends AbstractVendorRecord {
       organization.setStatus(Organization.Status.INACTIVE);
     } else {
       organization.setStatus(Organization.Status.ACTIVE);
-      log.error("unknown status {} for vendor id {}, defaulting to {}", match, Organization.Status.ACTIVE, vendorId);
     }
   }
 

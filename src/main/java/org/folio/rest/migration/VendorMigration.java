@@ -351,9 +351,10 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
             vendorRecord.setStdAddressNumber(stdAddressNumber);
           }
 
-          VendorAddressRecord record = new VendorAddressRecord(addressId, vendorRecord.getVendorId(), addressLine1, addressLine1Full, addressLine2, city, contactName, contactTitle, country, emailAddress, stateProvince, zipPostal, categories);
+          VendorAddressRecord record = new VendorAddressRecord(addressId, addressLine1, addressLine1Full, addressLine2, city, contactName, contactTitle, country, emailAddress, stateProvince, zipPostal, categories);
           record.setMaps(vendorContext.getMaps());
           record.setDefaults(vendorContext.getDefaults());
+          record.setVendorId(vendorRecord.getVendorId());
 
           if (record.isAddress()) {
             vendorRecord.addAddress(record.toAddress());
@@ -374,7 +375,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           } else if (record.isUrl()) {
             vendorRecord.addUrl(record.toUrl());
           } else {
-            log.error("{} no known address type for address id {} for vendor id {}", job.getSchema(), addressId, vendorRecord.getVendorId());
+            // unknown address types are to be ignored.
             continue;
           }
 
@@ -459,11 +460,11 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           String phoneType = resultSet.getString(PHONE_TYPE);
 
           if (phoneNumber.contains("@") || phoneNumber.toLowerCase().matches("www\\.")) {
-            log.error("{} phone number {} is an e-mail or URL for address id {} vendor id {}", job.getSchema(), phoneNumber, addressId, vendorRecord.getVendorId());
+            log.error("{} E-mail or URL is used as phone number for address id {} for vendor id {}", job.getSchema(), addressId, vendorRecord.getVendorId());
             continue;
           }
 
-          VendorPhoneRecord record = new VendorPhoneRecord(vendorRecord.getVendorId(), addressId, phoneNumber, phoneType, categories);
+          VendorPhoneRecord record = new VendorPhoneRecord(addressId, phoneNumber, phoneType, categories);
           record.setMaps(vendorContext.getMaps());
           record.setDefaults(vendorContext.getDefaults());
 
