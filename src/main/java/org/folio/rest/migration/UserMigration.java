@@ -61,7 +61,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
   private static final String COUNTRY_CODE = "COUNTRY";
   private static final String ADDRESS_STATUS = "ADDRESS_STATUS";
   private static final String ADDRESS_TYPE = "ADDRESS_DESC";
-  private static final String PHONE_TYPES = "PHONE_TYPES";
+  private static final String PHONE_TYPE = "PHONE_TYPE";
   private static final String PHONE_NUMBER = "PHONE_NUMBER";
 
   private static final String PRIMARY = "Primary";
@@ -69,8 +69,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   private static final String AMDB = "AMDB";
 
-  private static final String BARCODE = "BARCODE";
-  private static final String PATRON_GROUP = "PATRON_GROUP";
+  private static final String PATRON_BARCODE = "PATRON_BARCODE";
+  private static final String PATRON_GROUP_CODE = "PATRON_GROUP_CODE";
   private static final String DECODE = "DECODE";
 
   // (id,jsonb,creation_date,created_by,patrongroup)
@@ -265,12 +265,12 @@ public class UserMigration extends AbstractMigration<UserContext> {
             groupData = getBarcodeAndPatronGroup(patronGroupStatement, patronGroupContext);
           }
 
-          String barcode = groupData.get(BARCODE);
-          String patronGroup = groupData.get(PATRON_GROUP);
+          String patronBarcode = groupData.get(PATRON_BARCODE);
+          String patronGroupCode = groupData.get(PATRON_GROUP_CODE);
 
           String userId = job.getUserId();
 
-          UserRecord userRecord = new UserRecord(username, id, externalSystemId, barcode, active, PATRON, patronGroup,
+          UserRecord userRecord = new UserRecord(username, id, externalSystemId, patronBarcode, active, PATRON, patronGroupCode,
               personal, enrollmentDate, expirationDate);
 
           String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
@@ -279,7 +279,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
           try {
             String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userRecord.toUser())));
 
-            userRecordWriter.println(String.join("\t", userId, userUtf8Json, createdAt, createdByUserId, patronGroup));
+            userRecordWriter.println(String.join("\t", userId, userUtf8Json, createdAt, createdByUserId, patronGroupCode));
           } catch (JsonProcessingException e) {
             log.error("{} user id {} error serializing user", schema, id);
           }
@@ -340,7 +340,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
           String postalCode = resultSet.getString(POSTAL_CODE);
           String countryCode = resultSet.getString(COUNTRY_CODE);
           String addressStatus = resultSet.getString(ADDRESS_STATUS);
-          String phoneTypes = resultSet.getString(PHONE_TYPES);
+          // String phoneType = resultSet.getString(PHONE_TYPE);
           String phoneNumber = resultSet.getString(PHONE_NUMBER);
 
           Address address = new Address();
@@ -353,12 +353,12 @@ public class UserMigration extends AbstractMigration<UserContext> {
           address.setAddressTypeId(addressTypeId);
           address.setPrimaryAddress(addressStatus.contains("N"));
 
-          if (phoneTypes.equals(PRIMARY)) {
-            personal.setPhone(phoneNumber);
-          }
-          if (phoneTypes.equals(MOBILE)) {
-            personal.setMobilePhone(phoneNumber);
-          }
+          // if (phoneType.equals(PRIMARY)) {
+          //   personal.setPhone(phoneNumber);
+          // }
+          // if (phoneType.equals(MOBILE)) {
+          //   personal.setMobilePhone(phoneNumber);
+          // }
 
           addresses.add(address);
         }
@@ -370,8 +370,10 @@ public class UserMigration extends AbstractMigration<UserContext> {
   private Map<String, String> getBarcodeAndPatronGroup(Statement statement, Map<String, Object> context) throws SQLException {
     Map<String, String> data = new HashMap<>();
     try (ResultSet resultSet = getResultSet(statement, context)) {
-      data.put(BARCODE, resultSet.getString(BARCODE));
-      data.put(PATRON_GROUP, resultSet.getString(PATRON_GROUP));
+      while(resultSet.next()) {
+        data.put(PATRON_BARCODE, resultSet.getString(PATRON_BARCODE));
+        data.put(PATRON_GROUP_CODE, resultSet.getString(PATRON_GROUP_CODE));
+      }
       return data;
     }
   }
