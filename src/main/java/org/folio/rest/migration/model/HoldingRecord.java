@@ -9,10 +9,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.folio.rest.jaxrs.model.Holdingsrecord;
 import org.folio.rest.migration.mapping.HoldingMapper;
+import org.marc4j.marc.Record;
 
 import io.vertx.core.json.JsonObject;
 
 public class HoldingRecord {
+
+  private final Record record;
 
   private final String mfhdId;
   private final String locationId;
@@ -34,7 +37,8 @@ public class HoldingRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public HoldingRecord(String mfhdId, String locationId, Boolean discoverySuppress, String callNumber, String callNumberType, String holdingsType, String receiptStatus, String acquisitionMethod, String retentionPolicy) {
+  public HoldingRecord(Record record, String mfhdId, String locationId, Boolean discoverySuppress, String callNumber, String callNumberType, String holdingsType, String receiptStatus, String acquisitionMethod, String retentionPolicy) {
+    this.record = record;
     this.mfhdId = mfhdId;
     this.locationId = locationId;
     this.discoverySuppress = discoverySuppress;
@@ -80,6 +84,10 @@ public class HoldingRecord {
 
   public String getRetentionPolicy() {
     return retentionPolicy;
+  }
+
+  public Record getRecord() {
+    return this.record;
   }
 
   public JsonObject getParsedRecord() {

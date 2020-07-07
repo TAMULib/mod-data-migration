@@ -294,7 +294,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
               continue;
             }
 
-            HoldingRecord holdingRecord = new HoldingRecord(mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
+            HoldingRecord holdingRecord = new HoldingRecord(potentialRecord.get(), mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
             String holdingId = null, instanceId = null;
 
