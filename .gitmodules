@@ -4,3 +4,6 @@
 [submodule "mod-inventory-storage"]
 	path = mod-inventory-storage
 	url = https://github.com/folio-org/mod-inventory-storage.git
+[submodule "mod-users"]
+	path = mod-users
+	url = https://github.com/folio-org/mod-users.git
