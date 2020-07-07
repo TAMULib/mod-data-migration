@@ -219,7 +219,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
         match = defaults.getCountry();
       }
     } else {
-      match = country;
+      match = country.toUpperCase();
     }
 
     Map<String, String> countryCodesMap = maps.getCountryCodes();
