@@ -58,6 +58,7 @@ public class VendorRecord extends AbstractVendorRecord {
     aliases = new ArrayList<Alias>();
     contacts = new ArrayList<String>();
     emails = new ArrayList<Email>();
+    phoneNumbers = new ArrayList<PhoneNumber>();
     urls = new ArrayList<Url>();
   }
 
