@@ -245,14 +245,17 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
             String vendorRLTypeId = job.getReferences().get(VENDOR_REFERENCE_ID);
             Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(vendorRLTypeId, vendorId);
 
+            String organizationId = null;
             if (holdingRL.isPresent()) {
-              vendorId = holdingRL.get().getFolioReference();
+              organizationId = holdingRL.get().getFolioReference();
             }
 
-            if (Objects.isNull(vendorId)) {
+            if (Objects.isNull(organizationId)) {
               log.error("{} no vendor record id found for id {}", schema, vendorId);
               continue;
             }
+
+            vendorRecord.setOrganizationId(organizationId);
 
             vendorRecord.setCreatedByUserId(job.getUserId());
             vendorRecord.setCreatedDate(new Date());
@@ -329,7 +332,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       ) {
 
         while (resultSet.next()) {
-          String id = resultSet.getString(ADDRESS_ID);
+          String addressId = resultSet.getString(ADDRESS_ID);
           String addressLine1 = resultSet.getString(ADDRESS_LINE1);
           String addressLine1Full = resultSet.getString(ADDRESS_LINE1_FULL);
           String addressLine2 = resultSet.getString(ADDRESS_LINE2);
@@ -341,7 +344,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           String stateProvince = resultSet.getString(ADDRESS_STATE_PROVINCE);
           String stdAddressNumber = resultSet.getString(ADDRESS_STD_ADDRESS_NUMBER);
           String zipPostal = resultSet.getString(ADDRESS_ZIP_POSTAL);
-          String phoneAddressId = vendorRecord.getVendorId();
 
           List<String> categories = buildVendorAddressesCategories(resultSet);
 
@@ -349,7 +351,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
             vendorRecord.setStdAddressNumber(stdAddressNumber);
           }
 
-          VendorAddressRecord record = new VendorAddressRecord(id, vendorRecord.getVendorId(), addressLine1, addressLine1Full, addressLine2, city, contactName, contactTitle, country, emailAddress, stateProvince, zipPostal, categories);
+          VendorAddressRecord record = new VendorAddressRecord(addressId, vendorRecord.getVendorId(), addressLine1, addressLine1Full, addressLine2, city, contactName, contactTitle, country, emailAddress, stateProvince, zipPostal, categories);
           record.setMaps(vendorContext.getMaps());
           record.setDefaults(vendorContext.getDefaults());
 
@@ -363,8 +365,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
             String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(contact)));
 
-            phoneAddressId = contact.getId();
-
             // TODO: validate rows
             contactsRecordWriter.println(String.join("\t", contact.getId(), hrUtf8Json, createdAt, createdByUserId));
 
@@ -374,11 +374,11 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           } else if (record.isUrl()) {
             vendorRecord.addUrl(record.toUrl());
           } else {
-            log.error("{} no known address type for address id {} for vendor id {}", job.getSchema(), id, vendorRecord.getVendorId());
+            log.error("{} no known address type for address id {} for vendor id {}", job.getSchema(), addressId, vendorRecord.getVendorId());
             continue;
           }
 
-          processAddressPhoneNumbers(vendorContext, phoneStatement, vendorRecord, categories, phoneAddressId);
+          processAddressPhoneNumbers(vendorContext, phoneStatement, vendorRecord, categories, addressId);
         }
 
       } catch (SQLException e) {
