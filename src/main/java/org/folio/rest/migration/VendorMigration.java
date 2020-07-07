@@ -237,23 +237,23 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           VendorRecord vendorRecord = new VendorRecord(vendorId, vendorCode, vendorType, vendorName, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
 
           try {
-            processVendorAccounts(context, accountStatement, vendorRecord);
-            processVendorAddresses(context, addressStatement, phoneStatement, vendorRecord, contactsRecordWriter, jsonStringEncoder);
-            processVendorAliases(context, aliasStatement, vendorRecord);
-            processVendorNotes(context, noteStatement, vendorRecord);
-
             String vendorRLTypeId = job.getReferences().get(VENDOR_REFERENCE_ID);
-            Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(vendorRLTypeId, vendorId);
+            Optional<ReferenceLink> vendorRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(vendorRLTypeId, vendorId);
 
             String organizationId = null;
-            if (holdingRL.isPresent()) {
-              organizationId = holdingRL.get().getFolioReference();
+            if (vendorRL.isPresent()) {
+              organizationId = vendorRL.get().getFolioReference();
             }
 
             if (Objects.isNull(organizationId)) {
               log.error("{} no vendor record id found for id {}", schema, vendorId);
               continue;
             }
+
+            processVendorAccounts(context, accountStatement, vendorRecord);
+            processVendorAddresses(context, addressStatement, phoneStatement, vendorRecord, contactsRecordWriter, jsonStringEncoder);
+            processVendorAliases(context, aliasStatement, vendorRecord);
+            processVendorNotes(context, noteStatement, vendorRecord);
 
             vendorRecord.setOrganizationId(organizationId);
 
