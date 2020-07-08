@@ -175,6 +175,7 @@ POST to http://localhost:9000/migrate/bibs
     {
       "schema": "AMDB",
       "partitions": 48,
+      "controlNumberIdentifier": "evans",
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "instanceStatusId": "9634a5ab-9228-4703-baf2-4d12ebc77d56",
       "profile": {
@@ -190,6 +191,7 @@ POST to http://localhost:9000/migrate/bibs
     {
       "schema": "MSDB",
       "partitions": 4,
+      "controlNumberIdentifier": "msl",
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "instanceStatusId": "9634a5ab-9228-4703-baf2-4d12ebc77d56",
       "profile": {

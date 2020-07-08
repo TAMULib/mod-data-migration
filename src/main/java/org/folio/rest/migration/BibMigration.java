@@ -49,6 +49,7 @@ import org.marc4j.MarcException;
 import org.marc4j.MarcJsonWriter;
 import org.marc4j.MarcStreamWriter;
 import org.marc4j.MarcWriter;
+import org.marc4j.marc.ControlField;
 import org.marc4j.marc.DataField;
 import org.marc4j.marc.MarcFactory;
 import org.marc4j.marc.Record;
@@ -74,6 +75,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
 
   private static final String T_999 = "999";
+  private static final String C_003 = "003";
 
   private static final char F = 'f';
   private static final char I = 'i';
@@ -297,15 +299,19 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
             Record record = potentialRecord.get();
 
-            DataField dataField = getDataField(factory, record);
+            DataField field999 = getDataField(factory, record);
 
             bibRecord.setSourceRecordId(sourceRecordId);
-            dataField.addSubfield(factory.newSubfield(S, sourceRecordId));
+            field999.addSubfield(factory.newSubfield(S, sourceRecordId));
 
             bibRecord.setInstanceId(instanceId);
-            dataField.addSubfield(factory.newSubfield(I, instanceId));
+            field999.addSubfield(factory.newSubfield(I, instanceId));
 
-            record.addVariableField(dataField);
+            record.addVariableField(field999);
+
+            ControlField field003 = factory.newControlField(C_003, job.getControlNumberIdentifier());
+
+            record.addVariableField(field003);
 
             try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
               MarcWriter streamWriter = new MarcStreamWriter(os, DEFAULT_CHARSET.name());
