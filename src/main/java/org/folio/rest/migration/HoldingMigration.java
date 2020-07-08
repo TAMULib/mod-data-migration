@@ -459,10 +459,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         if (Objects.nonNull(id)) {
           String key = String.format(KEY_TEMPLATE, schema, id);
           String code = locConv.containsKey(key) ? locConv.get(key) : rs.getString(LOCATION_CODE);
-          System.out.println("\t key: " + key);
-          System.out.println("\t code: " + code);
           Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
-          System.out.println("\t has location: " + location.isPresent());
           if (location.isPresent()) {
             idToUuid.put(key, location.get().getId());
           }
