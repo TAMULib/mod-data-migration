@@ -294,7 +294,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
               continue;
             }
 
-            HoldingRecord holdingRecord = new HoldingRecord(potentialRecord.get(), mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
+            HoldingRecord holdingRecord = new HoldingRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
             String holdingId = null, instanceId = null;
 
@@ -339,19 +339,19 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
             String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(holdingsRecord)));
 
-            // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
-            holdingRecordWriter.println(String.join("\t",
-              holdingsRecord.getId(),
-              hrUtf8Json,
-              createdAt,
-              createdByUserId,
-              holdingsRecord.getInstanceId(),
-              holdingsRecord.getPermanentLocationId(),
-              // holdingsRecord.getTemporaryLocationId(),
-              holdingsRecord.getHoldingsTypeId(),
-              holdingsRecord.getCallNumberTypeId()
-              // holdingsRecord.getIllPolicyId()
-            ));
+            // // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
+            // holdingRecordWriter.println(String.join("\t",
+            //   holdingsRecord.getId(),
+            //   hrUtf8Json,
+            //   createdAt,
+            //   createdByUserId,
+            //   holdingsRecord.getInstanceId(),
+            //   holdingsRecord.getPermanentLocationId(),
+            //   // holdingsRecord.getTemporaryLocationId(),
+            //   holdingsRecord.getHoldingsTypeId(),
+            //   holdingsRecord.getCallNumberTypeId()
+            //   // holdingsRecord.getIllPolicyId()
+            // ));
 
             hrid++;
             count++;
@@ -459,7 +459,10 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         if (Objects.nonNull(id)) {
           String key = String.format(KEY_TEMPLATE, schema, id);
           String code = locConv.containsKey(key) ? locConv.get(key) : rs.getString(LOCATION_CODE);
+          System.out.println("\t key: " + key);
+          System.out.println("\t code: " + code);
           Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
+          System.out.println("\t has location: " + location.isPresent());
           if (location.isPresent()) {
             idToUuid.put(key, location.get().getId());
           }

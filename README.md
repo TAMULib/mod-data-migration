@@ -296,6 +296,14 @@ POST to http://localhost:9000/migrate/holdings
       "x": "03c9c400-b9e3-4a07-ac0e-05ab470233ed",
       "y": "e6da6c98-6dd0-41bc-8b4b-cfd4bbd9c3ae"
     },
+    "holdingsNotesType": {
+      "note": "b160f13a-ddba-4053-b9c4-60ec5ea45d56",
+      "latest_in": "b160f13a-ddba-4053-b9c4-60ec5ea45d56",
+      "access": "f453de0f-8b54-4e99-9180-52932529e3a6",
+      "provenance": "db9b4787-95f0-4e78-becf-26748ce6bdeb",
+      "copy": "c4407cc7-d79f-4609-95bd-1cefb2e2b5c5",
+      "action": "d6510242-5ec3-42ed-b593-3585d2e48fd6"
+    },
     "receiptStatus": {
       "0": "Unknown",
       "1": "Other receipt or acquisition status",

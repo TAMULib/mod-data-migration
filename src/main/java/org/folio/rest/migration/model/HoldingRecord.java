@@ -15,6 +15,7 @@ import org.folio.rest.jaxrs.model.HoldingsStatementsForSupplement;
 import org.folio.rest.jaxrs.model.Holdingsrecord;
 import org.folio.rest.jaxrs.model.Note;
 import org.folio.rest.migration.mapping.HoldingMapper;
+import org.folio.rest.migration.model.request.HoldingMaps;
 import org.marc4j.marc.DataField;
 import org.marc4j.marc.Record;
 import org.marc4j.marc.VariableField;
@@ -26,6 +27,8 @@ import io.vertx.core.json.JsonObject;
 public class HoldingRecord {
 
   private final static Logger log = LoggerFactory.getLogger(HoldingRecord.class);
+
+  private final HoldingMaps holdingMaps;
 
   private final Record record;
 
@@ -49,8 +52,9 @@ public class HoldingRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public HoldingRecord(Record record, String mfhdId, String locationId, Boolean discoverySuppress, String callNumber, String callNumberType,
-      String holdingsType, String receiptStatus, String acquisitionMethod, String retentionPolicy) {
+  public HoldingRecord(HoldingMaps holdingMaps, Record record, String mfhdId, String locationId, Boolean discoverySuppress,
+    String callNumber, String callNumberType, String holdingsType, String receiptStatus, String acquisitionMethod, String retentionPolicy) {
+    this.holdingMaps = holdingMaps;
     this.record = record;
     this.mfhdId = mfhdId;
     this.locationId = locationId;
@@ -195,10 +199,11 @@ public class HoldingRecord {
         String data = subfield.getData();
         switch (code) {
         case 'g': {
+          // latest_in
           Note note = new Note();
           note.setStaffOnly(false);
           note.setNote(data);
-          note.setHoldingsNoteTypeId("7ca7dc63-c053-4aec-8272-c03aeda4840c");
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("latest_in"));
           notes.add(note);
         } break;
         case 'h':
@@ -222,7 +227,7 @@ public class HoldingRecord {
           Note note = new Note();
           note.setStaffOnly(true);
           note.setNote(data);
-          note.setHoldingsNoteTypeId("b160f13a-ddba-4053-b9c4-60ec5ea45d56");
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
           notes.add(note);
         } break;
         case 'z': {
@@ -230,7 +235,7 @@ public class HoldingRecord {
           Note note = new Note();
           note.setStaffOnly(false);
           note.setNote(data);
-          note.setHoldingsNoteTypeId("b160f13a-ddba-4053-b9c4-60ec5ea45d56");
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
           notes.add(note);
         } break;
         case 'b':
@@ -258,22 +263,22 @@ public class HoldingRecord {
       case "506":
         // access
         note.setStaffOnly(false);
-        note.setHoldingsNoteTypeId("f453de0f-8b54-4e99-9180-52932529e3a6");
+        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("access"));
         break;
       case "541":
         // provenance
         note.setStaffOnly(false);
-        note.setHoldingsNoteTypeId("db9b4787-95f0-4e78-becf-26748ce6bdeb");
+        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("provenance"));
         break;
       case "562":
         // copy
         note.setStaffOnly(false);
-        note.setHoldingsNoteTypeId("c4407cc7-d79f-4609-95bd-1cefb2e2b5c5");
+        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("copy"));
         break;
       case "583":
         // action
         note.setStaffOnly(true);
-        note.setHoldingsNoteTypeId("d6510242-5ec3-42ed-b593-3585d2e48fd6");
+        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("action"));
         break;
       default:
         // do nothing
