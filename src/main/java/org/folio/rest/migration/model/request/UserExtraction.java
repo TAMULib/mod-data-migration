@@ -6,53 +6,40 @@ import org.folio.rest.migration.config.model.Database;
 
 public class UserExtraction extends AbstractExtraction {
 
+  @NotNull
   private Database usernameDatabase;
 
   @NotNull
   private String usernameSql;
 
   @NotNull
-  private String addressesSql;
+  private String addressSql;
 
   @NotNull
   private String patronGroupSql;
 
-  @NotNull
-  private String amdbDecodeString;
-
-  @NotNull
-  private String msdbDecodeString;
-
   public UserExtraction() {
     super();
-  }
-
-  public String getUsernameSql() {
-    return usernameSql;
-  }
-
-  public String getAddressesSql() {
-    return addressesSql;
-  }
-
-  public String getPatronGroupSql() {
-    return patronGroupSql;
   }
 
   public Database getUsernameDatabase() {
     return usernameDatabase;
   }
 
-  public String getAmdbDecodeString() {
-    return amdbDecodeString;
-  }
-
-  public String getMsdbDecodeString() {
-    return msdbDecodeString;
-  }
-
   public void setUsernameDatabase(Database usernameDatabase) {
     this.usernameDatabase = usernameDatabase;
+  }
+
+  public String getUsernameSql() {
+    return usernameSql;
+  }
+
+  public String getAddressSql() {
+    return addressSql;
+  }
+
+  public String getPatronGroupSql() {
+    return patronGroupSql;
   }
 
 }
