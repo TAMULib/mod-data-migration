@@ -16,7 +16,7 @@ COPY ./mod-organizations-storage ./mod-organizations-storage
 RUN mvn package
 
 # final base image
-FROM openjdk:8u171-jre-alpine
+FROM openjdk:8u191-jre-alpine
 
 # set deployment directory
 WORKDIR /mod-data-migration
@@ -38,12 +38,13 @@ ENV SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT='org.hibernate.dialect.H2Dialect'
 ENV SPRING_JPA_PROPERTIES_HIBERNATE_JDBC_BATCH_SIZE='1000'
 ENV TENANT_DEFAULT_TENANT='tern'
 ENV TENANT_INITIALIZE_DEFAULT_TENANT='false'
+ENV ACTIVE_PROCESSOR_COUNT='12'
 
 #expose port
 EXPOSE ${SERVER_PORT}
 
 #run java command
-CMD java -jar ./mod-data-migration.jar \
+CMD java -XX:ActiveProcessorCount=${ACTIVE_PROCESSOR_COUNT} -jar ./mod-data-migration.jar \
   --logging.level.org.folio=${LOGGING_LEVEL_FOLIO} --server.port=${SERVER_PORT} --spring.datasource.platform=${SPRING_DATASOURCE_PLATFORM} \
   --spring.datasource.url=${SPRING_DATASOURCE_URL} --spring.datasource.driverClassName=${SPRING_DATASOURCE_DRIVERCLASSNAME} \
   --spring.datasource.username=${SPRING_DATASOURCE_USERNAME} --spring.datasource.password=${SPRING_DATASOURCE_PASSWORD} \
