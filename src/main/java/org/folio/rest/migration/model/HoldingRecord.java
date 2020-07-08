@@ -237,7 +237,7 @@ public class HoldingRecord {
           // do nothing
           break;
         default:
-          log.warn("Unknown 852 subfield {} in {}", subfield, mfhdId);
+          log.debug("Unknown 852 subfield {} in {}", subfield, mfhdId);
         }
       });
       String callNumber = callNumberBuilder.toString().trim();
