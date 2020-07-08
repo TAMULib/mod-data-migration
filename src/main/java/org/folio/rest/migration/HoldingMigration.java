@@ -339,19 +339,19 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
             String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(holdingsRecord)));
 
-            // // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
-            // holdingRecordWriter.println(String.join("\t",
-            //   holdingsRecord.getId(),
-            //   hrUtf8Json,
-            //   createdAt,
-            //   createdByUserId,
-            //   holdingsRecord.getInstanceId(),
-            //   holdingsRecord.getPermanentLocationId(),
-            //   // holdingsRecord.getTemporaryLocationId(),
-            //   holdingsRecord.getHoldingsTypeId(),
-            //   holdingsRecord.getCallNumberTypeId()
-            //   // holdingsRecord.getIllPolicyId()
-            // ));
+            // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
+            holdingRecordWriter.println(String.join("\t",
+              holdingsRecord.getId(),
+              hrUtf8Json,
+              createdAt,
+              createdByUserId,
+              holdingsRecord.getInstanceId(),
+              holdingsRecord.getPermanentLocationId(),
+              // holdingsRecord.getTemporaryLocationId(),
+              holdingsRecord.getHoldingsTypeId(),
+              holdingsRecord.getCallNumberTypeId()
+              // holdingsRecord.getIllPolicyId()
+            ));
 
             hrid++;
             count++;
