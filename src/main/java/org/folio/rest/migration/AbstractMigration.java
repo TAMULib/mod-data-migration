@@ -51,6 +51,8 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
   static final String INDEX = "INDEX";
   static final String TOTAL = "TOTAL";
 
+  static final String NULL = "null";
+
   final Logger log = LoggerFactory.getLogger(this.getClass());
 
   final C context;

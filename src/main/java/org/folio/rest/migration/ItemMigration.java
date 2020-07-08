@@ -65,7 +65,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String ITEM_TO_HOLDING_REFERENCE_ID = "itemToHoldingTypeId";
 
   // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
-  private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,materialtypeid,permanentlocationid) FROM STDIN";
+  private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid) FROM STDIN WITH NULL AS 'null'";
 
   private ItemMigration(ItemContext context, String tenant) {
     super(context, tenant);
@@ -76,6 +76,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     log.info("tenant: {}", tenant);
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
+
+    log.info("available processors: {}", Runtime.getRuntime().availableProcessors());
 
     String token = migrationService.okapiService.getToken(tenant);
 
@@ -321,11 +323,11 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
               createdByUserId,
               item.getHoldingsRecordId(),
               item.getPermanentLoanTypeId(),
-              // item.getTemporaryLoanTypeId(),
+              Objects.nonNull(item.getTemporaryLoanTypeId()) ? item.getTemporaryLoanTypeId() : NULL,
               item.getMaterialTypeId(),
-              item.getPermanentLocationId()
-              // item.getTemporaryLocationId()
-              // item.getEffectiveLocationId()
+              item.getPermanentLocationId(),
+              Objects.nonNull(item.getTemporaryLocationId()) ? item.getTemporaryLocationId() : NULL,
+              Objects.nonNull(item.getEffectiveLocationId()) ? item.getEffectiveLocationId() : NULL
             ));
 
             hrid++;

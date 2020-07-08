@@ -57,7 +57,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
 
   // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
-  private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,holdingstypeid,callnumbertypeid) FROM STDIN";
+  private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid) FROM STDIN WITH NULL AS 'null'";
 
   private HoldingMigration(HoldingContext context, String tenant) {
     super(context, tenant);
@@ -68,6 +68,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     log.info("tenant: {}", tenant);
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
+
+    log.info("available processors: {}", Runtime.getRuntime().availableProcessors());
 
     String token = migrationService.okapiService.getToken(tenant);
 
@@ -347,10 +349,10 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
               createdByUserId,
               holdingsRecord.getInstanceId(),
               holdingsRecord.getPermanentLocationId(),
-              // holdingsRecord.getTemporaryLocationId(),
+              Objects.nonNull(holdingsRecord.getTemporaryLocationId()) ? holdingsRecord.getTemporaryLocationId() : NULL,
               holdingsRecord.getHoldingsTypeId(),
-              holdingsRecord.getCallNumberTypeId()
-              // holdingsRecord.getIllPolicyId()
+              holdingsRecord.getCallNumberTypeId(),
+              Objects.nonNull(holdingsRecord.getIllPolicyId()) ? holdingsRecord.getIllPolicyId() : NULL
             ));
 
             hrid++;

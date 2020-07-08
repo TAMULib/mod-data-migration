@@ -103,6 +103,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
 
+    log.info("available processors: {}", Runtime.getRuntime().availableProcessors());
+
     String token = migrationService.okapiService.getToken(tenant);
     MappingParameters mappingParameters = migrationService.okapiService.getMappingParamaters(tenant, token);
     JsonObject mappingRules = migrationService.okapiService.fetchRules(tenant, token);
