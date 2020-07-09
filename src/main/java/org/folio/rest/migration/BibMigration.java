@@ -82,16 +82,16 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private static final char S = 's';
 
   // (id,jsonb,creation_date,created_by)
-  private static String RAW_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.raw_records (id,jsonb,creation_date,created_by) FROM STDIN";
+  private static String RAW_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.raw_records (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
 
   // (id,jsonb,creation_date,created_by)
-  private static String PARSED_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.marc_records (id,jsonb,creation_date,created_by) FROM STDIN";
+  private static String PARSED_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.marc_records (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
 
   // (id,jsonb,creation_date,created_by,jobexecutionid)
-  private static String RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.records (id,jsonb,creation_date,created_by,jobexecutionid) FROM STDIN";
+  private static String RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.records (id,jsonb,creation_date,created_by,jobexecutionid) FROM STDIN WITH NULL AS 'null'";
 
   // (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid)
-  private static String INSTANCE_COPY_SQL = "COPY %s_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid) FROM STDIN";
+  private static String INSTANCE_COPY_SQL = "COPY %s_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid) FROM STDIN WITH NULL AS 'null'";
 
   private BibMigration(BibContext context, String tenant) {
     super(context, tenant);

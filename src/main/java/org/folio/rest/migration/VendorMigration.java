@@ -94,10 +94,10 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
   private static final String VENDOR_REFERENCE_ID = "vendorTypeId";
 
   // (id,jsonb,creation_date,created_by)
-  private static final String CONTACTS_RECORDS_COPY_SQL = "COPY %s_mod_organizations_storage.contacts (id,jsonb,creation_date,created_by) FROM STDIN";
+  private static final String CONTACTS_RECORDS_COPY_SQL = "COPY %s_mod_organizations_storage.contacts (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
 
   //(id,jsonb,creation_date,created_by)
-  private static final String ORGANIZATIONS_RECORDS_COPY_SQL = "COPY %s_mod_organizations_storage.organizations (id,jsonb,creation_date,created_by) FROM STDIN";
+  private static final String ORGANIZATIONS_RECORDS_COPY_SQL = "COPY %s_mod_organizations_storage.organizations (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
 
   private VendorMigration(VendorContext context, String tenant) {
     super(context, tenant);
