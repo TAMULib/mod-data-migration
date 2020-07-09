@@ -11,6 +11,12 @@ public class UserContext extends AbstractContext {
 
   private List<UserJob> jobs;
 
+  @NotNull
+  private UserMaps maps;
+
+  @NotNull
+  private UserDefaults defaults;
+
   public UserContext() {
     super();
   }
@@ -29,6 +35,22 @@ public class UserContext extends AbstractContext {
 
   public void setJobs(List<UserJob> jobs) {
     this.jobs = jobs;
+  }
+
+  public UserMaps getMaps() {
+    return maps;
+  }
+
+  public void setMaps(UserMaps maps) {
+    this.maps = maps;
+  }
+
+  public UserDefaults getDefaults() {
+    return defaults;
+  }
+
+  public void setDefaults(UserDefaults defaults) {
+    this.defaults = defaults;
   }
 
 }

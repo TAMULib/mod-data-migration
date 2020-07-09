@@ -5,11 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,60 +14,63 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.io.JsonStringEncoder;
-import com.fasterxml.jackson.databind.JsonNode;
-
-import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.Address;
-import org.folio.rest.jaxrs.model.Personal;
 import org.folio.rest.migration.config.model.Database;
+import org.folio.rest.migration.model.UserAddressRecord;
 import org.folio.rest.migration.model.UserRecord;
 import org.folio.rest.migration.model.request.UserContext;
+import org.folio.rest.migration.model.request.UserDefaults;
 import org.folio.rest.migration.model.request.UserJob;
+import org.folio.rest.migration.model.request.UserMaps;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.io.JsonStringEncoder;
+import com.fasterxml.jackson.databind.JsonNode;
+
 public class UserMigration extends AbstractMigration<UserContext> {
 
   private static final String PATRON_ID = "PATRON_ID";
-  private static final String EXTERNAL_SYSTEM_ID = "EXTERNAL_SYSTEM_ID";
-  private static final String LAST_NAME = "LAST_NAME";
-  private static final String FIRST_NAME = "FIRST_NAME";
-  private static final String MIDDLE_NAME = "MIDDLE_NAME";
-  private static final String ACTIVE_DATE = "ACTIVE_DATE";
-  private static final String EXPIRE_DATE = "EXPIRE_DATE";
-  private static final String SMS_NUMBER = "SMS_NUMBER";
-  private static final String CURRENT_CHARGES = "CURRENT_CHARGES";
+  private static final String PATRON_INSTITUTION_ID = "INSTITUTION_ID";
+  private static final String PATRON_LAST_NAME = "LAST_NAME";
+  private static final String PATRON_FIRST_NAME = "FIRST_NAME";
+  private static final String PATRON_MIDDLE_NAME = "MIDDLE_NAME";
+  private static final String PATRON_ACTIVE_DATE = "ACTIVE_DATE";
+  private static final String PATRON_EXPIRE_DATE = "EXPIRE_DATE";
+  private static final String PATRON_SMS_NUMBER = "SMS_NUMBER";
+  private static final String PATRON_CURRENT_CHARGES = "CURRENT_CHARGES";
+  private static final String PATRON_BARCODE = "PATRON_BARCODE";
+  private static final String PATRON_GROUP_CODE = "PATRON_GROUP_CODE";
+
+  private static final String ADDRESS_ID = "ADDRESS_ID";
+  private static final String ADDRESS_DESCRIPTION = "ADDRESS_DESCRIPTION";
+  private static final String ADDRESS_STATUS = "ADDRESS_STATUS";
+  private static final String ADDRESS_TYPE = "ADDRESS_TYPE";
+  private static final String ADDRESS_LINE1 = "ADDRESS_LINE1";
+  private static final String ADDRESS_LINE2 = "ADDRESS_LINE2";
+  private static final String ADDRESS_CITY = "ADDRESS_CITY";
+  private static final String ADDRESS_COUNTRY = "ADDRESS_COUNTRY";
+  private static final String ADDRESS_PHONE_NUMBER = "ADDRESS_PHONE_NUMBER";
+  private static final String ADDRESS_PHONE_DESCRIPTION = "ADDRESS_PHONE_DESCRIPTION";
+  private static final String ADDRESS_STATE_PROVINCE = "ADDRESS_STATE_PROVINCE";
+  private static final String ADDRESS_ZIP_POSTAL = "ADDRESS_ZIP_POSTAL";
 
   private static final String USER_REFERENCE_ID = "userTypeId";
   private static final String USER_EXTERNAL_REFERENCE_ID = "userExternalTypeId";
 
-  private static final String USERNAME = "TAMU_NETID";
-  private static final String PATRON = "patron";
-  private static final String TEXT = "text";
+  private static final String USERNAME_NETID = "TAMU_NETID";
 
-  private static final String ADDRESS_LINE_1 = "ADDRESS_LINE1";
-  private static final String ADDRESS_LINE_2 = "ADDRESS_LINE2";
-  private static final String CITY = "CITY";
-  private static final String REGION = "STATE_PROVINCE";
-  private static final String POSTAL_CODE = "ZIP_POSTAL";
-  private static final String COUNTRY_CODE = "COUNTRY";
-  private static final String ADDRESS_STATUS = "ADDRESS_STATUS";
-  private static final String ADDRESS_TYPE = "ADDRESS_DESC";
-  private static final String PHONE_TYPE = "PHONE_TYPE";
-  private static final String PHONE_NUMBER = "PHONE_NUMBER";
+  private static final String PHONE_PRIMARY = "Primary";
+  private static final String PHONE_MOBILE = "Mobile";
 
-  private static final String PRIMARY = "Primary";
-  private static final String MOBILE = "Mobile";
-
-  private static final String AMDB = "AMDB";
-
-  private static final String PATRON_BARCODE = "PATRON_BARCODE";
-  private static final String PATRON_GROUP_CODE = "PATRON_GROUP_CODE";
+  private static final String MAPS = "MAPS";
+  private static final String DEFAULTS = "DEFAULTS";
+  private static final String JOIN_FROM = "JOIN_FROM";
+  private static final String JOIN_WHERE = "JOIN_WHERE";
   private static final String DECODE = "DECODE";
 
   // (id,jsonb,creation_date,created_by,patrongroup)
@@ -111,6 +111,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
     for (UserJob job : context.getJobs()) {
 
       countContext.put(SCHEMA, job.getSchema());
+      countContext.put(JOIN_FROM, job.getJoinFromSql());
+      countContext.put(JOIN_WHERE, job.getJoinWhereSql());
 
       int count = getCount(voyagerSettings, countContext);
 
@@ -128,6 +130,10 @@ public class UserMigration extends AbstractMigration<UserContext> {
         partitionContext.put(INDEX, index);
         partitionContext.put(TOKEN, token);
         partitionContext.put(JOB, job);
+        partitionContext.put(MAPS, context.getMaps());
+        partitionContext.put(DEFAULTS, context.getDefaults());
+        partitionContext.put(JOIN_FROM, job.getJoinFromSql());
+        partitionContext.put(JOIN_WHERE, job.getJoinWhereSql());
         taskQueue.submit(new UserPartitionTask(migrationService, partitionContext));
         offset += limit;
         index++;
@@ -147,9 +153,16 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
     private final Map<String, Object> partitionContext;
 
+    private final UserJob job;
+    private final UserMaps maps;
+    private final UserDefaults defaults;
+
     public UserPartitionTask(MigrationService migrationService, Map<String, Object> partitionContext) {
       this.migrationService = migrationService;
       this.partitionContext = partitionContext;
+      this.job = (UserJob) partitionContext.get(JOB);
+      this.maps = (UserMaps) partitionContext.get(MAPS);
+      this.defaults = (UserDefaults) partitionContext.get(DEFAULTS);
     }
 
     public int getIndex() {
@@ -159,16 +172,12 @@ public class UserMigration extends AbstractMigration<UserContext> {
     public UserPartitionTask execute(UserContext context) {
       long startTime = System.nanoTime();
 
-      UserJob job = (UserJob) partitionContext.get(JOB);
-
       String schema = job.getSchema();
 
       int index = this.getIndex();
 
       Database voyagerSettings = context.getExtraction().getDatabase();
-
       Database usernameSettings = context.getExtraction().getUsernameDatabase();
-
       Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
@@ -180,127 +189,70 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
       log.info("starting {} {}", schema, index);
 
-      try {
-        PGCopyOutputStream userRecordOutput = new PGCopyOutputStream(threadConnections.getUserConnection(),
-            String.format(USERS_COPY_SQL, tenant));
-        PrintWriter userRecordWriter = new PrintWriter(userRecordOutput, true);
+      try (
+        PrintWriter userRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getUserConnection(), String.format(USERS_COPY_SQL, tenant)), true);
 
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement usernameStatement = threadConnections.getUsernameConnection().createStatement();
-        Statement addressesStatement = threadConnections.getAdressesConnection().createStatement();
+        Statement addressStatement = threadConnections.getAdressConnection().createStatement();
         Statement patronGroupStatement = threadConnections.getPatronGroupConnection().createStatement();
 
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
+      ) {
 
         while (pageResultSet.next()) {
 
           String patronId = pageResultSet.getString(PATRON_ID);
-          String externalSystemId = pageResultSet.getString(EXTERNAL_SYSTEM_ID);
-          String lastName = pageResultSet.getString(LAST_NAME);
-          String firstName = pageResultSet.getString(FIRST_NAME);
-          String middleName = pageResultSet.getString(MIDDLE_NAME);
-          String enrollmentDateString = pageResultSet.getString(ACTIVE_DATE);
-          String expirationDateString = pageResultSet.getString(EXPIRE_DATE);
-          String smsNumber = pageResultSet.getString(SMS_NUMBER);
-          int currentCharges = pageResultSet.getInt(CURRENT_CHARGES);
+          String institutionId = pageResultSet.getString(PATRON_INSTITUTION_ID);
+          String lastName = pageResultSet.getString(PATRON_LAST_NAME);
+          String firstName = pageResultSet.getString(PATRON_FIRST_NAME);
+          String middleName = pageResultSet.getString(PATRON_MIDDLE_NAME);
+          String activeDate = pageResultSet.getString(PATRON_ACTIVE_DATE);
+          String expireDate = pageResultSet.getString(PATRON_EXPIRE_DATE);
+          String smsNumber = pageResultSet.getString(PATRON_SMS_NUMBER);
+          String currentCharges = pageResultSet.getString(PATRON_CURRENT_CHARGES);
 
-          Map<String, Object> usernameContext = new HashMap<>();
-          usernameContext.put(SQL, context.getExtraction().getUsernameSql());
-          usernameContext.put(SCHEMA, schema);
-          usernameContext.put(EXTERNAL_SYSTEM_ID, externalSystemId);
-
-          Map<String, Object> addressesContext = new HashMap<>();
-          addressesContext.put(SQL, context.getExtraction().getAddressesSql());
-          addressesContext.put(SCHEMA, schema);
-          addressesContext.put(PATRON_ID, patronId);
-
-          Optional<String> potentialUsername = getUsername(usernameStatement, usernameContext);
-          if (!potentialUsername.isPresent()) {
-            log.error("schema {}, patron id {}, unable to read netid", schema, patronId);
-          }
-
-          Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo
-              .findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
+          Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
           if (!userRL.isPresent()) {
             log.error("{} no user id found for patron id {}", schema, patronId);
             continue;
           }
 
-          Optional<ReferenceLink> userExternalRL = migrationService.referenceLinkRepo
-              .findByTypeIdAndExternalReference(userExternalIdRLTypeId, externalSystemId);
+          Optional<ReferenceLink> userExternalRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userExternalIdRLTypeId, institutionId);
           if (!userExternalRL.isPresent()) {
-            log.error("{} no user external id found for external system id {}", schema, externalSystemId);
+            log.error("{} no user external id found for external system id {}", schema, institutionId);
             continue;
           }
 
-          String username = potentialUsername.get();
-          String id = userRL.get().getFolioReference().toString();
-          Date enrollmentDate = new SimpleDateFormat("YYYYMMDD").parse(enrollmentDateString);
-          Date expirationDate = new SimpleDateFormat("YYYY-MM-DD").parse(expirationDateString);
-          boolean active = currentCharges > 0 ? true : enrollmentDate.compareTo(expirationDate) < 0;
+          String referenceId = userRL.get().getFolioReference().toString();
 
-          Personal personal = new Personal();
-          personal.setFirstName(firstName);
-          personal.setMiddleName(middleName);
-          personal.setLastName(lastName);
+          UserRecord userRecord = new UserRecord(referenceId, patronId, institutionId, lastName, firstName, middleName, activeDate, expireDate, smsNumber, currentCharges);
+          userRecord.setSchema(schema);
+          userRecord.setMaps(maps);
+          userRecord.setDefaults(defaults);
 
-          populateAddressesAndEmails(addressesStatement, addressesContext, personal);
-
-          if (StringUtils.isNotEmpty(smsNumber)) {
-            personal.setPreferredContactTypeId(TEXT);
-          }
-
-          Map<String, Object> patronGroupContext = new HashMap<>();
-          patronGroupContext.put(SQL, context.getExtraction().getPatronGroupSql());
-          patronGroupContext.put(SCHEMA, schema);
-          patronGroupContext.put(PATRON_ID, patronId);
-
-          Map<String, String> groupData;
-
-          if (schema.equals(AMDB)) {
-            patronGroupContext.put(DECODE, context.getExtraction().getAmdbDecodeString());
-            groupData = getBarcodeAndPatronGroup(patronGroupStatement, patronGroupContext);
-          } else {
-            patronGroupContext.put(DECODE, context.getExtraction().getMsdbDecodeString());
-            groupData = getBarcodeAndPatronGroup(patronGroupStatement, patronGroupContext);
-          }
-
-          String patronBarcode = groupData.get(PATRON_BARCODE);
-          String patronGroupCode = groupData.get(PATRON_GROUP_CODE);
-
-          String userId = job.getUserId();
-
-          UserRecord userRecord = new UserRecord(username, id, externalSystemId, patronBarcode, active, PATRON, patronGroupCode,
-              personal, enrollmentDate, expirationDate);
+          processUsername(context, usernameStatement, userRecord);
+          processAddressesEmailsPhones(context, addressStatement, userRecord);
+          processBarcodeAndPatronGroup(context, patronGroupStatement, userRecord);
 
           String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
           String createdByUserId = job.getUserId();
 
           try {
-            String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userRecord.toUser())));
+            String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userRecord.toUserdata())));
 
-            userRecordWriter.println(String.join("\t", userId, userUtf8Json, createdAt, createdByUserId, patronGroupCode));
+            userRecordWriter.println(String.join("\t", job.getUserId(), userUtf8Json, createdAt, createdByUserId, userRecord.getGroupcode()));
           } catch (JsonProcessingException e) {
-            log.error("{} user id {} error serializing user", schema, id);
+            log.error("{} user id {} error serializing user", schema, userRecord.getPatronId());
           }
         }
-
-        userRecordWriter.close();
-
-        pageStatement.close();
-
-        pageResultSet.close();
-
       } catch (SQLException e) {
         e.printStackTrace();
-      } catch (ParseException e2) {
-        e2.printStackTrace();
+      } finally {
+        threadConnections.closeAll();
       }
 
-      threadConnections.closeAll();
-
-      log.info("{} {} user finished in {} milliseconds", schema, index,
-          TimingUtility.getDeltaInMilliseconds(startTime));
+      log.info("{} {} user finished in {} milliseconds", schema, index, TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
     }
@@ -310,93 +262,181 @@ public class UserMigration extends AbstractMigration<UserContext> {
       return Objects.nonNull(obj) && ((UserPartitionTask) obj).getIndex() == this.getIndex();
     }
 
-  }
+    private void processAddressesEmailsPhones(UserContext userContext, Statement statement, UserRecord userRecord) throws SQLException {
+      Map<String, Object> context = new HashMap<>();
+      context.put(SQL, userContext.getExtraction().getAddressSql());
+      context.put(SCHEMA, job.getSchema());
+      context.put(PATRON_ID, userRecord.getPatronId());
 
-  private Optional<String> getUsername(Statement statement, Map<String, Object> context) throws SQLException {
-    try (ResultSet resultSet = getResultSet(statement, context)) {
-      Optional<String> username = Optional.empty();
-      while (resultSet.next()) {
-        username = Optional.ofNullable(resultSet.getString(USERNAME));
-        break;
-      }
-      return username;
-    }
-  }
+      try (
+        ResultSet resultSet = getResultSet(statement, context);
+      ) {
+        boolean permanentStatusNormal = false;
+        boolean temporaryStatusNormal = false;
 
-  private void populateAddressesAndEmails(Statement statement, Map<String, Object> context, Personal personal)
-      throws SQLException {
-    try (ResultSet resultSet = getResultSet(statement, context)) {
-      List<Address> addresses = new ArrayList<>();
-      while (resultSet.next()) {
-        String addressTypeId = resultSet.getString(ADDRESS_TYPE);
-        String addressLine1 = resultSet.getString(ADDRESS_LINE_1);
+        List<String> phoneNumbers = new ArrayList<>();
+        List<String> phoneTypes = new ArrayList<>();
 
-        if (addressTypeId.contains("3")) {
-          personal.setEmail(addressLine1);
-        } else {
-          String addressLine2 = resultSet.getString(ADDRESS_LINE_2);
-          String city = resultSet.getString(CITY);
-          String region = resultSet.getString(REGION);
-          String postalCode = resultSet.getString(POSTAL_CODE);
-          String countryCode = resultSet.getString(COUNTRY_CODE);
+        while (resultSet.next()) {
+          String addressId = resultSet.getString(ADDRESS_ID);
+          String addressDescription = resultSet.getString(ADDRESS_DESCRIPTION);
           String addressStatus = resultSet.getString(ADDRESS_STATUS);
-          // String phoneType = resultSet.getString(PHONE_TYPE);
-          String phoneNumber = resultSet.getString(PHONE_NUMBER);
+          String addressType = resultSet.getString(ADDRESS_TYPE);
+          String addressLine1 = resultSet.getString(ADDRESS_LINE1);
+          String addressLine2 = resultSet.getString(ADDRESS_LINE2);
+          String city = resultSet.getString(ADDRESS_CITY);
+          String country = resultSet.getString(ADDRESS_COUNTRY);
+          String phoneNumber = resultSet.getString(ADDRESS_PHONE_NUMBER);
+          String phoneDescription = resultSet.getString(ADDRESS_PHONE_DESCRIPTION);
+          String stateProvince = resultSet.getString(ADDRESS_STATE_PROVINCE);
+          String zipPostal = resultSet.getString(ADDRESS_ZIP_POSTAL);
 
-          Address address = new Address();
-          address.setCountryId(countryCode);
-          address.setAddressLine1(addressLine1);
-          address.setAddressLine2(addressLine2);
-          address.setCity(city);
-          address.setRegion(region);
-          address.setPostalCode(postalCode);
-          address.setAddressTypeId(addressTypeId);
-          address.setPrimaryAddress(addressStatus.contains("N"));
+          UserAddressRecord userAddressRecord = new UserAddressRecord(addressId, addressDescription, addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal);
 
-          // if (phoneType.equals(PRIMARY)) {
-          //   personal.setPhone(phoneNumber);
-          // }
-          // if (phoneType.equals(MOBILE)) {
-          //   personal.setMobilePhone(phoneNumber);
-          // }
+          if (userAddressRecord.isEmail()) {
+            userRecord.setEmail(userAddressRecord.toEmail());
+          } else {
+            if (userAddressRecord.hasPhoneNumber()) {
+              // phone type is stored as phone description.
+              phoneNumbers.add(userAddressRecord.getPhoneNumber());
+              phoneTypes.add(userAddressRecord.getPhoneDescription());
+            } else {
+              phoneNumbers.add("");
+              phoneTypes.add("");
+            }
 
-          addresses.add(address);
+            if (userAddressRecord.isPrimary()) {
+              if (userAddressRecord.isNormal()) {
+                permanentStatusNormal = true;
+              }
+            } else if (userAddressRecord.isTemporary()) {
+              if (userAddressRecord.isNormal()) {
+                temporaryStatusNormal = true;
+              }
+            }
+
+            userRecord.addAddresses(userAddressRecord.toAddress());
+          }
         }
+
+        if (permanentStatusNormal && temporaryStatusNormal) {
+          userRecord.getAddresses().forEach(userAddressRecord -> {
+            if (userAddressRecord.getPrimaryAddress()) {
+              userAddressRecord.setPrimaryAddress(defaults.getPrimaryAddress());
+            } else {
+              userAddressRecord.setPrimaryAddress(!defaults.getPrimaryAddress());
+            }
+          });
+        }
+
+        for (int i = 0; i < userRecord.getAddresses().size(); i++) {
+          Address address = userRecord.getAddresses().get(i);
+          if (address.getPrimaryAddress()) {
+            if (phoneTypes.get(i).equalsIgnoreCase(PHONE_PRIMARY)) {
+              userRecord.setPhone(phoneNumbers.get(i));
+            }
+            else if (phoneTypes.get(i).equalsIgnoreCase(PHONE_MOBILE)) {
+              userRecord.setMobilePhone(phoneNumbers.get(i));
+            }
+          }
+        }
+      } catch (SQLException e) {
+        log.error("{} user id {} SQL error while processing addresses, emails, and phone numbers", job.getSchema(), userRecord.getPatronId());
+        log.debug(e.getMessage());
+
+        throw e;
       }
-      personal.setAddresses(addresses);
+    }
+
+    private void processUsername(UserContext userContext, Statement statement, UserRecord userRecord) throws SQLException {
+      if (Objects.nonNull(userRecord.getInstitutionId())) {
+        Map<String, Object> context = new HashMap<>();
+        context.put(SQL, userContext.getExtraction().getUsernameSql());
+        context.put(SCHEMA, job.getSchema());
+        context.put(PATRON_INSTITUTION_ID, userRecord.getInstitutionId());
+  
+        try (
+          ResultSet resultSet = getResultSet(statement, context);
+        ) {
+          boolean found = false;
+
+          while (resultSet.next()) {
+            String username = resultSet.getString(USERNAME_NETID);
+
+            if (Objects.nonNull(username)) {
+              found = true;
+              userRecord.setUsername(username);
+            }
+          }
+
+          if (!found) {
+            userRecord.setUsername(job.getSchema() + "_" + userRecord.getPatronId());
+          }
+        } catch (SQLException e) {
+          log.error("{} user id {} SQL error while processing username", job.getSchema(), userRecord.getPatronId());
+          log.debug(e.getMessage());
+
+          throw e;
+        }
+      } else {
+        userRecord.setUsername(job.getSchema() + "_" + userRecord.getPatronId());
+      }
+    }
+
+    private void processBarcodeAndPatronGroup(UserContext userContext, Statement statement, UserRecord userRecord) throws SQLException {
+      Map<String, Object> context = new HashMap<>();
+      context.put(SQL, userContext.getExtraction().getPatronGroupSql());
+      context.put(SCHEMA, job.getSchema());
+      context.put(DECODE, job.getDecodeSql());
+      context.put(PATRON_ID, userRecord.getPatronId());
+
+      try (
+        ResultSet resultSet = getResultSet(statement, context);
+      ) {
+        Map<String, String> patronGroupMap = maps.getPatronGroup().get(job.getSchema());
+
+        while(resultSet.next()) {
+          String barcode = resultSet.getString(PATRON_BARCODE);
+          String groupCode = resultSet.getString(PATRON_GROUP_CODE);
+
+          userRecord.setBarcode(barcode);
+
+          if (Objects.nonNull(groupCode) && patronGroupMap.containsKey(groupCode.toLowerCase())) {
+            userRecord.setGroupcode(patronGroupMap.get(groupCode.toLowerCase()));
+          }
+
+          // only grab the first row found. 
+          break;
+        }
+      } catch (SQLException e) {
+        log.error("{} user id {} SQL error while processing barcode and patron group", job.getSchema(), userRecord.getPatronId());
+        log.debug(e.getMessage());
+
+        throw e;
+      }
     }
   }
 
-  private Map<String, String> getBarcodeAndPatronGroup(Statement statement, Map<String, Object> context) throws SQLException {
-    Map<String, String> data = new HashMap<>();
-    try (ResultSet resultSet = getResultSet(statement, context)) {
-      while(resultSet.next()) {
-        data.put(PATRON_BARCODE, resultSet.getString(PATRON_BARCODE));
-        data.put(PATRON_GROUP_CODE, resultSet.getString(PATRON_GROUP_CODE));
-      }
-      return data;
-    }
-  }
-
-  private ThreadConnections getThreadConnections(Database voyagerSettings, Database usernameSettings,
-      Database folioSettings) {
+  private ThreadConnections getThreadConnections(Database voyagerSettings, Database usernameSettings, Database folioSettings) {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     threadConnections.setAddressesConnection(getConnection(voyagerSettings));
     threadConnections.setPatronGroupConnection(getConnection(voyagerSettings));
     threadConnections.setUsernameConnection(getConnection(usernameSettings));
+
     try {
       threadConnections.setUserConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
     } catch (SQLException e) {
       log.error(e.getMessage());
       throw new RuntimeException(e);
     }
+
     return threadConnections;
   }
 
   private class ThreadConnections {
     private Connection pageConnection;
-    private Connection addressesConnection;
+    private Connection addressConnection;
     private Connection patronGroupConnection;
     private Connection usernameConnection;
 
@@ -414,12 +454,12 @@ public class UserMigration extends AbstractMigration<UserContext> {
       this.pageConnection = pageConnection;
     }
 
-    public Connection getAdressesConnection() {
-      return addressesConnection;
+    public Connection getAdressConnection() {
+      return addressConnection;
     }
 
-    public void setAddressesConnection(Connection addressesConnection) {
-      this.addressesConnection = addressesConnection;
+    public void setAddressesConnection(Connection addressConnection) {
+      this.addressConnection = addressConnection;
     }
 
     public Connection getPatronGroupConnection() {
@@ -452,7 +492,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
         patronGroupConnection.close();
         usernameConnection.close();
         userConnection.close();
-        addressesConnection.close();
+        addressConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
         throw new RuntimeException(e);
