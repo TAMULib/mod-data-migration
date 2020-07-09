@@ -14,6 +14,10 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.io.JsonStringEncoder;
+import com.fasterxml.jackson.databind.JsonNode;
+
 import org.folio.rest.jaxrs.model.Address;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.UserAddressRecord;
@@ -27,10 +31,6 @@ import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.io.JsonStringEncoder;
-import com.fasterxml.jackson.databind.JsonNode;
 
 public class UserMigration extends AbstractMigration<UserContext> {
 
@@ -46,21 +46,17 @@ public class UserMigration extends AbstractMigration<UserContext> {
   private static final String PATRON_BARCODE = "PATRON_BARCODE";
   private static final String PATRON_GROUP_CODE = "PATRON_GROUP_CODE";
 
-  private static final String ADDRESS_ID = "ADDRESS_ID";
-  private static final String ADDRESS_DESCRIPTION = "ADDRESS_DESCRIPTION";
+  private static final String ADDRESS_DESC = "ADDRESS_DESC";
   private static final String ADDRESS_STATUS = "ADDRESS_STATUS";
   private static final String ADDRESS_TYPE = "ADDRESS_TYPE";
   private static final String ADDRESS_LINE1 = "ADDRESS_LINE1";
   private static final String ADDRESS_LINE2 = "ADDRESS_LINE2";
-  private static final String ADDRESS_CITY = "ADDRESS_CITY";
-  private static final String ADDRESS_COUNTRY = "ADDRESS_COUNTRY";
-  private static final String ADDRESS_PHONE_NUMBER = "ADDRESS_PHONE_NUMBER";
-  private static final String ADDRESS_PHONE_DESCRIPTION = "ADDRESS_PHONE_DESCRIPTION";
-  private static final String ADDRESS_STATE_PROVINCE = "ADDRESS_STATE_PROVINCE";
-  private static final String ADDRESS_ZIP_POSTAL = "ADDRESS_ZIP_POSTAL";
-
-  private static final String USER_REFERENCE_ID = "userTypeId";
-  private static final String USER_EXTERNAL_REFERENCE_ID = "userExternalTypeId";
+  private static final String CITY = "CITY";
+  private static final String COUNTRY = "COUNTRY";
+  private static final String PHONE_NUMBER = "PHONE_NUMBER";
+  private static final String PHONE_DESC = "PHONE_DESC";
+  private static final String STATE_PROVINCE = "STATE_PROVINCE";
+  private static final String ZIP_POSTAL = "ZIP_POSTAL";
 
   private static final String USERNAME_NETID = "TAMU_NETID";
 
@@ -72,6 +68,9 @@ public class UserMigration extends AbstractMigration<UserContext> {
   private static final String JOIN_FROM = "JOIN_FROM";
   private static final String JOIN_WHERE = "JOIN_WHERE";
   private static final String DECODE = "DECODE";
+
+  private static final String USER_REFERENCE_ID = "userTypeId";
+  private static final String USER_EXTERNAL_REFERENCE_ID = "userExternalTypeId";
 
   // (id,jsonb,creation_date,created_by,patrongroup)
   private static final String USERS_COPY_SQL = "COPY %s_mod_users.users (id,jsonb,creation_date,created_by,patrongroup) FROM STDIN";
@@ -278,20 +277,19 @@ public class UserMigration extends AbstractMigration<UserContext> {
         List<String> phoneTypes = new ArrayList<>();
 
         while (resultSet.next()) {
-          String addressId = resultSet.getString(ADDRESS_ID);
-          String addressDescription = resultSet.getString(ADDRESS_DESCRIPTION);
+          String addressDescription = resultSet.getString(ADDRESS_DESC);
           String addressStatus = resultSet.getString(ADDRESS_STATUS);
           String addressType = resultSet.getString(ADDRESS_TYPE);
           String addressLine1 = resultSet.getString(ADDRESS_LINE1);
           String addressLine2 = resultSet.getString(ADDRESS_LINE2);
-          String city = resultSet.getString(ADDRESS_CITY);
-          String country = resultSet.getString(ADDRESS_COUNTRY);
-          String phoneNumber = resultSet.getString(ADDRESS_PHONE_NUMBER);
-          String phoneDescription = resultSet.getString(ADDRESS_PHONE_DESCRIPTION);
-          String stateProvince = resultSet.getString(ADDRESS_STATE_PROVINCE);
-          String zipPostal = resultSet.getString(ADDRESS_ZIP_POSTAL);
+          String city = resultSet.getString(CITY);
+          String country = resultSet.getString(COUNTRY);
+          String phoneNumber = resultSet.getString(PHONE_NUMBER);
+          String phoneDescription = resultSet.getString(PHONE_DESC);
+          String stateProvince = resultSet.getString(STATE_PROVINCE);
+          String zipPostal = resultSet.getString(ZIP_POSTAL);
 
-          UserAddressRecord userAddressRecord = new UserAddressRecord(addressId, addressDescription, addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal);
+          UserAddressRecord userAddressRecord = new UserAddressRecord(addressDescription, addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal);
 
           if (userAddressRecord.isEmail()) {
             userRecord.setEmail(userAddressRecord.toEmail());

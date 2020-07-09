@@ -49,6 +49,11 @@ public class MigrationController {
     migrationService.migrate(VendorReferenceLinkMigration.with(context, tenant));
   }
 
+  @PostMapping("/vendors")
+  public void vendors(@RequestBody VendorContext context, @TenantHeader String tenant) {
+    migrationService.migrate(VendorMigration.with(context, tenant));
+  }
+
   @PostMapping("/inventory-reference-links")
   @CreateReferenceLinkTypes(path = "classpath:/referenceLinkTypes/inventory/*.json")
   public void inventoryReferenceLinks(@RequestBody InventoryReferenceLinkContext context, @TenantHeader String tenant) {
@@ -68,11 +73,6 @@ public class MigrationController {
   @PostMapping("/items")
   public void items(@RequestBody ItemContext context, @TenantHeader String tenant) {
     migrationService.migrate(ItemMigration.with(context, tenant));
-  }
-
-  @PostMapping("/vendors")
-  public void vendors(@RequestBody VendorContext context, @TenantHeader String tenant) {
-    migrationService.migrate(VendorMigration.with(context, tenant));
   }
 
 }

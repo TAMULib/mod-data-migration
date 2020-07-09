@@ -1,12 +1,12 @@
 package org.folio.rest.migration.model;
 
 import java.util.Objects;
+import java.util.UUID;
 
 import org.folio.rest.jaxrs.model.Address;
 
 public class UserAddressRecord extends AbstractUserRecord {
 
-  private final String addressId;
   private final String addressDescription;
   private final String addressStatus;
   private final String addressType;
@@ -19,8 +19,7 @@ public class UserAddressRecord extends AbstractUserRecord {
   private final String stateProvince;
   private final String zipPostal;
 
-  public UserAddressRecord(String addressId, String addressDescription, String addressStatus, String addressType, String addressLine1, String addressLine2, String city, String country, String phoneNumber, String phoneDescription, String stateProvince, String zipPostal) {
-    this.addressId = addressId;
+  public UserAddressRecord(String addressDescription, String addressStatus, String addressType, String addressLine1, String addressLine2, String city, String country, String phoneNumber, String phoneDescription, String stateProvince, String zipPostal) {
     this.addressDescription = addressDescription;
     this.addressStatus = addressStatus;
     this.addressType = addressType;
@@ -32,10 +31,6 @@ public class UserAddressRecord extends AbstractUserRecord {
     this.phoneDescription = phoneDescription;
     this.stateProvince = stateProvince;
     this.zipPostal = zipPostal;
-  }
-
-  public String getAddressId() {
-    return addressId;
   }
 
   public String getAddressDescription() {
@@ -105,7 +100,7 @@ public class UserAddressRecord extends AbstractUserRecord {
   public Address toAddress() {
     final Address address = new Address();
 
-    address.setId(addressId);
+    address.setId(UUID.randomUUID().toString());
     address.setAddressTypeId(addressDescription);
 
     setAddressLine1(address);
