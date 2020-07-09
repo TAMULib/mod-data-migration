@@ -132,7 +132,7 @@ POST to http://localhost:9000/migrate/users
     {
       "schema": "AMDB",
       "partitions": 11,
-      "joinTableSql": "",
+      "joinFromSql": "",
       "joinWhereSql": "",
       "decodeSql": "'fast', 1, 'grad', 2, 'ungr', 3, 'illend', 4, 'libd', 5, 'comm', 6, 'cour', 7, 'texs', 8, 'nonr', 9",
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
@@ -144,7 +144,7 @@ POST to http://localhost:9000/migrate/users
     {
       "schema": "MSDB",
       "partitions": 1,
-      "joinTableSql": ", AMDB.patron t2",
+      "joinFromSql": ", AMDB.patron t2",
       "joinWhereSql": "AND t2.institution_id(+) = t1.institution_id AND t2.institution_id is null",
       "decodeSql": "'fac/staff', 1, 'grad/prof', 2, 'undergrad', 3",
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
