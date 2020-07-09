@@ -195,7 +195,7 @@ public class UserRecord extends AbstractUserRecord {
     addresses.add(address);
   }
 
-  public Userdata toUserdata() {
+  public Userdata toUserdata(String patronGroup) {
     final Userdata userdata = new Userdata();
     final Personal personal = new Personal();
 
@@ -217,6 +217,8 @@ public class UserRecord extends AbstractUserRecord {
     setActive(userdata);
     setBarcode(userdata);
     setUsername(userdata);
+
+    userdata.setPatronGroup(patronGroup);
 
     return userdata;
   }

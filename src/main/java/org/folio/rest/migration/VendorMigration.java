@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,6 +15,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.io.JsonStringEncoder;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Contact;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Organization;
@@ -32,10 +37,6 @@ import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.io.JsonStringEncoder;
-import com.fasterxml.jackson.databind.JsonNode;
 
 public class VendorMigration extends AbstractMigration<VendorContext> {
 
@@ -258,11 +259,14 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
             vendorRecord.setOrganizationId(organizationId);
 
             vendorRecord.setCreatedByUserId(job.getUserId());
-            vendorRecord.setCreatedDate(new Date());
+            
             vendorRecord.setMaps(maps);
             vendorRecord.setDefaults(defaults);
 
-            String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
+            Date createdDate = new Date();
+            vendorRecord.setCreatedDate(createdDate);
+
+            String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
 
             Organization organization = vendorRecord.toOrganization();

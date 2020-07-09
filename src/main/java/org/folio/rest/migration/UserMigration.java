@@ -5,8 +5,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,9 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.folio.rest.jaxrs.model.Address;
+import org.folio.rest.jaxrs.model.Userdata;
+import org.folio.rest.jaxrs.model.Usergroup;
+import org.folio.rest.jaxrs.model.Usergroups;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.UserAddressRecord;
 import org.folio.rest.migration.model.UserRecord;
@@ -31,18 +35,21 @@ import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
+import org.springframework.cache.annotation.Cacheable;
 
 public class UserMigration extends AbstractMigration<UserContext> {
 
+  private static final String USER_GROUPS = "USER_GROUPS";
+
   private static final String PATRON_ID = "PATRON_ID";
-  private static final String PATRON_INSTITUTION_ID = "INSTITUTION_ID";
-  private static final String PATRON_LAST_NAME = "LAST_NAME";
-  private static final String PATRON_FIRST_NAME = "FIRST_NAME";
-  private static final String PATRON_MIDDLE_NAME = "MIDDLE_NAME";
-  private static final String PATRON_ACTIVE_DATE = "ACTIVE_DATE";
-  private static final String PATRON_EXPIRE_DATE = "EXPIRE_DATE";
-  private static final String PATRON_SMS_NUMBER = "SMS_NUMBER";
-  private static final String PATRON_CURRENT_CHARGES = "CURRENT_CHARGES";
+  private static final String INSTITUTION_ID = "INSTITUTION_ID";
+  private static final String LAST_NAME = "LAST_NAME";
+  private static final String FIRST_NAME = "FIRST_NAME";
+  private static final String MIDDLE_NAME = "MIDDLE_NAME";
+  private static final String ACTIVE_DATE = "ACTIVE_DATE";
+  private static final String EXPIRE_DATE = "EXPIRE_DATE";
+  private static final String SMS_NUMBER = "SMS_NUMBER";
+  private static final String CURRENT_CHARGES = "CURRENT_CHARGES";
   private static final String PATRON_BARCODE = "PATRON_BARCODE";
   private static final String PATRON_GROUP_CODE = "PATRON_GROUP_CODE";
 
@@ -87,8 +94,9 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
     String token = migrationService.okapiService.getToken(tenant);
 
-    Database voyagerSettings = context.getExtraction().getDatabase();
+    Usergroups usergroups = migrationService.okapiService.fetchUsergroups(tenant, token);
 
+    Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
     preActions(folioSettings, context.getPreActions());
@@ -129,6 +137,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
         partitionContext.put(INDEX, index);
         partitionContext.put(TOKEN, token);
         partitionContext.put(JOB, job);
+        partitionContext.put(USER_GROUPS, usergroups);
         partitionContext.put(MAPS, context.getMaps());
         partitionContext.put(DEFAULTS, context.getDefaults());
         partitionContext.put(JOIN_FROM, job.getJoinFromSql());
@@ -175,6 +184,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
       int index = this.getIndex();
 
+      Usergroups usergroups = (Usergroups) partitionContext.get(USER_GROUPS);
+
       Database voyagerSettings = context.getExtraction().getDatabase();
       Database usernameSettings = context.getExtraction().getUsernameDatabase();
       Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
@@ -202,14 +213,14 @@ public class UserMigration extends AbstractMigration<UserContext> {
         while (pageResultSet.next()) {
 
           String patronId = pageResultSet.getString(PATRON_ID);
-          String institutionId = pageResultSet.getString(PATRON_INSTITUTION_ID);
-          String lastName = pageResultSet.getString(PATRON_LAST_NAME);
-          String firstName = pageResultSet.getString(PATRON_FIRST_NAME);
-          String middleName = pageResultSet.getString(PATRON_MIDDLE_NAME);
-          String activeDate = pageResultSet.getString(PATRON_ACTIVE_DATE);
-          String expireDate = pageResultSet.getString(PATRON_EXPIRE_DATE);
-          String smsNumber = pageResultSet.getString(PATRON_SMS_NUMBER);
-          String currentCharges = pageResultSet.getString(PATRON_CURRENT_CHARGES);
+          String institutionId = pageResultSet.getString(INSTITUTION_ID);
+          String lastName = pageResultSet.getString(LAST_NAME);
+          String firstName = pageResultSet.getString(FIRST_NAME);
+          String middleName = pageResultSet.getString(MIDDLE_NAME);
+          String activeDate = pageResultSet.getString(ACTIVE_DATE);
+          String expireDate = pageResultSet.getString(EXPIRE_DATE);
+          String smsNumber = pageResultSet.getString(SMS_NUMBER);
+          String currentCharges = pageResultSet.getString(CURRENT_CHARGES);
 
           Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
           if (!userRL.isPresent()) {
@@ -234,13 +245,24 @@ public class UserMigration extends AbstractMigration<UserContext> {
           processAddressesEmailsPhones(context, addressStatement, userRecord);
           processBarcodeAndPatronGroup(context, patronGroupStatement, userRecord);
 
-          String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
+          Optional<String> patronGroup = getPatronGroup(userRecord.getGroupcode(), usergroups);
+
+          if (!patronGroup.isPresent()) {
+            log.error("{} no patron group found for group code {}", schema, userRecord.getGroupcode());
+            continue;
+          }
+
+          Userdata userdata = userRecord.toUserdata(patronGroup.get());
+
+          Date createdDate = new Date();
+
+          String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
           String createdByUserId = job.getUserId();
 
           try {
-            String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userRecord.toUserdata())));
+            String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userdata)));
 
-            userRecordWriter.println(String.join("\t", job.getUserId(), userUtf8Json, createdAt, createdByUserId, userRecord.getGroupcode()));
+            userRecordWriter.println(String.join("\t", userdata.getId(), userUtf8Json, createdAt, createdByUserId, userdata.getPatronGroup()));
           } catch (JsonProcessingException e) {
             log.error("{} user id {} error serializing user", schema, userRecord.getPatronId());
           }
@@ -351,7 +373,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
         Map<String, Object> context = new HashMap<>();
         context.put(SQL, userContext.getExtraction().getUsernameSql());
         context.put(SCHEMA, job.getSchema());
-        context.put(PATRON_INSTITUTION_ID, userRecord.getInstitutionId());
+        context.put(INSTITUTION_ID, userRecord.getInstitutionId());
   
         try (
           ResultSet resultSet = getResultSet(statement, context);
@@ -399,8 +421,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           userRecord.setBarcode(barcode);
 
-          if (Objects.nonNull(groupCode) && patronGroupMap.containsKey(groupCode.toLowerCase())) {
-            userRecord.setGroupcode(patronGroupMap.get(groupCode.toLowerCase()));
+          if (Objects.nonNull(groupCode)) {
+            if (patronGroupMap.containsKey(groupCode.toLowerCase())) {
+              groupCode = patronGroupMap.get(groupCode.toLowerCase());
+            }
+            userRecord.setGroupcode(groupCode);
           }
 
           // only grab the first row found. 
@@ -414,6 +439,15 @@ public class UserMigration extends AbstractMigration<UserContext> {
       }
     }
   }
+
+  @Cacheable(key = "groupCode")
+  private Optional<String> getPatronGroup(String groupCode, Usergroups usergroups) {
+    Optional<Usergroup> usergroup = usergroups.getUsergroups().stream().filter(ug -> ug.getGroup().equals(groupCode)).findAny();
+    if (usergroup.isPresent()) {
+      return Optional.of(usergroup.get().getId());
+    }
+    return Optional.empty();
+  } 
 
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database usernameSettings, Database folioSettings) {
     ThreadConnections threadConnections = new ThreadConnections();
