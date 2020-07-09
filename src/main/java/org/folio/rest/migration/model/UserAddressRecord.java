@@ -134,10 +134,10 @@ public class UserAddressRecord extends AbstractUserRecord {
 
   private void setAddressLine2(Address address) {
     if (Objects.nonNull(addressLine2)) {
-      String updatedAddressLine2 = addressLine1.replaceAll("\\s+", " ");
+      String updatedAddressLine2 = addressLine2.replaceAll("\\s+", " ");
       updatedAddressLine2 = updatedAddressLine2.replaceAll("\\s$", "");
 
-      address.setAddressLine1(updatedAddressLine2);
+      address.setAddressLine2(updatedAddressLine2);
     }
   }
 
