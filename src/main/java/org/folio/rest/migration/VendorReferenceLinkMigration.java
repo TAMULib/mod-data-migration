@@ -28,7 +28,7 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
   private static final String VENDOR_REFERENCE_ID = "vendorTypeId";
 
   // (id,external_reference,folioreference,type_id)
-  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,external_reference,folio_reference,type_id) FROM STDIN";
+  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,external_reference,folio_reference,type_id) FROM STDIN WITH NULL AS 'null'";
 
   private VendorReferenceLinkMigration(VendorReferenceLinkContext context, String tenant) {
     super(context, tenant);

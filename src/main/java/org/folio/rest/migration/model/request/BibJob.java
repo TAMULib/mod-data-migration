@@ -18,6 +18,9 @@ public class BibJob extends AbstractJob {
   @NotNull
   private JobProfile profile;
 
+  @NotNull
+  private String controlNumberIdentifier;
+
   private Map<String, String> references;
 
   public BibJob() {
@@ -47,6 +50,14 @@ public class BibJob extends AbstractJob {
 
   public void setProfile(JobProfile profile) {
     this.profile = profile;
+  }
+
+  public String getControlNumberIdentifier() {
+    return controlNumberIdentifier;
+  }
+
+  public void setControlNumberIdentifier(String controlNumberIdentifier) {
+    this.controlNumberIdentifier = controlNumberIdentifier;
   }
 
   public Map<String, String> getReferences() {

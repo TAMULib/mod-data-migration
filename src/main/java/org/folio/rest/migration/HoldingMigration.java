@@ -31,6 +31,7 @@ import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
 import org.marc4j.MarcException;
+import org.marc4j.marc.Record;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
 
@@ -56,7 +57,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
 
   // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
-  private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,holdingstypeid,callnumbertypeid) FROM STDIN";
+  private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid) FROM STDIN WITH NULL AS 'null'";
 
   private HoldingMigration(HoldingContext context, String tenant) {
     super(context, tenant);
@@ -67,6 +68,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     log.info("tenant: {}", tenant);
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
+
+    log.info("available processors: {}", Runtime.getRuntime().availableProcessors());
 
     String token = migrationService.okapiService.getToken(tenant);
 
@@ -188,6 +191,10 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       HoldingMaps holdingMaps = context.getMaps();
       HoldingDefaults holdingDefaults = context.getDefaults();
 
+      Map<String, Object> marcContext = new HashMap<>();
+      marcContext.put(SQL, context.getExtraction().getMarcSql());
+      marcContext.put(SCHEMA, schema);
+
       String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
       String holdingToBibRLTypeId = job.getReferences().get(HOLDING_TO_BIB_REFERENCE_ID);
 
@@ -198,6 +205,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       try (
         PrintWriter holdingRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getHoldingConnection(), String.format(HOLDING_RECORDS_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
+        Statement marcStatement = threadConnections.getMarcConnection().createStatement();
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
       ) {
 
@@ -276,8 +284,19 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             locationId = holdingDefaults.getPermanentLocationId();
           }
 
+          marcContext.put(MFHD_ID, mfhdId);
+
           try {
-            HoldingRecord holdingRecord = new HoldingRecord(mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
+            String marc = getMarc(marcStatement, marcContext);
+
+            Optional<Record> potentialRecord = rawMarcToRecord(marc);
+
+            if (!potentialRecord.isPresent()) {
+              log.error("schema {}, mfhd id {}, marc {} unable to read record", schema, mfhdId, marc);
+              continue;
+            }
+
+            HoldingRecord holdingRecord = new HoldingRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
             String holdingId = null, instanceId = null;
 
@@ -330,10 +349,10 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
               createdByUserId,
               holdingsRecord.getInstanceId(),
               holdingsRecord.getPermanentLocationId(),
-              // holdingsRecord.getTemporaryLocationId(),
+              Objects.nonNull(holdingsRecord.getTemporaryLocationId()) ? holdingsRecord.getTemporaryLocationId() : NULL,
               holdingsRecord.getHoldingsTypeId(),
-              holdingsRecord.getCallNumberTypeId()
-              // holdingsRecord.getIllPolicyId()
+              holdingsRecord.getCallNumberTypeId(),
+              Objects.nonNull(holdingsRecord.getIllPolicyId()) ? holdingsRecord.getIllPolicyId() : NULL
             ));
 
             hrid++;
@@ -369,6 +388,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
+    threadConnections.setMarcConnection(getConnection(voyagerSettings));
     try {
       threadConnections.setHoldingConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
     } catch (SQLException e) {
@@ -380,6 +400,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
   private class ThreadConnections {
     private Connection pageConnection;
+    private Connection marcConnection;
 
     private BaseConnection holdingConnection;
 
@@ -395,6 +416,14 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       this.pageConnection = pageConnection;
     }
 
+    public Connection getMarcConnection() {
+      return marcConnection;
+    }
+
+    public void setMarcConnection(Connection marcConnection) {
+      this.marcConnection = marcConnection;
+    }
+
     public BaseConnection getHoldingConnection() {
       return holdingConnection;
     }
@@ -406,6 +435,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     public void closeAll() {
       try {
         pageConnection.close();
+        marcConnection.close();
         holdingConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
