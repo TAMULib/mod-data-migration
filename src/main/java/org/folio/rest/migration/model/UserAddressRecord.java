@@ -90,7 +90,7 @@ public class UserAddressRecord extends AbstractUserRecord {
   }
 
   public boolean isNormal() {
-    return Objects.nonNull(addressStatus) && addressType.equalsIgnoreCase("n");
+    return Objects.nonNull(addressStatus) && addressStatus.equalsIgnoreCase("n");
   }
 
   public boolean hasPhoneNumber() {
