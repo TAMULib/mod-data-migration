@@ -77,7 +77,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
   private static final String DECODE = "DECODE";
 
   private static final String USER_REFERENCE_ID = "userTypeId";
-  private static final String USER_EXTERNAL_REFERENCE_ID = "userExternalTypeId";
 
   // (id,jsonb,creation_date,created_by,patrongroup)
   private static final String USERS_COPY_SQL = "COPY %s_mod_users.users (id,jsonb,creation_date,created_by,patrongroup) FROM STDIN";
@@ -193,7 +192,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
 
       String userIdRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
-      String userExternalIdRLTypeId = job.getReferences().get(USER_EXTERNAL_REFERENCE_ID);
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, usernameSettings, folioSettings);
 
@@ -225,12 +223,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
           Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
           if (!userRL.isPresent()) {
             log.error("{} no user id found for patron id {}", schema, patronId);
-            continue;
-          }
-
-          Optional<ReferenceLink> userExternalRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userExternalIdRLTypeId, institutionId);
-          if (!userExternalRL.isPresent()) {
-            log.error("{} no user external id found for external system id {}", schema, institutionId);
             continue;
           }
 
@@ -312,6 +304,9 @@ public class UserMigration extends AbstractMigration<UserContext> {
           String zipPostal = resultSet.getString(ZIP_POSTAL);
 
           UserAddressRecord userAddressRecord = new UserAddressRecord(addressDescription, addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal);
+
+          userAddressRecord.setMaps((UserMaps) partitionContext.get(MAPS));
+          userAddressRecord.setDefaults((UserDefaults) partitionContext.get(DEFAULTS));
 
           if (userAddressRecord.isEmail()) {
             userRecord.setEmail(userAddressRecord.toEmail());
