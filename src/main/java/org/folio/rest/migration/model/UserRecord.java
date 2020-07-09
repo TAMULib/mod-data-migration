@@ -191,7 +191,7 @@ public class UserRecord extends AbstractUserRecord {
     return addresses;
   }
 
-  public void addAddresses(Address address) {
+  public void addAddress(Address address) {
     addresses.add(address);
   }
 

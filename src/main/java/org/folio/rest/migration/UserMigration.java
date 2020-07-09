@@ -209,7 +209,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
       ) {
 
         while (pageResultSet.next()) {
-
           String patronId = pageResultSet.getString(PATRON_ID);
           String institutionId = pageResultSet.getString(INSTITUTION_ID);
           String lastName = pageResultSet.getString(LAST_NAME);
@@ -329,8 +328,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
                 temporaryStatusNormal = true;
               }
             }
-
-            userRecord.addAddresses(userAddressRecord.toAddress());
+            userRecord.addAddress(userAddressRecord.toAddress());
           }
         }
 
