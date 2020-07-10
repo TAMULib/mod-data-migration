@@ -13,6 +13,12 @@ public class ItemMaps {
   @NotNull
   private Map<String, String> loanType;
 
+  @NotNull
+  private Map<String, String> itemStatus;
+
+  @NotNull
+  private Map<String, String> statusName;
+
   public ItemMaps() {
     location = new HashMap<String, String>();
     loanType = new HashMap<String, String>();
@@ -32,6 +38,22 @@ public class ItemMaps {
 
   public void setLoanType(Map<String, String> loanType) {
     this.loanType = loanType;
+  }
+
+  public Map<String, String> getItemStatus() {
+    return itemStatus;
+  }
+
+  public void setItemStatus(Map<String, String> itemStatus) {
+    this.itemStatus = itemStatus;
+  }
+
+  public Map<String, String> getStatusName() {
+    return statusName;
+  }
+
+  public void setStatusName(Map<String, String> statusName) {
+    this.statusName = statusName;
   }
 
 }

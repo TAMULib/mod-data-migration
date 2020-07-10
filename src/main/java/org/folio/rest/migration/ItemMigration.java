@@ -6,8 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -17,11 +21,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import org.apache.commons.lang3.StringUtils;
+import org.folio.rest.jaxrs.model.CirculationNote;
 import org.folio.rest.jaxrs.model.Item;
 import org.folio.rest.jaxrs.model.Loantype;
 import org.folio.rest.jaxrs.model.Loantypes;
 import org.folio.rest.jaxrs.model.Location;
 import org.folio.rest.jaxrs.model.Locations;
+import org.folio.rest.jaxrs.model.Materialtype;
+import org.folio.rest.jaxrs.model.Materialtypes;
+import org.folio.rest.jaxrs.model.Note__1;
+import org.folio.rest.jaxrs.model.Statisticalcodes;
+import org.folio.rest.jaxrs.model.CirculationNote.NoteType;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.ItemRecord;
 import org.folio.rest.migration.model.request.ItemContext;
@@ -42,6 +53,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
   private static final String LOAN_TYPES_MAP = "LOAN_TYPES_MAP";
   private static final String LOCATIONS_MAP = "LOCATIONS_MAP";
+  private static final String STATISTICAL_CODES = "STATISTICAL_CODES";
+  private static final String MATERIAL_TYPES = "MATERIAL_TYPES";
 
   private static final String ITEM_ID = "ITEM_ID";
   private static final String PERM_ITEM_TYPE_ID = "ITEM_TYPE_ID";
@@ -50,10 +63,14 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String TEMP_LOCATION_ID = "TEMP_LOCATION";
   private static final String TEMP_TYPE_ID = "TEMP_ITEM_TYPE_ID";
 
+  private static final String CAPTION = "CAPTION";
   private static final String CHRON = "CHRON";
   private static final String ITEM_ENUM = "ITEM_ENUM";
+  private static final String FREETEXT = "FREETEXT";
+  private static final String YEAR = "YEAR";
 
   private static final String ITEM_BARCODE = "ITEM_BARCODE";
+  private static final String SPINE_LABEL = "SPINE_LABEL";
 
   private static final String ITEM_TYPE_ID = "ITEM_TYPE_ID";
   private static final String ITEM_TYPE_CODE = "ITEM_TYPE_CODE";
@@ -63,6 +80,16 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
   private static final String ITEM_REFERENCE_ID = "itemTypeId";
   private static final String ITEM_TO_HOLDING_REFERENCE_ID = "itemToHoldingTypeId";
+
+  private static final String ITEM_STATUS = "ITEM_STATUS";
+  private static final String ITEM_STATUS_DATE = "ITEM_STATUS_DATE";
+  private static final String CIRCTRANS = "CIRCTRANS";
+  private static final String ITEM_STATUS_DESC = "ITEM_STATUS_DESC";
+
+  private static final String ITEM_NOTE = "ITEM_NOTE";
+  private static final String ITEM_NOTE_TYPE = "ITEM_NOTE_TYPE";
+
+  private static final String MTYPE_CODE = "MTYPE_CODE";
 
   // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
   private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,materialtypeid,permanentlocationid) FROM STDIN";
@@ -86,6 +113,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
+    Statisticalcodes statisticalcodes = migrationService.okapiService.fetchStatisticalCodes(tenant, token);
+    Materialtypes materialTypes = migrationService.okapiService.fetchMaterialtypes(tenant, token);
 
     preActions(folioSettings, context.getPreActions());
 
@@ -136,6 +165,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         partitionContext.put(JOB, job);
         partitionContext.put(LOAN_TYPES_MAP, loanTypesMap);
         partitionContext.put(LOCATIONS_MAP, locationsMap);
+        partitionContext.put(STATISTICAL_CODES, statisticalcodes);
+        partitionContext.put(MATERIAL_TYPES, materialTypes);
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new ItemPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -204,6 +235,17 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       barcodeContext.put(SQL, context.getExtraction().getBarcodeSql());
       barcodeContext.put(SCHEMA, schema);
 
+      Map<String, Object> itemStatusContext = new HashMap<>();
+      itemStatusContext.put(SQL, context.getExtraction().getItemStatusSql());
+
+      Map<String, Object> noteContext = new HashMap<>();
+      noteContext.put(SQL, context.getExtraction().getNoteSql());
+      noteContext.put(SCHEMA, schema);
+
+      Map<String, Object> materialTypeContext = new HashMap<>();
+      materialTypeContext.put(SQL, context.getExtraction().getMaterialTypeSql());
+      materialTypeContext.put(SCHEMA, schema);
+
       String itemRLTypeId = job.getReferences().get(ITEM_REFERENCE_ID);
       String itemToHoldingRLTypeId = job.getReferences().get(ITEM_TO_HOLDING_REFERENCE_ID);
 
@@ -212,12 +254,16 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       int count = 0;
 
       try (
-        PrintWriter itemWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getItemConnection(), String.format(ITEM_COPY_SQL, tenant)), true);
-        Statement pageStatement = threadConnections.getPageConnection().createStatement();
-        Statement mfhdItemStatement = threadConnections.getMfhdConnection().createStatement();
-        Statement barcodeStatement = threadConnections.getBarcodeConnection().createStatement();
-        ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
-      ) {
+          PrintWriter itemWriter = new PrintWriter(
+              new PGCopyOutputStream(threadConnections.getItemConnection(), String.format(ITEM_COPY_SQL, tenant)),
+              true);
+          Statement pageStatement = threadConnections.getPageConnection().createStatement();
+          Statement mfhdItemStatement = threadConnections.getMfhdConnection().createStatement();
+          Statement barcodeStatement = threadConnections.getBarcodeConnection().createStatement();
+          Statement itemStatusStatement = threadConnections.getItemStatusConnection().createStatement();
+          Statement noteStatement = threadConnections.getNoteConnection().createStatement();
+          Statement materialTypeStatement = threadConnections.getMaterialTypeConnection().createStatement();
+          ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);) {
 
         while (pageResultSet.next()) {
           String itemId = pageResultSet.getString(ITEM_ID);
@@ -229,6 +275,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           String voyagerTempLocationId = pageResultSet.getString(TEMP_LOCATION_ID);
 
           int numberOfPieces = pageResultSet.getInt(PIECES);
+          String spineLabel = pageResultSet.getString(SPINE_LABEL);
 
           String permLoanTypeId, permLocationId;
 
@@ -236,7 +283,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           if (loanTypesMap.containsKey(voyagerPermTypeIdKey)) {
             permLoanTypeId = loanTypesMap.get(voyagerPermTypeIdKey);
           } else {
-            log.warn("using default permanent loan type for schema {} itemId {} type {}", schema, itemId, voyagerPermTypeId);
+            log.warn("using default permanent loan type for schema {} itemId {} type {}", schema, itemId,
+                voyagerPermTypeId);
             permLoanTypeId = itemDefaults.getPermanentLoanTypeId();
           }
 
@@ -244,18 +292,30 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           if (locationsMap.containsKey(voyagerPermLocationIdKey)) {
             permLocationId = locationsMap.get(voyagerPermLocationIdKey);
           } else {
-            log.warn("using default permanent location for schema {} itemId {} location {}", schema, itemId, voyagerPermLocationId);
+            log.warn("using default permanent location for schema {} itemId {} location {}", schema, itemId,
+                voyagerPermLocationId);
             permLocationId = itemDefaults.getPermanentLocationId();
           }
 
           mfhdContext.put(ITEM_ID, itemId);
           barcodeContext.put(ITEM_ID, itemId);
+          itemStatusContext.put(ITEM_ID, itemId);
+          noteContext.put(ITEM_ID, itemId);
+          materialTypeContext.put(ITEM_ID, itemId);
 
           try {
             MfhdItem mfhdItem = getMfhdItem(mfhdItemStatement, mfhdContext);
             String barcode = getItemBarcode(barcodeStatement, barcodeContext);
+            List<ItemStatus> itemStatuses = getItemStatuses(itemStatusStatement, itemStatusContext,
+                context.getMaps().getItemStatus(), context.getMaps().getStatusName());
+            ItemNoteWrapper noteWrapper = getNotes(noteStatement, noteContext, job.getItemNoteTypeId());
+            Materialtypes materialtypes = (Materialtypes) partitionContext.get(MATERIAL_TYPES);
+            String materialTypeId = getMaterialTypeId(materialTypeStatement, materialTypeContext, job.getDefaultMaterialTypeId(), materialtypes);
 
-            ItemRecord itemRecord = new ItemRecord(itemId, barcode, mfhdItem.getChron(), mfhdItem.getItemEnum(), numberOfPieces, job.getMaterialTypeId());
+            ItemRecord itemRecord = new ItemRecord(itemId, barcode, mfhdItem.getCaption(), mfhdItem.getItemEnum(),
+                mfhdItem.getChron(), mfhdItem.getFreetext(), mfhdItem.getYear(), numberOfPieces, spineLabel,
+                materialTypeId, job.getItemNoteTypeId(), job.getItemDamagedStatusId(), itemStatuses,
+                noteWrapper.getNotes(), noteWrapper.getCirculationNotes());
 
             itemRecord.setPermanentLoanTypeId(permLoanTypeId);
             itemRecord.setPermanentLocationId(permLocationId);
@@ -272,16 +332,19 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
             String id = null, holdingId = null;
 
-            Optional<ReferenceLink> itemRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId);
+            Optional<ReferenceLink> itemRL = migrationService.referenceLinkRepo
+                .findByTypeIdAndExternalReference(itemRLTypeId, itemId);
 
             if (itemRL.isPresent()) {
 
               id = itemRL.get().getFolioReference();
 
-              Optional<ReferenceLink> itemToHoldingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemToHoldingRLTypeId, itemRL.get().getId());
+              Optional<ReferenceLink> itemToHoldingRL = migrationService.referenceLinkRepo
+                  .findByTypeIdAndExternalReference(itemToHoldingRLTypeId, itemRL.get().getId());
 
               if (itemToHoldingRL.isPresent()) {
-                Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findById(itemToHoldingRL.get().getFolioReference());
+                Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo
+                    .findById(itemToHoldingRL.get().getFolioReference());
 
                 if (holdingRL.isPresent()) {
                   holdingId = holdingRL.get().getFolioReference();
@@ -309,23 +372,17 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
 
-            Item item = itemRecord.toItem(hridPrefix, hrid);
+            Statisticalcodes statisticalcodes = (Statisticalcodes) partitionContext.get(STATISTICAL_CODES);
+
+            Item item = itemRecord.toItem(hridPrefix, hrid, statisticalcodes, materialtypes);
 
             String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(item)));
 
-            // // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
-            itemWriter.println(String.join("\t",
-              item.getId(),
-              iUtf8Json,
-              createdAt,
-              createdByUserId,
-              item.getHoldingsRecordId(),
-              item.getPermanentLoanTypeId(),
-              // item.getTemporaryLoanTypeId(),
-              item.getMaterialTypeId(),
-              item.getPermanentLocationId()
-              // item.getTemporaryLocationId()
-              // item.getEffectiveLocationId()
+            // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
+            itemWriter.println(String.join("\t", item.getId(), iUtf8Json, createdAt, createdByUserId,
+                item.getHoldingsRecordId(), item.getPermanentLoanTypeId(), item.getTemporaryLoanTypeId(),
+                item.getMaterialTypeId(), item.getPermanentLocationId(), item.getTemporaryLocationId(),
+                item.getEffectiveLocationId()
             ));
 
             hrid++;
@@ -344,7 +401,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         threadConnections.closeAll();
       }
 
-      log.info("{} {} item finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
+      log.info("{} {} item finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid,
+          TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
     }
@@ -355,7 +413,10 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     threadConnections.setBarcodeConnection(getConnection(voyagerSettings));
+    threadConnections.setItemStatusConnection(getConnection(voyagerSettings));
     threadConnections.setMfhdConnection(getConnection(voyagerSettings));
+    threadConnections.setNoteConnection(getConnection(voyagerSettings));
+    threadConnections.setMaterialTypeConnection(getConnection(voyagerSettings));
     try {
       threadConnections.setItemConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
     } catch (SQLException e) {
@@ -369,6 +430,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     private Connection pageConnection;
     private Connection mfhdConnection;
     private Connection barcodeConnection;
+    private Connection itemStatusConnection;
+    private Connection noteConnection;
+    private Connection materialTypeConnection;
 
     private BaseConnection itemConnection;
 
@@ -400,6 +464,30 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       this.barcodeConnection = barcodeConnection;
     }
 
+    public Connection getItemStatusConnection() {
+      return itemStatusConnection;
+    }
+
+    public void setItemStatusConnection(Connection itemStatusConnection) {
+      this.itemStatusConnection = itemStatusConnection;
+    }
+
+    public Connection getNoteConnection() {
+      return noteConnection;
+    }
+
+    public void setNoteConnection(Connection noteConnection) {
+      this.noteConnection = noteConnection;
+    }
+
+    public Connection getMaterialTypeConnection() {
+      return materialTypeConnection;
+    }
+
+    public void setMaterialTypeConnection(Connection materialTypeConnection) {
+      this.materialTypeConnection = materialTypeConnection;
+    }
+
     public BaseConnection getItemConnection() {
       return itemConnection;
     }
@@ -413,7 +501,10 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         pageConnection.close();
         mfhdConnection.close();
         barcodeConnection.close();
+        itemStatusConnection.close();
         itemConnection.close();
+        noteConnection.close();
+        materialTypeConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
         e.printStackTrace();
@@ -425,10 +516,13 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     try (ResultSet resultSet = getResultSet(statement, context)) {
       MfhdItem mfhdItem = null;
       while (resultSet.next()) {
+        String caption = resultSet.getString(CAPTION);
         String chron = resultSet.getString(CHRON);
         String itemEnum = resultSet.getString(ITEM_ENUM);
+        String freetext = resultSet.getString(FREETEXT);
+        String year = resultSet.getString(YEAR);
 
-        mfhdItem = new MfhdItem(chron, itemEnum);
+        mfhdItem = new MfhdItem(caption, chron, itemEnum, freetext, year);
       }
       return mfhdItem;
     }
@@ -451,17 +545,16 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     itemTypeContext.put(SCHEMA, schema);
     Database voyagerSettings = context.getExtraction().getDatabase();
     Map<String, String> ltConv = context.getMaps().getLoanType();
-    try(
-      Connection voyagerConnection = getConnection(voyagerSettings);
-      Statement st = voyagerConnection.createStatement();
-      ResultSet rs = getResultSet(st, itemTypeContext);
-    ) {
+    try (Connection voyagerConnection = getConnection(voyagerSettings);
+        Statement st = voyagerConnection.createStatement();
+        ResultSet rs = getResultSet(st, itemTypeContext);) {
       while (rs.next()) {
         String id = rs.getString(ITEM_TYPE_ID);
         if (Objects.nonNull(id)) {
           String originalCode = rs.getString(ITEM_TYPE_CODE);
           String code = ltConv.containsKey(originalCode) ? ltConv.get(originalCode) : rs.getString(ITEM_TYPE_CODE);
-          Optional<Loantype> loanType = loanTypes.getLoantypes().stream().filter(lt -> lt.getName().equals(code)).findFirst();
+          Optional<Loantype> loanType = loanTypes.getLoantypes().stream().filter(lt -> lt.getName().equals(code))
+              .findFirst();
           if (loanType.isPresent()) {
             String key = String.format(KEY_TEMPLATE, schema, id);
             idToUuid.put(key, loanType.get().getId());
@@ -481,17 +574,16 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     locationContext.put(SCHEMA, schema);
     Database voyagerSettings = context.getExtraction().getDatabase();
     Map<String, String> locConv = context.getMaps().getLocation();
-    try(
-      Connection voyagerConnection = getConnection(voyagerSettings);
-      Statement st = voyagerConnection.createStatement();
-      ResultSet rs = getResultSet(st, locationContext);
-    ) {
+    try (Connection voyagerConnection = getConnection(voyagerSettings);
+        Statement st = voyagerConnection.createStatement();
+        ResultSet rs = getResultSet(st, locationContext);) {
       while (rs.next()) {
         String id = rs.getString(LOCATION_ID);
         if (Objects.nonNull(id)) {
           String key = String.format(KEY_TEMPLATE, schema, id);
           String code = locConv.containsKey(key) ? locConv.get(key) : rs.getString(LOCATION_CODE);
-          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
+          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code))
+              .findFirst();
           if (location.isPresent()) {
             idToUuid.put(key, location.get().getId());
           }
@@ -503,24 +595,175 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     return idToUuid;
   }
 
+  private List<ItemStatus> getItemStatuses(Statement statement, Map<String, Object> context,
+      Map<String, String> itemStatusMap, Map<String, String> statusNameMap) throws SQLException {
+    try (ResultSet resultSet = getResultSet(statement, context)) {
+      List<ItemStatus> statuses = new ArrayList<>();
+      while (resultSet.next()) {
+        String itemStatus = statusNameMap.get(resultSet.getString(ITEM_STATUS));
+        String itemStatusDate = resultSet.getString(ITEM_STATUS_DATE);
+        String circtrans = resultSet.getString(CIRCTRANS);
+        String itemStatusDesc = itemStatusMap.get(resultSet.getString(ITEM_STATUS_DESC));
+
+        ItemStatus status = new ItemStatus(itemStatus, itemStatusDate, circtrans, itemStatusDesc);
+        statuses.add(status);
+      }
+      ItemStatusComparator comparator = new ItemStatusComparator();
+      Collections.sort(statuses, comparator);
+      return statuses;
+    }
+  }
+
+  private ItemNoteWrapper getNotes(Statement statement, Map<String, Object> context, String itemNoteTypeId)
+      throws SQLException {
+    try (ResultSet resultSet = getResultSet(statement, context)) {
+      List<Note__1> notes = new ArrayList<>();
+      List<CirculationNote> circulationNotes = new ArrayList<>();
+      while (resultSet.next()) {
+        String itemNote = resultSet.getString(ITEM_NOTE);
+        String itemNoteType = resultSet.getString(ITEM_NOTE_TYPE);
+        itemNote = StringUtils.chomp(itemNote);
+        itemNote = StringUtils.normalizeSpace(itemNote);
+        itemNote.replaceAll("[^\\p{ASCII}]", "");
+        itemNote = itemNote.replaceAll("[\\p{Cntrl}&&[^\r\n\t]]", "");
+        itemNote = itemNote.replaceAll("\\p{C}", "");
+
+        if (itemNoteType.equals("1")) {
+          Note__1 note = new Note__1();
+          note.setNote(itemNote);
+          note.setItemNoteTypeId(itemNoteTypeId);
+          note.setStaffOnly(true);
+          notes.add(note);
+        } else {
+          CirculationNote circulationNote = new CirculationNote();
+          circulationNote.setNote(itemNote);
+          circulationNote.setStaffOnly(true);
+          if (itemNoteType.equals("2")) {
+            circulationNote.setNoteType(NoteType.CHECK_OUT);
+            circulationNotes.add(circulationNote);
+          } else if (itemNoteType.equals("3")) {
+            circulationNote.setNoteType(NoteType.CHECK_IN);
+            circulationNotes.add(circulationNote);
+          }
+        }
+
+      }
+      return new ItemNoteWrapper(notes, circulationNotes);
+    }
+  }
+
+  private String getMaterialTypeId(Statement statement, Map<String, Object> context, String defaultMaterialTypeId, Materialtypes materialtypes) throws SQLException {
+    try (ResultSet resultSet = getResultSet(statement, context)) {
+      String materialType = defaultMaterialTypeId;
+      while (resultSet.next()) {
+        String materialTypeCode = resultSet.getString(MTYPE_CODE);
+        Optional<Materialtype> potentialMaterialType = materialtypes.getMtypes().stream()
+          .filter(mt -> mt.getSource().equals(materialTypeCode))
+          .findFirst();
+
+          if (potentialMaterialType.isPresent()) {
+            materialType = potentialMaterialType.get().getId();
+          }
+      }
+      return materialType;
+    }
+  }
+
   public class MfhdItem {
 
+    private final String caption;
     private final String chron;
     private final String itemEnum;
+    private final String freetext;
+    private final String year;
 
-    public MfhdItem(String chron, String itemEnum) {
-        this.chron = chron;
-        this.itemEnum = itemEnum;
+    public MfhdItem(String caption, String chron, String itemEnum, String freetext, String year) {
+      this.caption = caption;
+      this.chron = chron;
+      this.itemEnum = itemEnum;
+      this.freetext = freetext;
+      this.year = year;
+    }
+
+    public String getCaption() {
+      return caption;
     }
 
     public String getChron() {
-        return chron;
+      return chron;
     }
 
     public String getItemEnum() {
-        return itemEnum;
+      return itemEnum;
     }
 
+    public String getFreetext() {
+      return freetext;
+    }
+
+    public String getYear() {
+      return year;
+    }
+
+  }
+
+  public class ItemStatus {
+
+    private final String itemStatus;
+    private final String itemStatusDate;
+    private final String circtrans;
+    private final String itemStatusDesc;
+
+    public ItemStatus(String itemStatus, String itemStatusDate, String circtrans, String itemStatusDesc) {
+      this.itemStatus = itemStatus;
+      this.itemStatusDate = itemStatusDate;
+      this.circtrans = circtrans;
+      this.itemStatusDesc = itemStatusDesc;
+    }
+
+    public String getItemStatus() {
+      return itemStatus;
+    }
+
+    public String getItemStatusDate() {
+      return itemStatusDate;
+    }
+
+    public String getCirctrans() {
+      return circtrans;
+    }
+
+    public String getItemStatusDesc() {
+      return itemStatusDesc;
+    }
+  }
+
+  private class ItemStatusComparator implements Comparator<ItemStatus> {
+
+    @Override
+    public int compare(ItemStatus is1, ItemStatus is2) {
+      return Integer.parseInt(is1.getItemStatusDesc()) - Integer.parseInt(is2.getItemStatusDesc());
+    }
+
+  }
+
+  public class ItemNoteWrapper {
+
+    private final List<Note__1> notes;
+    private final List<CirculationNote> circulationNotes;
+
+    public ItemNoteWrapper(List<Note__1> notes, List<CirculationNote> circulationNotes) {
+      this.notes = notes;
+      this.circulationNotes = circulationNotes;
+    }
+
+    public List<CirculationNote> getCirculationNotes() {
+      return circulationNotes;
+    }
+
+    public List<Note__1> getNotes() {
+      return notes;
+    }
   }
 
 }

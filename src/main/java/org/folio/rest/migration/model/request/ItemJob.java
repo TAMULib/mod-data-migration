@@ -10,7 +10,13 @@ public class ItemJob extends AbstractJob {
   private String userId;
 
   @NotNull
-  private String materialTypeId;
+  private String defaultMaterialTypeId;
+
+  @NotNull
+  private String itemNoteTypeId;
+
+  @NotNull
+  private String itemDamagedStatusId;
 
   private Map<String, String> references;
 
@@ -22,12 +28,28 @@ public class ItemJob extends AbstractJob {
     this.userId = userId;
   }
 
-  public String getMaterialTypeId() {
-    return materialTypeId;
+  public String getDefaultMaterialTypeId() {
+    return defaultMaterialTypeId;
   }
 
-  public void setMaterialTypeId(String materialTypeId) {
-    this.materialTypeId = materialTypeId;
+  public void setDefaultMaterialTypeId(String defaultMaterialTypeId) {
+    this.defaultMaterialTypeId = defaultMaterialTypeId;
+  }
+
+  public String getItemNoteTypeId() {
+    return itemNoteTypeId;
+  }
+
+  public void setItemNoteTypeId(String itemNoteTypeId) {
+    this.itemNoteTypeId = itemNoteTypeId;
+  }
+
+  public String getItemDamagedStatusId() {
+    return itemDamagedStatusId;
+  }
+
+  public void setItemDamagedStatusId(String itemDamagedStatusId) {
+    this.itemDamagedStatusId = itemDamagedStatusId;
   }
 
   public Map<String, String> getReferences() {

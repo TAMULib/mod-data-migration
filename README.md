@@ -356,11 +356,14 @@ POST to http://localhost:9000/migrate/items
 {
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.item",
-    "pageSql": "SELECT item_id, item_type_id, perm_location, pieces, temp_location, temp_item_type_id FROM ${SCHEMA}.item ORDER BY item_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
-    "mfhdSql": "SELECT chron, item_enum FROM ${SCHEMA}.mfhd_item WHERE item_id = ${ITEM_ID}",
+    "pageSql": "SELECT item_id, copy_number, item_type_id, perm_location, pieces, price, spine_label temp_location, temp_item_type_id, magnetic_media, sensitize FROM ${SCHEMA}.item ORDER BY item_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "mfhdSql": "SELECT caption, chron, item_enum, freetext, year FROM ${SCHEMA}.mfhd_item WHERE item_id = ${ITEM_ID}",
     "barcodeSql": "SELECT item_barcode FROM ${SCHEMA}.item_barcode WHERE item_id = ${ITEM_ID}",
     "itemTypeSql": "SELECT item_type_id, item_type_code FROM ${SCHEMA}.item_type",
     "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
+    "itemStatusSql": "SELECT 	item_status, TO_CHAR(cast(item_status_date AS timestamp) AT time ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS item_status_date, ct.circ_transaction_id AS circtrans, item_status_desc FROM ${SCHEMA}.item_status istat, ${SCHEMA}.item_status_type itype, ${SCHEMA}.circ_transactions ct WHERE istat.item_id = ${ITEM_ID} AND istat.item_status = itype.item_status_type AND istat.item_id = ct.item_id(+)",
+    "noteSql": "SELECT item_note, item_note_type FROM ${SCHEMA}.item_note WHERE item_note.item_id = ${ITEM_ID}",
+    "materialTypeSql": "SELECT	lower(normal_heading) AS mtype_code FROM ${SCHEMA}.bib_index bi, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.mfhd_item mi WHERE bi.bib_id = bm.bib_id AND bm.mfhd_id = mi.mfhd_id AND index_code = '338B' AND mi.item_id = ${ITEM_ID}",
     "database": {
       "url": "",
       "username": "",
@@ -376,7 +379,9 @@ POST to http://localhost:9000/migrate/items
       "schema": "AMDB",
       "partitions": 48,
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
-      "materialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25",
+      "defaultMaterialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25",
+      "itemNoteTypeId": "8d0a5eca-25de-4391-81a9-236eeefdd20b",
+      "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
       "references": {
         "itemTypeId": "53e72510-dc82-4caa-a272-1522cca70bc2",
         "itemToHoldingTypeId": "39670cf7-de23-4473-b5e3-abf6d79735e1"
@@ -386,7 +391,9 @@ POST to http://localhost:9000/migrate/items
       "schema": "MSDB",
       "partitions": 4,
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
-      "materialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25",
+      "defaultMaterialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25",
+      "itemNoteTypeId": "8d0a5eca-25de-4391-81a9-236eeefdd20b",
+      "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
       "references": {
         "itemTypeId": "0014559d-39f6-45c7-9406-03643459aaf0",
         "itemToHoldingTypeId": "492fea54-399a-4822-8d4b-242096c2ab12"
@@ -465,6 +472,48 @@ POST to http://localhost:9000/migrate/items
       "HSCtablet": "tablet",
       "7day": "7_day",
       "4hour": "4_hour"
+    },
+    "itemStatus": {
+      "Charged": "01",
+      "Renewed": "02",
+      "Overdue": "03",
+      "Recall Request": "04",
+      "Hold Request": "05",
+      "On Hold": "06",
+      "Missing": "07",
+      "Lost--Library Applied": "08",
+      "Lost--System Applied": "09",
+      "In Transit": "10",
+      "In Transit Discharged": "11",
+      "In Transit On Hold": "12",
+      "Withdrawn": "13",
+      "Claims Returned": "16",
+      "Damaged": "17",
+      "At Bindery": "18",
+      "Cataloging Review": "19",
+      "Circulation Review": "20",
+      "Scheduled": "21",
+      "In Process": "22",
+      "Call Slip Request": "23",
+      "Short Loan Request": "24",
+      "Remote Storage Request": "25"
+    },
+    "statusName": {
+     "1": "Available",
+     "2": "Available",
+     "3": "Available",
+     "4": "Available",
+     "7": "Awaiting pickup",
+     "8": "In transit",
+     "9": "In transit",
+     "10": "In transit",
+     "11": "Available",
+     "12": "Missing",
+     "13": "Declared lost",
+     "14": "Declared lost",
+     "15": "Claimed returned",
+     "17": "Missing",
+     "22": "In process"
     }
   },
   "defaults": {
