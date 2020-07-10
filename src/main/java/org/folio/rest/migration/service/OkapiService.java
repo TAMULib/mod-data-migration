@@ -21,6 +21,7 @@ import org.folio.Issuancemodes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
 import org.folio.rest.jaxrs.model.Loantypes;
 import org.folio.rest.jaxrs.model.Locations;
+import org.folio.rest.jaxrs.model.Materialtypes;
 import org.folio.rest.jaxrs.model.Statisticalcodes;
 import org.folio.rest.jaxrs.model.Usergroups;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
@@ -124,6 +125,18 @@ public class OkapiService {
       return response.getBody();
     }
     throw new RuntimeException("Failed to fetch statistical codes: " + response.getStatusCodeValue());
+  }
+
+  public Materialtypes fetchMaterialtypes(String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/material-types?limit=999";
+    ResponseEntity<Materialtypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Materialtypes.class);
+    log.debug("fetch material types: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to fetch material types: " + response.getStatusCodeValue());
   }
 
   public JobProfile getOrCreateJobProfile(String tenant, String token, JobProfile jobProfile) {

@@ -1,46 +1,99 @@
 package org.folio.rest.migration.model;
 
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import org.folio.rest.jaxrs.model.CirculationNote;
 import org.folio.rest.jaxrs.model.Item;
+import org.folio.rest.jaxrs.model.Materialtypes;
+import org.folio.rest.jaxrs.model.Note__1;
+import org.folio.rest.jaxrs.model.Statisticalcode;
+import org.folio.rest.jaxrs.model.Statisticalcodes;
 import org.folio.rest.jaxrs.model.Status;
 import org.folio.rest.jaxrs.model.Status.Name;
+import org.folio.rest.migration.ItemMigration.ItemStatus;
 
 public class ItemRecord {
 
   private final String itemId;
   private final String barcode;
 
+  private final String caption;
   private final String enumeration;
   private final String chronology;
+  private final String freetext;
+  private final String year;
 
   private final int numberOfPieces;
+  private final String spineLabel;
   private final String materialTypeId;
+  private final String itemNoteTypeId;
+  private final String itemDamagedStatusId;
 
-  private Status status;
+  private final List<Note__1> itemNotes;
+  private final List<CirculationNote> circulationNotes;
+
+  private List<ItemStatus> statuses;
 
   private String permanentLoanTypeId;
   private String temporaryLoanTypeId;
 
   private String permanentLocationId;
   private String temporaryLocationId;
-  
+
   private String id;
   private String holdingId;
 
   private String createdByUserId;
   private Date createdDate;
 
-  public ItemRecord(String itemId, String barcode, String enumeration, String chronology, int numberOfPieces, String materialTypeId) {
+  public ItemRecord(String itemId, String barcode, String caption, String enumeration, String chronology,
+      String freetext, String year, int numberOfPieces, String spineLabel, String materialTypeId, String itemNoteTypeId,
+      String itemDamagedStatusId, List<ItemStatus> statuses, List<Note__1> itemNotes,
+      List<CirculationNote> circulationNotes) {
     this.itemId = itemId;
     this.barcode = barcode;
+    this.caption = caption;
     this.enumeration = enumeration;
     this.chronology = chronology;
+    this.freetext = freetext;
+    this.year = year;
     this.numberOfPieces = numberOfPieces;
+    this.spineLabel = spineLabel;
     this.materialTypeId = materialTypeId;
+    this.itemNoteTypeId = itemNoteTypeId;
+    this.itemDamagedStatusId = itemDamagedStatusId;
+    this.statuses = statuses;
+    this.itemNotes = itemNotes;
+    this.circulationNotes = circulationNotes;
+  }
+
+  public String getItemDamagedStatusId() {
+    return itemDamagedStatusId;
+  }
+
+  public String getSpineLabel() {
+    return spineLabel;
+  }
+
+  public String getYear() {
+    return year;
+  }
+
+  public String getFreetext() {
+    return freetext;
+  }
+
+  public String getCaption() {
+    return caption;
   }
 
   public String getItemId() {
@@ -67,12 +120,12 @@ public class ItemRecord {
     return materialTypeId;
   }
 
-  public Status getStatus() {
-    return status;
+  public List<ItemStatus> getStatuses() {
+    return statuses;
   }
 
-  public void setStatus(Status status) {
-    this.status = status;
+  public void setStatuses(List<ItemStatus> statuses) {
+    this.statuses = statuses;
   }
 
   public String getPermanentLoanTypeId() {
@@ -139,7 +192,7 @@ public class ItemRecord {
     this.createdDate = createdDate;
   }
 
-  public Item toItem(String hridPrefix, int hrid) {
+  public Item toItem(String hridPrefix, int hrid, Statisticalcodes statisticalcodes, Materialtypes materilatypes) {
     final Item item = new Item();
     item.setId(id);
     item.setHoldingsRecordId(holdingId);
@@ -147,50 +200,77 @@ public class ItemRecord {
     if (Objects.nonNull(temporaryLoanTypeId)) {
       item.setTemporaryLoanTypeId(temporaryLoanTypeId);
     }
+    // TODO: Check with script
     item.setMaterialTypeId(materialTypeId);
     item.setPermanentLocationId(permanentLocationId);
     if (Objects.nonNull(temporaryLocationId)) {
       item.setTemporaryLocationId(temporaryLocationId);
     }
-    // item.setEffectiveLocationId(null);
 
-    // TODO: get year caption
-    // item.setYearCaption(null);
+    Set<String> yearCaption = new HashSet<>();
+    yearCaption.add(caption);
+    yearCaption.add(spineLabel);
+    item.setYearCaption(yearCaption);
 
-    // TODO: get volume
-    // item.setVolume(null);
+    item.setVolume(year);
 
-    // TODO: get item damaged status id
-    // item.setItemDamagedStatusId(null);
+    item.setCirculationNotes(circulationNotes);
 
-    // TODO: get suppress from discovery
-    // item.setDiscoverySuppress(null);
-
-    // TODO: get statistical code ids
-    // item.setStatisticalCodeIds(null);
-
-    // TODO: get circulation notes
-    // item.setCirculationNotes(null);
-
-    // TODO: get notes
-    // item.setNotes(null);
-
-    // TODO: go over extract_item_voyager.pl
+    List<Note__1> notes = new ArrayList<>();
+    Note__1 note = new Note__1();
+    note.setNote(freetext);
+    note.setStaffOnly(true);
+    note.setItemNoteTypeId(itemNoteTypeId);
+    notes.add(note);
+    notes.addAll(itemNotes);
+    item.setNotes(notes);
 
     item.setBarcode(barcode);
     item.setChronology(chronology);
     item.setNumberOfPieces(String.valueOf(numberOfPieces));
     item.setEnumeration(enumeration);
 
-    // TODO: get appropriate status
-    Status status = new Status();
-    status.setName(Name.AVAILABLE);
+    List<Status> processedStatuses = new ArrayList<>();
+    statuses.stream().forEach(s -> {
+      Status status = new Status();
+      if (isNotEmpty(s.getCirctrans())) {
+        status.setName(Name.AVAILABLE);
+      } else if (isNotEmpty(s.getItemStatus())) {
+        Name name = Name.fromValue(s.getItemStatus());
+        status.setName(name);
+      } else {
+        status.setName(Name.AVAILABLE);
+      }
 
-    // TODO: get status date
-    // status.setDate(null);
+      if (isNotEmpty(s.getItemStatusDate())) {
+        Date date = Date.from(Instant.parse(s.getItemStatusDate()));
+        status.setDate(date);
+      }
+      processedStatuses.add(status);
+    });
 
-    item.setStatus(status);
+    item.setStatus(processedStatuses.get(0));
 
+    boolean supress = false;
+    Set<String> statisticalCodeIds = new HashSet<>();
+    for (ItemStatus s : statuses) {
+      if (s.getItemStatus().toLowerCase().contains("damaged")) {
+        item.setItemDamagedStatusId(itemDamagedStatusId);
+      } else {
+        Optional<Statisticalcode> potentialStatisticalcode = statisticalcodes.getStatisticalCodes().stream()
+          .filter(sc -> sc.getCode().equals(s.getItemStatus()))
+          .findFirst();
+        if (potentialStatisticalcode.isPresent()) {
+          statisticalCodeIds.add(potentialStatisticalcode.get().getId());
+        }
+      }
+
+      if (s.getItemStatus().contains("Missing") || s.getItemStatus().contains("Lost") || s.getItemStatus().contains("Withdrawn")) {
+        supress = true;
+      }
+    }
+    item.setDiscoverySuppress(supress);
+    item.setStatisticalCodeIds(statisticalCodeIds);
     item.setHrid(String.format("%s%011d", hridPrefix, hrid));
 
     Set<String> formerIds = new HashSet<>();
@@ -201,6 +281,9 @@ public class ItemRecord {
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
     item.setMetadata(metadata);
+
+    item.setMaterialTypeId(materialTypeId);
+
     return item;
   }
 
