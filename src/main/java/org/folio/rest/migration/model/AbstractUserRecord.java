@@ -1,7 +1,7 @@
 package org.folio.rest.migration.model;
 
-import org.folio.rest.migration.model.request.UserDefaults;
-import org.folio.rest.migration.model.request.UserMaps;
+import org.folio.rest.migration.model.request.user.UserDefaults;
+import org.folio.rest.migration.model.request.user.UserMaps;
 
 public abstract class AbstractUserRecord {
 

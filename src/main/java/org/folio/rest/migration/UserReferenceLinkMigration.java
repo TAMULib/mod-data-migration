@@ -14,8 +14,8 @@ import java.util.concurrent.CompletableFuture;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.folio.rest.migration.config.model.Database;
-import org.folio.rest.migration.model.request.UserReferenceLinkContext;
-import org.folio.rest.migration.model.request.UserReferenceLinkJob;
+import org.folio.rest.migration.model.request.user.UserReferenceLinkContext;
+import org.folio.rest.migration.model.request.user.UserReferenceLinkJob;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.postgresql.copy.PGCopyOutputStream;
