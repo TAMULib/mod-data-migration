@@ -92,7 +92,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String MTYPE_CODE = "MTYPE_CODE";
 
   // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
-  private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,materialtypeid,permanentlocationid) FROM STDIN";
+  private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid) FROM STDIN WITH NULL AS 'null'";
 
   private ItemMigration(ItemContext context, String tenant) {
     super(context, tenant);
@@ -103,6 +103,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     log.info("tenant: {}", tenant);
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
+
+    log.info("available processors: {}", Runtime.getRuntime().availableProcessors());
 
     String token = migrationService.okapiService.getToken(tenant);
 
@@ -378,11 +380,19 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
             String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(item)));
 
-            // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
-            itemWriter.println(String.join("\t", item.getId(), iUtf8Json, createdAt, createdByUserId,
-                item.getHoldingsRecordId(), item.getPermanentLoanTypeId(), item.getTemporaryLoanTypeId(),
-                item.getMaterialTypeId(), item.getPermanentLocationId(), item.getTemporaryLocationId(),
-                item.getEffectiveLocationId()
+            // // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
+            itemWriter.println(String.join("\t",
+              item.getId(),
+              iUtf8Json,
+              createdAt,
+              createdByUserId,
+              item.getHoldingsRecordId(),
+              item.getPermanentLoanTypeId(),
+              Objects.nonNull(item.getTemporaryLoanTypeId()) ? item.getTemporaryLoanTypeId() : NULL,
+              item.getMaterialTypeId(),
+              item.getPermanentLocationId(),
+              Objects.nonNull(item.getTemporaryLocationId()) ? item.getTemporaryLocationId() : NULL,
+              Objects.nonNull(item.getEffectiveLocationId()) ? item.getEffectiveLocationId() : NULL
             ));
 
             hrid++;

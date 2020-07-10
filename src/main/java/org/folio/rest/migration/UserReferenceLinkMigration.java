@@ -30,7 +30,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
   private static final String USER_EXTERNAL_REFERENCE_ID = "userExternalTypeId";
 
   // (id,external_reference,folioreference,type_id)
-  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,external_reference,folio_reference,type_id) FROM STDIN";
+  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,external_reference,folio_reference,type_id) FROM STDIN WITH NULL AS 'null'";
 
   private UserReferenceLinkMigration(UserReferenceLinkContext context, String tenant) {
     super(context, tenant);
@@ -138,11 +138,10 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
           String userId = pageResultSet.getString(USER_ID);
           String userExternalId = pageResultSet.getString(USER_EXTERNAL_ID);
           String userRLId = UUID.randomUUID().toString();
-          String userFolioReference = UUID.randomUUID().toString();
           String userExternalRLId = UUID.randomUUID().toString();
-          String userExternalFolioReference = UUID.randomUUID().toString();
+          String userFolioReference = UUID.randomUUID().toString();
           referenceLinkWriter.println(String.join("\t", userRLId, userId, userFolioReference, userRLTypeId));
-          referenceLinkWriter.println(String.join("\t", userExternalRLId, userExternalId, userExternalFolioReference, userExternalRLTypeId));
+          referenceLinkWriter.println(String.join("\t", userExternalRLId, userExternalId, userFolioReference, userExternalRLTypeId));
         }
       } catch (SQLException e) {
         e.printStackTrace();

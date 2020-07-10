@@ -23,6 +23,7 @@ import org.folio.rest.jaxrs.model.Loantypes;
 import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.jaxrs.model.Materialtypes;
 import org.folio.rest.jaxrs.model.Statisticalcodes;
+import org.folio.rest.jaxrs.model.Usergroups;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRsDto;
 import org.folio.rest.jaxrs.model.dto.JobExecution;
@@ -74,6 +75,18 @@ public class OkapiService {
       return response.getHeaders().getFirst("X-Okapi-Token");
     }
     throw new RuntimeException("Failed to login: " + response.getStatusCodeValue());
+  }
+
+  public Usergroups fetchUsergroups(String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/groups?limit=9999";
+    ResponseEntity<Usergroups> response = restTemplate.exchange(url, HttpMethod.GET, entity, Usergroups.class);
+    log.debug("fetch user groups: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to fetch user groups: " + response.getStatusCodeValue());
   }
 
   // TODO: get JsonSchema for mapping-rules

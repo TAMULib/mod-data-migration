@@ -20,6 +20,9 @@ public class HoldingMaps {
   private Map<String, String> holdingsType;
 
   @NotNull
+  private Map<String, String> holdingsNotesType;
+
+  @NotNull
   private Map<String, String> receiptStatus;
 
   @NotNull
@@ -30,6 +33,7 @@ public class HoldingMaps {
     acqMethod = new HashMap<String, String>();
     callNumberType = new HashMap<String, String>();
     holdingsType = new HashMap<String, String>();
+    holdingsNotesType = new HashMap<String, String>();
     receiptStatus = new HashMap<String, String>();
     retentionPolicy = new HashMap<String, String>();
   }
@@ -64,6 +68,14 @@ public class HoldingMaps {
 
   public void setHoldingsType(Map<String, String> holdingsType) {
     this.holdingsType = holdingsType;
+  }
+
+  public Map<String, String> getHoldingsNotesType() {
+    return holdingsNotesType;
+  }
+
+  public void setHoldingsNotesType(Map<String, String> holdingsNotesType) {
+    this.holdingsNotesType = holdingsNotesType;
   }
 
   public Map<String, String> getReceiptStatus() {

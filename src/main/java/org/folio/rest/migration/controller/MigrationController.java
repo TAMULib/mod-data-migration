@@ -4,6 +4,7 @@ import org.folio.rest.migration.BibMigration;
 import org.folio.rest.migration.HoldingMigration;
 import org.folio.rest.migration.InventoryReferenceLinkMigration;
 import org.folio.rest.migration.ItemMigration;
+import org.folio.rest.migration.UserMigration;
 import org.folio.rest.migration.UserReferenceLinkMigration;
 import org.folio.rest.migration.VendorMigration;
 import org.folio.rest.migration.VendorReferenceLinkMigration;
@@ -12,6 +13,7 @@ import org.folio.rest.migration.model.request.BibContext;
 import org.folio.rest.migration.model.request.HoldingContext;
 import org.folio.rest.migration.model.request.InventoryReferenceLinkContext;
 import org.folio.rest.migration.model.request.ItemContext;
+import org.folio.rest.migration.model.request.UserContext;
 import org.folio.rest.migration.model.request.UserReferenceLinkContext;
 import org.folio.rest.migration.model.request.VendorContext;
 import org.folio.rest.migration.model.request.VendorReferenceLinkContext;
@@ -36,10 +38,20 @@ public class MigrationController {
     migrationService.migrate(UserReferenceLinkMigration.with(context, tenant));
   }
 
+  @PostMapping("/users")
+  public void users(@RequestBody UserContext context, @TenantHeader String tenant) {
+    migrationService.migrate(UserMigration.with(context, tenant));
+  }
+
   @PostMapping("/vendor-reference-links")
   @CreateReferenceLinkTypes(path = "classpath:/referenceLinkTypes/vendors/*.json")
   public void vendorReferenceLinks(@RequestBody VendorReferenceLinkContext context, @TenantHeader String tenant) {
     migrationService.migrate(VendorReferenceLinkMigration.with(context, tenant));
+  }
+
+  @PostMapping("/vendors")
+  public void vendors(@RequestBody VendorContext context, @TenantHeader String tenant) {
+    migrationService.migrate(VendorMigration.with(context, tenant));
   }
 
   @PostMapping("/inventory-reference-links")
@@ -61,11 +73,6 @@ public class MigrationController {
   @PostMapping("/items")
   public void items(@RequestBody ItemContext context, @TenantHeader String tenant) {
     migrationService.migrate(ItemMigration.with(context, tenant));
-  }
-
-  @PostMapping("/vendors")
-  public void vendors(@RequestBody VendorContext context, @TenantHeader String tenant) {
-    migrationService.migrate(VendorMigration.with(context, tenant));
   }
 
 }
