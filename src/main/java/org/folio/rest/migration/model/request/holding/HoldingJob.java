@@ -1,9 +1,11 @@
-package org.folio.rest.migration.model.request;
+package org.folio.rest.migration.model.request.holding;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.constraints.NotNull;
+
+import org.folio.rest.migration.model.request.AbstractJob;
 
 public class HoldingJob extends AbstractJob {
 

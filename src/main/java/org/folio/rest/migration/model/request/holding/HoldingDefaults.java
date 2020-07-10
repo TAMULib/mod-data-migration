@@ -1,4 +1,4 @@
-package org.folio.rest.migration.model.request;
+package org.folio.rest.migration.model.request.holding;
 
 public class HoldingDefaults {
 

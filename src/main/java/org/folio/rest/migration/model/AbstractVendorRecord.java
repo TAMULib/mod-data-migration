@@ -1,7 +1,7 @@
 package org.folio.rest.migration.model;
 
-import org.folio.rest.migration.model.request.VendorDefaults;
-import org.folio.rest.migration.model.request.VendorMaps;
+import org.folio.rest.migration.model.request.vendor.VendorDefaults;
+import org.folio.rest.migration.model.request.vendor.VendorMaps;
 
 public abstract class AbstractVendorRecord {
 

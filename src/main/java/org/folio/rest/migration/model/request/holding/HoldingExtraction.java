@@ -1,6 +1,8 @@
-package org.folio.rest.migration.model.request;
+package org.folio.rest.migration.model.request.holding;
 
 import javax.validation.constraints.NotNull;
+
+import org.folio.rest.migration.model.request.AbstractExtraction;
 
 public class HoldingExtraction extends AbstractExtraction {
 

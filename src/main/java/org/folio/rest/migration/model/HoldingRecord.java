@@ -15,7 +15,7 @@ import org.folio.rest.jaxrs.model.HoldingsStatementsForSupplement;
 import org.folio.rest.jaxrs.model.Holdingsrecord;
 import org.folio.rest.jaxrs.model.Note;
 import org.folio.rest.migration.mapping.HoldingMapper;
-import org.folio.rest.migration.model.request.HoldingMaps;
+import org.folio.rest.migration.model.request.holding.HoldingMaps;
 import org.marc4j.marc.DataField;
 import org.marc4j.marc.Record;
 import org.marc4j.marc.VariableField;

@@ -1,4 +1,4 @@
-package org.folio.rest.migration.model.request;
+package org.folio.rest.migration.model.request.item;
 
 import java.util.HashMap;
 import java.util.Map;

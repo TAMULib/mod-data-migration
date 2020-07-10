@@ -1,8 +1,9 @@
-package org.folio.rest.migration.model.request;
+package org.folio.rest.migration.model.request.user;
 
 import javax.validation.constraints.NotNull;
 
 import org.folio.rest.migration.config.model.Database;
+import org.folio.rest.migration.model.request.AbstractExtraction;
 
 public class UserExtraction extends AbstractExtraction {
 

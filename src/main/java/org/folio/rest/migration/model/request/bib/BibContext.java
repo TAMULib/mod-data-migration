@@ -1,8 +1,10 @@
-package org.folio.rest.migration.model.request;
+package org.folio.rest.migration.model.request.bib;
 
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
+
+import org.folio.rest.migration.model.request.AbstractContext;
 
 public class BibContext extends AbstractContext {
 

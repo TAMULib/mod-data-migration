@@ -1,6 +1,8 @@
-package org.folio.rest.migration.model.request;
+package org.folio.rest.migration.model.request.item;
 
 import javax.validation.constraints.NotNull;
+
+import org.folio.rest.migration.model.request.AbstractExtraction;
 
 public class ItemExtraction extends AbstractExtraction {
 
