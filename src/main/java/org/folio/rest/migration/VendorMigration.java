@@ -79,7 +79,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
   private static final String PHONE_NUMBER = "PHONE_NUMBER";
   private static final String PHONE_TYPE = "PHONE_TYPE";
 
-  private static final String NOTE_NOTE = "NOTE";
+  private static final String NOTE = "NOTE";
 
   private static final String MAPS = "MAPS";
   private static final String DEFAULTS = "DEFAULTS";
@@ -452,7 +452,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
     StringBuilder vendorNotes = new StringBuilder();
     try (ResultSet resultSet = getResultSet(statement, vendorNotesContext)) {
       while (resultSet.next()) {
-        String note = resultSet.getString(NOTE_NOTE);
+        String note = resultSet.getString(NOTE);
         if (StringUtils.isNoneEmpty(note)) {
           if (vendorNotes.length() > 0) {
             vendorNotes.append(StringUtils.SPACE);
