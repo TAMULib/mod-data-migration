@@ -221,8 +221,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
           String smsNumber = pageResultSet.getString(SMS_NUMBER);
           String currentCharges = pageResultSet.getString(CURRENT_CHARGES);
 
-          // log.info("{} {} row started", schema, index);
-
           Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
           if (!userRL.isPresent()) {
             log.error("{} no user id found for patron id {}", schema, patronId);
@@ -238,8 +236,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           String referenceId = userRL.get().getFolioReference().toString();
 
-          // log.info("{} {} got reference link", schema, index);
-
           UserRecord userRecord = new UserRecord(referenceId, patronId, externalSystemId, lastName, firstName, middleName, activeDate, expireDate, smsNumber, currentCharges);
           userRecord.setMaps(maps);
           userRecord.setDefaults(defaults);
@@ -248,8 +244,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
           usernameContext.put(EXTERNAL_SYSTEM_ID, externalSystemId);
           addressContext.put(PATRON_ID, patronId);
           patronGroupContext.put(PATRON_ID, patronId);
-
-          // log.info("{} {} created user record", schema, index);
 
           String username = getUsername(usernameStatement, usernameContext);
 
@@ -260,13 +254,9 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           userRecord.setUsername(username);
 
-          // log.info("{} {} got username", schema, index);
-
           List<UserAddressRecord> userAddressRecords = getUserAddressRecords(addressStatement, addressContext);
 
           userRecord.setUserAddressRecords(userAddressRecords);
-
-          // log.info("{} {} got addresses", schema, index);
 
           PatronCodes patronCodes = getPatronCodes(patronGroupStatement, patronGroupContext);
 
@@ -274,8 +264,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
             log.warn("{} ignoring patron id {} barcode {}", schema, patronId, patronCodes.getBarcode());
             continue;
           }
-
-          // log.info("{} {} got patron codes", schema, index);
 
           Map<String, String> patronGroupMap = maps.getPatronGroup();
 
@@ -293,16 +281,12 @@ public class UserMigration extends AbstractMigration<UserContext> {
             continue;
           }
 
-          // log.info("{} {} got patron group", schema, index);
-
           Userdata userdata = userRecord.toUserdata(patronGroup.get());
 
           Date createdDate = new Date();
 
           String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
           String createdByUserId = job.getUserId();
-
-          // log.info("{} {} ready to write", schema, index);
 
           try {
             String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userdata)));
@@ -311,8 +295,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
           } catch (JsonProcessingException e) {
             log.error("{} user id {} error serializing user", schema, userRecord.getPatronId());
           }
-
-          // log.info("{} {} row done", schema, index);
         }
 
       } catch (SQLException e) {
