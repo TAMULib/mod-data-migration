@@ -68,11 +68,12 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   private static final String MAPS = "MAPS";
   private static final String DEFAULTS = "DEFAULTS";
-  private static final String JOIN_FROM = "JOIN_FROM";
-  private static final String JOIN_WHERE = "JOIN_WHERE";
   private static final String DECODE = "DECODE";
 
   private static final String USER_REFERENCE_ID = "userTypeId";
+
+  private static final String IGNORE_BARCODES = "barcodes";
+  private static final String IGNORE_USERNAMES = "usernames";
 
   // (id,jsonb,creation_date,created_by,patrongroup)
   private static final String USERS_COPY_SQL = "COPY %s_mod_users.users (id,jsonb,creation_date,created_by,patrongroup) FROM STDIN";
@@ -113,8 +114,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
     for (UserJob job : context.getJobs()) {
 
       countContext.put(SCHEMA, job.getSchema());
-      countContext.put(JOIN_FROM, job.getJoinFromSql());
-      countContext.put(JOIN_WHERE, job.getJoinWhereSql());
 
       int count = getCount(voyagerSettings, countContext);
 
@@ -135,8 +134,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
         partitionContext.put(USER_GROUPS, usergroups);
         partitionContext.put(MAPS, context.getMaps());
         partitionContext.put(DEFAULTS, context.getDefaults());
-        partitionContext.put(JOIN_FROM, job.getJoinFromSql());
-        partitionContext.put(JOIN_WHERE, job.getJoinWhereSql());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new UserPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -202,8 +199,9 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, usernameSettings, folioSettings);
 
-      try (
-        PrintWriter userRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getUserConnection(), String.format(USERS_COPY_SQL, tenant)), true);
+      try {
+        PGCopyOutputStream userRecordOutput = new PGCopyOutputStream(threadConnections.getUserConnection(), String.format(USERS_COPY_SQL, tenant));
+        PrintWriter userRecordWriter = new PrintWriter(userRecordOutput, true);
 
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement usernameStatement = threadConnections.getUsernameConnection().createStatement();
@@ -211,7 +209,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
         Statement patronGroupStatement = threadConnections.getPatronGroupConnection().createStatement();
 
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
-      ) {
 
         while (pageResultSet.next()) {
           String patronId = pageResultSet.getString(PATRON_ID);
@@ -224,13 +221,24 @@ public class UserMigration extends AbstractMigration<UserContext> {
           String smsNumber = pageResultSet.getString(SMS_NUMBER);
           String currentCharges = pageResultSet.getString(CURRENT_CHARGES);
 
+          // log.info("{} {} row started", schema, index);
+
           Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
           if (!userRL.isPresent()) {
             log.error("{} no user id found for patron id {}", schema, patronId);
             continue;
           }
 
+          if (!externalSystemId.equals(String.format("%s_%s", job.getSchema(), patronId))) {
+            Long countByExternalSystemId = migrationService.referenceLinkRepo.countByExternalReference(externalSystemId);
+            if (countByExternalSystemId > 1) {
+              continue;
+            }
+          }
+
           String referenceId = userRL.get().getFolioReference().toString();
+
+          // log.info("{} {} got reference link", schema, index);
 
           UserRecord userRecord = new UserRecord(referenceId, patronId, externalSystemId, lastName, firstName, middleName, activeDate, expireDate, smsNumber, currentCharges);
           userRecord.setMaps(maps);
@@ -241,20 +249,38 @@ public class UserMigration extends AbstractMigration<UserContext> {
           addressContext.put(PATRON_ID, patronId);
           patronGroupContext.put(PATRON_ID, patronId);
 
+          // log.info("{} {} created user record", schema, index);
+
           String username = getUsername(usernameStatement, usernameContext);
 
+          if (maps.getIgnore().get(IGNORE_USERNAMES).contains(username.toLowerCase())) {
+            log.warn("{} ignoring patron id {} username {}", schema, patronId, username);
+            continue;
+          }
+
           userRecord.setUsername(username);
+
+          // log.info("{} {} got username", schema, index);
 
           List<UserAddressRecord> userAddressRecords = getUserAddressRecords(addressStatement, addressContext);
 
           userRecord.setUserAddressRecords(userAddressRecords);
 
+          // log.info("{} {} got addresses", schema, index);
+
           PatronCodes patronCodes = getPatronCodes(patronGroupStatement, patronGroupContext);
 
-          Map<String, String> patronGroupMap = maps.getPatronGroup().get(job.getSchema());
+          if (Objects.nonNull(patronCodes.getBarcode()) && maps.getIgnore().get(IGNORE_BARCODES).contains(patronCodes.getBarcode().toLowerCase())) {
+            log.warn("{} ignoring patron id {} barcode {}", schema, patronId, patronCodes.getBarcode());
+            continue;
+          }
 
-          if (patronGroupMap.containsKey(patronCodes.getGroupcode())) {
-            userRecord.setGroupcode(patronGroupMap.get(patronCodes.getGroupcode()));
+          // log.info("{} {} got patron codes", schema, index);
+
+          Map<String, String> patronGroupMap = maps.getPatronGroup();
+
+          if (patronGroupMap.containsKey(patronCodes.getGroupcode().toLowerCase())) {
+            userRecord.setGroupcode(patronGroupMap.get(patronCodes.getGroupcode().toLowerCase()));
           } else {
             userRecord.setGroupcode(patronCodes.getGroupcode());
           }
@@ -267,12 +293,16 @@ public class UserMigration extends AbstractMigration<UserContext> {
             continue;
           }
 
+          // log.info("{} {} got patron group", schema, index);
+
           Userdata userdata = userRecord.toUserdata(patronGroup.get());
 
           Date createdDate = new Date();
 
           String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
           String createdByUserId = job.getUserId();
+
+          // log.info("{} {} ready to write", schema, index);
 
           try {
             String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userdata)));
@@ -281,12 +311,22 @@ public class UserMigration extends AbstractMigration<UserContext> {
           } catch (JsonProcessingException e) {
             log.error("{} user id {} error serializing user", schema, userRecord.getPatronId());
           }
+
+          // log.info("{} {} row done", schema, index);
         }
+
+        userRecordWriter.close();
+
+        pageStatement.close();
+        usernameStatement.close();
+        addressStatement.close();
+        patronGroupStatement.close();
+
+        pageResultSet.close();
       } catch (SQLException e) {
         e.printStackTrace();
-      } finally {
-        threadConnections.closeAll();
       }
+      threadConnections.closeAll();
 
       log.info("{} {} user finished in {} milliseconds", schema, index, TimingUtility.getDeltaInMilliseconds(startTime));
 
@@ -299,22 +339,26 @@ public class UserMigration extends AbstractMigration<UserContext> {
     }
 
     private String getUsername(Statement statement, Map<String, Object> usernameContext) throws SQLException {
+      String username = null;
       try (
         ResultSet resultSet = getResultSet(statement, usernameContext);
       ) {
         while (resultSet.next()) {
-          String username = resultSet.getString(USERNAME_NETID);
-          if (Objects.nonNull(username)) {
-            return username.toLowerCase();
+          String netid = resultSet.getString(USERNAME_NETID);
+          if (Objects.nonNull(netid)) {
+            username = netid.toLowerCase();
           }
         }
-        return (String) usernameContext.get(EXTERNAL_SYSTEM_ID);
+        if (Objects.isNull(username)) {
+          username = (String) usernameContext.get(EXTERNAL_SYSTEM_ID);
+        }
       } catch (SQLException e) {
         log.error("{} user id {} SQL error while processing username", usernameContext.get(SCHEMA), usernameContext.get(PATRON_ID));
         log.debug(e.getMessage());
 
         throw e;
       }
+      return username;
     }
 
     private List<UserAddressRecord> getUserAddressRecords(Statement statement, Map<String, Object> addressContext) throws SQLException {
@@ -347,6 +391,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
     }
 
     private PatronCodes getPatronCodes(Statement statement, Map<String, Object> patronGroupContext) throws SQLException {
+      PatronCodes patronCodes = null;
       String groupcode = null, barcode = null;
       try (
         ResultSet resultSet = getResultSet(statement, patronGroupContext);
@@ -362,6 +407,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
           if (Objects.nonNull(patronBarcode)) {
             barcode = patronBarcode.toLowerCase();
           }
+          patronCodes = new PatronCodes(groupcode, barcode);
+          break;
         }
       } catch (SQLException e) {
         log.error("{} patron id {} SQL error while processing barcode and patron group", patronGroupContext.get(SCHEMA), patronGroupContext.get(PATRON_ID));
@@ -369,11 +416,12 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
         throw e;
       }
-      return new PatronCodes(groupcode, barcode);
+      return patronCodes;
     }
+
   }
 
-  @Cacheable(value = "patronGroups", key = "groupCode", sync = true)
+  @Cacheable(value = "patronGroups", key = "groupcode")
   private Optional<String> getPatronGroup(String groupcode, Usergroups usergroups) {
     Optional<Usergroup> usergroup = usergroups.getUsergroups().stream().filter(ug -> ug.getGroup().equals(groupcode)).findAny();
     if (usergroup.isPresent()) {
@@ -454,10 +502,10 @@ public class UserMigration extends AbstractMigration<UserContext> {
     public void closeAll() {
       try {
         pageConnection.close();
+        addressConnection.close();
         patronGroupConnection.close();
         usernameConnection.close();
         userConnection.close();
-        addressConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
         throw new RuntimeException(e);
