@@ -41,11 +41,11 @@ POST to http://localhost:9000/migrate/vendor-reference-links
       "driverClassName": ""
     }
   },
-  "parallelism": 2,
+  "parallelism": 12,
   "jobs": [
     {
       "schema": "AMDB",
-      "partitions": 1,
+      "partitions": 11,
       "references": {
         "vendorTypeId": "08c7dd18-dbaf-11e9-8a34-2a2ae2dbcce4"
       }
@@ -67,6 +67,8 @@ Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropr
 
 POST to http://localhost:9000/migrate/vendors
 
+> If vendors have been completely cleared out for given tenant, the ignore codes can be empty. The organization codes below are default in folio/release and will need to be ignored for all batches to succeed.
+
 ```
 {
   "extraction": {
@@ -86,11 +88,11 @@ POST to http://localhost:9000/migrate/vendors
   },
   "preActions": [],
   "postActions": [],
-  "parallelism": 2,
+  "parallelism": 12,
   "jobs": [
     {
       "schema": "AMDB",
-      "partitions": 1,
+      "partitions": 11,
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "references": {
         "vendorTypeId": "08c7dd18-dbaf-11e9-8a34-2a2ae2dbcce4"
@@ -420,11 +422,11 @@ POST to http://localhost:9000/migrate/user-reference-links
       "driverClassName": ""
     }
   },
-  "parallelism": 2,
+  "parallelism": 12,
   "jobs": [
     {
       "schema": "AMDB",
-      "partitions": 1,
+      "partitions": 11,
       "references": {
         "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
         "userExternalTypeId": "0ed6f994-8dbd-4827-94c0-905504169c90"
@@ -447,6 +449,8 @@ POST to http://localhost:9000/migrate/user-reference-links
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
 
 POST to http://localhost:9000/migrate/users
+
+> There is something with user migration that is breaking parallelization. Parallelism is set to 1 for it to succeed.
 
 ```
 {
@@ -471,7 +475,7 @@ POST to http://localhost:9000/migrate/users
   },
   "preActions": [],
   "postActions": [],
-  "parallelism": 12,
+  "parallelism": 1,
   "jobs": [
     {
       "schema": "AMDB",
