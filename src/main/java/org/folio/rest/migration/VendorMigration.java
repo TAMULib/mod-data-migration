@@ -5,14 +5,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,8 +18,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import org.apache.commons.lang3.StringUtils;
+import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Address;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Contact;
+import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Email;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Organization;
+import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Url;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.VendorAccountRecord;
 import org.folio.rest.migration.model.VendorAddressRecord;
@@ -86,13 +88,11 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
   private static final String STATUSES = "STATUSES";
   private static final String TYPES = "TYPES";
 
-  private static final String CLAIM = "claim";
-  private static final String ORDER = "order";
-  private static final String OTHER = "other";
-  private static final String PAYMENT = "payment";
-  private static final String RETURN = "return";
+  private static final String CATEGORIES = "CATEGORIES";
 
   private static final String VENDOR_REFERENCE_ID = "vendorTypeId";
+
+  private static final String IGNODE_CODES = "codes";
 
   // (id,jsonb,creation_date,created_by)
   private static final String CONTACTS_RECORDS_COPY_SQL = "COPY %s_mod_organizations_storage.contacts (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
@@ -159,7 +159,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         partitionContext.put(LOCATIONS, job.getLocations());
         partitionContext.put(STATUSES, job.getStatuses());
         partitionContext.put(TYPES, job.getTypes());
-
+        log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new VendorPartitionTask(migrationService, partitionContext));
         offset += limit;
         index++;
@@ -179,16 +179,9 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
     private final Map<String, Object> partitionContext;
 
-    private final VendorJob job;
-    private final VendorMaps maps;
-    private final VendorDefaults defaults;
-
     public VendorPartitionTask(MigrationService migrationService, Map<String, Object> partitionContext) {
       this.migrationService = migrationService;
       this.partitionContext = partitionContext;
-      this.job = (VendorJob) partitionContext.get(JOB);
-      this.maps = (VendorMaps) partitionContext.get(MAPS);
-      this.defaults = (VendorDefaults) partitionContext.get(DEFAULTS);
     }
 
     public int getIndex() {
@@ -198,6 +191,10 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
     public VendorPartitionTask execute(VendorContext context) {
       long startTime = System.nanoTime();
 
+      VendorJob job = (VendorJob) partitionContext.get(JOB);
+      VendorMaps maps = (VendorMaps) partitionContext.get(MAPS);
+      VendorDefaults defaults = (VendorDefaults) partitionContext.get(DEFAULTS);
+
       String schema = job.getSchema();
 
       int index = this.getIndex();
@@ -205,12 +202,31 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       Database voyagerSettings = context.getExtraction().getDatabase();
       Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
+      Map<String, Object> vendorAccountsContext = new HashMap<>();
+      vendorAccountsContext.put(SQL, context.getExtraction().getAccountSql());
+      vendorAccountsContext.put(SCHEMA, job.getSchema());
+
+      Map<String, Object> vendorAddressesContext = new HashMap<>();
+      vendorAddressesContext.put(SQL, context.getExtraction().getAddressSql());
+      vendorAddressesContext.put(SCHEMA, job.getSchema());
+
+      Map<String, Object> vendorAliasesContext = new HashMap<>();
+      vendorAliasesContext.put(SQL, context.getExtraction().getAliasSql());
+      vendorAliasesContext.put(SCHEMA, job.getSchema());
+      
+      Map<String, Object> vendorNotesContext = new HashMap<>();
+      vendorNotesContext.put(SQL, context.getExtraction().getNoteSql());
+      vendorNotesContext.put(SCHEMA, job.getSchema());
+
+      Map<String, Object> vendorAddressPhoneNumbersContext = new HashMap<>();
+      vendorAddressPhoneNumbersContext.put(SQL, context.getExtraction().getPhoneSql());
+      vendorAddressPhoneNumbersContext.put(SCHEMA, job.getSchema());
+
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
+
+      String vendorRLTypeId = job.getReferences().get(VENDOR_REFERENCE_ID);
+
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
-
-      log.info("starting {} {}", schema, index);
-
-      int count = 0;
 
       try (
         PrintWriter contactsRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getContactsRecordConnection(), String.format(CONTACTS_RECORDS_COPY_SQL, tenant)), true);
@@ -235,48 +251,100 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           String vendorDefaultCurrency = pageResultSet.getString(VENDOR_DEFAULT_CURRENCY);
           Integer vendorClaimingInterval = pageResultSet.getInt(VENDOR_CLAIMING_INTERVAL);
 
-          VendorRecord vendorRecord = new VendorRecord(vendorId, vendorCode, vendorType, vendorName, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
+          Optional<ReferenceLink> vendorRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(vendorRLTypeId, vendorId);
+          if (!vendorRL.isPresent()) {
+            log.error("{} no vendor id found for vendor id {}", schema, vendorId);
+            continue;
+          }
+
+          String referenceId = vendorRL.get().getFolioReference();
+
+          VendorRecord vendorRecord = new VendorRecord(referenceId, vendorId, vendorCode, vendorType, vendorName, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
+          vendorRecord.setMaps(maps);
+          vendorRecord.setDefaults(defaults);
+
+          vendorAccountsContext.put(VENDOR_ID, vendorId);
+          vendorAddressesContext.put(VENDOR_ID, vendorId);
+          vendorAddressPhoneNumbersContext.put(VENDOR_ID, vendorId);
+          vendorAliasesContext.put(VENDOR_ID, vendorId);
+          vendorNotesContext.put(VENDOR_ID, vendorId);
 
           try {
-            String vendorRLTypeId = job.getReferences().get(VENDOR_REFERENCE_ID);
-            Optional<ReferenceLink> vendorRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(vendorRLTypeId, vendorId);
+            List<VendorAccountRecord> vendorAccountRecords = getVendorAccounts(accountStatement, vendorAccountsContext);
+            vendorRecord.setVendorAccountRecords(vendorAccountRecords);
+            List<VendorAddressRecord> vendorAddresses = getVendorAddresses(addressStatement, vendorAddressesContext);
+            vendorRecord.setVendorAddresses(vendorAddresses);
 
-            String organizationId = null;
-            if (vendorRL.isPresent()) {
-              organizationId = vendorRL.get().getFolioReference();
+            List<VendorPhoneRecord> vendorPhoneNumbers = new ArrayList<>();
+
+            List<Address> addresses = new ArrayList<>();
+            List<String> contacts = new ArrayList<>();
+            List<Email> emails = new ArrayList<>();
+            List<Url> urls = new ArrayList<>();
+
+            for (VendorAddressRecord vendorAddress : vendorAddresses) {
+              vendorAddress.setDefaults(defaults);
+              vendorAddress.setMaps(maps);
+              vendorAddress.setVendorId(vendorId);
+
+              List<String> categories = vendorAddress.getCategories();
+
+              if (vendorAddress.isAddress()) {
+                addresses.add(vendorAddress.toAddress(categories));
+              } else if (vendorAddress.isContact()) {
+                Contact contact = vendorAddress.toContact(categories);
+    
+                String createdAt = DATE_TIME_FOMATTER.format( new Date().toInstant().atOffset(ZoneOffset.UTC));
+                String createdByUserId = job.getUserId();
+                
+                String contactUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(contact)));
+        
+                // TODO: validate rows
+                contactsRecordWriter.println(String.join("\t", contact.getId(), contactUtf8Json, createdAt, createdByUserId));
+
+                contacts.add(contact.getId());
+              } else if (vendorAddress.isEmail()) {
+                emails.add(vendorAddress.toEmail(categories));
+              } else if (vendorAddress.isUrl()) {
+                urls.add(vendorAddress.toUrl(categories));
+              } else {
+                // unknown address types are to be ignored.
+              }
+              vendorAddressPhoneNumbersContext.put(ADDRESS_ID, vendorAddress.getAddressId());
+              vendorAddressPhoneNumbersContext.put(CATEGORIES, categories);
+              vendorPhoneNumbers.addAll(getVendorAddressPhoneNumbers(phoneStatement, vendorAddressPhoneNumbersContext));
             }
+            vendorRecord.setAddresses(addresses);
+            vendorRecord.setContacts(contacts);
+            vendorRecord.setEmails(emails);
+            vendorRecord.setUrls(urls);
 
-            if (Objects.isNull(organizationId)) {
-              log.error("{} no vendor record id found for id {}", schema, vendorId);
-              continue;
-            }
+            vendorRecord.setVendorPhoneNumbers(vendorPhoneNumbers);
 
-            processVendorAccounts(context, accountStatement, vendorRecord);
-            processVendorAddresses(context, addressStatement, phoneStatement, vendorRecord, contactsRecordWriter, jsonStringEncoder);
-            processVendorAliases(context, aliasStatement, vendorRecord);
-            processVendorNotes(context, noteStatement, vendorRecord);
-
-            vendorRecord.setOrganizationId(organizationId);
-
-            vendorRecord.setCreatedByUserId(job.getUserId());
-            
-            vendorRecord.setMaps(maps);
-            vendorRecord.setDefaults(defaults);
+            List<VendorAliasRecord> vendorAliases = getVendorAliases(aliasStatement, vendorAliasesContext);
+            vendorRecord.setVendorAliases(vendorAliases);
+            String vendorNotes = getVendorNotes(noteStatement, vendorNotesContext);
+            vendorRecord.setVendorNotes(vendorNotes);
 
             Date createdDate = new Date();
             vendorRecord.setCreatedDate(createdDate);
+            vendorRecord.setCreatedByUserId(job.getUserId());
 
             String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
 
             Organization organization = vendorRecord.toOrganization();
 
-            String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(organization)));
+            if (maps.getIgnore().get(IGNODE_CODES).contains(organization.getCode())) {
+              log.warn("{} ignoring vendor id {} code {}", schema, vendorId, organization.getCode());
+              continue;
+            }
+
+            String orgUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(organization)));
 
             // TODO: validate rows
-            organizationsRecordWriter.println(String.join("\t", organization.getId(), hrUtf8Json, createdAt, createdByUserId));
+            organizationsRecordWriter.println(String.join("\t", organization.getId(), orgUtf8Json, createdAt, createdByUserId));
 
-            count++;
           } catch (JsonProcessingException e) {
             log.error("{} vendor id {} error processing json", schema, vendorId);
             log.debug(e.getMessage());
@@ -290,7 +358,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         threadConnections.closeAll();
       }
 
-      log.info("{} {} vendor finished {} in {} milliseconds", schema, index, count, TimingUtility.getDeltaInMilliseconds(startTime));
+      log.info("{} {} vendor finished in {} milliseconds", schema, index, TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
     }
@@ -300,222 +368,100 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       return obj != null && ((VendorPartitionTask) obj).getIndex() == this.getIndex();
     }
 
-    private void processVendorAccounts(VendorContext vendorContext, Statement statement, VendorRecord vendorRecord) throws SQLException {
-      Map<String, Object> context = new HashMap<>();
-      context.put(SQL, vendorContext.getExtraction().getAccountSql());
-      context.put(SCHEMA, job.getSchema());
-      context.put(VENDOR_ID, vendorRecord.getVendorId());
+  }
 
-      ResultSet resultSet = getResultSet(statement, context);
-
+  private List<VendorAccountRecord> getVendorAccounts(Statement statement, Map<String, Object> vendorAccountsContext) throws SQLException {
+    String vendorId = (String) vendorAccountsContext.get(VENDOR_ID);
+    List<VendorAccountRecord> vendorAccountRecords = new ArrayList<>();
+    try (ResultSet resultSet = getResultSet(statement, vendorAccountsContext)) {
       while (resultSet.next()) {
         String deposit = resultSet.getString(ACCOUNT_DEPOSIT);
         String name = resultSet.getString(ACCOUNT_NAME);
         String note = resultSet.getString(ACCOUNT_NOTE);
         String number = resultSet.getString(ACCOUNT_NUMBER);
         String status = resultSet.getString(ACCOUNT_STATUS);
-
-        VendorAccountRecord record = new VendorAccountRecord(vendorRecord.getVendorId(), deposit, name, note, number, status);
-        record.setMaps(vendorContext.getMaps());
-        record.setDefaults(vendorContext.getDefaults());
-
-        vendorRecord.addAccount(record.toAccount());
+        vendorAccountRecords.add(new VendorAccountRecord(vendorId, deposit, name, note, number, status));
       }
-
-      resultSet.close();
     }
+    return vendorAccountRecords;
+  }
 
-    private void processVendorAddresses(VendorContext vendorContext, Statement statement, Statement phoneStatement, VendorRecord vendorRecord, PrintWriter contactsRecordWriter, JsonStringEncoder jsonStringEncoder) throws JsonProcessingException, SQLException {
-      Map<String, Object> context = new HashMap<>();
-      context.put(SQL, vendorContext.getExtraction().getAddressSql());
-      context.put(SCHEMA, job.getSchema());
-      context.put(VENDOR_ID, vendorRecord.getVendorId());
+  private List<VendorAddressRecord> getVendorAddresses(Statement statement, Map<String, Object> vendorAddressesContext) throws  SQLException {
+    List<VendorAddressRecord> vendorAddresses = new ArrayList<>();
+    try (
+      ResultSet resultSet = getResultSet(statement, vendorAddressesContext);
+    ) {
+      while (resultSet.next()) {
+        String addressId = resultSet.getString(ADDRESS_ID);
+        String addressLine1 = resultSet.getString(ADDRESS_LINE1);
+        String addressLine1Full = resultSet.getString(ADDRESS_LINE1_FULL);
+        String addressLine2 = resultSet.getString(ADDRESS_LINE2);
+        String city = resultSet.getString(ADDRESS_CITY);
+        String contactName = resultSet.getString(ADDRESS_CONTACT_NAME);
+        String contactTitle = resultSet.getString(ADDRESS_CONTACT_TITLE);
+        String country = resultSet.getString(ADDRESS_COUNTRY);
+        String emailAddress = resultSet.getString(ADDRESS_EMAIL_ADDRESS);
+        String stateProvince = resultSet.getString(ADDRESS_STATE_PROVINCE);
+        String stdAddressNumber = resultSet.getString(ADDRESS_STD_ADDRESS_NUMBER);
+        String zipPostal = resultSet.getString(ADDRESS_ZIP_POSTAL);
+        String claimAddress = resultSet.getString(ADDRESS_CLAIM_ADDRESS);
+        String orderAddress = resultSet.getString(ADDRESS_ORDER_ADDRESS);
+        String otherAddress = resultSet.getString(ADDRESS_OTHER_ADDRESS);
+        String paymentAddress = resultSet.getString(ADDRESS_PAYMENT_ADDRESS);
+        String returnAddress = resultSet.getString(ADDRESS_RETURN_ADDRESS);
+        vendorAddresses.add(new VendorAddressRecord(addressId, addressLine1, addressLine1Full, addressLine2, city, contactName, contactTitle, country, emailAddress, stateProvince, stdAddressNumber, zipPostal, claimAddress, orderAddress, otherAddress, paymentAddress, returnAddress));
+      }
+    }
+    return vendorAddresses;
+  }
 
-      try (
-        ResultSet resultSet = getResultSet(statement, context);
-      ) {
-
-        while (resultSet.next()) {
-          String addressId = resultSet.getString(ADDRESS_ID);
-          String addressLine1 = resultSet.getString(ADDRESS_LINE1);
-          String addressLine1Full = resultSet.getString(ADDRESS_LINE1_FULL);
-          String addressLine2 = resultSet.getString(ADDRESS_LINE2);
-          String city = resultSet.getString(ADDRESS_CITY);
-          String contactName = resultSet.getString(ADDRESS_CONTACT_NAME);
-          String contactTitle = resultSet.getString(ADDRESS_CONTACT_TITLE);
-          String country = resultSet.getString(ADDRESS_COUNTRY);
-          String emailAddress = resultSet.getString(ADDRESS_EMAIL_ADDRESS);
-          String stateProvince = resultSet.getString(ADDRESS_STATE_PROVINCE);
-          String stdAddressNumber = resultSet.getString(ADDRESS_STD_ADDRESS_NUMBER);
-          String zipPostal = resultSet.getString(ADDRESS_ZIP_POSTAL);
-
-          List<String> categories = buildVendorAddressesCategories(resultSet);
-
-          if (Objects.nonNull(stdAddressNumber)) {
-            vendorRecord.setStdAddressNumber(stdAddressNumber);
-          }
-
-          VendorAddressRecord record = new VendorAddressRecord(addressId, addressLine1, addressLine1Full, addressLine2, city, contactName, contactTitle, country, emailAddress, stateProvince, zipPostal, categories);
-          record.setMaps(vendorContext.getMaps());
-          record.setDefaults(vendorContext.getDefaults());
-          record.setVendorId(vendorRecord.getVendorId());
-
-          if (record.isAddress()) {
-            vendorRecord.addAddress(record.toAddress());
-          } else if (record.isContact()) {
-            Contact contact = record.toContact();
-
-            String createdAt = DATE_TIME_FOMATTER.format(OffsetDateTime.now());
-            String createdByUserId = job.getUserId();
-
-            String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(contact)));
-
-            // TODO: validate rows
-            contactsRecordWriter.println(String.join("\t", contact.getId(), hrUtf8Json, createdAt, createdByUserId));
-
-            vendorRecord.addContact(contact.getId());
-          } else if (record.isEmail()) {
-            vendorRecord.addEmail(record.toEmail());
-          } else if (record.isUrl()) {
-            vendorRecord.addUrl(record.toUrl());
-          } else {
-            // unknown address types are to be ignored.
-            continue;
-          }
-
-          processAddressPhoneNumbers(vendorContext, phoneStatement, vendorRecord, categories, addressId);
+  private List<VendorPhoneRecord> getVendorAddressPhoneNumbers(Statement statement, Map<String, Object> vendorAddressPhoneNumberContext) throws SQLException {
+    List<VendorPhoneRecord> vendorPhoneNumbers = new ArrayList<>();
+    String schema = (String) vendorAddressPhoneNumberContext.get(SCHEMA);
+    String vendorId = (String) vendorAddressPhoneNumberContext.get(VENDOR_ID);
+    String addressId = (String) vendorAddressPhoneNumberContext.get(ADDRESS_ID);
+    List<String> categories = (List<String>) vendorAddressPhoneNumberContext.get(CATEGORIES);
+    try (ResultSet resultSet = getResultSet(statement, vendorAddressPhoneNumberContext)) {
+      while (resultSet.next()) {
+        String phoneNumber = resultSet.getString(PHONE_NUMBER);
+        String phoneType = resultSet.getString(PHONE_TYPE);
+        if (phoneNumber.contains("@") || phoneNumber.toLowerCase().matches("www\\.")) {
+          log.error("{} E-mail or URL is used as phone number for vendor id {} for address id {}", schema, vendorId, addressId);
+          continue;
         }
-
-      } catch (SQLException e) {
-        log.error("{} vendor id {} SQL error while processing addresses", job.getSchema(), vendorRecord.getVendorId());
-        log.debug(e.getMessage());
-
-        throw e;
+        vendorPhoneNumbers.add(new VendorPhoneRecord(addressId, phoneNumber, phoneType, categories));
       }
     }
+    return vendorPhoneNumbers;
+  }
 
-    private void processVendorAliases(VendorContext vendorContext, Statement statement, VendorRecord vendorRecord) throws SQLException {
-      Map<String, Object> context = new HashMap<>();
-      context.put(SQL, vendorContext.getExtraction().getAliasSql());
-      context.put(SCHEMA, job.getSchema());
-      context.put(VENDOR_ID, vendorRecord.getVendorId());
-
-      try (
-        ResultSet resultSet = getResultSet(statement, context);
-      ) {
-
-        while (resultSet.next()) {
-          String altVendorName = resultSet.getString(ALIAS_ALT_VENDOR_NAME);
-
-          VendorAliasRecord record = new VendorAliasRecord(altVendorName);
-          record.setMaps(vendorContext.getMaps());
-          record.setDefaults(vendorContext.getDefaults());
-
-          vendorRecord.addAlias(record.toAlias());
+  private List<VendorAliasRecord> getVendorAliases(Statement statement, Map<String, Object> vendorAliasesContext) throws SQLException {
+    List<VendorAliasRecord> vendorAliases = new ArrayList<>();
+    try (ResultSet resultSet = getResultSet(statement, vendorAliasesContext)) {
+      while (resultSet.next()) {
+        String altVendorName = resultSet.getString(ALIAS_ALT_VENDOR_NAME);
+        if (StringUtils.isNoneEmpty(altVendorName)) {
+          vendorAliases.add(new VendorAliasRecord(altVendorName));
         }
-
-      } catch (SQLException e) {
-        log.error("{} vendor id {} SQL error while processing aliases", job.getSchema(), vendorRecord.getVendorId());
-        log.debug(e.getMessage());
-
-        throw e;
       }
     }
+    return vendorAliases;
+  }
 
-    private void processVendorNotes(VendorContext vendorContext, Statement statement, VendorRecord vendorRecord) throws SQLException {
-      Map<String, Object> context = new HashMap<>();
-      context.put(SQL, vendorContext.getExtraction().getNoteSql());
-      context.put(SCHEMA, job.getSchema());
-      context.put(VENDOR_ID, vendorRecord.getVendorId());
-
-      try (
-        ResultSet resultSet = getResultSet(statement, context);
-      ) {
-
-        while (resultSet.next()) {
-          String note = resultSet.getString(NOTE_NOTE);
-
-          if (Objects.nonNull(note)) {
-            vendorRecord.setNotes(vendorRecord.getNotes() + " " + note);
+  private String getVendorNotes(Statement statement, Map<String, Object> vendorNotesContext) throws SQLException {
+    StringBuilder vendorNotes = new StringBuilder();
+    try (ResultSet resultSet = getResultSet(statement, vendorNotesContext)) {
+      while (resultSet.next()) {
+        String note = resultSet.getString(NOTE_NOTE);
+        if (StringUtils.isNoneEmpty(note)) {
+          if (vendorNotes.length() > 0) {
+            vendorNotes.append(StringUtils.SPACE);
           }
+          vendorNotes.append(note);
         }
-
-      } catch (SQLException e) {
-        log.error("{} vendor id {} SQL error while processing notes", job.getSchema(), vendorRecord.getVendorId());
-        log.debug(e.getMessage());
-
-        throw e;
       }
-    }
-
-    private void processAddressPhoneNumbers(VendorContext vendorContext, Statement statement, VendorRecord vendorRecord, List<String> categories, String addressId) throws SQLException {
-      Map<String, Object> context = new HashMap<>();
-      context.put(SQL, vendorContext.getExtraction().getPhoneSql());
-      context.put(SCHEMA, job.getSchema());
-      context.put(VENDOR_ID, vendorRecord.getVendorId());
-      context.put(ADDRESS_ID, addressId);
-
-      try (
-        ResultSet resultSet = getResultSet(statement, context);
-      ) {
-
-        while (resultSet.next()) {
-          String phoneNumber = resultSet.getString(PHONE_NUMBER);
-          String phoneType = resultSet.getString(PHONE_TYPE);
-
-          if (phoneNumber.contains("@") || phoneNumber.toLowerCase().matches("www\\.")) {
-            log.error("{} E-mail or URL is used as phone number for address id {} for vendor id {}", job.getSchema(), addressId, vendorRecord.getVendorId());
-            continue;
-          }
-
-          VendorPhoneRecord record = new VendorPhoneRecord(addressId, phoneNumber, phoneType, categories);
-          record.setMaps(vendorContext.getMaps());
-          record.setDefaults(vendorContext.getDefaults());
-
-          vendorRecord.addPhoneNumber(record.toPhoneNumber());
-        }
-
-      } catch (SQLException e) {
-        log.error("{} vendor id {} SQL error while processing phone numbers", job.getSchema(), vendorRecord.getVendorId());
-        log.debug(e.getMessage());
-
-        throw e;
-      }
-    }
-
-    private List<String> buildVendorAddressesCategories(ResultSet resultSet) throws SQLException {
-      List<String> categories = new ArrayList<>();
-      Map<String, String> categoriesMap = maps.getCategories();
-
-      String claimAddress = resultSet.getString(ADDRESS_CLAIM_ADDRESS);
-      String orderAddress = resultSet.getString(ADDRESS_ORDER_ADDRESS);
-      String otherAddress = resultSet.getString(ADDRESS_OTHER_ADDRESS);
-      String paymentAddress = resultSet.getString(ADDRESS_PAYMENT_ADDRESS);
-      String returnAddress = resultSet.getString(ADDRESS_RETURN_ADDRESS);
-
-      if (Objects.nonNull(claimAddress) && claimAddress.equalsIgnoreCase("y")) {
-        categories.add(categoriesMap.get(CLAIM));
-      }
-
-      if (Objects.nonNull(orderAddress) && orderAddress.equalsIgnoreCase("y")) {
-        categories.add(categoriesMap.get(ORDER));
-      }
-
-      if (Objects.nonNull(otherAddress) && otherAddress.equalsIgnoreCase("y")) {
-        categories.add(categoriesMap.get(OTHER));
-      }
-
-      if (Objects.nonNull(paymentAddress) && paymentAddress.equalsIgnoreCase("y")) {
-        categories.add(categoriesMap.get(PAYMENT));
-      }
-
-      if (Objects.nonNull(returnAddress) && returnAddress.equalsIgnoreCase("y")) {
-        categories.add(categoriesMap.get(RETURN));
-      }
-
-      return categories;
-    }
-
+    } 
+    return vendorNotes.toString();
   }
 
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {

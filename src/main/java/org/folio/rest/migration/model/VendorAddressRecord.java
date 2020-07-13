@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.acq_models.acquisitions_unit.schemas.Metadata;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Address;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Contact;
@@ -16,6 +17,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class VendorAddressRecord extends AbstractVendorRecord {
+
+  private static final String CLAIM = "claim";
+  private static final String ORDER = "order";
+  private static final String OTHER = "other";
+  private static final String PAYMENT = "payment";
+  private static final String RETURN = "return";
 
   private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -29,16 +36,20 @@ public class VendorAddressRecord extends AbstractVendorRecord {
   private final String country;
   private final String emailAddress;
   private final String stateProvince;
+  private final String stdAddressNumber;
   private final String zipPostal;
-
-  private final List<String> categories;
+  private final String claimAddress;
+  private final String orderAddress;
+  private final String otherAddress;
+  private final String paymentAddress;
+  private final String returnAddress;
 
   private String vendorId;
 
   private String createdByUserId;
   private Date createdDate;
 
-  public VendorAddressRecord(String addressId, String addressLine1, String addressLine1Full, String addressLine2, String city, String contactName, String contactTitle, String country, String emailAddress, String stateProvince, String zipPostal, List<String> categories) {
+  public VendorAddressRecord(String addressId, String addressLine1, String addressLine1Full, String addressLine2, String city, String contactName, String contactTitle, String country, String emailAddress, String stateProvince, String stdAddressNumber, String zipPostal, String claimAddress, String orderAddress, String otherAddress, String paymentAddress, String returnAddress) {
     this.addressId = addressId;
     this.addressLine1 = addressLine1;
     this.addressLine1Full = addressLine1Full;
@@ -49,9 +60,13 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     this.country = country;
     this.emailAddress = emailAddress;
     this.stateProvince = stateProvince;
+    this.stdAddressNumber = stdAddressNumber;
     this.zipPostal = zipPostal;
-
-    this.categories = categories;
+    this.claimAddress = claimAddress;
+    this.orderAddress = orderAddress;
+    this.otherAddress = otherAddress;
+    this.paymentAddress = paymentAddress;
+    this.returnAddress = returnAddress;
   }
 
   public String getAddressId() {
@@ -94,12 +109,32 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     return stateProvince;
   }
 
+  public String getStdAddressNumber() {
+    return stdAddressNumber;
+  }
+
   public String getZipPostal() {
     return zipPostal;
   }
 
-  public List<String> getCategories() {
-    return categories;
+  public String getClaimAddress() {
+    return claimAddress;
+  }
+
+  public String getOrderAddress() {
+    return orderAddress;
+  }
+
+  public String getOtherAddress() {
+    return otherAddress;
+  }
+
+  public String getPaymentAddress() {
+    return paymentAddress;
+  }
+
+  public String getReturnAddress() {
+    return returnAddress;
   }
 
   public String getVendorId() {
@@ -150,7 +185,34 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     return false;
   }
 
-  public Address toAddress() {
+  public List<String> getCategories() {
+    List<String> categories = new ArrayList<>();
+    Map<String, String> categoriesMap = maps.getCategories();
+
+    if (StringUtils.isNotEmpty(claimAddress) && claimAddress.equalsIgnoreCase("y")) {
+      categories.add(categoriesMap.get(CLAIM));
+    }
+
+    if (StringUtils.isNotEmpty(orderAddress) && orderAddress.equalsIgnoreCase("y")) {
+      categories.add(categoriesMap.get(ORDER));
+    }
+
+    if (StringUtils.isNotEmpty(otherAddress) && otherAddress.equalsIgnoreCase("y")) {
+      categories.add(categoriesMap.get(OTHER));
+    }
+
+    if (StringUtils.isNotEmpty(paymentAddress) && paymentAddress.equalsIgnoreCase("y")) {
+      categories.add(categoriesMap.get(PAYMENT));
+    }
+
+    if (StringUtils.isNotEmpty(returnAddress) && returnAddress.equalsIgnoreCase("y")) {
+      categories.add(categoriesMap.get(RETURN));
+    }
+
+    return categories;
+  }
+
+  public Address toAddress(List<String> categories) {
     final Address address = new Address();
 
     address.setId(addressId);
@@ -169,7 +231,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     return address;
   }
 
-  public Contact toContact() {
+  public Contact toContact(List<String> categories) {
     final Contact contact = new Contact();
 
     contact.setId(UUID.randomUUID().toString());
@@ -178,14 +240,14 @@ public class VendorAddressRecord extends AbstractVendorRecord {
 
     contact.setCategories(categories);
 
-    setAddress(contact);
-    setEmail(contact);
+    setAddress(contact, categories);
+    setEmail(contact, categories);
     setMetadata(contact);
 
     return contact;
   }
 
-  public Email toEmail() {
+  public Email toEmail(List<String> categories) {
     final Email email = new Email();
 
     email.setId(addressId);
@@ -199,7 +261,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     return email;
   }
 
-  public Url toUrl() {
+  public Url toUrl(List<String> categories) {
     final Url url = new Url();
 
     url.setId(addressId);
@@ -248,18 +310,18 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     }
   }
 
-  private void setAddress(Contact contact) {
+  private void setAddress(Contact contact, List<String> categories) {
     if (!addressLine1.contains("@")) {
       List<Address> addresses = new ArrayList<>();
-      addresses.add(toAddress());
+      addresses.add(toAddress(categories));
       contact.setAddresses(addresses);
     }
   }
 
-  private void setEmail(Contact contact) {
+  private void setEmail(Contact contact, List<String> categories) {
     if (addressLine1.contains("@")) {
       List<Email> emails = new ArrayList<>();
-      emails.add(toEmail());
+      emails.add(toEmail(categories));
       contact.setEmails(emails);
 
       String notes = "";

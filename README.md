@@ -383,6 +383,13 @@ POST to http://localhost:9000/migrate/vendors
       "YEMEN": "YEM",
       "ZAMBIA": "ZMB",
       "ZIMBABWE": "ZWE"
+    },
+    "ignore": {
+      "codes": [
+        "zroco$",
+        "srebsco",
+        "gobi"
+      ]
     }
   },
   "defaults": {

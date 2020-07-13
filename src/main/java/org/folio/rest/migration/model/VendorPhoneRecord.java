@@ -12,7 +12,7 @@ public class VendorPhoneRecord extends AbstractVendorRecord {
   private final String number;
   private final String type;
 
-  private final List<String> categories;
+  private List<String> categories;
 
   public VendorPhoneRecord(String addressId, String number, String type, List<String> categories) {
     this.addressId = addressId;

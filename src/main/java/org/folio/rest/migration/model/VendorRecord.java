@@ -4,19 +4,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.acq_models.acquisitions_unit.schemas.Metadata;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Account;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Address;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Alias;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Email;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Organization;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.PhoneNumber;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Url;
-import org.folio.rest.migration.model.request.vendor.VendorDefaults;
 
 public class VendorRecord extends AbstractVendorRecord {
 
+  private final String referenceId;
   private final String vendorId;
   private final String code;
   private final String type;
@@ -26,23 +25,23 @@ public class VendorRecord extends AbstractVendorRecord {
 
   private final Integer claimingInterval;
 
-  private String organizationId;
+  private List<VendorAccountRecord> vendorAccountRecords;
+  private List<VendorAddressRecord> vendorAddresses;
+  private List<VendorPhoneRecord> vendorPhoneNumbers;
+  private List<VendorAliasRecord> vendorAliases;
 
-  private String notes;
-  private String stdAddressNumber;
-
-  private List<Account> accounts;
   private List<Address> addresses;
-  private List<Alias> aliases;
   private List<String> contacts;
   private List<Email> emails;
-  private List<PhoneNumber> phoneNumbers;
   private List<Url> urls;
+
+  private String vendorNotes;
 
   private String createdByUserId;
   private Date createdDate;
 
-  public VendorRecord(String vendorId, String code, String type, String name, String taxId, String defaultCurrency, Integer claimingInterval) {
+  public VendorRecord(String referenceId, String vendorId, String code, String type, String name, String taxId, String defaultCurrency, Integer claimingInterval) {
+    this.referenceId = referenceId;
     this.vendorId = vendorId;
     this.code = code;
     this.type = type;
@@ -50,14 +49,18 @@ public class VendorRecord extends AbstractVendorRecord {
     this.taxId = taxId;
     this.defaultCurrency = defaultCurrency;
     this.claimingInterval = claimingInterval;
-
-    accounts = new ArrayList<Account>();
-    addresses = new ArrayList<Address>();
-    aliases = new ArrayList<Alias>();
-    contacts = new ArrayList<String>();
-    emails = new ArrayList<Email>();
-    phoneNumbers = new ArrayList<PhoneNumber>();
-    urls = new ArrayList<Url>();
+    vendorAccountRecords = new ArrayList<>();
+    vendorAddresses = new ArrayList<>();
+    vendorPhoneNumbers = new ArrayList<>();
+    vendorAliases = new ArrayList<>();
+    addresses = new ArrayList<>();
+    contacts = new ArrayList<>();
+    emails = new ArrayList<>();
+    urls = new ArrayList<>();
+  }
+  
+  public String getReferenceId() {
+    return referenceId;
   }
 
   public String getVendorId() {
@@ -88,88 +91,76 @@ public class VendorRecord extends AbstractVendorRecord {
     return claimingInterval;
   }
 
-  public String getOrganizationId() {
-    return organizationId;
+  public List<VendorAccountRecord> getVendorAccountRecords() {
+    return vendorAccountRecords;
   }
 
-  public void setOrganizationId(String organizationId) {
-    this.organizationId = organizationId;
+  public void setVendorAccountRecords(List<VendorAccountRecord> vendorAccountRecords) {
+    this.vendorAccountRecords = vendorAccountRecords;
   }
 
-  public String getNotes() {
-    return notes;
+  public List<VendorAddressRecord> getVendorAddresses() {
+    return vendorAddresses;
   }
 
-  public void setNotes(String notes) {
-    this.notes = notes;
+  public void setVendorAddresses(List<VendorAddressRecord> vendorAddresses) {
+    this.vendorAddresses = vendorAddresses;
   }
 
-  public String getStdAddressNumber() {
-    return stdAddressNumber;
+  public List<VendorPhoneRecord> getVendorPhoneNumbers() {
+    return vendorPhoneNumbers;
   }
 
-  public void setStdAddressNumber(String stdAddressNumber) {
-    this.stdAddressNumber = stdAddressNumber;
+  public void setVendorPhoneNumbers(List<VendorPhoneRecord> vendorPhoneNumbers) {
+    this.vendorPhoneNumbers = vendorPhoneNumbers;
   }
 
-  public List<Account> getAccounts() {
-    return accounts;
+  public List<VendorAliasRecord> getVendorAliases() {
+    return vendorAliases;
   }
 
-  public void addAccount(Account account) {
-    accounts.add(account);
+  public void setVendorAliases(List<VendorAliasRecord> vendorAliases) {
+    this.vendorAliases = vendorAliases;
   }
 
   public List<Address> getAddresses() {
     return addresses;
   }
 
-  public void addAddress(Address address) {
-    addresses.add(address);
-  }
-
-  public List<Alias> getAliases() {
-    return aliases;
-  }
-
-  public void addAlias(Alias alias) {
-    aliases.add(alias);
+  public void setAddresses(List<Address> addresses) {
+    this.addresses = addresses;
   }
 
   public List<String> getContacts() {
     return contacts;
   }
 
-  public void addContact(String contact) {
-    contacts.add(contact);
+  public void setContacts(List<String> contacts) {
+    this.contacts = contacts;
   }
 
   public List<Email> getEmails() {
     return emails;
   }
 
-  public void addEmail(Email email) {
-    emails.add(email);
-  }
-
-  public List<PhoneNumber> getPhoneNumbers() {
-    return phoneNumbers;
-  }
-
-  public void addPhoneNumber(PhoneNumber PhoneNumber) {
-    phoneNumbers.add(PhoneNumber);
+  public void setEmails(List<Email> emails) {
+    this.emails = emails;
   }
 
   public List<Url> getUrls() {
     return urls;
   }
 
-  public void setUrl(List<Url> urls) {
+  public void setUrls(List<Url> urls) {
     this.urls = urls;
   }
 
-  public void addUrl(Url url) {
-    urls.add(url);
+  public String getVendorNotes() {
+    return vendorNotes;
+  }
+
+  public void setVendorNotes(String vendorNotes) {
+    this.vendorNotes = vendorNotes;
   }
 
   public String getCreatedByUserId() {
@@ -191,23 +182,39 @@ public class VendorRecord extends AbstractVendorRecord {
   public Organization toOrganization() {
     final Organization organization = new Organization();
 
-    organization.setId(organizationId);
+    organization.setId(referenceId);
     organization.setIsVendor(true);
     organization.setName(name);
     organization.setTaxId(taxId);
     organization.setClaimingInterval(claimingInterval);
-    organization.setAccounts(accounts);
-    organization.setAliases(aliases);
+
+    organization.setAccounts(vendorAccountRecords.stream().map(vendorAccount -> {
+      vendorAccount.setDefaults(defaults);
+      vendorAccount.setMaps(maps);
+      return vendorAccount.toAccount();
+    }).collect(Collectors.toList()));
+
+    organization.setPhoneNumbers(vendorPhoneNumbers.stream().map(vendorPhoneNumber -> {
+      vendorPhoneNumber.setDefaults(defaults);
+      vendorPhoneNumber.setMaps(maps);
+      return vendorPhoneNumber.toPhoneNumber();
+    }).collect(Collectors.toList()));
+
     organization.setAddresses(addresses);
     organization.setContacts(contacts);
     organization.setEmails(emails);
     organization.setUrls(urls);
-    organization.setAccounts(accounts);
+
+    organization.setAliases(vendorAliases.stream().map(vendorAlias -> {
+      vendorAlias.setDefaults(defaults);
+      vendorAlias.setMaps(maps);
+      return vendorAlias.toAlias();
+    }).collect(Collectors.toList()));
 
     setCode(organization);
     setCurrencies(organization);
     setDescription(organization);
-    setStatus(organization, defaults);
+    setStatus(organization);
     setLanguage(organization);
     setSanCode(organization);
     setMetadata(organization);
@@ -230,18 +237,18 @@ public class VendorRecord extends AbstractVendorRecord {
   private void setDescription(Organization organization) {
     String description = type;
 
-    if (Objects.nonNull(notes)) {
-      if (Objects.isNull(description)) {
-        description = notes;
+    if (Objects.nonNull(vendorNotes)) {
+      if (StringUtils.isEmpty(description)) {
+        description = vendorNotes;
       } else {
-        description += " " + notes;
+        description += " " + vendorNotes;
       }
     }
 
     organization.setDescription(description);
   }
 
-  private void setStatus(Organization organization, VendorDefaults defaults) {
+  private void setStatus(Organization organization) {
     String match = "";
 
     if (Objects.nonNull(defaults.getStatus())) {
@@ -267,8 +274,11 @@ public class VendorRecord extends AbstractVendorRecord {
   }
 
   private void setSanCode(Organization organization) {
-    if (Objects.nonNull(stdAddressNumber)) {
-      organization.setSanCode(stdAddressNumber);
+    for (VendorAddressRecord vendorAddress : vendorAddresses) {
+      if (Objects.nonNull(vendorAddress.getStdAddressNumber())) {
+        organization.setSanCode(vendorAddress.getStdAddressNumber());
+        break;
+      }
     }
   }
 
