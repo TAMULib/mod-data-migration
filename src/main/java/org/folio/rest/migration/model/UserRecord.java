@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.TimeZone;
 
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.Address;
 import org.folio.rest.jaxrs.model.Personal;
 import org.folio.rest.jaxrs.model.Userdata;
@@ -20,6 +21,9 @@ public class UserRecord extends AbstractUserRecord {
   private static final String MAIL = "mail";
   private static final String TEXT = "text";
 
+  private static final String PHONE_PRIMARY = "Primary";
+  private static final String PHONE_MOBILE = "Mobile";
+
   private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("YYYYMMDD");
   {
     // TODO: the timezone may need to be changed.
@@ -28,7 +32,7 @@ public class UserRecord extends AbstractUserRecord {
 
   private final String referenceId;
   private final String patronId;
-  private final String institutionId;
+  private final String externalSystemId;
   private final String lastName;
   private final String firstName;
   private final String middleName;
@@ -40,20 +44,16 @@ public class UserRecord extends AbstractUserRecord {
   private String addressStatus;
   private String addressType;
   private String barcode;
-  private String email;
   private String groupcode;
-  private String phone;
-  private String mobilePhone;
   private String preferredContactTypeId;
-  private String schema;
   private String username;
 
-  private List<Address> addresses;
+  private List<UserAddressRecord> userAddressRecords;
 
-  public UserRecord(String referenceId, String patronId, String institutionId, String lastName, String firstName, String middleName, String activeDate, String expireDate, String smsNumber, String currentCharges) {
+  public UserRecord(String referenceId, String patronId, String externalSystemId, String lastName, String firstName, String middleName, String activeDate, String expireDate, String smsNumber, String currentCharges) {
     this.referenceId = referenceId;
     this.patronId = patronId;
-    this.institutionId = institutionId;
+    this.externalSystemId = externalSystemId;
     this.lastName = lastName;
     this.firstName = firstName;
     this.middleName = middleName;
@@ -61,10 +61,6 @@ public class UserRecord extends AbstractUserRecord {
     this.expireDate = expireDate;
     this.smsNumber = smsNumber;
     this.currentCharges = currentCharges;
-
-    schema = "";
-
-    addresses = new ArrayList<>();
   }
 
   public String getReferenceId() {
@@ -75,8 +71,8 @@ public class UserRecord extends AbstractUserRecord {
     return patronId;
   }
 
-  public String getInstitutionId() {
-    return institutionId;
+  public String getExternalSystemId() {
+    return externalSystemId;
   }
 
   public String getLastName() {
@@ -131,36 +127,12 @@ public class UserRecord extends AbstractUserRecord {
     this.barcode = barcode;
   }
 
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
   public String getGroupcode() {
     return groupcode;
   }
 
   public void setGroupcode(String groupcode) {
     this.groupcode = groupcode;
-  }
-
-  public String getPhone() {
-    return phone;
-  }
-
-  public void setPhone(String phone) {
-    this.phone = phone;
-  }
-
-  public String getMobilePhone() {
-    return mobilePhone;
-  }
-
-  public void setMobilePhone(String mobilePhone) {
-    this.mobilePhone = mobilePhone;
   }
 
   public String getPreferredContactTypeId() {
@@ -171,14 +143,6 @@ public class UserRecord extends AbstractUserRecord {
     this.preferredContactTypeId = preferredContactTypeId;
   }
 
-  public String getSchema() {
-    return schema;
-  }
-
-  public void setSchema(String schema) {
-    this.schema = schema;
-  }
-
   public String getUsername() {
     return username;
   }
@@ -187,27 +151,24 @@ public class UserRecord extends AbstractUserRecord {
     this.username = username;
   }
 
-  public List<Address> getAddresses() {
-    return addresses;
+  public List<UserAddressRecord> getUserAddressRecords() {
+    return userAddressRecords;
   }
 
-  public void addAddress(Address address) {
-    addresses.add(address);
+  public void setUserAddressRecords(List<UserAddressRecord> userAddressRecords) {
+    this.userAddressRecords = userAddressRecords;
   }
 
   public Userdata toUserdata(String patronGroup) {
     final Userdata userdata = new Userdata();
     final Personal personal = new Personal();
 
-    personal.setAddresses(addresses);
-
     setLastName(personal);
     setFirstName(personal);
     setMiddleName(personal);
-    setEmail(personal);
-    setPhone(personal);
-    setMobilePhone(personal);
     setPreferredContactTypeId(personal);
+
+    setAddresses(personal);
 
     userdata.setId(referenceId);
     userdata.setPersonal(personal);
@@ -241,24 +202,6 @@ public class UserRecord extends AbstractUserRecord {
     }
   }
 
-  private void setEmail(Personal personal) {
-    if (Objects.nonNull(email)) {
-      personal.setEmail(email);
-    }
-  }
-
-  private void setPhone(Personal personal) {
-    if (Objects.nonNull(phone)) {
-      personal.setPhone(phone);
-    }
-  }
-
-  private void setMobilePhone(Personal personal) {
-    if (Objects.nonNull(mobilePhone)) {
-      personal.setMobilePhone(mobilePhone);
-    }
-  }
-
   private void setPreferredContactTypeId(Personal personal) {
     if (Objects.nonNull(smsNumber)) {
       preferredContactTypeId = TEXT;
@@ -282,11 +225,71 @@ public class UserRecord extends AbstractUserRecord {
     }
   }
 
+  private void setAddresses(Personal personal) {
+    List<Address> addresses = new ArrayList<>();
+
+    boolean permanentStatusNormal = false;
+    boolean temporaryStatusNormal = false;
+
+    List<String> phoneNumbers = new ArrayList<>();
+    List<String> phoneTypes = new ArrayList<>();
+
+    for (UserAddressRecord userAddressRecord : userAddressRecords) {
+
+      userAddressRecord.setMaps(maps);
+      userAddressRecord.setDefaults(defaults);
+
+      if (userAddressRecord.isEmail()) {
+        personal.setEmail(userAddressRecord.toEmail());
+      } else {
+        if (userAddressRecord.hasPhoneNumber()) {
+          // phone type is stored as phone description.
+          phoneNumbers.add(userAddressRecord.getPhoneNumber());
+          phoneTypes.add(userAddressRecord.getPhoneDescription());
+        } else {
+          phoneNumbers.add(StringUtils.EMPTY);
+          phoneTypes.add(StringUtils.EMPTY);
+        }
+
+        if (userAddressRecord.isPrimary()) {
+          if (userAddressRecord.isNormal()) {
+            permanentStatusNormal = true;
+          }
+        } else if (userAddressRecord.isTemporary()) {
+          if (userAddressRecord.isNormal()) {
+            temporaryStatusNormal = true;
+          }
+        }
+        addresses.add(userAddressRecord.toAddress());
+      }
+
+    }
+
+    if (permanentStatusNormal && temporaryStatusNormal) {
+      addresses.forEach(userAddressRecord -> {
+        if (userAddressRecord.getPrimaryAddress()) {
+          userAddressRecord.setPrimaryAddress(defaults.getPrimaryAddress());
+        } else {
+          userAddressRecord.setPrimaryAddress(!defaults.getPrimaryAddress());
+        }
+      });
+    }
+
+    for (int i = 0; i < addresses.size(); i++) {
+      Address address = addresses.get(i);
+      if (address.getPrimaryAddress()) {
+        if (phoneTypes.get(i).equalsIgnoreCase(PHONE_PRIMARY)) {
+          personal.setPhone(phoneNumbers.get(i));
+        } else if (phoneTypes.get(i).equalsIgnoreCase(PHONE_MOBILE)) {
+          personal.setMobilePhone(phoneNumbers.get(i));
+        }
+      }
+    }
+  }
+
   private void setExternalSystemId(Userdata userdata) {
-    if (Objects.nonNull(institutionId)) {
-      userdata.setExternalSystemId(institutionId.replaceAll("[()]", ""));
-    } else {
-      userdata.setExternalSystemId(schema + "_" + patronId);
+    if (Objects.nonNull(externalSystemId)) {
+      userdata.setExternalSystemId(externalSystemId);  
     }
   }
 
