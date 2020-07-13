@@ -199,9 +199,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, usernameSettings, folioSettings);
 
-      try {
-        PGCopyOutputStream userRecordOutput = new PGCopyOutputStream(threadConnections.getUserConnection(), String.format(USERS_COPY_SQL, tenant));
-        PrintWriter userRecordWriter = new PrintWriter(userRecordOutput, true);
+      try (
+        PrintWriter userRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getUserConnection(), String.format(USERS_COPY_SQL, tenant)), true);
 
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement usernameStatement = threadConnections.getUsernameConnection().createStatement();
@@ -209,6 +208,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
         Statement patronGroupStatement = threadConnections.getPatronGroupConnection().createStatement();
 
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
+      ) {
 
         while (pageResultSet.next()) {
           String patronId = pageResultSet.getString(PATRON_ID);
@@ -315,18 +315,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
           // log.info("{} {} row done", schema, index);
         }
 
-        userRecordWriter.close();
-
-        pageStatement.close();
-        usernameStatement.close();
-        addressStatement.close();
-        patronGroupStatement.close();
-
-        pageResultSet.close();
       } catch (SQLException e) {
         e.printStackTrace();
+      } finally {
+        threadConnections.closeAll();
       }
-      threadConnections.closeAll();
 
       log.info("{} {} user finished in {} milliseconds", schema, index, TimingUtility.getDeltaInMilliseconds(startTime));
 
@@ -338,87 +331,87 @@ public class UserMigration extends AbstractMigration<UserContext> {
       return Objects.nonNull(obj) && ((UserPartitionTask) obj).getIndex() == this.getIndex();
     }
 
-    private String getUsername(Statement statement, Map<String, Object> usernameContext) throws SQLException {
-      String username = null;
-      try (
-        ResultSet resultSet = getResultSet(statement, usernameContext);
-      ) {
-        while (resultSet.next()) {
-          String netid = resultSet.getString(USERNAME_NETID);
-          if (Objects.nonNull(netid)) {
-            username = netid.toLowerCase();
-          }
-        }
-        if (Objects.isNull(username)) {
-          username = (String) usernameContext.get(EXTERNAL_SYSTEM_ID);
-        }
-      } catch (SQLException e) {
-        log.error("{} user id {} SQL error while processing username", usernameContext.get(SCHEMA), usernameContext.get(PATRON_ID));
-        log.debug(e.getMessage());
+  }
 
-        throw e;
+  private String getUsername(Statement statement, Map<String, Object> usernameContext) throws SQLException {
+    String username = null;
+    try (
+      ResultSet resultSet = getResultSet(statement, usernameContext);
+    ) {
+      while (resultSet.next()) {
+        String netid = resultSet.getString(USERNAME_NETID);
+        if (Objects.nonNull(netid)) {
+          username = netid.toLowerCase();
+        }
       }
-      return username;
-    }
-
-    private List<UserAddressRecord> getUserAddressRecords(Statement statement, Map<String, Object> addressContext) throws SQLException {
-      List<UserAddressRecord> userAddressRecords = new ArrayList<>();
-      try (
-        ResultSet resultSet = getResultSet(statement, addressContext);
-      ) {
-        while (resultSet.next()) {
-          String addressDescription = resultSet.getString(ADDRESS_DESC);
-          String addressStatus = resultSet.getString(ADDRESS_STATUS);
-          String addressType = resultSet.getString(ADDRESS_TYPE);
-          String addressLine1 = resultSet.getString(ADDRESS_LINE1);
-          String addressLine2 = resultSet.getString(ADDRESS_LINE2);
-          String city = resultSet.getString(CITY);
-          String country = resultSet.getString(COUNTRY);
-          String phoneNumber = resultSet.getString(PHONE_NUMBER);
-          String phoneDescription = resultSet.getString(PHONE_DESC);
-          String stateProvince = resultSet.getString(STATE_PROVINCE);
-          String zipPostal = resultSet.getString(ZIP_POSTAL);
-
-          userAddressRecords.add(new UserAddressRecord(addressDescription, addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal));
-        }
-      } catch (SQLException e) {
-        log.error("{} patron id {} SQL error while processing addresses, emails, and phone numbers", addressContext.get(SCHEMA), addressContext.get(PATRON_ID));
-        log.debug(e.getMessage());
-
-        throw e;
+      if (Objects.isNull(username)) {
+        username = (String) usernameContext.get(EXTERNAL_SYSTEM_ID);
       }
-      return userAddressRecords;
+    } catch (SQLException e) {
+      log.error("{} user id {} SQL error while processing username", usernameContext.get(SCHEMA), usernameContext.get(PATRON_ID));
+      log.debug(e.getMessage());
+
+      throw e;
     }
+    return username;
+  }
 
-    private PatronCodes getPatronCodes(Statement statement, Map<String, Object> patronGroupContext) throws SQLException {
-      PatronCodes patronCodes = null;
-      String groupcode = null, barcode = null;
-      try (
-        ResultSet resultSet = getResultSet(statement, patronGroupContext);
-      ) {
+  private List<UserAddressRecord> getUserAddressRecords(Statement statement, Map<String, Object> addressContext) throws SQLException {
+    List<UserAddressRecord> userAddressRecords = new ArrayList<>();
+    try (
+      ResultSet resultSet = getResultSet(statement, addressContext);
+    ) {
+      while (resultSet.next()) {
+        String addressDescription = resultSet.getString(ADDRESS_DESC);
+        String addressStatus = resultSet.getString(ADDRESS_STATUS);
+        String addressType = resultSet.getString(ADDRESS_TYPE);
+        String addressLine1 = resultSet.getString(ADDRESS_LINE1);
+        String addressLine2 = resultSet.getString(ADDRESS_LINE2);
+        String city = resultSet.getString(CITY);
+        String country = resultSet.getString(COUNTRY);
+        String phoneNumber = resultSet.getString(PHONE_NUMBER);
+        String phoneDescription = resultSet.getString(PHONE_DESC);
+        String stateProvince = resultSet.getString(STATE_PROVINCE);
+        String zipPostal = resultSet.getString(ZIP_POSTAL);
 
-        while(resultSet.next()) {
-          String patronGroupcode = resultSet.getString(PATRON_GROUP_CODE);
-          String patronBarcode = resultSet.getString(PATRON_BARCODE);
-
-          if (Objects.nonNull(patronGroupcode)) {
-            groupcode = patronGroupcode.toLowerCase();
-          }
-          if (Objects.nonNull(patronBarcode)) {
-            barcode = patronBarcode.toLowerCase();
-          }
-          patronCodes = new PatronCodes(groupcode, barcode);
-          break;
-        }
-      } catch (SQLException e) {
-        log.error("{} patron id {} SQL error while processing barcode and patron group", patronGroupContext.get(SCHEMA), patronGroupContext.get(PATRON_ID));
-        log.debug(e.getMessage());
-
-        throw e;
+        userAddressRecords.add(new UserAddressRecord(addressDescription, addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal));
       }
-      return patronCodes;
-    }
+    } catch (SQLException e) {
+      log.error("{} patron id {} SQL error while processing addresses, emails, and phone numbers", addressContext.get(SCHEMA), addressContext.get(PATRON_ID));
+      log.debug(e.getMessage());
 
+      throw e;
+    }
+    return userAddressRecords;
+  }
+
+  private PatronCodes getPatronCodes(Statement statement, Map<String, Object> patronGroupContext) throws SQLException {
+    PatronCodes patronCodes = null;
+    String groupcode = null, barcode = null;
+    try (
+      ResultSet resultSet = getResultSet(statement, patronGroupContext);
+    ) {
+
+      while(resultSet.next()) {
+        String patronGroupcode = resultSet.getString(PATRON_GROUP_CODE);
+        String patronBarcode = resultSet.getString(PATRON_BARCODE);
+
+        if (Objects.nonNull(patronGroupcode)) {
+          groupcode = patronGroupcode.toLowerCase();
+        }
+        if (Objects.nonNull(patronBarcode)) {
+          barcode = patronBarcode.toLowerCase();
+        }
+        patronCodes = new PatronCodes(groupcode, barcode);
+        break;
+      }
+    } catch (SQLException e) {
+      log.error("{} patron id {} SQL error while processing barcode and patron group", patronGroupContext.get(SCHEMA), patronGroupContext.get(PATRON_ID));
+      log.debug(e.getMessage());
+
+      throw e;
+    }
+    return patronCodes;
   }
 
   @Cacheable(value = "patronGroups", key = "groupcode")
