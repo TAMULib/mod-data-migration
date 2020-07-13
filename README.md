@@ -386,9 +386,10 @@ POST to http://localhost:9000/migrate/vendors
     },
     "ignore": {
       "codes": [
-        "zroco$",
+        "gobi",
         "srebsco",
-        "gobi"
+        "zroco$",
+        "zsusanba$*"
       ]
     }
   },

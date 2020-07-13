@@ -335,7 +335,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
             Organization organization = vendorRecord.toOrganization();
 
-            if (maps.getIgnore().get(IGNODE_CODES).contains(organization.getCode())) {
+            if (maps.getIgnore().get(IGNODE_CODES).contains(organization.getCode().toLowerCase())) {
               log.warn("{} ignoring vendor id {} code {}", schema, vendorId, organization.getCode());
               continue;
             }

@@ -170,11 +170,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
       UserMaps maps = (UserMaps) partitionContext.get(MAPS);
       UserDefaults defaults = (UserDefaults) partitionContext.get(DEFAULTS);
 
+      Usergroups usergroups = (Usergroups) partitionContext.get(USER_GROUPS);
+
       String schema = job.getSchema();
 
       int index = this.getIndex();
-
-      Usergroups usergroups = (Usergroups) partitionContext.get(USER_GROUPS);
 
       Database voyagerSettings = context.getExtraction().getDatabase();
       Database usernameSettings = context.getExtraction().getUsernameDatabase();
