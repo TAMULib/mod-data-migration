@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.CirculationNote;
+import org.folio.rest.jaxrs.model.CirculationNote.NoteType;
 import org.folio.rest.jaxrs.model.Item;
 import org.folio.rest.jaxrs.model.Loantype;
 import org.folio.rest.jaxrs.model.Loantypes;
@@ -32,9 +33,9 @@ import org.folio.rest.jaxrs.model.Materialtype;
 import org.folio.rest.jaxrs.model.Materialtypes;
 import org.folio.rest.jaxrs.model.Note__1;
 import org.folio.rest.jaxrs.model.Statisticalcodes;
-import org.folio.rest.jaxrs.model.CirculationNote.NoteType;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.ItemRecord;
+import org.folio.rest.migration.model.ItemStatusRecord;
 import org.folio.rest.migration.model.request.item.ItemContext;
 import org.folio.rest.migration.model.request.item.ItemDefaults;
 import org.folio.rest.migration.model.request.item.ItemJob;
@@ -256,16 +257,17 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       int count = 0;
 
       try (
-          PrintWriter itemWriter = new PrintWriter(
-              new PGCopyOutputStream(threadConnections.getItemConnection(), String.format(ITEM_COPY_SQL, tenant)),
-              true);
+          PrintWriter itemWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getItemConnection(), String.format(ITEM_COPY_SQL, tenant)), true);
+
           Statement pageStatement = threadConnections.getPageConnection().createStatement();
           Statement mfhdItemStatement = threadConnections.getMfhdConnection().createStatement();
           Statement barcodeStatement = threadConnections.getBarcodeConnection().createStatement();
           Statement itemStatusStatement = threadConnections.getItemStatusConnection().createStatement();
           Statement noteStatement = threadConnections.getNoteConnection().createStatement();
           Statement materialTypeStatement = threadConnections.getMaterialTypeConnection().createStatement();
-          ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);) {
+
+          ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
+      ) {
 
         while (pageResultSet.next()) {
           String itemId = pageResultSet.getString(ITEM_ID);
@@ -285,8 +287,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           if (loanTypesMap.containsKey(voyagerPermTypeIdKey)) {
             permLoanTypeId = loanTypesMap.get(voyagerPermTypeIdKey);
           } else {
-            log.warn("using default permanent loan type for schema {} itemId {} type {}", schema, itemId,
-                voyagerPermTypeId);
+            log.warn("using default permanent loan type for schema {} itemId {} type {}", schema, itemId, voyagerPermTypeId);
             permLoanTypeId = itemDefaults.getPermanentLoanTypeId();
           }
 
@@ -294,8 +295,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           if (locationsMap.containsKey(voyagerPermLocationIdKey)) {
             permLocationId = locationsMap.get(voyagerPermLocationIdKey);
           } else {
-            log.warn("using default permanent location for schema {} itemId {} location {}", schema, itemId,
-                voyagerPermLocationId);
+            log.warn("using default permanent location for schema {} itemId {} location {}", schema, itemId, voyagerPermLocationId);
             permLocationId = itemDefaults.getPermanentLocationId();
           }
 
@@ -308,16 +308,12 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           try {
             MfhdItem mfhdItem = getMfhdItem(mfhdItemStatement, mfhdContext);
             String barcode = getItemBarcode(barcodeStatement, barcodeContext);
-            List<ItemStatus> itemStatuses = getItemStatuses(itemStatusStatement, itemStatusContext,
-                context.getMaps().getItemStatus(), context.getMaps().getStatusName());
+            List<ItemStatusRecord> itemStatuses = getItemStatuses(itemStatusStatement, itemStatusContext, context.getMaps().getItemStatus(), context.getMaps().getStatusName());
             ItemNoteWrapper noteWrapper = getNotes(noteStatement, noteContext, job.getItemNoteTypeId());
             Materialtypes materialtypes = (Materialtypes) partitionContext.get(MATERIAL_TYPES);
             String materialTypeId = getMaterialTypeId(materialTypeStatement, materialTypeContext, job.getDefaultMaterialTypeId(), materialtypes);
 
-            ItemRecord itemRecord = new ItemRecord(itemId, barcode, mfhdItem.getCaption(), mfhdItem.getItemEnum(),
-                mfhdItem.getChron(), mfhdItem.getFreetext(), mfhdItem.getYear(), numberOfPieces, spineLabel,
-                materialTypeId, job.getItemNoteTypeId(), job.getItemDamagedStatusId(), itemStatuses,
-                noteWrapper.getNotes(), noteWrapper.getCirculationNotes());
+            ItemRecord itemRecord = new ItemRecord(itemId, barcode, mfhdItem.getCaption(), mfhdItem.getItemEnum(), mfhdItem.getChron(), mfhdItem.getFreetext(), mfhdItem.getYear(), numberOfPieces, spineLabel, materialTypeId, job.getItemNoteTypeId(), job.getItemDamagedStatusId(), itemStatuses, noteWrapper.getNotes(), noteWrapper.getCirculationNotes());
 
             itemRecord.setPermanentLoanTypeId(permLoanTypeId);
             itemRecord.setPermanentLocationId(permLocationId);
@@ -334,19 +330,16 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
             String id = null, holdingId = null;
 
-            Optional<ReferenceLink> itemRL = migrationService.referenceLinkRepo
-                .findByTypeIdAndExternalReference(itemRLTypeId, itemId);
+            Optional<ReferenceLink> itemRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId);
 
             if (itemRL.isPresent()) {
 
               id = itemRL.get().getFolioReference();
 
-              Optional<ReferenceLink> itemToHoldingRL = migrationService.referenceLinkRepo
-                  .findByTypeIdAndExternalReference(itemToHoldingRLTypeId, itemRL.get().getId());
+              Optional<ReferenceLink> itemToHoldingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemToHoldingRLTypeId, itemRL.get().getId());
 
               if (itemToHoldingRL.isPresent()) {
-                Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo
-                    .findById(itemToHoldingRL.get().getFolioReference());
+                Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findById(itemToHoldingRL.get().getFolioReference());
 
                 if (holdingRL.isPresent()) {
                   holdingId = holdingRL.get().getFolioReference();
@@ -380,7 +373,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
             String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(item)));
 
-            // // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
+            // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
             itemWriter.println(String.join("\t",
               item.getId(),
               iUtf8Json,
@@ -411,8 +404,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         threadConnections.closeAll();
       }
 
-      log.info("{} {} item finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid,
-          TimingUtility.getDeltaInMilliseconds(startTime));
+      log.info("{} {} item finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
     }
@@ -555,16 +547,17 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     itemTypeContext.put(SCHEMA, schema);
     Database voyagerSettings = context.getExtraction().getDatabase();
     Map<String, String> ltConv = context.getMaps().getLoanType();
-    try (Connection voyagerConnection = getConnection(voyagerSettings);
-        Statement st = voyagerConnection.createStatement();
-        ResultSet rs = getResultSet(st, itemTypeContext);) {
+    try (
+      Connection voyagerConnection = getConnection(voyagerSettings);
+      Statement st = voyagerConnection.createStatement();
+      ResultSet rs = getResultSet(st, itemTypeContext);
+    ) {
       while (rs.next()) {
         String id = rs.getString(ITEM_TYPE_ID);
         if (Objects.nonNull(id)) {
           String originalCode = rs.getString(ITEM_TYPE_CODE);
           String code = ltConv.containsKey(originalCode) ? ltConv.get(originalCode) : rs.getString(ITEM_TYPE_CODE);
-          Optional<Loantype> loanType = loanTypes.getLoantypes().stream().filter(lt -> lt.getName().equals(code))
-              .findFirst();
+          Optional<Loantype> loanType = loanTypes.getLoantypes().stream().filter(lt -> lt.getName().equals(code)).findFirst();
           if (loanType.isPresent()) {
             String key = String.format(KEY_TEMPLATE, schema, id);
             idToUuid.put(key, loanType.get().getId());
@@ -584,16 +577,17 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     locationContext.put(SCHEMA, schema);
     Database voyagerSettings = context.getExtraction().getDatabase();
     Map<String, String> locConv = context.getMaps().getLocation();
-    try (Connection voyagerConnection = getConnection(voyagerSettings);
-        Statement st = voyagerConnection.createStatement();
-        ResultSet rs = getResultSet(st, locationContext);) {
+    try (
+      Connection voyagerConnection = getConnection(voyagerSettings);
+      Statement st = voyagerConnection.createStatement();
+      ResultSet rs = getResultSet(st, locationContext);
+    ) {
       while (rs.next()) {
         String id = rs.getString(LOCATION_ID);
         if (Objects.nonNull(id)) {
           String key = String.format(KEY_TEMPLATE, schema, id);
           String code = locConv.containsKey(key) ? locConv.get(key) : rs.getString(LOCATION_CODE);
-          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code))
-              .findFirst();
+          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
           if (location.isPresent()) {
             idToUuid.put(key, location.get().getId());
           }
@@ -605,27 +599,29 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     return idToUuid;
   }
 
-  private List<ItemStatus> getItemStatuses(Statement statement, Map<String, Object> context,
-      Map<String, String> itemStatusMap, Map<String, String> statusNameMap) throws SQLException {
+  private List<ItemStatusRecord> getItemStatuses(Statement statement, Map<String, Object> context, Map<String, String> itemStatusMap, Map<String, String> statusNameMap) throws SQLException {
     try (ResultSet resultSet = getResultSet(statement, context)) {
-      List<ItemStatus> statuses = new ArrayList<>();
+      List<ItemStatusRecord> statuses = new ArrayList<>();
       while (resultSet.next()) {
         String itemStatus = statusNameMap.get(resultSet.getString(ITEM_STATUS));
         String itemStatusDate = resultSet.getString(ITEM_STATUS_DATE);
         String circtrans = resultSet.getString(CIRCTRANS);
         String itemStatusDesc = itemStatusMap.get(resultSet.getString(ITEM_STATUS_DESC));
-
-        ItemStatus status = new ItemStatus(itemStatus, itemStatusDate, circtrans, itemStatusDesc);
-        statuses.add(status);
+        statuses.add(new ItemStatusRecord(itemStatus, itemStatusDate, circtrans, itemStatusDesc));
       }
-      ItemStatusComparator comparator = new ItemStatusComparator();
-      Collections.sort(statuses, comparator);
+      Collections.sort(statuses, new Comparator<ItemStatusRecord>() {
+
+        @Override
+        public int compare(ItemStatusRecord is1, ItemStatusRecord is2) {
+          return Integer.parseInt(is1.getItemStatusDesc()) - Integer.parseInt(is2.getItemStatusDesc());
+        }
+
+      });
       return statuses;
     }
   }
 
-  private ItemNoteWrapper getNotes(Statement statement, Map<String, Object> context, String itemNoteTypeId)
-      throws SQLException {
+  private ItemNoteWrapper getNotes(Statement statement, Map<String, Object> context, String itemNoteTypeId) throws SQLException {
     try (ResultSet resultSet = getResultSet(statement, context)) {
       List<Note__1> notes = new ArrayList<>();
       List<CirculationNote> circulationNotes = new ArrayList<>();
@@ -667,19 +663,16 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       String materialType = defaultMaterialTypeId;
       while (resultSet.next()) {
         String materialTypeCode = resultSet.getString(MTYPE_CODE);
-        Optional<Materialtype> potentialMaterialType = materialtypes.getMtypes().stream()
-          .filter(mt -> mt.getSource().equals(materialTypeCode))
-          .findFirst();
-
-          if (potentialMaterialType.isPresent()) {
-            materialType = potentialMaterialType.get().getId();
-          }
+        Optional<Materialtype> potentialMaterialType = materialtypes.getMtypes().stream().filter(mt -> mt.getSource().equals(materialTypeCode)).findFirst();
+        if (potentialMaterialType.isPresent()) {
+          materialType = potentialMaterialType.get().getId();
+        }
       }
       return materialType;
     }
   }
 
-  public class MfhdItem {
+  private class MfhdItem {
 
     private final String caption;
     private final String chron;
@@ -717,47 +710,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
   }
 
-  public class ItemStatus {
-
-    private final String itemStatus;
-    private final String itemStatusDate;
-    private final String circtrans;
-    private final String itemStatusDesc;
-
-    public ItemStatus(String itemStatus, String itemStatusDate, String circtrans, String itemStatusDesc) {
-      this.itemStatus = itemStatus;
-      this.itemStatusDate = itemStatusDate;
-      this.circtrans = circtrans;
-      this.itemStatusDesc = itemStatusDesc;
-    }
-
-    public String getItemStatus() {
-      return itemStatus;
-    }
-
-    public String getItemStatusDate() {
-      return itemStatusDate;
-    }
-
-    public String getCirctrans() {
-      return circtrans;
-    }
-
-    public String getItemStatusDesc() {
-      return itemStatusDesc;
-    }
-  }
-
-  private class ItemStatusComparator implements Comparator<ItemStatus> {
-
-    @Override
-    public int compare(ItemStatus is1, ItemStatus is2) {
-      return Integer.parseInt(is1.getItemStatusDesc()) - Integer.parseInt(is2.getItemStatusDesc());
-    }
-
-  }
-
-  public class ItemNoteWrapper {
+  private class ItemNoteWrapper {
 
     private final List<Note__1> notes;
     private final List<CirculationNote> circulationNotes;

@@ -19,7 +19,6 @@ import org.folio.rest.jaxrs.model.Statisticalcode;
 import org.folio.rest.jaxrs.model.Statisticalcodes;
 import org.folio.rest.jaxrs.model.Status;
 import org.folio.rest.jaxrs.model.Status.Name;
-import org.folio.rest.migration.ItemMigration.ItemStatus;
 
 public class ItemRecord {
 
@@ -41,7 +40,7 @@ public class ItemRecord {
   private final List<Note__1> itemNotes;
   private final List<CirculationNote> circulationNotes;
 
-  private List<ItemStatus> statuses;
+  private final List<ItemStatusRecord> statuses;
 
   private String permanentLoanTypeId;
   private String temporaryLoanTypeId;
@@ -55,10 +54,7 @@ public class ItemRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public ItemRecord(String itemId, String barcode, String caption, String enumeration, String chronology,
-      String freetext, String year, int numberOfPieces, String spineLabel, String materialTypeId, String itemNoteTypeId,
-      String itemDamagedStatusId, List<ItemStatus> statuses, List<Note__1> itemNotes,
-      List<CirculationNote> circulationNotes) {
+  public ItemRecord(String itemId, String barcode, String caption, String enumeration, String chronology, String freetext, String year, int numberOfPieces, String spineLabel, String materialTypeId, String itemNoteTypeId, String itemDamagedStatusId, List<ItemStatusRecord> statuses, List<Note__1> itemNotes, List<CirculationNote> circulationNotes) {
     this.itemId = itemId;
     this.barcode = barcode;
     this.caption = caption;
@@ -120,12 +116,8 @@ public class ItemRecord {
     return materialTypeId;
   }
 
-  public List<ItemStatus> getStatuses() {
+  public List<ItemStatusRecord> getStatuses() {
     return statuses;
-  }
-
-  public void setStatuses(List<ItemStatus> statuses) {
-    this.statuses = statuses;
   }
 
   public String getPermanentLoanTypeId() {
@@ -253,13 +245,11 @@ public class ItemRecord {
 
     boolean supress = false;
     Set<String> statisticalCodeIds = new HashSet<>();
-    for (ItemStatus s : statuses) {
+    for (ItemStatusRecord s : statuses) {
       if (s.getItemStatus().toLowerCase().contains("damaged")) {
         item.setItemDamagedStatusId(itemDamagedStatusId);
       } else {
-        Optional<Statisticalcode> potentialStatisticalcode = statisticalcodes.getStatisticalCodes().stream()
-          .filter(sc -> sc.getCode().equals(s.getItemStatus()))
-          .findFirst();
+        Optional<Statisticalcode> potentialStatisticalcode = statisticalcodes.getStatisticalCodes().stream().filter(sc -> sc.getCode().equals(s.getItemStatus())).findFirst();
         if (potentialStatisticalcode.isPresent()) {
           statisticalCodeIds.add(potentialStatisticalcode.get().getId());
         }
