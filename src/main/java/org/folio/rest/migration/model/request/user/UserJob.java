@@ -15,6 +15,9 @@ public class UserJob extends AbstractJob {
   @NotNull
   private String userId;
 
+  @NotNull
+  private Boolean skipDuplicates;
+
   private Map<String, String> references;
 
   public UserJob() {
@@ -26,8 +29,24 @@ public class UserJob extends AbstractJob {
     return decodeSql;
   }
 
+  public void setDecodeSql(String decodeSql) {
+    this.decodeSql = decodeSql;
+  }
+
   public String getUserId() {
     return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+
+  public Boolean getSkipDuplicates() {
+    return skipDuplicates;
+  }
+
+  public void setSkipDuplicates(Boolean skipDuplicates) {
+    this.skipDuplicates = skipDuplicates;
   }
 
   public Map<String, String> getReferences() {

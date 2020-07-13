@@ -227,7 +227,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
             continue;
           }
 
-          if (!externalSystemId.equals(String.format("%s_%s", job.getSchema(), patronId))) {
+          if (job.getSkipDuplicates() && !externalSystemId.equals(String.format("%s_%s", job.getSchema(), patronId))) {
             Long countByExternalSystemId = migrationService.referenceLinkRepo.countByExternalReference(externalSystemId);
             if (countByExternalSystemId > 1) {
               continue;

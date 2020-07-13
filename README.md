@@ -470,6 +470,7 @@ POST to http://localhost:9000/migrate/users
       "partitions": 11,
       "decodeSql": "'fast', 1, 'grad', 2, 'ungr', 3, 'illend', 4, 'libd', 5, 'comm', 6, 'cour', 7, 'texs', 8, 'nonr', 9",
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "skipDuplicates": false,
       "references": {
         "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
         "userExternalTypeId": "0ed6f994-8dbd-4827-94c0-905504169c90"
@@ -480,6 +481,7 @@ POST to http://localhost:9000/migrate/users
       "partitions": 1,
       "decodeSql": "'fac/staff', 1, 'grad/prof', 2, 'undergrad', 3",
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "skipDuplicates": true,
       "references": {
         "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
         "userExternalTypeId": "426ce32f-388c-4edf-9c79-d6b8348148a0"
@@ -500,6 +502,11 @@ POST to http://localhost:9000/migrate/users
         "abh",
         "afq",
         "bnm",
+        "dom",
+        'd7n",
+        "hls",
+        "lru",
+        "okw",
         "qwc",
         "sac",
         "srb"
