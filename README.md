@@ -503,11 +503,15 @@ POST to http://localhost:9000/migrate/users
         "afq",
         "bnm",
         "dom",
-        'd7n",
+        "d7n",
         "hls",
+        "kolby",
         "lru",
+        "lupe",
+        "mathew",
         "okw",
         "qwc",
+        "rka",
         "sac",
         "srb"
       ]
