@@ -460,7 +460,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           vendorNotes.append(note);
         }
       }
-    } 
+    }
     return vendorNotes.toString();
   }
 

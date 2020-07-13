@@ -317,9 +317,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   private String getUsername(Statement statement, Map<String, Object> usernameContext) throws SQLException {
     String username = null;
-    try (
-      ResultSet resultSet = getResultSet(statement, usernameContext);
-    ) {
+    try (ResultSet resultSet = getResultSet(statement, usernameContext)) {
       while (resultSet.next()) {
         String netid = resultSet.getString(USERNAME_NETID);
         if (Objects.nonNull(netid)) {
@@ -329,20 +327,13 @@ public class UserMigration extends AbstractMigration<UserContext> {
       if (Objects.isNull(username)) {
         username = (String) usernameContext.get(EXTERNAL_SYSTEM_ID);
       }
-    } catch (SQLException e) {
-      log.error("{} user id {} SQL error while processing username", usernameContext.get(SCHEMA), usernameContext.get(PATRON_ID));
-      log.debug(e.getMessage());
-
-      throw e;
     }
     return username;
   }
 
   private List<UserAddressRecord> getUserAddressRecords(Statement statement, Map<String, Object> addressContext) throws SQLException {
     List<UserAddressRecord> userAddressRecords = new ArrayList<>();
-    try (
-      ResultSet resultSet = getResultSet(statement, addressContext);
-    ) {
+    try (ResultSet resultSet = getResultSet(statement, addressContext)) {
       while (resultSet.next()) {
         String addressDescription = resultSet.getString(ADDRESS_DESC);
         String addressStatus = resultSet.getString(ADDRESS_STATUS);
@@ -355,14 +346,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
         String phoneDescription = resultSet.getString(PHONE_DESC);
         String stateProvince = resultSet.getString(STATE_PROVINCE);
         String zipPostal = resultSet.getString(ZIP_POSTAL);
-
         userAddressRecords.add(new UserAddressRecord(addressDescription, addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal));
       }
-    } catch (SQLException e) {
-      log.error("{} patron id {} SQL error while processing addresses, emails, and phone numbers", addressContext.get(SCHEMA), addressContext.get(PATRON_ID));
-      log.debug(e.getMessage());
-
-      throw e;
     }
     return userAddressRecords;
   }
@@ -370,14 +355,10 @@ public class UserMigration extends AbstractMigration<UserContext> {
   private PatronCodes getPatronCodes(Statement statement, Map<String, Object> patronGroupContext) throws SQLException {
     PatronCodes patronCodes = null;
     String groupcode = null, barcode = null;
-    try (
-      ResultSet resultSet = getResultSet(statement, patronGroupContext);
-    ) {
-
+    try (ResultSet resultSet = getResultSet(statement, patronGroupContext)) {
       while(resultSet.next()) {
         String patronGroupcode = resultSet.getString(PATRON_GROUP_CODE);
         String patronBarcode = resultSet.getString(PATRON_BARCODE);
-
         if (Objects.nonNull(patronGroupcode)) {
           groupcode = patronGroupcode.toLowerCase();
         }
@@ -387,11 +368,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
         patronCodes = new PatronCodes(groupcode, barcode);
         break;
       }
-    } catch (SQLException e) {
-      log.error("{} patron id {} SQL error while processing barcode and patron group", patronGroupContext.get(SCHEMA), patronGroupContext.get(PATRON_ID));
-      log.debug(e.getMessage());
-
-      throw e;
     }
     return patronCodes;
   }
