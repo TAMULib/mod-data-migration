@@ -22,6 +22,8 @@ public class ItemMaps {
   public ItemMaps() {
     location = new HashMap<>();
     loanType = new HashMap<>();
+    itemStatus = new HashMap<>();
+    statusName = new HashMap<>();
   }
 
   public Map<String, Map<String, String>> getLocation() {

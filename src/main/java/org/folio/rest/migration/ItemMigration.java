@@ -39,6 +39,7 @@ import org.folio.rest.migration.model.ItemStatusRecord;
 import org.folio.rest.migration.model.request.item.ItemContext;
 import org.folio.rest.migration.model.request.item.ItemDefaults;
 import org.folio.rest.migration.model.request.item.ItemJob;
+import org.folio.rest.migration.model.request.item.ItemMaps;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
@@ -215,6 +216,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       ItemJob job = (ItemJob) partitionContext.get(JOB);
 
+      Materialtypes materialtypes = (Materialtypes) partitionContext.get(MATERIAL_TYPES);
+
+      ItemMaps maps = context.getMaps();
       ItemDefaults defaults = context.getDefaults();
 
       Map<String, String> loanTypesMap = (Map<String, String>) partitionContext.get(LOAN_TYPES_MAP);
@@ -304,12 +308,44 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           noteContext.put(ITEM_ID, itemId);
           materialTypeContext.put(ITEM_ID, itemId);
 
+          String id = null, holdingId = null;
+
+          Optional<ReferenceLink> itemRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId);
+
+          if (itemRL.isPresent()) {
+
+            id = itemRL.get().getFolioReference();
+
+            Optional<ReferenceLink> itemToHoldingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemToHoldingRLTypeId, itemRL.get().getId());
+
+            if (itemToHoldingRL.isPresent()) {
+              Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findById(itemToHoldingRL.get().getFolioReference());
+
+              if (holdingRL.isPresent()) {
+                holdingId = holdingRL.get().getFolioReference();
+              }
+            }
+          }
+
+          if (Objects.isNull(id)) {
+            log.error("{} no item record id found for item id {}", schema, itemId);
+            continue;
+          }
+
+          if (Objects.isNull(holdingId)) {
+            log.error("{} no holdings record id found for item id {}", schema, itemId);
+            continue;
+          }
+
           try {
             MfhdItem mfhdItem = getMfhdItem(mfhdItemStatement, mfhdContext);
+
             String barcode = getItemBarcode(barcodeStatement, barcodeContext);
-            List<ItemStatusRecord> itemStatuses = getItemStatuses(itemStatusStatement, itemStatusContext, context.getMaps().getItemStatus(), context.getMaps().getStatusName());
+
+            List<ItemStatusRecord> itemStatuses = getItemStatuses(itemStatusStatement, itemStatusContext, maps.getItemStatus(), maps.getStatusName());
+
             ItemNoteWrapper noteWrapper = getNotes(noteStatement, noteContext, job.getItemNoteTypeId());
-            Materialtypes materialtypes = (Materialtypes) partitionContext.get(MATERIAL_TYPES);
+
             String materialTypeId = getMaterialTypeId(materialTypeStatement, materialTypeContext, defaults.getMaterialTypeId(), materialtypes);
 
             ItemRecord itemRecord = new ItemRecord(itemId, barcode, mfhdItem.getCaption(), mfhdItem.getItemEnum(), mfhdItem.getChron(), mfhdItem.getFreetext(), mfhdItem.getYear(), numberOfPieces, spineLabel, materialTypeId, job.getItemNoteTypeId(), job.getItemDamagedStatusId(), itemStatuses, noteWrapper.getNotes(), noteWrapper.getCirculationNotes());
@@ -323,35 +359,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
             if (locationsMap.containsKey(voyagerTempLocationId)) {
               itemRecord.setTemporaryLocationId(locationsMap.get(voyagerTempLocationId));
-            }
-
-            String id = null, holdingId = null;
-
-            Optional<ReferenceLink> itemRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId);
-
-            if (itemRL.isPresent()) {
-
-              id = itemRL.get().getFolioReference();
-
-              Optional<ReferenceLink> itemToHoldingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemToHoldingRLTypeId, itemRL.get().getId());
-
-              if (itemToHoldingRL.isPresent()) {
-                Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findById(itemToHoldingRL.get().getFolioReference());
-
-                if (holdingRL.isPresent()) {
-                  holdingId = holdingRL.get().getFolioReference();
-                }
-              }
-            }
-
-            if (Objects.isNull(id)) {
-              log.error("{} no item record id found for item id {}", schema, itemId);
-              continue;
-            }
-
-            if (Objects.isNull(holdingId)) {
-              log.error("{} no holdings record id found for item id {}", schema, itemId);
-              continue;
             }
 
             itemRecord.setId(id);
@@ -605,12 +612,10 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         statuses.add(new ItemStatusRecord(itemStatus, itemStatusDate, circtrans, itemStatusDesc));
       }
       Collections.sort(statuses, new Comparator<ItemStatusRecord>() {
-
         @Override
         public int compare(ItemStatusRecord is1, ItemStatusRecord is2) {
           return Integer.parseInt(is1.getItemStatusDesc()) - Integer.parseInt(is2.getItemStatusDesc());
         }
-
       });
       return statuses;
     }
