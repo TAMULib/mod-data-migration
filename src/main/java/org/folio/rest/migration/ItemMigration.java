@@ -217,6 +217,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       ItemJob job = (ItemJob) partitionContext.get(JOB);
 
       Materialtypes materialtypes = (Materialtypes) partitionContext.get(MATERIAL_TYPES);
+      Statisticalcodes statisticalcodes = (Statisticalcodes) partitionContext.get(STATISTICAL_CODES);
 
       ItemMaps maps = context.getMaps();
       ItemDefaults defaults = context.getDefaults();
@@ -370,8 +371,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
             String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
-
-            Statisticalcodes statisticalcodes = (Statisticalcodes) partitionContext.get(STATISTICAL_CODES);
 
             Item item = itemRecord.toItem(hridPrefix, hrid, statisticalcodes, materialtypes);
 
@@ -602,8 +601,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   }
 
   private List<ItemStatusRecord> getItemStatuses(Statement statement, Map<String, Object> context, Map<String, String> itemStatusMap, Map<String, String> statusNameMap) throws SQLException {
+    List<ItemStatusRecord> statuses = new ArrayList<>();
     try (ResultSet resultSet = getResultSet(statement, context)) {
-      List<ItemStatusRecord> statuses = new ArrayList<>();
       while (resultSet.next()) {
         String itemStatus = statusNameMap.get(resultSet.getString(ITEM_STATUS));
         String itemStatusDate = resultSet.getString(ITEM_STATUS_DATE);
@@ -617,8 +616,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           return Integer.parseInt(is1.getItemStatusDesc()) - Integer.parseInt(is2.getItemStatusDesc());
         }
       });
-      return statuses;
     }
+    return statuses;
   }
 
   private ItemNoteWrapper getNotes(Statement statement, Map<String, Object> context, String itemNoteTypeId) throws SQLException {
@@ -633,7 +632,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         itemNote.replaceAll("[^\\p{ASCII}]", "");
         itemNote = itemNote.replaceAll("[\\p{Cntrl}&&[^\r\n\t]]", "");
         itemNote = itemNote.replaceAll("\\p{C}", "");
-
         if (itemNoteType.equals("1")) {
           Note__1 note = new Note__1();
           note.setNote(itemNote);
@@ -652,7 +650,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             circulationNotes.add(circulationNote);
           }
         }
-
       }
       return new ItemNoteWrapper(notes, circulationNotes);
     }

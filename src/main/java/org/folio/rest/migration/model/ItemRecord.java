@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.folio.rest.jaxrs.model.CirculationNote;
 import org.folio.rest.jaxrs.model.Item;
@@ -189,10 +190,11 @@ public class ItemRecord {
     item.setId(id);
     item.setHoldingsRecordId(holdingId);
     item.setPermanentLoanTypeId(permanentLoanTypeId);
+
     if (Objects.nonNull(temporaryLoanTypeId)) {
       item.setTemporaryLoanTypeId(temporaryLoanTypeId);
     }
-    // TODO: Check with script
+
     item.setMaterialTypeId(materialTypeId);
     item.setPermanentLocationId(permanentLocationId);
     if (Objects.nonNull(temporaryLocationId)) {
@@ -222,7 +224,11 @@ public class ItemRecord {
     item.setNumberOfPieces(String.valueOf(numberOfPieces));
     item.setEnumeration(enumeration);
 
+    AtomicBoolean suppress = new AtomicBoolean(false);
+
     List<Status> processedStatuses = new ArrayList<>();
+    Set<String> statisticalCodeIds = new HashSet<>();
+
     statuses.stream().forEach(s -> {
       Status status = new Status();
       if (isNotEmpty(s.getCirctrans())) {
@@ -239,28 +245,28 @@ public class ItemRecord {
         status.setDate(date);
       }
       processedStatuses.add(status);
-    });
 
-    item.setStatus(processedStatuses.get(0));
+      if (isNotEmpty(s.getItemStatus())) {
+        if (s.getItemStatus().toLowerCase().contains("damaged")) {
+          item.setItemDamagedStatusId(itemDamagedStatusId);
+        } else {
+          Optional<Statisticalcode> potentialStatisticalcode = statisticalcodes.getStatisticalCodes().stream()
+            .filter(sc -> sc.getCode().equals(s.getItemStatus()))
+            .findFirst();
+          if (potentialStatisticalcode.isPresent()) {
+            statisticalCodeIds.add(potentialStatisticalcode.get().getId());
+          }
+        }
 
-    boolean supress = false;
-    Set<String> statisticalCodeIds = new HashSet<>();
-    for (ItemStatusRecord s : statuses) {
-      if (s.getItemStatus().toLowerCase().contains("damaged")) {
-        item.setItemDamagedStatusId(itemDamagedStatusId);
-      } else {
-        Optional<Statisticalcode> potentialStatisticalcode = statisticalcodes.getStatisticalCodes().stream().filter(sc -> sc.getCode().equals(s.getItemStatus())).findFirst();
-        if (potentialStatisticalcode.isPresent()) {
-          statisticalCodeIds.add(potentialStatisticalcode.get().getId());
+        if (s.getItemStatus().contains("Missing") || s.getItemStatus().contains("Lost") || s.getItemStatus().contains("Withdrawn")) {
+          suppress.set(true);
         }
       }
+    });
 
-      if (s.getItemStatus().contains("Missing") || s.getItemStatus().contains("Lost") || s.getItemStatus().contains("Withdrawn")) {
-        supress = true;
-      }
-    }
-    item.setDiscoverySuppress(supress);
+    item.setDiscoverySuppress(suppress.get());
     item.setStatisticalCodeIds(statisticalCodeIds);
+
     item.setHrid(String.format("%s%011d", hridPrefix, hrid));
 
     Set<String> formerIds = new HashSet<>();
