@@ -226,6 +226,20 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
 
   }
 
+  private ThreadConnections getThreadConnections(Database voyagerSettings, Database referenceLinkSettings) {
+    ThreadConnections threadConnections = new ThreadConnections();
+    threadConnections.setPageConnection(getConnection(voyagerSettings));
+    threadConnections.setHoldingConnection(getConnection(voyagerSettings));
+    threadConnections.setItemConnection(getConnection(voyagerSettings));
+    try {
+      threadConnections.setReferenceLinkConnection(getConnection(referenceLinkSettings).unwrap(BaseConnection.class));
+    } catch (SQLException e) {
+      log.error(e.getMessage());
+      throw new RuntimeException(e);
+    }
+    return threadConnections;
+  }
+
   private synchronized Boolean holdingAlreadyProcessed(String schema, String holdingId) {
     Set<String> holdingIds = HOLDING_EXTERNAL_REFERENCES.get(schema);
     boolean alreadyProcessed = holdingIds.contains(holdingId);
@@ -244,21 +258,8 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
     return alreadyProcessed;
   }
 
-  private ThreadConnections getThreadConnections(Database voyagerSettings, Database referenceLinkSettings) {
-    ThreadConnections threadConnections = new ThreadConnections();
-    threadConnections.setPageConnection(getConnection(voyagerSettings));
-    threadConnections.setHoldingConnection(getConnection(voyagerSettings));
-    threadConnections.setItemConnection(getConnection(voyagerSettings));
-    try {
-      threadConnections.setReferenceLinkConnection(getConnection(referenceLinkSettings).unwrap(BaseConnection.class));
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-      throw new RuntimeException(e);
-    }
-    return threadConnections;
-  }
-
   private class ThreadConnections {
+
     private Connection pageConnection;
     private Connection holdingConnection;
     private Connection itemConnection;
@@ -312,6 +313,7 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
         throw new RuntimeException(e);
       }
     }
+
   }
 
 }

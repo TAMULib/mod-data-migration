@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -225,16 +226,14 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
       try (
-        PrintWriter contactsRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getContactsRecordConnection(), String.format(CONTACTS_RECORDS_COPY_SQL, tenant)), true);
-        PrintWriter organizationsRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getOrganizationRecordConnection(), String.format(ORGANIZATIONS_RECORDS_COPY_SQL, tenant)), true);
-
+        PrintWriter contactWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getContactsRecordConnection(), String.format(CONTACTS_RECORDS_COPY_SQL, tenant)), true);
+        PrintWriter organizationWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getOrganizationRecordConnection(), String.format(ORGANIZATIONS_RECORDS_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement accountStatement = threadConnections.getAccountConnection().createStatement();
         Statement addressStatement = threadConnections.getAddressConnection().createStatement();
         Statement aliasStatement = threadConnections.getAliasConnection().createStatement();
         Statement noteStatement = threadConnections.getNoteConnection().createStatement();
         Statement phoneStatement = threadConnections.getPhoneConnection().createStatement();
-
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
       ) {
 
@@ -296,7 +295,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
                 String contactUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(contact)));
         
                 // TODO: validate rows
-                contactsRecordWriter.println(String.join("\t", contact.getId(), contactUtf8Json, createdAt, createdByUserId));
+                contactWriter.println(String.join("\t", contact.getId(), contactUtf8Json, createdAt, createdByUserId));
 
                 contacts.add(contact.getId());
               } else if (vendorAddress.isEmail()) {
@@ -339,7 +338,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
             String orgUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(organization)));
 
             // TODO: validate rows
-            organizationsRecordWriter.println(String.join("\t", organization.getId(), orgUtf8Json, createdAt, createdByUserId));
+            organizationWriter.println(String.join("\t", organization.getId(), orgUtf8Json, createdAt, createdByUserId));
 
           } catch (JsonProcessingException e) {
             log.error("{} vendor id {} error processing json", schema, vendorId);
@@ -361,9 +360,27 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
     @Override
     public boolean equals(Object obj) {
-      return obj != null && ((VendorPartitionTask) obj).getIndex() == this.getIndex();
+      return Objects.nonNull(obj) && ((VendorPartitionTask) obj).getIndex() == this.getIndex();
     }
 
+  }
+
+  private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
+    ThreadConnections threadConnections = new ThreadConnections();
+    threadConnections.setPageConnection(getConnection(voyagerSettings));
+    threadConnections.setAccountConnection(getConnection(voyagerSettings));
+    threadConnections.setAddressConnection(getConnection(voyagerSettings));
+    threadConnections.setAliasConnection(getConnection(voyagerSettings));
+    threadConnections.setNoteConnection(getConnection(voyagerSettings));
+    threadConnections.setPhoneConnection(getConnection(voyagerSettings));
+    try {
+      threadConnections.setContactsRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+      threadConnections.setOrganizationRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+    } catch (SQLException e) {
+      log.error(e.getMessage());
+      throw new RuntimeException(e);
+    }
+    return threadConnections;
   }
 
   private List<VendorAccountRecord> getVendorAccounts(Statement statement, Map<String, Object> vendorAccountsContext) throws SQLException {
@@ -460,27 +477,8 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
     return vendorNotes.toString();
   }
 
-  private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
-    ThreadConnections threadConnections = new ThreadConnections();
-    threadConnections.setPageConnection(getConnection(voyagerSettings));
-    threadConnections.setAccountConnection(getConnection(voyagerSettings));
-    threadConnections.setAddressConnection(getConnection(voyagerSettings));
-    threadConnections.setAliasConnection(getConnection(voyagerSettings));
-    threadConnections.setNoteConnection(getConnection(voyagerSettings));
-    threadConnections.setPhoneConnection(getConnection(voyagerSettings));
-
-    try {
-      threadConnections.setContactsRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-      threadConnections.setOrganizationRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-      throw new RuntimeException(e);
-    }
-
-    return threadConnections;
-  }
-
   private class ThreadConnections {
+
     private Connection pageConnection;
     private Connection accountConnection;
     private Connection addressConnection;
@@ -560,34 +558,21 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
     }
 
     public void closeAll() {
-      closeConnection(pageConnection);
-      closeConnection(accountConnection);
-      closeConnection(addressConnection);
-      closeConnection(aliasConnection);
-      closeConnection(noteConnection);
-      closeConnection(phoneConnection);
-
-      closeBaseConnection(contactsRecordConnection);
-      closeBaseConnection(organizationRecordConnection);
-    }
-
-    private void closeBaseConnection(BaseConnection baseConnection) {
       try {
-        baseConnection.close();
+        pageConnection.close();
+        accountConnection.close();
+        addressConnection.close();
+        aliasConnection.close();
+        noteConnection.close();
+        phoneConnection.close();
+        contactsRecordConnection.close();
+        organizationRecordConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
         throw new RuntimeException(e);
       }
     }
 
-    private void closeConnection(Connection connection) {
-      try {
-        connection.close();
-      } catch (SQLException e) {
-        log.error(e.getMessage());
-        throw new RuntimeException(e);
-      }
-    }
   }
 
 }

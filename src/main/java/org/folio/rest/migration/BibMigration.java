@@ -415,7 +415,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
     return threadConnections;
   }
 
-  @Cacheable(key = "operatorId")
+  @Cacheable(value = "statisticalCodes", key = "operatorId")
   private Set<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalCodes) {
     return statisticalCodes.getStatisticalCodes().stream()
       .map(sc -> sc.getCode())
@@ -447,6 +447,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
   }
 
   private class ThreadConnections {
+
     private Connection pageConnection;
     private Connection marcConnection;
 
@@ -520,6 +521,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
         throw new RuntimeException(e);
       }
     }
+
   }
 
 }

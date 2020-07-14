@@ -203,7 +203,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       int count = 0;
 
       try (
-        PrintWriter holdingRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getHoldingConnection(), String.format(HOLDING_RECORDS_COPY_SQL, tenant)), true);
+        PrintWriter holdingsRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getHoldingConnection(), String.format(HOLDING_RECORDS_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement marcStatement = threadConnections.getMarcConnection().createStatement();
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
@@ -341,7 +341,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(holdingsRecord)));
 
             // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
-            holdingRecordWriter.println(String.join("\t",
+            holdingsRecordWriter.println(String.join("\t",
               holdingsRecord.getId(),
               hrUtf8Json,
               createdAt,
@@ -397,7 +397,36 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     return threadConnections;
   }
 
+  private Map<String, String> getLocationsMap(Locations locations, String schema) {
+    Map<String, String> idToUuid = new HashMap<>();
+    Map<String, Object> locationContext = new HashMap<>();
+    locationContext.put(SQL, context.getExtraction().getLocationSql());
+    locationContext.put(SCHEMA, schema);
+    Database voyagerSettings = context.getExtraction().getDatabase();
+    Map<String, String> locConv = context.getMaps().getLocation().get(schema);
+    try(
+      Connection voyagerConnection = getConnection(voyagerSettings);
+      Statement st = voyagerConnection.createStatement();
+      ResultSet rs = getResultSet(st, locationContext);
+    ) {
+      while (rs.next()) {
+        String id = rs.getString(LOCATION_ID);
+        if (Objects.nonNull(id)) {
+          String code = locConv.containsKey(id) ? locConv.get(id) : rs.getString(LOCATION_CODE);
+          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
+          if (location.isPresent()) {
+            idToUuid.put(id, location.get().getId());
+          }
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return idToUuid;
+  }
+
   private class ThreadConnections {
+
     private Connection pageConnection;
     private Connection marcConnection;
 
@@ -441,34 +470,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         throw new RuntimeException(e);
       }
     }
-  }
 
-  private Map<String, String> getLocationsMap(Locations locations, String schema) {
-    Map<String, String> idToUuid = new HashMap<>();
-    Map<String, Object> locationContext = new HashMap<>();
-    locationContext.put(SQL, context.getExtraction().getLocationSql());
-    locationContext.put(SCHEMA, schema);
-    Database voyagerSettings = context.getExtraction().getDatabase();
-    Map<String, String> locConv = context.getMaps().getLocation().get(schema);
-    try(
-      Connection voyagerConnection = getConnection(voyagerSettings);
-      Statement st = voyagerConnection.createStatement();
-      ResultSet rs = getResultSet(st, locationContext);
-    ) {
-      while (rs.next()) {
-        String id = rs.getString(LOCATION_ID);
-        if (Objects.nonNull(id)) {
-          String code = locConv.containsKey(id) ? locConv.get(id) : rs.getString(LOCATION_CODE);
-          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
-          if (location.isPresent()) {
-            idToUuid.put(id, location.get().getId());
-          }
-        }
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return idToUuid;
   }
 
 }

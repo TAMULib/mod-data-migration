@@ -174,6 +174,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
   }
 
   private class ThreadConnections {
+
     private Connection pageConnection;
 
     private BaseConnection referenceLinkConnection;
@@ -207,6 +208,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
         throw new RuntimeException(e);
       }
     }
+
   }
 
 }

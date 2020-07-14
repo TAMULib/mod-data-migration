@@ -169,6 +169,7 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
   }
 
   private class ThreadConnections {
+
     private Connection pageConnection;
 
     private BaseConnection referenceLinkConnection;
@@ -202,6 +203,7 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
         throw new RuntimeException(e);
       }
     }
+
   }
 
 }

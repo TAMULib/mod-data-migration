@@ -197,13 +197,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, usernameSettings, folioSettings);
 
       try (
-        PrintWriter userRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getUserConnection(), String.format(USERS_COPY_SQL, tenant)), true);
-
+        PrintWriter userWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getUserConnection(), String.format(USERS_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement usernameStatement = threadConnections.getUsernameConnection().createStatement();
         Statement addressStatement = threadConnections.getAdressConnection().createStatement();
         Statement patronGroupStatement = threadConnections.getPatronGroupConnection().createStatement();
-
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
       ) {
 
@@ -288,7 +286,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
           try {
             String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userdata)));
 
-            userRecordWriter.println(String.join("\t", userdata.getId(), userUtf8Json, createdAt, createdByUserId, userdata.getPatronGroup()));
+            userWriter.println(String.join("\t", userdata.getId(), userUtf8Json, createdAt, createdByUserId, userdata.getPatronGroup()));
           } catch (JsonProcessingException e) {
             log.error("{} user id {} error serializing user", schema, userRecord.getPatronId());
           }
@@ -310,6 +308,23 @@ public class UserMigration extends AbstractMigration<UserContext> {
       return Objects.nonNull(obj) && ((UserPartitionTask) obj).getIndex() == this.getIndex();
     }
 
+  }
+
+  private ThreadConnections getThreadConnections(Database voyagerSettings, Database usernameSettings, Database folioSettings) {
+    ThreadConnections threadConnections = new ThreadConnections();
+    threadConnections.setPageConnection(getConnection(voyagerSettings));
+    threadConnections.setAddressesConnection(getConnection(voyagerSettings));
+    threadConnections.setPatronGroupConnection(getConnection(voyagerSettings));
+    threadConnections.setUsernameConnection(getConnection(usernameSettings));
+
+    try {
+      threadConnections.setUserConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+    } catch (SQLException e) {
+      log.error(e.getMessage());
+      throw new RuntimeException(e);
+    }
+
+    return threadConnections;
   }
 
   private String getUsername(Statement statement, Map<String, Object> usernameContext) throws SQLException {
@@ -378,24 +393,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
     return Optional.empty();
   }
 
-  private ThreadConnections getThreadConnections(Database voyagerSettings, Database usernameSettings, Database folioSettings) {
-    ThreadConnections threadConnections = new ThreadConnections();
-    threadConnections.setPageConnection(getConnection(voyagerSettings));
-    threadConnections.setAddressesConnection(getConnection(voyagerSettings));
-    threadConnections.setPatronGroupConnection(getConnection(voyagerSettings));
-    threadConnections.setUsernameConnection(getConnection(usernameSettings));
-
-    try {
-      threadConnections.setUserConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-      throw new RuntimeException(e);
-    }
-
-    return threadConnections;
-  }
-
   private class ThreadConnections {
+
     private Connection pageConnection;
     private Connection addressConnection;
     private Connection patronGroupConnection;
@@ -459,9 +458,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
         throw new RuntimeException(e);
       }
     }
+
   }
 
   private class PatronCodes {
+
     private final String groupcode;
     private final String barcode;
 
