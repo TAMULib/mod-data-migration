@@ -19,6 +19,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.Userdata;
 import org.folio.rest.jaxrs.model.Usergroup;
 import org.folio.rest.jaxrs.model.Usergroups;
@@ -326,16 +327,15 @@ public class UserMigration extends AbstractMigration<UserContext> {
   }
 
   private String getUsername(Statement statement, Map<String, Object> usernameContext) throws SQLException {
-    String username = null;
+    String schema = (String) usernameContext.get(SCHEMA);
+    String patronId = (String) usernameContext.get(PATRON_ID);
+    String username = String.format("%s_%s", schema, patronId);
     try (ResultSet resultSet = getResultSet(statement, usernameContext)) {
       while (resultSet.next()) {
         String netid = resultSet.getString(USERNAME_NETID);
-        if (Objects.nonNull(netid)) {
+        if (StringUtils.isNotEmpty(netid)) {
           username = netid.toLowerCase();
         }
-      }
-      if (Objects.isNull(username)) {
-        username = (String) usernameContext.get(EXTERNAL_SYSTEM_ID);
       }
     }
     return username;
