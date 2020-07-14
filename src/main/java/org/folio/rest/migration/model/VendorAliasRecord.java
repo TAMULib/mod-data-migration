@@ -2,7 +2,7 @@ package org.folio.rest.migration.model;
 
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Alias;
 
-public class VendorAliasRecord extends AbstractVendorRecord {
+public class VendorAliasRecord {
 
   private final String altVendorName;
 

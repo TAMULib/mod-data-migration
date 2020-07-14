@@ -12,8 +12,9 @@ import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Address;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Email;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Organization;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Url;
+import org.folio.rest.migration.model.request.vendor.VendorDefaults;
 
-public class VendorRecord extends AbstractVendorRecord {
+public class VendorRecord {
 
   private final String referenceId;
   private final String vendorId;
@@ -179,7 +180,7 @@ public class VendorRecord extends AbstractVendorRecord {
     this.createdDate = createdDate;
   }
 
-  public Organization toOrganization() {
+  public Organization toOrganization(VendorDefaults defaults) {
     final Organization organization = new Organization();
 
     organization.setId(referenceId);
@@ -188,34 +189,22 @@ public class VendorRecord extends AbstractVendorRecord {
     organization.setTaxId(taxId);
     organization.setClaimingInterval(claimingInterval);
 
-    organization.setAccounts(vendorAccountRecords.stream().map(vendorAccount -> {
-      vendorAccount.setDefaults(defaults);
-      vendorAccount.setMaps(maps);
-      return vendorAccount.toAccount();
-    }).collect(Collectors.toList()));
+    organization.setAccounts(vendorAccountRecords.stream().map(vendorAccount -> vendorAccount.toAccount(defaults)).collect(Collectors.toList()));
 
-    organization.setPhoneNumbers(vendorPhoneNumbers.stream().map(vendorPhoneNumber -> {
-      vendorPhoneNumber.setDefaults(defaults);
-      vendorPhoneNumber.setMaps(maps);
-      return vendorPhoneNumber.toPhoneNumber();
-    }).collect(Collectors.toList()));
+    organization.setPhoneNumbers(vendorPhoneNumbers.stream().map(vendorPhoneNumber -> vendorPhoneNumber.toPhoneNumber(defaults)).collect(Collectors.toList()));
 
     organization.setAddresses(addresses);
     organization.setContacts(contacts);
     organization.setEmails(emails);
     organization.setUrls(urls);
 
-    organization.setAliases(vendorAliases.stream().map(vendorAlias -> {
-      vendorAlias.setDefaults(defaults);
-      vendorAlias.setMaps(maps);
-      return vendorAlias.toAlias();
-    }).collect(Collectors.toList()));
+    organization.setAliases(vendorAliases.stream().map(vendorAlias -> vendorAlias.toAlias()).collect(Collectors.toList()));
 
     setCode(organization);
     setCurrencies(organization);
     setDescription(organization);
-    setStatus(organization);
-    setLanguage(organization);
+    setStatus(organization, defaults);
+    setLanguage(organization, defaults);
     setSanCode(organization);
     setMetadata(organization);
 
@@ -241,15 +230,15 @@ public class VendorRecord extends AbstractVendorRecord {
       if (StringUtils.isEmpty(description)) {
         description = vendorNotes;
       } else {
-        description += " " + vendorNotes;
+        description += StringUtils.SPACE + vendorNotes;
       }
     }
 
     organization.setDescription(description);
   }
 
-  private void setStatus(Organization organization) {
-    String match = "";
+  private void setStatus(Organization organization, VendorDefaults defaults) {
+    String match = StringUtils.EMPTY;
 
     if (Objects.nonNull(defaults.getStatus())) {
       match = defaults.getStatus();
@@ -266,7 +255,7 @@ public class VendorRecord extends AbstractVendorRecord {
     }
   }
 
-  private void setLanguage(Organization organization) {
+  private void setLanguage(Organization organization, VendorDefaults defaults) {
     String language = defaults.getLanguage();
     if (Objects.nonNull(language)) {
       organization.setLanguage(defaults.getLanguage());

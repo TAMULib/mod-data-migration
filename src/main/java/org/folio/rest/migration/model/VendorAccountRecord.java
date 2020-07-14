@@ -4,10 +4,11 @@ import java.util.Objects;
 
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Account;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Account.PaymentMethod;
+import org.folio.rest.migration.model.request.vendor.VendorDefaults;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class VendorAccountRecord extends AbstractVendorRecord {
+public class VendorAccountRecord {
 
   private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -47,7 +48,7 @@ public class VendorAccountRecord extends AbstractVendorRecord {
     return status;
   }
 
-  public Account toAccount() {
+  public Account toAccount(VendorDefaults defaults) {
     final Account account = new Account();
 
     account.setLibraryCode(" ");
@@ -56,7 +57,7 @@ public class VendorAccountRecord extends AbstractVendorRecord {
     setName(account);
     setNotes(account);
     setNumber(account);
-    setPaymentMethod(account);
+    setPaymentMethod(account, defaults);
     setStatus(account);
 
     return account;
@@ -84,7 +85,7 @@ public class VendorAccountRecord extends AbstractVendorRecord {
     }
   }
 
-  private void setPaymentMethod(Account account) {
+  private void setPaymentMethod(Account account, VendorDefaults defaults) {
     if (Objects.nonNull(deposit) && deposit.equalsIgnoreCase("y")) {
       account.setPaymentMethod(PaymentMethod.DEPOSIT_ACCOUNT);
     } else if (Objects.nonNull(defaults.getPaymentMethod())) {

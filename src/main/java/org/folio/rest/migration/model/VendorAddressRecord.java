@@ -13,10 +13,12 @@ import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Address;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Contact;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Email;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Url;
+import org.folio.rest.migration.model.request.vendor.VendorDefaults;
+import org.folio.rest.migration.model.request.vendor.VendorMaps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class VendorAddressRecord extends AbstractVendorRecord {
+public class VendorAddressRecord {
 
   private static final String CLAIM = "claim";
   private static final String ORDER = "order";
@@ -185,7 +187,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     return false;
   }
 
-  public List<String> getCategories() {
+  public List<String> getCategories(VendorMaps maps) {
     List<String> categories = new ArrayList<>();
     Map<String, String> categoriesMap = maps.getCategories();
 
@@ -212,7 +214,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     return categories;
   }
 
-  public Address toAddress(List<String> categories) {
+  public Address toAddress(List<String> categories, VendorDefaults defaults, VendorMaps maps) {
     final Address address = new Address();
 
     address.setId(addressId);
@@ -224,14 +226,14 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     address.setCategories(categories);
 
     setAddressLine2(address);
-    setCountry(address);
-    setLanguage(address);
+    setCountry(address, defaults, maps);
+    setLanguage(address, defaults);
     setMetadata(address);
 
     return address;
   }
 
-  public Contact toContact(List<String> categories) {
+  public Contact toContact(List<String> categories, VendorDefaults defaults, VendorMaps maps) {
     final Contact contact = new Contact();
 
     contact.setId(UUID.randomUUID().toString());
@@ -240,7 +242,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
 
     contact.setCategories(categories);
 
-    setAddress(contact, categories);
+    setAddress(contact, categories, defaults, maps);
     setEmail(contact, categories);
     setMetadata(contact);
 
@@ -281,8 +283,8 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     }
   }
 
-  private void setCountry(Address address) {
-    String match = "";
+  private void setCountry(Address address, VendorDefaults defaults, VendorMaps maps) {
+    String match = StringUtils.EMPTY;
 
     if (Objects.isNull(country)) {
       if (Objects.nonNull(defaults.getCountry())) {
@@ -303,17 +305,17 @@ public class VendorAddressRecord extends AbstractVendorRecord {
     }
   }
 
-  private void setLanguage(Address address) {
+  private void setLanguage(Address address, VendorDefaults defaults) {
     String language = defaults.getLanguage();
     if (Objects.nonNull(language)) {
       address.setLanguage(defaults.getLanguage());
     }
   }
 
-  private void setAddress(Contact contact, List<String> categories) {
+  private void setAddress(Contact contact, List<String> categories, VendorDefaults defaults, VendorMaps maps) {
     if (!addressLine1.contains("@")) {
       List<Address> addresses = new ArrayList<>();
-      addresses.add(toAddress(categories));
+      addresses.add(toAddress(categories, defaults, maps));
       contact.setAddresses(addresses);
     }
   }
@@ -324,7 +326,7 @@ public class VendorAddressRecord extends AbstractVendorRecord {
       emails.add(toEmail(categories));
       contact.setEmails(emails);
 
-      String notes = "";
+      String notes = StringUtils.EMPTY;
       if (Objects.nonNull(addressLine2)) {
         notes += addressLine2;
       }
@@ -341,10 +343,10 @@ public class VendorAddressRecord extends AbstractVendorRecord {
 
   private void setDescription(Email email) {
     if (Objects.isNull(addressLine2)) {
-      String description = "";
+      String description = StringUtils.EMPTY;
 
       if (Objects.nonNull(email.getDescription())) {
-        description = email.getDescription() + " ";
+        description = email.getDescription() + StringUtils.SPACE;
       }
       description += addressLine2;
 
@@ -354,10 +356,10 @@ public class VendorAddressRecord extends AbstractVendorRecord {
 
   private void setDescription(Url url) {
     if (Objects.isNull(addressLine2)) {
-      String description = "";
+      String description = StringUtils.EMPTY;
 
       if (Objects.nonNull(url.getDescription())) {
-        description = url.getDescription() + " ";
+        description = url.getDescription() + StringUtils.SPACE;
       }
       description += addressLine2;
 

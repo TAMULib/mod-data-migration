@@ -255,8 +255,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           String referenceId = vendorRL.get().getFolioReference();
 
           VendorRecord vendorRecord = new VendorRecord(referenceId, vendorId, vendorCode, vendorType, vendorName, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
-          vendorRecord.setMaps(maps);
-          vendorRecord.setDefaults(defaults);
 
           vendorAccountsContext.put(VENDOR_ID, vendorId);
           vendorAddressesContext.put(VENDOR_ID, vendorId);
@@ -278,16 +276,14 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
             List<Url> urls = new ArrayList<>();
 
             for (VendorAddressRecord vendorAddress : vendorAddresses) {
-              vendorAddress.setDefaults(defaults);
-              vendorAddress.setMaps(maps);
               vendorAddress.setVendorId(vendorId);
 
-              List<String> categories = vendorAddress.getCategories();
+              List<String> categories = vendorAddress.getCategories(maps);
 
               if (vendorAddress.isAddress()) {
-                addresses.add(vendorAddress.toAddress(categories));
+                addresses.add(vendorAddress.toAddress(categories, defaults, maps));
               } else if (vendorAddress.isContact()) {
-                Contact contact = vendorAddress.toContact(categories);
+                Contact contact = vendorAddress.toContact(categories, defaults, maps);
     
                 String createdAt = DATE_TIME_FOMATTER.format( new Date().toInstant().atOffset(ZoneOffset.UTC));
                 String createdByUserId = job.getUserId();
@@ -328,7 +324,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
             String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
 
-            Organization organization = vendorRecord.toOrganization();
+            Organization organization = vendorRecord.toOrganization(defaults);
 
             if (maps.getIgnore().get(IGNODE_CODES).contains(organization.getCode().toLowerCase())) {
               log.warn("{} ignoring vendor id {} code {}", schema, vendorId, organization.getCode());

@@ -12,8 +12,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.Address;
 import org.folio.rest.jaxrs.model.Personal;
 import org.folio.rest.jaxrs.model.Userdata;
+import org.folio.rest.migration.model.request.user.UserDefaults;
 
-public class UserRecord extends AbstractUserRecord {
+public class UserRecord {
 
   private static final String PATRON = "patron";
 
@@ -159,16 +160,16 @@ public class UserRecord extends AbstractUserRecord {
     this.userAddressRecords = userAddressRecords;
   }
 
-  public Userdata toUserdata(String patronGroup) {
+  public Userdata toUserdata(String patronGroup, UserDefaults defaults) {
     final Userdata userdata = new Userdata();
     final Personal personal = new Personal();
 
     setLastName(personal);
     setFirstName(personal);
     setMiddleName(personal);
-    setPreferredContactTypeId(personal);
+    setPreferredContactTypeId(personal, defaults);
 
-    setAddresses(personal);
+    setAddresses(personal, defaults);
 
     userdata.setId(referenceId);
     userdata.setPersonal(personal);
@@ -202,7 +203,7 @@ public class UserRecord extends AbstractUserRecord {
     }
   }
 
-  private void setPreferredContactTypeId(Personal personal) {
+  private void setPreferredContactTypeId(Personal personal, UserDefaults defaults) {
     if (Objects.nonNull(smsNumber)) {
       preferredContactTypeId = TEXT;
       personal.setPreferredContactTypeId(preferredContactTypeId);
@@ -225,7 +226,7 @@ public class UserRecord extends AbstractUserRecord {
     }
   }
 
-  private void setAddresses(Personal personal) {
+  private void setAddresses(Personal personal, UserDefaults defaults) {
     List<Address> addresses = new ArrayList<>();
 
     boolean permanentStatusNormal = false;
@@ -235,12 +236,8 @@ public class UserRecord extends AbstractUserRecord {
     List<String> phoneTypes = new ArrayList<>();
 
     for (UserAddressRecord userAddressRecord : userAddressRecords) {
-
-      userAddressRecord.setMaps(maps);
-      userAddressRecord.setDefaults(defaults);
-
       if (userAddressRecord.isEmail()) {
-        personal.setEmail(userAddressRecord.toEmail());
+        personal.setEmail(userAddressRecord.toEmail(defaults));
       } else {
         if (userAddressRecord.hasPhoneNumber()) {
           // phone type is stored as phone description.

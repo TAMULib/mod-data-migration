@@ -4,8 +4,10 @@ import java.util.Objects;
 import java.util.UUID;
 
 import org.folio.rest.jaxrs.model.Address;
+import org.folio.rest.migration.model.request.user.UserDefaults;
+import org.folio.rest.migration.model.request.user.UserDefaults;
 
-public class UserAddressRecord extends AbstractUserRecord {
+public class UserAddressRecord {
 
   private final String addressDescription;
   private final String addressStatus;
@@ -114,7 +116,7 @@ public class UserAddressRecord extends AbstractUserRecord {
     return address;
   }
 
-  public String toEmail() {
+  public String toEmail(UserDefaults defaults) {
     if (Objects.nonNull(defaults.getTemporaryEmail())) {
       if (defaults.getTemporaryEmail().isEmpty()) {
         return addressLine1;

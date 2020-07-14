@@ -232,8 +232,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
           String referenceId = userRL.get().getFolioReference().toString();
 
           UserRecord userRecord = new UserRecord(referenceId, patronId, externalSystemId, lastName, firstName, middleName, activeDate, expireDate, smsNumber, currentCharges);
-          userRecord.setMaps(maps);
-          userRecord.setDefaults(defaults);
 
           usernameContext.put(PATRON_ID, patronId);
           usernameContext.put(EXTERNAL_SYSTEM_ID, externalSystemId);
@@ -276,7 +274,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
             continue;
           }
 
-          Userdata userdata = userRecord.toUserdata(patronGroup.get());
+          Userdata userdata = userRecord.toUserdata(patronGroup.get(), defaults);
 
           Date createdDate = new Date();
 
