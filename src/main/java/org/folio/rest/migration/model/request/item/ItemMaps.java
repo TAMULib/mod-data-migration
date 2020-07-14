@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class ItemMaps {
 
   @NotNull
-  private Map<String, String> location;
+  private Map<String, Map<String, String>> location;
 
   @NotNull
   private Map<String, String> loanType;
@@ -20,15 +20,15 @@ public class ItemMaps {
   private Map<String, String> statusName;
 
   public ItemMaps() {
-    location = new HashMap<String, String>();
-    loanType = new HashMap<String, String>();
+    location = new HashMap<>();
+    loanType = new HashMap<>();
   }
 
-  public Map<String, String> getLocation() {
+  public Map<String, Map<String, String>> getLocation() {
     return location;
   }
 
-  public void setLocation(Map<String, String> location) {
+  public void setLocation(Map<String, Map<String, String>> location) {
     this.location = location;
   }
 

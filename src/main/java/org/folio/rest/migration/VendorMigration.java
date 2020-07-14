@@ -81,9 +81,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
   private static final String NOTE = "NOTE";
 
-  private static final String MAPS = "MAPS";
-  private static final String DEFAULTS = "DEFAULTS";
-
   private static final String LOCATIONS = "LOCATIONS";
   private static final String STATUSES = "STATUSES";
   private static final String TYPES = "TYPES";
@@ -154,8 +151,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         partitionContext.put(INDEX, index);
         partitionContext.put(TOKEN, token);
         partitionContext.put(JOB, job);
-        partitionContext.put(MAPS, context.getMaps());
-        partitionContext.put(DEFAULTS, context.getDefaults());
         partitionContext.put(LOCATIONS, job.getLocations());
         partitionContext.put(STATUSES, job.getStatuses());
         partitionContext.put(TYPES, job.getTypes());
@@ -192,8 +187,9 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       long startTime = System.nanoTime();
 
       VendorJob job = (VendorJob) partitionContext.get(JOB);
-      VendorMaps maps = (VendorMaps) partitionContext.get(MAPS);
-      VendorDefaults defaults = (VendorDefaults) partitionContext.get(DEFAULTS);
+
+      VendorMaps maps = context.getMaps();
+      VendorDefaults defaults = context.getDefaults();
 
       String schema = job.getSchema();
 

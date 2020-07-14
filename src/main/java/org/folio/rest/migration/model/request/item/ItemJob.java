@@ -12,9 +12,6 @@ public class ItemJob extends AbstractJob {
   private String userId;
 
   @NotNull
-  private String defaultMaterialTypeId;
-
-  @NotNull
   private String itemNoteTypeId;
 
   @NotNull
@@ -28,14 +25,6 @@ public class ItemJob extends AbstractJob {
 
   public void setUserId(String userId) {
     this.userId = userId;
-  }
-
-  public String getDefaultMaterialTypeId() {
-    return defaultMaterialTypeId;
-  }
-
-  public void setDefaultMaterialTypeId(String defaultMaterialTypeId) {
-    this.defaultMaterialTypeId = defaultMaterialTypeId;
   }
 
   public String getItemNoteTypeId() {

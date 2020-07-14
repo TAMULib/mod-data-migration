@@ -6,6 +6,8 @@ public class ItemDefaults {
 
   private String permanentLocationId;
 
+  private String materialTypeId;
+
   public ItemDefaults() { }
 
   public String getPermanentLoanTypeId() {
@@ -22,6 +24,14 @@ public class ItemDefaults {
 
   public void setPermanentLocationId(String permanentLocationId) {
     this.permanentLocationId = permanentLocationId;
+  }
+
+  public String getMaterialTypeId() {
+    return materialTypeId;
+  }
+
+  public void setMaterialTypeId(String materialTypeId) {
+    this.materialTypeId = materialTypeId;
   }
 
 }

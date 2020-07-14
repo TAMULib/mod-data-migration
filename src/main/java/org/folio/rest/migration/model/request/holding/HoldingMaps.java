@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class HoldingMaps {
 
   @NotNull
-  private Map<String, String> location;
+  private Map<String, Map<String, String>> location;
 
   @NotNull
   private Map<String, String> acqMethod;
@@ -29,20 +29,20 @@ public class HoldingMaps {
   private Map<String, String> retentionPolicy;
 
   public HoldingMaps() {
-    location = new HashMap<String, String>();
-    acqMethod = new HashMap<String, String>();
-    callNumberType = new HashMap<String, String>();
-    holdingsType = new HashMap<String, String>();
-    holdingsNotesType = new HashMap<String, String>();
-    receiptStatus = new HashMap<String, String>();
-    retentionPolicy = new HashMap<String, String>();
+    location = new HashMap<>();
+    acqMethod = new HashMap<>();
+    callNumberType = new HashMap<>();
+    holdingsType = new HashMap<>();
+    holdingsNotesType = new HashMap<>();
+    receiptStatus = new HashMap<>();
+    retentionPolicy = new HashMap<>();
   }
 
-  public Map<String, String> getLocation() {
+  public Map<String, Map<String, String>> getLocation() {
     return location;
   }
 
-  public void setLocation(Map<String, String> location) {
+  public void setLocation(Map<String, Map<String, String>> location) {
     this.location = location;
   }
 

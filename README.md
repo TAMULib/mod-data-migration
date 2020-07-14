@@ -698,33 +698,37 @@ POST to http://localhost:9000/migrate/holdings
   ],
   "maps": {
     "location": {
-      "AMDB-36": "media",
-      "AMDB-37": "media,res",
-      "AMDB-47": "ils,borr",
-      "AMDB-48": "ils,lend",
-      "AMDB-132": "blcc,circ",
-      "AMDB-134": "blcc,stk",
-      "AMDB-135": "blcc,ref",
-      "AMDB-136": "blcc,res",
-      "AMDB-137": "blcc,rndx",
-      "AMDB-138": "www_evans",
-      "AMDB-182": "media,arcv",
-      "AMDB-201": "blcc,stand",
-      "AMDB-225": "blcc,nbs",
-      "AMDB-228": "blcc,audio",
-      "AMDB-241": "blcc,udoc",
-      "AMDB-244": "blcc,schk",
-      "AMDB-264": "evans_pda",
-      "AMDB-278": "learn_outreach",
-      "AMDB-285": "blcc,ebc",
-      "AMDB-288": "evans_withdrawn",
-      "MSDB-5": "AbstractIndex",
-      "MSDB-40": "www_msl",
-      "MSDB-44": "msl_withdrawn",
-      "MSDB-68": "Mobile",
-      "MSDB-126": "rs,hdr",
-      "MSDB-127": "rs,hdr",
-      "MSDB-186": "msl_pda"
+      "AMDB": {
+        "36": "media",
+        "37": "media,res",
+        "47": "ils,borr",
+        "48": "ils,lend",
+        "132": "blcc,circ",
+        "134": "blcc,stk",
+        "135": "blcc,ref",
+        "136": "blcc,res",
+        "137": "blcc,rndx",
+        "138": "www_evans",
+        "182": "media,arcv",
+        "201": "blcc,stand",
+        "225": "blcc,nbs",
+        "228": "blcc,audio",
+        "241": "blcc,udoc",
+        "244": "blcc,schk",
+        "264": "evans_pda",
+        "278": "learn_outreach",
+        "285": "blcc,ebc",
+        "288": "evans_withdrawn"
+      },
+      "MSDB": {
+        "5": "AbstractIndex",
+        "40": "www_msl",
+        "44": "msl_withdrawn",
+        "68": "Mobile",
+        "126": "rs,hdr",
+        "127": "rs,hdr",
+        "186": "msl_pda"
+      }
     },
     "callNumberType": {
       " ": "24badefa-4456-40c5-845c-3f45ffbc4c03",
@@ -812,12 +816,12 @@ POST to http://localhost:9000/migrate/items
 {
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.item",
-    "pageSql": "SELECT item_id, copy_number, item_type_id, perm_location, pieces, price, spine_label temp_location, temp_item_type_id, magnetic_media, sensitize FROM ${SCHEMA}.item ORDER BY item_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "pageSql": "SELECT item_id, copy_number, item_type_id, perm_location, pieces, price, spine_label, temp_location, temp_item_type_id, magnetic_media, sensitize FROM ${SCHEMA}.item ORDER BY item_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "mfhdSql": "SELECT caption, chron, item_enum, freetext, year FROM ${SCHEMA}.mfhd_item WHERE item_id = ${ITEM_ID}",
     "barcodeSql": "SELECT item_barcode FROM ${SCHEMA}.item_barcode WHERE item_id = ${ITEM_ID}",
     "itemTypeSql": "SELECT item_type_id, item_type_code FROM ${SCHEMA}.item_type",
     "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
-    "itemStatusSql": "SELECT item_status, TO_CHAR(cast(item_status_date AS timestamp) AT time ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS item_status_date, ct.circ_transaction_id AS circtrans, item_status_desc FROM ${SCHEMA}.item_status istat, ${SCHEMA}.item_status_type itype, ${SCHEMA}.circ_transactions ct WHERE istat.item_id = ${ITEM_ID} AND istat.item_status = itype.item_status_type AND istat.item_id = ct.item_id(+)",
+    "itemStatusSql": "SELECT item_status, TO_CHAR(cast(item_status_date AS timestamp) AT time ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS item_status_date, ct.circ_transaction_id AS circtrans, item_status_desc FROM ${SCHEMA}.item_status istat, ${SCHEMA}.item_status_type itype, ${SCHEMA}.circ_transactions ct WHERE istat.item_id = ${ITEM_ID} AND istat.item_status = itype.item_status_type AND istat.item_id = ct.item_id(+)",
     "noteSql": "SELECT item_note, item_note_type FROM ${SCHEMA}.item_note WHERE item_note.item_id = ${ITEM_ID}",
     "materialTypeSql": "SELECT lower(normal_heading) AS mtype_code FROM ${SCHEMA}.bib_index bi, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.mfhd_item mi WHERE bi.bib_id = bm.bib_id AND bm.mfhd_id = mi.mfhd_id AND index_code = '338B' AND mi.item_id = ${ITEM_ID}",
     "database": {
@@ -835,7 +839,6 @@ POST to http://localhost:9000/migrate/items
       "schema": "AMDB",
       "partitions": 48,
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
-      "defaultMaterialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25",
       "itemNoteTypeId": "8d0a5eca-25de-4391-81a9-236eeefdd20b",
       "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
       "references": {
@@ -847,7 +850,6 @@ POST to http://localhost:9000/migrate/items
       "schema": "MSDB",
       "partitions": 4,
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
-      "defaultMaterialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25",
       "itemNoteTypeId": "8d0a5eca-25de-4391-81a9-236eeefdd20b",
       "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
       "references": {
@@ -858,33 +860,37 @@ POST to http://localhost:9000/migrate/items
   ],
   "maps": {
     "location": {
-      "AMDB-36": "media",
-      "AMDB-37": "media,res",
-      "AMDB-47": "ils,borr",
-      "AMDB-48": "ils,lend",
-      "AMDB-132": "blcc,circ",
-      "AMDB-134": "blcc,stk",
-      "AMDB-135": "blcc,ref",
-      "AMDB-136": "blcc,res",
-      "AMDB-137": "blcc,rndx",
-      "AMDB-138": "www_evans",
-      "AMDB-182": "media,arcv",
-      "AMDB-201": "blcc,stand",
-      "AMDB-225": "blcc,nbs",
-      "AMDB-228": "blcc,audio",
-      "AMDB-241": "blcc,udoc",
-      "AMDB-244": "blcc,schk",
-      "AMDB-264": "evans_pda",
-      "AMDB-278": "learn_outreach",
-      "AMDB-285": "blcc,ebc",
-      "AMDB-288": "evans_withdrawn",
-      "MSDB-5": "AbstractIndex",
-      "MSDB-40": "www_msl",
-      "MSDB-44": "msl_withdrawn",
-      "MSDB-68": "Mobile",
-      "MSDB-126": "rs,hdr",
-      "MSDB-127": "rs,hdr",
-      "MSDB-186": "msl_pda"
+      "AMDB": {
+        "36": "media",
+        "37": "media,res",
+        "47": "ils,borr",
+        "48": "ils,lend",
+        "132": "blcc,circ",
+        "134": "blcc,stk",
+        "135": "blcc,ref",
+        "136": "blcc,res",
+        "137": "blcc,rndx",
+        "138": "www_evans",
+        "182": "media,arcv",
+        "201": "blcc,stand",
+        "225": "blcc,nbs",
+        "228": "blcc,audio",
+        "241": "blcc,udoc",
+        "244": "blcc,schk",
+        "264": "evans_pda",
+        "278": "learn_outreach",
+        "285": "blcc,ebc",
+        "288": "evans_withdrawn"
+      },
+      "MSDB": {
+        "5": "AbstractIndex",
+        "40": "www_msl",
+        "44": "msl_withdrawn",
+        "68": "Mobile",
+        "126": "rs,hdr",
+        "127": "rs,hdr",
+        "186": "msl_pda"
+      }
     },
     "loanType": {
       "non": "noncirc",
@@ -974,7 +980,8 @@ POST to http://localhost:9000/migrate/items
   },
   "defaults": {
     "permanentLoanTypeId": "dcdb0cef-c30f-4a3b-b0b6-757d1400535d",
-    "permanentLocationId": "2b8f7d63-706a-4b56-8a5e-50ad24e33e4c"
+    "permanentLocationId": "2b8f7d63-706a-4b56-8a5e-50ad24e33e4c",
+    "materialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25"
   }
 }
 ```

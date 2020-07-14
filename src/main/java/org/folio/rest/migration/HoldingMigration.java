@@ -276,9 +276,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             retentionPolicy = holdingDefaults.getRetentionPolicy();
           }
 
-          String permanentLocationIdKey = String.format(KEY_TEMPLATE, schema, permanentLocationId);
-          if (locationsMap.containsKey(permanentLocationIdKey)) {
-            locationId = locationsMap.get(permanentLocationIdKey);
+          if (locationsMap.containsKey(permanentLocationId)) {
+            locationId = locationsMap.get(permanentLocationId);
           } else {
             log.warn("using default permanent location for schema {} mfhdId {} location {}", schema, mfhdId, permanentLocationId);
             locationId = holdingDefaults.getPermanentLocationId();
@@ -450,7 +449,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     locationContext.put(SQL, context.getExtraction().getLocationSql());
     locationContext.put(SCHEMA, schema);
     Database voyagerSettings = context.getExtraction().getDatabase();
-    Map<String, String> locConv = context.getMaps().getLocation(); 
+    Map<String, String> locConv = context.getMaps().getLocation().get(schema);
     try(
       Connection voyagerConnection = getConnection(voyagerSettings);
       Statement st = voyagerConnection.createStatement();
@@ -459,11 +458,10 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       while (rs.next()) {
         String id = rs.getString(LOCATION_ID);
         if (Objects.nonNull(id)) {
-          String key = String.format(KEY_TEMPLATE, schema, id);
-          String code = locConv.containsKey(key) ? locConv.get(key) : rs.getString(LOCATION_CODE);
+          String code = locConv.containsKey(id) ? locConv.get(id) : rs.getString(LOCATION_CODE);
           Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
           if (location.isPresent()) {
-            idToUuid.put(key, location.get().getId());
+            idToUuid.put(id, location.get().getId());
           }
         }
       }

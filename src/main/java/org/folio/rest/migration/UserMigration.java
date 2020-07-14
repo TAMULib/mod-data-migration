@@ -66,8 +66,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   private static final String USERNAME_NETID = "TAMU_NETID";
 
-  private static final String MAPS = "MAPS";
-  private static final String DEFAULTS = "DEFAULTS";
   private static final String DECODE = "DECODE";
 
   private static final String USER_REFERENCE_ID = "userTypeId";
@@ -132,8 +130,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
         partitionContext.put(TOKEN, token);
         partitionContext.put(JOB, job);
         partitionContext.put(USER_GROUPS, usergroups);
-        partitionContext.put(MAPS, context.getMaps());
-        partitionContext.put(DEFAULTS, context.getDefaults());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new UserPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -167,10 +163,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
       long startTime = System.nanoTime();
 
       UserJob job = (UserJob) partitionContext.get(JOB);
-      UserMaps maps = (UserMaps) partitionContext.get(MAPS);
-      UserDefaults defaults = (UserDefaults) partitionContext.get(DEFAULTS);
 
       Usergroups usergroups = (Usergroups) partitionContext.get(USER_GROUPS);
+
+      UserMaps maps = context.getMaps();
+      UserDefaults defaults = context.getDefaults();
 
       String schema = job.getSchema();
 
