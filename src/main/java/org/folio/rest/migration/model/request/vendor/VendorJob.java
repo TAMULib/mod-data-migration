@@ -25,10 +25,7 @@ public class VendorJob extends AbstractJob {
 
   public VendorJob() {
     super();
-    references = new HashMap<String, String>();
-    locations = "";
-    statuses = "";
-    types = "";
+    references = new HashMap<>();
   }
 
   public String getUserId() {

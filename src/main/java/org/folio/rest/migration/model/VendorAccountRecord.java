@@ -2,6 +2,7 @@ package org.folio.rest.migration.model;
 
 import java.util.Objects;
 
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Account;
 import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Account.PaymentMethod;
 import org.folio.rest.migration.model.request.vendor.VendorDefaults;
@@ -51,8 +52,8 @@ public class VendorAccountRecord {
   public Account toAccount(VendorDefaults defaults) {
     final Account account = new Account();
 
-    account.setLibraryCode(" ");
-    account.setLibraryEdiCode(" ");
+    account.setLibraryCode(StringUtils.SPACE);
+    account.setLibraryEdiCode(StringUtils.SPACE);
 
     setName(account);
     setNotes(account);
@@ -65,7 +66,7 @@ public class VendorAccountRecord {
 
   private void setName(Account account) {
     if (Objects.isNull(name)) {
-      account.setName(" ");
+      account.setName(StringUtils.SPACE);
     } else {
       account.setName(name);
     }
@@ -79,7 +80,7 @@ public class VendorAccountRecord {
 
   private void setNumber(Account account) {
     if (Objects.isNull(number)) {
-      account.setAccountNo(" ");
+      account.setAccountNo(StringUtils.SPACE);
     } else {
       account.setAccountNo(number);
     }

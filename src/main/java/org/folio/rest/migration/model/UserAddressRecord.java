@@ -3,8 +3,8 @@ package org.folio.rest.migration.model;
 import java.util.Objects;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.Address;
-import org.folio.rest.migration.model.request.user.UserDefaults;
 import org.folio.rest.migration.model.request.user.UserDefaults;
 
 public class UserAddressRecord {
@@ -125,7 +125,7 @@ public class UserAddressRecord {
       return defaults.getTemporaryEmail();
     }
 
-    return "";
+    return StringUtils.EMPTY;
   }
 
   private void setAddressLine1(Address address) {
@@ -136,8 +136,8 @@ public class UserAddressRecord {
 
   private void setAddressLine2(Address address) {
     if (Objects.nonNull(addressLine2)) {
-      String updatedAddressLine2 = addressLine2.replaceAll("\\s+", " ");
-      updatedAddressLine2 = updatedAddressLine2.replaceAll("\\s$", "");
+      String updatedAddressLine2 = addressLine2.replaceAll("\\s+", StringUtils.SPACE);
+      updatedAddressLine2 = updatedAddressLine2.replaceAll("\\s$", StringUtils.EMPTY);
 
       address.setAddressLine2(updatedAddressLine2);
     }
@@ -172,4 +172,5 @@ public class UserAddressRecord {
       address.setRegion(stateProvince);
     }
   }
+
 }

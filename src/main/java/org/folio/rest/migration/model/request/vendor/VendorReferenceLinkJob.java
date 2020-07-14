@@ -11,7 +11,7 @@ public class VendorReferenceLinkJob extends AbstractJob {
 
   public VendorReferenceLinkJob() {
     super();
-    references = new HashMap<String, String>();
+    references = new HashMap<>();
   }
 
   public Map<String, String> getReferences() {
