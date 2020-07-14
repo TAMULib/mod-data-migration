@@ -264,14 +264,12 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       try (
           PrintWriter itemWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getItemConnection(), String.format(ITEM_COPY_SQL, tenant)), true);
-
           Statement pageStatement = threadConnections.getPageConnection().createStatement();
           Statement mfhdItemStatement = threadConnections.getMfhdConnection().createStatement();
           Statement barcodeStatement = threadConnections.getBarcodeConnection().createStatement();
           Statement itemStatusStatement = threadConnections.getItemStatusConnection().createStatement();
           Statement noteStatement = threadConnections.getNoteConnection().createStatement();
           Statement materialTypeStatement = threadConnections.getMaterialTypeConnection().createStatement();
-
           ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
       ) {
 
@@ -431,92 +429,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     return threadConnections;
   }
 
-  private class ThreadConnections {
-    private Connection pageConnection;
-    private Connection mfhdConnection;
-    private Connection barcodeConnection;
-    private Connection itemStatusConnection;
-    private Connection noteConnection;
-    private Connection materialTypeConnection;
-
-    private BaseConnection itemConnection;
-
-    public ThreadConnections() {
-
-    }
-
-    public Connection getPageConnection() {
-      return pageConnection;
-    }
-
-    public void setPageConnection(Connection pageConnection) {
-      this.pageConnection = pageConnection;
-    }
-
-    public Connection getMfhdConnection() {
-      return mfhdConnection;
-    }
-
-    public void setMfhdConnection(Connection mfhdConnection) {
-      this.mfhdConnection = mfhdConnection;
-    }
-
-    public Connection getBarcodeConnection() {
-      return barcodeConnection;
-    }
-
-    public void setBarcodeConnection(Connection barcodeConnection) {
-      this.barcodeConnection = barcodeConnection;
-    }
-
-    public Connection getItemStatusConnection() {
-      return itemStatusConnection;
-    }
-
-    public void setItemStatusConnection(Connection itemStatusConnection) {
-      this.itemStatusConnection = itemStatusConnection;
-    }
-
-    public Connection getNoteConnection() {
-      return noteConnection;
-    }
-
-    public void setNoteConnection(Connection noteConnection) {
-      this.noteConnection = noteConnection;
-    }
-
-    public Connection getMaterialTypeConnection() {
-      return materialTypeConnection;
-    }
-
-    public void setMaterialTypeConnection(Connection materialTypeConnection) {
-      this.materialTypeConnection = materialTypeConnection;
-    }
-
-    public BaseConnection getItemConnection() {
-      return itemConnection;
-    }
-
-    public void setItemConnection(BaseConnection itemConnection) {
-      this.itemConnection = itemConnection;
-    }
-
-    public void closeAll() {
-      try {
-        pageConnection.close();
-        mfhdConnection.close();
-        barcodeConnection.close();
-        itemStatusConnection.close();
-        itemConnection.close();
-        noteConnection.close();
-        materialTypeConnection.close();
-      } catch (SQLException e) {
-        log.error(e.getMessage());
-        e.printStackTrace();
-      }
-    }
-  }
-
   private MfhdItem getMfhdItem(Statement statement, Map<String, Object> context) throws SQLException {
     try (ResultSet resultSet = getResultSet(statement, context)) {
       MfhdItem mfhdItem = null;
@@ -627,27 +539,28 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       while (resultSet.next()) {
         String itemNote = resultSet.getString(ITEM_NOTE);
         String itemNoteType = resultSet.getString(ITEM_NOTE_TYPE);
-        itemNote = StringUtils.chomp(itemNote);
-        itemNote = StringUtils.normalizeSpace(itemNote);
-        itemNote.replaceAll("[^\\p{ASCII}]", "");
-        itemNote = itemNote.replaceAll("[\\p{Cntrl}&&[^\r\n\t]]", "");
-        itemNote = itemNote.replaceAll("\\p{C}", "");
-        if (itemNoteType.equals("1")) {
-          Note__1 note = new Note__1();
-          note.setNote(itemNote);
-          note.setItemNoteTypeId(itemNoteTypeId);
-          note.setStaffOnly(true);
-          notes.add(note);
-        } else {
-          CirculationNote circulationNote = new CirculationNote();
-          circulationNote.setNote(itemNote);
-          circulationNote.setStaffOnly(true);
-          if (itemNoteType.equals("2")) {
-            circulationNote.setNoteType(NoteType.CHECK_OUT);
-            circulationNotes.add(circulationNote);
-          } else if (itemNoteType.equals("3")) {
-            circulationNote.setNoteType(NoteType.CHECK_IN);
-            circulationNotes.add(circulationNote);
+        if (StringUtils.isNotEmpty(itemNote) && StringUtils.isNotEmpty(itemNoteType)) {
+          itemNote = StringUtils.chomp(itemNote);
+          itemNote = StringUtils.normalizeSpace(itemNote);
+          itemNote = itemNote.replaceAll("[\\p{Cntrl}&&[^\r\n\t]]", "");
+          itemNote = itemNote.replaceAll("\\p{C}", "");
+          if (itemNoteType.equals("1")) {
+            Note__1 note = new Note__1();
+            note.setNote(itemNote);
+            note.setItemNoteTypeId(itemNoteTypeId);
+            note.setStaffOnly(true);
+            notes.add(note);
+          } else {
+            CirculationNote circulationNote = new CirculationNote();
+            circulationNote.setNote(itemNote);
+            circulationNote.setStaffOnly(true);
+            if (itemNoteType.equals("2")) {
+              circulationNote.setNoteType(NoteType.CHECK_OUT);
+              circulationNotes.add(circulationNote);
+            } else if (itemNoteType.equals("3")) {
+              circulationNote.setNoteType(NoteType.CHECK_IN);
+              circulationNotes.add(circulationNote);
+            }
           }
         }
       }
@@ -666,6 +579,93 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         }
       }
       return materialType;
+    }
+  }
+
+  private class ThreadConnections {
+
+    private Connection pageConnection;
+    private Connection mfhdConnection;
+    private Connection barcodeConnection;
+    private Connection itemStatusConnection;
+    private Connection noteConnection;
+    private Connection materialTypeConnection;
+
+    private BaseConnection itemConnection;
+
+    public ThreadConnections() {
+
+    }
+
+    public Connection getPageConnection() {
+      return pageConnection;
+    }
+
+    public void setPageConnection(Connection pageConnection) {
+      this.pageConnection = pageConnection;
+    }
+
+    public Connection getMfhdConnection() {
+      return mfhdConnection;
+    }
+
+    public void setMfhdConnection(Connection mfhdConnection) {
+      this.mfhdConnection = mfhdConnection;
+    }
+
+    public Connection getBarcodeConnection() {
+      return barcodeConnection;
+    }
+
+    public void setBarcodeConnection(Connection barcodeConnection) {
+      this.barcodeConnection = barcodeConnection;
+    }
+
+    public Connection getItemStatusConnection() {
+      return itemStatusConnection;
+    }
+
+    public void setItemStatusConnection(Connection itemStatusConnection) {
+      this.itemStatusConnection = itemStatusConnection;
+    }
+
+    public Connection getNoteConnection() {
+      return noteConnection;
+    }
+
+    public void setNoteConnection(Connection noteConnection) {
+      this.noteConnection = noteConnection;
+    }
+
+    public Connection getMaterialTypeConnection() {
+      return materialTypeConnection;
+    }
+
+    public void setMaterialTypeConnection(Connection materialTypeConnection) {
+      this.materialTypeConnection = materialTypeConnection;
+    }
+
+    public BaseConnection getItemConnection() {
+      return itemConnection;
+    }
+
+    public void setItemConnection(BaseConnection itemConnection) {
+      this.itemConnection = itemConnection;
+    }
+
+    public void closeAll() {
+      try {
+        pageConnection.close();
+        mfhdConnection.close();
+        barcodeConnection.close();
+        itemStatusConnection.close();
+        itemConnection.close();
+        noteConnection.close();
+        materialTypeConnection.close();
+      } catch (SQLException e) {
+        log.error(e.getMessage());
+        e.printStackTrace();
+      }
     }
   }
 
@@ -724,6 +724,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     public List<Note__1> getNotes() {
       return notes;
     }
+
   }
 
 }
