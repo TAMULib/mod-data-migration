@@ -45,14 +45,14 @@ POST to http://localhost:9000/migrate/vendor-reference-links
   "jobs": [
     {
       "schema": "AMDB",
-      "partitions": 11,
+      "partitions": 12,
       "references": {
         "vendorTypeId": "08c7dd18-dbaf-11e9-8a34-2a2ae2dbcce4"
       }
     },
     {
       "schema": "MSDB",
-      "partitions": 1,
+      "partitions": 2,
       "references": {
         "vendorTypeId": "b427aa0a-96f2-4338-8b3c-2ddcdca6cfe4"
       }
@@ -92,7 +92,7 @@ POST to http://localhost:9000/migrate/vendors
   "jobs": [
     {
       "schema": "AMDB",
-      "partitions": 11,
+      "partitions": 12,
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "references": {
         "vendorTypeId": "08c7dd18-dbaf-11e9-8a34-2a2ae2dbcce4"
@@ -103,7 +103,7 @@ POST to http://localhost:9000/migrate/vendors
     },
     {
       "schema": "MSDB",
-      "partitions": 1,
+      "partitions": 2,
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "references": {
         "vendorTypeId": "b427aa0a-96f2-4338-8b3c-2ddcdca6cfe4"
@@ -426,7 +426,7 @@ POST to http://localhost:9000/migrate/user-reference-links
   "jobs": [
     {
       "schema": "AMDB",
-      "partitions": 11,
+      "partitions": 12,
       "references": {
         "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
         "userExternalTypeId": "0ed6f994-8dbd-4827-94c0-905504169c90"
@@ -434,7 +434,7 @@ POST to http://localhost:9000/migrate/user-reference-links
     },
     {
       "schema": "MSDB",
-      "partitions": 1,
+      "partitions": 4,
       "references": {
         "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
         "userExternalTypeId": "426ce32f-388c-4edf-9c79-d6b8348148a0"
@@ -479,7 +479,7 @@ POST to http://localhost:9000/migrate/users
   "jobs": [
     {
       "schema": "AMDB",
-      "partitions": 11,
+      "partitions": 12,
       "decodeSql": "'fast', 1, 'grad', 2, 'ungr', 3, 'illend', 4, 'libd', 5, 'comm', 6, 'cour', 7, 'texs', 8, 'nonr', 9",
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "skipDuplicates": false,
@@ -490,7 +490,7 @@ POST to http://localhost:9000/migrate/users
     },
     {
       "schema": "MSDB",
-      "partitions": 1,
+      "partitions": 4,
       "decodeSql": "'fac/staff', 1, 'grad/prof', 2, 'undergrad', 3",
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "skipDuplicates": true,
@@ -578,7 +578,7 @@ POST to http://localhost:9000/migrate/inventory-reference-links
   "jobs": [
     {
       "schema": "AMDB",
-      "partitions": 11,
+      "partitions": 12,
       "references": {
         "sourceRecordTypeId": "96017110-47c5-4d55-8324-7dab1771749b",
         "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672",
@@ -590,7 +590,7 @@ POST to http://localhost:9000/migrate/inventory-reference-links
     },
     {
       "schema": "MSDB",
-      "partitions": 1,
+      "partitions": 4,
       "references": {
         "sourceRecordTypeId": "b9f633b3-22e4-4bad-8785-da09d9eaa6c8",
         "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8",
