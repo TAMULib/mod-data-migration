@@ -523,6 +523,7 @@ POST to http://localhost:9000/migrate/users
         "gib",
         "hls",
         "jag",
+        "johanna",
         "klm",
         "kolby",
         "lru",

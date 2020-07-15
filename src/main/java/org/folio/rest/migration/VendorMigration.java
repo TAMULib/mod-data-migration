@@ -210,7 +210,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       Map<String, Object> vendorAliasesContext = new HashMap<>();
       vendorAliasesContext.put(SQL, context.getExtraction().getAliasSql());
       vendorAliasesContext.put(SCHEMA, job.getSchema());
-      
+
       Map<String, Object> vendorNotesContext = new HashMap<>();
       vendorNotesContext.put(SQL, context.getExtraction().getNoteSql());
       vendorNotesContext.put(SCHEMA, job.getSchema());
@@ -284,12 +284,12 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
                 addresses.add(vendorAddress.toAddress(categories, defaults, maps));
               } else if (vendorAddress.isContact()) {
                 Contact contact = vendorAddress.toContact(categories, defaults, maps);
-    
+
                 String createdAt = DATE_TIME_FOMATTER.format( new Date().toInstant().atOffset(ZoneOffset.UTC));
                 String createdByUserId = job.getUserId();
                 
                 String contactUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(contact)));
-        
+
                 // TODO: validate rows
                 contactWriter.println(String.join("\t", contact.getId(), contactUtf8Json, createdAt, createdByUserId));
 
@@ -300,6 +300,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
                 urls.add(vendorAddress.toUrl(categories));
               } else {
                 // unknown address types are to be ignored.
+                continue;
               }
               vendorAddressPhoneNumbersContext.put(ADDRESS_ID, vendorAddress.getAddressId());
               vendorAddressPhoneNumbersContext.put(CATEGORIES, categories);
