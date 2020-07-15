@@ -514,6 +514,7 @@ POST to http://localhost:9000/migrate/users
         "abh",
         "afq",
         "akl",
+        "amy",
         "bnm",
         "dom",
         "d7n",
