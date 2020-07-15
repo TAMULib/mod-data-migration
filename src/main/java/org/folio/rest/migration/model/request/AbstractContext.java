@@ -15,8 +15,8 @@ public abstract class AbstractContext {
   private List<String> postActions;
 
   public AbstractContext() {
-    preActions = new ArrayList<String>();
-    postActions = new ArrayList<String>();
+    preActions = new ArrayList<>();
+    postActions = new ArrayList<>();
   }
 
   public int getParallelism() {

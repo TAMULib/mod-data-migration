@@ -91,6 +91,26 @@
                <sourceDirectory>${basedir}/mod-inventory-storage/ramls</sourceDirectory>
              </configuration>
            </execution>
+           <execution>
+             <id>mod-users/ramls</id>
+             <phase>generate-sources</phase>
+             <goals>
+               <goal>generate</goal>
+             </goals>
+             <configuration>
+               <sourceDirectory>${basedir}/mod-users/ramls</sourceDirectory>
+             </configuration>
+           </execution>
+           <execution>
+             <id>mod-organizations-storage/ramls</id>
+             <phase>generate-sources</phase>
+             <goals>
+               <goal>generate</goal>
+             </goals>
+             <configuration>
+               <sourceDirectory>${basedir}/mod-organizations-storage/ramls</sourceDirectory>
+             </configuration>
+           </execution>
          </executions>
       </plugin>
 
@@ -170,6 +190,17 @@
       <groupId>org.folio</groupId>
       <artifactId>spring-domain</artifactId>
       <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.folio</groupId>
+      <artifactId>data-import-processing-core</artifactId>
+      <version>2.1.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-cache</artifactId>
     </dependency>
 
     <dependency>
