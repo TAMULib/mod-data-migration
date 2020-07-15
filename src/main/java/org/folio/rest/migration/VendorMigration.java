@@ -298,9 +298,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
                 emails.add(vendorAddress.toEmail(categories));
               } else if (vendorAddress.isUrl()) {
                 urls.add(vendorAddress.toUrl(categories));
-              } else {
-                // unknown address types are to be ignored.
-                continue;
               }
               vendorAddressPhoneNumbersContext.put(ADDRESS_ID, vendorAddress.getAddressId());
               vendorAddressPhoneNumbersContext.put(CATEGORIES, categories);
