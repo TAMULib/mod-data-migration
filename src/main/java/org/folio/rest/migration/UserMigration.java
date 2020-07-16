@@ -16,6 +16,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
@@ -155,9 +158,12 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
     private final Map<String, Object> partitionContext;
 
+    private final ExecutorService additionalExecutor;
+
     public UserPartitionTask(MigrationService migrationService, Map<String, Object> partitionContext) {
       this.migrationService = migrationService;
       this.partitionContext = partitionContext;
+      this.additionalExecutor = Executors.newFixedThreadPool(3);
     }
 
     public int getIndex() {
@@ -240,20 +246,26 @@ public class UserMigration extends AbstractMigration<UserContext> {
           addressContext.put(PATRON_ID, patronId);
           patronGroupContext.put(PATRON_ID, patronId);
 
-          String username = getUsername(usernameStatement, usernameContext);
+          PatronCodes patronCodes = new PatronCodes();
 
-          if (!processUsername(username.toLowerCase())) {
-            log.warn("{} patron id {} username {} already processed", schema, patronId, username);
+          CompletableFuture<Void> future = CompletableFuture.allOf(
+            getUsername(usernameStatement, usernameContext)
+              .thenAccept((un) -> userRecord.setUsername(un)),
+            getUserAddressRecords(addressStatement, addressContext)
+              .thenAccept((uar) -> userRecord.setUserAddressRecords(uar)),
+            getPatronCodes(patronGroupStatement, patronGroupContext)
+            .thenAccept((pc) -> {
+              patronCodes.setBarcode(pc.getBarcode());
+              patronCodes.setGroupcode(pc.getGroupcode());
+            })
+          );
+
+          future.get();
+
+          if (!processUsername(userRecord.getUsername().toLowerCase())) {
+            log.warn("{} patron id {} username {} already processed", schema, patronId, userRecord.getUsername());
             continue;
           }
-
-          userRecord.setUsername(username);
-
-          List<UserAddressRecord> userAddressRecords = getUserAddressRecords(addressStatement, addressContext);
-
-          userRecord.setUserAddressRecords(userAddressRecords);
-
-          PatronCodes patronCodes = getPatronCodes(patronGroupStatement, patronGroupContext);
 
           if (Objects.nonNull(patronCodes.getBarcode()) && !processBarcode(patronCodes.getBarcode().toLowerCase())) {
             log.warn("{} patron id {} barcode {} already processed", schema, patronId, patronCodes.getBarcode());
@@ -292,7 +304,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
           }
         }
 
-      } catch (SQLException e) {
+      } catch (SQLException | InterruptedException | ExecutionException e) {
         e.printStackTrace();
       } finally {
         threadConnections.closeAll();
@@ -306,6 +318,83 @@ public class UserMigration extends AbstractMigration<UserContext> {
     @Override
     public boolean equals(Object obj) {
       return Objects.nonNull(obj) && ((UserPartitionTask) obj).getIndex() == this.getIndex();
+    }
+
+    private CompletableFuture<String> getUsername(Statement statement, Map<String, Object> usernameContext) throws SQLException {
+      CompletableFuture<String> future = new CompletableFuture<>();
+      String schema = (String) usernameContext.get(SCHEMA);
+      String patronId = (String) usernameContext.get(PATRON_ID);
+      additionalExecutor.submit(() -> {
+        String username = String.format("%s_%s", schema, patronId);
+        try (ResultSet resultSet = getResultSet(statement, usernameContext)) {
+          while (resultSet.next()) {
+            String netid = resultSet.getString(USERNAME_NETID);
+            if (StringUtils.isNotEmpty(netid)) {
+              username = netid.toLowerCase();
+            }
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          future.complete(username);
+        }
+      });
+      return future;
+    }
+  
+    private CompletableFuture<List<UserAddressRecord>> getUserAddressRecords(Statement statement, Map<String, Object> addressContext) throws SQLException {
+      CompletableFuture<List<UserAddressRecord>> future = new CompletableFuture<>();
+      additionalExecutor.submit(() -> {
+        List<UserAddressRecord> userAddressRecords = new ArrayList<>();
+        try (ResultSet resultSet = getResultSet(statement, addressContext)) {
+          while (resultSet.next()) {
+            String addressDescription = resultSet.getString(ADDRESS_DESC);
+            String addressStatus = resultSet.getString(ADDRESS_STATUS);
+            String addressType = resultSet.getString(ADDRESS_TYPE);
+            String addressLine1 = resultSet.getString(ADDRESS_LINE1);
+            String addressLine2 = resultSet.getString(ADDRESS_LINE2);
+            String city = resultSet.getString(CITY);
+            String country = resultSet.getString(COUNTRY);
+            String phoneNumber = resultSet.getString(PHONE_NUMBER);
+            String phoneDescription = resultSet.getString(PHONE_DESC);
+            String stateProvince = resultSet.getString(STATE_PROVINCE);
+            String zipPostal = resultSet.getString(ZIP_POSTAL);
+            userAddressRecords.add(new UserAddressRecord(addressDescription, addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal));
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          future.complete(userAddressRecords);
+        }
+      });
+      return future;
+    }
+  
+    private CompletableFuture<PatronCodes> getPatronCodes(Statement statement, Map<String, Object> patronGroupContext) throws SQLException {
+      CompletableFuture<PatronCodes> future = new CompletableFuture<>();
+      additionalExecutor.submit(() -> {
+        PatronCodes patronCodes = null;
+        String groupcode = null, barcode = null;
+        try (ResultSet resultSet = getResultSet(statement, patronGroupContext)) {
+          while(resultSet.next()) {
+            String patronGroupcode = resultSet.getString(PATRON_GROUP_CODE);
+            String patronBarcode = resultSet.getString(PATRON_BARCODE);
+            if (Objects.nonNull(patronGroupcode)) {
+              groupcode = patronGroupcode.toLowerCase();
+            }
+            if (Objects.nonNull(patronBarcode)) {
+              barcode = patronBarcode.toLowerCase();
+            }
+            patronCodes = new PatronCodes(groupcode, barcode);
+            break;
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          future.complete(patronCodes);
+        }
+      });
+      return future;
     }
 
   }
@@ -333,62 +422,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
     }
 
     return threadConnections;
-  }
-
-  private String getUsername(Statement statement, Map<String, Object> usernameContext) throws SQLException {
-    String schema = (String) usernameContext.get(SCHEMA);
-    String patronId = (String) usernameContext.get(PATRON_ID);
-    String username = String.format("%s_%s", schema, patronId);
-    try (ResultSet resultSet = getResultSet(statement, usernameContext)) {
-      while (resultSet.next()) {
-        String netid = resultSet.getString(USERNAME_NETID);
-        if (StringUtils.isNotEmpty(netid)) {
-          username = netid.toLowerCase();
-        }
-      }
-    }
-    return username;
-  }
-
-  private List<UserAddressRecord> getUserAddressRecords(Statement statement, Map<String, Object> addressContext) throws SQLException {
-    List<UserAddressRecord> userAddressRecords = new ArrayList<>();
-    try (ResultSet resultSet = getResultSet(statement, addressContext)) {
-      while (resultSet.next()) {
-        String addressDescription = resultSet.getString(ADDRESS_DESC);
-        String addressStatus = resultSet.getString(ADDRESS_STATUS);
-        String addressType = resultSet.getString(ADDRESS_TYPE);
-        String addressLine1 = resultSet.getString(ADDRESS_LINE1);
-        String addressLine2 = resultSet.getString(ADDRESS_LINE2);
-        String city = resultSet.getString(CITY);
-        String country = resultSet.getString(COUNTRY);
-        String phoneNumber = resultSet.getString(PHONE_NUMBER);
-        String phoneDescription = resultSet.getString(PHONE_DESC);
-        String stateProvince = resultSet.getString(STATE_PROVINCE);
-        String zipPostal = resultSet.getString(ZIP_POSTAL);
-        userAddressRecords.add(new UserAddressRecord(addressDescription, addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal));
-      }
-    }
-    return userAddressRecords;
-  }
-
-  private PatronCodes getPatronCodes(Statement statement, Map<String, Object> patronGroupContext) throws SQLException {
-    PatronCodes patronCodes = null;
-    String groupcode = null, barcode = null;
-    try (ResultSet resultSet = getResultSet(statement, patronGroupContext)) {
-      while(resultSet.next()) {
-        String patronGroupcode = resultSet.getString(PATRON_GROUP_CODE);
-        String patronBarcode = resultSet.getString(PATRON_BARCODE);
-        if (Objects.nonNull(patronGroupcode)) {
-          groupcode = patronGroupcode.toLowerCase();
-        }
-        if (Objects.nonNull(patronBarcode)) {
-          barcode = patronBarcode.toLowerCase();
-        }
-        patronCodes = new PatronCodes(groupcode, barcode);
-        break;
-      }
-    }
-    return patronCodes;
   }
 
   @Cacheable(value = "patronGroups", key = "groupcode", sync = true)
@@ -472,8 +505,12 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   private class PatronCodes {
 
-    private final String groupcode;
-    private final String barcode;
+    private String groupcode;
+    private String barcode;
+
+    public PatronCodes() {
+
+    }
 
     public PatronCodes(String groupcode, String barcode) {
       this.groupcode = groupcode;
@@ -484,8 +521,16 @@ public class UserMigration extends AbstractMigration<UserContext> {
       return groupcode;
     }
 
+    public void setGroupcode(String groupcode) {
+      this.groupcode = groupcode;
+    }
+
     public String getBarcode() {
       return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+      this.barcode = barcode;
     }
 
   }
