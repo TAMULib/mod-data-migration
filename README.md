@@ -385,14 +385,6 @@ POST to http://localhost:9000/migrate/vendors
       "YEMEN": "YEM",
       "ZAMBIA": "ZMB",
       "ZIMBABWE": "ZWE"
-    },
-    "ignore": {
-      "codes": [
-        "gobi",
-        "srebsco",
-        "zroco$",
-        "zsusanba$*"
-      ]
     }
   },
   "defaults": {
@@ -501,56 +493,6 @@ POST to http://localhost:9000/migrate/users
     }
   ],
   "maps": {
-    "ignore": {
-      "barcodes": [
-        "o",
-        "0",
-        "00",
-        "000",
-        "00000000",
-        "000000000",
-        "6016426594055804",
-        "7331011111701769"
-      ],
-      "usernames": [
-        "abh",
-        "afq",
-        "akl",
-        "amy",
-        "bnm",
-        "dom",
-        "d7n",
-        "edd",
-        "ellen",
-        "elyssa",
-        "gao",
-        "gardner",
-        "gib",
-        "hls",
-        "jag",
-        "johanna",
-        "kirk",
-        "klm",
-        "kolby",
-        "lru",
-        "lupe",
-        "mathew",
-        "mor",
-        "noelia",
-        "pierre",
-        "pms",
-        "okw",
-        "qwc",
-        "ricardo",
-        "rka",
-        "roberto",
-        "rowland",
-        "sac",
-        "shaylee",
-        "srb",
-        "victoria"
-      ]
-    },
     "patronGroup": {
       "fac/staff": "fast",
       "grad/prof": "grad",

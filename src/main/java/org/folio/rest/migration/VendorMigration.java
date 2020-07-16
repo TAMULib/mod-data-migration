@@ -9,10 +9,12 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -90,7 +92,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
   private static final String VENDOR_REFERENCE_ID = "vendorTypeId";
 
-  private static final String IGNODE_CODES = "codes";
+  private static final Set<String> CODES = new HashSet<>();
 
   // (id,jsonb,creation_date,created_by)
   private static final String CONTACTS_RECORDS_COPY_SQL = "COPY %s_mod_organizations_storage.contacts (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
@@ -120,6 +122,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       @Override
       public void complete() {
         postActions(folioSettings, context.getPostActions());
+        CODES.clear();
       }
 
     });
@@ -285,7 +288,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
               } else if (vendorAddress.isContact()) {
                 Contact contact = vendorAddress.toContact(categories, defaults, maps);
 
-                String createdAt = DATE_TIME_FOMATTER.format( new Date().toInstant().atOffset(ZoneOffset.UTC));
+                String createdAt = DATE_TIME_FOMATTER.format(new Date().toInstant().atOffset(ZoneOffset.UTC));
                 String createdByUserId = job.getUserId();
                 
                 String contactUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(contact)));
@@ -324,8 +327,8 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
             Organization organization = vendorRecord.toOrganization(defaults);
 
-            if (maps.getIgnore().get(IGNODE_CODES).contains(organization.getCode().toLowerCase())) {
-              log.warn("{} ignoring vendor id {} code {}", schema, vendorId, organization.getCode());
+            if (!processCode(organization.getCode().toLowerCase())) {
+              log.warn("{} vendor id {} code {} already processed", schema, vendorId, organization.getCode());
               continue;
             }
 
@@ -357,6 +360,10 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       return Objects.nonNull(obj) && ((VendorPartitionTask) obj).getIndex() == this.getIndex();
     }
 
+  }
+
+  private synchronized Boolean processCode(String code) {
+    return CODES.add(code);
   }
 
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {

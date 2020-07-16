@@ -9,10 +9,12 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -71,8 +73,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   private static final String USER_REFERENCE_ID = "userTypeId";
 
-  private static final String IGNORE_BARCODES = "barcodes";
-  private static final String IGNORE_USERNAMES = "usernames";
+  private static final Set<String> BARCODES = new HashSet<>();
+  private static final Set<String> USERNAMES = new HashSet<>();
 
   // (id,jsonb,creation_date,created_by,patrongroup)
   private static final String USERS_COPY_SQL = "COPY %s_mod_users.users (id,jsonb,creation_date,created_by,patrongroup) FROM STDIN";
@@ -101,6 +103,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
       @Override
       public void complete() {
         postActions(folioSettings, context.getPostActions());
+        USERNAMES.clear();
+        BARCODES.clear();
       }
 
     });
@@ -238,8 +242,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           String username = getUsername(usernameStatement, usernameContext);
 
-          if (maps.getIgnore().get(IGNORE_USERNAMES).contains(username.toLowerCase())) {
-            log.warn("{} ignoring patron id {} username {}", schema, patronId, username);
+          if (!processUsername(username.toLowerCase())) {
+            log.warn("{} patron id {} username {} already processed", schema, patronId, username);
             continue;
           }
 
@@ -251,8 +255,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           PatronCodes patronCodes = getPatronCodes(patronGroupStatement, patronGroupContext);
 
-          if (Objects.nonNull(patronCodes.getBarcode()) && maps.getIgnore().get(IGNORE_BARCODES).contains(patronCodes.getBarcode().toLowerCase())) {
-            log.warn("{} ignoring patron id {} barcode {}", schema, patronId, patronCodes.getBarcode());
+          if (Objects.nonNull(patronCodes.getBarcode()) && !processBarcode(patronCodes.getBarcode().toLowerCase())) {
+            log.warn("{} patron id {} barcode {} already processed", schema, patronId, patronCodes.getBarcode());
             continue;
           }
 
@@ -304,6 +308,14 @@ public class UserMigration extends AbstractMigration<UserContext> {
       return Objects.nonNull(obj) && ((UserPartitionTask) obj).getIndex() == this.getIndex();
     }
 
+  }
+
+  private synchronized Boolean processUsername(String username) {
+    return USERNAMES.add(username);
+  }
+
+  private synchronized Boolean processBarcode(String barcode) {
+    return BARCODES.add(barcode);
   }
 
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database usernameSettings, Database folioSettings) {

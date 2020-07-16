@@ -1,7 +1,6 @@
 package org.folio.rest.migration.model.request.vendor;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.constraints.NotNull;
@@ -13,9 +12,6 @@ public class VendorMaps {
 
   @NotNull
   private Map<String, String> countryCodes;
-
-  @NotNull
-  private Map<String, List<String>> ignore;
 
   public VendorMaps() {
     categories = new HashMap<String, String>();
@@ -35,14 +31,6 @@ public class VendorMaps {
 
   public void setCountryCodes(Map<String, String> countryCodes) {
     this.countryCodes = countryCodes;
-  }
-
-  public Map<String, List<String>> getIgnore() {
-    return ignore;
-  }
-
-  public void setIgnore(Map<String, List<String>> ignore) {
-    this.ignore = ignore;
   }
 
 }
