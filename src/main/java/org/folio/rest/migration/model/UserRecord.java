@@ -1,14 +1,13 @@
 package org.folio.rest.migration.model;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.TimeZone;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.folio.rest.jaxrs.model.Address;
 import org.folio.rest.jaxrs.model.Personal;
 import org.folio.rest.jaxrs.model.Userdata;
@@ -25,11 +24,7 @@ public class UserRecord {
   private static final String PHONE_PRIMARY = "Primary";
   private static final String PHONE_MOBILE = "Mobile";
 
-  private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("YYYYMMDD");
-  {
-    // TODO: the timezone may need to be changed.
-    DATE_FORMAT.setTimeZone(TimeZone.getTimeZone("UTC"));
-  }
+  private static final String DATE_FORMAT = "YYYYMMDD";
 
   private final String referenceId;
   private final String patronId;
@@ -299,8 +294,10 @@ public class UserRecord {
       } else {
         if (Objects.nonNull(expireDate)) {
           try {
-            userdata.setExpirationDate(DATE_FORMAT.parse(expireDate));
-            userdata.setActive(!(new Date()).after(userdata.getExpirationDate()));
+            Date now = new Date();
+            Date expirationDate = DateUtils.parseDate(expireDate, DATE_FORMAT);
+            userdata.setExpirationDate(expirationDate);
+            userdata.setActive(now.before(expirationDate));
           } catch (ParseException e) {
             // assume unexpired on invalid date.
             userdata.setActive(true);

@@ -379,9 +379,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
     return patronCodes;
   }
 
-  @Cacheable(value = "patronGroups", key = "groupcode")
+  @Cacheable(value = "patronGroups", key = "groupcode", sync = true)
   private Optional<String> getPatronGroup(String groupcode, Usergroups usergroups) {
-    Optional<Usergroup> usergroup = usergroups.getUsergroups().stream().filter(ug -> ug.getGroup().equals(groupcode)).findAny();
+    Optional<Usergroup> usergroup = usergroups.getUsergroups().stream()
+      .filter(ug -> ug.getGroup().equals(groupcode))
+      .findAny();
     if (usergroup.isPresent()) {
       return Optional.of(usergroup.get().getId());
     }
