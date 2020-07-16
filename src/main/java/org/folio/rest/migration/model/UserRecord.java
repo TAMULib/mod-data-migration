@@ -46,8 +46,7 @@ public class UserRecord {
 
   private List<UserAddressRecord> userAddressRecords;
 
-  public UserRecord(String referenceId, String patronId, String externalSystemId, String lastName, String firstName, String middleName, String activeDate,
-      String expireDate, String smsNumber, String currentCharges) {
+  public UserRecord(String referenceId, String patronId, String externalSystemId, String lastName, String firstName, String middleName, String activeDate, String expireDate, String smsNumber, String currentCharges) {
     this.referenceId = referenceId;
     this.patronId = patronId;
     this.externalSystemId = externalSystemId;
