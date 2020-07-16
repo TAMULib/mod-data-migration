@@ -223,11 +223,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
             continue;
           }
 
-          if (job.getSkipDuplicates() && !externalSystemId.equals(String.format("%s_%s", job.getSchema(), patronId))) {
-            Long countByExternalSystemId = migrationService.referenceLinkRepo.countByExternalReference(externalSystemId);
-            if (countByExternalSystemId > 1) {
-              continue;
-            }
+          if (job.getSkipDuplicates() && migrationService.referenceLinkRepo.countByExternalReference(externalSystemId) > 1) {
+            continue;
           }
 
           String referenceId = userRL.get().getFolioReference().toString();

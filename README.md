@@ -414,7 +414,7 @@ POST to http://localhost:9000/migrate/user-reference-links
 {
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.patron WHERE last_name IS NOT NULL",
-    "pageSql": "SELECT patron_id, NVL2(institution_id, regexp_replace(institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\\1\\2\\3'), '${SCHEMA}_' || patron_id) AS external_system_id FROM ${SCHEMA}.patron ap WHERE last_name IS NOT NULL ORDER BY patron_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "pageSql": "SELECT patron_id, NVL2(institution_id, regexp_replace(institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\\1\\2\\3'), '${SCHEMA}_' || patron_id) AS external_system_id FROM ${SCHEMA}.patron WHERE last_name IS NOT NULL ORDER BY patron_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "database": {
       "url": "",
       "username": "",
@@ -508,7 +508,9 @@ POST to http://localhost:9000/migrate/users
         "00",
         "000",
         "00000000",
-        "000000000"
+        "000000000",
+        "6016426594055804",
+        "7331011111701769"
       ],
       "usernames": [
         "abh",
@@ -518,24 +520,35 @@ POST to http://localhost:9000/migrate/users
         "bnm",
         "dom",
         "d7n",
+        "edd",
         "ellen",
+        "elyssa",
         "gao",
+        "gardner",
         "gib",
         "hls",
         "jag",
         "johanna",
+        "kirk",
         "klm",
         "kolby",
         "lru",
         "lupe",
         "mathew",
         "mor",
+        "noelia",
+        "pierre",
         "pms",
         "okw",
         "qwc",
+        "ricardo",
         "rka",
+        "roberto",
+        "rowland",
         "sac",
-        "srb"
+        "shaylee",
+        "srb",
+        "victoria"
       ]
     },
     "patronGroup": {
