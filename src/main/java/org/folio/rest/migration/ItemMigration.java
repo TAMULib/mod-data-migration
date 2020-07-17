@@ -15,6 +15,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -34,6 +37,7 @@ import org.folio.rest.jaxrs.model.Materialtypes;
 import org.folio.rest.jaxrs.model.Note__1;
 import org.folio.rest.jaxrs.model.Statisticalcodes;
 import org.folio.rest.migration.config.model.Database;
+import org.folio.rest.migration.model.ItemMfhdRecord;
 import org.folio.rest.migration.model.ItemRecord;
 import org.folio.rest.migration.model.ItemStatusRecord;
 import org.folio.rest.migration.model.request.item.ItemContext;
@@ -196,11 +200,14 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
     private final Map<String, Object> partitionContext;
 
+    private final ExecutorService additionalExecutor;
+
     private int hrid;
 
     public ItemPartitionTask(MigrationService migrationService, Map<String, Object> partitionContext) {
       this.migrationService = migrationService;
       this.partitionContext = partitionContext;
+      this.additionalExecutor = Executors.newFixedThreadPool(5);
       this.hrid = (int) partitionContext.get(HRID_START_NUMBER);
     }
 
@@ -334,13 +341,27 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           }
 
           try {
-            MfhdItem mfhdItem = getMfhdItem(mfhdItemStatement, mfhdContext);
-            String barcode = getItemBarcode(barcodeStatement, barcodeContext);
-            List<ItemStatusRecord> itemStatuses = getItemStatuses(itemStatusStatement, itemStatusContext, maps.getItemStatus(), maps.getStatusName());
-            ItemNoteWrapper noteWrapper = getNotes(noteStatement, noteContext, job.getItemNoteTypeId());
-            String materialTypeId = getMaterialTypeId(materialTypeStatement, materialTypeContext, defaults.getMaterialTypeId(), materialtypes);
 
-            ItemRecord itemRecord = new ItemRecord(itemId, barcode, mfhdItem.getCaption(), mfhdItem.getItemEnum(), mfhdItem.getChron(), mfhdItem.getFreetext(), mfhdItem.getYear(), numberOfPieces, spineLabel, materialTypeId, job.getItemNoteTypeId(), job.getItemDamagedStatusId(), itemStatuses, noteWrapper.getNotes(), noteWrapper.getCirculationNotes());
+            ItemRecord itemRecord = new ItemRecord(itemId, numberOfPieces, spineLabel, job.getItemNoteTypeId(), job.getItemDamagedStatusId());
+
+            CompletableFuture.allOf(
+              getItemBarcode(barcodeStatement, barcodeContext)
+                .thenAccept((barcode) -> itemRecord.setBarcode(barcode)),
+              getMaterialTypeId(materialTypeStatement, materialTypeContext, defaults.getMaterialTypeId(), materialtypes)
+                .thenAccept((materialTypeId) -> itemRecord.setMaterialTypeId(materialTypeId)),
+              getMfhdItem(mfhdItemStatement, mfhdContext)
+                .thenAccept((mfhdItem) -> itemRecord.setMfhdItem(mfhdItem)),
+              getItemStatuses(itemStatusStatement, itemStatusContext, maps.getItemStatus(), maps.getStatusName())
+                .thenAccept((statuses) -> itemRecord.setStatuses(statuses)),
+              getNotes(noteStatement, noteContext, job.getItemNoteTypeId())
+                .thenAccept((noteWrapper) -> {
+                  itemRecord.setItemNotes(noteWrapper.getNotes());
+                  itemRecord.setCirculationNotes(noteWrapper.getCirculationNotes());
+                })
+            ).get();
+
+            itemRecord.setId(id);
+            itemRecord.setHoldingId(holdingId);
 
             itemRecord.setPermanentLoanTypeId(permLoanTypeId);
             itemRecord.setPermanentLocationId(permLocationId);
@@ -352,9 +373,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             if (locationsMap.containsKey(voyagerTempLocationId)) {
               itemRecord.setTemporaryLocationId(locationsMap.get(voyagerTempLocationId));
             }
-
-            itemRecord.setId(id);
-            itemRecord.setHoldingId(holdingId);
 
             Date createdDate = new Date();
             itemRecord.setCreatedByUserId(job.getUserId());
@@ -394,7 +412,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
         }
 
-      } catch (SQLException e) {
+      } catch (SQLException | InterruptedException | ExecutionException e) {
         e.printStackTrace();
       } finally {
         threadConnections.closeAll();
@@ -405,49 +423,135 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       return this;
     }
 
-  }
+    private CompletableFuture<String> getItemBarcode(Statement statement, Map<String, Object> context) {
+      CompletableFuture<String> future = new CompletableFuture<>();
+      additionalExecutor.submit(() -> {
+        String itemBarcode = null;
+        try (ResultSet resultSet = getResultSet(statement, context)) {
+          while (resultSet.next()) {
+            itemBarcode = resultSet.getString(ITEM_BARCODE);
+          }
+          future.complete(itemBarcode);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
 
-  private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
-    ThreadConnections threadConnections = new ThreadConnections();
-    threadConnections.setPageConnection(getConnection(voyagerSettings));
-    threadConnections.setBarcodeConnection(getConnection(voyagerSettings));
-    threadConnections.setItemStatusConnection(getConnection(voyagerSettings));
-    threadConnections.setMfhdConnection(getConnection(voyagerSettings));
-    threadConnections.setNoteConnection(getConnection(voyagerSettings));
-    threadConnections.setMaterialTypeConnection(getConnection(voyagerSettings));
-    try {
-      threadConnections.setItemConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-      throw new RuntimeException(e);
+        }
+      });
+      return future;
     }
-    return threadConnections;
-  }
-
-  private MfhdItem getMfhdItem(Statement statement, Map<String, Object> context) throws SQLException {
-    try (ResultSet resultSet = getResultSet(statement, context)) {
-      MfhdItem mfhdItem = null;
-      while (resultSet.next()) {
-        String caption = resultSet.getString(CAPTION);
-        String chron = resultSet.getString(CHRON);
-        String itemEnum = resultSet.getString(ITEM_ENUM);
-        String freetext = resultSet.getString(FREETEXT);
-        String year = resultSet.getString(YEAR);
-
-        mfhdItem = new MfhdItem(caption, chron, itemEnum, freetext, year);
-      }
-      return mfhdItem;
+  
+    private CompletableFuture<String> getMaterialTypeId(Statement statement, Map<String, Object> context, String defaultMaterialTypeId, Materialtypes materialtypes) {
+      CompletableFuture<String> future = new CompletableFuture<>();
+      additionalExecutor.submit(() -> {
+        String materialType = defaultMaterialTypeId;
+        try (ResultSet resultSet = getResultSet(statement, context)) {
+          while (resultSet.next()) {
+            String materialTypeCode = resultSet.getString(MTYPE_CODE);
+            Optional<Materialtype> potentialMaterialType = materialtypes.getMtypes().stream().filter(mt -> mt.getSource().equals(materialTypeCode)).findFirst();
+            if (potentialMaterialType.isPresent()) {
+              materialType = potentialMaterialType.get().getId();
+            }
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          future.complete(materialType);
+        }
+      });
+      return future;
     }
-  }
 
-  private String getItemBarcode(Statement statement, Map<String, Object> context) throws SQLException {
-    String itemBarcode = null;
-    try (ResultSet resultSet = getResultSet(statement, context)) {
-      while (resultSet.next()) {
-        itemBarcode = resultSet.getString(ITEM_BARCODE);
-      }
+    private CompletableFuture<ItemMfhdRecord> getMfhdItem(Statement statement, Map<String, Object> context) {
+      CompletableFuture<ItemMfhdRecord> future = new CompletableFuture<>();
+      additionalExecutor.submit(() -> {
+        ItemMfhdRecord mfhdItem = null;
+        try (ResultSet resultSet = getResultSet(statement, context)) {
+          while (resultSet.next()) {
+            String caption = resultSet.getString(CAPTION);
+            String chron = resultSet.getString(CHRON);
+            String itemEnum = resultSet.getString(ITEM_ENUM);
+            String freetext = resultSet.getString(FREETEXT);
+            String year = resultSet.getString(YEAR);
+            mfhdItem = new ItemMfhdRecord(caption, chron, itemEnum, freetext, year);
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          future.complete(mfhdItem);
+        }
+      });
+      return future;
     }
-    return itemBarcode;
+
+    private CompletableFuture<List<ItemStatusRecord>> getItemStatuses(Statement statement, Map<String, Object> context, Map<String, Integer> itemStatusMap, Map<String, String> statusNameMap) {
+      CompletableFuture<List<ItemStatusRecord>> future = new CompletableFuture<>();
+      additionalExecutor.submit(() -> {
+        List<ItemStatusRecord> statuses = new ArrayList<>();
+        try (ResultSet resultSet = getResultSet(statement, context)) {
+          while (resultSet.next()) {
+            String itemStatus = statusNameMap.get(resultSet.getString(ITEM_STATUS));
+            String itemStatusDate = resultSet.getString(ITEM_STATUS_DATE);
+            String circtrans = resultSet.getString(CIRCTRANS);
+            Integer itemStatusDesc = itemStatusMap.get(resultSet.getString(ITEM_STATUS_DESC));
+            statuses.add(new ItemStatusRecord(itemStatus, itemStatusDate, circtrans, itemStatusDesc));
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          future.complete(statuses.stream()
+            .sorted((is1, is2) -> is1.getItemStatusDesc().compareTo(is2.getItemStatusDesc()))
+            .collect(Collectors.toList()));
+        }
+      });
+      return future;
+    }
+
+    private CompletableFuture<ItemNoteWrapper> getNotes(Statement statement, Map<String, Object> context, String itemNoteTypeId) {
+      CompletableFuture<ItemNoteWrapper> future = new CompletableFuture<>();
+      additionalExecutor.submit(() -> {
+        List<Note__1> notes = new ArrayList<>();
+        List<CirculationNote> circulationNotes = new ArrayList<>();
+        try (ResultSet resultSet = getResultSet(statement, context)) {
+          while (resultSet.next()) {
+            String itemNote = resultSet.getString(ITEM_NOTE);
+            String itemNoteType = resultSet.getString(ITEM_NOTE_TYPE);
+            if (StringUtils.isNotEmpty(itemNote) && StringUtils.isNotEmpty(itemNoteType)) {
+              itemNote = StringUtils.chomp(itemNote);
+              itemNote = StringUtils.normalizeSpace(itemNote);
+              itemNote = itemNote.replaceAll("[\\p{Cntrl}&&[^\r\n\t]]", "");
+              itemNote = itemNote.replaceAll("\\p{C}", "");
+              if (itemNoteType.equals("1")) {
+                Note__1 note = new Note__1();
+                note.setNote(itemNote);
+                note.setItemNoteTypeId(itemNoteTypeId);
+                note.setStaffOnly(true);
+                notes.add(note);
+              } else {
+                CirculationNote circulationNote = new CirculationNote();
+                circulationNote.setId(UUID.randomUUID().toString());
+                circulationNote.setNote(itemNote);
+                circulationNote.setStaffOnly(true);
+                if (itemNoteType.equals("2")) {
+                  circulationNote.setNoteType(NoteType.CHECK_OUT);
+                } else if (itemNoteType.equals("3")) {
+                  circulationNote.setNoteType(NoteType.CHECK_IN);
+                } else {
+                  // is this possible?
+                }
+                circulationNotes.add(circulationNote);
+              }
+            }
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          future.complete(new ItemNoteWrapper(notes, circulationNotes));
+        }
+      });
+      return future;
+    }
+
   }
 
   private Map<String, String> getLoanTypesMap(Loantypes loanTypes, String schema) {
@@ -507,72 +611,21 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     return idToUuid;
   }
 
-  private List<ItemStatusRecord> getItemStatuses(Statement statement, Map<String, Object> context, Map<String, Integer> itemStatusMap, Map<String, String> statusNameMap) throws SQLException {
-    List<ItemStatusRecord> statuses = new ArrayList<>();
-    try (ResultSet resultSet = getResultSet(statement, context)) {
-      while (resultSet.next()) {
-        String itemStatus = statusNameMap.get(resultSet.getString(ITEM_STATUS));
-        String itemStatusDate = resultSet.getString(ITEM_STATUS_DATE);
-        String circtrans = resultSet.getString(CIRCTRANS);
-        Integer itemStatusDesc = itemStatusMap.get(resultSet.getString(ITEM_STATUS_DESC));
-        statuses.add(new ItemStatusRecord(itemStatus, itemStatusDate, circtrans, itemStatusDesc));
-      }
+  private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
+    ThreadConnections threadConnections = new ThreadConnections();
+    threadConnections.setPageConnection(getConnection(voyagerSettings));
+    threadConnections.setBarcodeConnection(getConnection(voyagerSettings));
+    threadConnections.setItemStatusConnection(getConnection(voyagerSettings));
+    threadConnections.setMfhdConnection(getConnection(voyagerSettings));
+    threadConnections.setNoteConnection(getConnection(voyagerSettings));
+    threadConnections.setMaterialTypeConnection(getConnection(voyagerSettings));
+    try {
+      threadConnections.setItemConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+    } catch (SQLException e) {
+      log.error(e.getMessage());
+      throw new RuntimeException(e);
     }
-    return statuses.stream()
-      .sorted((is1, is2) -> is1.getItemStatusDesc().compareTo(is2.getItemStatusDesc()))
-      .collect(Collectors.toList());
-  }
-
-  private ItemNoteWrapper getNotes(Statement statement, Map<String, Object> context, String itemNoteTypeId) throws SQLException {
-    try (ResultSet resultSet = getResultSet(statement, context)) {
-      List<Note__1> notes = new ArrayList<>();
-      List<CirculationNote> circulationNotes = new ArrayList<>();
-      while (resultSet.next()) {
-        String itemNote = resultSet.getString(ITEM_NOTE);
-        String itemNoteType = resultSet.getString(ITEM_NOTE_TYPE);
-        if (StringUtils.isNotEmpty(itemNote) && StringUtils.isNotEmpty(itemNoteType)) {
-          itemNote = StringUtils.chomp(itemNote);
-          itemNote = StringUtils.normalizeSpace(itemNote);
-          itemNote = itemNote.replaceAll("[\\p{Cntrl}&&[^\r\n\t]]", "");
-          itemNote = itemNote.replaceAll("\\p{C}", "");
-          if (itemNoteType.equals("1")) {
-            Note__1 note = new Note__1();
-            note.setNote(itemNote);
-            note.setItemNoteTypeId(itemNoteTypeId);
-            note.setStaffOnly(true);
-            notes.add(note);
-          } else {
-            CirculationNote circulationNote = new CirculationNote();
-            circulationNote.setId(UUID.randomUUID().toString());
-            circulationNote.setNote(itemNote);
-            circulationNote.setStaffOnly(true);
-            if (itemNoteType.equals("2")) {
-              circulationNote.setNoteType(NoteType.CHECK_OUT);
-            } else if (itemNoteType.equals("3")) {
-              circulationNote.setNoteType(NoteType.CHECK_IN);
-            } else {
-              // is this possible?
-            }
-            circulationNotes.add(circulationNote);
-          }
-        }
-      }
-      return new ItemNoteWrapper(notes, circulationNotes);
-    }
-  }
-
-  private String getMaterialTypeId(Statement statement, Map<String, Object> context, String defaultMaterialTypeId, Materialtypes materialtypes) throws SQLException {
-    try (ResultSet resultSet = getResultSet(statement, context)) {
-      String materialType = defaultMaterialTypeId;
-      while (resultSet.next()) {
-        String materialTypeCode = resultSet.getString(MTYPE_CODE);
-        Optional<Materialtype> potentialMaterialType = materialtypes.getMtypes().stream().filter(mt -> mt.getSource().equals(materialTypeCode)).findFirst();
-        if (potentialMaterialType.isPresent()) {
-          materialType = potentialMaterialType.get().getId();
-        }
-      }
-      return materialType;
-    }
+    return threadConnections;
   }
 
   private class ThreadConnections {
@@ -660,44 +713,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         e.printStackTrace();
       }
     }
-  }
-
-  private class MfhdItem {
-
-    private final String caption;
-    private final String chron;
-    private final String itemEnum;
-    private final String freetext;
-    private final String year;
-
-    public MfhdItem(String caption, String chron, String itemEnum, String freetext, String year) {
-      this.caption = caption;
-      this.chron = chron;
-      this.itemEnum = itemEnum;
-      this.freetext = freetext;
-      this.year = year;
-    }
-
-    public String getCaption() {
-      return caption;
-    }
-
-    public String getChron() {
-      return chron;
-    }
-
-    public String getItemEnum() {
-      return itemEnum;
-    }
-
-    public String getFreetext() {
-      return freetext;
-    }
-
-    public String getYear() {
-      return year;
-    }
-
   }
 
   private class ItemNoteWrapper {

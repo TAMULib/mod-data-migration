@@ -24,24 +24,26 @@ import org.folio.rest.jaxrs.model.Status.Name;
 public class ItemRecord {
 
   private final String itemId;
-  private final String barcode;
-
-  private final String caption;
-  private final String enumeration;
-  private final String chronology;
-  private final String freetext;
-  private final String year;
 
   private final int numberOfPieces;
   private final String spineLabel;
-  private final String materialTypeId;
+  
   private final String itemNoteTypeId;
   private final String itemDamagedStatusId;
 
-  private final List<Note__1> itemNotes;
-  private final List<CirculationNote> circulationNotes;
+  private String id;
+  private String holdingId;
 
-  private final List<ItemStatusRecord> statuses;
+  private String barcode;
+
+  private String materialTypeId;
+
+  private ItemMfhdRecord mfhdItem;
+
+  private List<ItemStatusRecord> statuses;
+
+  private List<Note__1> itemNotes;
+  private List<CirculationNote> circulationNotes;
 
   private String permanentLoanTypeId;
   private String temporaryLoanTypeId;
@@ -49,76 +51,99 @@ public class ItemRecord {
   private String permanentLocationId;
   private String temporaryLocationId;
 
-  private String id;
-  private String holdingId;
-
   private String createdByUserId;
   private Date createdDate;
 
-  public ItemRecord(String itemId, String barcode, String caption, String enumeration, String chronology, String freetext, String year, int numberOfPieces, String spineLabel, String materialTypeId, String itemNoteTypeId, String itemDamagedStatusId, List<ItemStatusRecord> statuses, List<Note__1> itemNotes, List<CirculationNote> circulationNotes) {
+  public ItemRecord(String itemId, int numberOfPieces, String spineLabel, String itemNoteTypeId, String itemDamagedStatusId) {
     this.itemId = itemId;
-    this.barcode = barcode;
-    this.caption = caption;
-    this.enumeration = enumeration;
-    this.chronology = chronology;
-    this.freetext = freetext;
-    this.year = year;
     this.numberOfPieces = numberOfPieces;
     this.spineLabel = spineLabel;
-    this.materialTypeId = materialTypeId;
     this.itemNoteTypeId = itemNoteTypeId;
     this.itemDamagedStatusId = itemDamagedStatusId;
-    this.statuses = statuses;
-    this.itemNotes = itemNotes;
-    this.circulationNotes = circulationNotes;
-  }
-
-  public String getItemDamagedStatusId() {
-    return itemDamagedStatusId;
-  }
-
-  public String getSpineLabel() {
-    return spineLabel;
-  }
-
-  public String getYear() {
-    return year;
-  }
-
-  public String getFreetext() {
-    return freetext;
-  }
-
-  public String getCaption() {
-    return caption;
   }
 
   public String getItemId() {
     return itemId;
   }
 
+  public int getNumberOfPieces() {
+    return numberOfPieces;
+  }
+
+  public String getSpineLabel() {
+    return spineLabel;
+  }
+
+  public String getItemNoteTypeId() {
+    return itemNoteTypeId;
+  }
+
+  public String getItemDamagedStatusId() {
+    return itemDamagedStatusId;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public String getHoldingId() {
+    return holdingId;
+  }
+
+  public void setHoldingId(String holdingId) {
+    this.holdingId = holdingId;
+  }
+
   public String getBarcode() {
     return barcode;
   }
 
-  public String getEnumeration() {
-    return enumeration;
-  }
-
-  public String getChronology() {
-    return chronology;
-  }
-
-  public int getNumberOfPieces() {
-    return numberOfPieces;
+  public void setBarcode(String barcode) {
+    this.barcode = barcode;
   }
 
   public String getMaterialTypeId() {
     return materialTypeId;
   }
 
+  public void setMaterialTypeId(String materialTypeId) {
+    this.materialTypeId = materialTypeId;
+  }
+
+  public ItemMfhdRecord getMfhdItem() {
+    return mfhdItem;
+  }
+
+  public void setMfhdItem(ItemMfhdRecord mfhdItem) {
+    this.mfhdItem = mfhdItem;
+  }
+
   public List<ItemStatusRecord> getStatuses() {
     return statuses;
+  }
+
+  public void setStatuses(List<ItemStatusRecord> statuses) {
+    this.statuses = statuses;
+  }
+
+  public List<Note__1> getItemNotes() {
+    return itemNotes;
+  }
+
+  public void setItemNotes(List<Note__1> itemNotes) {
+    this.itemNotes = itemNotes;
+  }
+
+  public List<CirculationNote> getCirculationNotes() {
+    return circulationNotes;
+  }
+
+  public void setCirculationNotes(List<CirculationNote> circulationNotes) {
+    this.circulationNotes = circulationNotes;
   }
 
   public String getPermanentLoanTypeId() {
@@ -151,22 +176,6 @@ public class ItemRecord {
 
   public void setTemporaryLocationId(String temporaryLocationId) {
     this.temporaryLocationId = temporaryLocationId;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public String getHoldingId() {
-    return holdingId;
-  }
-
-  public void setHoldingId(String holdingId) {
-    this.holdingId = holdingId;
   }
 
   public String getCreatedByUserId() {
@@ -202,17 +211,17 @@ public class ItemRecord {
     }
 
     Set<String> yearCaption = new HashSet<>();
-    yearCaption.add(caption);
+    yearCaption.add(mfhdItem.getCaption());
     yearCaption.add(spineLabel);
     item.setYearCaption(yearCaption);
 
-    item.setVolume(year);
+    item.setVolume(mfhdItem.getYear());
 
     item.setCirculationNotes(circulationNotes);
 
     List<Note__1> notes = new ArrayList<>();
     Note__1 note = new Note__1();
-    note.setNote(freetext);
+    note.setNote(mfhdItem.getFreetext());
     note.setStaffOnly(true);
     note.setItemNoteTypeId(itemNoteTypeId);
     notes.add(note);
@@ -220,9 +229,9 @@ public class ItemRecord {
     item.setNotes(notes);
 
     item.setBarcode(barcode);
-    item.setChronology(chronology);
+    item.setChronology(mfhdItem.getChron());
     item.setNumberOfPieces(String.valueOf(numberOfPieces));
-    item.setEnumeration(enumeration);
+    item.setEnumeration(mfhdItem.getItemEnum());
 
     // default to not suppress discovery
     item.setDiscoverySuppress(false);

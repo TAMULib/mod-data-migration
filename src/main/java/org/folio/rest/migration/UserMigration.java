@@ -248,7 +248,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           PatronCodes patronCodes = new PatronCodes();
 
-          CompletableFuture<Void> future = CompletableFuture.allOf(
+          CompletableFuture.allOf(
             getUsername(usernameStatement, usernameContext)
               .thenAccept((un) -> userRecord.setUsername(un)),
             getUserAddressRecords(addressStatement, addressContext)
@@ -258,10 +258,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
               patronCodes.setBarcode(pc.getBarcode());
               patronCodes.setGroupcode(pc.getGroupcode());
             })
-          );
-
-          // blocking call to wait for parallel completable futures to complete
-          future.get();
+          ).get();
 
           if (!processUsername(userRecord.getUsername().toLowerCase())) {
             log.warn("{} patron id {} username {} already processed", schema, patronId, userRecord.getUsername());
@@ -321,7 +318,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
       return Objects.nonNull(obj) && ((UserPartitionTask) obj).getIndex() == this.getIndex();
     }
 
-    private CompletableFuture<String> getUsername(Statement statement, Map<String, Object> usernameContext) throws SQLException {
+    private CompletableFuture<String> getUsername(Statement statement, Map<String, Object> usernameContext) {
       CompletableFuture<String> future = new CompletableFuture<>();
       String schema = (String) usernameContext.get(SCHEMA);
       String patronId = (String) usernameContext.get(PATRON_ID);
@@ -343,7 +340,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
       return future;
     }
   
-    private CompletableFuture<List<UserAddressRecord>> getUserAddressRecords(Statement statement, Map<String, Object> addressContext) throws SQLException {
+    private CompletableFuture<List<UserAddressRecord>> getUserAddressRecords(Statement statement, Map<String, Object> addressContext) {
       CompletableFuture<List<UserAddressRecord>> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
         List<UserAddressRecord> userAddressRecords = new ArrayList<>();
@@ -371,7 +368,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
       return future;
     }
   
-    private CompletableFuture<PatronCodes> getPatronCodes(Statement statement, Map<String, Object> patronGroupContext) throws SQLException {
+    private CompletableFuture<PatronCodes> getPatronCodes(Statement statement, Map<String, Object> patronGroupContext) {
       CompletableFuture<PatronCodes> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
         PatronCodes patronCodes = null;
