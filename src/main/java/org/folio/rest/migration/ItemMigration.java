@@ -311,34 +311,26 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             permLocationId = defaults.getPermanentLocationId();
           }
 
-          String id = null, holdingId = null;
-
           Optional<ReferenceLink> itemRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId);
+          Optional<ReferenceLink> holdingRL = Optional.empty();
 
           if (itemRL.isPresent()) {
-
-            id = itemRL.get().getFolioReference();
-
             Optional<ReferenceLink> itemToHoldingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemToHoldingRLTypeId, itemRL.get().getId());
-
             if (itemToHoldingRL.isPresent()) {
-              Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findById(itemToHoldingRL.get().getFolioReference());
-
-              if (holdingRL.isPresent()) {
-                holdingId = holdingRL.get().getFolioReference();
-              }
+              holdingRL = migrationService.referenceLinkRepo.findById(itemToHoldingRL.get().getFolioReference());
             }
-          }
-
-          if (Objects.isNull(id)) {
+          } else {
             log.error("{} no item record id found for item id {}", schema, itemId);
             continue;
           }
 
-          if (Objects.isNull(holdingId)) {
+          if (!holdingRL.isPresent()) {
             log.error("{} no holdings record id found for item id {}", schema, itemId);
             continue;
           }
+
+          String id = itemRL.get().getFolioReference();
+          String holdingId = holdingRL.get().getFolioReference();
 
           ItemRecord itemRecord = new ItemRecord(itemId, numberOfPieces, spineLabel, job.getItemNoteTypeId(), job.getItemDamagedStatusId());
 

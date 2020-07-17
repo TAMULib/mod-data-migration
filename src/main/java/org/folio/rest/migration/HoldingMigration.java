@@ -221,6 +221,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
           String holdingsType = pageResultSet.getString(HOLDINGS_TYPE);
           String field008 = pageResultSet.getString(FIELD_008);
 
+          marcContext.put(MFHD_ID, mfhdId);
+
           String locationId;
           String receiptStatus;
           String acquisitionMethod;
@@ -283,36 +285,26 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             locationId = holdingDefaults.getPermanentLocationId();
           }
 
-          marcContext.put(MFHD_ID, mfhdId);
-
-          String holdingId = null, instanceId = null;
-
           Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
+          Optional<ReferenceLink> instanceRL = Optional.empty();
 
           if (holdingRL.isPresent()) {
-
-            holdingId = holdingRL.get().getFolioReference();
-
             Optional<ReferenceLink> holdingToBibRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToBibRLTypeId, holdingRL.get().getId());
-
             if (holdingToBibRL.isPresent()) {
-              Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findById(holdingToBibRL.get().getFolioReference());
-
-              if (instanceRL.isPresent()) {
-                instanceId = instanceRL.get().getFolioReference();
-              }
+              instanceRL = migrationService.referenceLinkRepo.findById(holdingToBibRL.get().getFolioReference());
             }
-          }
-
-          if (Objects.isNull(holdingId)) {
+          } else {
             log.error("{} no holdings record id found for mfhd id {}", schema, mfhdId);
             continue;
           }
 
-          if (Objects.isNull(instanceId)) {
+          if (!instanceRL.isPresent()) {
             log.error("{} no instance id found for mfhd id {}", schema, mfhdId);
             continue;
           }
+
+          String holdingId = holdingRL.get().getFolioReference();
+          String instanceId = instanceRL.get().getFolioReference();
 
           try {
             String marc = getMarc(marcStatement, marcContext);
