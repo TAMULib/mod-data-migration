@@ -336,7 +336,9 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
 
-            Holdingsrecord holdingsRecord = holdingRecord.toHolding(holdingMapper, hridPrefix, hrid);
+            String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
+
+            Holdingsrecord holdingsRecord = holdingRecord.toHolding(holdingMapper, hridString);
 
             String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(holdingsRecord)));
 

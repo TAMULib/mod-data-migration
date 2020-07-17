@@ -185,7 +185,7 @@ public class ItemRecord {
     this.createdDate = createdDate;
   }
 
-  public Item toItem(String hridPrefix, int hrid, Statisticalcodes statisticalcodes, Materialtypes materilatypes) {
+  public Item toItem(String hridString, Statisticalcodes statisticalcodes, Materialtypes materilatypes) {
     final Item item = new Item();
     item.setId(id);
     item.setHoldingsRecordId(holdingId);
@@ -267,7 +267,7 @@ public class ItemRecord {
     item.setDiscoverySuppress(suppress.get());
     item.setStatisticalCodeIds(statisticalCodeIds);
 
-    item.setHrid(String.format("%s%011d", hridPrefix, hrid));
+    item.setHrid(hridString);
 
     Set<String> formerIds = new HashSet<>();
     formerIds.add(itemId);

@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -363,7 +364,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
 
-            Item item = itemRecord.toItem(hridPrefix, hrid, statisticalcodes, materialtypes);
+            String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
+
+            Item item = itemRecord.toItem(hridString, statisticalcodes, materialtypes);
 
             String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(item)));
 
@@ -545,15 +548,17 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             notes.add(note);
           } else {
             CirculationNote circulationNote = new CirculationNote();
+            circulationNote.setId(UUID.randomUUID().toString());
             circulationNote.setNote(itemNote);
             circulationNote.setStaffOnly(true);
             if (itemNoteType.equals("2")) {
               circulationNote.setNoteType(NoteType.CHECK_OUT);
-              circulationNotes.add(circulationNote);
             } else if (itemNoteType.equals("3")) {
               circulationNote.setNoteType(NoteType.CHECK_IN);
-              circulationNotes.add(circulationNote);
+            } else {
+              // is this possible?
             }
+            circulationNotes.add(circulationNote);
           }
         }
       }

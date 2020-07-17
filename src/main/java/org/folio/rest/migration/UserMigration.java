@@ -260,6 +260,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
             })
           );
 
+          // blocking call to wait for parallel completable futures to complete
           future.get();
 
           if (!processUsername(userRecord.getUsername().toLowerCase())) {
