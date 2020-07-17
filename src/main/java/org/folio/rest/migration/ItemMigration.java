@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +15,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
@@ -508,24 +507,20 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     return idToUuid;
   }
 
-  private List<ItemStatusRecord> getItemStatuses(Statement statement, Map<String, Object> context, Map<String, String> itemStatusMap, Map<String, String> statusNameMap) throws SQLException {
+  private List<ItemStatusRecord> getItemStatuses(Statement statement, Map<String, Object> context, Map<String, Integer> itemStatusMap, Map<String, String> statusNameMap) throws SQLException {
     List<ItemStatusRecord> statuses = new ArrayList<>();
     try (ResultSet resultSet = getResultSet(statement, context)) {
       while (resultSet.next()) {
         String itemStatus = statusNameMap.get(resultSet.getString(ITEM_STATUS));
         String itemStatusDate = resultSet.getString(ITEM_STATUS_DATE);
         String circtrans = resultSet.getString(CIRCTRANS);
-        String itemStatusDesc = itemStatusMap.get(resultSet.getString(ITEM_STATUS_DESC));
+        Integer itemStatusDesc = itemStatusMap.get(resultSet.getString(ITEM_STATUS_DESC));
         statuses.add(new ItemStatusRecord(itemStatus, itemStatusDate, circtrans, itemStatusDesc));
       }
-      Collections.sort(statuses, new Comparator<ItemStatusRecord>() {
-        @Override
-        public int compare(ItemStatusRecord is1, ItemStatusRecord is2) {
-          return Integer.parseInt(is1.getItemStatusDesc()) - Integer.parseInt(is2.getItemStatusDesc());
-        }
-      });
     }
-    return statuses;
+    return statuses.stream()
+      .sorted((is1, is2) -> is1.getItemStatusDesc().compareTo(is2.getItemStatusDesc()))
+      .collect(Collectors.toList());
   }
 
   private ItemNoteWrapper getNotes(Statement statement, Map<String, Object> context, String itemNoteTypeId) throws SQLException {

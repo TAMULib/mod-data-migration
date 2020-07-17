@@ -224,27 +224,32 @@ public class ItemRecord {
     item.setNumberOfPieces(String.valueOf(numberOfPieces));
     item.setEnumeration(enumeration);
 
-    AtomicBoolean suppress = new AtomicBoolean(false);
+    // default to not suppress discovery
+    item.setDiscoverySuppress(false);
 
-    List<Status> processedStatuses = new ArrayList<>();
+    Status status = new Status();
+    // setting to available by default
+    status.setName(Name.AVAILABLE);
+    // assuming current date by default
+    status.setDate(new Date());
+
     Set<String> statisticalCodeIds = new HashSet<>();
 
+    AtomicBoolean statusesFirstPass = new AtomicBoolean(true);
     statuses.stream().forEach(s -> {
-      Status status = new Status();
-      if (isNotEmpty(s.getCirctrans())) {
-        status.setName(Name.AVAILABLE);
-      } else if (isNotEmpty(s.getItemStatus())) {
-        Name name = Name.fromValue(s.getItemStatus());
-        status.setName(name);
-      } else {
-        status.setName(Name.AVAILABLE);
-      }
 
-      if (isNotEmpty(s.getItemStatusDate())) {
-        Date date = Date.from(Instant.parse(s.getItemStatusDate()));
-        status.setDate(date);
+      if (statusesFirstPass.compareAndSet(true, false)) {
+        if (isNotEmpty(s.getCirctrans())) {
+          status.setName(Name.AVAILABLE);
+        } else if (isNotEmpty(s.getItemStatus())) {
+          Name name = Name.fromValue(s.getItemStatus());
+          status.setName(name);
+        }
+        if (isNotEmpty(s.getItemStatusDate())) {
+          Date date = Date.from(Instant.parse(s.getItemStatusDate()));
+          status.setDate(date);
+        }
       }
-      processedStatuses.add(status);
 
       if (isNotEmpty(s.getItemStatus())) {
         if (s.getItemStatus().toLowerCase().contains("damaged")) {
@@ -259,12 +264,12 @@ public class ItemRecord {
         }
 
         if (s.getItemStatus().contains("Missing") || s.getItemStatus().contains("Lost") || s.getItemStatus().contains("Withdrawn")) {
-          suppress.set(true);
+          item.setDiscoverySuppress(true);
         }
       }
     });
 
-    item.setDiscoverySuppress(suppress.get());
+    item.setStatus(status);
     item.setStatisticalCodeIds(statisticalCodeIds);
 
     item.setHrid(hridString);
