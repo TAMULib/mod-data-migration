@@ -386,19 +386,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
   }
 
-  private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
-    ThreadConnections threadConnections = new ThreadConnections();
-    threadConnections.setPageConnection(getConnection(voyagerSettings));
-    threadConnections.setMarcConnection(getConnection(voyagerSettings));
-    try {
-      threadConnections.setHoldingConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-      throw new RuntimeException(e);
-    }
-    return threadConnections;
-  }
-
   private Map<String, String> getLocationsMap(Locations locations, String schema) {
     Map<String, String> idToUuid = new HashMap<>();
     Map<String, Object> locationContext = new HashMap<>();
@@ -425,6 +412,19 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       e.printStackTrace();
     }
     return idToUuid;
+  }
+
+  private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
+    ThreadConnections threadConnections = new ThreadConnections();
+    threadConnections.setPageConnection(getConnection(voyagerSettings));
+    threadConnections.setMarcConnection(getConnection(voyagerSettings));
+    try {
+      threadConnections.setHoldingConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+    } catch (SQLException e) {
+      log.error(e.getMessage());
+      throw new RuntimeException(e);
+    }
+    return threadConnections;
   }
 
   private class ThreadConnections {
