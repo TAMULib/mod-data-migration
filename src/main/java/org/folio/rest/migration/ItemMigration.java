@@ -340,50 +340,50 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             continue;
           }
 
+          ItemRecord itemRecord = new ItemRecord(itemId, numberOfPieces, spineLabel, job.getItemNoteTypeId(), job.getItemDamagedStatusId());
+
+          CompletableFuture.allOf(
+            getItemBarcode(barcodeStatement, barcodeContext)
+              .thenAccept((barcode) -> itemRecord.setBarcode(barcode)),
+            getMaterialTypeId(materialTypeStatement, materialTypeContext, defaults.getMaterialTypeId(), materialtypes)
+              .thenAccept((materialTypeId) -> itemRecord.setMaterialTypeId(materialTypeId)),
+            getMfhdItem(mfhdItemStatement, mfhdContext)
+              .thenAccept((mfhdItem) -> itemRecord.setMfhdItem(mfhdItem)),
+            getItemStatuses(itemStatusStatement, itemStatusContext, maps.getItemStatus(), maps.getStatusName())
+              .thenAccept((statuses) -> itemRecord.setStatuses(statuses)),
+            getNotes(noteStatement, noteContext, job.getItemNoteTypeId())
+              .thenAccept((noteWrapper) -> {
+                itemRecord.setItemNotes(noteWrapper.getNotes());
+                itemRecord.setCirculationNotes(noteWrapper.getCirculationNotes());
+              })
+          ).get();
+
+          itemRecord.setId(id);
+          itemRecord.setHoldingId(holdingId);
+
+          itemRecord.setPermanentLoanTypeId(permLoanTypeId);
+          itemRecord.setPermanentLocationId(permLocationId);
+
+          if (loanTypesMap.containsKey(voyagerTempTypeId)) {
+            itemRecord.setTemporaryLoanTypeId(loanTypesMap.get(voyagerTempTypeId));
+          }
+
+          if (locationsMap.containsKey(voyagerTempLocationId)) {
+            itemRecord.setTemporaryLocationId(locationsMap.get(voyagerTempLocationId));
+          }
+
+          Date createdDate = new Date();
+          itemRecord.setCreatedByUserId(job.getUserId());
+          itemRecord.setCreatedDate(createdDate);
+
+          String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
+          String createdByUserId = job.getUserId();
+
+          String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
+
+          Item item = itemRecord.toItem(hridString, statisticalcodes, materialtypes);
+
           try {
-
-            ItemRecord itemRecord = new ItemRecord(itemId, numberOfPieces, spineLabel, job.getItemNoteTypeId(), job.getItemDamagedStatusId());
-
-            CompletableFuture.allOf(
-              getItemBarcode(barcodeStatement, barcodeContext)
-                .thenAccept((barcode) -> itemRecord.setBarcode(barcode)),
-              getMaterialTypeId(materialTypeStatement, materialTypeContext, defaults.getMaterialTypeId(), materialtypes)
-                .thenAccept((materialTypeId) -> itemRecord.setMaterialTypeId(materialTypeId)),
-              getMfhdItem(mfhdItemStatement, mfhdContext)
-                .thenAccept((mfhdItem) -> itemRecord.setMfhdItem(mfhdItem)),
-              getItemStatuses(itemStatusStatement, itemStatusContext, maps.getItemStatus(), maps.getStatusName())
-                .thenAccept((statuses) -> itemRecord.setStatuses(statuses)),
-              getNotes(noteStatement, noteContext, job.getItemNoteTypeId())
-                .thenAccept((noteWrapper) -> {
-                  itemRecord.setItemNotes(noteWrapper.getNotes());
-                  itemRecord.setCirculationNotes(noteWrapper.getCirculationNotes());
-                })
-            ).get();
-
-            itemRecord.setId(id);
-            itemRecord.setHoldingId(holdingId);
-
-            itemRecord.setPermanentLoanTypeId(permLoanTypeId);
-            itemRecord.setPermanentLocationId(permLocationId);
-
-            if (loanTypesMap.containsKey(voyagerTempTypeId)) {
-              itemRecord.setTemporaryLoanTypeId(loanTypesMap.get(voyagerTempTypeId));
-            }
-
-            if (locationsMap.containsKey(voyagerTempLocationId)) {
-              itemRecord.setTemporaryLocationId(locationsMap.get(voyagerTempLocationId));
-            }
-
-            Date createdDate = new Date();
-            itemRecord.setCreatedByUserId(job.getUserId());
-            itemRecord.setCreatedDate(createdDate);
-
-            String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-            String createdByUserId = job.getUserId();
-
-            String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
-
-            Item item = itemRecord.toItem(hridString, statisticalcodes, materialtypes);
 
             String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(item)));
 
