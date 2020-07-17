@@ -249,6 +249,12 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           String vendorDefaultCurrency = pageResultSet.getString(VENDOR_DEFAULT_CURRENCY);
           Integer vendorClaimingInterval = pageResultSet.getInt(VENDOR_CLAIMING_INTERVAL);
 
+          vendorAccountsContext.put(VENDOR_ID, vendorId);
+          vendorAddressesContext.put(VENDOR_ID, vendorId);
+          vendorAddressPhoneNumbersContext.put(VENDOR_ID, vendorId);
+          vendorAliasesContext.put(VENDOR_ID, vendorId);
+          vendorNotesContext.put(VENDOR_ID, vendorId);
+
           Optional<ReferenceLink> vendorRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(vendorRLTypeId, vendorId);
           if (!vendorRL.isPresent()) {
             log.error("{} no vendor id found for vendor id {}", schema, vendorId);
@@ -259,17 +265,16 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
           VendorRecord vendorRecord = new VendorRecord(referenceId, vendorId, vendorCode, vendorType, vendorName, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
 
-          vendorAccountsContext.put(VENDOR_ID, vendorId);
-          vendorAddressesContext.put(VENDOR_ID, vendorId);
-          vendorAddressPhoneNumbersContext.put(VENDOR_ID, vendorId);
-          vendorAliasesContext.put(VENDOR_ID, vendorId);
-          vendorNotesContext.put(VENDOR_ID, vendorId);
-
           try {
             List<VendorAccountRecord> vendorAccountRecords = getVendorAccounts(accountStatement, vendorAccountsContext);
-            vendorRecord.setVendorAccountRecords(vendorAccountRecords);
             List<VendorAddressRecord> vendorAddresses = getVendorAddresses(addressStatement, vendorAddressesContext);
+            List<VendorAliasRecord> vendorAliases = getVendorAliases(aliasStatement, vendorAliasesContext);
+            String vendorNotes = getVendorNotes(noteStatement, vendorNotesContext);
+
+            vendorRecord.setVendorAccountRecords(vendorAccountRecords);
             vendorRecord.setVendorAddresses(vendorAddresses);
+            vendorRecord.setVendorAliases(vendorAliases);
+            vendorRecord.setVendorNotes(vendorNotes);
 
             List<VendorPhoneRecord> vendorPhoneNumbers = new ArrayList<>();
 
@@ -310,13 +315,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
             vendorRecord.setContacts(contacts);
             vendorRecord.setEmails(emails);
             vendorRecord.setUrls(urls);
-
             vendorRecord.setVendorPhoneNumbers(vendorPhoneNumbers);
-
-            List<VendorAliasRecord> vendorAliases = getVendorAliases(aliasStatement, vendorAliasesContext);
-            vendorRecord.setVendorAliases(vendorAliases);
-            String vendorNotes = getVendorNotes(noteStatement, vendorNotesContext);
-            vendorRecord.setVendorNotes(vendorNotes);
 
             Date createdDate = new Date();
             vendorRecord.setCreatedDate(createdDate);

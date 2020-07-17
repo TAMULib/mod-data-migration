@@ -275,15 +275,18 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
         while (pageResultSet.next()) {
           String itemId = pageResultSet.getString(ITEM_ID);
-
           String voyagerPermTypeId = pageResultSet.getString(PERM_ITEM_TYPE_ID);
           String voyagerPermLocationId = pageResultSet.getString(PERM_LOCATION_ID);
-
           String voyagerTempTypeId = pageResultSet.getString(TEMP_TYPE_ID);
           String voyagerTempLocationId = pageResultSet.getString(TEMP_LOCATION_ID);
-
           int numberOfPieces = pageResultSet.getInt(PIECES);
           String spineLabel = pageResultSet.getString(SPINE_LABEL);
+
+          mfhdContext.put(ITEM_ID, itemId);
+          barcodeContext.put(ITEM_ID, itemId);
+          itemStatusContext.put(ITEM_ID, itemId);
+          noteContext.put(ITEM_ID, itemId);
+          materialTypeContext.put(ITEM_ID, itemId);
 
           String permLoanTypeId, permLocationId;
 
@@ -300,12 +303,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             log.warn("using default permanent location for schema {} itemId {} location {}", schema, itemId, voyagerPermLocationId);
             permLocationId = defaults.getPermanentLocationId();
           }
-
-          mfhdContext.put(ITEM_ID, itemId);
-          barcodeContext.put(ITEM_ID, itemId);
-          itemStatusContext.put(ITEM_ID, itemId);
-          noteContext.put(ITEM_ID, itemId);
-          materialTypeContext.put(ITEM_ID, itemId);
 
           String id = null, holdingId = null;
 
@@ -338,13 +335,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
           try {
             MfhdItem mfhdItem = getMfhdItem(mfhdItemStatement, mfhdContext);
-
             String barcode = getItemBarcode(barcodeStatement, barcodeContext);
-
             List<ItemStatusRecord> itemStatuses = getItemStatuses(itemStatusStatement, itemStatusContext, maps.getItemStatus(), maps.getStatusName());
-
             ItemNoteWrapper noteWrapper = getNotes(noteStatement, noteContext, job.getItemNoteTypeId());
-
             String materialTypeId = getMaterialTypeId(materialTypeStatement, materialTypeContext, defaults.getMaterialTypeId(), materialtypes);
 
             ItemRecord itemRecord = new ItemRecord(itemId, barcode, mfhdItem.getCaption(), mfhdItem.getItemEnum(), mfhdItem.getChron(), mfhdItem.getFreetext(), mfhdItem.getYear(), numberOfPieces, spineLabel, materialTypeId, job.getItemNoteTypeId(), job.getItemDamagedStatusId(), itemStatuses, noteWrapper.getNotes(), noteWrapper.getCirculationNotes());

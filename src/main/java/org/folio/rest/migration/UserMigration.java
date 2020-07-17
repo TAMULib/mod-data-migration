@@ -227,6 +227,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
           String smsNumber = pageResultSet.getString(SMS_NUMBER);
           String currentCharges = pageResultSet.getString(CURRENT_CHARGES);
 
+          usernameContext.put(PATRON_ID, patronId);
+          usernameContext.put(EXTERNAL_SYSTEM_ID, externalSystemId);
+          addressContext.put(PATRON_ID, patronId);
+          patronGroupContext.put(PATRON_ID, patronId);
+
           Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
           if (!userRL.isPresent()) {
             log.error("{} no user id found for patron id {}", schema, patronId);
@@ -240,11 +245,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
           String referenceId = userRL.get().getFolioReference().toString();
 
           UserRecord userRecord = new UserRecord(referenceId, patronId, externalSystemId, lastName, firstName, middleName, activeDate, expireDate, smsNumber, currentCharges);
-
-          usernameContext.put(PATRON_ID, patronId);
-          usernameContext.put(EXTERNAL_SYSTEM_ID, externalSystemId);
-          addressContext.put(PATRON_ID, patronId);
-          patronGroupContext.put(PATRON_ID, patronId);
 
           PatronCodes patronCodes = new PatronCodes();
 

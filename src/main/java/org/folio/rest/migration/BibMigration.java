@@ -260,7 +260,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
       ) {
 
         while (pageResultSet.next()) {
-
           String bibId = pageResultSet.getString(BIB_ID);
           Boolean suppressInOpac = pageResultSet.getBoolean(SUPPRESS_IN_OPAC);
           String operatorId = pageResultSet.getString(OPERATOR_ID);

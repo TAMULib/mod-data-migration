@@ -285,6 +285,35 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
           marcContext.put(MFHD_ID, mfhdId);
 
+          String holdingId = null, instanceId = null;
+
+          Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
+
+          if (holdingRL.isPresent()) {
+
+            holdingId = holdingRL.get().getFolioReference();
+
+            Optional<ReferenceLink> holdingToBibRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToBibRLTypeId, holdingRL.get().getId());
+
+            if (holdingToBibRL.isPresent()) {
+              Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findById(holdingToBibRL.get().getFolioReference());
+
+              if (instanceRL.isPresent()) {
+                instanceId = instanceRL.get().getFolioReference();
+              }
+            }
+          }
+
+          if (Objects.isNull(holdingId)) {
+            log.error("{} no holdings record id found for mfhd id {}", schema, mfhdId);
+            continue;
+          }
+
+          if (Objects.isNull(instanceId)) {
+            log.error("{} no instance id found for mfhd id {}", schema, mfhdId);
+            continue;
+          }
+
           try {
             String marc = getMarc(marcStatement, marcContext);
 
@@ -296,35 +325,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             }
 
             HoldingRecord holdingRecord = new HoldingRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
-
-            String holdingId = null, instanceId = null;
-
-            Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
-
-            if (holdingRL.isPresent()) {
-
-              holdingId = holdingRL.get().getFolioReference();
-
-              Optional<ReferenceLink> holdingToBibRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToBibRLTypeId, holdingRL.get().getId());
-
-              if (holdingToBibRL.isPresent()) {
-                Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findById(holdingToBibRL.get().getFolioReference());
-
-                if (instanceRL.isPresent()) {
-                  instanceId = instanceRL.get().getFolioReference();
-                }
-              }
-            }
-
-            if (Objects.isNull(holdingId)) {
-              log.error("{} no holdings record id found for mfhd id {}", schema, mfhdId);
-              continue;
-            }
-
-            if (Objects.isNull(instanceId)) {
-              log.error("{} no instance id found for mfhd id {}", schema, mfhdId);
-              continue;
-            }
 
             holdingRecord.setHoldingId(holdingId);
             holdingRecord.setInstanceId(instanceId);
