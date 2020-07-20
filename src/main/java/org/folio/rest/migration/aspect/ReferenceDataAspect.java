@@ -90,7 +90,7 @@ public class ReferenceDataAspect {
   }
 
   private void createReferenceData(ReferenceData referenceData) {
-    referenceData.getData().forEach(data -> {
+    for(JsonNode data : referenceData.getData()) {
       ReferenceDatum datum = ReferenceDatum.of(referenceData, data);
       try {
         JsonNode rd = okapiService.createReferenceData(datum);
@@ -98,7 +98,7 @@ public class ReferenceDataAspect {
       } catch (Exception e) {
         logger.debug("failed creating reference data {} {}", referenceData.getName(), data);
       }
-    });
+    }
   }
 
 }

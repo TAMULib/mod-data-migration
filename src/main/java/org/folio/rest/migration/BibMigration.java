@@ -121,6 +121,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       @Override
       public void complete() {
+        migrationService.okapiService.updateHridSettings(tenant, token, hridSettings);
+        log.info("updated hrid settings: {}", hridSettings);
         postActions(folioSettings, context.getPostActions());
       }
 
@@ -130,8 +132,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
     countContext.put(SQL, context.getExtraction().getCountSql());
 
     JsonObject instancesHridSettings = hridSettings.getJsonObject("instances");
-    String hridPrefix = instancesHridSettings.getString("prefix");
-    int originalHridStartNumber = instancesHridSettings.getInteger("startNumber");
+    String hridPrefix = instancesHridSettings.getString(PREFIX);
+    int originalHridStartNumber = instancesHridSettings.getInteger(START_NUMBER);
 
     int hridStartNumber = originalHridStartNumber;
 
@@ -167,13 +169,15 @@ public class BibMigration extends AbstractMigration<BibContext> {
         taskQueue.submit(new BibPartitionTask(migrationService, instanceMapper, partitionContext));
         offset += limit;
         index++;
-        if (i < partitions) {
+        if (i < partitions - 1) {
           hridStartNumber += limit;
         } else {
           hridStartNumber = originalHridStartNumber + count;
         }
       }
     }
+
+    instancesHridSettings.put(START_NUMBER, ++hridStartNumber);
 
     return CompletableFuture.completedFuture(true);
   }

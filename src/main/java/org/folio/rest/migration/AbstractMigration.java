@@ -50,6 +50,9 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
   static final String INDEX = "INDEX";
   static final String TOTAL = "TOTAL";
 
+  static final String PREFIX = "prefix";
+  static final String START_NUMBER = "startNumber";
+
   static final String NULL = "null";
 
   static final String HRID_TEMPLATE = "%s%011d";
