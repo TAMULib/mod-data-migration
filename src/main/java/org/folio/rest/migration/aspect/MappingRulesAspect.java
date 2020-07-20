@@ -49,7 +49,7 @@ public class MappingRulesAspect {
   }
 
   private Resource loadResource(String path) throws IOException {
-    return ResourcePatternUtils.getResourcePatternResolver(resourceLoader).getResource(path);
+    return resourceLoader.getResource(path);
   }
 
 }
