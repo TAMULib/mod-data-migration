@@ -9,11 +9,16 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
@@ -90,7 +95,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
   private static final String VENDOR_REFERENCE_ID = "vendorTypeId";
 
-  private static final String IGNODE_CODES = "codes";
+  private static final Set<String> CODES = new HashSet<>();
 
   // (id,jsonb,creation_date,created_by)
   private static final String CONTACTS_RECORDS_COPY_SQL = "COPY %s_mod_organizations_storage.contacts (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
@@ -120,6 +125,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       @Override
       public void complete() {
         postActions(folioSettings, context.getPostActions());
+        CODES.clear();
       }
 
     });
@@ -175,9 +181,12 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
     private final Map<String, Object> partitionContext;
 
+    private final ExecutorService additionalExecutor;
+
     public VendorPartitionTask(MigrationService migrationService, Map<String, Object> partitionContext) {
       this.migrationService = migrationService;
       this.partitionContext = partitionContext;
+      this.additionalExecutor = Executors.newFixedThreadPool(4);
     }
 
     public int getIndex() {
@@ -246,6 +255,12 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           String vendorDefaultCurrency = pageResultSet.getString(VENDOR_DEFAULT_CURRENCY);
           Integer vendorClaimingInterval = pageResultSet.getInt(VENDOR_CLAIMING_INTERVAL);
 
+          vendorAccountsContext.put(VENDOR_ID, vendorId);
+          vendorAddressesContext.put(VENDOR_ID, vendorId);
+          vendorAddressPhoneNumbersContext.put(VENDOR_ID, vendorId);
+          vendorAliasesContext.put(VENDOR_ID, vendorId);
+          vendorNotesContext.put(VENDOR_ID, vendorId);
+
           Optional<ReferenceLink> vendorRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(vendorRLTypeId, vendorId);
           if (!vendorRL.isPresent()) {
             log.error("{} no vendor id found for vendor id {}", schema, vendorId);
@@ -256,17 +271,17 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
           VendorRecord vendorRecord = new VendorRecord(referenceId, vendorId, vendorCode, vendorType, vendorName, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
 
-          vendorAccountsContext.put(VENDOR_ID, vendorId);
-          vendorAddressesContext.put(VENDOR_ID, vendorId);
-          vendorAddressPhoneNumbersContext.put(VENDOR_ID, vendorId);
-          vendorAliasesContext.put(VENDOR_ID, vendorId);
-          vendorNotesContext.put(VENDOR_ID, vendorId);
-
           try {
-            List<VendorAccountRecord> vendorAccountRecords = getVendorAccounts(accountStatement, vendorAccountsContext);
-            vendorRecord.setVendorAccountRecords(vendorAccountRecords);
-            List<VendorAddressRecord> vendorAddresses = getVendorAddresses(addressStatement, vendorAddressesContext);
-            vendorRecord.setVendorAddresses(vendorAddresses);
+            CompletableFuture.allOf(
+              getVendorAccounts(accountStatement, vendorAccountsContext)
+                .thenAccept((vendorAccountRecords) -> vendorRecord.setVendorAccountRecords(vendorAccountRecords)),
+              getVendorAddresses(addressStatement, vendorAddressesContext)
+                .thenAccept((vendorAddresses) -> vendorRecord.setVendorAddresses(vendorAddresses)),
+              getVendorAliases(aliasStatement, vendorAliasesContext)
+                .thenAccept((vendorAliases) -> vendorRecord.setVendorAliases(vendorAliases)),
+              getVendorNotes(noteStatement, vendorNotesContext)
+                .thenAccept((vendorNotes) -> vendorRecord.setVendorNotes(vendorNotes))
+            ).get();
 
             List<VendorPhoneRecord> vendorPhoneNumbers = new ArrayList<>();
 
@@ -275,7 +290,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
             List<Email> emails = new ArrayList<>();
             List<Url> urls = new ArrayList<>();
 
-            for (VendorAddressRecord vendorAddress : vendorAddresses) {
+            for (VendorAddressRecord vendorAddress : vendorRecord.getVendorAddresses()) {
               vendorAddress.setVendorId(vendorId);
 
               List<String> categories = vendorAddress.getCategories(maps);
@@ -285,7 +300,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
               } else if (vendorAddress.isContact()) {
                 Contact contact = vendorAddress.toContact(categories, defaults, maps);
 
-                String createdAt = DATE_TIME_FOMATTER.format( new Date().toInstant().atOffset(ZoneOffset.UTC));
+                String createdAt = DATE_TIME_FOMATTER.format(new Date().toInstant().atOffset(ZoneOffset.UTC));
                 String createdByUserId = job.getUserId();
                 
                 String contactUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(contact)));
@@ -307,13 +322,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
             vendorRecord.setContacts(contacts);
             vendorRecord.setEmails(emails);
             vendorRecord.setUrls(urls);
-
             vendorRecord.setVendorPhoneNumbers(vendorPhoneNumbers);
-
-            List<VendorAliasRecord> vendorAliases = getVendorAliases(aliasStatement, vendorAliasesContext);
-            vendorRecord.setVendorAliases(vendorAliases);
-            String vendorNotes = getVendorNotes(noteStatement, vendorNotesContext);
-            vendorRecord.setVendorNotes(vendorNotes);
 
             Date createdDate = new Date();
             vendorRecord.setCreatedDate(createdDate);
@@ -324,8 +333,8 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
             Organization organization = vendorRecord.toOrganization(defaults);
 
-            if (maps.getIgnore().get(IGNODE_CODES).contains(organization.getCode().toLowerCase())) {
-              log.warn("{} ignoring vendor id {} code {}", schema, vendorId, organization.getCode());
+            if (!processCode(organization.getCode().toLowerCase())) {
+              log.warn("{} vendor id {} code {} already processed", schema, vendorId, organization.getCode());
               continue;
             }
 
@@ -341,7 +350,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
           }
         }
 
-      } catch (SQLException e) {
+      } catch (SQLException | InterruptedException | ExecutionException e) {
         e.printStackTrace();
       } finally {
         threadConnections.closeAll();
@@ -357,6 +366,113 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       return Objects.nonNull(obj) && ((VendorPartitionTask) obj).getIndex() == this.getIndex();
     }
 
+    private CompletableFuture<List<VendorAccountRecord>> getVendorAccounts(Statement statement, Map<String, Object> vendorAccountsContext) {
+      CompletableFuture<List<VendorAccountRecord>> future = new CompletableFuture<>();
+
+      String vendorId = (String) vendorAccountsContext.get(VENDOR_ID);
+      additionalExecutor.submit(() -> {
+        List<VendorAccountRecord> vendorAccountRecords = new ArrayList<>();
+        try (ResultSet resultSet = getResultSet(statement, vendorAccountsContext)) {
+          while (resultSet.next()) {
+            String deposit = resultSet.getString(ACCOUNT_DEPOSIT);
+            String name = resultSet.getString(ACCOUNT_NAME);
+            String note = resultSet.getString(ACCOUNT_NOTE);
+            String number = resultSet.getString(ACCOUNT_NUMBER);
+            String status = resultSet.getString(ACCOUNT_STATUS);
+            vendorAccountRecords.add(new VendorAccountRecord(vendorId, deposit, name, note, number, status));
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          future.complete(vendorAccountRecords);
+        }
+      });
+      return future;
+    }
+  
+    private CompletableFuture<List<VendorAddressRecord>> getVendorAddresses(Statement statement, Map<String, Object> vendorAddressesContext) {
+      CompletableFuture<List<VendorAddressRecord>> future = new CompletableFuture<>();
+      additionalExecutor.submit(() -> {
+        List<VendorAddressRecord> vendorAddresses = new ArrayList<>();
+        try (
+          ResultSet resultSet = getResultSet(statement, vendorAddressesContext);
+        ) {
+          while (resultSet.next()) {
+            String addressId = resultSet.getString(ADDRESS_ID);
+            String addressLine1 = resultSet.getString(ADDRESS_LINE1);
+            String addressLine1Full = resultSet.getString(ADDRESS_LINE1_FULL);
+            String addressLine2 = resultSet.getString(ADDRESS_LINE2);
+            String city = resultSet.getString(ADDRESS_CITY);
+            String contactName = resultSet.getString(ADDRESS_CONTACT_NAME);
+            String contactTitle = resultSet.getString(ADDRESS_CONTACT_TITLE);
+            String country = resultSet.getString(ADDRESS_COUNTRY);
+            String emailAddress = resultSet.getString(ADDRESS_EMAIL_ADDRESS);
+            String stateProvince = resultSet.getString(ADDRESS_STATE_PROVINCE);
+            String stdAddressNumber = resultSet.getString(ADDRESS_STD_ADDRESS_NUMBER);
+            String zipPostal = resultSet.getString(ADDRESS_ZIP_POSTAL);
+            String claimAddress = resultSet.getString(ADDRESS_CLAIM_ADDRESS);
+            String orderAddress = resultSet.getString(ADDRESS_ORDER_ADDRESS);
+            String otherAddress = resultSet.getString(ADDRESS_OTHER_ADDRESS);
+            String paymentAddress = resultSet.getString(ADDRESS_PAYMENT_ADDRESS);
+            String returnAddress = resultSet.getString(ADDRESS_RETURN_ADDRESS);
+            vendorAddresses.add(new VendorAddressRecord(addressId, addressLine1, addressLine1Full, addressLine2, city, contactName, contactTitle, country, emailAddress, stateProvince, stdAddressNumber, zipPostal, claimAddress, orderAddress, otherAddress, paymentAddress, returnAddress));
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          future.complete(vendorAddresses);
+        }
+      });
+      return future;
+    }
+
+    private CompletableFuture<List<VendorAliasRecord>> getVendorAliases(Statement statement, Map<String, Object> vendorAliasesContext) {
+      CompletableFuture<List<VendorAliasRecord>> future = new CompletableFuture<>();
+      additionalExecutor.submit(() -> {
+        List<VendorAliasRecord> vendorAliases = new ArrayList<>();
+        try (ResultSet resultSet = getResultSet(statement, vendorAliasesContext)) {
+          while (resultSet.next()) {
+            String altVendorName = resultSet.getString(ALIAS_ALT_VENDOR_NAME);
+            if (StringUtils.isNoneEmpty(altVendorName)) {
+              vendorAliases.add(new VendorAliasRecord(altVendorName));
+            }
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          future.complete(vendorAliases);
+        }
+      });
+      return future;
+    }
+  
+    private CompletableFuture<String> getVendorNotes(Statement statement, Map<String, Object> vendorNotesContext) {
+      CompletableFuture<String> future = new CompletableFuture<>();
+      additionalExecutor.submit(() -> {
+        StringBuilder vendorNotes = new StringBuilder();
+        try (ResultSet resultSet = getResultSet(statement, vendorNotesContext)) {
+          while (resultSet.next()) {
+            String note = resultSet.getString(NOTE);
+            if (StringUtils.isNoneEmpty(note)) {
+              if (vendorNotes.length() > 0) {
+                vendorNotes.append(StringUtils.SPACE);
+              }
+              vendorNotes.append(note);
+            }
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          future.complete(vendorNotes.toString());
+        }
+      });
+      return future;
+    }
+
+  }
+
+  private synchronized Boolean processCode(String code) {
+    return CODES.add(code);
   }
 
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
@@ -377,51 +493,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
     return threadConnections;
   }
 
-  private List<VendorAccountRecord> getVendorAccounts(Statement statement, Map<String, Object> vendorAccountsContext) throws SQLException {
-    String vendorId = (String) vendorAccountsContext.get(VENDOR_ID);
-    List<VendorAccountRecord> vendorAccountRecords = new ArrayList<>();
-    try (ResultSet resultSet = getResultSet(statement, vendorAccountsContext)) {
-      while (resultSet.next()) {
-        String deposit = resultSet.getString(ACCOUNT_DEPOSIT);
-        String name = resultSet.getString(ACCOUNT_NAME);
-        String note = resultSet.getString(ACCOUNT_NOTE);
-        String number = resultSet.getString(ACCOUNT_NUMBER);
-        String status = resultSet.getString(ACCOUNT_STATUS);
-        vendorAccountRecords.add(new VendorAccountRecord(vendorId, deposit, name, note, number, status));
-      }
-    }
-    return vendorAccountRecords;
-  }
-
-  private List<VendorAddressRecord> getVendorAddresses(Statement statement, Map<String, Object> vendorAddressesContext) throws  SQLException {
-    List<VendorAddressRecord> vendorAddresses = new ArrayList<>();
-    try (
-      ResultSet resultSet = getResultSet(statement, vendorAddressesContext);
-    ) {
-      while (resultSet.next()) {
-        String addressId = resultSet.getString(ADDRESS_ID);
-        String addressLine1 = resultSet.getString(ADDRESS_LINE1);
-        String addressLine1Full = resultSet.getString(ADDRESS_LINE1_FULL);
-        String addressLine2 = resultSet.getString(ADDRESS_LINE2);
-        String city = resultSet.getString(ADDRESS_CITY);
-        String contactName = resultSet.getString(ADDRESS_CONTACT_NAME);
-        String contactTitle = resultSet.getString(ADDRESS_CONTACT_TITLE);
-        String country = resultSet.getString(ADDRESS_COUNTRY);
-        String emailAddress = resultSet.getString(ADDRESS_EMAIL_ADDRESS);
-        String stateProvince = resultSet.getString(ADDRESS_STATE_PROVINCE);
-        String stdAddressNumber = resultSet.getString(ADDRESS_STD_ADDRESS_NUMBER);
-        String zipPostal = resultSet.getString(ADDRESS_ZIP_POSTAL);
-        String claimAddress = resultSet.getString(ADDRESS_CLAIM_ADDRESS);
-        String orderAddress = resultSet.getString(ADDRESS_ORDER_ADDRESS);
-        String otherAddress = resultSet.getString(ADDRESS_OTHER_ADDRESS);
-        String paymentAddress = resultSet.getString(ADDRESS_PAYMENT_ADDRESS);
-        String returnAddress = resultSet.getString(ADDRESS_RETURN_ADDRESS);
-        vendorAddresses.add(new VendorAddressRecord(addressId, addressLine1, addressLine1Full, addressLine2, city, contactName, contactTitle, country, emailAddress, stateProvince, stdAddressNumber, zipPostal, claimAddress, orderAddress, otherAddress, paymentAddress, returnAddress));
-      }
-    }
-    return vendorAddresses;
-  }
-
   private List<VendorPhoneRecord> getVendorAddressPhoneNumbers(Statement statement, Map<String, Object> vendorAddressPhoneNumberContext) throws SQLException {
     List<VendorPhoneRecord> vendorPhoneNumbers = new ArrayList<>();
     String schema = (String) vendorAddressPhoneNumberContext.get(SCHEMA);
@@ -440,35 +511,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       }
     }
     return vendorPhoneNumbers;
-  }
-
-  private List<VendorAliasRecord> getVendorAliases(Statement statement, Map<String, Object> vendorAliasesContext) throws SQLException {
-    List<VendorAliasRecord> vendorAliases = new ArrayList<>();
-    try (ResultSet resultSet = getResultSet(statement, vendorAliasesContext)) {
-      while (resultSet.next()) {
-        String altVendorName = resultSet.getString(ALIAS_ALT_VENDOR_NAME);
-        if (StringUtils.isNoneEmpty(altVendorName)) {
-          vendorAliases.add(new VendorAliasRecord(altVendorName));
-        }
-      }
-    }
-    return vendorAliases;
-  }
-
-  private String getVendorNotes(Statement statement, Map<String, Object> vendorNotesContext) throws SQLException {
-    StringBuilder vendorNotes = new StringBuilder();
-    try (ResultSet resultSet = getResultSet(statement, vendorNotesContext)) {
-      while (resultSet.next()) {
-        String note = resultSet.getString(NOTE);
-        if (StringUtils.isNoneEmpty(note)) {
-          if (vendorNotes.length() > 0) {
-            vendorNotes.append(StringUtils.SPACE);
-          }
-          vendorNotes.append(note);
-        }
-      }
-    }
-    return vendorNotes.toString();
   }
 
   private class ThreadConnections {

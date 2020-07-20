@@ -5,9 +5,9 @@ public class ItemStatusRecord {
   private final String itemStatus;
   private final String itemStatusDate;
   private final String circtrans;
-  private final String itemStatusDesc;
+  private final Integer itemStatusDesc;
 
-  public ItemStatusRecord(String itemStatus, String itemStatusDate, String circtrans, String itemStatusDesc) {
+  public ItemStatusRecord(String itemStatus, String itemStatusDate, String circtrans, Integer itemStatusDesc) {
     this.itemStatus = itemStatus;
     this.itemStatusDate = itemStatusDate;
     this.circtrans = circtrans;
@@ -26,7 +26,7 @@ public class ItemStatusRecord {
     return circtrans;
   }
 
-  public String getItemStatusDesc() {
+  public Integer getItemStatusDesc() {
     return itemStatusDesc;
   }
 

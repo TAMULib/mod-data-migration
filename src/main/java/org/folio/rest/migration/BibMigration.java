@@ -75,6 +75,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
 
   private static final String T_999 = "999";
+  private static final String C_001 = "001";
   private static final String C_003 = "003";
 
   private static final char F = 'f';
@@ -260,7 +261,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
       ) {
 
         while (pageResultSet.next()) {
-
           String bibId = pageResultSet.getString(BIB_ID);
           Boolean suppressInOpac = pageResultSet.getBoolean(SUPPRESS_IN_OPAC);
           String operatorId = pageResultSet.getString(OPERATOR_ID);
@@ -301,6 +301,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
             Record record = potentialRecord.get();
 
+            String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
+
             DataField field999 = getDataField(factory, record);
 
             bibRecord.setSourceRecordId(sourceRecordId);
@@ -311,8 +313,10 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
             record.addVariableField(field999);
 
-            ControlField field003 = factory.newControlField(C_003, job.getControlNumberIdentifier());
+            ControlField field001 = factory.newControlField(C_001, hridString);
+            record.addVariableField(field001);
 
+            ControlField field003 = factory.newControlField(C_003, job.getControlNumberIdentifier());
             record.addVariableField(field003);
 
             try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
@@ -337,7 +341,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
             ParsedRecord parsedRecord = bibRecord.toParsedRecord();
             RecordModel recordModel = bibRecord.toRecordModel(jobExecutionId);
 
-            Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid);
+            Instance instance = bibRecord.toInstance(instanceMapper, hridString);
 
             if (Objects.isNull(instance)) {
               log.error("schema {}, bib id {} unable to map record to instance", schema, bibId);

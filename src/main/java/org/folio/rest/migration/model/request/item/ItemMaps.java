@@ -14,7 +14,7 @@ public class ItemMaps {
   private Map<String, String> loanType;
 
   @NotNull
-  private Map<String, String> itemStatus;
+  private Map<String, Integer> itemStatus;
 
   @NotNull
   private Map<String, String> statusName;
@@ -42,11 +42,11 @@ public class ItemMaps {
     this.loanType = loanType;
   }
 
-  public Map<String, String> getItemStatus() {
+  public Map<String, Integer> getItemStatus() {
     return itemStatus;
   }
 
-  public void setItemStatus(Map<String, String> itemStatus) {
+  public void setItemStatus(Map<String, Integer> itemStatus) {
     this.itemStatus = itemStatus;
   }
 

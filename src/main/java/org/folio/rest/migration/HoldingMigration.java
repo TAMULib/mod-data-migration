@@ -221,6 +221,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
           String holdingsType = pageResultSet.getString(HOLDINGS_TYPE);
           String field008 = pageResultSet.getString(FIELD_008);
 
+          marcContext.put(MFHD_ID, mfhdId);
+
           String locationId;
           String receiptStatus;
           String acquisitionMethod;
@@ -283,7 +285,26 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             locationId = holdingDefaults.getPermanentLocationId();
           }
 
-          marcContext.put(MFHD_ID, mfhdId);
+          Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
+          Optional<ReferenceLink> instanceRL = Optional.empty();
+
+          if (holdingRL.isPresent()) {
+            Optional<ReferenceLink> holdingToBibRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToBibRLTypeId, holdingRL.get().getId());
+            if (holdingToBibRL.isPresent()) {
+              instanceRL = migrationService.referenceLinkRepo.findById(holdingToBibRL.get().getFolioReference());
+            }
+          } else {
+            log.error("{} no holdings record id found for mfhd id {}", schema, mfhdId);
+            continue;
+          }
+
+          if (!instanceRL.isPresent()) {
+            log.error("{} no instance id found for mfhd id {}", schema, mfhdId);
+            continue;
+          }
+
+          String holdingId = holdingRL.get().getFolioReference();
+          String instanceId = instanceRL.get().getFolioReference();
 
           try {
             String marc = getMarc(marcStatement, marcContext);
@@ -297,35 +318,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
             HoldingRecord holdingRecord = new HoldingRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
-            String holdingId = null, instanceId = null;
-
-            Optional<ReferenceLink> holdingRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
-
-            if (holdingRL.isPresent()) {
-
-              holdingId = holdingRL.get().getFolioReference();
-
-              Optional<ReferenceLink> holdingToBibRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToBibRLTypeId, holdingRL.get().getId());
-
-              if (holdingToBibRL.isPresent()) {
-                Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findById(holdingToBibRL.get().getFolioReference());
-
-                if (instanceRL.isPresent()) {
-                  instanceId = instanceRL.get().getFolioReference();
-                }
-              }
-            }
-
-            if (Objects.isNull(holdingId)) {
-              log.error("{} no holdings record id found for mfhd id {}", schema, mfhdId);
-              continue;
-            }
-
-            if (Objects.isNull(instanceId)) {
-              log.error("{} no instance id found for mfhd id {}", schema, mfhdId);
-              continue;
-            }
-
             holdingRecord.setHoldingId(holdingId);
             holdingRecord.setInstanceId(instanceId);
 
@@ -336,7 +328,9 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
 
-            Holdingsrecord holdingsRecord = holdingRecord.toHolding(holdingMapper, hridPrefix, hrid);
+            String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
+
+            Holdingsrecord holdingsRecord = holdingRecord.toHolding(holdingMapper, hridString);
 
             String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(holdingsRecord)));
 
@@ -384,19 +378,6 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
   }
 
-  private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
-    ThreadConnections threadConnections = new ThreadConnections();
-    threadConnections.setPageConnection(getConnection(voyagerSettings));
-    threadConnections.setMarcConnection(getConnection(voyagerSettings));
-    try {
-      threadConnections.setHoldingConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-      throw new RuntimeException(e);
-    }
-    return threadConnections;
-  }
-
   private Map<String, String> getLocationsMap(Locations locations, String schema) {
     Map<String, String> idToUuid = new HashMap<>();
     Map<String, Object> locationContext = new HashMap<>();
@@ -423,6 +404,19 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       e.printStackTrace();
     }
     return idToUuid;
+  }
+
+  private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
+    ThreadConnections threadConnections = new ThreadConnections();
+    threadConnections.setPageConnection(getConnection(voyagerSettings));
+    threadConnections.setMarcConnection(getConnection(voyagerSettings));
+    try {
+      threadConnections.setHoldingConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+    } catch (SQLException e) {
+      log.error(e.getMessage());
+      throw new RuntimeException(e);
+    }
+    return threadConnections;
   }
 
   private class ThreadConnections {

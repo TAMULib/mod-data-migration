@@ -147,7 +147,7 @@ public class HoldingRecord {
     this.createdDate = createdDate;
   }
 
-  public Holdingsrecord toHolding(HoldingMapper holdingMapper, String hridPrefix, int hrid) throws JsonProcessingException {
+  public Holdingsrecord toHolding(HoldingMapper holdingMapper, String hridString) throws JsonProcessingException {
     final Holdingsrecord holding = holdingMapper.getHolding(parsedRecord);
     if (Objects.nonNull(holding)) {
       holding.setId(holdingId);
@@ -167,7 +167,7 @@ public class HoldingRecord {
 
       processMarcHolding(holding);
 
-      holding.setHrid(String.format("%s%011d", hridPrefix, hrid));
+      holding.setHrid(hridString);
 
       Set<String> formerIds = new HashSet<>();
       formerIds.add(mfhdId);

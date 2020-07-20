@@ -52,6 +52,8 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
 
   static final String NULL = "null";
 
+  static final String HRID_TEMPLATE = "%s%011d";
+
   final Logger log = LoggerFactory.getLogger(this.getClass());
 
   final C context;

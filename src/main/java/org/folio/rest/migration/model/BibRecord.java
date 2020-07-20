@@ -143,7 +143,7 @@ public class BibRecord {
     return parsedRecord;
   }
 
-  public Instance toInstance(InstanceMapper instanceMapper, String hridPrefix, int hrid) {
+  public Instance toInstance(InstanceMapper instanceMapper, String hridString) {
     final Instance instance = instanceMapper.getInstance(parsedRecord);
     if (Objects.nonNull(instance)) {
       instance.setId(instanceId);
@@ -151,7 +151,7 @@ public class BibRecord {
       instance.setStatisticalCodeIds(statisticalCodes);
       instance.setStatusId(statusId);
 
-      instance.setHrid(String.format("%s%011d", hridPrefix, hrid));
+      instance.setHrid(hridString);
 
       org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
       metadata.setCreatedByUserId(createdByUserId);
