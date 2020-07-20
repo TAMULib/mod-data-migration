@@ -1,0 +1,38 @@
+{
+  "path": "location-units/campuses",
+  "dependencies": [
+    "institutionLocationUnits"
+  ],
+  "data": [
+    {
+      "id": "addb918a-5b84-48a2-81d2-0a086948c347",
+      "code": "cs",
+      "institutionId": "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+      "name": "College Station"
+    },
+    {
+      "id": "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+      "code": "hsc",
+      "institutionId": "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+      "name": "Texas A&M University Health Science Center"
+    },
+    {
+      "id": "0c37bdb0-dbb4-452c-aba8-bd5e5985b3b0",
+      "code": "pickle",
+      "institutionId": "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+      "name": "J.J. Pickle Campus"
+    },
+    {
+      "id": "c1d51a99-428c-44ee-9df4-8dc259b3d7eb",
+      "code": "qatar",
+      "institutionId": "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+      "name": "Qatar Campus"
+    },
+    {
+      "id": "92cd6156-44eb-482c-9852-99e25d4ede4a",
+      "code": "rellis",
+      "institutionId": "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+      "name": "Rellis Campus"
+    }
+  ]
+}

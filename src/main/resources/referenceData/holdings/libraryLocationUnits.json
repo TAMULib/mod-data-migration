@@ -1,0 +1,111 @@
+{
+  "path": "location-units/libraries",
+  "dependencies": [
+    "institutionLocationUnits",
+    "campusLocationUnits"
+  ],
+  "data": [
+    {
+      "code": "blcc",
+      "id": "3fb6a4cf-362a-4d59-8558-9bee67fd50eb",
+      "campusId": "addb918a-5b84-48a2-81d2-0a086948c347",
+      "name": "Business Library and Collaboration Commons"
+    },
+    {
+      "code": "bryan",
+      "id": "3e5308a1-430d-4a19-9dbf-fbcf2654e2cc",
+      "campusId": "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+      "name": "Bryan Campus"
+    },
+    {
+      "code": "cop",
+      "id": "34120ce8-40d9-461a-be56-680c8f2f66ae",
+      "campusId": "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+      "name": "College of Pharmacy"
+    },
+    {
+      "code": "cushing",
+      "id": "ac026424-a09c-48eb-b668-624628ac43c1",
+      "campusId": "addb918a-5b84-48a2-81d2-0a086948c347",
+      "name": "Cushing Memorial Library & Archives"
+    },
+    {
+      "code": "dallas",
+      "id": "035d6391-b350-42cf-b04e-92cf0c4163af",
+      "campusId": "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+      "name": "Dallas Campus"
+    },
+    {
+      "code": "electronic",
+      "id": "efeb9b55-9f64-423e-aa88-6c12208288fc",
+      "campusId": "addb918a-5b84-48a2-81d2-0a086948c347",
+      "name": "Electronic Resources"
+    },
+    {
+      "code": "evans",
+      "id": "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+      "campusId": "addb918a-5b84-48a2-81d2-0a086948c347",
+      "name": "Sterling C. Evans"
+    },
+    {
+      "code": "family",
+      "id": "c4d5fc95-d496-4e13-a9dc-4a42fcbb8306",
+      "campusId": "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+      "name": "Brazos Family Medicine Residency"
+    },
+    {
+      "code": "hdr",
+      "id": "d5b4d60d-ce02-42c8-9d05-56b9e6b63c48",
+      "campusId": "0c37bdb0-dbb4-452c-aba8-bd5e5985b3b0",
+      "name": "High Density Repository"
+    },
+    {
+      "code": "houston",
+      "id": "a00dd4e8-37ea-4cdd-bf8b-ab73b9117fce",
+      "campusId": "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+      "name": "Houston Campus"
+    },
+    {
+      "code": "jlf",
+      "id": "a9e9a2da-741c-468f-9a83-efb23a46917b",
+      "campusId": "92cd6156-44eb-482c-9852-99e25d4ede4a",
+      "name": "Joint Library Facility"
+    },
+    {
+      "code": "mcallen",
+      "id": "2cc2abbb-7e66-4783-a9b5-38951e0aa010",
+      "campusId": "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+      "name": "McAllen Campus"
+    },
+    {
+      "code": "msl",
+      "id": "171494ea-b9e6-41ce-8c04-967de9a81b99",
+      "campusId": "addb918a-5b84-48a2-81d2-0a086948c347",
+      "name": "Medical Sciences Library"
+    },
+    {
+      "code": "psel",
+      "id": "9858a6b1-4600-493b-843e-7bddbd9b3bcf",
+      "campusId": "addb918a-5b84-48a2-81d2-0a086948c347",
+      "name": "Policy Sciences and Economics"
+    },
+    {
+      "code": "qatar",
+      "id": "5b775c0c-6107-4cca-9314-106e751ed94a",
+      "campusId": "c1d51a99-428c-44ee-9df4-8dc259b3d7eb",
+      "name": "Texas A&M University Qatar"
+    },
+    {
+      "code": "rr",
+      "id": "72960160-e347-48bf-9ab3-448dcae5da70",
+      "campusId": "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+      "name": "Round Rock Campus"
+    },
+    {
+      "code": "temple",
+      "id": "1445df48-cede-4f8e-b559-43041bdb00ac",
+      "campusId": "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+      "name": "Temple Campus"
+    }
+  ]
+}

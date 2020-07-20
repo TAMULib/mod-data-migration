@@ -1,0 +1,11 @@
+{
+  "path": "identifier-types",
+  "dependencies": [],
+  "data": [
+    {
+      "id": "76b5963b-ccce-4715-b453-1a7354f4f597",
+      "name": "former_bib_id",
+      "source": "local"
+    }
+  ]
+}
