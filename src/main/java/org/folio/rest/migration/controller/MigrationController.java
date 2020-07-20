@@ -10,6 +10,7 @@ import org.folio.rest.migration.VendorMigration;
 import org.folio.rest.migration.VendorReferenceLinkMigration;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceData;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceLinkTypes;
+import org.folio.rest.migration.aspect.annotation.UpdateMappingRules;
 import org.folio.rest.migration.model.request.bib.BibContext;
 import org.folio.rest.migration.model.request.holding.HoldingContext;
 import org.folio.rest.migration.model.request.inventory.InventoryReferenceLinkContext;
@@ -65,6 +66,7 @@ public class MigrationController {
 
   @PostMapping("/bibs")
   @CreateReferenceData(path = "classpath:/referenceData/bibs/*.json")
+  @UpdateMappingRules(path = "classpath:/mappingRules/bibs/rules.json")
   public void bibs(@RequestBody BibContext context, @TenantHeader String tenant) {
     migrationService.migrate(BibMigration.with(context, tenant));
   }

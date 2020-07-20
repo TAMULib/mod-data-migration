@@ -103,6 +103,18 @@ public class OkapiService {
     throw new RuntimeException("Failed to fetch user groups: " + response.getStatusCodeValue());
   }
 
+  public JsonNode updateMappingRules(String tenant, String token, JsonNode rules) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(rules, headers(tenant, token));
+    String url = okapi.getUrl() + "/mapping-rules";
+    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.PUT, entity, JsonNode.class);
+    log.debug("update rules: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to update rules: " + response.getStatusCodeValue());
+  }
+
   // TODO: get JsonSchema for mapping-rules
   public JsonObject fetchRules(String tenant, String token) {
     long startTime = System.nanoTime();
