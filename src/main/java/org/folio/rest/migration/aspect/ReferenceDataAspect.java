@@ -59,7 +59,7 @@ public class ReferenceDataAspect {
     }).filter(ord -> ord.isPresent())
       .map(ord -> ord.get().withTenant(tenant).withToken(token))
       .collect(Collectors.toList());
-    logger.info("creating reference data remaining");
+    logger.info("creating reference data");
     createReferenceData(referenceData);
   }
 
