@@ -31,7 +31,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ReferenceDataAspect {
 
-  private final static Logger logger = LoggerFactory.getLogger(ReferenceLinkTypeAspect.class);
+  private final static Logger logger = LoggerFactory.getLogger(ReferenceDataAspect.class);
 
   @Autowired
   private OkapiService okapiService;
