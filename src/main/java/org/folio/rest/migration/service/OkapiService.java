@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.collections4.list.UnmodifiableList;
 import org.folio.Alternativetitletypes;
@@ -33,6 +34,7 @@ import org.folio.rest.jaxrs.model.mod_data_import_converter_storage.JobProfileCo
 import org.folio.rest.jaxrs.model.mod_data_import_converter_storage.JobProfileUpdateDto;
 import org.folio.rest.migration.config.model.Credentials;
 import org.folio.rest.migration.config.model.Okapi;
+import org.folio.rest.migration.model.ReferenceDatum;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,6 +77,18 @@ public class OkapiService {
       return response.getHeaders().getFirst("X-Okapi-Token");
     }
     throw new RuntimeException("Failed to login: " + response.getStatusCodeValue());
+  }
+
+  public JsonNode createReferenceData(ReferenceDatum referenceDatum) {
+    long startTime = System.nanoTime();
+    String url = okapi.getUrl() + referenceDatum.getPath();
+    HttpEntity<JsonNode> entity = new HttpEntity<>(referenceDatum.getData(), headers(referenceDatum.getTenant(), referenceDatum.getToken()));
+    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.POST, entity, JsonNode.class);
+    log.debug("create reference data: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 201) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to create reference data: " + response.getStatusCodeValue());
   }
 
   public Usergroups fetchUsergroups(String tenant, String token) {

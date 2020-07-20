@@ -1,0 +1,11 @@
+{
+  "path": "location-units/institutions",
+  "dependencies": [],
+  "data": [
+    {
+      "id": "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+      "name": "Texas A&M University",
+      "code": "am"
+    }
+  ]
+}

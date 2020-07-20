@@ -1,0 +1,16 @@
+{
+  "path": "holdings-note-types",
+  "dependencies": [],
+  "data": [
+    {
+      "id": "f453de0f-8b54-4e99-9180-52932529e3a6",
+      "name": "Access restrictions",
+      "source": "local"
+    },
+    {
+      "id": "7ca7dc63-c053-4aec-8272-c03aeda4840c",
+      "name": "latest_in",
+      "source": "local"
+    }
+  ]
+}

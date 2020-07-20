@@ -8,6 +8,7 @@ import org.folio.rest.migration.UserMigration;
 import org.folio.rest.migration.UserReferenceLinkMigration;
 import org.folio.rest.migration.VendorMigration;
 import org.folio.rest.migration.VendorReferenceLinkMigration;
+import org.folio.rest.migration.aspect.annotation.CreateReferenceData;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceLinkTypes;
 import org.folio.rest.migration.model.request.bib.BibContext;
 import org.folio.rest.migration.model.request.holding.HoldingContext;
@@ -39,6 +40,7 @@ public class MigrationController {
   }
 
   @PostMapping("/users")
+  @CreateReferenceData(path = "classpath:/referenceData/users/*.json")
   public void users(@RequestBody UserContext context, @TenantHeader String tenant) {
     migrationService.migrate(UserMigration.with(context, tenant));
   }
@@ -50,6 +52,7 @@ public class MigrationController {
   }
 
   @PostMapping("/vendors")
+  @CreateReferenceData(path = "classpath:/referenceData/vendors/*.json")
   public void vendors(@RequestBody VendorContext context, @TenantHeader String tenant) {
     migrationService.migrate(VendorMigration.with(context, tenant));
   }
@@ -61,16 +64,19 @@ public class MigrationController {
   }
 
   @PostMapping("/bibs")
+  @CreateReferenceData(path = "classpath:/referenceData/bibs/*.json")
   public void bibs(@RequestBody BibContext context, @TenantHeader String tenant) {
     migrationService.migrate(BibMigration.with(context, tenant));
   }
 
   @PostMapping("/holdings")
+  @CreateReferenceData(path = "classpath:/referenceData/holdings/*.json")
   public void holdings(@RequestBody HoldingContext context, @TenantHeader String tenant) {
     migrationService.migrate(HoldingMigration.with(context, tenant));
   }
 
   @PostMapping("/items")
+  @CreateReferenceData(path = "classpath:/referenceData/items/*.json")
   public void items(@RequestBody ItemContext context, @TenantHeader String tenant) {
     migrationService.migrate(ItemMigration.with(context, tenant));
   }
