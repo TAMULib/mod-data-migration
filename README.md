@@ -22,7 +22,15 @@ Other FOLIO Developer documentation is at [dev.folio.org](https://dev.folio.org/
 
 ## Migration Information
 
-Be sure to use the correct user id and other various ids from reference data.
+### Reference Link Types
+
+Reference link types are loaded before a reference link migraiton. The reference link types are loaded from `src/main/resources/referenceLinkTypes/{migration}/*.json`. The reference link type ids should be used within the context requests below.
+
+### Reference Data
+
+Reference data is loaded before a migration begins. The reference data is loaded from `src/main/resources/referenceData/{migration}/*.json`. The filenames are used in a convention to resolve dependent reference data. If reference data exists it will fail silently unless debug logging. The reference data ids or values should be used within the context requests below.
+
+> It is possible to have infinite recursion if unable to resolve dependent reference data.
 
 ## Vendor Reference Link Migration
 
