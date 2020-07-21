@@ -1,8 +1,8 @@
 package org.folio.rest.migration.service;
 
-import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.annotation.PostConstruct;
 
@@ -49,9 +49,9 @@ public class MigrationService {
 
   public Database referenceLinkSettings;
 
-  private boolean inProgress = false;
+  private Queue<Migration> queue = new LinkedBlockingQueue<>();
 
-  private Queue<Migration> queue = new LinkedList<>();
+  private boolean inProgress = false;
 
   @PostConstruct
   public void init() {
@@ -74,8 +74,9 @@ public class MigrationService {
   }
 
   public synchronized void complete() {
-    inProgress = false;
-    if (!queue.isEmpty()) {
+    if (queue.isEmpty()) {
+      inProgress = false;
+    } else {
       migrate(queue.poll());
     }
   }
