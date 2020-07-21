@@ -68,8 +68,8 @@ public class PartitionTaskQueue<C extends AbstractContext> {
     executor.shutdown();
     executor.awaitTermination(1, TimeUnit.MINUTES);
     executor.shutdownNow();
-    callback.complete();
     log.info("finished: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    callback.complete();
   }
 
 }
