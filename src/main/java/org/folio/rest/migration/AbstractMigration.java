@@ -57,6 +57,8 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
 
   static final String HRID_TEMPLATE = "%s%011d";
 
+  static final String IN_PROGRESS_RESPONSE_MESSAGE = "Migration in progress";
+
   final Logger log = LoggerFactory.getLogger(this.getClass());
 
   final C context;

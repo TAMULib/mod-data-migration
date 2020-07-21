@@ -47,7 +47,7 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
   }
 
   @Override
-  public CompletableFuture<Boolean> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) {
 
     log.info("tenant: {}", tenant);
 
@@ -62,6 +62,7 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
         postActions(migrationService.referenceLinkSettings, context.getPostActions());
         HOLDING_EXTERNAL_REFERENCES.clear();
         ITEM_EXTERNAL_REFERENCES.clear();
+        migrationService.complete();
       }
 
     });
@@ -101,7 +102,7 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
       }
     }
 
-    return CompletableFuture.completedFuture(true);
+    return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }
 
   public static InventoryReferenceLinkMigration with(InventoryReferenceLinkContext context, String tenant) {

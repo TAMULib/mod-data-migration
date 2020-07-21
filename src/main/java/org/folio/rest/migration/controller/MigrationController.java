@@ -1,5 +1,7 @@
 package org.folio.rest.migration.controller;
 
+import java.util.concurrent.CompletableFuture;
+
 import org.folio.rest.migration.BibMigration;
 import org.folio.rest.migration.HoldingMigration;
 import org.folio.rest.migration.InventoryReferenceLinkMigration;
@@ -36,51 +38,51 @@ public class MigrationController {
 
   @PostMapping("/user-reference-links")
   @CreateReferenceLinkTypes(path = "classpath:/referenceLinkTypes/users/*.json")
-  public void userReferenceLinks(@RequestBody UserReferenceLinkContext context, @TenantHeader String tenant) {
-    migrationService.migrate(UserReferenceLinkMigration.with(context, tenant));
+  public CompletableFuture<String> userReferenceLinks(@RequestBody UserReferenceLinkContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(UserReferenceLinkMigration.with(context, tenant));
   }
 
   @PostMapping("/users")
   @CreateReferenceData(path = "classpath:/referenceData/users/*.json")
-  public void users(@RequestBody UserContext context, @TenantHeader String tenant) {
-    migrationService.migrate(UserMigration.with(context, tenant));
+  public CompletableFuture<String> users(@RequestBody UserContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(UserMigration.with(context, tenant));
   }
 
   @PostMapping("/vendor-reference-links")
   @CreateReferenceLinkTypes(path = "classpath:/referenceLinkTypes/vendors/*.json")
-  public void vendorReferenceLinks(@RequestBody VendorReferenceLinkContext context, @TenantHeader String tenant) {
-    migrationService.migrate(VendorReferenceLinkMigration.with(context, tenant));
+  public CompletableFuture<String> vendorReferenceLinks(@RequestBody VendorReferenceLinkContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(VendorReferenceLinkMigration.with(context, tenant));
   }
 
   @PostMapping("/vendors")
   @CreateReferenceData(path = "classpath:/referenceData/vendors/*.json")
-  public void vendors(@RequestBody VendorContext context, @TenantHeader String tenant) {
-    migrationService.migrate(VendorMigration.with(context, tenant));
+  public CompletableFuture<String> vendors(@RequestBody VendorContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(VendorMigration.with(context, tenant));
   }
 
   @PostMapping("/inventory-reference-links")
   @CreateReferenceLinkTypes(path = "classpath:/referenceLinkTypes/inventory/*.json")
-  public void inventoryReferenceLinks(@RequestBody InventoryReferenceLinkContext context, @TenantHeader String tenant) {
-    migrationService.migrate(InventoryReferenceLinkMigration.with(context, tenant));
+  public CompletableFuture<String> inventoryReferenceLinks(@RequestBody InventoryReferenceLinkContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(InventoryReferenceLinkMigration.with(context, tenant));
   }
 
   @PostMapping("/bibs")
   @CreateReferenceData(path = "classpath:/referenceData/bibs/*.json")
   @UpdateMappingRules(path = "classpath:/mappingRules/bibs/rules.json")
-  public void bibs(@RequestBody BibContext context, @TenantHeader String tenant) {
-    migrationService.migrate(BibMigration.with(context, tenant));
+  public CompletableFuture<String> bibs(@RequestBody BibContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(BibMigration.with(context, tenant));
   }
 
   @PostMapping("/holdings")
   @CreateReferenceData(path = "classpath:/referenceData/holdings/*.json")
-  public void holdings(@RequestBody HoldingContext context, @TenantHeader String tenant) {
-    migrationService.migrate(HoldingMigration.with(context, tenant));
+  public CompletableFuture<String> holdings(@RequestBody HoldingContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(HoldingMigration.with(context, tenant));
   }
 
   @PostMapping("/items")
   @CreateReferenceData(path = "classpath:/referenceData/items/*.json")
-  public void items(@RequestBody ItemContext context, @TenantHeader String tenant) {
-    migrationService.migrate(ItemMigration.with(context, tenant));
+  public CompletableFuture<String> items(@RequestBody ItemContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(ItemMigration.with(context, tenant));
   }
 
 }

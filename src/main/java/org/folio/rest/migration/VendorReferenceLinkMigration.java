@@ -35,7 +35,7 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
   }
 
   @Override
-  public CompletableFuture<Boolean> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) {
 
     log.info("tenant: {}", tenant);
 
@@ -48,6 +48,7 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
       @Override
       public void complete() {
         postActions(migrationService.referenceLinkSettings, context.getPostActions());
+        migrationService.complete();
       }
 
     });
@@ -84,7 +85,7 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
       }
     }
 
-    return CompletableFuture.completedFuture(true);
+    return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }
 
   public static VendorReferenceLinkMigration with(VendorReferenceLinkContext context, String tenant) {
