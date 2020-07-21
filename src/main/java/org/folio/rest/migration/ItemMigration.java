@@ -130,6 +130,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       @Override
       public void complete() {
+        migrationService.okapiService.updateHridSettings(tenant, token, hridSettings);
+        log.info("updated hrid settings: {}", hridSettings);
         postActions(folioSettings, context.getPostActions());
       }
 
@@ -138,10 +140,10 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     Map<String, Object> countContext = new HashMap<>();
     countContext.put(SQL, context.getExtraction().getCountSql());
 
-    JsonObject holdingsHridSettings = hridSettings.getJsonObject("items");
-    String hridPrefix = holdingsHridSettings.getString("prefix");
+    JsonObject itemsHridSettings = hridSettings.getJsonObject("items");
+    String hridPrefix = itemsHridSettings.getString(PREFIX);
 
-    int originalHridStartNumber = holdingsHridSettings.getInteger("startNumber");
+    int originalHridStartNumber = itemsHridSettings.getInteger(START_NUMBER);
     int hridStartNumber = originalHridStartNumber;
 
     int index = 0;
@@ -179,13 +181,15 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         taskQueue.submit(new ItemPartitionTask(migrationService, partitionContext));
         offset += limit;
         index++;
-        if (i < partitions) {
+        if (i < partitions - 1) {
           hridStartNumber += limit;
         } else {
           hridStartNumber = originalHridStartNumber + count;
         }
       }
     }
+
+    itemsHridSettings.put(START_NUMBER, ++hridStartNumber);
 
     return CompletableFuture.completedFuture(true);
   }

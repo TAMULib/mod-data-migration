@@ -88,6 +88,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       @Override
       public void complete() {
+        migrationService.okapiService.updateHridSettings(tenant, token, hridSettings);
+        log.info("updated hrid settings: {}", hridSettings);
         postActions(folioSettings, context.getPostActions());
       }
 
@@ -97,9 +99,9 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     countContext.put(SQL, context.getExtraction().getCountSql());
 
     JsonObject holdingsHridSettings = hridSettings.getJsonObject("holdings");
-    String hridPrefix = holdingsHridSettings.getString("prefix");
+    String hridPrefix = holdingsHridSettings.getString(PREFIX);
 
-    int originalHridStartNumber = holdingsHridSettings.getInteger("startNumber");
+    int originalHridStartNumber = holdingsHridSettings.getInteger(START_NUMBER);
     int hridStartNumber = originalHridStartNumber;
 
     int index = 0;
@@ -133,13 +135,15 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext));
         offset += limit;
         index++;
-        if (i < partitions) {
+        if (i < partitions - 1) {
           hridStartNumber += limit;
         } else {
           hridStartNumber = originalHridStartNumber + count;
         }
       }
     }
+
+    holdingsHridSettings.put(START_NUMBER, ++hridStartNumber);
 
     return CompletableFuture.completedFuture(true);
   }

@@ -45,6 +45,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import io.vertx.core.json.JsonObject;
@@ -126,6 +127,18 @@ public class OkapiService {
       return new JsonObject(response.getBody());
     }
     throw new RuntimeException("Failed to fetch rules: " + response.getStatusCodeValue());
+  }
+
+  public void updateHridSettings(String tenant, String token, JsonObject hridSettings) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(hridSettings.getMap(), headers(tenant, token));
+    String url = okapi.getUrl() + "/hrid-settings-storage/hrid-settings";
+    try {
+      restTemplate.put(url, entity);
+      log.debug("update hrid settings: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    } catch (RestClientException e) {
+      throw new RuntimeException("Failed to update hrid settings: " + e.getMessage());  
+    }
   }
 
   // TODO: get JsonSchema for hrid-settings
