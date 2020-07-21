@@ -1,6 +1,5 @@
 package org.folio.rest.migration.service;
 
-import java.util.Queue;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -13,6 +12,8 @@ import org.folio.rest.migration.Migration;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.model.repo.ReferenceLinkRepo;
 import org.folio.rest.model.repo.ReferenceLinkTypeRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
@@ -20,6 +21,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MigrationService {
+
+  private static final Logger log = LoggerFactory.getLogger(MigrationService.class);
 
   private static final String QUEUED_RESPONSE_TEMPLATE = "Migration has been queued in position %s";
 
@@ -49,7 +52,7 @@ public class MigrationService {
 
   public Database referenceLinkSettings;
 
-  private Queue<Migration> queue = new LinkedBlockingQueue<>();
+  private LinkedBlockingQueue<Migration> queue = new LinkedBlockingQueue<>();
 
   private boolean inProgress = false;
 
@@ -67,17 +70,20 @@ public class MigrationService {
   public synchronized CompletableFuture<String> migrate(Migration migration) {
     if (inProgress) {
       queue.add(migration);
+      log.info("queued {}, position {}", migration.getClass().getSimpleName(), queue.size());      
       return CompletableFuture.completedFuture(String.format(QUEUED_RESPONSE_TEMPLATE, queue.size()));
     }
+    log.info("starting {}", migration.getClass().getSimpleName());
     inProgress = true;
     return migration.run(this);
   }
 
   public synchronized void complete() {
-    if (queue.isEmpty()) {
-      inProgress = false;
-    } else {
-      migrate(queue.poll());
+    inProgress = false;
+    if (!queue.isEmpty()) {
+      Migration migration = queue.poll();
+      log.info("dequeued {}, {} remaining", migration.getClass().getSimpleName(), queue.size());
+      migrate(migration);
     }
   }
 
