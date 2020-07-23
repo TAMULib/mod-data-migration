@@ -7,6 +7,6 @@ import org.folio.rest.migration.service.MigrationService;
 @FunctionalInterface
 public interface Migration {
 
-  CompletableFuture<Boolean> run(MigrationService migrationService);
+  CompletableFuture<String> run(MigrationService migrationService);
 
 }

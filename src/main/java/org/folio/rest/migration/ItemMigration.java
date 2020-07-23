@@ -105,7 +105,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   }
 
   @Override
-  public CompletableFuture<Boolean> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) {
     log.info("tenant: {}", tenant);
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
@@ -133,6 +133,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         migrationService.okapiService.updateHridSettings(tenant, token, hridSettings);
         log.info("updated hrid settings: {}", hridSettings);
         postActions(folioSettings, context.getPostActions());
+        migrationService.complete();
       }
 
     });
@@ -191,7 +192,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
     itemsHridSettings.put(START_NUMBER, ++hridStartNumber);
 
-    return CompletableFuture.completedFuture(true);
+    return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }
 
   public static ItemMigration with(ItemContext context, String tenant) {

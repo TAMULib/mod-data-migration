@@ -99,7 +99,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
   }
 
   @Override
-  public CompletableFuture<Boolean> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) {
     log.info("tenant: {}", tenant);
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
@@ -124,6 +124,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
         migrationService.okapiService.updateHridSettings(tenant, token, hridSettings);
         log.info("updated hrid settings: {}", hridSettings);
         postActions(folioSettings, context.getPostActions());
+        migrationService.complete();
       }
 
     });
@@ -179,7 +180,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     instancesHridSettings.put(START_NUMBER, ++hridStartNumber);
 
-    return CompletableFuture.completedFuture(true);
+    return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }
 
   public static BibMigration with(BibContext context, String tenant) {

@@ -108,7 +108,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
   }
 
   @Override
-  public CompletableFuture<Boolean> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) {
     log.info("tenant: {}", tenant);
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
@@ -126,6 +126,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       public void complete() {
         postActions(folioSettings, context.getPostActions());
         CODES.clear();
+        migrationService.complete();
       }
 
     });
@@ -168,7 +169,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       }
     }
 
-    return CompletableFuture.completedFuture(true);
+    return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }
 
   public static VendorMigration with(VendorContext context, String tenant) {

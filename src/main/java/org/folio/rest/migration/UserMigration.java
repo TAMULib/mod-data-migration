@@ -87,7 +87,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
   }
 
   @Override
-  public CompletableFuture<Boolean> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) {
     log.info("tenant: {}", tenant);
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
@@ -108,6 +108,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
         postActions(folioSettings, context.getPostActions());
         USERNAMES.clear();
         BARCODES.clear();
+        migrationService.complete();
       }
 
     });
@@ -145,7 +146,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
       }
     }
 
-    return CompletableFuture.completedFuture(true);
+    return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }
 
   public static UserMigration with(UserContext context, String tenant) {

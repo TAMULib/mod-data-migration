@@ -64,7 +64,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   }
 
   @Override
-  public CompletableFuture<Boolean> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) {
     log.info("tenant: {}", tenant);
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
@@ -91,6 +91,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         migrationService.okapiService.updateHridSettings(tenant, token, hridSettings);
         log.info("updated hrid settings: {}", hridSettings);
         postActions(folioSettings, context.getPostActions());
+        migrationService.complete();
       }
 
     });
@@ -145,7 +146,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     holdingsHridSettings.put(START_NUMBER, ++hridStartNumber);
 
-    return CompletableFuture.completedFuture(true);
+    return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }
 
   public static HoldingMigration with(HoldingContext context, String tenant) {
