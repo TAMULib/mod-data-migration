@@ -2,7 +2,6 @@ package org.folio.rest.migration.service;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -104,16 +103,15 @@ public class OkapiService {
     throw new RuntimeException("Failed to fetch user groups: " + response.getStatusCodeValue());
   }
 
-  public JsonNode updateMappingRules(String tenant, String token, JsonNode rules) {
+  public void updateRules(String tenant, String token, String path, JsonNode rules) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(rules, headers(tenant, token));
-    String url = okapi.getUrl() + "/mapping-rules";
-    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.PUT, entity, JsonNode.class);
+    String url = okapi.getUrl() + "/" + path;
+    ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
     log.debug("update rules: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
-    if (response.getStatusCodeValue() == 200) {
-      return response.getBody();
+    if (response.getStatusCodeValue() < 200 || response.getStatusCodeValue() > 204) {
+      throw new RuntimeException("Failed to update rules: " + response.getStatusCodeValue());  
     }
-    throw new RuntimeException("Failed to update rules: " + response.getStatusCodeValue());
   }
 
   // TODO: get JsonSchema for mapping-rules
@@ -304,7 +302,7 @@ public class OkapiService {
   // NOTE: assuming all accept and content type will be application/json
   private HttpHeaders headers(String tenant) {
     HttpHeaders headers = new HttpHeaders();
-    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN));
     headers.setContentType(MediaType.APPLICATION_JSON);
     headers.set("X-Okapi-Tenant", tenant);
     return headers;

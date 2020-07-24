@@ -7,7 +7,9 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UpdateMappingRules {
+public @interface UpdateRules {
+
+  public String file();
 
   public String path();
 

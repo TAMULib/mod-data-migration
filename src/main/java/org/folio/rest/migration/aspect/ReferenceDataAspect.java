@@ -47,7 +47,7 @@ public class ReferenceDataAspect {
     String token = okapiService.getToken(tenant);
     MethodSignature signature = (MethodSignature) joinPoint.getSignature();
     CreateReferenceData createReferenceData = signature.getMethod().getAnnotation(CreateReferenceData.class);
-    List<ReferenceData> referenceData = loadResources(createReferenceData.path()).stream().map(rdr -> {
+    List<ReferenceData> referenceData = loadResources(createReferenceData.pattern()).stream().map(rdr -> {
       Optional<ReferenceData> ord = Optional.empty();
       try {
         ord = Optional.of(objectMapper.readValue(rdr.getInputStream(), ReferenceData.class)
