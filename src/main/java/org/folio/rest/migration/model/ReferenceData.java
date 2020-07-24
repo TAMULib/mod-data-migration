@@ -6,9 +6,13 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import org.springframework.http.HttpMethod;
+
 public class ReferenceData {
 
   private String path;
+
+  private HttpMethod method;
 
   // will be populated during processing
   @JsonIgnore
@@ -27,6 +31,7 @@ public class ReferenceData {
   private List<JsonNode> data;
 
   public ReferenceData() {
+    method = HttpMethod.POST;
     dependencies = new ArrayList<>();
     data = new ArrayList<>();
   }
@@ -39,16 +44,36 @@ public class ReferenceData {
     this.path = path;
   }
 
+  public HttpMethod getMethod() {
+    return method;
+  }
+
+  public void setMethod(HttpMethod method) {
+    this.method = method;
+  }
+
   public String getName() {
     return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public String getTenant() {
     return tenant;
   }
 
+  public void setTenant(String tenant) {
+    this.tenant = tenant;
+  }
+
   public String getToken() {
     return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
   }
 
   public List<String> getDependencies() {

@@ -83,8 +83,9 @@ public class OkapiService {
   public JsonNode createReferenceData(ReferenceDatum referenceDatum) {
     long startTime = System.nanoTime();
     String url = okapi.getUrl() + referenceDatum.getPath();
-    HttpEntity<JsonNode> entity = new HttpEntity<>(referenceDatum.getData(), headers(referenceDatum.getTenant(), referenceDatum.getToken()));
-    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.POST, entity, JsonNode.class);
+    HttpEntity<JsonNode> entity = new HttpEntity<>(referenceDatum.getData(),
+        headers(referenceDatum.getTenant(), referenceDatum.getToken()));
+    ResponseEntity<JsonNode> response = restTemplate.exchange(url, referenceDatum.getMethod(), entity, JsonNode.class);
     log.debug("create reference data: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 201) {
       return response.getBody();
@@ -137,7 +138,7 @@ public class OkapiService {
       restTemplate.put(url, entity);
       log.debug("update hrid settings: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     } catch (RestClientException e) {
-      throw new RuntimeException("Failed to update hrid settings: " + e.getMessage());  
+      throw new RuntimeException("Failed to update hrid settings: " + e.getMessage());
     }
   }
 
@@ -158,7 +159,8 @@ public class OkapiService {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/statistical-codes?limit=999";
-    ResponseEntity<Statisticalcodes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Statisticalcodes.class);
+    ResponseEntity<Statisticalcodes> response = restTemplate.exchange(url, HttpMethod.GET, entity,
+        Statisticalcodes.class);
     log.debug("fetch statistical codes: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
@@ -181,8 +183,10 @@ public class OkapiService {
   public JobProfile getOrCreateJobProfile(String tenant, String token, JobProfile jobProfile) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
-    String url = String.format("%s/data-import-profiles/jobProfiles?query=name='%s'", okapi.getUrl(), jobProfile.getName());
-    ResponseEntity<JobProfileCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, JobProfileCollection.class);
+    String url = String.format("%s/data-import-profiles/jobProfiles?query=name='%s'", okapi.getUrl(),
+        jobProfile.getName());
+    ResponseEntity<JobProfileCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity,
+        JobProfileCollection.class);
     log.debug("fetch statistical codes: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
       JobProfileCollection jobProfileCollection = response.getBody();
@@ -201,21 +205,23 @@ public class OkapiService {
     long startTime = System.nanoTime();
     HttpEntity<JobProfileUpdateDto> entity = new HttpEntity<>(jobProfileUpdateDto, headers(tenant, token));
     String url = okapi.getUrl() + "/data-import-profiles/jobProfiles";
-    ResponseEntity<JobProfileUpdateDto> response = restTemplate.exchange(url, HttpMethod.POST, entity, JobProfileUpdateDto.class);
+    ResponseEntity<JobProfileUpdateDto> response = restTemplate.exchange(url, HttpMethod.POST, entity,
+        JobProfileUpdateDto.class);
     log.debug("create job execution: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 201) {
-      return DatabindCodec.mapper()
-        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-        .convertValue(response.getBody().getProfile(), JobProfile.class);
+      return DatabindCodec.mapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+          .convertValue(response.getBody().getProfile(), JobProfile.class);
     }
     throw new RuntimeException("Failed to create job execution: " + response.getStatusCodeValue());
   }
 
-  public InitJobExecutionsRsDto createJobExecution(String tenant, String token, InitJobExecutionsRqDto jobExecutionDto) {
+  public InitJobExecutionsRsDto createJobExecution(String tenant, String token,
+      InitJobExecutionsRqDto jobExecutionDto) {
     long startTime = System.nanoTime();
     HttpEntity<InitJobExecutionsRqDto> entity = new HttpEntity<>(jobExecutionDto, headers(tenant, token));
     String url = okapi.getUrl() + "/change-manager/jobExecutions";
-    ResponseEntity<InitJobExecutionsRsDto> response = restTemplate.exchange(url, HttpMethod.POST, entity, InitJobExecutionsRsDto.class);
+    ResponseEntity<InitJobExecutionsRsDto> response = restTemplate.exchange(url, HttpMethod.POST, entity,
+        InitJobExecutionsRsDto.class);
     log.debug("create job execution: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 201) {
       return response.getBody();

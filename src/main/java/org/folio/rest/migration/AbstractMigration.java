@@ -83,10 +83,7 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
   void action(Database settings, String actionSqlTemplate) {
     Map<String, Object> actionContext = new HashMap<>();
     actionContext.put(TENANT, tenant);
-    try (
-      Connection connection = getConnection(settings);
-      Statement statement = connection.createStatement();
-    ) {
+    try (Connection connection = getConnection(settings); Statement statement = connection.createStatement();) {
       String actionSql = templateSql(actionSqlTemplate, actionContext);
       log.info(actionSql);
       statement.execute(actionSql);
@@ -110,11 +107,9 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
   }
 
   int getCount(Database settings, Map<String, Object> countContext) {
-    try (
-      Connection connection = getConnection(settings);
-      Statement statement = connection.createStatement();
-      ResultSet resultSet = getResultSet(statement, countContext);
-    ) {
+    try (Connection connection = getConnection(settings);
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = getResultSet(statement, countContext);) {
       return resultSet.next() ? Integer.parseInt(resultSet.getBigDecimal(TOTAL).toString()) : 0;
     } catch (SQLException e) {
       log.error(e.getMessage());
@@ -141,8 +136,7 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
         marcSequence.add(new SequencedMarc(seqnum, recordSegment));
       }
       List<InputStream> asciiStreams = marcSequence.stream()
-        .sorted((sm1, sm2) -> sm1.getSeqnum().compareTo(sm2.getSeqnum()))
-        .map(sm -> sm.getRecordSegment())
+          .sorted((sm1, sm2) -> sm1.getSeqnum().compareTo(sm2.getSeqnum())).map(sm -> sm.getRecordSegment())
           .collect(Collectors.toList());
       SequenceInputStream sequenceInputStream = new SequenceInputStream(Collections.enumeration(asciiStreams));
       return IOUtils.toString(sequenceInputStream, DEFAULT_CHARSET);
