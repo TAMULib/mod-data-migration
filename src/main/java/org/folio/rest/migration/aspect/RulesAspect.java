@@ -14,11 +14,13 @@ import org.folio.rest.migration.service.OkapiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 @Aspect
+@Order(1)
 @Component
 public class RulesAspect {
 
