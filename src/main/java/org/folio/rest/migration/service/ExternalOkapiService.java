@@ -57,7 +57,7 @@ public class ExternalOkapiService {
   public JsonNode fetchCalendarPeriodsForServicepoint(ExternalOkapi okapi, String token, String servicePointId) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(okapi.getTenant(), token));
-    String url = okapi.getUrl() + "/calendar/periods?servicePointId=" + servicePointId + "&limit=999999";
+    String url = okapi.getUrl() + "/calendar/periods/" + servicePointId + "/period?withOpeningDays=true&showPast=true";
     ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonNode.class);
     log.debug("fetch calendar periods for service point: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {

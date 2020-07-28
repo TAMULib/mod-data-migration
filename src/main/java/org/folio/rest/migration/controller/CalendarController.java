@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import org.folio.rest.jaxrs.model.Servicepoint;
 import org.folio.rest.jaxrs.model.Servicepoints;
+import org.folio.rest.migration.model.ReferenceData;
 import org.folio.rest.migration.model.request.ExternalOkapi;
 import org.folio.rest.migration.service.ExternalOkapiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class CalendarController {
       periodData.put("totalRecords", periods.get("totalRecords").asInt());
       periodsData.add(periodData);
     }
+    response.put("totalRecords", servicePoints.getTotalRecords());
     return response;
   }
   

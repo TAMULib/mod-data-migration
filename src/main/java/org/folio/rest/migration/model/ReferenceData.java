@@ -79,6 +79,11 @@ public class ReferenceData {
     this.data = data;
   }
 
+  public ReferenceData withPath(String path) {
+    this.path = path;
+    return this;
+  }
+
   public ReferenceData withName(String name) {
     this.name = name;
     return this;

@@ -11,6 +11,7 @@ import org.folio.rest.migration.UserMigration;
 import org.folio.rest.migration.UserReferenceLinkMigration;
 import org.folio.rest.migration.VendorMigration;
 import org.folio.rest.migration.VendorReferenceLinkMigration;
+import org.folio.rest.migration.aspect.annotation.CreateCalendarPeriods;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceData;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceLinkTypes;
 import org.folio.rest.migration.aspect.annotation.UpdateRules;
@@ -88,6 +89,7 @@ public class MigrationController {
   }
 
   @PostMapping("/loans")
+  @CreateCalendarPeriods(pattern = "classpath:/calendar/*.json")
   @CreateReferenceData(pattern = "classpath:/referenceData/loans/*.json")
   @UpdateRules(file = "classpath:/rules/loans/rules.json", path = "circulation-rules-storage")
   public CompletableFuture<String> loans(@RequestBody LoanContext context, @TenantHeader String tenant) {
