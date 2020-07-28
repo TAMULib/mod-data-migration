@@ -42,6 +42,8 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
 
+    String token = migrationService.okapiService.getToken(tenant);
+
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
@@ -80,6 +82,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
         partitionContext.put(JOB, job);
+        partitionContext.put(TOKEN, token);
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new LoanPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -112,6 +115,8 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
     public LoanPartitionTask execute(LoanContext context) {
       long startTime = System.nanoTime();
 
+      String token = (String) partitionContext.get(TOKEN);
+
       LoanJob job = (LoanJob) partitionContext.get(JOB);
 
       String schema = job.getSchema();
@@ -139,6 +144,8 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
           String loanDate = pageResultSet.getString(LOAN_DATE);
           String dueDate = pageResultSet.getString(DUE_DATE);
+
+
 
         }
 

@@ -170,7 +170,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
-        partitionContext.put(TOKEN, token);
         partitionContext.put(HRID_PREFIX, hridPrefix);
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(JOB, job);
