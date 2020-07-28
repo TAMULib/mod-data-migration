@@ -53,6 +53,11 @@
       "id": "eab7ce7c-b304-473a-a10b-b0079bff0eb6"
     },
     {
+      "group":"remhathi",
+      "desc":"Remote Access HathiTrust",
+      "id":"273b924c-ca9a-43b6-af47-1541196f3d5d"
+    },    
+    {
       "group": "texs",
       "desc": "TexShare",
       "id": "1d235322-75a3-4386-9876-c3cdf9c95495"
