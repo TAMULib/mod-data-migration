@@ -7,17 +7,27 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import org.folio.rest.jaxrs.model.Location;
+import org.folio.rest.jaxrs.model.Locations;
+import org.folio.rest.jaxrs.model.Servicepoint;
+import org.folio.rest.jaxrs.model.Servicepoints;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.loan.LoanContext;
 import org.folio.rest.migration.model.request.loan.LoanJob;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
+import org.springframework.cache.annotation.Cacheable;
 
 public class LoanMigration extends AbstractMigration<LoanContext> {
+
+  private static final String LOCATIONS_CODE_MAP = "LOCATIONS_CODE_MAP";
+  private static final String SERVICE_POINTS = "SERVICE_POINTS";
 
   private static final String CIRC_TRANSACTION_ID = "CIRC_TRANSACTION_ID";
   private static final String CHARGE_LOCATION = "CHARGE_LOCATION";
@@ -32,6 +42,9 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
   private static final String LOAN_DATE = "LOAN_DATE";
   private static final String DUE_DATE = "DUE_DATE";
 
+  private static final String LOCATION_ID = "LOCATION_ID";
+  private static final String LOCATION_CODE = "LOCATION_CODE";
+
   private LoanMigration(LoanContext context, String tenant) {
     super(context, tenant);
   }
@@ -43,6 +56,9 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
 
     String token = migrationService.okapiService.getToken(tenant);
+
+    Locations locations = migrationService.okapiService.fetchLocations(tenant, token);
+    Servicepoints servicePoints = migrationService.okapiService.fetchServicepoints(tenant, token);
 
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
@@ -67,6 +83,8 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
+      Map<Integer, String> locationsCodeMap = getLocationsCodeMap(locations, job.getSchema());
+
       int count = getCount(voyagerSettings, countContext);
 
       log.info("{} count: {}", job.getSchema(), count);
@@ -83,6 +101,8 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
         partitionContext.put(INDEX, index);
         partitionContext.put(JOB, job);
         partitionContext.put(TOKEN, token);
+        partitionContext.put(LOCATIONS_CODE_MAP, locationsCodeMap);
+        partitionContext.put(SERVICE_POINTS, servicePoints);
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new LoanPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -119,6 +139,10 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
       LoanJob job = (LoanJob) partitionContext.get(JOB);
 
+      Map<Integer, String> locationsCodeMap = (Map<Integer, String>) partitionContext.get(LOCATIONS_CODE_MAP);
+
+      Servicepoints servicePoints = (Servicepoints) partitionContext.get(SERVICE_POINTS);
+
       String schema = job.getSchema();
 
       int index = this.getIndex();
@@ -132,20 +156,45 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
         while (pageResultSet.next()) {
 
-          int circTransactionId = pageResultSet.getInt(CIRC_TRANSACTION_ID);
-          int chargeLocation = pageResultSet.getInt(CHARGE_LOCATION);
-          int renewalCount = pageResultSet.getInt(RENEWAL_COUNT);
+          Integer circTransactionId = pageResultSet.getInt(CIRC_TRANSACTION_ID);
+          Integer chargeLocation = pageResultSet.getInt(CHARGE_LOCATION);
+          Integer renewalCount = pageResultSet.getInt(RENEWAL_COUNT);
 
-          int patronId = pageResultSet.getInt(PATRON_ID);
+          Integer patronId = pageResultSet.getInt(PATRON_ID);
           String patronBarcode = pageResultSet.getString(PATRON_BARCODE);
 
-          int itemId = pageResultSet.getInt(ITEM_ID);
+          Integer itemId = pageResultSet.getInt(ITEM_ID);
           String itemBarcode = pageResultSet.getString(ITEM_BARCODE);
 
           String loanDate = pageResultSet.getString(LOAN_DATE);
           String dueDate = pageResultSet.getString(DUE_DATE);
 
+          if (Objects.isNull(patronBarcode)) {
+            log.debug("{} no patron barcode found for patron id {}", schema, patronId);
+            continue;
+          }
 
+          if (Objects.isNull(itemBarcode)) {
+            log.info("{} no item barcode found for item id {}", schema, itemId);
+            continue;
+          }
+
+          String locationCode = locationsCodeMap.get(chargeLocation);
+
+          Optional<String> servicePointId = getServicePoint(locationCode, servicePoints);
+
+          ObjectNode checkoutRequest = migrationService.objectMapper.createObjectNode();
+          checkoutRequest.put("userBarcode", patronBarcode);
+          checkoutRequest.put("itemBarcode", itemBarcode);
+
+          if (servicePointId.isPresent()) {
+            checkoutRequest.put("servicePointId", servicePointId.get());
+          }
+
+          JsonNode checkoutResponse = migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
+          
+          System.out.println("\nrequest: " + checkoutRequest);
+          System.out.println("response: " + checkoutResponse + "\n");
 
         }
 
@@ -170,6 +219,43 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     return threadConnections;
+  }
+
+  private Map<Integer, String> getLocationsCodeMap(Locations locations, String schema) {
+    Map<Integer, String> idToCode = new HashMap<>();
+    Map<String, Object> locationContext = new HashMap<>();
+    locationContext.put(SQL, context.getExtraction().getLocationSql());
+    locationContext.put(SCHEMA, schema);
+    Database voyagerSettings = context.getExtraction().getDatabase();
+    Map<Integer, String> locConv = context.getMaps().getLocation().get(schema);
+    try (Connection voyagerConnection = getConnection(voyagerSettings);
+        Statement st = voyagerConnection.createStatement();
+        ResultSet rs = getResultSet(st, locationContext);) {
+      while (rs.next()) {
+        Integer id = rs.getInt(LOCATION_ID);
+        if (Objects.nonNull(id)) {
+          String code = locConv.containsKey(id) ? locConv.get(id) : rs.getString(LOCATION_CODE);
+          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code))
+              .findFirst();
+          if (location.isPresent()) {
+            idToCode.put(id, code);
+          }
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return idToCode;
+  }
+
+  @Cacheable(value = "servicePoints", key = "code", sync = true)
+  private Optional<String> getServicePoint(String code, Servicepoints servicePoints) {
+    Optional<Servicepoint> servicePoint = servicePoints.getServicepoints().stream()
+        .filter(sp -> sp.getCode().equals(code)).findAny();
+    if (servicePoint.isPresent()) {
+      return Optional.of(servicePoint.get().getId());
+    }
+    return Optional.empty();
   }
 
   private class ThreadConnections {

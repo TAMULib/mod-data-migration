@@ -13,6 +13,9 @@ public class LoanContext extends AbstractContext {
 
   private List<LoanJob> jobs;
 
+  @NotNull
+  private LoanMaps maps;
+
   public LoanContext() {
     super();
   }
@@ -31,6 +34,14 @@ public class LoanContext extends AbstractContext {
 
   public void setJobs(List<LoanJob> jobs) {
     this.jobs = jobs;
+  }
+
+  public LoanMaps getMaps() {
+    return maps;
+  }
+
+  public void setMaps(LoanMaps maps) {
+    this.maps = maps;
   }
 
 }

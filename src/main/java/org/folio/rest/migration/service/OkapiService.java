@@ -22,6 +22,7 @@ import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingPa
 import org.folio.rest.jaxrs.model.Loantypes;
 import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.jaxrs.model.Materialtypes;
+import org.folio.rest.jaxrs.model.Servicepoints;
 import org.folio.rest.jaxrs.model.Statisticalcodes;
 import org.folio.rest.jaxrs.model.Usergroups;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
@@ -89,6 +90,30 @@ public class OkapiService {
       return response.getBody();
     }
     throw new RuntimeException("Failed to create reference data: " + response.getStatusCodeValue());
+  }
+
+  public JsonNode checkoutByBarcode(JsonNode request, String tenant, String token) {
+    long startTime = System.nanoTime();
+    String url = okapi.getUrl() + "/circulation/check-out-by-barcode";
+    HttpEntity<JsonNode> entity = new HttpEntity<>(request, headers(tenant, token));
+    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.POST, entity, JsonNode.class);
+    log.debug("checkout by barcode: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 201) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to checkout by barcode: " + response.getStatusCodeValue());
+  }
+
+  public Servicepoints fetchServicepoints(String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/service-points?limit=9999";
+    ResponseEntity<Servicepoints> response = restTemplate.exchange(url, HttpMethod.GET, entity, Servicepoints.class);
+    log.debug("fetch service points: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to fetch service points: " + response.getStatusCodeValue());
   }
 
   public Usergroups fetchUsergroups(String tenant, String token) {
