@@ -106,6 +106,17 @@ public class OkapiService {
     throw new RuntimeException("Failed to checkout by barcode: " + response.getStatusCodeValue());
   }
 
+  public void updateLoan(Loan loan, String tenant, String token) {
+    long startTime = System.nanoTime();
+    String url = okapi.getUrl() + "/circulation/check-out-by-barcode";
+    HttpEntity<Loan> entity = new HttpEntity<>(loan, headers(tenant, token));
+    ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
+    log.debug("update loan: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() != 204) {
+      throw new RuntimeException("Failed to update loan: " + response.getStatusCodeValue());
+    }
+  }
+
   public Servicepoints fetchServicepoints(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));

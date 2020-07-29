@@ -12,6 +12,7 @@ import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.folio.rest.jaxrs.model.CheckOutByBarcodeRequest;
 import org.folio.rest.jaxrs.model.Loan;
 import org.folio.rest.jaxrs.model.Location;
@@ -45,6 +46,8 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String LOCATION_CODE = "LOCATION_CODE";
+
+  private static final String DATE_FORMAT = "YYYY-MM-DD'T'HH24:MI:SS'Z'";
 
   private LoanMigration(LoanContext context, String tenant) {
     super(context, tenant);
@@ -197,7 +200,18 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
           try {
             Loan loan = migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
-
+            try {
+              loan.setAction("dueDateChanged");
+              loan.setLoanDate(DateUtils.parseDate(loanDate, DATE_FORMAT));
+              loan.setDueDate(DateUtils.parseDate(dueDate, DATE_FORMAT));
+              if (renewalCount > 0) {
+                loan.setRenewalCount(renewalCount);
+              }
+              migrationService.okapiService.updateLoan(loan, tenant, token);
+            } catch (Exception e) {
+              log.error("{} failed to update loan with id {}", schema, loan.getId());
+              log.error(e.getMessage());
+            }
           } catch (Exception e) {
             log.error("{} failed to checkout item with barcode {} to user with barcode {} at service point {}", schema, itemBarcode, patronBarcode, servicePointId.get());
             log.error(e.getMessage());
