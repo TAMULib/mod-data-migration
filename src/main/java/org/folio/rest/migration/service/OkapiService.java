@@ -47,7 +47,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import io.vertx.core.json.JsonObject;
@@ -106,13 +105,13 @@ public class OkapiService {
     throw new RuntimeException("Failed to checkout by barcode: " + response.getStatusCodeValue());
   }
 
-  public void updateLoan(Loan loan, String tenant, String token) {
+  public void updateLoan(JsonNode loan, String tenant, String token) {
     long startTime = System.nanoTime();
-    String url = okapi.getUrl() + "/circulation/loans/" + loan.getId();
-    HttpEntity<Loan> entity = new HttpEntity<>(loan, headers(tenant, token));
+    String url = okapi.getUrl() + "/circulation/loans/" + loan.get("id").asText();
+    HttpEntity<?> entity = new HttpEntity<>(loan, headers(tenant, token));
     ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
     log.debug("update loan: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
-    if (response.getStatusCodeValue() != 204) {
+    if (response.getStatusCodeValue() < 200 || response.getStatusCodeValue() > 204) {
       throw new RuntimeException("Failed to update loan: " + response.getStatusCodeValue());
     }
   }
@@ -141,7 +140,7 @@ public class OkapiService {
     throw new RuntimeException("Failed to fetch user groups: " + response.getStatusCodeValue());
   }
 
-  public void updateRules(String tenant, String token, String path, JsonNode rules) {
+  public void updateRules(JsonNode rules, String path, String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(rules, headers(tenant, token));
     String url = okapi.getUrl() + "/" + path;
@@ -165,15 +164,14 @@ public class OkapiService {
     throw new RuntimeException("Failed to fetch rules: " + response.getStatusCodeValue());
   }
 
-  public void updateHridSettings(String tenant, String token, JsonObject hridSettings) {
+  public void updateHridSettings(JsonObject hridSettings, String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(hridSettings.getMap(), headers(tenant, token));
     String url = okapi.getUrl() + "/hrid-settings-storage/hrid-settings";
-    try {
-      restTemplate.put(url, entity);
-      log.debug("update hrid settings: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
-    } catch (RestClientException e) {
-      throw new RuntimeException("Failed to update hrid settings: " + e.getMessage());
+    ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
+    log.debug("update hrid settings: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() < 200 || response.getStatusCodeValue() > 204) {
+      throw new RuntimeException("Failed to update hrid settings: " + response.getStatusCodeValue());  
     }
   }
 

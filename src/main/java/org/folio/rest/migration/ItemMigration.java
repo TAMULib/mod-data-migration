@@ -130,7 +130,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       @Override
       public void complete() {
-        migrationService.okapiService.updateHridSettings(tenant, token, hridSettings);
+        migrationService.okapiService.updateHridSettings(hridSettings, tenant, token);
         log.info("updated hrid settings: {}", hridSettings);
         postActions(folioSettings, context.getPostActions());
         migrationService.complete();

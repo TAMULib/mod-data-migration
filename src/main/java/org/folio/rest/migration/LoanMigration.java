@@ -31,7 +31,6 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
   private static final String LOCATIONS_CODE_MAP = "LOCATIONS_CODE_MAP";
   private static final String SERVICE_POINTS = "SERVICE_POINTS";
 
-  private static final String CIRC_TRANSACTION_ID = "CIRC_TRANSACTION_ID";
   private static final String CHARGE_LOCATION = "CHARGE_LOCATION";
   private static final String RENEWAL_COUNT = "RENEWAL_COUNT";
 
@@ -47,7 +46,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String LOCATION_CODE = "LOCATION_CODE";
 
-  private static final String DATE_FORMAT = "YYYY-MM-DD'T'HH24:MI:SS'Z'";
+  private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 
   private LoanMigration(LoanContext context, String tenant) {
     super(context, tenant);
@@ -161,7 +160,6 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
       ) {
         while (pageResultSet.next()) {
 
-          Integer circTransactionId = pageResultSet.getInt(CIRC_TRANSACTION_ID);
           Integer chargeLocation = pageResultSet.getInt(CHARGE_LOCATION);
           Integer renewalCount = pageResultSet.getInt(RENEWAL_COUNT);
 
@@ -207,7 +205,8 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
               if (renewalCount > 0) {
                 loan.setRenewalCount(renewalCount);
               }
-              migrationService.okapiService.updateLoan(loan, tenant, token);
+              JsonNode updateLoanRequest = migrationService.objectMapper.valueToTree(loan);
+              migrationService.okapiService.updateLoan(updateLoanRequest, tenant, token);
             } catch (Exception e) {
               log.error("{} failed to update loan with id {}", schema, loan.getId());
               log.error(e.getMessage());
