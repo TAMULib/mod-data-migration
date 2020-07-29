@@ -19,6 +19,8 @@ import org.folio.Instancenotetypes;
 import org.folio.Instancetypes;
 import org.folio.Issuancemodes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
+import org.folio.rest.jaxrs.model.CheckOutByBarcodeRequest;
+import org.folio.rest.jaxrs.model.Loan;
 import org.folio.rest.jaxrs.model.Loantypes;
 import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.jaxrs.model.Materialtypes;
@@ -92,11 +94,11 @@ public class OkapiService {
     throw new RuntimeException("Failed to create reference data: " + response.getStatusCodeValue());
   }
 
-  public JsonNode checkoutByBarcode(JsonNode request, String tenant, String token) {
+  public Loan checkoutByBarcode(CheckOutByBarcodeRequest request, String tenant, String token) {
     long startTime = System.nanoTime();
     String url = okapi.getUrl() + "/circulation/check-out-by-barcode";
-    HttpEntity<JsonNode> entity = new HttpEntity<>(request, headers(tenant, token));
-    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.POST, entity, JsonNode.class);
+    HttpEntity<CheckOutByBarcodeRequest> entity = new HttpEntity<>(request, headers(tenant, token));
+    ResponseEntity<Loan> response = restTemplate.exchange(url, HttpMethod.POST, entity, Loan.class);
     log.debug("checkout by barcode: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 201) {
       return response.getBody();

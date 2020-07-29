@@ -72,6 +72,16 @@
          </configuration>
          <executions>
            <execution>
+             <id>mod-circulation/ramls</id>
+             <phase>generate-sources</phase>
+             <goals>
+               <goal>generate</goal>
+             </goals>
+             <configuration>
+               <sourceDirectory>${basedir}/mod-circulation/ramls</sourceDirectory>
+             </configuration>
+           </execution>
+           <execution>
              <id>data-import-raml-storage/schemas</id>
              <phase>generate-sources</phase>
              <goals>

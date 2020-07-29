@@ -10,3 +10,6 @@
 [submodule "mod-users"]
 	path = mod-users
 	url = https://github.com/folio-org/mod-users.git
+[submodule "mod-circulation"]
+	path = mod-circulation
+	url = https://github.com/folio-org/mod-circulation.git

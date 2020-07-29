@@ -11,8 +11,9 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import org.folio.rest.jaxrs.model.CheckOutByBarcodeRequest;
+import org.folio.rest.jaxrs.model.Loan;
 import org.folio.rest.jaxrs.model.Location;
 import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.jaxrs.model.Servicepoint;
@@ -189,16 +190,16 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
             continue;
           }
 
-          ObjectNode checkoutRequest = migrationService.objectMapper.createObjectNode();
-          checkoutRequest.put("itemBarcode", itemBarcode.toLowerCase());
-          checkoutRequest.put("userBarcode", patronBarcode.toLowerCase());
-          checkoutRequest.put("servicePointId", servicePointId.get());
+          CheckOutByBarcodeRequest checkoutRequest = new CheckOutByBarcodeRequest();
+          checkoutRequest.setItemBarcode(itemBarcode.toLowerCase());
+          checkoutRequest.setUserBarcode(patronBarcode.toLowerCase());
+          checkoutRequest.setServicePointId(servicePointId.get());
 
           try {
-            JsonNode checkoutResponse = migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
+            Loan loan = migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
 
           } catch (Exception e) {
-            log.error("{} failed to checkout item with barcode {} to user with barcode {} at service point {}", schema, itemBarcode.toLowerCase(), patronBarcode.toLowerCase(), servicePointId.get());
+            log.error("{} failed to checkout item with barcode {} to user with barcode {} at service point {}", schema, itemBarcode, patronBarcode, servicePointId.get());
             log.error(e.getMessage());
           }
         }
