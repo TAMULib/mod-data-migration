@@ -16,7 +16,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceData;
-import org.folio.rest.migration.exception.OkapiRequestException;
 import org.folio.rest.migration.model.ReferenceData;
 import org.folio.rest.migration.model.ReferenceDatum;
 import org.folio.rest.migration.service.OkapiService;

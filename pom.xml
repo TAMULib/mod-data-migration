@@ -92,16 +92,6 @@
              </configuration>
            </execution>
            <execution>
-             <id>mod-users/ramls</id>
-             <phase>generate-sources</phase>
-             <goals>
-               <goal>generate</goal>
-             </goals>
-             <configuration>
-               <sourceDirectory>${basedir}/mod-users/ramls</sourceDirectory>
-             </configuration>
-           </execution>
-           <execution>
              <id>mod-organizations-storage/ramls</id>
              <phase>generate-sources</phase>
              <goals>
@@ -109,6 +99,16 @@
              </goals>
              <configuration>
                <sourceDirectory>${basedir}/mod-organizations-storage/ramls</sourceDirectory>
+             </configuration>
+           </execution>
+           <execution>
+             <id>mod-users/ramls</id>
+             <phase>generate-sources</phase>
+             <goals>
+               <goal>generate</goal>
+             </goals>
+             <configuration>
+               <sourceDirectory>${basedir}/mod-users/ramls</sourceDirectory>
              </configuration>
            </execution>
          </executions>
