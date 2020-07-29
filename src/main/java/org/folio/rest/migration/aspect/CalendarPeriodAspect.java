@@ -60,7 +60,7 @@ public class CalendarPeriodAspect {
           JsonNode response = okapiService.createReferenceData(referenceDatum);
           logger.info("created calendar period for service point {} {}", servicePointId, response);
         } catch (Exception e) {
-          logger.warn(e.getMessage());
+          logger.debug("failed creating calendar period for service point {} {}", servicePointId, e.getMessage());
         }
       });
     }
