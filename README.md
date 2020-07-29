@@ -986,7 +986,7 @@ POST to http://localhost:9000/migrate/loans
   "jobs": [
     {
       "schema": "AMDB",
-      "partitions": 48
+      "partitions": 12
     },
     {
       "schema": "MSDB",

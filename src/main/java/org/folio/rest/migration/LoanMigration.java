@@ -151,9 +151,10 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings);
 
-      try (Statement pageStatement = threadConnections.getPageConnection().createStatement();
-          ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);) {
-
+      try (
+        Statement pageStatement = threadConnections.getPageConnection().createStatement();
+        ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
+      ) {
         while (pageResultSet.next()) {
 
           Integer circTransactionId = pageResultSet.getInt(CIRC_TRANSACTION_ID);
@@ -183,19 +184,23 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
           Optional<String> servicePointId = getServicePoint(locationCode, servicePoints);
 
-          ObjectNode checkoutRequest = migrationService.objectMapper.createObjectNode();
-          checkoutRequest.put("userBarcode", patronBarcode);
-          checkoutRequest.put("itemBarcode", itemBarcode);
-
-          if (servicePointId.isPresent()) {
-            checkoutRequest.put("servicePointId", servicePointId.get());
+          if (!servicePointId.isPresent()) {
+            log.info("{} could not find service point for item id {} with charge location {}", schema, itemId, chargeLocation);
+            continue;
           }
 
-          JsonNode checkoutResponse = migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
-          
-          System.out.println("\nrequest: " + checkoutRequest);
-          System.out.println("response: " + checkoutResponse + "\n");
+          ObjectNode checkoutRequest = migrationService.objectMapper.createObjectNode();
+          checkoutRequest.put("itemBarcode", itemBarcode.toLowerCase());
+          checkoutRequest.put("userBarcode", patronBarcode.toLowerCase());
+          checkoutRequest.put("servicePointId", servicePointId.get());
 
+          try {
+            JsonNode checkoutResponse = migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
+
+          } catch (Exception e) {
+            log.error("{} failed to checkout item with barcode {} to user with barcode {} at service point {}", schema, itemBarcode.toLowerCase(), patronBarcode.toLowerCase(), servicePointId.get());
+            log.error(e.getMessage());
+          }
         }
 
       } catch (SQLException e) {

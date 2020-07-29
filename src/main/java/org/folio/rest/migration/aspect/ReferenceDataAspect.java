@@ -16,6 +16,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceData;
+import org.folio.rest.migration.exception.OkapiRequestException;
 import org.folio.rest.migration.model.ReferenceData;
 import org.folio.rest.migration.model.ReferenceDatum;
 import org.folio.rest.migration.service.OkapiService;
@@ -95,10 +96,10 @@ public class ReferenceDataAspect {
     for(JsonNode data : referenceData.getData()) {
       ReferenceDatum datum = ReferenceDatum.of(referenceData, data);
       try {
-        JsonNode rd = okapiService.createReferenceData(datum);
-        logger.info("created reference data {} {}", referenceData.getName(), rd);
+        JsonNode response = okapiService.createReferenceData(datum);
+        logger.info("created reference data {} {}", referenceData.getName(), response);
       } catch (Exception e) {
-        logger.debug("failed creating reference data {} {}", referenceData.getName(), data);
+        logger.debug("failed creating reference data {} {}", referenceData.getName(), e.getMessage());
       }
     }
   }

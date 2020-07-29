@@ -56,8 +56,12 @@ public class CalendarPeriodAspect {
       JsonNode periods = objectMapper.readTree(resource.getInputStream());
       ((ArrayNode) periods.get(OPENING_PERIODS)).forEach(data -> {
         ReferenceDatum referenceDatum = ReferenceDatum.of(tenant, token, path, data);
-        JsonNode res = okapiService.createReferenceData(referenceDatum);
-        logger.info("created calendar period for service point {} {}", servicePointId, res);
+        try {
+          JsonNode response = okapiService.createReferenceData(referenceDatum);
+          logger.info("created calendar period for service point {} {}", servicePointId, response);
+        } catch (Exception e) {
+          logger.warn(e.getMessage());
+        }
       });
     }
   }
