@@ -67,7 +67,6 @@
           "duration": 14
         },
         "profileId": "Rolling",
-        "itemLimit": 5,
         "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY"
       },
       "id": "a88dca8b-c56c-4758-9b64-974c3e89e40c"
@@ -86,7 +85,6 @@
       "id": "851a879e-f5bc-44a4-a32b-b95bb5b3edad",
       "loansPolicy": {
         "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
-        "itemLimit": 5,
         "profileId": "Rolling",
         "period": {
           "intervalId": "Days",
@@ -108,7 +106,6 @@
           "duration": 3
         },
         "profileId": "Rolling",
-        "itemLimit": 5,
         "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY"
       },
       "id": "18720906-f622-4259-8cdb-e7b2949b9c5a",
@@ -132,7 +129,6 @@
           "intervalId": "Days"
         },
         "profileId": "Rolling",
-        "itemLimit": 25,
         "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY"
       },
       "loanable": true,
@@ -165,8 +161,7 @@
           "intervalId": "Days",
           "duration": 30
         },
-        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
-        "itemLimit": 100
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY"
       },
       "loanable": true
     },
@@ -302,7 +297,6 @@
       "id": "c8bfa248-3490-417e-9740-46db8b4907dd",
       "loansPolicy": {
         "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
-        "itemLimit": 100,
         "profileId": "Rolling",
         "period": {
           "duration": 90,
@@ -342,7 +336,6 @@
       },
       "renewable": true,
       "loansPolicy": {
-        "itemLimit": 25,
         "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
         "period": {
           "duration": 90,
