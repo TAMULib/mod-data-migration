@@ -418,6 +418,24 @@
       "description": "Non-circulating policy",
       "loanable": false,
       "id": "b1c3d40f-f3e5-4b37-ab08-babf061db2da"
+    },
+    {
+      "renewable": true,
+      "name": "remote_hathitrust",
+      "id": "3f92e92c-2781-40a1-b53f-596d271d616d",
+      "renewalsPolicy": {
+        "renewFromId": "SYSTEM_DATE",
+        "unlimited": true
+      },
+      "loanable": true,
+      "loansPolicy": {
+        "period": {
+          "duration": 60,
+          "intervalId": "Months"
+        },
+        "profileId": "Rolling",
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY"
+      }
     }
   ]
 }
