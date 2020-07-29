@@ -108,7 +108,7 @@ public class OkapiService {
 
   public void updateLoan(Loan loan, String tenant, String token) {
     long startTime = System.nanoTime();
-    String url = okapi.getUrl() + "/circulation/check-out-by-barcode";
+    String url = okapi.getUrl() + "/circulation/loans/" + loan.getId();
     HttpEntity<Loan> entity = new HttpEntity<>(loan, headers(tenant, token));
     ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
     log.debug("update loan: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
