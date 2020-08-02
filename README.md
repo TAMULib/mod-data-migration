@@ -961,6 +961,76 @@ POST to http://localhost:9000/migrate/items
 }
 ```
 
+## Loan Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/loans
+
+```
+{
+  "extraction": {
+    "countSql": "SELECT count(*) AS total FROM ${SCHEMA}.circ_transactions ct, ${SCHEMA}.patron_barcode pb, ${SCHEMA}.item_barcode ib WHERE ct.item_id = ib.item_id AND ct.patron_id = pb.patron_id",
+    "pageSql": "SELECT ct.patron_id AS patron_id, patron_barcode, ct.item_id AS item_id, item_barcode, TO_CHAR(cast(charge_date as timestamp) at time zone 'UTC', 'yyyy-MM-dd\"T\"HH:mm:ss\"Z\"') AS loan_date, TO_CHAR(cast(current_due_date as timestamp) at time zone 'UTC', 'yyyy-MM-dd\"T\"HH:mm:ss\"Z\"') AS due_date, charge_location, circ_transaction_id, renewal_count FROM ${SCHEMA}.circ_transactions ct, ${SCHEMA}.patron_barcode pb, ${SCHEMA}.item_barcode ib WHERE ct.item_id = ib.item_id AND ct.patron_id = pb.patron_id ORDER BY ct.circ_transaction_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": ""
+    }
+  },
+  "preActions": [],
+  "postActions": [],
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 12
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 4
+    }
+  ],
+  "maps": {
+    "location": {
+      "AMDB": {
+        "36": "media",
+        "37": "media,res",
+        "47": "ils,borr",
+        "48": "ils,lend",
+        "132": "blcc,circ",
+        "134": "blcc,stk",
+        "135": "blcc,ref",
+        "136": "blcc,res",
+        "137": "blcc,rndx",
+        "138": "www_evans",
+        "182": "media,arcv",
+        "201": "blcc,stand",
+        "225": "blcc,nbs",
+        "228": "blcc,audio",
+        "241": "blcc,udoc",
+        "244": "blcc,schk",
+        "264": "evans_pda",
+        "278": "learn_outreach",
+        "285": "blcc,ebc",
+        "288": "evans_withdrawn"
+      },
+      "MSDB": {
+        "5": "AbstractIndex",
+        "40": "www_msl",
+        "44": "msl_withdrawn",
+        "68": "Mobile",
+        "126": "rs,hdr",
+        "127": "rs,hdr",
+        "186": "msl_pda"
+      }
+    }
+  }
+}
+```
+
 ## Migration Notes
 
 The `parallelism` property designates the number of processes executed in parallel.

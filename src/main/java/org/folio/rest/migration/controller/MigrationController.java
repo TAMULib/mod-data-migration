@@ -6,17 +6,20 @@ import org.folio.rest.migration.BibMigration;
 import org.folio.rest.migration.HoldingMigration;
 import org.folio.rest.migration.InventoryReferenceLinkMigration;
 import org.folio.rest.migration.ItemMigration;
+import org.folio.rest.migration.LoanMigration;
 import org.folio.rest.migration.UserMigration;
 import org.folio.rest.migration.UserReferenceLinkMigration;
 import org.folio.rest.migration.VendorMigration;
 import org.folio.rest.migration.VendorReferenceLinkMigration;
+import org.folio.rest.migration.aspect.annotation.CreateCalendarPeriods;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceData;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceLinkTypes;
-import org.folio.rest.migration.aspect.annotation.UpdateMappingRules;
+import org.folio.rest.migration.aspect.annotation.UpdateRules;
 import org.folio.rest.migration.model.request.bib.BibContext;
 import org.folio.rest.migration.model.request.holding.HoldingContext;
 import org.folio.rest.migration.model.request.inventory.InventoryReferenceLinkContext;
 import org.folio.rest.migration.model.request.item.ItemContext;
+import org.folio.rest.migration.model.request.loan.LoanContext;
 import org.folio.rest.migration.model.request.user.UserContext;
 import org.folio.rest.migration.model.request.user.UserReferenceLinkContext;
 import org.folio.rest.migration.model.request.vendor.VendorContext;
@@ -43,7 +46,7 @@ public class MigrationController {
   }
 
   @PostMapping("/users")
-  @CreateReferenceData(path = "classpath:/referenceData/users/*.json")
+  @CreateReferenceData(pattern = "classpath:/referenceData/users/*.json")
   public CompletableFuture<String> users(@RequestBody UserContext context, @TenantHeader String tenant) {
     return migrationService.migrate(UserMigration.with(context, tenant));
   }
@@ -55,7 +58,7 @@ public class MigrationController {
   }
 
   @PostMapping("/vendors")
-  @CreateReferenceData(path = "classpath:/referenceData/vendors/*.json")
+  @CreateReferenceData(pattern = "classpath:/referenceData/vendors/*.json")
   public CompletableFuture<String> vendors(@RequestBody VendorContext context, @TenantHeader String tenant) {
     return migrationService.migrate(VendorMigration.with(context, tenant));
   }
@@ -67,22 +70,30 @@ public class MigrationController {
   }
 
   @PostMapping("/bibs")
-  @CreateReferenceData(path = "classpath:/referenceData/bibs/*.json")
-  @UpdateMappingRules(path = "classpath:/mappingRules/bibs/rules.json")
+  @CreateReferenceData(pattern = "classpath:/referenceData/bibs/*.json")
+  @UpdateRules(file = "classpath:/rules/bibs/rules.json", path = "mapping-rules")
   public CompletableFuture<String> bibs(@RequestBody BibContext context, @TenantHeader String tenant) {
     return migrationService.migrate(BibMigration.with(context, tenant));
   }
 
   @PostMapping("/holdings")
-  @CreateReferenceData(path = "classpath:/referenceData/holdings/*.json")
+  @CreateReferenceData(pattern = "classpath:/referenceData/holdings/*.json")
   public CompletableFuture<String> holdings(@RequestBody HoldingContext context, @TenantHeader String tenant) {
     return migrationService.migrate(HoldingMigration.with(context, tenant));
   }
 
   @PostMapping("/items")
-  @CreateReferenceData(path = "classpath:/referenceData/items/*.json")
+  @CreateReferenceData(pattern = "classpath:/referenceData/items/*.json")
   public CompletableFuture<String> items(@RequestBody ItemContext context, @TenantHeader String tenant) {
     return migrationService.migrate(ItemMigration.with(context, tenant));
+  }
+
+  @PostMapping("/loans")
+  @CreateCalendarPeriods(pattern = "classpath:/calendar/*.json")
+  @CreateReferenceData(pattern = "classpath:/referenceData/loans/*.json")
+  @UpdateRules(file = "classpath:/rules/loans/rules.json", path = "circulation-rules-storage")
+  public CompletableFuture<String> loans(@RequestBody LoanContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(LoanMigration.with(context, tenant));
   }
 
 }

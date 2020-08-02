@@ -141,8 +141,8 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
         marcSequence.add(new SequencedMarc(seqnum, recordSegment));
       }
       List<InputStream> asciiStreams = marcSequence.stream()
-        .sorted((sm1, sm2) -> sm1.getSeqnum().compareTo(sm2.getSeqnum()))
-        .map(sm -> sm.getRecordSegment())
+          .sorted((sm1, sm2) -> sm1.getSeqnum().compareTo(sm2.getSeqnum()))
+          .map(sm -> sm.getRecordSegment())
           .collect(Collectors.toList());
       SequenceInputStream sequenceInputStream = new SequenceInputStream(Collections.enumeration(asciiStreams));
       return IOUtils.toString(sequenceInputStream, DEFAULT_CHARSET);

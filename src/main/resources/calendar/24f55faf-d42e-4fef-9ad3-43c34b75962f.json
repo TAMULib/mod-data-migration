@@ -1,0 +1,95 @@
+{
+  "openingPeriods" : [ {
+    "id" : "6c151999-adc4-4d60-8f4b-3ceece7998bd",
+    "servicePointId" : "24f55faf-d42e-4fef-9ad3-43c34b75962f",
+    "name" : "PSEL Migration Calendar",
+    "startDate" : "1988-10-01T00:00:00.000+0000",
+    "endDate" : "2021-12-31T00:00:00.000+0000",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  } ],
+  "totalRecords" : 1
+}

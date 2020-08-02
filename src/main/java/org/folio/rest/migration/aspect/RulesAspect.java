@@ -9,21 +9,22 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.folio.rest.migration.aspect.annotation.UpdateMappingRules;
+import org.folio.rest.migration.aspect.annotation.UpdateRules;
 import org.folio.rest.migration.service.OkapiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.core.io.support.ResourcePatternUtils;
 import org.springframework.stereotype.Component;
 
 @Aspect
+@Order(1)
 @Component
-public class MappingRulesAspect {
+public class RulesAspect {
 
-  private final static Logger logger = LoggerFactory.getLogger(MappingRulesAspect.class);
+  private final static Logger logger = LoggerFactory.getLogger(RulesAspect.class);
 
   @Autowired
   private OkapiService okapiService;
@@ -34,14 +35,14 @@ public class MappingRulesAspect {
   @Autowired
   private ObjectMapper objectMapper;
 
-  @Before("@annotation(org.folio.rest.migration.aspect.annotation.UpdateMappingRules) && args(..,tenant)")
-  public void createReferenceLinks(JoinPoint joinPoint, String tenant) throws IOException {
+  @Before("@annotation(org.folio.rest.migration.aspect.annotation.UpdateRules) && args(..,tenant)")
+  public void updateRules(JoinPoint joinPoint, String tenant) throws IOException {
     String token = okapiService.getToken(tenant);
     MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-    UpdateMappingRules updateMappingRules = signature.getMethod().getAnnotation(UpdateMappingRules.class);
+    UpdateRules updateRules = signature.getMethod().getAnnotation(UpdateRules.class);
     try {
-      JsonNode rules = objectMapper.readValue(loadResource(updateMappingRules.path()).getInputStream(), JsonNode.class);    
-      rules = okapiService.updateMappingRules(tenant, token, rules);
+      JsonNode rules = objectMapper.readValue(loadResource(updateRules.file()).getInputStream(), JsonNode.class);    
+      okapiService.updateRules(rules, updateRules.path(), tenant, token);
       logger.info("updated mapping rules {}", rules);
     } catch (IOException e) {
       logger.error("failed updating mapping rules {}", e.getMessage());

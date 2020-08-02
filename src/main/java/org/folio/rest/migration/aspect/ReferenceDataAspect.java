@@ -22,12 +22,14 @@ import org.folio.rest.migration.service.OkapiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.support.ResourcePatternUtils;
 import org.springframework.stereotype.Component;
 
 @Aspect
+@Order(0)
 @Component
 public class ReferenceDataAspect {
 
@@ -47,7 +49,7 @@ public class ReferenceDataAspect {
     String token = okapiService.getToken(tenant);
     MethodSignature signature = (MethodSignature) joinPoint.getSignature();
     CreateReferenceData createReferenceData = signature.getMethod().getAnnotation(CreateReferenceData.class);
-    List<ReferenceData> referenceData = loadResources(createReferenceData.path()).stream().map(rdr -> {
+    List<ReferenceData> referenceData = loadResources(createReferenceData.pattern()).stream().map(rdr -> {
       Optional<ReferenceData> ord = Optional.empty();
       try {
         ord = Optional.of(objectMapper.readValue(rdr.getInputStream(), ReferenceData.class)
@@ -93,10 +95,10 @@ public class ReferenceDataAspect {
     for(JsonNode data : referenceData.getData()) {
       ReferenceDatum datum = ReferenceDatum.of(referenceData, data);
       try {
-        JsonNode rd = okapiService.createReferenceData(datum);
-        logger.info("created reference data {} {}", referenceData.getName(), rd);
+        JsonNode response = okapiService.createReferenceData(datum);
+        logger.info("created reference data {} {}", referenceData.getName(), response);
       } catch (Exception e) {
-        logger.debug("failed creating reference data {} {}", referenceData.getName(), data);
+        logger.debug("failed creating reference data {} {}", referenceData.getName(), e.getMessage());
       }
     }
   }

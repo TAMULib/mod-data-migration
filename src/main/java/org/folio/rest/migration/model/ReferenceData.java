@@ -43,12 +43,24 @@ public class ReferenceData {
     return name;
   }
 
+  public void setName(String name) {
+    this.name = name;
+  }
+
   public String getTenant() {
     return tenant;
   }
 
+  public void setTenant(String tenant) {
+    this.tenant = tenant;
+  }
+
   public String getToken() {
     return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
   }
 
   public List<String> getDependencies() {
@@ -65,6 +77,11 @@ public class ReferenceData {
 
   public void setData(List<JsonNode> data) {
     this.data = data;
+  }
+
+  public ReferenceData withPath(String path) {
+    this.path = path;
+    return this;
   }
 
   public ReferenceData withName(String name) {

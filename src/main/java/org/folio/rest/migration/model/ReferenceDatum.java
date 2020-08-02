@@ -36,7 +36,11 @@ public class ReferenceDatum {
   }
 
   public static ReferenceDatum of(ReferenceData referenceData, JsonNode data) {
-    return new ReferenceDatum(referenceData.getTenant(), referenceData.getToken(), referenceData.getPath(), data);
+    return of(referenceData.getTenant(), referenceData.getToken(), referenceData.getPath(), data);
+  }
+
+  public static ReferenceDatum of(String tenant, String token, String path, JsonNode data) {
+    return new ReferenceDatum(tenant, token, path, data);
   }
 
 }
