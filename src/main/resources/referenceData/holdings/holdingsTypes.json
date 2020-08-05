@@ -1,0 +1,11 @@
+{
+  "path": "holdings-types",
+  "dependencies": [],
+  "data": [
+    {
+      "id": "61155a36-148b-4664-bb7f-64ad708e0b32",
+      "name": "Unknown",
+      "source": "marc"
+    }
+  ]
+}

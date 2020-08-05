@@ -75,6 +75,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
 
   private static final String T_999 = "999";
+  private static final String C_001 = "001";
   private static final String C_003 = "003";
 
   private static final char F = 'f';
@@ -98,7 +99,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
   }
 
   @Override
-  public CompletableFuture<Boolean> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) {
     log.info("tenant: {}", tenant);
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
@@ -120,7 +121,10 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       @Override
       public void complete() {
+        migrationService.okapiService.updateHridSettings(hridSettings, tenant, token);
+        log.info("updated hrid settings: {}", hridSettings);
         postActions(folioSettings, context.getPostActions());
+        migrationService.complete();
       }
 
     });
@@ -129,8 +133,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
     countContext.put(SQL, context.getExtraction().getCountSql());
 
     JsonObject instancesHridSettings = hridSettings.getJsonObject("instances");
-    String hridPrefix = instancesHridSettings.getString("prefix");
-    int originalHridStartNumber = instancesHridSettings.getInteger("startNumber");
+    String hridPrefix = instancesHridSettings.getString(PREFIX);
+    int originalHridStartNumber = instancesHridSettings.getInteger(START_NUMBER);
 
     int hridStartNumber = originalHridStartNumber;
 
@@ -166,7 +170,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
         taskQueue.submit(new BibPartitionTask(migrationService, instanceMapper, partitionContext));
         offset += limit;
         index++;
-        if (i < partitions) {
+        if (i < partitions - 1) {
           hridStartNumber += limit;
         } else {
           hridStartNumber = originalHridStartNumber + count;
@@ -174,7 +178,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
       }
     }
 
-    return CompletableFuture.completedFuture(true);
+    instancesHridSettings.put(START_NUMBER, ++hridStartNumber);
+
+    return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }
 
   public static BibMigration with(BibContext context, String tenant) {
@@ -260,7 +266,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
       ) {
 
         while (pageResultSet.next()) {
-
           String bibId = pageResultSet.getString(BIB_ID);
           Boolean suppressInOpac = pageResultSet.getBoolean(SUPPRESS_IN_OPAC);
           String operatorId = pageResultSet.getString(OPERATOR_ID);
@@ -301,6 +306,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
             Record record = potentialRecord.get();
 
+            String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
+
             DataField field999 = getDataField(factory, record);
 
             bibRecord.setSourceRecordId(sourceRecordId);
@@ -311,8 +318,10 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
             record.addVariableField(field999);
 
-            ControlField field003 = factory.newControlField(C_003, job.getControlNumberIdentifier());
+            ControlField field001 = factory.newControlField(C_001, hridString);
+            record.addVariableField(field001);
 
+            ControlField field003 = factory.newControlField(C_003, job.getControlNumberIdentifier());
             record.addVariableField(field003);
 
             try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
@@ -337,7 +346,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
             ParsedRecord parsedRecord = bibRecord.toParsedRecord();
             RecordModel recordModel = bibRecord.toRecordModel(jobExecutionId);
 
-            Instance instance = bibRecord.toInstance(instanceMapper, hridPrefix, hrid);
+            Instance instance = bibRecord.toInstance(instanceMapper, hridString);
 
             if (Objects.isNull(instance)) {
               log.error("schema {}, bib id {} unable to map record to instance", schema, bibId);

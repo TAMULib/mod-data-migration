@@ -2,10 +2,10 @@ package org.folio.rest.migration.service;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.collections4.list.UnmodifiableList;
 import org.folio.Alternativetitletypes;
@@ -19,9 +19,12 @@ import org.folio.Instancenotetypes;
 import org.folio.Instancetypes;
 import org.folio.Issuancemodes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
+import org.folio.rest.jaxrs.model.CheckOutByBarcodeRequest;
+import org.folio.rest.jaxrs.model.Loan;
 import org.folio.rest.jaxrs.model.Loantypes;
 import org.folio.rest.jaxrs.model.Locations;
 import org.folio.rest.jaxrs.model.Materialtypes;
+import org.folio.rest.jaxrs.model.Servicepoints;
 import org.folio.rest.jaxrs.model.Statisticalcodes;
 import org.folio.rest.jaxrs.model.Usergroups;
 import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
@@ -33,6 +36,7 @@ import org.folio.rest.jaxrs.model.mod_data_import_converter_storage.JobProfileCo
 import org.folio.rest.jaxrs.model.mod_data_import_converter_storage.JobProfileUpdateDto;
 import org.folio.rest.migration.config.model.Credentials;
 import org.folio.rest.migration.config.model.Okapi;
+import org.folio.rest.migration.model.ReferenceDatum;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,6 +81,53 @@ public class OkapiService {
     throw new RuntimeException("Failed to login: " + response.getStatusCodeValue());
   }
 
+  public JsonNode createReferenceData(ReferenceDatum referenceDatum) {
+    long startTime = System.nanoTime();
+    String url = okapi.getUrl() + referenceDatum.getPath();
+    HttpEntity<JsonNode> entity = new HttpEntity<>(referenceDatum.getData(), headers(referenceDatum.getTenant(), referenceDatum.getToken()));
+    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.POST, entity, JsonNode.class);
+    log.debug("create reference data: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 201) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to create reference data: " + response.getStatusCodeValue());
+  }
+
+  public Loan checkoutByBarcode(CheckOutByBarcodeRequest request, String tenant, String token) {
+    long startTime = System.nanoTime();
+    String url = okapi.getUrl() + "/circulation/check-out-by-barcode";
+    HttpEntity<CheckOutByBarcodeRequest> entity = new HttpEntity<>(request, headers(tenant, token));
+    ResponseEntity<Loan> response = restTemplate.exchange(url, HttpMethod.POST, entity, Loan.class);
+    log.debug("checkout by barcode: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 201) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to checkout by barcode: " + response.getStatusCodeValue());
+  }
+
+  public void updateLoan(JsonNode loan, String tenant, String token) {
+    long startTime = System.nanoTime();
+    String url = okapi.getUrl() + "/circulation/loans/" + loan.get("id").asText();
+    HttpEntity<?> entity = new HttpEntity<>(loan, headers(tenant, token));
+    ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
+    log.debug("update loan: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() < 200 || response.getStatusCodeValue() > 204) {
+      throw new RuntimeException("Failed to update loan: " + response.getStatusCodeValue());
+    }
+  }
+
+  public Servicepoints fetchServicepoints(String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/service-points?limit=9999";
+    ResponseEntity<Servicepoints> response = restTemplate.exchange(url, HttpMethod.GET, entity, Servicepoints.class);
+    log.debug("fetch service points: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to fetch service points: " + response.getStatusCodeValue());
+  }
+
   public Usergroups fetchUsergroups(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
@@ -87,6 +138,17 @@ public class OkapiService {
       return response.getBody();
     }
     throw new RuntimeException("Failed to fetch user groups: " + response.getStatusCodeValue());
+  }
+
+  public void updateRules(JsonNode rules, String path, String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(rules, headers(tenant, token));
+    String url = okapi.getUrl() + "/" + path;
+    ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
+    log.debug("update rules: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() < 200 || response.getStatusCodeValue() > 204) {
+      throw new RuntimeException("Failed to update rules: " + response.getStatusCodeValue());  
+    }
   }
 
   // TODO: get JsonSchema for mapping-rules
@@ -100,6 +162,17 @@ public class OkapiService {
       return new JsonObject(response.getBody());
     }
     throw new RuntimeException("Failed to fetch rules: " + response.getStatusCodeValue());
+  }
+
+  public void updateHridSettings(JsonObject hridSettings, String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(hridSettings.getMap(), headers(tenant, token));
+    String url = okapi.getUrl() + "/hrid-settings-storage/hrid-settings";
+    ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
+    log.debug("update hrid settings: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() < 200 || response.getStatusCodeValue() > 204) {
+      throw new RuntimeException("Failed to update hrid settings: " + response.getStatusCodeValue());  
+    }
   }
 
   // TODO: get JsonSchema for hrid-settings
@@ -165,9 +238,8 @@ public class OkapiService {
     ResponseEntity<JobProfileUpdateDto> response = restTemplate.exchange(url, HttpMethod.POST, entity, JobProfileUpdateDto.class);
     log.debug("create job execution: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 201) {
-      return DatabindCodec.mapper()
-        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-        .convertValue(response.getBody().getProfile(), JobProfile.class);
+      return DatabindCodec.mapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+          .convertValue(response.getBody().getProfile(), JobProfile.class);
     }
     throw new RuntimeException("Failed to create job execution: " + response.getStatusCodeValue());
   }
@@ -225,15 +297,15 @@ public class OkapiService {
     final MappingParameters mappingParameters = new MappingParameters();
     // @formatter:off
     Arrays.asList(new ReferenceFetcher[] {
-      new ReferenceFetcher("/identifier-types?limit=" + SETTING_LIMIT, Identifiertypes.class,  "identifierTypes"),
-      new ReferenceFetcher("/classification-types?limit=" + SETTING_LIMIT, Classificationtypes.class,  "classificationTypes"),
+      new ReferenceFetcher("/identifier-types?limit=" + SETTING_LIMIT, Identifiertypes.class, "identifierTypes"),
+      new ReferenceFetcher("/classification-types?limit=" + SETTING_LIMIT, Classificationtypes.class, "classificationTypes"),
       new ReferenceFetcher("/instance-types?limit=" + SETTING_LIMIT, Instancetypes.class, "instanceTypes"),
-      new ReferenceFetcher("/electronic-access-relationships?limit=" + SETTING_LIMIT, Electronicaccessrelationships.class,  "electronicAccessRelationships"),
-      new ReferenceFetcher("/instance-formats?limit=" + SETTING_LIMIT, Instanceformats.class,  "instanceFormats"),
-      new ReferenceFetcher("/contributor-types?limit=" + SETTING_LIMIT, Contributortypes.class,  "contributorTypes"),
-      new ReferenceFetcher("/contributor-name-types?limit=" + SETTING_LIMIT, Contributornametypes.class,  "contributorNameTypes"),
-      new ReferenceFetcher("/instance-note-types?limit=" + SETTING_LIMIT, Instancenotetypes.class,  "instanceNoteTypes"),
-      new ReferenceFetcher("/alternative-title-types?limit=" + SETTING_LIMIT, Alternativetitletypes.class,  "alternativeTitleTypes"),
+      new ReferenceFetcher("/electronic-access-relationships?limit=" + SETTING_LIMIT, Electronicaccessrelationships.class, "electronicAccessRelationships"),
+      new ReferenceFetcher("/instance-formats?limit=" + SETTING_LIMIT, Instanceformats.class, "instanceFormats"),
+      new ReferenceFetcher("/contributor-types?limit=" + SETTING_LIMIT, Contributortypes.class, "contributorTypes"),
+      new ReferenceFetcher("/contributor-name-types?limit=" + SETTING_LIMIT, Contributornametypes.class, "contributorNameTypes"),
+      new ReferenceFetcher("/instance-note-types?limit=" + SETTING_LIMIT, Instancenotetypes.class, "instanceNoteTypes"),
+      new ReferenceFetcher("/alternative-title-types?limit=" + SETTING_LIMIT, Alternativetitletypes.class, "alternativeTitleTypes"),
       new ReferenceFetcher("/modes-of-issuance?limit=" + SETTING_LIMIT, Issuancemodes.class, "issuanceModes")
     }).forEach(fetcher -> {
       HttpEntity<Credentials> entity = new HttpEntity<Credentials>(headers(tenant, token));
@@ -266,7 +338,7 @@ public class OkapiService {
   // NOTE: assuming all accept and content type will be application/json
   private HttpHeaders headers(String tenant) {
     HttpHeaders headers = new HttpHeaders();
-    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN));
     headers.setContentType(MediaType.APPLICATION_JSON);
     headers.set("X-Okapi-Tenant", tenant);
     return headers;

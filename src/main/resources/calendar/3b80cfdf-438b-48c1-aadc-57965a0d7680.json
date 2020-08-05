@@ -1,0 +1,198 @@
+{
+  "openingPeriods" : [ {
+    "id" : "291ca4e1-fe89-4695-8995-b385be75a9b0",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "AskUs Desk Regular",
+    "startDate" : "2000-01-01T00:00:00.000+0000",
+    "endDate" : "2024-12-31T00:00:00.000+0000",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "6cf96139-5759-498c-8796-a385cc3291c7",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "AskUs Migration Calendar",
+    "startDate" : "1988-10-01T00:00:00.000+0000",
+    "endDate" : "1999-12-31T00:00:00.000+0000",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  } ],
+  "totalRecords" : 2
+}

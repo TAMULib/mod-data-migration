@@ -22,7 +22,15 @@ Other FOLIO Developer documentation is at [dev.folio.org](https://dev.folio.org/
 
 ## Migration Information
 
-Be sure to use the correct user id and other various ids from reference data.
+### Reference Link Types
+
+Reference link types are loaded before a reference link migraiton. The reference link types are loaded from `src/main/resources/referenceLinkTypes/{migration}/*.json`. The reference link type ids should be used within the context requests below.
+
+### Reference Data
+
+Reference data is loaded before a migration begins. The reference data is loaded from `src/main/resources/referenceData/{migration}/*.json`. The filenames are used in a convention to resolve dependent reference data. If reference data exists it will fail silently unless debug logging. The reference data ids or values should be used within the context requests below.
+
+> It is possible to have infinite recursion if unable to resolve dependent reference data. This will happen with circular dependencies. i.e. (x depends on y and y depdends on x), (x depends on y, y depends on z, z depends on x), ...
 
 ## Vendor Reference Link Migration
 
@@ -385,14 +393,6 @@ POST to http://localhost:9000/migrate/vendors
       "YEMEN": "YEM",
       "ZAMBIA": "ZMB",
       "ZIMBABWE": "ZWE"
-    },
-    "ignore": {
-      "codes": [
-        "gobi",
-        "srebsco",
-        "zroco$",
-        "zsusanba$*"
-      ]
     }
   },
   "defaults": {
@@ -501,56 +501,6 @@ POST to http://localhost:9000/migrate/users
     }
   ],
   "maps": {
-    "ignore": {
-      "barcodes": [
-        "o",
-        "0",
-        "00",
-        "000",
-        "00000000",
-        "000000000",
-        "6016426594055804",
-        "7331011111701769"
-      ],
-      "usernames": [
-        "abh",
-        "afq",
-        "akl",
-        "amy",
-        "bnm",
-        "dom",
-        "d7n",
-        "edd",
-        "ellen",
-        "elyssa",
-        "gao",
-        "gardner",
-        "gib",
-        "hls",
-        "jag",
-        "johanna",
-        "kirk",
-        "klm",
-        "kolby",
-        "lru",
-        "lupe",
-        "mathew",
-        "mor",
-        "noelia",
-        "pierre",
-        "pms",
-        "okw",
-        "qwc",
-        "ricardo",
-        "rka",
-        "roberto",
-        "rowland",
-        "sac",
-        "shaylee",
-        "srb",
-        "victoria"
-      ]
-    },
     "patronGroup": {
       "fac/staff": "fast",
       "grad/prof": "grad",
@@ -959,31 +909,31 @@ POST to http://localhost:9000/migrate/items
       "4hour": "4_hour"
     },
     "itemStatus": {
-      "Not Charged": "01",
-      "Charged": "02",
-      "Renewed": "03",
-      "Overdue": "04",
-      "Recall Request": "05",
-      "Hold Request": "06",
-      "On Hold": "07",
-      "In Transit": "08",
-      "In Transit Discharged": "09",
-      "In Transit On Hold": "10",
-      "Discharged": "11",
-      "Missing": "12",
-      "Lost--Library Applied": "13",
-      "Lost--System Applied": "14",
-      "Claims Returned": "15",
-      "Damaged": "16",
-      "Withdrawn": "17",
-      "At Bindery": "18",
-      "Cataloging Review": "19",
-      "Circulation Review": "20",
-      "Scheduled": "21",
-      "In Process": "22",
-      "Call Slip Request": "23",
-      "Short Loan Request": "24",
-      "Remote Storage Request": "25"
+      "Not Charged": 1,
+      "Charged": 2,
+      "Renewed": 3,
+      "Overdue": 4,
+      "Recall Request": 5,
+      "Hold Request": 6,
+      "On Hold": 7,
+      "In Transit": 8,
+      "In Transit Discharged": 9,
+      "In Transit On Hold": 10,
+      "Discharged": 11,
+      "Missing": 12,
+      "Lost--Library Applied": 13,
+      "Lost--System Applied": 14,
+      "Claims Returned": 15,
+      "Damaged": 16,
+      "Withdrawn": 17,
+      "At Bindery": 18,
+      "Cataloging Review": 19,
+      "Circulation Review": 20,
+      "Scheduled": 21,
+      "In Process": 22,
+      "Call Slip Request": 23,
+      "Short Loan Request": 24,
+      "Remote Storage Request": 25
     },
     "statusName": {
      "1": "Available",
@@ -1007,6 +957,76 @@ POST to http://localhost:9000/migrate/items
     "permanentLoanTypeId": "dcdb0cef-c30f-4a3b-b0b6-757d1400535d",
     "permanentLocationId": "2b8f7d63-706a-4b56-8a5e-50ad24e33e4c",
     "materialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25"
+  }
+}
+```
+
+## Loan Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/loans
+
+```
+{
+  "extraction": {
+    "countSql": "SELECT count(*) AS total FROM ${SCHEMA}.circ_transactions ct, ${SCHEMA}.patron_barcode pb, ${SCHEMA}.item_barcode ib WHERE ct.item_id = ib.item_id AND ct.patron_id = pb.patron_id",
+    "pageSql": "SELECT ct.patron_id AS patron_id, patron_barcode, ct.item_id AS item_id, item_barcode, TO_CHAR(cast(charge_date as timestamp) at time zone 'UTC', 'yyyy-MM-dd\"T\"HH:mm:ss\"Z\"') AS loan_date, TO_CHAR(cast(current_due_date as timestamp) at time zone 'UTC', 'yyyy-MM-dd\"T\"HH:mm:ss\"Z\"') AS due_date, charge_location, circ_transaction_id, renewal_count FROM ${SCHEMA}.circ_transactions ct, ${SCHEMA}.patron_barcode pb, ${SCHEMA}.item_barcode ib WHERE ct.item_id = ib.item_id AND ct.patron_id = pb.patron_id ORDER BY ct.circ_transaction_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": ""
+    }
+  },
+  "preActions": [],
+  "postActions": [],
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 12
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 4
+    }
+  ],
+  "maps": {
+    "location": {
+      "AMDB": {
+        "36": "media",
+        "37": "media,res",
+        "47": "ils,borr",
+        "48": "ils,lend",
+        "132": "blcc,circ",
+        "134": "blcc,stk",
+        "135": "blcc,ref",
+        "136": "blcc,res",
+        "137": "blcc,rndx",
+        "138": "www_evans",
+        "182": "media,arcv",
+        "201": "blcc,stand",
+        "225": "blcc,nbs",
+        "228": "blcc,audio",
+        "241": "blcc,udoc",
+        "244": "blcc,schk",
+        "264": "evans_pda",
+        "278": "learn_outreach",
+        "285": "blcc,ebc",
+        "288": "evans_withdrawn"
+      },
+      "MSDB": {
+        "5": "AbstractIndex",
+        "40": "www_msl",
+        "44": "msl_withdrawn",
+        "68": "Mobile",
+        "126": "rs,hdr",
+        "127": "rs,hdr",
+        "186": "msl_pda"
+      }
+    }
   }
 }
 ```

@@ -1,0 +1,311 @@
+{
+  "openingPeriods" : [ {
+    "id" : "4a3bf2f6-eb0f-477c-92e1-563091716d17",
+    "servicePointId" : "fc64d24e-5247-402a-ae19-21de454c025d",
+    "name" : "BLCC Summer Hours",
+    "startDate" : "2020-05-27T00:00:00.000+0000",
+    "endDate" : "2021-08-04T00:00:00.000+0000",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "12:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:30",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:30",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:30",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:30",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:30",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "13:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "3f51d225-2327-4759-826b-61f225b00a74",
+    "servicePointId" : "fc64d24e-5247-402a-ae19-21de454c025d",
+    "name" : "BLCC Interim Schedule",
+    "startDate" : "2020-05-06T00:00:00.000+0000",
+    "endDate" : "2020-05-24T00:00:00.000+0000",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "13:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "13:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "355eae8c-b31d-4f93-a5c1-fddfcca5e5f7",
+    "servicePointId" : "fc64d24e-5247-402a-ae19-21de454c025d",
+    "name" : "BLCC Closed then Summer Hours",
+    "startDate" : "2020-05-25T00:00:00.000+0000",
+    "endDate" : "2020-05-26T00:00:00.000+0000",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:30",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "1a8cf60e-127e-4a81-9c05-868eb97c43c7",
+    "servicePointId" : "fc64d24e-5247-402a-ae19-21de454c025d",
+    "name" : "BLCC Migration Calendar",
+    "startDate" : "1988-10-01T00:00:00.000+0000",
+    "endDate" : "2020-05-05T00:00:00.000+0000",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "08:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  } ],
+  "totalRecords" : 4
+}

@@ -21,6 +21,8 @@ import org.folio.rest.migration.utility.TimingUtility;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
 
+import scala.annotation.migration;
+
 public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceLinkContext> {
 
   private static final String USER_ID = "PATRON_ID";
@@ -37,7 +39,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
   }
 
   @Override
-  public CompletableFuture<Boolean> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) {
     log.info("tenant: {}", tenant);
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
@@ -49,6 +51,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
       @Override
       public void complete() {
         postActions(migrationService.referenceLinkSettings, context.getPostActions());
+        migrationService.complete();
       }
 
     });
@@ -85,7 +88,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
       }
     }
 
-    return CompletableFuture.completedFuture(true);
+    return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }
 
   public static UserReferenceLinkMigration with(UserReferenceLinkContext context, String tenant) {

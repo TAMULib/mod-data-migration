@@ -1,0 +1,642 @@
+{
+  "path": "material-types",
+  "dependencies": [],
+  "data": [
+    {
+      "id": "9af8d0db-0e04-4c7b-b171-6efbcf6a9929",
+      "name": "audio -- audio cartridge",
+      "source": "sg",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.372+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.372+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "13fbfe78-9cd4-4edd-817b-8a92292466f3",
+      "name": "audio -- audiocassette",
+      "source": "ss",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.521+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.521+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "357187a5-d752-4b3e-a3ea-dfb899b001b5",
+      "name": "audio -- audio cylinder",
+      "source": "se",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.325+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.325+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "55d96ec1-3ce9-457b-aaff-33fc42bb1518",
+      "name": "audio -- audio disc",
+      "source": "sd",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.278+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.278+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "b16851f4-5095-4196-9d84-26e6ed98bcbd",
+      "name": "audio -- audio roll",
+      "source": "sq",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.468+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.468+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "d9f36205-c35e-4d1c-aee7-71019899c504",
+      "name": "audio -- audiotape reel",
+      "source": "st",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.568+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.568+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "9fd4ab9d-6663-4bff-936e-6f19cc5d1dc1",
+      "name": "audio -- audio wire reel",
+      "source": "sw",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.616+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.616+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "05088b89-31ee-4863-ade5-d7a64dbb130a",
+      "name": "audio -- other",
+      "source": "sz",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.661+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.661+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "13b21e54-ba8e-4f75-ad29-fb83c988f25f",
+      "name": "audio -- sound track reel",
+      "source": "si",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.419+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.419+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "a42bedd2-8182-45b0-b337-5c37636a9074",
+      "name": "computer -- computer card",
+      "source": "ck",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.579+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.579+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "b01b19ce-28e3-4d4c-bb08-df9e52d8a503",
+      "name": "computer -- computer chip cartridge",
+      "source": "cb",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.342+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.342+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "b41f2a9b-0dfc-48cf-b5d0-517d6b876246",
+      "name": "computer -- computer disc",
+      "source": "cd",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.391+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.391+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "68baf8b4-c806-4a54-aa05-4283af20c9c4",
+      "name": "computer -- computer disc cartridge",
+      "source": "ce",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.439+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.439+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "fb651f16-421f-4b70-b3f3-5df0d4b55c31",
+      "name": "computer -- computer tape cartridge",
+      "source": "ca",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.280+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.280+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "98538cdf-4f3b-47fa-bf1c-051429dcc743",
+      "name": "computer -- computer tape cassette",
+      "source": "cf",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.486+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.486+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "e559f2e3-3888-4a6f-9ec8-18333ed78932",
+      "name": "computer -- computer tape reel",
+      "source": "ch",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.533+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.533+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "aeac3fc9-651a-4915-aaad-d82ad9af9e4b",
+      "name": "computer -- online resource",
+      "source": "cr",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.626+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.626+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "04103e45-c01b-49d6-87c5-4ce5b043c06c",
+      "name": "computer -- other",
+      "source": "cz",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.674+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.674+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "25d34ed9-c27e-48d5-9dd7-8b6c12099630",
+      "name": "laptop",
+      "source": "laptop",
+      "metadata": {
+        "createdDate": "2020-06-17T18:21:02.760+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-06-17T18:21:02.760+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "c3526102-9088-4a59-8e83-f0367baa41c2",
+      "name": "microform -- aperture card",
+      "source": "ha",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.123+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.123+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "e1a509ca-28d5-4131-8a06-3b252d0f6c4b",
+      "name": "microform -- microfiche",
+      "source": "he",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.313+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.313+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "afdb4111-16d1-4a5e-821e-6ae6fe327fb2",
+      "name": "microform -- microfiche cassette",
+      "source": "hf",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.360+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.360+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "534c263d-0b84-4365-9a69-cad4217f3192",
+      "name": "microform -- microfilm cartridge",
+      "source": "hb",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.171+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.171+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "77fa0f39-4851-4fc1-b909-7a5130220fca",
+      "name": "microform -- microfilm cassette",
+      "source": "hc",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.217+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.217+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "21d3f151-dadc-4543-b0c0-4e66d1d84a83",
+      "name": "microform -- microfilm reel",
+      "source": "hd",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.264+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.264+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "b11f6ba4-1768-4419-b5e5-3a20ff7a5491",
+      "name": "microform -- microfilm roll",
+      "source": "hj",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.504+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.504+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "7ddf91e0-3e41-470a-ba4a-39a2f73b4a7c",
+      "name": "microform -- microfilm slip",
+      "source": "hh",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.456+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.456+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "2e66dcc9-656d-494c-a2e6-e565e5a7d4a3",
+      "name": "microform -- microopaque",
+      "source": "hg",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.408+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.408+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "329dcc2d-a452-40eb-a97f-e200aa32d581",
+      "name": "microform -- other",
+      "source": "hz",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.551+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.551+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "947b8db0-bf83-4091-87fa-55424290b4eb",
+      "name": "microscopic -- microscope slide",
+      "source": "pp",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.183+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.183+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "7517ec51-3f9c-4ddc-afb6-36e0faff6072",
+      "name": "microscopic -- other",
+      "source": "pz",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.230+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.230+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "a37949be-f481-4713-8ee8-711c0aef9310",
+      "name": "projected image -- film cartridge",
+      "source": "mc",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.599+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.599+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "adf3b497-530f-4de7-abe3-79804bb4b02e",
+      "name": "projected image -- film cassette",
+      "source": "mf",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.649+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.649+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "cd8a2dbd-cbbf-4cc5-bb9f-752da5eabe3d",
+      "name": "projected image -- film reel",
+      "source": "mr",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.743+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.743+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "c0fae62e-70eb-4616-a328-3ce4fa0619b8",
+      "name": "projected image -- film roll",
+      "source": "mo",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.696+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.696+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "b30f740e-95f9-4a3c-bbbe-a5d092047a40",
+      "name": "projected image -- filmslip",
+      "source": "gd",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.919+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.919+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "f836b8d4-4de8-4afd-a180-6636d4dafef6",
+      "name": "projected image -- filmstrip",
+      "source": "gf",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.975+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.975+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "414a55d1-21ec-42a4-ba3e-86ac151d8efa",
+      "name": "projected image -- filmstrip cartridge",
+      "source": "gc",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.871+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.871+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "6326efeb-ce36-46b2-b103-d5d06b184f8c",
+      "name": "projected image -- other",
+      "source": "mz",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.790+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.790+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "536b8a0a-17b9-4eaf-9838-4178743f7f0a",
+      "name": "projected image -- overhead transparency",
+      "source": "gt",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.075+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.075+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "5f129b38-a414-48e8-aa7d-8b09f04007ea",
+      "name": "projected image -- slide",
+      "source": "gs",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.026+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.026+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "bc547142-a32d-4bee-9041-750a9799c738",
+      "name": "stereographic -- other",
+      "source": "ez",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.821+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.821+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "28e9bc51-7cc9-4fa8-b544-e15f60de50df",
+      "name": "stereographic -- stereograph card",
+      "source": "eh",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.722+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.722+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "d49e04da-9bda-49c8-95e0-501abaeb2160",
+      "name": "stereographic -- stereograph disc",
+      "source": "es",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:39.773+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:39.773+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "a7652d1e-0b78-47e8-9559-ac66d1f772d0",
+      "name": "unmediated -- card",
+      "source": "no",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.043+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.043+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "a229e3c9-6053-4b95-9095-73f1eabb5b6b",
+      "name": "unmediated -- flipchart",
+      "source": "nn",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.995+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.995+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "26403dde-b007-4f81-875d-f733c4a93379",
+      "name": "unmediated -- object",
+      "source": "nr",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.090+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.090+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "87b72e0f-79b4-4b16-a625-d69f02f44b3d",
+      "name": "unmediated -- other",
+      "source": "nz",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.137+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.137+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "bb1581b8-d849-42b9-8193-e1d7c9d0382c",
+      "name": "unmediated -- roll",
+      "source": "na",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.838+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.838+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "e81ae1d7-c208-4e0c-838c-349fc31e472e",
+      "name": "unmediated -- sheet",
+      "source": "nb",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.885+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.885+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "fe050219-8aa1-460d-b40e-930271137175",
+      "name": "unmediated -- volume",
+      "source": "nc",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:40.935+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:40.935+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "71fbd940-1027-40a6-8a48-49b44d795e46",
+      "name": "unspecified",
+      "source": "folio",
+      "metadata": {
+        "createdDate": "2020-04-10T16:09:42.886+0000",
+        "updatedDate": "2020-04-10T16:09:42.886+0000"
+      }
+    },
+    {
+      "id": "3212b3e9-bce7-4ff1-88e2-8def758ba977",
+      "name": "unspecified -- unspecified",
+      "source": "zu",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.955+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.955+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "3fab1a9a-7480-439c-896f-e9247dd56cfa",
+      "name": "video -- other",
+      "source": "vz",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.907+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.907+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "fae8a958-2bcb-4db6-88b5-60976c7a1432",
+      "name": "video -- video cartridge",
+      "source": "vc",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.710+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.710+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "7038cd81-60c4-4e1a-b52e-bf8a94f999a4",
+      "name": "video -- videocassette",
+      "source": "vf",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.811+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.811+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "c11be9d4-32b4-4e84-a28f-3cd27747a3f9",
+      "name": "video -- videodisc",
+      "source": "vd",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.764+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.764+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    },
+    {
+      "id": "c41b1127-afca-4888-8ef1-8b06e25f7f91",
+      "name": "video -- videotape reel",
+      "source": "vr",
+      "metadata": {
+        "createdDate": "2020-04-15T20:57:41.858+0000",
+        "createdByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97",
+        "updatedDate": "2020-04-15T20:57:41.858+0000",
+        "updatedByUserId": "ba241eaa-8615-4d2c-aba3-8a872ea0bb97"
+      }
+    }
+  ]
+}

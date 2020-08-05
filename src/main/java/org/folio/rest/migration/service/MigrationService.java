@@ -1,23 +1,30 @@
 package org.folio.rest.migration.service;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.annotation.PostConstruct;
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.folio.rest.migration.Migration;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.model.repo.ReferenceLinkRepo;
 import org.folio.rest.model.repo.ReferenceLinkTypeRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 @Service
 public class MigrationService {
+
+  private static final Logger log = LoggerFactory.getLogger(MigrationService.class);
+
+  private static final String QUEUED_RESPONSE_TEMPLATE = "Migration has been queued in position %s";
 
   @Autowired
   public ObjectMapper objectMapper;
@@ -45,6 +52,10 @@ public class MigrationService {
 
   public Database referenceLinkSettings;
 
+  private LinkedBlockingQueue<Migration> queue = new LinkedBlockingQueue<>();
+
+  private boolean inProgress = false;
+
   @PostConstruct
   public void init() {
     objectMapper.enable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
@@ -56,8 +67,24 @@ public class MigrationService {
   }
 
   @Async("asyncTaskExecutor")
-  public CompletableFuture<Boolean> migrate(Migration migration) {
+  public synchronized CompletableFuture<String> migrate(Migration migration) {
+    if (inProgress) {
+      queue.add(migration);
+      log.info("queued {}, position {}", migration.getClass().getSimpleName(), queue.size());      
+      return CompletableFuture.completedFuture(String.format(QUEUED_RESPONSE_TEMPLATE, queue.size()));
+    }
+    log.info("starting {}", migration.getClass().getSimpleName());
+    inProgress = true;
     return migration.run(this);
+  }
+
+  public synchronized void complete() {
+    inProgress = false;
+    if (!queue.isEmpty()) {
+      Migration migration = queue.poll();
+      log.info("dequeued {}, {} remaining", migration.getClass().getSimpleName(), queue.size());
+      migrate(migration);
+    }
   }
 
 }

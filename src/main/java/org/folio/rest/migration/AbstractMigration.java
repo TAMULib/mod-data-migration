@@ -50,7 +50,14 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
   static final String INDEX = "INDEX";
   static final String TOTAL = "TOTAL";
 
+  static final String PREFIX = "prefix";
+  static final String START_NUMBER = "startNumber";
+
   static final String NULL = "null";
+
+  static final String HRID_TEMPLATE = "%s%011d";
+
+  static final String IN_PROGRESS_RESPONSE_MESSAGE = "Migration in progress";
 
   final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -134,8 +141,8 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
         marcSequence.add(new SequencedMarc(seqnum, recordSegment));
       }
       List<InputStream> asciiStreams = marcSequence.stream()
-        .sorted((sm1, sm2) -> sm1.getSeqnum().compareTo(sm2.getSeqnum()))
-        .map(sm -> sm.getRecordSegment())
+          .sorted((sm1, sm2) -> sm1.getSeqnum().compareTo(sm2.getSeqnum()))
+          .map(sm -> sm.getRecordSegment())
           .collect(Collectors.toList());
       SequenceInputStream sequenceInputStream = new SequenceInputStream(Collections.enumeration(asciiStreams));
       return IOUtils.toString(sequenceInputStream, DEFAULT_CHARSET);

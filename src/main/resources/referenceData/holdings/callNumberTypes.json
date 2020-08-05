@@ -1,0 +1,11 @@
+{
+  "path": "call-number-types",
+  "dependencies": [],
+  "data": [
+    {
+      "id": "24badefa-4456-40c5-845c-3f45ffbc4c03",
+      "source": "marc",
+      "name": "No information provided"
+    }
+  ]
+}
