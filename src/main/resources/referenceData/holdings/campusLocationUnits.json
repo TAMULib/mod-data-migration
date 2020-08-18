@@ -1,5 +1,5 @@
 {
-  "path": "location-units/campuses",
+  "path": "/location-units/campuses",
   "dependencies": [
     "institutionLocationUnits"
   ],

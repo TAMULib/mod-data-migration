@@ -1,5 +1,5 @@
 {
-  "path": "service-points",
+  "path": "/service-points",
   "dependencies": [
     "institutionLocationUnits",
     "campusLocationUnits",

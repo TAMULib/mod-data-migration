@@ -1,5 +1,5 @@
 {
-  "path": "location-units/libraries",
+  "path": "/location-units/libraries",
   "dependencies": [
     "institutionLocationUnits",
     "campusLocationUnits"

@@ -1,5 +1,5 @@
 {
-  "path": "statistical-codes",
+  "path": "/statistical-codes",
   "dependencies": [
     "statisticalCodeTypes"
   ],
