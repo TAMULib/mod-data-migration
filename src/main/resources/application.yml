@@ -93,3 +93,17 @@ okapi:
       username: folio_admin
       password: folio_admin
       driver-class-name: org.postgresql.Driver
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health, info, logfile
+  endpoint:
+    health:
+      enabled: true
+    info:
+      enabled: true
+    logfile:
+      enabled: true
