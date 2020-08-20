@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import org.folio.rest.jaxrs.model.Servicepoint;
 import org.folio.rest.jaxrs.model.Servicepoints;
-import org.folio.rest.migration.model.ReferenceData;
 import org.folio.rest.migration.model.request.ExternalOkapi;
 import org.folio.rest.migration.service.ExternalOkapiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class CalendarController {
     ArrayNode periodsData = response.putArray("openingPeriods");
     String token = externalOkapiService.getToken(okapi);
     Servicepoints servicePoints = externalOkapiService.fetchServicepoints(okapi, token);
-    for(Servicepoint servicePoint : servicePoints.getServicepoints()) {
+    for (Servicepoint servicePoint : servicePoints.getServicepoints()) {
       JsonNode periods = externalOkapiService.fetchCalendarPeriodsForServicepoint(okapi, token, servicePoint.getId());
       File calendarFile = new File(String.format("src/main/resources/calendar/%s.json", servicePoint.getId()));
       objectMapper.writerWithDefaultPrettyPrinter().writeValue(calendarFile, periods);
@@ -49,5 +48,5 @@ public class CalendarController {
     response.put("totalRecords", servicePoints.getTotalRecords());
     return response;
   }
-  
+
 }
