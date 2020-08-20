@@ -956,7 +956,7 @@ POST to http://localhost:9000/migrate/items
   "defaults": {
     "permanentLoanTypeId": "dcdb0cef-c30f-4a3b-b0b6-757d1400535d",
     "permanentLocationId": "2b8f7d63-706a-4b56-8a5e-50ad24e33e4c",
-    "materialTypeId": "d9acad2f-2aac-4b48-9097-e6ab85906b25"
+    "materialTypeId": "3212b3e9-bce7-4ff1-88e2-8def758ba977"
   }
 }
 ```
