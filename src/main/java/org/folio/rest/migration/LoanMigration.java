@@ -248,14 +248,15 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
     Database voyagerSettings = context.getExtraction().getDatabase();
     Map<Integer, String> locConv = context.getMaps().getLocation().get(schema);
     try (Connection voyagerConnection = getConnection(voyagerSettings);
-        Statement st = voyagerConnection.createStatement();
-        ResultSet rs = getResultSet(st, locationContext);) {
+      Statement st = voyagerConnection.createStatement();
+      ResultSet rs = getResultSet(st, locationContext);) {
       while (rs.next()) {
         Integer id = rs.getInt(LOCATION_ID);
         if (Objects.nonNull(id)) {
           String code = locConv.containsKey(id) ? locConv.get(id) : rs.getString(LOCATION_CODE);
-          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code))
-              .findFirst();
+          Optional<Location> location = locations.getLocations().stream()
+            .filter(loc -> loc.getCode().equals(code))
+            .findFirst();
           if (location.isPresent()) {
             idToCode.put(id, code);
           }
@@ -269,8 +270,11 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
   @Cacheable(value = "servicePoints", key = "code", sync = true)
   private Optional<String> getServicePoint(String code, Servicepoints servicePoints) {
+    final String folioLocationCode = context.getMaps().getLocationCode().containsKey(code)
+      ? context.getMaps().getLocationCode().get(code)
+      : code;
     Optional<Servicepoint> servicePoint = servicePoints.getServicepoints().stream()
-        .filter(sp -> sp.getCode().equals(code)).findAny();
+        .filter(sp -> sp.getCode().equals(folioLocationCode)).findAny();
     if (servicePoint.isPresent()) {
       return Optional.of(servicePoint.get().getId());
     }
