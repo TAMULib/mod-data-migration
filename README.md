@@ -1026,6 +1026,13 @@ POST to http://localhost:9000/migrate/loans
         "127": "rs,hdr",
         "186": "msl_pda"
       }
+    },
+    "locationCode": {
+      "media,res": "media",
+      "ils,borr": "ils",
+      "ils,len": "ils",
+      "msl,circ": "CircDesk",
+      "circ,schk": "circ"
     }
   }
 }
