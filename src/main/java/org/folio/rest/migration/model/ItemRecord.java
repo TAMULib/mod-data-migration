@@ -50,6 +50,7 @@ public class ItemRecord {
 
   private String permanentLocationId;
   private String temporaryLocationId;
+  private String effectiveLocationId;
 
   private String createdByUserId;
   private Date createdDate;
@@ -178,6 +179,14 @@ public class ItemRecord {
     this.temporaryLocationId = temporaryLocationId;
   }
 
+  public String getEffectiveLocationId() {
+    return effectiveLocationId;
+  }
+
+  public void setEffectiveLocationId(String effectiveLocationId) {
+    this.effectiveLocationId = effectiveLocationId;
+  }
+
   public String getCreatedByUserId() {
     return createdByUserId;
   }
@@ -198,16 +207,19 @@ public class ItemRecord {
     final Item item = new Item();
     item.setId(id);
     item.setHoldingsRecordId(holdingId);
-    item.setPermanentLoanTypeId(permanentLoanTypeId);
+    item.setMaterialTypeId(materialTypeId);
 
+    item.setPermanentLoanTypeId(permanentLoanTypeId);
     if (Objects.nonNull(temporaryLoanTypeId)) {
       item.setTemporaryLoanTypeId(temporaryLoanTypeId);
     }
 
-    item.setMaterialTypeId(materialTypeId);
     item.setPermanentLocationId(permanentLocationId);
     if (Objects.nonNull(temporaryLocationId)) {
       item.setTemporaryLocationId(temporaryLocationId);
+    }
+    if (Objects.nonNull(effectiveLocationId)) {
+      item.setEffectiveLocationId(effectiveLocationId);
     }
 
     Set<String> yearCaption = new HashSet<>();
