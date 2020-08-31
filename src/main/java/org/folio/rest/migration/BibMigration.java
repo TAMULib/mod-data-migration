@@ -306,6 +306,11 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
             Record record = potentialRecord.get();
 
+            String originalMarcJson = recordToJson(record);
+            JsonObject originalMarcJsonObject = new JsonObject(originalMarcJson);
+
+            bibRecord.setOriginalParsedRecord(originalMarcJsonObject);
+
             String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
 
             DataField field999 = getDataField(factory, record);
