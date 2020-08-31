@@ -790,7 +790,7 @@ POST to http://localhost:9000/migrate/items
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.item",
     "pageSql": "SELECT item_id, copy_number, item_type_id, perm_location, pieces, price, spine_label, temp_location, temp_item_type_id, magnetic_media, sensitize FROM ${SCHEMA}.item ORDER BY item_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
-    "mfhdSql": "SELECT caption, chron, item_enum, freetext, year FROM ${SCHEMA}.mfhd_item WHERE item_id = ${ITEM_ID}",
+    "mfhdSql": "SELECT mi.caption, mi.chron, mi.item_enum, mi.freetext, mi.year, mm.location_id FROM ${SCHEMA}.mfhd_item mi LEFT JOIN ${SCHEMA}.mfhd_master mm ON mi.mfhd_id = mm.mfhd_id WHERE item_id = ${ITEM_ID}",
     "barcodeSql": "SELECT item_barcode FROM ${SCHEMA}.item_barcode WHERE item_id = ${ITEM_ID}",
     "itemTypeSql": "SELECT item_type_id, item_type_code FROM ${SCHEMA}.item_type",
     "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",

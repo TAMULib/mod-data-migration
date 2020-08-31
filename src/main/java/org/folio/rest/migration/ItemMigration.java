@@ -299,22 +299,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           noteContext.put(ITEM_ID, itemId);
           materialTypeContext.put(ITEM_ID, itemId);
 
-          String permLoanTypeId, permLocationId;
-
-          if (loanTypesMap.containsKey(voyagerPermTypeId)) {
-            permLoanTypeId = loanTypesMap.get(voyagerPermTypeId);
-          } else {
-            log.warn("using default permanent loan type for schema {} itemId {} type {}", schema, itemId, voyagerPermTypeId);
-            permLoanTypeId = defaults.getPermanentLoanTypeId();
-          }
-
-          if (locationsMap.containsKey(voyagerPermLocationId)) {
-            permLocationId = locationsMap.get(voyagerPermLocationId);
-          } else {
-            log.warn("using default permanent location for schema {} itemId {} location {}", schema, itemId, voyagerPermLocationId);
-            permLocationId = defaults.getPermanentLocationId();
-          }
-
           Optional<ReferenceLink> itemRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId);
           Optional<ReferenceLink> holdingRL = Optional.empty();
 
@@ -357,15 +341,33 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           itemRecord.setId(id);
           itemRecord.setHoldingId(holdingId);
 
-          itemRecord.setPermanentLoanTypeId(permLoanTypeId);
-          itemRecord.setPermanentLocationId(permLocationId);
+          if (loanTypesMap.containsKey(voyagerPermTypeId)) {
+            itemRecord.setPermanentLoanTypeId(loanTypesMap.get(voyagerPermTypeId));
+          } else {
+            log.warn("using default permanent loan type for schema {} itemId {} type {}", schema, itemId, voyagerPermTypeId);
+            itemRecord.setPermanentLoanTypeId(defaults.getPermanentLoanTypeId());
+          }
 
           if (loanTypesMap.containsKey(voyagerTempTypeId)) {
             itemRecord.setTemporaryLoanTypeId(loanTypesMap.get(voyagerTempTypeId));
           }
 
-          if (locationsMap.containsKey(voyagerTempLocationId)) {
-            itemRecord.setTemporaryLocationId(locationsMap.get(voyagerTempLocationId));
+          if (!voyagerPermLocationId.equals(itemRecord.getMfhdItem().getLocation())) {
+            if (locationsMap.containsKey(voyagerPermLocationId)) {
+              itemRecord.setPermanentLocationId(locationsMap.get(voyagerPermLocationId));
+            }
+          }
+
+          if (Integer.parseInt(voyagerTempLocationId) > 0) {
+            if (locationsMap.containsKey(voyagerTempLocationId)) {
+              String folioTempLocationId = locationsMap.get(voyagerTempLocationId);
+              itemRecord.setTemporaryLocationId(folioTempLocationId);
+              itemRecord.setEffectiveLocationId(folioTempLocationId);
+            }
+          } else {
+            if (locationsMap.containsKey(voyagerPermLocationId)) {
+              itemRecord.setEffectiveLocationId(locationsMap.get(voyagerPermLocationId));
+            }
           }
 
           Date createdDate = new Date();
@@ -469,7 +471,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             String itemEnum = resultSet.getString(ITEM_ENUM);
             String freetext = resultSet.getString(FREETEXT);
             String year = resultSet.getString(YEAR);
-            mfhdItem = new ItemMfhdRecord(caption, chron, itemEnum, freetext, year);
+            String location = resultSet.getString(LOCATION_ID);
+            mfhdItem = new ItemMfhdRecord(caption, chron, itemEnum, freetext, year, location);
           }
         } catch (SQLException e) {
           e.printStackTrace();
