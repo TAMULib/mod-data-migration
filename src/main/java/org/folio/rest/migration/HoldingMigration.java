@@ -247,10 +247,12 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             discoverySuppress = holdingDefaults.getDiscoverySuppress();
           }
 
-          if (holdingMaps.getCallNumberType().containsKey(callNumberType)) {
-            callNumberType = holdingMaps.getCallNumberType().get(callNumberType);
-          } else {
-            callNumberType = holdingDefaults.getCallNumberTypeId();
+          if (Objects.nonNull(callNumberType)) {
+            if (holdingMaps.getCallNumberType().containsKey(callNumberType)) {
+              callNumberType = holdingMaps.getCallNumberType().get(callNumberType);
+            } else {
+              callNumberType = holdingDefaults.getCallNumberTypeId();
+            }
           }
 
           if (holdingMaps.getHoldingsType().containsKey(holdingsType)) {
