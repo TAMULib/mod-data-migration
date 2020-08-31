@@ -267,8 +267,10 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
         while (pageResultSet.next()) {
           String bibId = pageResultSet.getString(BIB_ID);
-          Boolean suppressInOpac = pageResultSet.getBoolean(SUPPRESS_IN_OPAC);
+          String suppressInOpac = pageResultSet.getString(SUPPRESS_IN_OPAC);
           String operatorId = pageResultSet.getString(OPERATOR_ID);
+
+          Boolean suppressDiscovery = suppressInOpac.equals("Y");
 
           marcContext.put(BIB_ID, bibId);
 
@@ -286,7 +288,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
               ? getMatchingStatisticalCodes(operatorId, statisticalCodes)
               : new HashSet<>();
 
-            BibRecord bibRecord = new BibRecord(bibId, job.getInstanceStatusId(), suppressInOpac, matchedCodes);
+            BibRecord bibRecord = new BibRecord(bibId, job.getInstanceStatusId(), suppressDiscovery, matchedCodes);
 
             Optional<ReferenceLink> sourceRecordRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(sourceRecordRLTypeId, bibId);
             if (!sourceRecordRL.isPresent()) {

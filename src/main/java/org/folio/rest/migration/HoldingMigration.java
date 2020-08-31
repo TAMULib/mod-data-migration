@@ -47,7 +47,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   private static final String MFHD_ID = "MFHD_ID";
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String LOCATION_CODE = "LOCATION_CODE";
-  private static final String DISCOVERY_SUPPRESS = "SUPPRESS_IN_OPAC";
+  private static final String SUPPRESS_IN_OPAC = "SUPPRESS_IN_OPAC";
   private static final String CALL_NUMBER = "DISPLAY_CALL_NO";
   private static final String CALL_NUMBER_TYPE = "CALL_NO_TYPE";
   private static final String HOLDINGS_TYPE = "RECORD_TYPE";
@@ -219,7 +219,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
           String permanentLocationId = pageResultSet.getString(LOCATION_ID);
 
-          String discoverySuppressString = pageResultSet.getString(DISCOVERY_SUPPRESS);
+          String suppressInOpac = pageResultSet.getString(SUPPRESS_IN_OPAC);
           String callNumber = pageResultSet.getString(CALL_NUMBER);
 
           String callNumberType = pageResultSet.getString(CALL_NUMBER_TYPE);
@@ -235,10 +235,10 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
           Boolean discoverySuppress;
 
-          if (Objects.nonNull(discoverySuppressString)) {
-            if (discoverySuppressString.equalsIgnoreCase("y")) {
+          if (Objects.nonNull(suppressInOpac)) {
+            if (suppressInOpac.equalsIgnoreCase("y")) {
               discoverySuppress = true;
-            } else if (discoverySuppressString.equalsIgnoreCase("n")) {
+            } else if (suppressInOpac.equalsIgnoreCase("n")) {
               discoverySuppress = false;
             } else {
               discoverySuppress = holdingDefaults.getDiscoverySuppress();
