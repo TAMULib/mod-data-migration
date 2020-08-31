@@ -32,6 +32,8 @@ public class BibRecord {
 
   private JsonObject parsedRecord;
 
+  private JsonObject originalParsedRecord;
+
   private String createdByUserId;
   private Date createdDate;
 
@@ -92,6 +94,14 @@ public class BibRecord {
     this.parsedRecord = parsedRecord;
   }
 
+  public JsonObject getOriginalParsedRecord() {
+    return originalParsedRecord;
+  }
+
+  public void setOriginalParsedRecord(JsonObject originalParsedRecord) {
+    this.originalParsedRecord = originalParsedRecord;
+  }
+
   public String getCreatedByUserId() {
     return createdByUserId;
   }
@@ -144,7 +154,7 @@ public class BibRecord {
   }
 
   public Instance toInstance(InstanceMapper instanceMapper, String hridString) {
-    final Instance instance = instanceMapper.getInstance(parsedRecord);
+    final Instance instance = instanceMapper.getInstance(originalParsedRecord);
     if (Objects.nonNull(instance)) {
       instance.setId(instanceId);
       instance.setDiscoverySuppress(suppressDiscovery);
