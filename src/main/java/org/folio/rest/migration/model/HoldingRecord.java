@@ -289,12 +289,11 @@ public class HoldingRecord {
 
   public void process866Field(Holdingsrecord holding) {
     List<HoldingsStatement> holdingsStatements = holding.getHoldingsStatements();
-    DataField f866 = (DataField) record.getVariableField("866");
-    if (Objects.nonNull(f866)) {
+    record.getVariableFields("866").stream().map(vf -> (DataField) vf).forEach(f866 -> {
+      HoldingsStatement statement = new HoldingsStatement();
       f866.getSubfields().forEach(subfield -> {
         char code = subfield.getCode();
         String data = subfield.getData();
-        HoldingsStatement statement = new HoldingsStatement();
         switch (code) {
         case 'a':
           statement.setStatement(data);
@@ -307,19 +306,18 @@ public class HoldingRecord {
         default:
           // do nothing
         }
-        holdingsStatements.add(statement);
       });
-    }
+      holdingsStatements.add(statement);
+    });
   }
 
   public void process867Field(Holdingsrecord holding) {
     List<HoldingsStatementsForSupplement> holdingsStatements = holding.getHoldingsStatementsForSupplements();
-    DataField f867 = (DataField) record.getVariableField("867");
-    if (Objects.nonNull(f867)) {
+    record.getVariableFields("867").stream().map(vf -> (DataField) vf).forEach(f867 -> {
+      HoldingsStatementsForSupplement statement = new HoldingsStatementsForSupplement();
       f867.getSubfields().forEach(subfield -> {
         char code = subfield.getCode();
         String data = subfield.getData();
-        HoldingsStatementsForSupplement statement = new HoldingsStatementsForSupplement();
         switch (code) {
         case 'a':
           statement.setStatement(data);
@@ -332,19 +330,18 @@ public class HoldingRecord {
         default:
           // do nothing
         }
-        holdingsStatements.add(statement);
       });
-    }
+      holdingsStatements.add(statement);
+    });
   }
 
   public void process868Field(Holdingsrecord holding) {
     List<HoldingsStatementsForIndex> holdingsStatements = holding.getHoldingsStatementsForIndexes();
-    DataField f868 = (DataField) record.getVariableField("868");
-    if (Objects.nonNull(f868)) {
+    record.getVariableFields("868").stream().map(vf -> (DataField) vf).forEach(f868 -> {
+      HoldingsStatementsForIndex statement = new HoldingsStatementsForIndex();
       f868.getSubfields().forEach(subfield -> {
         char code = subfield.getCode();
         String data = subfield.getData();
-        HoldingsStatementsForIndex statement = new HoldingsStatementsForIndex();
         switch (code) {
         case 'a':
           statement.setStatement(data);
@@ -357,9 +354,9 @@ public class HoldingRecord {
         default:
           // do nothing
         }
-        holdingsStatements.add(statement);
       });
-    }
+      holdingsStatements.add(statement);
+    });
   }
 
 }
