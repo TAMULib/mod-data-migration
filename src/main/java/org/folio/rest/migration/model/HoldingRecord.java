@@ -8,7 +8,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import org.codehaus.plexus.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.HoldingsStatement;
 import org.folio.rest.jaxrs.model.HoldingsStatementsForIndex;
 import org.folio.rest.jaxrs.model.HoldingsStatementsForSupplement;
@@ -195,7 +195,7 @@ public class HoldingRecord {
 
   public void process852Field(Holdingsrecord holding) {
     List<Note> notes = holding.getNotes();
-    StringBuilder callNumberBuilder = new StringBuilder(" ");
+    StringBuilder callNumberBuilder = new StringBuilder();
     DataField f852 = (DataField) record.getVariableField("852");
     if (Objects.nonNull(f852)) {
       f852.getSubfields().forEach(subfield -> {
@@ -212,7 +212,9 @@ public class HoldingRecord {
         } break;
         case 'h':
         case 'i':
-          callNumberBuilder.append(data);
+          callNumberBuilder
+            .append(StringUtils.SPACE)
+            .append(data);
           break;
         case 'k':
           holding.setCallNumberPrefix(data);
