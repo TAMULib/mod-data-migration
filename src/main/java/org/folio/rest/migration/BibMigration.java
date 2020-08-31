@@ -427,9 +427,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
   @Cacheable(value = "statisticalCodes", key = "operatorId", sync = true)
   private Set<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalCodes) {
     return statisticalCodes.getStatisticalCodes().stream()
-      .map(sc -> sc.getCode())
-      .filter(code -> code.equals(operatorId))
-        .collect(Collectors.toSet());
+      .filter(sc -> sc.getCode().equals(operatorId))
+      .map(sc -> sc.getId())
+      .collect(Collectors.toSet());
   }
 
   private String recordToJson(Record record) throws IOException {
