@@ -155,7 +155,11 @@ public class HoldingRecord {
       holding.setPermanentLocationId(locationId);
       // holding.setTemporaryLocationId(null);
       holding.setHoldingsTypeId(holdingsType);
-      holding.setCallNumberTypeId(callNumberType);
+
+      if (Objects.nonNull(callNumberType)) {
+        holding.setCallNumberTypeId(callNumberType);
+      }
+
       // holding.setIllPolicyId(null);
 
       holding.setDiscoverySuppress(discoverySuppress);
