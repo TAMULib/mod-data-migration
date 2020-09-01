@@ -16,6 +16,12 @@ public class UserJob extends AbstractJob {
   private String userId;
 
   @NotNull
+  private String dbCode;
+
+  @NotNull
+  private String noteTypeId;
+
+  @NotNull
   private Boolean skipDuplicates;
 
   private Map<String, String> references;
@@ -39,6 +45,22 @@ public class UserJob extends AbstractJob {
 
   public void setUserId(String userId) {
     this.userId = userId;
+  }
+
+  public String getDbCode() {
+    return dbCode;
+  }
+
+  public void setDbCode(String dbCode) {
+    this.dbCode = dbCode;
+  }
+
+  public String getNoteTypeId() {
+    return noteTypeId;
+  }
+
+  public void setNoteTypeId(String noteTypeId) {
+    this.noteTypeId = noteTypeId;
   }
 
   public Boolean getSkipDuplicates() {
