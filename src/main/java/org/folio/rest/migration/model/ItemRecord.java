@@ -217,16 +217,16 @@ public class ItemRecord {
 
     item.setVolume(mfhdItem.getYear());
 
-    item.setCirculationNotes(circulationNotes);
+    if (isNotEmpty(mfhdItem.getFreetext())) {
+      Note__1 note = new Note__1();
+      note.setNote(mfhdItem.getFreetext());
+      note.setStaffOnly(true);
+      note.setItemNoteTypeId(itemNoteTypeId);
+      itemNotes.add(note);
+    }
 
-    List<Note__1> notes = new ArrayList<>();
-    Note__1 note = new Note__1();
-    note.setNote(mfhdItem.getFreetext());
-    note.setStaffOnly(true);
-    note.setItemNoteTypeId(itemNoteTypeId);
-    notes.add(note);
-    notes.addAll(itemNotes);
-    item.setNotes(notes);
+    item.setNotes(itemNotes);
+    item.setCirculationNotes(circulationNotes);
 
     item.setBarcode(barcode);
     item.setChronology(mfhdItem.getChron());
