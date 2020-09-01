@@ -31,6 +31,8 @@ public class ItemRecord {
   private final String itemNoteTypeId;
   private final String itemDamagedStatusId;
 
+  private final String custodianStatisticalCodeId;
+
   private String id;
   private String holdingId;
 
@@ -54,12 +56,13 @@ public class ItemRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public ItemRecord(String itemId, int numberOfPieces, String spineLabel, String itemNoteTypeId, String itemDamagedStatusId) {
+  public ItemRecord(String itemId, int numberOfPieces, String spineLabel, String itemNoteTypeId, String itemDamagedStatusId, String custodianStatisticalCodeId) {
     this.itemId = itemId;
     this.numberOfPieces = numberOfPieces;
     this.spineLabel = spineLabel;
     this.itemNoteTypeId = itemNoteTypeId;
     this.itemDamagedStatusId = itemDamagedStatusId;
+    this.custodianStatisticalCodeId = custodianStatisticalCodeId;
   }
 
   public String getItemId() {
@@ -80,6 +83,10 @@ public class ItemRecord {
 
   public String getItemDamagedStatusId() {
     return itemDamagedStatusId;
+  }
+
+  public String getCustodianStatisticalCodeId() {
+    return custodianStatisticalCodeId;
   }
 
   public String getId() {
@@ -243,6 +250,8 @@ public class ItemRecord {
     status.setDate(new Date());
 
     Set<String> statisticalCodeIds = new HashSet<>();
+
+    statisticalCodeIds.add(custodianStatisticalCodeId);
 
     AtomicBoolean statusesFirstPass = new AtomicBoolean(true);
     statuses.stream().forEach(s -> {

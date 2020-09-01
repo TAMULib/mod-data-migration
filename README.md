@@ -951,6 +951,10 @@ POST to http://localhost:9000/migrate/items
      "15": "Claimed returned",
      "17": "Missing",
      "22": "In process"
+    },
+    "custodianStatisticalCode": {
+      "AMDB": "38c86b2b-8156-4b7e-943e-460e15ea0dc0",
+      "MSDB": "f5d1069d-f718-4f0e-8ff8-308f55540daf"
     }
   },
   "defaults": {
