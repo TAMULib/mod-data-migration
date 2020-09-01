@@ -2,9 +2,9 @@
   "openingPeriods" : [ {
     "id" : "2c9e6db6-9295-48d1-b6f8-0c1897afb71c",
     "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
-    "name" : "Maps migration calendar",
+    "name" : "Maps calendar",
     "startDate" : "1988-10-01T00:00:00.000+0000",
-    "endDate" : "2021-12-31T00:00:00.000+0000",
+    "endDate" : "2024-12-31T00:00:00.000+0000",
     "openingDays" : [ {
       "weekdays" : {
         "day" : "SUNDAY"

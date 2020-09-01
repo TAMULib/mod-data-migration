@@ -2,9 +2,9 @@
   "openingPeriods" : [ {
     "id" : "f45b9b56-a91b-4baa-8bde-4ceae9087b36",
     "servicePointId" : "ccfdc7f0-1aa5-482f-a689-1a2188756412",
-    "name" : "Qatar migration calendar",
+    "name" : "Qatar calendar ",
     "startDate" : "1988-10-01T00:00:00.000+0000",
-    "endDate" : "2021-12-31T00:00:00.000+0000",
+    "endDate" : "2024-12-31T00:00:00.000+0000",
     "openingDays" : [ {
       "weekdays" : {
         "day" : "SUNDAY"
