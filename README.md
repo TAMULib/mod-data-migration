@@ -727,7 +727,7 @@ POST to http://localhost:9000/migrate/holdings
       "copy": "c4407cc7-d79f-4609-95bd-1cefb2e2b5c5",
       "binding": "e19eabab-a85c-4aef-a7b2-33bd9acef24e",
       "reproduction": "6a41b714-8574-4084-8d64-a9373c3fbb59",
-      "latest": "> '7ca7dc63-c053-4aec-8272-c03aeda4840c",
+      "latest_in": "7ca7dc63-c053-4aec-8272-c03aeda4840c",
       "note": "b160f13a-ddba-4053-b9c4-60ec5ea45d56"
     },
     "receiptStatus": {
