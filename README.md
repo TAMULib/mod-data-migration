@@ -484,7 +484,7 @@ POST to http://localhost:9000/migrate/users
       "decodeSql": "'fast', 1, 'grad', 2, 'ungr', 3, 'illend', 4, 'libd', 5, 'comm', 6, 'cour', 7, 'texs', 8, 'nonr', 9",
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "dbCode": "Evans",
-      "noteTypeId": "5d18f6e4-8e36-4c14-a0ae-1fd39baadec2",
+      "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
       "skipDuplicates": false,
       "references": {
         "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
@@ -497,7 +497,7 @@ POST to http://localhost:9000/migrate/users
       "decodeSql": "'fac/staff', 1, 'grad/prof', 2, 'undergrad', 3",
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
       "dbCode": "MSL",
-      "noteTypeId": "5d18f6e4-8e36-4c14-a0ae-1fd39baadec2",
+      "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
       "skipDuplicates": true,
       "references": {
         "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
