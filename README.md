@@ -947,9 +947,9 @@ POST to http://localhost:9000/migrate/items
      "11": "Available",
      "12": "Missing",
      "13": "Declared lost",
-     "14": "Declared lost",
+     "14": "Aged to lost",
      "15": "Claimed returned",
-     "17": "Missing",
+     "17": "Withdrawn",
      "22": "In process"
     }
   },
