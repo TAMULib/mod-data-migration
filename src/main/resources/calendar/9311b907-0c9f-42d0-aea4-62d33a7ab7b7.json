@@ -1,29 +1,10 @@
 {
   "openingPeriods" : [ {
-    "id" : "d1145f99-3de0-4ad8-b754-90f6b06199ee",
-    "servicePointId" : "9311b907-0c9f-42d0-aea4-62d33a7ab7b7",
-    "name" : "MSL second test",
-    "startDate" : "2025-01-01T00:00:00.000+0000",
-    "endDate" : "2025-05-15T00:00:00.000+0000",
-    "openingDays" : [ {
-      "weekdays" : {
-        "day" : "SUNDAY"
-      },
-      "openingDay" : {
-        "openingHour" : [ {
-          "startTime" : "07:00",
-          "endTime" : "17:00"
-        } ],
-        "allDay" : false,
-        "open" : true
-      }
-    } ]
-  }, {
     "id" : "7648a807-2c7f-4a74-a209-a26723447420",
     "servicePointId" : "9311b907-0c9f-42d0-aea4-62d33a7ab7b7",
     "name" : "MSL Circ calendar",
     "startDate" : "1999-09-01T00:00:00.000+0000",
-    "endDate" : "2021-12-31T00:00:00.000+0000",
+    "endDate" : "2024-12-31T00:00:00.000+0000",
     "openingDays" : [ {
       "weekdays" : {
         "day" : "SUNDAY"
@@ -125,5 +106,5 @@
       }
     } ]
   } ],
-  "totalRecords" : 2
+  "totalRecords" : 1
 }

@@ -2,9 +2,9 @@
   "openingPeriods" : [ {
     "id" : "6c151999-adc4-4d60-8f4b-3ceece7998bd",
     "servicePointId" : "24f55faf-d42e-4fef-9ad3-43c34b75962f",
-    "name" : "PSEL Migration Calendar",
+    "name" : "PSEL Calendar",
     "startDate" : "1988-10-01T00:00:00.000+0000",
-    "endDate" : "2021-12-31T00:00:00.000+0000",
+    "endDate" : "2024-12-31T00:00:00.000+0000",
     "openingDays" : [ {
       "weekdays" : {
         "day" : "SUNDAY"
