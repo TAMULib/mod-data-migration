@@ -121,6 +121,16 @@
                <sourceDirectory>${basedir}/mod-users/ramls</sourceDirectory>
              </configuration>
            </execution>
+           <execution>
+            <id>mod-notes/ramls</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <sourceDirectory>${basedir}/mod-notes/ramls</sourceDirectory>
+            </configuration>
+          </execution>
          </executions>
       </plugin>
 

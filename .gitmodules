@@ -13,3 +13,6 @@
 [submodule "mod-circulation"]
 	path = mod-circulation
 	url = https://github.com/folio-org/mod-circulation.git
+[submodule "mod-notes"]
+	path = mod-notes
+	url = https://github.com/folio-org/mod-notes.git

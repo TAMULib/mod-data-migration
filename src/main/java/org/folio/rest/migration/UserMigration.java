@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -28,6 +29,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.Userdata;
 import org.folio.rest.jaxrs.model.Usergroup;
 import org.folio.rest.jaxrs.model.Usergroups;
+import org.folio.rest.jaxrs.model.types.notes.Link;
+import org.folio.rest.jaxrs.model.types.notes.Note;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.UserAddressRecord;
 import org.folio.rest.migration.model.UserRecord;
@@ -74,6 +77,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   private static final String DECODE = "DECODE";
 
+  private static final String NOTE = "NOTE";
+
   private static final String USER_REFERENCE_ID = "userTypeId";
 
   private static final Set<String> BARCODES = new HashSet<>();
@@ -81,6 +86,9 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   // (id,jsonb,creation_date,created_by,patrongroup)
   private static final String USERS_COPY_SQL = "COPY %s_mod_users.users (id,jsonb,creation_date,created_by,patrongroup) FROM STDIN";
+
+  // (id,jsonb,temporary_type_id)
+  private static final String NOTES_COPY_SQL = "COPY %s_mod_notes.note_data (id,jsonb) FROM STDIN";
 
   private UserMigration(UserContext context, String tenant) {
     super(context, tenant);
@@ -202,6 +210,10 @@ public class UserMigration extends AbstractMigration<UserContext> {
       patronGroupContext.put(SCHEMA, job.getSchema());
       patronGroupContext.put(DECODE, job.getDecodeSql());
 
+      Map<String, Object> patronNoteContext = new HashMap<>();
+      patronNoteContext.put(SQL, context.getExtraction().getPatronNoteSql());
+      patronNoteContext.put(SCHEMA, job.getSchema());
+
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
 
       String userIdRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
@@ -210,10 +222,12 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
       try (
         PrintWriter userWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getUserConnection(), String.format(USERS_COPY_SQL, tenant)), true);
+        PrintWriter noteWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getNoteConnection(), String.format(NOTES_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement usernameStatement = threadConnections.getUsernameConnection().createStatement();
-        Statement addressStatement = threadConnections.getAdressConnection().createStatement();
+        Statement addressStatement = threadConnections.getAddressConnection().createStatement();
         Statement patronGroupStatement = threadConnections.getPatronGroupConnection().createStatement();
+        Statement patronNoteStatement = threadConnections.getPatronNoteConnection().createStatement();
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
       ) {
 
@@ -232,6 +246,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
           usernameContext.put(EXTERNAL_SYSTEM_ID, externalSystemId);
           addressContext.put(PATRON_ID, patronId);
           patronGroupContext.put(PATRON_ID, patronId);
+          patronNoteContext.put(PATRON_ID, patronId);
 
           Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
           if (!userRL.isPresent()) {
@@ -249,16 +264,20 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           PatronCodes patronCodes = new PatronCodes();
 
+          List<PatronNote> patronNotes = new ArrayList<>();
+
           CompletableFuture.allOf(
             getUsername(usernameStatement, usernameContext)
               .thenAccept((un) -> userRecord.setUsername(un)),
             getUserAddressRecords(addressStatement, addressContext)
               .thenAccept((uar) -> userRecord.setUserAddressRecords(uar)),
             getPatronCodes(patronGroupStatement, patronGroupContext)
-            .thenAccept((pc) -> {
-              patronCodes.setBarcode(pc.getBarcode());
-              patronCodes.setGroupcode(pc.getGroupcode());
-            })
+              .thenAccept((pc) -> {
+                patronCodes.setBarcode(pc.getBarcode());
+                patronCodes.setGroupcode(pc.getGroupcode());
+              }),
+            getPatronNotes(patronNoteStatement, patronNoteContext)
+              .thenAccept((pn) -> patronNotes.addAll(pn))
           ).get();
 
           if (!processUsername(userRecord.getUsername().toLowerCase())) {
@@ -298,6 +317,13 @@ public class UserMigration extends AbstractMigration<UserContext> {
             String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userdata)));
 
             userWriter.println(String.join("\t", userdata.getId(), userUtf8Json, createdAt, createdByUserId, userdata.getPatronGroup()));
+
+            for (PatronNote patronNote : patronNotes) {
+              Note note = patronNote.toNote(userdata.getId(), job.getDbCode(), job.getNoteTypeId());
+              String noteUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(note)));
+
+              noteWriter.println(String.join("\t", note.getId(), noteUtf8Json));
+            }
           } catch (JsonProcessingException e) {
             log.error("{} user id {} error serializing user", schema, userRecord.getPatronId());
           }
@@ -396,6 +422,25 @@ public class UserMigration extends AbstractMigration<UserContext> {
       return future;
     }
 
+    private CompletableFuture<List<PatronNote>> getPatronNotes(Statement statement, Map<String, Object> patronNoteContext) {
+      CompletableFuture<List<PatronNote>> future = new CompletableFuture<>();
+      additionalExecutor.submit(() -> {
+        List<PatronNote> patronNotes = new ArrayList<>();
+        try (ResultSet resultSet = getResultSet(statement, patronNoteContext)) {
+          while(resultSet.next()) {
+            String note = resultSet.getString(NOTE);
+            patronNotes.add(new PatronNote(note));
+            break;
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          future.complete(patronNotes);
+        }
+      });
+      return future;
+    }
+
   }
 
   private synchronized Boolean processUsername(String username) {
@@ -409,12 +454,14 @@ public class UserMigration extends AbstractMigration<UserContext> {
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database usernameSettings, Database folioSettings) {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
-    threadConnections.setAddressesConnection(getConnection(voyagerSettings));
+    threadConnections.setAddressConnection(getConnection(voyagerSettings));
     threadConnections.setPatronGroupConnection(getConnection(voyagerSettings));
+    threadConnections.setPatronNoteConnection(getConnection(voyagerSettings));
     threadConnections.setUsernameConnection(getConnection(usernameSettings));
 
     try {
       threadConnections.setUserConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+      threadConnections.setNoteConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
     } catch (SQLException e) {
       log.error(e.getMessage());
       throw new RuntimeException(e);
@@ -439,9 +486,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
     private Connection pageConnection;
     private Connection addressConnection;
     private Connection patronGroupConnection;
+    private Connection patronNoteConnection;
     private Connection usernameConnection;
 
     private BaseConnection userConnection;
+    private BaseConnection noteConnection;
 
     public ThreadConnections() {
 
@@ -455,11 +504,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
       this.pageConnection = pageConnection;
     }
 
-    public Connection getAdressConnection() {
+    public Connection getAddressConnection() {
       return addressConnection;
     }
 
-    public void setAddressesConnection(Connection addressConnection) {
+    public void setAddressConnection(Connection addressConnection) {
       this.addressConnection = addressConnection;
     }
 
@@ -469,6 +518,14 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
     public void setPatronGroupConnection(Connection patronGroupConnection) {
       this.patronGroupConnection = patronGroupConnection;
+    }
+
+    public Connection getPatronNoteConnection() {
+      return patronNoteConnection;
+    }
+
+    public void setPatronNoteConnection(Connection patronNoteConnection) {
+      this.patronNoteConnection = patronNoteConnection;
     }
 
     public Connection getUsernameConnection() {
@@ -487,13 +544,23 @@ public class UserMigration extends AbstractMigration<UserContext> {
       this.userConnection = userConnection;
     }
 
+    public BaseConnection getNoteConnection() {
+      return noteConnection;
+    }
+
+    public void setNoteConnection(BaseConnection noteConnection) {
+      this.noteConnection = noteConnection;
+    }
+
     public void closeAll() {
       try {
         pageConnection.close();
         addressConnection.close();
         patronGroupConnection.close();
+        patronNoteConnection.close();
         usernameConnection.close();
         userConnection.close();
+        noteConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
         throw new RuntimeException(e);
@@ -530,6 +597,38 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
     public void setBarcode(String barcode) {
       this.barcode = barcode;
+    }
+
+  }
+
+  private class PatronNote {
+
+    private String content;
+
+    public PatronNote(final String content) {
+      this.content = content;
+    }
+
+    public Note toNote(String userId, String dbCode, String noteTypeId) {
+      Note note = new Note();
+
+      note.setId(UUID.randomUUID().toString());
+      note.setTitle(String.format("Patron note (migrated %s)", dbCode));
+      note.setDomain("users");
+      note.setTypeId(noteTypeId);
+
+      note.setContent(content);
+
+      List<Link> links = new ArrayList<>();
+      Link link = new Link();
+      link.setId(userId);
+      link.setType("user");
+
+      links.add(link);
+
+      note.setLinks(links);
+
+      return note;
     }
 
   }
