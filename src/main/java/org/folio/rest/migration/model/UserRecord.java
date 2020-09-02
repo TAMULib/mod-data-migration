@@ -271,6 +271,8 @@ public class UserRecord {
         }
       }
     }
+
+    personal.setAddresses(addresses);
   }
 
   private void setExternalSystemId(Userdata userdata) {
