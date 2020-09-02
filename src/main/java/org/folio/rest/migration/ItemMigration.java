@@ -516,13 +516,13 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         try (ResultSet resultSet = getResultSet(statement, context)) {
           while (resultSet.next()) {
             String itemNote = resultSet.getString(ITEM_NOTE);
-            String itemNoteType = resultSet.getString(ITEM_NOTE_TYPE);
-            if (StringUtils.isNotEmpty(itemNote) && StringUtils.isNotEmpty(itemNoteType)) {
+            int itemNoteType = resultSet.getInt(ITEM_NOTE_TYPE);
+            if (StringUtils.isNotEmpty(itemNote)) {
               itemNote = StringUtils.chomp(itemNote);
               itemNote = StringUtils.normalizeSpace(itemNote);
               itemNote = itemNote.replaceAll("[\\p{Cntrl}&&[^\r\n\t]]", "");
               itemNote = itemNote.replaceAll("\\p{C}", "");
-              if (itemNoteType.equals("1")) {
+              if (itemNoteType == 1) {
                 Note__1 note = new Note__1();
                 note.setNote(itemNote);
                 note.setItemNoteTypeId(itemNoteTypeId);
@@ -533,9 +533,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
                 circulationNote.setId(UUID.randomUUID().toString());
                 circulationNote.setNote(itemNote);
                 circulationNote.setStaffOnly(true);
-                if (itemNoteType.equals("2")) {
+                if (itemNoteType == 2) {
                   circulationNote.setNoteType(NoteType.CHECK_OUT);
-                } else if (itemNoteType.equals("3")) {
+                } else if (itemNoteType == 3) {
                   circulationNote.setNoteType(NoteType.CHECK_IN);
                 } else {
                   // is this possible?
