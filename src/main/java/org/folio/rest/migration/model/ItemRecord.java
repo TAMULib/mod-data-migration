@@ -5,13 +5,16 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.CirculationNote;
 import org.folio.rest.jaxrs.model.Item;
 import org.folio.rest.jaxrs.model.Materialtypes;
@@ -30,6 +33,8 @@ public class ItemRecord {
   
   private final String itemNoteTypeId;
   private final String itemDamagedStatusId;
+
+  private final String custodianStatisticalCodeId;
 
   private String id;
   private String holdingId;
@@ -55,12 +60,13 @@ public class ItemRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public ItemRecord(String itemId, int numberOfPieces, String spineLabel, String itemNoteTypeId, String itemDamagedStatusId) {
+  public ItemRecord(String itemId, int numberOfPieces, String spineLabel, String itemNoteTypeId, String itemDamagedStatusId, String custodianStatisticalCodeId) {
     this.itemId = itemId;
     this.numberOfPieces = numberOfPieces;
     this.spineLabel = spineLabel;
     this.itemNoteTypeId = itemNoteTypeId;
     this.itemDamagedStatusId = itemDamagedStatusId;
+    this.custodianStatisticalCodeId = custodianStatisticalCodeId;
   }
 
   public String getItemId() {
@@ -81,6 +87,10 @@ public class ItemRecord {
 
   public String getItemDamagedStatusId() {
     return itemDamagedStatusId;
+  }
+
+  public String getCustodianStatisticalCodeId() {
+    return custodianStatisticalCodeId;
   }
 
   public String getId() {
@@ -256,28 +266,19 @@ public class ItemRecord {
 
     Set<String> statisticalCodeIds = new HashSet<>();
 
-    AtomicBoolean statusesFirstPass = new AtomicBoolean(true);
-    statuses.stream().forEach(s -> {
+    statisticalCodeIds.add(custodianStatisticalCodeId);
 
-      if (statusesFirstPass.compareAndSet(true, false)) {
-        if (isNotEmpty(s.getCirctrans())) {
-          status.setName(Name.AVAILABLE);
-        } else if (isNotEmpty(s.getItemStatus())) {
-          Name name = Name.fromValue(s.getItemStatus());
-          status.setName(name);
-        }
-        if (isNotEmpty(s.getItemStatusDate())) {
-          Date date = Date.from(Instant.parse(s.getItemStatusDate()));
-          status.setDate(date);
-        }
-      }
+    boolean haveMostImportantStatus = false;
+
+    for (int i = 0; i < statuses.size(); i++) {
+      ItemStatusRecord s = statuses.get(i);
 
       if (isNotEmpty(s.getItemStatus())) {
-        if (s.getItemStatus().toLowerCase().contains("damaged")) {
+        if (s.getItemStatus().equals("Damaged")) {
           item.setItemDamagedStatusId(itemDamagedStatusId);
         } else {
           Optional<Statisticalcode> potentialStatisticalcode = statisticalcodes.getStatisticalCodes().stream()
-            .filter(sc -> sc.getCode().equals(s.getItemStatus()))
+            .filter(sc -> sc.getName().equals(s.getItemStatus()))
             .findFirst();
           if (potentialStatisticalcode.isPresent()) {
             statisticalCodeIds.add(potentialStatisticalcode.get().getId());
@@ -288,7 +289,23 @@ public class ItemRecord {
           item.setDiscoverySuppress(true);
         }
       }
-    });
+
+      if (!haveMostImportantStatus && s.getItemStatusDesc() > 1) {
+        haveMostImportantStatus = true;
+
+        if (isNotEmpty(s.getItemStatus())) {
+          Name name = Name.fromValue(s.getItemStatus());
+          status.setName(name);
+        }
+
+        if (isNotEmpty(s.getItemStatusDate())) {
+          Date date = Date.from(Instant.parse(s.getItemStatusDate()));
+          status.setDate(date);
+        }
+
+      }
+
+    }
 
     item.setStatus(status);
     item.setStatisticalCodeIds(statisticalCodeIds);

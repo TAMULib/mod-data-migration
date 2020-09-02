@@ -320,7 +320,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           String id = itemRL.get().getFolioReference();
           String holdingId = holdingRL.get().getFolioReference();
 
-          ItemRecord itemRecord = new ItemRecord(itemId, numberOfPieces, spineLabel, job.getItemNoteTypeId(), job.getItemDamagedStatusId());
+          String custodianStatisticalCodeId = maps.getCustodianStatisticalCode().get(schema);
+
+          ItemRecord itemRecord = new ItemRecord(itemId, numberOfPieces, spineLabel, job.getItemNoteTypeId(), job.getItemDamagedStatusId(), custodianStatisticalCodeId);
 
           CompletableFuture.allOf(
             getItemBarcode(barcodeStatement, barcodeContext)
