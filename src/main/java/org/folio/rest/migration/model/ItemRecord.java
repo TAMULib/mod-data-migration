@@ -211,8 +211,12 @@ public class ItemRecord {
     }
 
     Set<String> yearCaption = new HashSet<>();
-    yearCaption.add(mfhdItem.getCaption());
-    yearCaption.add(spineLabel);
+    if (Objects.nonNull(mfhdItem.getCaption())) {
+      yearCaption.add(mfhdItem.getCaption());
+    }
+    if (Objects.nonNull(spineLabel)) {
+      yearCaption.add(spineLabel);
+    }
     item.setYearCaption(yearCaption);
 
     item.setVolume(mfhdItem.getYear());
