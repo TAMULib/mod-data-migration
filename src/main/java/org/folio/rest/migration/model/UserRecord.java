@@ -24,7 +24,7 @@ public class UserRecord {
   private static final String PHONE_PRIMARY = "Primary";
   private static final String PHONE_MOBILE = "Mobile";
 
-  private static final String DATE_FORMAT = "YYYYMMDD";
+  private static final String EXPIRED_DATE_FORMAT = "YYYY-MM-DD";
 
   private final String referenceId;
   private final String patronId;
@@ -286,16 +286,14 @@ public class UserRecord {
   }
 
   private void setActive(Userdata userdata) {
-    long charges = Long.parseLong(currentCharges);
-
     if (Objects.nonNull(activeDate)) {
-      if (Objects.nonNull(currentCharges) && charges > 0) {
+      if (Objects.nonNull(currentCharges) && Long.parseLong(currentCharges) > 0) {
         userdata.setActive(true);
       } else {
         if (Objects.nonNull(expireDate)) {
           try {
             Date now = new Date();
-            Date expirationDate = DateUtils.parseDate(expireDate, DATE_FORMAT);
+            Date expirationDate = DateUtils.parseDate(expireDate, EXPIRED_DATE_FORMAT);
             userdata.setExpirationDate(expirationDate);
             userdata.setActive(now.before(expirationDate));
           } catch (ParseException e) {
