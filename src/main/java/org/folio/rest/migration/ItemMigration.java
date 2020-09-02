@@ -143,9 +143,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
     JsonObject itemsHridSettings = hridSettings.getJsonObject("items");
     String hridPrefix = itemsHridSettings.getString(PREFIX);
-
-    int originalHridStartNumber = itemsHridSettings.getInteger(START_NUMBER);
-    int hridStartNumber = originalHridStartNumber;
+    int hridStartNumber = itemsHridSettings.getInteger(START_NUMBER);
 
     int index = 0;
 
@@ -180,12 +178,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new ItemPartitionTask(migrationService, partitionContext));
         offset += limit;
+        hridStartNumber += limit;
         index++;
-        if (i < partitions - 1) {
-          hridStartNumber += limit;
-        } else {
-          hridStartNumber = originalHridStartNumber + count;
-        }
       }
     }
 
