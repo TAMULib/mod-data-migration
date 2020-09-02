@@ -322,7 +322,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
               Note note = patronNote.toNote(userdata.getId(), job.getDbCode(), job.getNoteTypeId());
               String noteUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(note)));
 
-              userWriter.println(String.join("\t", note.getId(), noteUtf8Json));
+              noteWriter.println(String.join("\t", note.getId(), noteUtf8Json));
             }
           } catch (JsonProcessingException e) {
             log.error("{} user id {} error serializing user", schema, userRecord.getPatronId());
