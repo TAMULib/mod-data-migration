@@ -272,6 +272,7 @@ public class HoldingRecord {
         note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("access"));
         break;
       case "541":
+      case "561":
         // provenance
         note.setStaffOnly(false);
         note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("provenance"));
@@ -281,13 +282,20 @@ public class HoldingRecord {
         note.setStaffOnly(false);
         note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("copy"));
         break;
+      case "563":
+        // binding
+        note.setStaffOnly(false);
+        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("binding"));
+        break;
       case "583":
         // action
         note.setStaffOnly(true);
         note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("action"));
         break;
       default:
-        // do nothing
+        note.setStaffOnly(true);
+        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
+        break;
       }
       notes.add(note);
     });

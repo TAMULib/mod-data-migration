@@ -721,12 +721,14 @@ POST to http://localhost:9000/migrate/holdings
       "y": "e6da6c98-6dd0-41bc-8b4b-cfd4bbd9c3ae"
     },
     "holdingsNotesType": {
-      "note": "b160f13a-ddba-4053-b9c4-60ec5ea45d56",
-      "latest_in": "b160f13a-ddba-4053-b9c4-60ec5ea45d56",
+      "action": "d6510242-5ec3-42ed-b593-3585d2e48fd6",
       "access": "f453de0f-8b54-4e99-9180-52932529e3a6",
       "provenance": "db9b4787-95f0-4e78-becf-26748ce6bdeb",
       "copy": "c4407cc7-d79f-4609-95bd-1cefb2e2b5c5",
-      "action": "d6510242-5ec3-42ed-b593-3585d2e48fd6"
+      "binding": "e19eabab-a85c-4aef-a7b2-33bd9acef24e",
+      "reproduction": "6a41b714-8574-4084-8d64-a9373c3fbb59",
+      "latest_in": "7ca7dc63-c053-4aec-8272-c03aeda4840c",
+      "note": "b160f13a-ddba-4053-b9c4-60ec5ea45d56"
     },
     "receiptStatus": {
       "0": "Unknown",
