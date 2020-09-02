@@ -223,7 +223,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
           String lastName = pageResultSet.getString(LAST_NAME);
           String firstName = pageResultSet.getString(FIRST_NAME);
           String middleName = pageResultSet.getString(MIDDLE_NAME);
-          String activeDate = pageResultSet.getString(ACTIVE_DATE);
           String expireDate = pageResultSet.getString(EXPIRE_DATE);
           String smsNumber = pageResultSet.getString(SMS_NUMBER);
           String currentCharges = pageResultSet.getString(CURRENT_CHARGES);
@@ -245,7 +244,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           String referenceId = userRL.get().getFolioReference().toString();
 
-          UserRecord userRecord = new UserRecord(referenceId, patronId, externalSystemId, lastName, firstName, middleName, activeDate, expireDate, smsNumber, currentCharges);
+          UserRecord userRecord = new UserRecord(referenceId, patronId, externalSystemId, lastName, firstName, middleName, expireDate, smsNumber, currentCharges);
 
           PatronCodes patronCodes = new PatronCodes();
 
