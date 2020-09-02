@@ -24,7 +24,7 @@ public class UserRecord {
   private static final String PHONE_PRIMARY = "Primary";
   private static final String PHONE_MOBILE = "Mobile";
 
-  private static final String DATE_FORMAT = "YYYYMMDD";
+  private static final String EXPIRED_DATE_FORMAT = "YYYY-MM-DD";
 
   private final String referenceId;
   private final String patronId;
@@ -32,7 +32,6 @@ public class UserRecord {
   private final String lastName;
   private final String firstName;
   private final String middleName;
-  private final String activeDate;
   private final String expireDate;
   private final String smsNumber;
   private final String currentCharges;
@@ -46,14 +45,13 @@ public class UserRecord {
 
   private List<UserAddressRecord> userAddressRecords;
 
-  public UserRecord(String referenceId, String patronId, String externalSystemId, String lastName, String firstName, String middleName, String activeDate, String expireDate, String smsNumber, String currentCharges) {
+  public UserRecord(String referenceId, String patronId, String externalSystemId, String lastName, String firstName, String middleName, String expireDate, String smsNumber, String currentCharges) {
     this.referenceId = referenceId;
     this.patronId = patronId;
     this.externalSystemId = externalSystemId;
     this.lastName = lastName;
     this.firstName = firstName;
     this.middleName = middleName;
-    this.activeDate = activeDate;
     this.expireDate = expireDate;
     this.smsNumber = smsNumber;
     this.currentCharges = currentCharges;
@@ -81,10 +79,6 @@ public class UserRecord {
 
   public String getMiddleName() {
     return middleName;
-  }
-
-  public String getActiveDate() {
-    return activeDate;
   }
 
   public String getExpireDate() {
@@ -277,6 +271,8 @@ public class UserRecord {
         }
       }
     }
+
+    personal.setAddresses(addresses);
   }
 
   private void setExternalSystemId(Userdata userdata) {
@@ -286,22 +282,18 @@ public class UserRecord {
   }
 
   private void setActive(Userdata userdata) {
-    long charges = Long.parseLong(currentCharges);
-
-    if (Objects.nonNull(activeDate)) {
-      if (Objects.nonNull(currentCharges) && charges > 0) {
+    if (Objects.nonNull(expireDate)) {
+      if (Objects.nonNull(currentCharges) && Long.parseLong(currentCharges) > 0) {
         userdata.setActive(true);
       } else {
-        if (Objects.nonNull(expireDate)) {
-          try {
-            Date now = new Date();
-            Date expirationDate = DateUtils.parseDate(expireDate, DATE_FORMAT);
-            userdata.setExpirationDate(expirationDate);
-            userdata.setActive(now.before(expirationDate));
-          } catch (ParseException e) {
-            // assume unexpired on invalid date.
-            userdata.setActive(true);
-          }
+        try {
+          Date now = new Date();
+          Date expirationDate = DateUtils.parseDate(expireDate, EXPIRED_DATE_FORMAT);
+          userdata.setExpirationDate(expirationDate);
+          userdata.setActive(now.before(expirationDate));
+        } catch (ParseException e) {
+          // assume unexpired on invalid date.
+          userdata.setActive(true);
         }
       }
     } else {
