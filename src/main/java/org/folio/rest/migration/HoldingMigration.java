@@ -101,9 +101,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     JsonObject holdingsHridSettings = hridSettings.getJsonObject("holdings");
     String hridPrefix = holdingsHridSettings.getString(PREFIX);
-
-    int originalHridStartNumber = holdingsHridSettings.getInteger(START_NUMBER);
-    int hridStartNumber = originalHridStartNumber;
+    int hridStartNumber = holdingsHridSettings.getInteger(START_NUMBER);
 
     int index = 0;
 
@@ -135,12 +133,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext));
         offset += limit;
+        hridStartNumber += limit;
         index++;
-        if (i < partitions - 1) {
-          hridStartNumber += limit;
-        } else {
-          hridStartNumber = originalHridStartNumber + count;
-        }
       }
     }
 

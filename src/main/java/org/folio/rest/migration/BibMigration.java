@@ -134,9 +134,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     JsonObject instancesHridSettings = hridSettings.getJsonObject("instances");
     String hridPrefix = instancesHridSettings.getString(PREFIX);
-    int originalHridStartNumber = instancesHridSettings.getInteger(START_NUMBER);
-
-    int hridStartNumber = originalHridStartNumber;
+    int hridStartNumber = instancesHridSettings.getInteger(START_NUMBER);
 
     int index = 0;
 
@@ -169,12 +167,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new BibPartitionTask(migrationService, instanceMapper, partitionContext));
         offset += limit;
+        hridStartNumber += limit;
         index++;
-        if (i < partitions - 1) {
-          hridStartNumber += limit;
-        } else {
-          hridStartNumber = originalHridStartNumber + count;
-        }
       }
     }
 
