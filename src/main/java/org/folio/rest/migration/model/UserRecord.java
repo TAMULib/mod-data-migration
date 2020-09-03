@@ -165,7 +165,7 @@ public class UserRecord {
     userdata.setType(PATRON);
 
     setExternalSystemId(userdata);
-    setActive(userdata);
+    setActive(userdata, defaults);
     setBarcode(userdata);
     setUsername(userdata);
 
@@ -277,24 +277,31 @@ public class UserRecord {
 
   private void setExternalSystemId(Userdata userdata) {
     if (Objects.nonNull(externalSystemId)) {
-      userdata.setExternalSystemId(externalSystemId);  
+      userdata.setExternalSystemId(externalSystemId);
     }
   }
 
-  private void setActive(Userdata userdata) {
+  private void setActive(Userdata userdata, UserDefaults defaults) {
     if (Objects.nonNull(expireDate)) {
-      if (Objects.nonNull(currentCharges) && Long.parseLong(currentCharges) > 0) {
-        userdata.setActive(true);
-      } else {
-        try {
-          Date now = new Date();
-          Date expirationDate = DateUtils.parseDate(expireDate, EXPIRED_DATE_FORMAT);
-          userdata.setExpirationDate(expirationDate);
-          userdata.setActive(now.before(expirationDate));
-        } catch (ParseException e) {
-          // assume unexpired on invalid date.
+      try {
+        Date expirationDate = DateUtils.parseDate(expireDate, EXPIRED_DATE_FORMAT);
+        userdata.setExpirationDate(expirationDate);
+        Date now = new Date();
+        boolean hasExpired = now.after(expirationDate);
+        if (Objects.nonNull(currentCharges) && Long.parseLong(currentCharges) > 0) {
           userdata.setActive(true);
+          if (hasExpired) {
+            userdata.setExpirationDate(DateUtils.parseDate(defaults.getExpirationDate(), EXPIRED_DATE_FORMAT));
+          }
+        } else {
+          if (hasExpired) {
+            userdata.setActive(false);
+          } else {
+            userdata.setActive(true);
+          }
         }
+      } catch (ParseException e) {
+        userdata.setActive(true);
       }
     } else {
       userdata.setActive(true);
