@@ -270,6 +270,10 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
           String referenceId = vendorRL.get().getFolioReference();
 
+          if (maps.getVendorTypes().containsKey(vendorType)) {
+            vendorType = maps.getVendorTypes().get(vendorType);
+          }
+
           VendorRecord vendorRecord = new VendorRecord(referenceId, vendorId, vendorCode, vendorType, vendorName, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
 
           try {
