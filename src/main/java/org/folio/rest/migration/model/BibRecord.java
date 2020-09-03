@@ -118,7 +118,7 @@ public class BibRecord {
     this.createdDate = createdDate;
   }
 
-  public RecordModel toRecordModel(String jobExecutionId) {
+  public RecordModel toRecordModel(String jobExecutionId, int order) {
     final RecordModel recordModel = new RecordModel();
     recordModel.setId(sourceRecordId);
     recordModel.setSnapshotId(jobExecutionId);
@@ -126,6 +126,7 @@ public class BibRecord {
     recordModel.setRecordType(RecordType.MARC);
     recordModel.setRawRecordId(rawRecordId);
     recordModel.setParsedRecordId(parsedRecordId);
+    recordModel.setOrder(order);
     ExternalIdsHolder externalIdsHolder = new ExternalIdsHolder();
     externalIdsHolder.setInstanceId(instanceId);
     recordModel.setExternalIdsHolder(externalIdsHolder);
