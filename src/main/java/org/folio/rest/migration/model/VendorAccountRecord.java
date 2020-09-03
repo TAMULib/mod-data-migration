@@ -115,7 +115,7 @@ public class VendorAccountRecord {
   }
 
   private void setStatus(Account account) {
-    if (Objects.nonNull(status) && status.contentEquals("1")) {
+    if (Objects.nonNull(status) && status.contentEquals("0")) {
       account.setAccountStatus("active");
     } else {
       account.setAccountStatus("inactive");
