@@ -353,7 +353,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
             RawRecord rawRecord = bibRecord.toRawRecord();
             ParsedRecord parsedRecord = bibRecord.toParsedRecord();
-            RecordModel recordModel = bibRecord.toRecordModel(null, count);
+            RecordModel recordModel = bibRecord.toRecordModel(jobExecutionId, count);
 
             Instance instance = bibRecord.toInstance(instanceMapper, hridString);
 
