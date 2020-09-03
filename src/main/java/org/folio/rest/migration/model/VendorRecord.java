@@ -217,7 +217,7 @@ public class VendorRecord {
 
   private void setCode(Organization organization) {
     // vendor codes may not contain embedded blanks.
-    organization.setCode(code.replaceAll("/ /", StringUtils.EMPTY));
+    organization.setCode(code.replaceAll(StringUtils.SPACE, StringUtils.EMPTY));
   }
 
   private void setCurrencies(Organization organization) {
