@@ -249,8 +249,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       int count = 0;
 
-      System.out.println(String.format(RECORDS_COPY_SQL, tenant));
-
       try (
         PrintWriter rawRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getRawRecordConnection(), String.format(RAW_RECORDS_COPY_SQL, tenant)), true);
         PrintWriter parsedRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getParsedRecordConnection(), String.format(PARSED_RECORDS_COPY_SQL, tenant)), true);
