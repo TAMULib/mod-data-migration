@@ -393,6 +393,15 @@ POST to http://localhost:9000/migrate/vendors
       "YEMEN": "YEM",
       "ZAMBIA": "ZMB",
       "ZIMBABWE": "ZWE"
+    },
+    "vendorTypes": {
+      "BF": "Backfile vendor",
+      "CO": "Continuations vendor",
+      "DB": "Database vendor",
+      "ER": "Electronic resources vendor",
+      "MO": "Monographs vendor",
+      "NO": "Converted from NOTIS to Voyager",
+      "SR": "Serials vendor"
     }
   },
   "defaults": {

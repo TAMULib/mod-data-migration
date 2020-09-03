@@ -186,8 +186,12 @@ public class VendorRecord {
     organization.setId(referenceId);
     organization.setIsVendor(true);
     organization.setName(name);
-    organization.setTaxId(taxId);
-    organization.setClaimingInterval(claimingInterval);
+    if (StringUtils.isNotEmpty(taxId)) {
+      organization.setTaxId(taxId);
+    }
+    if (Objects.nonNull(claimingInterval)) {
+      organization.setClaimingInterval(claimingInterval);
+    }
 
     organization.setAccounts(vendorAccountRecords.stream().map(vendorAccount -> vendorAccount.toAccount(defaults)).collect(Collectors.toList()));
 
@@ -218,7 +222,9 @@ public class VendorRecord {
 
   private void setCurrencies(Organization organization) {
     List<String> currencies = new ArrayList<>();
-    currencies.add(defaultCurrency);
+    if (StringUtils.isNotEmpty(defaultCurrency)) {
+      currencies.add(defaultCurrency);
+    }
 
     organization.setVendorCurrencies(currencies);
   }
