@@ -43,7 +43,6 @@ public class VendorPhoneRecord {
     final PhoneNumber phoneNumber = new PhoneNumber();
 
     phoneNumber.setPhoneNumber(number);
-    
     phoneNumber.setCategories(categories);
 
     setLanguage(phoneNumber, defaults);
