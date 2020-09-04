@@ -23,9 +23,6 @@ public class BibRecord {
   private final Boolean suppressDiscovery;
   private final Set<String> statisticalCodes;
 
-  private final String rawRecordId;
-  private final String parsedRecordId;
-
   private String marc;
   private String sourceRecordId;
   private String instanceId;
@@ -42,8 +39,6 @@ public class BibRecord {
     this.statusId = statusId;
     this.suppressDiscovery = suppressDiscovery;
     this.statisticalCodes = statisticalCodes;
-    this.rawRecordId = UUID.randomUUID().toString();
-    this.parsedRecordId = UUID.randomUUID().toString();
   }
 
   public String getBibId() {
@@ -52,14 +47,6 @@ public class BibRecord {
 
   public Boolean getSuppressDiscovery() {
     return suppressDiscovery;
-  }
-
-  public String getRawRecordId() {
-    return rawRecordId;
-  }
-
-  public String getParsedRecordId() {
-    return parsedRecordId;
   }
 
   public String getMarc() {
@@ -124,8 +111,8 @@ public class BibRecord {
     recordModel.setSnapshotId(jobExecutionId);
     recordModel.setMatchedId(sourceRecordId);
     recordModel.setRecordType(RecordType.MARC);
-    recordModel.setRawRecordId(rawRecordId);
-    recordModel.setParsedRecordId(parsedRecordId);
+    recordModel.setRawRecordId(sourceRecordId);
+    recordModel.setParsedRecordId(sourceRecordId);
     recordModel.setOrder(order);
     ExternalIdsHolder externalIdsHolder = new ExternalIdsHolder();
     externalIdsHolder.setInstanceId(instanceId);
@@ -142,14 +129,14 @@ public class BibRecord {
 
   public RawRecord toRawRecord() {
     final RawRecord rawRecord = new RawRecord();
-    rawRecord.setId(rawRecordId);
+    rawRecord.setId(sourceRecordId);
     rawRecord.setContent(marc);
     return rawRecord;
   }
 
   public ParsedRecord toParsedRecord() {
     final ParsedRecord parsedRecord = new ParsedRecord();
-    parsedRecord.setId(parsedRecordId);
+    parsedRecord.setId(sourceRecordId);
     parsedRecord.setContent(this.parsedRecord.getMap());
     return parsedRecord;
   }
