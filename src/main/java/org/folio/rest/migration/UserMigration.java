@@ -88,7 +88,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
   private static final String USERS_COPY_SQL = "COPY %s_mod_users.users (id,jsonb,creation_date,created_by,patrongroup) FROM STDIN";
 
   // (id,jsonb,temporary_type_id)
-  private static final String NOTES_COPY_SQL = "COPY %s_mod_notes.note_data (id,jsonb) FROM STDIN";
+  private static final String NOTES_COPY_SQL = "COPY %s_mod_notes.note_data (id,jsonb,temporary_type_id) FROM STDIN";
 
   private UserMigration(UserContext context, String tenant) {
     super(context, tenant);
@@ -321,7 +321,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
               Note note = patronNote.toNote(userdata.getId(), job.getDbCode(), job.getNoteTypeId());
               String noteUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(note)));
 
-              noteWriter.println(String.join("\t", note.getId(), noteUtf8Json));
+              noteWriter.println(String.join("\t", note.getId(), noteUtf8Json, note.getTypeId()));
             }
           } catch (JsonProcessingException e) {
             log.error("{} user id {} error serializing user", schema, userRecord.getPatronId());
