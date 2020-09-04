@@ -295,8 +295,14 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
             List<Email> emails = new ArrayList<>();
             List<Url> urls = new ArrayList<>();
 
+            Date createdDate = new Date();
+            String createdByUserId = job.getUserId();
+            String createdAt = DATE_TIME_FOMATTER.format(new Date().toInstant().atOffset(ZoneOffset.UTC));
+
             for (VendorAddressRecord vendorAddress : vendorRecord.getVendorAddresses()) {
               vendorAddress.setVendorId(vendorId);
+              vendorAddress.setCreatedDate(createdDate);
+              vendorAddress.setCreatedByUserId(createdByUserId);
 
               List<String> categories = vendorAddress.getCategories(maps);
 
@@ -305,9 +311,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
               } else if (vendorAddress.isContact()) {
                 Contact contact = vendorAddress.toContact(categories, defaults, maps);
 
-                String createdAt = DATE_TIME_FOMATTER.format(new Date().toInstant().atOffset(ZoneOffset.UTC));
-                String createdByUserId = job.getUserId();
-                
                 String contactUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(contact)));
 
                 contactWriter.println(String.join("\t", contact.getId(), contactUtf8Json, createdAt, createdByUserId));
@@ -321,19 +324,21 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
               vendorAddressPhoneNumbersContext.put(ADDRESS_ID, vendorAddress.getAddressId());
               vendorAddressPhoneNumbersContext.put(CATEGORIES, categories);
               vendorPhoneNumbers.addAll(getVendorAddressPhoneNumbers(phoneStatement, vendorAddressPhoneNumbersContext));
+
+              vendorPhoneNumbers.forEach(vendorPhoneNumber -> {
+                vendorPhoneNumber.setCreatedDate(createdDate);
+                vendorPhoneNumber.setCreatedByUserId(job.getUserId());
+              });
             }
+
+            vendorRecord.setCreatedDate(createdDate);
+            vendorRecord.setCreatedByUserId(job.getUserId());
+
             vendorRecord.setAddresses(addresses);
             vendorRecord.setContacts(contacts);
             vendorRecord.setEmails(emails);
             vendorRecord.setUrls(urls);
             vendorRecord.setVendorPhoneNumbers(vendorPhoneNumbers);
-
-            Date createdDate = new Date();
-            vendorRecord.setCreatedDate(createdDate);
-            vendorRecord.setCreatedByUserId(job.getUserId());
-
-            String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-            String createdByUserId = job.getUserId();
 
             Organization organization = vendorRecord.toOrganization(defaults);
 

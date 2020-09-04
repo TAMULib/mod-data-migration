@@ -217,7 +217,6 @@ public class VendorAddressRecord {
   public Address toAddress(List<String> categories, VendorDefaults defaults, VendorMaps maps) {
     final Address address = new Address();
 
-    address.setId(addressId);
     address.setAddressLine1(addressLine1Full);
     address.setCity(city);
     address.setStateRegion(stateProvince);
@@ -252,7 +251,6 @@ public class VendorAddressRecord {
   public Email toEmail(List<String> categories) {
     final Email email = new Email();
 
-    email.setId(addressId);
     email.setValue(addressLine1);
 
     email.setCategories(categories);
@@ -266,8 +264,6 @@ public class VendorAddressRecord {
   public Url toUrl(List<String> categories) {
     final Url url = new Url();
 
-    url.setId(addressId);
-
     url.setCategories(categories);
 
     setDescription(url);
@@ -278,7 +274,7 @@ public class VendorAddressRecord {
   }
 
   private void setAddressLine2(Address address) {
-    if (Objects.nonNull(addressLine2) && addressLine2.matches("\\S")) {
+    if (StringUtils.isNotEmpty(addressLine2)) {
       address.setAddressLine2(addressLine2);
     }
   }
@@ -379,6 +375,8 @@ public class VendorAddressRecord {
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
 
     address.setMetadata(metadata);
   }
@@ -387,6 +385,8 @@ public class VendorAddressRecord {
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
 
     contact.setMetadata(metadata);
   }
@@ -395,6 +395,8 @@ public class VendorAddressRecord {
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
 
     email.setMetadata(metadata);
   }
@@ -403,6 +405,8 @@ public class VendorAddressRecord {
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
 
     url.setMetadata(metadata);
   }

@@ -123,11 +123,11 @@ POST to http://localhost:9000/migrate/vendors
   ],
   "maps": {
     "categories": {
-      "claim": "d931bdc4-ef47-4871-98d7-2c48f5ff4fe0",
-      "order": "9718aa38-8fb4-49e4-910b-bbdc2b1aa579",
-      "other": "04f39c67-b212-4fe7-87f0-0875c8995d21",
-      "payment": "ac6528cc-8ba0-4678-9b08-627ca2314ffd",
-      "return": "544459af-fc5e-4e64-9b40-acb84ac4d3aa"
+      "claim": "9491fdad-b97b-45df-9783-337d86abc80f",
+      "order": "549d6d85-a51a-4cfc-8cfa-e4d46fb33823",
+      "other": "71a3e461-1777-4a6f-b1cc-d4a856d141ec",
+      "payment": "62042758-5266-472a-a3e9-ea1ca0ccf056",
+      "return": "3c31275e-7ed8-4ec0-9b18-31243461f6ea"
     },
     "countryCodes": {
       "AFGHANISTAN": "AFG",
