@@ -238,7 +238,7 @@ public class VendorAddressRecord {
 
     contact.setId(UUID.randomUUID().toString());
     contact.setFirstName(contactName);
-    contact.setLastName(" ");
+    contact.setLastName(StringUtils.SPACE);
 
     contact.setCategories(categories);
 
@@ -368,7 +368,7 @@ public class VendorAddressRecord {
   }
 
   private void setValue(Url url) {
-    if (addressLine1.toLowerCase().matches("^http")) {
+    if (addressLine1.toLowerCase().startsWith("http")) {
       url.setValue(addressLine1);
     } else {
       url.setValue("http://" + addressLine1);
