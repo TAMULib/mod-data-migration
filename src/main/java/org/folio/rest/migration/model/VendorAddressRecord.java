@@ -274,7 +274,7 @@ public class VendorAddressRecord {
   }
 
   private void setAddressLine2(Address address) {
-    if (Objects.nonNull(addressLine2) && addressLine2.matches("\\S")) {
+    if (StringUtils.isNotEmpty(addressLine2)) {
       address.setAddressLine2(addressLine2);
     }
   }
@@ -375,6 +375,8 @@ public class VendorAddressRecord {
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
 
     address.setMetadata(metadata);
   }
@@ -383,6 +385,8 @@ public class VendorAddressRecord {
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
 
     contact.setMetadata(metadata);
   }
@@ -391,6 +395,8 @@ public class VendorAddressRecord {
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
 
     email.setMetadata(metadata);
   }
@@ -399,6 +405,8 @@ public class VendorAddressRecord {
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
 
     url.setMetadata(metadata);
   }

@@ -281,6 +281,8 @@ public class VendorRecord {
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
 
     organization.setMetadata(metadata);
   }
