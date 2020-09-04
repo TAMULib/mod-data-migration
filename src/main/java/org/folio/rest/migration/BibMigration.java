@@ -363,14 +363,9 @@ public class BibMigration extends AbstractMigration<BibContext> {
             String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
 
+            String rrcUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(rawRecord.getContent())));
             String prcUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(parsedRecord.getContent())));
             String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(instance)));
-
-            // (id,content)
-            rawRecordWriter.println(String.join("\t", rawRecord.getId(), rawRecord.getContent()));
-
-            // (id,content)
-            parsedRecordWriter.println(String.join("\t", parsedRecord.getId(), prcUtf8Json));
 
             // (id,snapshot_id,matched_id,generation,record_type,instance_id,state,leader_record_status,\"order\",suppress_discovery,created_by_user_id,created_date,updated_by_user_id,updated_date)
             recordWriter.println(String.join("\t",
@@ -389,6 +384,12 @@ public class BibMigration extends AbstractMigration<BibContext> {
               createdByUserId,
               createdAt
             ));
+
+            // (id,content)
+            rawRecordWriter.println(String.join("\t", rawRecord.getId(), rrcUtf8Json));
+
+            // (id,content)
+            parsedRecordWriter.println(String.join("\t", parsedRecord.getId(), prcUtf8Json));
 
             instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getStatusId(), instance.getModeOfIssuanceId(), instance.getInstanceTypeId()));
 
