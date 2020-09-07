@@ -313,7 +313,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
                 String contactUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(contact)));
 
-                // TODO: validate rows
                 contactWriter.println(String.join("\t", contact.getId(), contactUtf8Json, createdAt, createdByUserId));
 
                 contacts.add(contact.getId());
@@ -350,7 +349,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
             String orgUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(organization)));
 
-            // TODO: validate rows
             organizationWriter.println(String.join("\t", organization.getId(), orgUtf8Json, createdAt, createdByUserId));
 
           } catch (JsonProcessingException e) {

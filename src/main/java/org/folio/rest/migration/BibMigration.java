@@ -82,14 +82,14 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private static final char I = 'i';
   private static final char S = 's';
 
-  // (id,jsonb,creation_date,created_by)
-  private static String RAW_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.raw_records (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
+  // (id,content)
+  private static String RAW_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.raw_records_lb (id,content) FROM STDIN WITH NULL AS 'null'";
 
-  // (id,jsonb,creation_date,created_by)
-  private static String PARSED_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.marc_records (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
+  // (id,content)
+  private static String PARSED_RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.marc_records_lb (id,content) FROM STDIN WITH NULL AS 'null'";
 
-  // (id,jsonb,creation_date,created_by,jobexecutionid)
-  private static String RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.records (id,jsonb,creation_date,created_by,jobexecutionid) FROM STDIN WITH NULL AS 'null'";
+  // (id,snapshot_id,matched_id,generation,record_type,instance_id,state,leader_record_status,\"order\",suppress_discovery,created_by_user_id,created_date,updated_by_user_id,updated_date)
+  private static String RECORDS_COPY_SQL = "COPY %s_mod_source_record_storage.records_lb (id,snapshot_id,matched_id,generation,record_type,instance_id,state,leader_record_status,\"order\",suppress_discovery,created_by_user_id,created_date,updated_by_user_id,updated_date) FROM STDIN WITH NULL AS 'null'";
 
   // (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid)
   private static String INSTANCE_COPY_SQL = "COPY %s_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid) FROM STDIN WITH NULL AS 'null'";
@@ -336,6 +336,12 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
             JsonObject marcJsonObject = new JsonObject(marcJson);
 
+            String leaderRecordStatus = null;
+            String leader = marcJsonObject.getString("leader");
+            if (Objects.nonNull(leader) && leader.length() > 5) {
+              leaderRecordStatus = String.valueOf(leader.charAt(5));
+            }
+
             bibRecord.setMarc(marc);
             bibRecord.setParsedRecord(marcJsonObject);
 
@@ -345,7 +351,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
             RawRecord rawRecord = bibRecord.toRawRecord();
             ParsedRecord parsedRecord = bibRecord.toParsedRecord();
-            RecordModel recordModel = bibRecord.toRecordModel(jobExecutionId);
+            RecordModel recordModel = bibRecord.toRecordModel(jobExecutionId, count);
 
             Instance instance = bibRecord.toInstance(instanceMapper, hridString);
 
@@ -357,16 +363,34 @@ public class BibMigration extends AbstractMigration<BibContext> {
             String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = job.getUserId();
 
-            String rrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(rawRecord)));
-            String prUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(parsedRecord)));
-            String rmUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(recordModel)));
+            String rrcUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(rawRecord.getContent())));
+            String prcUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(parsedRecord.getContent())));
             String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(instance)));
 
-            // TODO: validate rows
+            // (id,snapshot_id,matched_id,generation,record_type,instance_id,state,leader_record_status,\"order\",suppress_discovery,created_by_user_id,created_date,updated_by_user_id,updated_date)
+            recordWriter.println(String.join("\t",
+              recordModel.getId(),
+              recordModel.getSnapshotId(),
+              recordModel.getMatchedId(),
+              recordModel.getGeneration().toString(),
+              recordModel.getRecordType().toString(),
+              recordModel.getExternalIdsHolder().getInstanceId(),
+              recordModel.getState().toString(),
+              leaderRecordStatus,
+              recordModel.getOrder().toString(),
+              recordModel.getAdditionalInfo().getSuppressDiscovery().toString(),
+              createdByUserId,
+              createdAt,
+              createdByUserId,
+              createdAt
+            ));
 
-            rawRecordWriter.println(String.join("\t", rawRecord.getId(), rrUtf8Json, createdAt, createdByUserId));
-            parsedRecordWriter.println(String.join("\t", parsedRecord.getId(), prUtf8Json, createdAt, createdByUserId));
-            recordWriter.println(String.join("\t", recordModel.getId(), rmUtf8Json, createdAt, createdByUserId, recordModel.getSnapshotId()));
+            // (id,content)
+            rawRecordWriter.println(String.join("\t", rawRecord.getId(), rrcUtf8Json));
+
+            // (id,content)
+            parsedRecordWriter.println(String.join("\t", parsedRecord.getId(), prcUtf8Json));
+
             instanceWriter.println(String.join("\t", instance.getId(), iUtf8Json, createdAt, createdByUserId, instance.getStatusId(), instance.getModeOfIssuanceId(), instance.getInstanceTypeId()));
 
             hrid++;
