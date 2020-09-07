@@ -610,7 +610,7 @@ POST to http://localhost:9000/migrate/bibs
       "partitions": 48,
       "controlNumberIdentifier": "evans",
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
-      "instanceStatusId": "9634a5ab-9228-4703-baf2-4d12ebc77d56",
+      "instanceStatusId": "c8d51dc6-2f84-4220-8aef-3c4894d53b93",
       "profile": {
         "name": "TAMU AMDB Bibligraphic Migration",
         "description": "Voyager migration profile",
@@ -626,7 +626,7 @@ POST to http://localhost:9000/migrate/bibs
       "partitions": 4,
       "controlNumberIdentifier": "msl",
       "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
-      "instanceStatusId": "9634a5ab-9228-4703-baf2-4d12ebc77d56",
+      "instanceStatusId": "c8d51dc6-2f84-4220-8aef-3c4894d53b93",
       "profile": {
         "name": "TAMU MSDB Bibligraphic Migration",
         "description": "Voyager migration profile",
