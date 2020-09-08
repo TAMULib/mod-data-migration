@@ -1059,6 +1059,44 @@ POST to http://localhost:9000/migrate/loans
 }
 ```
 
+## Fee/Fines Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/feesfines
+
+```
+{
+  "extraction": {
+    "countSql": "",
+    "pageSql": "",
+    "materialTypeSql": "",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": ""
+    }
+  },
+  "preActions": [],
+  "postActions": [],
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 12
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 4
+    }
+  ],
+  "maps": {
+
+  }
+}
+```
+
 ## Migration Notes
 
 The `parallelism` property designates the number of processes executed in parallel.

@@ -3,6 +3,7 @@ package org.folio.rest.migration.controller;
 import java.util.concurrent.CompletableFuture;
 
 import org.folio.rest.migration.BibMigration;
+import org.folio.rest.migration.FeeFineMigration;
 import org.folio.rest.migration.HoldingMigration;
 import org.folio.rest.migration.InventoryReferenceLinkMigration;
 import org.folio.rest.migration.ItemMigration;
@@ -16,6 +17,7 @@ import org.folio.rest.migration.aspect.annotation.CreateReferenceData;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceLinkTypes;
 import org.folio.rest.migration.aspect.annotation.UpdateRules;
 import org.folio.rest.migration.model.request.bib.BibContext;
+import org.folio.rest.migration.model.request.feefine.FeeFineContext;
 import org.folio.rest.migration.model.request.holding.HoldingContext;
 import org.folio.rest.migration.model.request.inventory.InventoryReferenceLinkContext;
 import org.folio.rest.migration.model.request.item.ItemContext;
@@ -94,6 +96,12 @@ public class MigrationController {
   @UpdateRules(file = "classpath:/rules/loans/rules.json", path = "circulation-rules-storage")
   public CompletableFuture<String> loans(@RequestBody LoanContext context, @TenantHeader String tenant) {
     return migrationService.migrate(LoanMigration.with(context, tenant));
+  }
+
+  @PostMapping("/feefines")
+  @CreateReferenceData(pattern = "classpath:/referenceData/feefines/*.json")
+  public CompletableFuture<String> feefines(@RequestBody FeeFineContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(FeeFineMigration.with(context, tenant));
   }
 
 }

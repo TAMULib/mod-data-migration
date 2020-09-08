@@ -1,5 +1,5 @@
 package org.folio.rest.migration.model;
 
-public class LoanRecord {
+public class FeeFineRecord {
 
 }
