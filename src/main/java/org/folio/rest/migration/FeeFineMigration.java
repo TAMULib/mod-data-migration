@@ -18,8 +18,8 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.codehaus.plexus.util.StringUtils;
-import org.folio.rest.jaxrs.model.Accountdata;
-import org.folio.rest.jaxrs.model.Feefineactiondata;
+import org.folio.rest.jaxrs.model.feesfines.Accountdata;
+import org.folio.rest.jaxrs.model.feesfines.Feefineactiondata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.FeeFineRecord;
 import org.folio.rest.migration.model.request.feefine.FeeFineContext;

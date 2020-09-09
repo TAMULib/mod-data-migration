@@ -13,12 +13,12 @@ import java.util.concurrent.CompletableFuture;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.time.DateUtils;
-import org.folio.rest.jaxrs.model.CheckOutByBarcodeRequest;
-import org.folio.rest.jaxrs.model.Loan;
-import org.folio.rest.jaxrs.model.Location;
-import org.folio.rest.jaxrs.model.Locations;
-import org.folio.rest.jaxrs.model.Servicepoint;
-import org.folio.rest.jaxrs.model.Servicepoints;
+import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
+import org.folio.rest.jaxrs.model.circulation.Loan;
+import org.folio.rest.jaxrs.model.inventory.Location;
+import org.folio.rest.jaxrs.model.inventory.Locations;
+import org.folio.rest.jaxrs.model.inventory.Servicepoint;
+import org.folio.rest.jaxrs.model.inventory.Servicepoints;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.loan.LoanContext;
 import org.folio.rest.migration.model.request.loan.LoanJob;

@@ -26,11 +26,11 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.Userdata;
-import org.folio.rest.jaxrs.model.Usergroup;
-import org.folio.rest.jaxrs.model.Usergroups;
-import org.folio.rest.jaxrs.model.types.notes.Link;
-import org.folio.rest.jaxrs.model.types.notes.Note;
+import org.folio.rest.jaxrs.model.notes.types.notes.Link;
+import org.folio.rest.jaxrs.model.notes.types.notes.Note;
+import org.folio.rest.jaxrs.model.users.Userdata;
+import org.folio.rest.jaxrs.model.users.Usergroup;
+import org.folio.rest.jaxrs.model.users.Usergroups;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.UserAddressRecord;
 import org.folio.rest.migration.model.UserRecord;

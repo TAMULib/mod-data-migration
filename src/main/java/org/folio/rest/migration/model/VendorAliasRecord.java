@@ -1,6 +1,6 @@
 package org.folio.rest.migration.model;
 
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Alias;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Alias;
 
 public class VendorAliasRecord {
 

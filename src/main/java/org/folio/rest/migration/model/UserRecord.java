@@ -8,9 +8,9 @@ import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
-import org.folio.rest.jaxrs.model.Address;
-import org.folio.rest.jaxrs.model.Personal;
-import org.folio.rest.jaxrs.model.Userdata;
+import org.folio.rest.jaxrs.model.users.Address;
+import org.folio.rest.jaxrs.model.users.Personal;
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.model.request.user.UserDefaults;
 
 public class UserRecord {

@@ -5,11 +5,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.Accountdata;
-import org.folio.rest.jaxrs.model.Feefineactiondata;
-import org.folio.rest.jaxrs.model.Metadata;
-import org.folio.rest.jaxrs.model.PaymentStatus;
-import org.folio.rest.jaxrs.model.Status__1;
+import org.folio.rest.jaxrs.model.feesfines.Accountdata;
+import org.folio.rest.jaxrs.model.feesfines.Feefineactiondata;
+import org.folio.rest.jaxrs.model.feesfines.Metadata;
+import org.folio.rest.jaxrs.model.feesfines.PaymentStatus;
 import org.folio.rest.migration.model.request.feefine.FeeFineDefaults;
 import org.folio.rest.migration.model.request.feefine.FeeFineMaps;
 import org.folio.rest.model.ReferenceLink;
