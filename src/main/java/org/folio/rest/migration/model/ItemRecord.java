@@ -3,18 +3,13 @@ package org.folio.rest.migration.model;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.CirculationNote;
 import org.folio.rest.jaxrs.model.Item;
 import org.folio.rest.jaxrs.model.Materialtypes;

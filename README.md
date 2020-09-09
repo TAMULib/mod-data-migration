@@ -1068,7 +1068,7 @@ POST to http://localhost:9000/migrate/feesfines
 ```
 {
   "extraction": {
-    "countSql": "SELECT COUNT(*) FROM ( SELECT distinct patron_id, ff.item_id AS item_id, item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, mi.mfhd_id AS mfhd_id, display_call_no, item_enum, chron, CASE WHEN i.temp_location > 0 then i.temp_location ELSE i.perm_location end AS effective_location, ff.fine_fee_location AS fine_location, substr(title,1,80) AS title, bm.bib_id AS bib_id FROM ${SCHEMA}.fine_fee ff, ${SCHEMA}.item_barcode ib, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.mfhd_master mm, ${SCHEMA}.item i, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.bib_text bt WHERE ff.item_id = ib.item_id(+) AND ff.item_id = mi.item_id AND mi.mfhd_id = mm.mfhd_id AND ff.item_id = i.item_id AND mm.mfhd_id = bm.mfhd_id AND bm.bib_id = bt.bib_id AND (ib.barcode_status = 1 or ib.item_id is null) AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' UNION SELECT distinct patron_id, null AS item_id, null AS item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, null AS mfhd_id, null AS display_call_no, null AS item_enum, null AS chron, null AS effective_location, ff.fine_fee_location AS fine_location, null AS title, null AS bib_id FROM ${SCHEMA}.fine_fee ff WHERE ff.item_id = 0 AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' ORDER BY patron_id, create_date )",
+    "countSql": "SELECT COUNT(*) AS total FROM ( SELECT distinct patron_id, ff.item_id AS item_id, item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, mi.mfhd_id AS mfhd_id, display_call_no, item_enum, chron, CASE WHEN i.temp_location > 0 then i.temp_location ELSE i.perm_location end AS effective_location, ff.fine_fee_location AS fine_location, substr(title,1,80) AS title, bm.bib_id AS bib_id FROM ${SCHEMA}.fine_fee ff, ${SCHEMA}.item_barcode ib, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.mfhd_master mm, ${SCHEMA}.item i, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.bib_text bt WHERE ff.item_id = ib.item_id(+) AND ff.item_id = mi.item_id AND mi.mfhd_id = mm.mfhd_id AND ff.item_id = i.item_id AND mm.mfhd_id = bm.mfhd_id AND bm.bib_id = bt.bib_id AND (ib.barcode_status = 1 or ib.item_id is null) AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' UNION SELECT distinct patron_id, null AS item_id, null AS item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, null AS mfhd_id, null AS display_call_no, null AS item_enum, null AS chron, null AS effective_location, ff.fine_fee_location AS fine_location, null AS title, null AS bib_id FROM ${SCHEMA}.fine_fee ff WHERE ff.item_id = 0 AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' ORDER BY patron_id, create_date )",
     "pageSql": "SELECT distinct patron_id, ff.item_id AS item_id, item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, mi.mfhd_id AS mfhd_id, display_call_no, item_enum, chron, CASE WHEN i.temp_location > 0 then i.temp_location ELSE i.perm_location end AS effective_location, ff.fine_fee_location AS fine_location, substr(title,1,80) AS title, bm.bib_id AS bib_id FROM ${SCHEMA}.fine_fee ff, ${SCHEMA}.item_barcode ib, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.mfhd_master mm, ${SCHEMA}.item i, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.bib_text bt WHERE ff.item_id = ib.item_id(+) AND ff.item_id = mi.item_id AND mi.mfhd_id = mm.mfhd_id AND ff.item_id = i.item_id AND mm.mfhd_id = bm.mfhd_id AND bm.bib_id = bt.bib_id AND (ib.barcode_status = 1 or ib.item_id is null) AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' UNION SELECT distinct patron_id, null AS item_id, null AS item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, null AS mfhd_id, null AS display_call_no, null AS item_enum, null AS chron, null AS effective_location, ff.fine_fee_location AS fine_location, null AS title, null AS bib_id FROM ${SCHEMA}.fine_fee ff WHERE ff.item_id = 0 AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' ORDER BY patron_id, create_date OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "materialTypeSql": "SELECT distinct lower(normal_heading) AS mtype_code FROM ${SCHEMA}.bib_index bi, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.fine_fee ff WHERE bi.bib_id = bm.bib_id AND bm.mfhd_id = mi.mfhd_id AND mi.item_id = ff.item_id AND index_code = '338B' AND ff.item_id = ${ITEM_ID}",
     "database": {
@@ -1092,7 +1092,56 @@ POST to http://localhost:9000/migrate/feesfines
     }
   ],
   "maps": {
-
+    "feefineTypeLabels": {
+      1: "Overdue (migrated)",
+      2: "Lost item replacement (migrated)",
+      3: "Lost item processing (migrated)"
+    },
+    "feefineOwner": {
+      "AMDB": {
+        "/^(24|36|37|47|48|51|223|242)$/": {
+          "ownerId": "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
+          "feeFineOwner": "AskUs Services",
+          "fineFeeType": {
+            1: "f55678e3-b8a2-43a5-a8ca-8d89c99df283",
+            2: "eead2e33-4784-4b50-9e86-4101c16e8b25",
+            3: "869ae91d-1960-4746-a561-f63e2b429f97"
+          }
+        },
+        "/^(132|136|166)$/": {
+          "ownerId": "014416f2-7609-4222-a812-1a3deb0591b8",
+          "feeFineOwner": "Business & PSEL Services",
+          "fineFeeType": {
+            1: "3b188387-dbd4-4fb3-9a9b-847f72cab0d7",
+            2: "09e14083-c85b-4f41-86ac-b24c47a81b7b",
+            3: "672fd96c-e175-4a4f-82e8-8d5362da34f7"
+          }
+        },
+        "/^(191)$/": {
+          "ownerId": "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
+          "feeFineOwner": "Qatar Library (TAMUQ)",
+          "fineFeeType": {
+            1: "69482cfd-efce-4a32-a001-a6d9bdd217ec",
+            2: "11a3e001-9762-41a2-9aa0-8f373f0270ca",
+            3: "3761b4f5-c1a9-46b9-b12f-6a1c76fb5eb1"
+          }
+        }
+      },
+      "MSDB": {
+        "/^.*$/": {
+          "ownerId": "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
+          "feeFineOwner": "Medical Sciences Library",
+          "fineFeeType": {
+            1: "bdef6fb7-9380-40a2-9c5b-4ab4e3cbe7ff",
+            2: "aa9183b3-ed54-4c09-a5d6-0d8e574dcc43",
+            3: "a4b170b9-f572-4bc0-b39a-9426093dc280"
+          }
+        }
+      }
+    }
+  },
+  "defaults": {
+    "materialTypeId": "3212b3e9-bce7-4ff1-88e2-8def758ba977"
   }
 }
 ```

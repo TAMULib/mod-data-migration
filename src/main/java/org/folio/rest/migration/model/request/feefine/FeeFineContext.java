@@ -16,6 +16,9 @@ public class FeeFineContext extends AbstractContext {
   @NotNull
   private FeeFineMaps maps;
 
+  @NotNull
+  private FeeFineDefaults defaults;
+
   public FeeFineContext() {
     super();
   }
@@ -42,6 +45,14 @@ public class FeeFineContext extends AbstractContext {
 
   public void setMaps(FeeFineMaps maps) {
     this.maps = maps;
+  }
+
+  public FeeFineDefaults getDefaults() {
+    return defaults;
+  }
+
+  public void setDefaults(FeeFineDefaults defaults) {
+    this.defaults = defaults;
   }
 
 }
