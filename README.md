@@ -46,7 +46,7 @@ POST to http://localhost:9000/migrate/vendor-reference-links
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "parallelism": 12,
@@ -91,7 +91,7 @@ POST to http://localhost:9000/migrate/vendors
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "preActions": [],
@@ -428,7 +428,7 @@ POST to http://localhost:9000/migrate/user-reference-links
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "parallelism": 12,
@@ -474,13 +474,13 @@ POST to http://localhost:9000/migrate/users
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     },
     "usernameDatabase": {
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "preActions": [],
@@ -549,7 +549,7 @@ POST to http://localhost:9000/migrate/inventory-reference-links
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "parallelism": 12,
@@ -598,7 +598,7 @@ POST to http://localhost:9000/migrate/bibs
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "preActions": [],
@@ -658,7 +658,7 @@ POST to http://localhost:9000/migrate/holdings
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "preActions": [],
@@ -818,7 +818,7 @@ POST to http://localhost:9000/migrate/items
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "preActions": [],
@@ -998,7 +998,7 @@ POST to http://localhost:9000/migrate/loans
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "preActions": [],
@@ -1068,14 +1068,14 @@ POST to http://localhost:9000/migrate/feesfines
 ```
 {
   "extraction": {
-    "countSql": "",
-    "pageSql": "",
-    "materialTypeSql": "",
+    "countSql": "SELECT COUNT(*) FROM ( SELECT distinct patron_id FROM ${SCHEMA}.fine_fee ff, ${SCHEMA}.item_barcode ib, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.mfhd_master mm, ${SCHEMA}.item i, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.bib_text bt WHERE ff.item_id = ib.item_id(+) AND ff.item_id = mi.item_id AND mi.mfhd_id = mm.mfhd_id AND ff.item_id = i.item_id AND mm.mfhd_id = bm.mfhd_id AND bm.bib_id = bt.bib_id AND (ib.barcode_status = 1 or ib.item_id is null) AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' UNION SELECT distinct patron_id FROM ${SCHEMA}.fine_fee ff WHERE ff.item_id = 0 AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' )",
+    "pageSql": "SELECT distinct patron_id, ff.item_id AS item_id, item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, mi.mfhd_id AS mfhd_id, display_call_no, item_enum, chron, CASE WHEN i.temp_location > 0 then i.temp_location ELSE i.perm_location end AS effective_location, ff.fine_fee_location AS fine_location, substr(title,1,80) AS title, bm.bib_id AS bib_id FROM ${SCHEMA}.fine_fee ff, ${SCHEMA}.item_barcode ib, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.mfhd_master mm, ${SCHEMA}.item i, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.bib_text bt WHERE ff.item_id = ib.item_id(+) AND ff.item_id = mi.item_id AND mi.mfhd_id = mm.mfhd_id AND ff.item_id = i.item_id AND mm.mfhd_id = bm.mfhd_id AND bm.bib_id = bt.bib_id AND (ib.barcode_status = 1 or ib.item_id is null) AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' UNION SELECT distinct patron_id, null AS item_id, null AS item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, null AS mfhd_id, null AS display_call_no, null AS item_enum, null AS chron, null AS effective_location, ff.fine_fee_location AS fine_location, null AS title, null AS bib_id FROM ${SCHEMA}.fine_fee ff WHERE ff.item_id = 0 AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' ORDER BY patron_id, create_date OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "materialTypeSql": "SELECT distinct lower(normal_heading) AS mtype_code FROM ${SCHEMA}.bib_index bi, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.fine_fee ff WHERE bi.bib_id = bm.bib_id AND bm.mfhd_id = mi.mfhd_id AND mi.item_id = ff.item_id AND index_code = '338B' AND ff.item_id = ${ITEM_ID}",
     "database": {
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "preActions": [],

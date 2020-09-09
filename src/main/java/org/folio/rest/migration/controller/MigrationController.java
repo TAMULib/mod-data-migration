@@ -98,9 +98,9 @@ public class MigrationController {
     return migrationService.migrate(LoanMigration.with(context, tenant));
   }
 
-  @PostMapping("/feefines")
-  @CreateReferenceData(pattern = "classpath:/referenceData/feefines/*.json")
-  public CompletableFuture<String> feefines(@RequestBody FeeFineContext context, @TenantHeader String tenant) {
+  @PostMapping("/feesfines")
+  @CreateReferenceData(pattern = "classpath:/referenceData/feesfines/*.json")
+  public CompletableFuture<String> feesfines(@RequestBody FeeFineContext context, @TenantHeader String tenant) {
     return migrationService.migrate(FeeFineMigration.with(context, tenant));
   }
 
