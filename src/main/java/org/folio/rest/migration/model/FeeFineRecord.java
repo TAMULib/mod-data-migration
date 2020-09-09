@@ -2,11 +2,10 @@ package org.folio.rest.migration.model;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
-import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.feesfines.Accountdata;
@@ -15,7 +14,6 @@ import org.folio.rest.jaxrs.model.feesfines.Metadata;
 import org.folio.rest.jaxrs.model.feesfines.PaymentStatus;
 import org.folio.rest.jaxrs.model.feesfines.Status;
 import org.folio.rest.migration.model.request.feefine.FeeFineDefaults;
-import org.folio.rest.migration.model.request.feefine.FeeFineJob;
 import org.folio.rest.migration.model.request.feefine.FeeFineMaps;
 import org.folio.rest.migration.model.request.feefine.FeeFineOwner;
 import org.folio.rest.model.ReferenceLink;
