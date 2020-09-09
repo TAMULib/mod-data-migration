@@ -1113,7 +1113,7 @@ POST to http://localhost:9000/migrate/feesfines
     },
     "feefineOwner": {
       "AMDB": {
-        "/^(24|36|37|47|48|51|223|242)$/": {
+        "^(24|36|37|47|48|51|223|242)$": {
           "ownerId": "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
           "feeFineOwner": "AskUs Services",
           "fineFeeType": {
@@ -1122,7 +1122,7 @@ POST to http://localhost:9000/migrate/feesfines
             3: "869ae91d-1960-4746-a561-f63e2b429f97"
           }
         },
-        "/^(132|136|166)$/": {
+        "^(132|136|166)$": {
           "ownerId": "014416f2-7609-4222-a812-1a3deb0591b8",
           "feeFineOwner": "Business & PSEL Services",
           "fineFeeType": {
@@ -1131,7 +1131,7 @@ POST to http://localhost:9000/migrate/feesfines
             3: "672fd96c-e175-4a4f-82e8-8d5362da34f7"
           }
         },
-        "/^(191)$/": {
+        "^(191)$": {
           "ownerId": "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
           "feeFineOwner": "Qatar Library (TAMUQ)",
           "fineFeeType": {
@@ -1142,7 +1142,7 @@ POST to http://localhost:9000/migrate/feesfines
         }
       },
       "MSDB": {
-        "/^.*$/": {
+        "^.+$": {
           "ownerId": "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
           "feeFineOwner": "Medical Sciences Library",
           "fineFeeType": {

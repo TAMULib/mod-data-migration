@@ -1,16 +1,23 @@
 package org.folio.rest.migration.model;
 
 import java.util.Date;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
+import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.feesfines.Accountdata;
 import org.folio.rest.jaxrs.model.feesfines.Feefineactiondata;
 import org.folio.rest.jaxrs.model.feesfines.Metadata;
 import org.folio.rest.jaxrs.model.feesfines.PaymentStatus;
+import org.folio.rest.jaxrs.model.feesfines.Status;
 import org.folio.rest.migration.model.request.feefine.FeeFineDefaults;
+import org.folio.rest.migration.model.request.feefine.FeeFineJob;
 import org.folio.rest.migration.model.request.feefine.FeeFineMaps;
+import org.folio.rest.migration.model.request.feefine.FeeFineOwner;
 import org.folio.rest.model.ReferenceLink;
 
 public class FeeFineRecord {
@@ -35,7 +42,7 @@ public class FeeFineRecord {
 
   private final String id;
 
-  private Optional<String> materialType;
+  private Optional<String> mTypeCode;
 
   private Optional<ReferenceLink> userRL;
 
@@ -43,25 +50,9 @@ public class FeeFineRecord {
   private Optional<ReferenceLink> holdingRL;
   private Optional<ReferenceLink> itemRL;
 
-  public FeeFineRecord(
-    String patronId,
-    String itemId,
-    String itemBarcode,
-    String finefeeId,
-    String amount,
-    String remaining,
-    String finefeeType,
-    String finefeeNote,
-    String createDate,
-    String mfhdId,
-    String displayCallNo,
-    String itemEnum,
-    String chron,
-    String effectiveLocation,
-    String fineLocation,
-    String title,
-    String bibId
-  ) {
+  public FeeFineRecord(String patronId, String itemId, String itemBarcode, String finefeeId, String amount,
+      String remaining, String finefeeType, String finefeeNote, String createDate, String mfhdId, String displayCallNo,
+      String itemEnum, String chron, String effectiveLocation, String fineLocation, String title, String bibId) {
     this.patronId = patronId;
     this.itemId = itemId;
     this.itemBarcode = itemBarcode;
@@ -83,7 +74,7 @@ public class FeeFineRecord {
     this.id = UUID.randomUUID().toString();
   }
 
-  public Accountdata toAccount(FeeFineMaps maps, FeeFineDefaults defaults) {
+  public Accountdata toAccount(FeeFineMaps maps, FeeFineDefaults defaults, String schema) {
     Accountdata account = new Accountdata();
     account.setId(getId());
 
@@ -102,7 +93,57 @@ public class FeeFineRecord {
     paymentStatus.setName("Outstanding");
     account.setPaymentStatus(paymentStatus);
 
-    // TODO: status
+    Status status = new Status();
+    status.setName("Open");
+    account.setStatus(status);
+
+    account.setMaterialTypeId(defaults.getMaterialTypeId());
+
+    if (itemRL.isPresent()) {
+
+      if (instanceRL.isPresent()) {
+        account.setInstanceId(instanceRL.get().getFolioReference());
+      }
+
+      if (holdingRL.isPresent()) {
+        account.setHoldingsRecordId(holdingRL.get().getFolioReference());
+      }
+
+      account.setItemId(itemRL.get().getFolioReference());
+
+      // TODO: set location
+      // account.setLocation();
+
+      if (Objects.nonNull(getItemBarcode())) {
+        account.setBarcode(getItemBarcode());
+      }
+
+      account.setTitle(getTitle());
+
+      String callNumber = getDisplayCallNo();
+      if (Objects.nonNull(getItemEnum())) {
+        callNumber += " " + getItemEnum();
+      }
+      if (Objects.nonNull(getChron())) {
+        callNumber += " " + getChron();
+      }
+      account.setCallNumber(callNumber);
+    } else {
+      account.setItemId(defaults.getItemId());
+    }
+
+    String fineLocation = getFineLocation();
+
+    Map<String, FeeFineOwner> feeFineOwnerMap = maps.getFeefineOwner().get(schema);
+    for (Entry<String, FeeFineOwner> feeDineOwnerEntry : feeFineOwnerMap.entrySet()) {
+      String regex = feeDineOwnerEntry.getKey();
+      if (fineLocation.matches(regex)) {
+        FeeFineOwner feeFineOwner = feeDineOwnerEntry.getValue();
+        account.setOwnerId(feeFineOwner.getOwnerId());
+        account.setFeeFineOwner(feeFineOwner.getFeeFineOwner());
+        account.setFeeFineId(feeFineOwner.getFineFeeType().get(getFinefeeType()));
+      }
+    }
 
     Metadata metadata = new Metadata();
     account.setMetadata(metadata);
@@ -125,6 +166,8 @@ public class FeeFineRecord {
     if (StringUtils.isNoneEmpty(getFinefeeNote())) {
       feefineaction.setComments(getFinefeeNote());
     }
+
+    feefineaction.setCreatedAt(account.getFeeFineOwner());
 
     return feefineaction;
   }
@@ -201,12 +244,12 @@ public class FeeFineRecord {
     return bibId;
     }
 
-  public Optional<String> getMaterialType() {
-    return materialType;
+  public Optional<String> getMTypeCode() {
+    return mTypeCode;
   }
 
-  public void setMaterialType(Optional<String> materialType) {
-    this.materialType = materialType;
+  public void setMTypeCode(Optional<String> mTypeCode) {
+    this.mTypeCode = mTypeCode;
   }
 
   public Optional<ReferenceLink> getUserRL() {

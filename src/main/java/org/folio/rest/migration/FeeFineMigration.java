@@ -226,13 +226,13 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
           if (StringUtils.isNotEmpty(itemId)) {
             materialTypeContext.put(ITEM_ID, itemId);
-            feefineRecord.setMaterialType(getMaterialType(materialTypeStatement, materialTypeContext));
+            feefineRecord.setMTypeCode(getMTypeCode(materialTypeStatement, materialTypeContext));
             feefineRecord.setInstanceRL(migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, bibId));
             feefineRecord.setHoldingRL(migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId));
             feefineRecord.setItemRL(migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId));
           }
 
-          Accountdata account = feefineRecord.toAccount(maps, defaults);
+          Accountdata account = feefineRecord.toAccount(maps, defaults, schema);
 
           account.getMetadata().setCreatedByUserId(job.getUserId());
           account.getMetadata().setCreatedDate(new Date());
@@ -276,7 +276,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
   }
 
-  private Optional<String> getMaterialType(Statement statement, Map<String, Object> context) {
+  private Optional<String> getMTypeCode(Statement statement, Map<String, Object> context) {
     Optional<String> materialType = Optional.empty();
       try (ResultSet resultSet = getResultSet(statement, context)) {
         while (resultSet.next()) {

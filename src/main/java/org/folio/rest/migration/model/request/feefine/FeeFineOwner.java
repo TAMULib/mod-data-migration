@@ -13,7 +13,7 @@ public class FeeFineOwner {
   private String feeFineOwner;
 
   @NotNull
-  private Map<Integer, String> fineFeeType;
+  private Map<String, String> fineFeeType;
 
   public FeeFineOwner() {
 
@@ -35,11 +35,11 @@ public class FeeFineOwner {
     this.feeFineOwner = feeFineOwner;
   }
 
-  public Map<Integer, String> getFineFeeType() {
+  public Map<String, String> getFineFeeType() {
     return fineFeeType;
   }
 
-  public void setFineFeeType(Map<Integer, String> fineFeeType) {
+  public void setFineFeeType(Map<String, String> fineFeeType) {
     this.fineFeeType = fineFeeType;
   }
 
