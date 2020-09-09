@@ -5,17 +5,21 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.ZoneOffset;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.codehaus.plexus.util.StringUtils;
+import org.folio.rest.jaxrs.model.Accountdata;
 import org.folio.rest.jaxrs.model.Feefineactiondata;
-import org.folio.rest.jaxrs.model.Feefinedata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.FeeFineRecord;
 import org.folio.rest.migration.model.request.feefine.FeeFineContext;
@@ -50,12 +54,14 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
   private static final String MTYPE_CODE = "MTYPE_CODE";
 
+  private static final String USER_REFERENCE_ID = "userTypeId";
+
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
   private static final String ITEM_REFERENCE_ID = "itemTypeId";
 
-  // (id,jsonb,creation_date,created_by,ownerid)
-  private static String FEEFINE_COPY_SQL = "COPY %s_mod_feesfines.feefines (id,jsonb,creation_date,created_by,ownerid) FROM STDIN WITH NULL AS 'null'";
+  // (id,jsonb,creation_date,created_by)
+  private static String ACCOUNT_COPY_SQL = "COPY %s_mod_feesfines.accounts (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
 
   // (id,jsonb,creation_date,created_by)
   private static String FEEFINE_ACTION_COPY_SQL = "COPY %s_mod_feesfines.feefineactions (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
@@ -152,9 +158,13 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       Database voyagerSettings = context.getExtraction().getDatabase();
       Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
+      JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
+
       Map<String, Object> materialTypeContext = new HashMap<>();
       materialTypeContext.put(SQL, context.getExtraction().getMaterialTypeSql());
       materialTypeContext.put(SCHEMA, schema);
+
+      String userIdRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
 
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
       String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
@@ -163,7 +173,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
       try (
-        PrintWriter feefineWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getFeefineConnection(), String.format(FEEFINE_COPY_SQL, tenant)), true);
+        PrintWriter accountWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getAccountConnection(), String.format(ACCOUNT_COPY_SQL, tenant)), true);
         PrintWriter feefineActionWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getFeefineActionConnection(), String.format(FEEFINE_ACTION_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement materialTypeStatement = threadConnections.getMaterialTypeConnection().createStatement();
@@ -178,7 +188,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
           String remaining = pageResultSet.getString(REMAINING);
           String finefeeType = pageResultSet.getString(FINE_FEE_TYPE);
           String finefeeNote = pageResultSet.getString(FINE_FEE_NOTE);
-          String createSate = pageResultSet.getString(CREATE_DATE);
+          String createDate = pageResultSet.getString(CREATE_DATE);
           String mfhdId = pageResultSet.getString(MFHD_ID);
           String displayCallNo = pageResultSet.getString(DISPLAY_CALL_NO);
           String itemEnum = pageResultSet.getString(ITEM_ENUM);
@@ -197,7 +207,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
             remaining,
             finefeeType,
             finefeeNote,
-            createSate,
+            createDate,
             mfhdId,
             displayCallNo,
             itemEnum,
@@ -208,6 +218,12 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
             bibId
           );
 
+          Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
+          if (!userRL.isPresent()) {
+            log.error("{} no user id found for patron id {}", schema, patronId);
+            continue;
+          }
+
           if (StringUtils.isNotEmpty(itemId)) {
             materialTypeContext.put(ITEM_ID, itemId);
             feefineRecord.setMaterialType(getMaterialType(materialTypeStatement, materialTypeContext));
@@ -216,9 +232,30 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
             feefineRecord.setItemRL(migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId));
           }
 
-          Feefinedata feefine = feefineRecord.toFeefine(maps, defaults);
+          Accountdata account = feefineRecord.toAccount(maps, defaults);
 
-          Feefineactiondata feefineaction = feefineRecord.toFeefineaction(maps, defaults);
+          account.getMetadata().setCreatedByUserId(job.getUserId());
+          account.getMetadata().setCreatedDate(new Date());
+
+          Feefineactiondata feefineaction = feefineRecord.toFeefineaction(account, maps, defaults);
+
+          try {
+
+            String aUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(account)));
+            String ffaUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(feefineaction)));
+            String createdDate = DATE_TIME_FOMATTER.format(account.getMetadata().getCreatedDate().toInstant().atOffset(ZoneOffset.UTC));;
+            String createdByUserId = account.getMetadata().getCreatedByUserId();
+
+            // (id,jsonb,creation_date,created_by)
+            accountWriter.println(String.join("\t", aUtf8Json, createdDate, createdByUserId));
+
+            // (id,jsonb,creation_date,created_by)
+            feefineActionWriter.println(String.join("\t", ffaUtf8Json, createdDate, createdByUserId));
+
+          } catch (JsonProcessingException e) {
+            log.error("{} fine fee id {} error serializing fee fine or action", schema, finefeeId);
+            log.debug(e.getMessage());
+          }
 
         }
 
@@ -259,7 +296,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     threadConnections.setMaterialTypeConnection(getConnection(voyagerSettings));
     try {
-      threadConnections.setFeefineConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+      threadConnections.setAccountConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
     } catch (SQLException e) {
       log.error(e.getMessage());
       throw new RuntimeException(e);
@@ -278,7 +315,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
     private Connection pageConnection;
     private Connection materialTypeConnection;
 
-    private BaseConnection feefineConnection;
+    private BaseConnection accountConnection;
     private BaseConnection feefineActionConnection;
 
     public ThreadConnections() {
@@ -301,12 +338,12 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       this.materialTypeConnection = materialTypeConnection;
     }
 
-    public BaseConnection getFeefineConnection() {
-      return feefineConnection;
+    public BaseConnection getAccountConnection() {
+      return accountConnection;
     }
 
-    public void setFeefineConnection(BaseConnection feefineConnection) {
-      this.feefineConnection = feefineConnection;
+    public void setAccountConnection(BaseConnection accountConnection) {
+      this.accountConnection = accountConnection;
     }
 
     public BaseConnection getFeefineActionConnection() {
@@ -321,7 +358,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       try {
         pageConnection.close();
         materialTypeConnection.close();
-        feefineConnection.close();
+        accountConnection.close();
         feefineActionConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());

@@ -1,9 +1,15 @@
 package org.folio.rest.migration.model;
 
+import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
+import org.folio.rest.jaxrs.model.Accountdata;
 import org.folio.rest.jaxrs.model.Feefineactiondata;
-import org.folio.rest.jaxrs.model.Feefinedata;
+import org.folio.rest.jaxrs.model.Metadata;
+import org.folio.rest.jaxrs.model.PaymentStatus;
+import org.folio.rest.jaxrs.model.Status__1;
 import org.folio.rest.migration.model.request.feefine.FeeFineDefaults;
 import org.folio.rest.migration.model.request.feefine.FeeFineMaps;
 import org.folio.rest.model.ReferenceLink;
@@ -18,7 +24,7 @@ public class FeeFineRecord {
   private final String remaining;
   private final String finefeeType;
   private final String finefeeNote;
-  private final String createSate;
+  private final String createDate;
   private final String mfhdId;
   private final String displayCallNo;
   private final String itemEnum;
@@ -28,7 +34,11 @@ public class FeeFineRecord {
   private final String title;
   private final String bibId;
 
+  private final String id;
+
   private Optional<String> materialType;
+
+  private Optional<ReferenceLink> userRL;
 
   private Optional<ReferenceLink> instanceRL;
   private Optional<ReferenceLink> holdingRL;
@@ -43,7 +53,7 @@ public class FeeFineRecord {
     String remaining,
     String finefeeType,
     String finefeeNote,
-    String createSate,
+    String createDate,
     String mfhdId,
     String displayCallNo,
     String itemEnum,
@@ -61,7 +71,7 @@ public class FeeFineRecord {
     this.remaining = remaining;
     this.finefeeType = finefeeType;
     this.finefeeNote = finefeeNote;
-    this.createSate = createSate;
+    this.createDate = createDate;
     this.mfhdId = mfhdId;
     this.displayCallNo = displayCallNo;
     this.itemEnum = itemEnum;
@@ -70,18 +80,58 @@ public class FeeFineRecord {
     this.fineLocation = fineLocation;
     this.title = title;
     this.bibId = bibId;
+
+    this.id = UUID.randomUUID().toString();
   }
 
-  public Feefinedata toFeefine(FeeFineMaps maps, FeeFineDefaults defaults) {
-    Feefinedata feefine = new Feefinedata();
+  public Accountdata toAccount(FeeFineMaps maps, FeeFineDefaults defaults) {
+    Accountdata account = new Accountdata();
+    account.setId(getId());
 
-    return feefine;
+    account.setAmount(Double.parseDouble(getAmount()));
+    account.setRemaining(Double.parseDouble(getRemaining()));
+
+    String feeFineType = maps.getFeefineTypeLabels().get(getFinefeeType());
+    account.setFeeFineType(feeFineType);
+
+    Date createDate = new Date(); // TODO: format to string getCreateDate
+    account.setDateCreated(createDate);
+
+    account.setUserId(userRL.get().getFolioReference());
+
+    PaymentStatus paymentStatus = new PaymentStatus();
+    paymentStatus.setName("Outstanding");
+    account.setPaymentStatus(paymentStatus);
+
+    // TODO: status
+
+    Metadata metadata = new Metadata();
+    account.setMetadata(metadata);
+    return account;
   }
 
-  public Feefineactiondata toFeefineaction(FeeFineMaps maps, FeeFineDefaults defaults) {
+  public Feefineactiondata toFeefineaction(Accountdata account, FeeFineMaps maps, FeeFineDefaults defaults) {
     Feefineactiondata feefineaction = new Feefineactiondata();
+    feefineaction.setAccountId(account.getId());
+    feefineaction.setId(UUID.randomUUID().toString());
+    feefineaction.setNotify(false);
+    feefineaction.setTransactionInformation("-");
+
+    feefineaction.setAmountAction(account.getAmount());
+    feefineaction.setBalance(account.getRemaining());
+    feefineaction.setTypeAction(account.getFeeFineType());
+    feefineaction.setDateAction(account.getDateCreated());
+    feefineaction.setUserId(account.getUserId());
+
+    if (StringUtils.isNoneEmpty(getFinefeeNote())) {
+      feefineaction.setComments(getFinefeeNote());
+    }
 
     return feefineaction;
+  }
+
+  public String getId() {
+    return id;
   }
 
   public String getPatronId() {
@@ -116,8 +166,8 @@ public class FeeFineRecord {
     return finefeeNote;
   }
 
-  public String getCreateSate() {
-    return createSate;
+  public String getCreateDate() {
+    return createDate;
   }
 
   public String getMfhdId() {
@@ -158,6 +208,14 @@ public class FeeFineRecord {
 
   public void setMaterialType(Optional<String> materialType) {
     this.materialType = materialType;
+  }
+
+  public Optional<ReferenceLink> getUserRL() {
+    return userRL;
+  }
+
+  public void setUserRL(Optional<ReferenceLink> userRL) {
+    this.userRL = userRL;
   }
 
   public Optional<ReferenceLink> getInstanceRL() {

@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 public class FeeFineMaps {
 
   @NotNull
-  private Map<Integer, String> feefineTypeLabels;
+  private Map<String, String> feefineTypeLabels;
 
   @NotNull
   private Map<String, Map<String, FeeFineOwner>> feefineOwner;
@@ -16,11 +16,11 @@ public class FeeFineMaps {
 
   }
 
-  public Map<Integer, String> getFeefineTypeLabels() {
+  public Map<String, String> getFeefineTypeLabels() {
     return feefineTypeLabels;
   }
 
-  public void setFeefineTypeLabels(Map<Integer, String> feefineTypeLabels) {
+  public void setFeefineTypeLabels(Map<String, String> feefineTypeLabels) {
     this.feefineTypeLabels = feefineTypeLabels;
   }
 

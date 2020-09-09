@@ -54,7 +54,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
   private static final String LAST_NAME = "LAST_NAME";
   private static final String FIRST_NAME = "FIRST_NAME";
   private static final String MIDDLE_NAME = "MIDDLE_NAME";
-  private static final String ACTIVE_DATE = "ACTIVE_DATE";
   private static final String EXPIRE_DATE = "EXPIRE_DATE";
   private static final String SMS_NUMBER = "SMS_NUMBER";
   private static final String CURRENT_CHARGES = "CURRENT_CHARGES";
