@@ -1141,7 +1141,8 @@ POST to http://localhost:9000/migrate/feesfines
     }
   },
   "defaults": {
-    "materialTypeId": "3212b3e9-bce7-4ff1-88e2-8def758ba977"
+    "materialTypeId": "3212b3e9-bce7-4ff1-88e2-8def758ba977",
+    "itemId": "0"
   }
 }
 ```

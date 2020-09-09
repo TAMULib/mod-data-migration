@@ -13,6 +13,7 @@ import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import org.codehaus.plexus.util.StringUtils;
 import org.folio.rest.jaxrs.model.Feefineactiondata;
 import org.folio.rest.jaxrs.model.Feefinedata;
 import org.folio.rest.migration.config.model.Database;
@@ -178,9 +179,13 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
           String title = pageResultSet.getString(TITLE);
           String bibId = pageResultSet.getString(BIB_ID);
 
-          materialTypeContext.put(ITEM_ID, itemId);
-
-          Optional<String> materialType = getMaterialType(materialTypeStatement, materialTypeContext);
+          Optional<String> materialType;
+          if (StringUtils.isNotEmpty(itemId)) {
+            materialTypeContext.put(ITEM_ID, itemId);
+            materialType = getMaterialType(materialTypeStatement, materialTypeContext);
+          } else {
+            materialType = Optional.empty();
+          }
 
           FeeFineRecord feefineRecord = new FeeFineRecord(
             patronId,
