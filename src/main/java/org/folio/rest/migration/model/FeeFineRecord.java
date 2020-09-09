@@ -6,6 +6,7 @@ import org.folio.rest.jaxrs.model.Feefineactiondata;
 import org.folio.rest.jaxrs.model.Feefinedata;
 import org.folio.rest.migration.model.request.feefine.FeeFineDefaults;
 import org.folio.rest.migration.model.request.feefine.FeeFineMaps;
+import org.folio.rest.model.ReferenceLink;
 
 public class FeeFineRecord {
 
@@ -27,7 +28,11 @@ public class FeeFineRecord {
   private final String title;
   private final String bibId;
 
-  private final Optional<String> materialType;
+  private Optional<String> materialType;
+
+  private Optional<ReferenceLink> instanceRL;
+  private Optional<ReferenceLink> holdingRL;
+  private Optional<ReferenceLink> itemRL;
 
   public FeeFineRecord(
     String patronId,
@@ -46,8 +51,7 @@ public class FeeFineRecord {
     String effectiveLocation,
     String fineLocation,
     String title,
-    String bibId,
-    Optional<String> materialType
+    String bibId
   ) {
     this.patronId = patronId;
     this.itemId = itemId;
@@ -66,7 +70,6 @@ public class FeeFineRecord {
     this.fineLocation = fineLocation;
     this.title = title;
     this.bibId = bibId;
-    this.materialType = materialType;
   }
 
   public Feefinedata toFeefine(FeeFineMaps maps, FeeFineDefaults defaults) {
@@ -147,10 +150,38 @@ public class FeeFineRecord {
 
   public String getBibId() {
     return bibId;
-  }
+    }
 
   public Optional<String> getMaterialType() {
     return materialType;
+  }
+
+  public void setMaterialType(Optional<String> materialType) {
+    this.materialType = materialType;
+  }
+
+  public Optional<ReferenceLink> getInstanceRL() {
+    return instanceRL;
+  }
+
+  public void setInstanceRL(Optional<ReferenceLink> instanceRL) {
+    this.instanceRL = instanceRL;
+  }
+
+  public Optional<ReferenceLink> getHoldingRL() {
+    return holdingRL;
+  }
+
+  public void setHoldingRL(Optional<ReferenceLink> holdingRL) {
+    this.holdingRL = holdingRL;
+  }
+
+  public Optional<ReferenceLink> getItemRL() {
+    return itemRL;
+  }
+
+  public void setItemRL(Optional<ReferenceLink> itemRL) {
+    this.itemRL = itemRL;
   }
 
 }

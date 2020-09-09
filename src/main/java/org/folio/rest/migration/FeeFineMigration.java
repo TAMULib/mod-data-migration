@@ -24,6 +24,7 @@ import org.folio.rest.migration.model.request.feefine.FeeFineJob;
 import org.folio.rest.migration.model.request.feefine.FeeFineMaps;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
+import org.folio.rest.model.ReferenceLink;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
 
@@ -48,6 +49,10 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
   private static final String BIB_ID = "BIB_ID";
 
   private static final String MTYPE_CODE = "MTYPE_CODE";
+
+  private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
+  private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
+  private static final String ITEM_REFERENCE_ID = "itemTypeId";
 
   // (id,jsonb,creation_date,created_by,ownerid)
   private static String FEEFINE_COPY_SQL = "COPY %s_mod_feesfines.feefines (id,jsonb,creation_date,created_by,ownerid) FROM STDIN WITH NULL AS 'null'";
@@ -151,6 +156,10 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       materialTypeContext.put(SQL, context.getExtraction().getMaterialTypeSql());
       materialTypeContext.put(SCHEMA, schema);
 
+      String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
+      String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
+      String itemRLTypeId = job.getReferences().get(ITEM_REFERENCE_ID);
+
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
       try (
@@ -179,14 +188,6 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
           String title = pageResultSet.getString(TITLE);
           String bibId = pageResultSet.getString(BIB_ID);
 
-          Optional<String> materialType;
-          if (StringUtils.isNotEmpty(itemId)) {
-            materialTypeContext.put(ITEM_ID, itemId);
-            materialType = getMaterialType(materialTypeStatement, materialTypeContext);
-          } else {
-            materialType = Optional.empty();
-          }
-
           FeeFineRecord feefineRecord = new FeeFineRecord(
             patronId,
             itemId,
@@ -204,9 +205,16 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
             effectiveLocation,
             fineLocation,
             title,
-            bibId,
-            materialType
+            bibId
           );
+
+          if (StringUtils.isNotEmpty(itemId)) {
+            materialTypeContext.put(ITEM_ID, itemId);
+            feefineRecord.setMaterialType(getMaterialType(materialTypeStatement, materialTypeContext));
+            feefineRecord.setInstanceRL(migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, bibId));
+            feefineRecord.setHoldingRL(migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId));
+            feefineRecord.setItemRL(migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId));
+          }
 
           Feefinedata feefine = feefineRecord.toFeefine(maps, defaults);
 
