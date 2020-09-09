@@ -71,6 +71,16 @@
            <includes>**/*.json</includes>
          </configuration>
          <executions>
+          <execution>
+            <id>mod-feesfines/ramls</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <sourceDirectory>${basedir}/mod-feesfines/ramls</sourceDirectory>
+            </configuration>
+          </execution>
            <execution>
              <id>mod-circulation/ramls</id>
              <phase>generate-sources</phase>
