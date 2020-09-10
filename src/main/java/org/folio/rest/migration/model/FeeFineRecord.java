@@ -21,6 +21,8 @@ import org.folio.rest.model.ReferenceLink;
 
 public class FeeFineRecord {
 
+  private final String id;
+
   private final String patronId;
   private final String itemId;
   private final String itemBarcode;
@@ -39,7 +41,7 @@ public class FeeFineRecord {
   private final String title;
   private final String bibId;
 
-  private final String id;
+  private String location;
 
   private Optional<String> mTypeCode;
 
@@ -126,8 +128,7 @@ public class FeeFineRecord {
 
       account.setItemId(itemRL.get().getFolioReference());
 
-      // TODO: set location
-      // account.setLocation();
+      account.setLocation(getLocation());
 
       if (Objects.nonNull(getItemBarcode())) {
         account.setBarcode(getItemBarcode());
@@ -137,10 +138,10 @@ public class FeeFineRecord {
 
       String callNumber = getDisplayCallNo();
       if (Objects.nonNull(getItemEnum())) {
-        callNumber += " " + getItemEnum();
+        callNumber += StringUtils.SPACE + getItemEnum();
       }
       if (Objects.nonNull(getChron())) {
-        callNumber += " " + getChron();
+        callNumber += StringUtils.SPACE + getChron();
       }
       account.setCallNumber(callNumber);
     } else {
@@ -257,7 +258,15 @@ public class FeeFineRecord {
 
   public String getBibId() {
     return bibId;
-    }
+  }
+
+  public String getLocation() {
+    return location;
+  }
+
+  public void setLocation(String location) {
+    this.location = location;
+  }
 
   public Optional<String> getMTypeCode() {
     return mTypeCode;

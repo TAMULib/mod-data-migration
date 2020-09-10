@@ -20,6 +20,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.codehaus.plexus.util.StringUtils;
 import org.folio.rest.jaxrs.model.feesfines.Accountdata;
 import org.folio.rest.jaxrs.model.feesfines.Feefineactiondata;
+import org.folio.rest.jaxrs.model.inventory.Location;
+import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.FeeFineRecord;
 import org.folio.rest.migration.model.request.feefine.FeeFineContext;
@@ -54,11 +56,16 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
   private static final String MTYPE_CODE = "MTYPE_CODE";
 
+  private static final String LOCATION_ID = "LOCATION_ID";
+  private static final String LOCATION_CODE = "LOCATION_CODE";
+
   private static final String USER_REFERENCE_ID = "userTypeId";
 
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
   private static final String ITEM_REFERENCE_ID = "itemTypeId";
+
+  private static final String LOCATIONS_MAP = "LOCATIONS_MAP";
 
   // (id,jsonb,creation_date,created_by)
   private static String ACCOUNT_COPY_SQL = "COPY %s_mod_feesfines.accounts (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
@@ -75,6 +82,10 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
     log.info("tenant: {}", tenant);
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
+
+    String token = migrationService.okapiService.getToken(tenant);
+
+    Locations locations = migrationService.okapiService.fetchLocations(tenant, token);
 
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
@@ -99,6 +110,8 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
+      Map<String, String> locationsMap = getLocationsMap(locations, job.getSchema());
+
       int count = getCount(voyagerSettings, countContext);
 
       log.info("{} count: {}", job.getSchema(), count);
@@ -114,6 +127,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
         partitionContext.put(JOB, job);
+        partitionContext.put(LOCATIONS_MAP, locationsMap);
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new FeeFinePartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -150,6 +164,8 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
       FeeFineMaps maps = context.getMaps();
       FeeFineDefaults defaults = context.getDefaults();
+
+      Map<String, String> locationsMap = (Map<String, String>) partitionContext.get(LOCATIONS_MAP);
 
       String schema = job.getSchema();
 
@@ -217,6 +233,10 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
             title,
             bibId
           );
+
+          if (locationsMap.containsKey(effectiveLocation)) {
+            feefineRecord.setLocation(locationsMap.get(effectiveLocation));
+          }
 
           Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
           if (!userRL.isPresent()) {
@@ -289,6 +309,34 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
       }
     return materialType;
+  }
+
+  private Map<String, String> getLocationsMap(Locations locations, String schema) {
+    Map<String, String> idToUuid = new HashMap<>();
+    Map<String, Object> locationContext = new HashMap<>();
+    locationContext.put(SQL, context.getExtraction().getLocationSql());
+    locationContext.put(SCHEMA, schema);
+    Database voyagerSettings = context.getExtraction().getDatabase();
+    Map<String, String> locConv = context.getMaps().getLocation().get(schema);
+    try (
+      Connection voyagerConnection = getConnection(voyagerSettings);
+      Statement st = voyagerConnection.createStatement();
+      ResultSet rs = getResultSet(st, locationContext);
+    ) {
+      while (rs.next()) {
+        String id = rs.getString(LOCATION_ID);
+        if (Objects.nonNull(id)) {
+          String code = locConv.containsKey(id) ? locConv.get(id) : rs.getString(LOCATION_CODE);
+          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
+          if (location.isPresent()) {
+            idToUuid.put(id, location.get().getId());
+          }
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return idToUuid;
   }
 
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
