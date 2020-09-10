@@ -22,6 +22,8 @@ import org.folio.rest.jaxrs.model.feesfines.Accountdata;
 import org.folio.rest.jaxrs.model.feesfines.Feefineactiondata;
 import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
+import org.folio.rest.jaxrs.model.inventory.Materialtype;
+import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.FeeFineRecord;
 import org.folio.rest.migration.model.request.feefine.FeeFineContext;
@@ -35,6 +37,9 @@ import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
 
 public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
+
+  private static final String LOCATIONS_MAP = "LOCATIONS_MAP";
+  private static final String MATERIAL_TYPES = "MATERIAL_TYPES";
 
   private static final String PATRON_ID = "PATRON_ID";
   private static final String ITEM_ID = "ITEM_ID";
@@ -65,8 +70,6 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
   private static final String ITEM_REFERENCE_ID = "itemTypeId";
 
-  private static final String LOCATIONS_MAP = "LOCATIONS_MAP";
-
   // (id,jsonb,creation_date,created_by)
   private static String ACCOUNT_COPY_SQL = "COPY %s_mod_feesfines.accounts (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
 
@@ -86,6 +89,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
     String token = migrationService.okapiService.getToken(tenant);
 
     Locations locations = migrationService.okapiService.fetchLocations(tenant, token);
+    Materialtypes materialTypes = migrationService.okapiService.fetchMaterialtypes(tenant, token);
 
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
@@ -128,6 +132,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
         partitionContext.put(INDEX, index);
         partitionContext.put(JOB, job);
         partitionContext.put(LOCATIONS_MAP, locationsMap);
+        partitionContext.put(MATERIAL_TYPES, materialTypes);
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new FeeFinePartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -164,6 +169,8 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
       FeeFineMaps maps = context.getMaps();
       FeeFineDefaults defaults = context.getDefaults();
+
+      Materialtypes materialtypes = (Materialtypes) partitionContext.get(MATERIAL_TYPES);
 
       Map<String, String> locationsMap = (Map<String, String>) partitionContext.get(LOCATIONS_MAP);
 
@@ -246,7 +253,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
           if (StringUtils.isNotEmpty(itemId)) {
             materialTypeContext.put(ITEM_ID, itemId);
-            feefineRecord.setMTypeCode(getMTypeCode(materialTypeStatement, materialTypeContext));
+            feefineRecord.setMaterialTypeId(getMaterialTypeId(materialTypeStatement, materialTypeContext, materialtypes));
             feefineRecord.setInstanceRL(migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, bibId));
             feefineRecord.setHoldingRL(migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId));
             feefineRecord.setItemRL(migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId));
@@ -296,11 +303,15 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
   }
 
-  private Optional<String> getMTypeCode(Statement statement, Map<String, Object> context) {
-    Optional<String> materialType = Optional.empty();
+  private Optional<String> getMaterialTypeId(Statement statement, Map<String, Object> context, Materialtypes materialtypes) {
+    Optional<String> materialTypeId = Optional.empty();
       try (ResultSet resultSet = getResultSet(statement, context)) {
         while (resultSet.next()) {
-          materialType = Optional.ofNullable(resultSet.getString(MTYPE_CODE));
+          String materialTypeCode = resultSet.getString(MTYPE_CODE);
+          Optional<Materialtype> potentialMaterialType = materialtypes.getMtypes().stream().filter(mt -> mt.getSource().equals(materialTypeCode)).findFirst();
+          if (potentialMaterialType.isPresent()) {
+            materialTypeId = Optional.of(potentialMaterialType.get().getId());
+          }
           break;
         }
       } catch (SQLException e) {
@@ -308,7 +319,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       } finally {
 
       }
-    return materialType;
+    return materialTypeId;
   }
 
   private Map<String, String> getLocationsMap(Locations locations, String schema) {

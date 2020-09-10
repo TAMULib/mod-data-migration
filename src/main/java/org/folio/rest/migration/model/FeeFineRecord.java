@@ -43,7 +43,7 @@ public class FeeFineRecord {
 
   private String location;
 
-  private Optional<String> mTypeCode;
+  private Optional<String> materialTypeId;
 
   private Optional<ReferenceLink> userRL;
 
@@ -117,6 +117,10 @@ public class FeeFineRecord {
     account.setMaterialTypeId(defaults.getMaterialTypeId());
 
     if (itemRL.isPresent()) {
+
+      if (getMaterialTypeId().isPresent()) {
+        account.setMaterialTypeId(getMaterialTypeId().get());
+      }
 
       if (instanceRL.isPresent()) {
         account.setInstanceId(instanceRL.get().getFolioReference());
@@ -268,12 +272,12 @@ public class FeeFineRecord {
     this.location = location;
   }
 
-  public Optional<String> getMTypeCode() {
-    return mTypeCode;
+  public Optional<String> getMaterialTypeId() {
+    return materialTypeId;
   }
 
-  public void setMTypeCode(Optional<String> mTypeCode) {
-    this.mTypeCode = mTypeCode;
+  public void setMaterialTypeId(Optional<String> materialTypeId) {
+    this.materialTypeId = materialTypeId;
   }
 
   public Optional<ReferenceLink> getUserRL() {

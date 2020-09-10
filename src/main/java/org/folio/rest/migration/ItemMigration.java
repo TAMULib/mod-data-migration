@@ -438,19 +438,19 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     private CompletableFuture<String> getMaterialTypeId(Statement statement, Map<String, Object> context, String defaultMaterialTypeId, Materialtypes materialtypes) {
       CompletableFuture<String> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
-        String materialType = defaultMaterialTypeId;
+        String materialTypeId = defaultMaterialTypeId;
         try (ResultSet resultSet = getResultSet(statement, context)) {
           while (resultSet.next()) {
             String materialTypeCode = resultSet.getString(MTYPE_CODE);
             Optional<Materialtype> potentialMaterialType = materialtypes.getMtypes().stream().filter(mt -> mt.getSource().equals(materialTypeCode)).findFirst();
             if (potentialMaterialType.isPresent()) {
-              materialType = potentialMaterialType.get().getId();
+              materialTypeId = potentialMaterialType.get().getId();
             }
           }
         } catch (SQLException e) {
           e.printStackTrace();
         } finally {
-          future.complete(materialType);
+          future.complete(materialTypeId);
         }
       });
       return future;
