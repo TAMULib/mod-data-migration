@@ -25,11 +25,11 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Address;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Contact;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Email;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Organization;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Url;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Address;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Contact;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Email;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Organization;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Url;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.VendorAccountRecord;
 import org.folio.rest.migration.model.VendorAddressRecord;

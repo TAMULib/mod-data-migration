@@ -13,6 +13,8 @@ COPY ./mod-inventory-storage ./mod-inventory-storage
 COPY ./mod-organizations-storage ./mod-organizations-storage
 COPY ./mod-users ./mod-users
 COPY ./mod-circulation ./mod-circulation
+COPY ./mod-feesfines ./mod-feesfines
+COPY ./mod-notes ./mod-notes
 
 # build
 RUN mvn package

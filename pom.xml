@@ -71,6 +71,17 @@
            <includes>**/*.json</includes>
          </configuration>
          <executions>
+          <execution>
+            <id>mod-feesfines/ramls</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <sourceDirectory>${basedir}/mod-feesfines/ramls</sourceDirectory>
+              <targetPackage>org.folio.rest.jaxrs.model.feesfines</targetPackage>
+            </configuration>
+          </execution>
            <execution>
              <id>mod-circulation/ramls</id>
              <phase>generate-sources</phase>
@@ -79,6 +90,7 @@
              </goals>
              <configuration>
                <sourceDirectory>${basedir}/mod-circulation/ramls</sourceDirectory>
+               <targetPackage>org.folio.rest.jaxrs.model.circulation</targetPackage>
              </configuration>
            </execution>
            <execution>
@@ -89,6 +101,7 @@
              </goals>
              <configuration>
                <sourceDirectory>${basedir}/data-import-raml-storage/schemas</sourceDirectory>
+               <targetPackage>org.folio.rest.jaxrs.model.dataimport</targetPackage>
              </configuration>
            </execution>
            <execution>
@@ -99,6 +112,7 @@
              </goals>
              <configuration>
                <sourceDirectory>${basedir}/mod-inventory-storage/ramls</sourceDirectory>
+               <targetPackage>org.folio.rest.jaxrs.model.inventory</targetPackage>
              </configuration>
            </execution>
            <execution>
@@ -109,6 +123,7 @@
              </goals>
              <configuration>
                <sourceDirectory>${basedir}/mod-organizations-storage/ramls</sourceDirectory>
+               <targetPackage>org.folio.rest.jaxrs.model.organizations</targetPackage>
              </configuration>
            </execution>
            <execution>
@@ -119,6 +134,7 @@
              </goals>
              <configuration>
                <sourceDirectory>${basedir}/mod-users/ramls</sourceDirectory>
+               <targetPackage>org.folio.rest.jaxrs.model.users</targetPackage>
              </configuration>
            </execution>
            <execution>
@@ -129,6 +145,7 @@
             </goals>
             <configuration>
               <sourceDirectory>${basedir}/mod-notes/ramls</sourceDirectory>
+              <targetPackage>org.folio.rest.jaxrs.model.notes</targetPackage>
             </configuration>
           </execution>
          </executions>

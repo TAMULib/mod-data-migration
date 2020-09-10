@@ -8,8 +8,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import org.folio.rest.jaxrs.model.Servicepoint;
-import org.folio.rest.jaxrs.model.Servicepoints;
+import org.folio.rest.jaxrs.model.inventory.Servicepoint;
+import org.folio.rest.jaxrs.model.inventory.Servicepoints;
 import org.folio.rest.migration.model.request.ExternalOkapi;
 import org.folio.rest.migration.service.ExternalOkapiService;
 import org.springframework.beans.factory.annotation.Autowired;

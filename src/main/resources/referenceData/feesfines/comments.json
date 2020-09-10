@@ -1,0 +1,13 @@
+{
+  "path": "/comments",
+  "dependencies": [],
+  "data": [
+    {
+      "id": "988d14c4-52a3-4393-b9a9-9d1139d49c43",
+      "paid": true,
+      "waived": true,
+      "refunded": true,
+      "transferredManually": false
+    }
+  ]
+}

@@ -21,8 +21,6 @@ import org.folio.rest.migration.utility.TimingUtility;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
 
-import scala.annotation.migration;
-
 public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceLinkContext> {
 
   private static final String USER_ID = "PATRON_ID";
