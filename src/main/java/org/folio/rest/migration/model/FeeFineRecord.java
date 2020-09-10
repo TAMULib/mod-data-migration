@@ -89,6 +89,10 @@ public class FeeFineRecord {
     this.bibId = bibId;
 
     this.id = UUID.randomUUID().toString();
+    this.userRL = Optional.empty();
+    this.instanceRL = Optional.empty();
+    this.holdingRL = Optional.empty();
+    this.itemRL = Optional.empty();
   }
 
   public Accountdata toAccount(FeeFineMaps maps, FeeFineDefaults defaults, String schema) {
@@ -101,8 +105,7 @@ public class FeeFineRecord {
     String feeFineType = maps.getFeefineTypeLabels().get(finefeeType);
     account.setFeeFineType(feeFineType);
 
-    Date createDate = Date.from(Instant.parse(this.createDate));
-    account.setDateCreated(createDate);
+    account.setDateCreated(Date.from(Instant.parse(createDate)));
 
     account.setUserId(userRL.get().getFolioReference());
 
