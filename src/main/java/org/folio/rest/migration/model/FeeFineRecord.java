@@ -93,15 +93,15 @@ public class FeeFineRecord {
 
   public Accountdata toAccount(FeeFineMaps maps, FeeFineDefaults defaults, String schema) {
     Accountdata account = new Accountdata();
-    account.setId(getId());
+    account.setId(id);
 
-    account.setAmount(Double.parseDouble(getAmount()));
-    account.setRemaining(Double.parseDouble(getRemaining()));
+    account.setAmount(Double.parseDouble(amount));
+    account.setRemaining(Double.parseDouble(remaining));
 
-    String feeFineType = maps.getFeefineTypeLabels().get(getFinefeeType());
+    String feeFineType = maps.getFeefineTypeLabels().get(finefeeType);
     account.setFeeFineType(feeFineType);
 
-    Date createDate = Date.from(Instant.parse(getCreateDate()));
+    Date createDate = Date.from(Instant.parse(this.createDate));
     account.setDateCreated(createDate);
 
     account.setUserId(userRL.get().getFolioReference());
@@ -118,8 +118,8 @@ public class FeeFineRecord {
 
     if (itemRL.isPresent()) {
 
-      if (getMaterialTypeId().isPresent()) {
-        account.setMaterialTypeId(getMaterialTypeId().get());
+      if (materialTypeId.isPresent()) {
+        account.setMaterialTypeId(materialTypeId.get());
       }
 
       if (instanceRL.isPresent()) {
@@ -132,27 +132,25 @@ public class FeeFineRecord {
 
       account.setItemId(itemRL.get().getFolioReference());
 
-      account.setLocation(getLocation());
+      account.setLocation(location);
 
-      if (Objects.nonNull(getItemBarcode())) {
-        account.setBarcode(getItemBarcode());
+      if (Objects.nonNull(itemBarcode)) {
+        account.setBarcode(itemBarcode);
       }
 
-      account.setTitle(getTitle());
+      account.setTitle(title);
 
-      String callNumber = getDisplayCallNo();
-      if (Objects.nonNull(getItemEnum())) {
-        callNumber += StringUtils.SPACE + getItemEnum();
+      String callNumber = displayCallNo;
+      if (Objects.nonNull(itemEnum)) {
+        callNumber += StringUtils.SPACE + itemEnum;
       }
-      if (Objects.nonNull(getChron())) {
-        callNumber += StringUtils.SPACE + getChron();
+      if (Objects.nonNull(chron)) {
+        callNumber += StringUtils.SPACE + chron;
       }
       account.setCallNumber(callNumber);
     } else {
       account.setItemId(defaults.getItemId());
     }
-
-    String fineLocation = getFineLocation();
 
     Map<String, FeeFineOwner> feeFineOwnerMap = maps.getFeefineOwner().get(schema);
     for (Entry<String, FeeFineOwner> feeDineOwnerEntry : feeFineOwnerMap.entrySet()) {
@@ -183,8 +181,8 @@ public class FeeFineRecord {
     feefineaction.setDateAction(account.getDateCreated());
     feefineaction.setUserId(account.getUserId());
 
-    if (StringUtils.isNoneEmpty(getFinefeeNote())) {
-      feefineaction.setComments(getFinefeeNote());
+    if (StringUtils.isNoneEmpty(finefeeNote)) {
+      feefineaction.setComments(finefeeNote);
     }
 
     feefineaction.setCreatedAt(account.getFeeFineOwner());

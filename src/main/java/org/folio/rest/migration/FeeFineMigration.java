@@ -251,6 +251,8 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
             continue;
           }
 
+          feefineRecord.setUserRL(userRL);
+
           if (StringUtils.isNotEmpty(itemId)) {
             materialTypeContext.put(ITEM_ID, itemId);
             feefineRecord.setMaterialTypeId(getMaterialTypeId(materialTypeStatement, materialTypeContext, materialtypes));
@@ -267,17 +269,16 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
           Feefineactiondata feefineaction = feefineRecord.toFeefineaction(account, maps, defaults);
 
           try {
-
             String aUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(account)));
             String ffaUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(feefineaction)));
             String createdDate = DATE_TIME_FOMATTER.format(account.getMetadata().getCreatedDate().toInstant().atOffset(ZoneOffset.UTC));;
             String createdByUserId = account.getMetadata().getCreatedByUserId();
 
             // (id,jsonb,creation_date,created_by)
-            accountWriter.println(String.join("\t", aUtf8Json, createdDate, createdByUserId));
+            accountWriter.println(String.join("\t", account.getId(), aUtf8Json, createdDate, createdByUserId));
 
             // (id,jsonb,creation_date,created_by)
-            feefineActionWriter.println(String.join("\t", ffaUtf8Json, createdDate, createdByUserId));
+            feefineActionWriter.println(String.join("\t", feefineaction.getId(), ffaUtf8Json, createdDate, createdByUserId));
 
           } catch (JsonProcessingException e) {
             log.error("{} fine fee id {} error serializing fee fine or action", schema, finefeeId);
