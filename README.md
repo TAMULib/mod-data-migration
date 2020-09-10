@@ -1059,7 +1059,7 @@ POST to http://localhost:9000/migrate/loans
 }
 ```
 
-## Fee/Fines Migration
+## Fees/Fines Migration
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
 
