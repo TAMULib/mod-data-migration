@@ -9,11 +9,12 @@ import java.util.Set;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.HoldingsStatement;
-import org.folio.rest.jaxrs.model.HoldingsStatementsForIndex;
-import org.folio.rest.jaxrs.model.HoldingsStatementsForSupplement;
-import org.folio.rest.jaxrs.model.Holdingsrecord;
-import org.folio.rest.jaxrs.model.Note;
+import org.folio.rest.jaxrs.model.inventory.HoldingsStatement;
+import org.folio.rest.jaxrs.model.inventory.HoldingsStatementsForIndex;
+import org.folio.rest.jaxrs.model.inventory.HoldingsStatementsForSupplement;
+import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
+import org.folio.rest.jaxrs.model.inventory.Metadata;
+import org.folio.rest.jaxrs.model.inventory.Note;
 import org.folio.rest.migration.mapping.HoldingMapper;
 import org.folio.rest.migration.model.request.holding.HoldingMaps;
 import org.marc4j.marc.DataField;
@@ -177,7 +178,7 @@ public class HoldingRecord {
       formerIds.add(mfhdId);
       holding.setFormerIds(formerIds);
 
-      org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
+      Metadata metadata = new Metadata();
       metadata.setCreatedByUserId(createdByUserId);
       metadata.setCreatedDate(createdDate);
       holding.setMetadata(metadata);

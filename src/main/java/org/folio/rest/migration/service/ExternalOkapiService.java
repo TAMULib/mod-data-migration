@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import org.folio.rest.jaxrs.model.Servicepoints;
+import org.folio.rest.jaxrs.model.inventory.Servicepoints;
 import org.folio.rest.migration.config.model.Credentials;
 import org.folio.rest.migration.model.request.ExternalOkapi;
 import org.folio.rest.migration.utility.TimingUtility;

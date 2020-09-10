@@ -5,13 +5,14 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
-import org.folio.rest.jaxrs.model.Instance;
-import org.folio.rest.jaxrs.model.common.ExternalIdsHolder;
-import org.folio.rest.jaxrs.model.dto.AdditionalInfo;
-import org.folio.rest.jaxrs.model.dto.ParsedRecord;
-import org.folio.rest.jaxrs.model.dto.ParsedRecordDto.RecordType;
-import org.folio.rest.jaxrs.model.dto.RawRecord;
-import org.folio.rest.jaxrs.model.mod_source_record_storage.RecordModel;
+import org.folio.rest.jaxrs.model.dataimport.common.ExternalIdsHolder;
+import org.folio.rest.jaxrs.model.dataimport.dto.AdditionalInfo;
+import org.folio.rest.jaxrs.model.dataimport.dto.ParsedRecord;
+import org.folio.rest.jaxrs.model.dataimport.dto.ParsedRecordDto.RecordType;
+import org.folio.rest.jaxrs.model.dataimport.dto.RawRecord;
+import org.folio.rest.jaxrs.model.dataimport.mod_source_record_storage.RecordModel;
+import org.folio.rest.jaxrs.model.inventory.Instance;
+import org.folio.rest.jaxrs.model.inventory.Metadata;
 import org.folio.rest.migration.mapping.InstanceMapper;
 
 import io.vertx.core.json.JsonObject;
@@ -120,7 +121,7 @@ public class BibRecord {
     AdditionalInfo additionalInfo = new AdditionalInfo();
     additionalInfo.setSuppressDiscovery(suppressDiscovery);
     recordModel.setAdditionalInfo(additionalInfo);
-    org.folio.rest.jaxrs.model.dto.Metadata metadata = new org.folio.rest.jaxrs.model.dto.Metadata();
+    org.folio.rest.jaxrs.model.dataimport.dto.Metadata metadata = new org.folio.rest.jaxrs.model.dataimport.dto.Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
     recordModel.setMetadata(metadata);
@@ -151,7 +152,7 @@ public class BibRecord {
 
       instance.setHrid(hridString);
 
-      org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
+      Metadata metadata = new Metadata();
       metadata.setCreatedByUserId(createdByUserId);
       metadata.setCreatedDate(createdDate);
       instance.setMetadata(metadata);

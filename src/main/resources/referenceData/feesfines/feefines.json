@@ -1,0 +1,92 @@
+{
+  "path": "/feefines",
+  "dependencies": [
+    "owners"
+  ],
+  "data": [
+    {
+      "id": "869ae91d-1960-4746-a561-f63e2b429f97",
+      "feeFineType": "Lost item processing (migrated)",
+      "defaultAmount": 2,
+      "automatic": false,
+      "ownerId": "e7942c89-74f1-419f-ae7c-56336e0c4ff0"
+    },
+    {
+      "ownerId": "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
+      "actionNoticeId": "3fe59fee-0afa-4dd6-9fd2-655f4e6751fd",
+      "chargeNoticeId": "e0709048-ee17-414b-95b2-7fb6c9d64283",
+      "automatic": false,
+      "feeFineType": "Lost item replacement (migrated)",
+      "id": "eead2e33-4784-4b50-9e86-4101c16e8b25"
+    },
+    {
+      "feeFineType": "Overdue (migrated)",
+      "id": "f55678e3-b8a2-43a5-a8ca-8d89c99df283",
+      "automatic": false,
+      "ownerId": "e7942c89-74f1-419f-ae7c-56336e0c4ff0"
+    },
+    {
+      "id": "672fd96c-e175-4a4f-82e8-8d5362da34f7",
+      "feeFineType": "Lost item processing (migrated)",
+      "defaultAmount": 2,
+      "automatic": false,
+      "ownerId": "014416f2-7609-4222-a812-1a3deb0591b8"
+    },
+    {
+      "ownerId": "014416f2-7609-4222-a812-1a3deb0591b8",
+      "actionNoticeId": "3fe59fee-0afa-4dd6-9fd2-655f4e6751fd",
+      "chargeNoticeId": "e0709048-ee17-414b-95b2-7fb6c9d64283",
+      "automatic": false,
+      "feeFineType": "Lost item replacement (migrated)",
+      "id": "09e14083-c85b-4f41-86ac-b24c47a81b7b"
+    },
+    {
+      "feeFineType": "Overdue (migrated)",
+      "id": "3b188387-dbd4-4fb3-9a9b-847f72cab0d7",
+      "automatic": false,
+      "ownerId": "014416f2-7609-4222-a812-1a3deb0591b8"
+    },
+    {
+      "feeFineType": "Lost item processing (migrated)",
+      "id": "a4b170b9-f572-4bc0-b39a-9426093dc280",
+      "defaultAmount": 25,
+      "automatic": false,
+      "ownerId": "2eb797c3-8309-4831-a84b-3ca2eeeb2876"
+    },
+    {
+      "ownerId": "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
+      "actionNoticeId": "3fe59fee-0afa-4dd6-9fd2-655f4e6751fd",
+      "automatic": false,
+      "chargeNoticeId": "e0709048-ee17-414b-95b2-7fb6c9d64283",
+      "id": "aa9183b3-ed54-4c09-a5d6-0d8e574dcc43",
+      "feeFineType": "Lost item replacement (migrated)"
+    },
+    {
+      "automatic": false,
+      "ownerId": "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
+      "id": "bdef6fb7-9380-40a2-9c5b-4ab4e3cbe7ff",
+      "feeFineType": "Overdue (migrated)"
+    },
+    {
+      "id": "3761b4f5-c1a9-46b9-b12f-6a1c76fb5eb1",
+      "feeFineType": "Lost item processing (migrated)",
+      "defaultAmount": 2,
+      "automatic": false,
+      "ownerId": "26c4ddaf-95ad-44d6-bd93-8492e278a41e"
+    },
+    {
+      "ownerId": "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
+      "actionNoticeId": "3fe59fee-0afa-4dd6-9fd2-655f4e6751fd",
+      "chargeNoticeId": "e0709048-ee17-414b-95b2-7fb6c9d64283",
+      "automatic": false,
+      "feeFineType": "Lost item replacement (migrated)",
+      "id": "11a3e001-9762-41a2-9aa0-8f373f0270ca"
+    },
+    {
+      "feeFineType": "Overdue (migrated)",
+      "id": "69482cfd-efce-4a32-a001-a6d9bdd217ec",
+      "automatic": false,
+      "ownerId": "26c4ddaf-95ad-44d6-bd93-8492e278a41e"
+    }
+  ]
+}

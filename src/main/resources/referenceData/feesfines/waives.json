@@ -1,0 +1,14 @@
+{
+  "path": "/waives",
+  "dependencies": [],
+  "data": [
+    {
+      "nameReason": "Error",
+      "id": "82eeeeb6-1d01-4c8b-bfac-05f92a3498d8"
+    },
+    {
+      "nameReason": "Forgive",
+      "id": "eb2ae647-038b-4ea5-bc8c-280b4a923f79"
+    }
+  ]
+}
