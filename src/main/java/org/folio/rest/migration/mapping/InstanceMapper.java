@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import org.folio.processing.mapping.defaultmapper.MarcToInstanceMapper;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
-import org.folio.rest.jaxrs.model.Instance;
+import org.folio.rest.jaxrs.model.inventory.Instance;
 import org.springframework.beans.BeanUtils;
 
 import io.vertx.core.json.JsonObject;

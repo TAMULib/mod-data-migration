@@ -8,11 +8,11 @@ import java.util.Objects;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.acq_models.acquisitions_unit.schemas.Metadata;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Address;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Contact;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Email;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Url;
+import org.folio.rest.jaxrs.model.organizations.acq_models.acquisitions_unit.schemas.Metadata;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Address;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Contact;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Email;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Url;
 import org.folio.rest.migration.model.request.vendor.VendorDefaults;
 import org.folio.rest.migration.model.request.vendor.VendorMaps;
 import org.slf4j.Logger;

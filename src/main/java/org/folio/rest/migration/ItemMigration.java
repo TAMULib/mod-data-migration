@@ -25,17 +25,17 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.CirculationNote;
-import org.folio.rest.jaxrs.model.CirculationNote.NoteType;
-import org.folio.rest.jaxrs.model.Item;
-import org.folio.rest.jaxrs.model.Loantype;
-import org.folio.rest.jaxrs.model.Loantypes;
-import org.folio.rest.jaxrs.model.Location;
-import org.folio.rest.jaxrs.model.Locations;
-import org.folio.rest.jaxrs.model.Materialtype;
-import org.folio.rest.jaxrs.model.Materialtypes;
-import org.folio.rest.jaxrs.model.Note__1;
-import org.folio.rest.jaxrs.model.Statisticalcodes;
+import org.folio.rest.jaxrs.model.inventory.CirculationNote;
+import org.folio.rest.jaxrs.model.inventory.CirculationNote.NoteType;
+import org.folio.rest.jaxrs.model.inventory.Item;
+import org.folio.rest.jaxrs.model.inventory.Loantype;
+import org.folio.rest.jaxrs.model.inventory.Loantypes;
+import org.folio.rest.jaxrs.model.inventory.Location;
+import org.folio.rest.jaxrs.model.inventory.Locations;
+import org.folio.rest.jaxrs.model.inventory.Materialtype;
+import org.folio.rest.jaxrs.model.inventory.Materialtypes;
+import org.folio.rest.jaxrs.model.inventory.Note__1;
+import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.ItemMfhdRecord;
 import org.folio.rest.migration.model.ItemRecord;
@@ -438,19 +438,19 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     private CompletableFuture<String> getMaterialTypeId(Statement statement, Map<String, Object> context, String defaultMaterialTypeId, Materialtypes materialtypes) {
       CompletableFuture<String> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
-        String materialType = defaultMaterialTypeId;
+        String materialTypeId = defaultMaterialTypeId;
         try (ResultSet resultSet = getResultSet(statement, context)) {
           while (resultSet.next()) {
             String materialTypeCode = resultSet.getString(MTYPE_CODE);
             Optional<Materialtype> potentialMaterialType = materialtypes.getMtypes().stream().filter(mt -> mt.getSource().equals(materialTypeCode)).findFirst();
             if (potentialMaterialType.isPresent()) {
-              materialType = potentialMaterialType.get().getId();
+              materialTypeId = potentialMaterialType.get().getId();
             }
           }
         } catch (SQLException e) {
           e.printStackTrace();
         } finally {
-          future.complete(materialType);
+          future.complete(materialTypeId);
         }
       });
       return future;

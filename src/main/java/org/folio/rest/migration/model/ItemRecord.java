@@ -3,26 +3,22 @@ package org.folio.rest.migration.model;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.CirculationNote;
-import org.folio.rest.jaxrs.model.Item;
-import org.folio.rest.jaxrs.model.Materialtypes;
-import org.folio.rest.jaxrs.model.Note__1;
-import org.folio.rest.jaxrs.model.Statisticalcode;
-import org.folio.rest.jaxrs.model.Statisticalcodes;
-import org.folio.rest.jaxrs.model.Status;
-import org.folio.rest.jaxrs.model.Status.Name;
+import org.folio.rest.jaxrs.model.inventory.CirculationNote;
+import org.folio.rest.jaxrs.model.inventory.Item;
+import org.folio.rest.jaxrs.model.inventory.Materialtypes;
+import org.folio.rest.jaxrs.model.inventory.Metadata;
+import org.folio.rest.jaxrs.model.inventory.Note__1;
+import org.folio.rest.jaxrs.model.inventory.Statisticalcode;
+import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
+import org.folio.rest.jaxrs.model.inventory.Status;
+import org.folio.rest.jaxrs.model.inventory.Status.Name;
 
 public class ItemRecord {
 
@@ -320,7 +316,7 @@ public class ItemRecord {
     formerIds.add(itemId);
     item.setFormerIds(formerIds);
 
-    org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
+    Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
     item.setMetadata(metadata);

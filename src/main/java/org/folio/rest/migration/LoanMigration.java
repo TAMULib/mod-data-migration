@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Instant;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -12,13 +14,12 @@ import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import org.apache.commons.lang3.time.DateUtils;
-import org.folio.rest.jaxrs.model.CheckOutByBarcodeRequest;
-import org.folio.rest.jaxrs.model.Loan;
-import org.folio.rest.jaxrs.model.Location;
-import org.folio.rest.jaxrs.model.Locations;
-import org.folio.rest.jaxrs.model.Servicepoint;
-import org.folio.rest.jaxrs.model.Servicepoints;
+import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
+import org.folio.rest.jaxrs.model.circulation.Loan;
+import org.folio.rest.jaxrs.model.inventory.Location;
+import org.folio.rest.jaxrs.model.inventory.Locations;
+import org.folio.rest.jaxrs.model.inventory.Servicepoint;
+import org.folio.rest.jaxrs.model.inventory.Servicepoints;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.loan.LoanContext;
 import org.folio.rest.migration.model.request.loan.LoanJob;
@@ -45,8 +46,6 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String LOCATION_CODE = "LOCATION_CODE";
-
-  private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 
   private LoanMigration(LoanContext context, String tenant) {
     super(context, tenant);
@@ -200,8 +199,8 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
             Loan loan = migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
             try {
               loan.setAction("dueDateChanged");
-              loan.setLoanDate(DateUtils.parseDate(loanDate, DATE_FORMAT));
-              loan.setDueDate(DateUtils.parseDate(dueDate, DATE_FORMAT));
+              loan.setLoanDate(Date.from(Instant.parse(loanDate)));
+              loan.setDueDate(Date.from(Instant.parse(dueDate)));
               if (renewalCount > 0) {
                 loan.setRenewalCount(renewalCount);
               }

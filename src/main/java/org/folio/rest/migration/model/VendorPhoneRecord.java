@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.acq_models.acquisitions_unit.schemas.Metadata;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.PhoneNumber;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.PhoneNumber.Type;
+import org.folio.rest.jaxrs.model.organizations.acq_models.acquisitions_unit.schemas.Metadata;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.PhoneNumber;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.PhoneNumber.Type;
 import org.folio.rest.migration.model.request.vendor.VendorDefaults;
 
 public class VendorPhoneRecord {
