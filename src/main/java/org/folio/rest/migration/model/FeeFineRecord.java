@@ -1,5 +1,6 @@
 package org.folio.rest.migration.model;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -48,9 +49,25 @@ public class FeeFineRecord {
   private Optional<ReferenceLink> holdingRL;
   private Optional<ReferenceLink> itemRL;
 
-  public FeeFineRecord(String patronId, String itemId, String itemBarcode, String finefeeId, String amount,
-      String remaining, String finefeeType, String finefeeNote, String createDate, String mfhdId, String displayCallNo,
-      String itemEnum, String chron, String effectiveLocation, String fineLocation, String title, String bibId) {
+  public FeeFineRecord(
+    String patronId,
+    String itemId,
+    String itemBarcode,
+    String finefeeId,
+    String amount,
+    String remaining,
+    String finefeeType,
+    String finefeeNote,
+    String createDate,
+    String mfhdId,
+    String displayCallNo,
+    String itemEnum,
+    String chron,
+    String effectiveLocation,
+    String fineLocation,
+    String title,
+    String bibId
+  ) {
     this.patronId = patronId;
     this.itemId = itemId;
     this.itemBarcode = itemBarcode;
@@ -82,7 +99,7 @@ public class FeeFineRecord {
     String feeFineType = maps.getFeefineTypeLabels().get(getFinefeeType());
     account.setFeeFineType(feeFineType);
 
-    Date createDate = new Date(); // TODO: format to string getCreateDate
+    Date createDate = Date.from(Instant.parse(getCreateDate()));
     account.setDateCreated(createDate);
 
     account.setUserId(userRL.get().getFolioReference());
