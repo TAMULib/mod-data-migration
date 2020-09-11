@@ -1051,7 +1051,7 @@ POST to http://localhost:9000/migrate/loans
     "locationCode": {
       "media,res": "media",
       "ils,borr": "ils",
-      "ils,len": "ils",
+      "ils,lend": "ils",
       "msl,circ": "CircDesk",
       "circ,schk": "circ"
     }
