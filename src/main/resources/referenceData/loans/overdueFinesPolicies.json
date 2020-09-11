@@ -109,23 +109,6 @@
       "countClosed": false,
       "maxOverdueFine": 35,
       "forgiveOverdueFine": true
-    },
-    {
-      "forgiveOverdueFine": true,
-      "id": "d87dfe54-6282-4c4e-aaa4-34b6d2953887",
-      "maxOverdueRecallFine": 35,
-      "gracePeriodRecall": true,
-      "countClosed": false,
-      "maxOverdueFine": 35,
-      "overdueRecallFine": {
-        "intervalId": "day",
-        "quantity": 1
-      },
-      "name": "overdue_test",
-      "overdueFine": {
-        "intervalId": "day",
-        "quantity": 1
-      }
     }
   ]
 }
