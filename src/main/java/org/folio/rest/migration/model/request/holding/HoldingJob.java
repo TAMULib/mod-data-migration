@@ -10,7 +10,7 @@ import org.folio.rest.migration.model.request.AbstractJob;
 public class HoldingJob extends AbstractJob {
 
   @NotNull
-  private String userId;
+  private String user;
 
   private Map<String, String> references;
 
@@ -19,12 +19,12 @@ public class HoldingJob extends AbstractJob {
     references = new HashMap<String, String>();
   }
 
-  public String getUserId() {
-    return userId;
+  public String getUser() {
+    return user;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
+  public void setUser(String user) {
+    this.user = user;
   }
 
   public Map<String, String> getReferences() {

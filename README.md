@@ -101,7 +101,7 @@ POST to http://localhost:9000/migrate/vendors
     {
       "schema": "AMDB",
       "partitions": 12,
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "references": {
         "vendorTypeId": "08c7dd18-dbaf-11e9-8a34-2a2ae2dbcce4"
       },
@@ -112,7 +112,7 @@ POST to http://localhost:9000/migrate/vendors
     {
       "schema": "MSDB",
       "partitions": 2,
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "references": {
         "vendorTypeId": "b427aa0a-96f2-4338-8b3c-2ddcdca6cfe4"
       },
@@ -491,7 +491,7 @@ POST to http://localhost:9000/migrate/users
       "schema": "AMDB",
       "partitions": 12,
       "decodeSql": "'fast', 1, 'grad', 2, 'ungr', 3, 'illend', 4, 'libd', 5, 'comm', 6, 'cour', 7, 'texs', 8, 'nonr', 9",
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "dbCode": "Evans",
       "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
       "skipDuplicates": false,
@@ -504,7 +504,7 @@ POST to http://localhost:9000/migrate/users
       "schema": "MSDB",
       "partitions": 4,
       "decodeSql": "'fac/staff', 1, 'grad/prof', 2, 'undergrad', 3",
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "dbCode": "MSL",
       "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
       "skipDuplicates": true,
@@ -609,7 +609,7 @@ POST to http://localhost:9000/migrate/bibs
       "schema": "AMDB",
       "partitions": 48,
       "controlNumberIdentifier": "evans",
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "instanceStatusId": "c8d51dc6-2f84-4220-8aef-3c4894d53b93",
       "profile": {
         "name": "TAMU AMDB Bibligraphic Migration",
@@ -625,7 +625,7 @@ POST to http://localhost:9000/migrate/bibs
       "schema": "MSDB",
       "partitions": 4,
       "controlNumberIdentifier": "msl",
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "instanceStatusId": "c8d51dc6-2f84-4220-8aef-3c4894d53b93",
       "profile": {
         "name": "TAMU MSDB Bibligraphic Migration",
@@ -668,7 +668,7 @@ POST to http://localhost:9000/migrate/holdings
     {
       "schema": "AMDB",
       "partitions": 48,
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "references": {
         "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
         "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc"
@@ -677,7 +677,7 @@ POST to http://localhost:9000/migrate/holdings
     {
       "schema": "MSDB",
       "partitions": 4,
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "references": {
         "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
         "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba"
@@ -828,7 +828,7 @@ POST to http://localhost:9000/migrate/items
     {
       "schema": "AMDB",
       "partitions": 48,
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "itemNoteTypeId": "8d0a5eca-25de-4391-81a9-236eeefdd20b",
       "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
       "references": {
@@ -839,7 +839,7 @@ POST to http://localhost:9000/migrate/items
     {
       "schema": "MSDB",
       "partitions": 4,
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "itemNoteTypeId": "8d0a5eca-25de-4391-81a9-236eeefdd20b",
       "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
       "references": {
@@ -1086,7 +1086,7 @@ POST to http://localhost:9000/migrate/feesfines
     {
       "schema": "AMDB",
       "partitions": 12,
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "references": {
         "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
         "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672",
@@ -1097,7 +1097,7 @@ POST to http://localhost:9000/migrate/feesfines
     {
       "schema": "MSDB",
       "partitions": 4,
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "references": {
         "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
         "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8",

@@ -30,6 +30,7 @@ import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Cont
 import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Email;
 import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Organization;
 import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Url;
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.VendorAccountRecord;
 import org.folio.rest.migration.model.VendorAddressRecord;
@@ -47,6 +48,8 @@ import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
 
 public class VendorMigration extends AbstractMigration<VendorContext> {
+
+  private static final String USER_ID = "USER_ID";
 
   private static final String VENDOR_ID = "VENDOR_ID";
   private static final String VENDOR_CODE = "VENDOR_CODE";
@@ -147,6 +150,8 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
       log.info("{} count: {}", job.getSchema(), count);
 
+      Userdata user = migrationService.okapiService.lookupUser(tenant, token, job.getUser());
+
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
@@ -162,6 +167,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         partitionContext.put(LOCATIONS, job.getLocations());
         partitionContext.put(STATUSES, job.getStatuses());
         partitionContext.put(TYPES, job.getTypes());
+        partitionContext.put(USER_ID, user.getId());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new VendorPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -201,6 +207,8 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
       VendorMaps maps = context.getMaps();
       VendorDefaults defaults = context.getDefaults();
+
+      String userId = (String) partitionContext.get(USER_ID);
 
       String schema = job.getSchema();
 
@@ -296,7 +304,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
             List<Url> urls = new ArrayList<>();
 
             Date createdDate = new Date();
-            String createdByUserId = job.getUserId();
+            String createdByUserId = userId;
             String createdAt = DATE_TIME_FOMATTER.format(new Date().toInstant().atOffset(ZoneOffset.UTC));
 
             for (VendorAddressRecord vendorAddress : vendorRecord.getVendorAddresses()) {
@@ -328,12 +336,12 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
               vendorPhoneNumbers.forEach(vendorPhoneNumber -> {
                 vendorPhoneNumber.setCreatedDate(createdDate);
-                vendorPhoneNumber.setCreatedByUserId(job.getUserId());
+                vendorPhoneNumber.setCreatedByUserId(userId);
               });
             }
 
             vendorRecord.setCreatedDate(createdDate);
-            vendorRecord.setCreatedByUserId(job.getUserId());
+            vendorRecord.setCreatedByUserId(userId);
 
             vendorRecord.setAddresses(addresses);
             vendorRecord.setContacts(contacts);

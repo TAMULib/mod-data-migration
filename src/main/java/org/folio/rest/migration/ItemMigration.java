@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote.NoteType;
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.jaxrs.model.inventory.Item;
 import org.folio.rest.jaxrs.model.inventory.Loantype;
 import org.folio.rest.jaxrs.model.inventory.Loantypes;
@@ -61,6 +62,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String LOCATIONS_MAP = "LOCATIONS_MAP";
   private static final String STATISTICAL_CODES = "STATISTICAL_CODES";
   private static final String MATERIAL_TYPES = "MATERIAL_TYPES";
+
+  private static final String USER_ID = "USER_ID";
 
   private static final String ITEM_ID = "ITEM_ID";
   private static final String PERM_ITEM_TYPE_ID = "ITEM_TYPE_ID";
@@ -158,6 +161,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       log.info("{} count: {}", job.getSchema(), count);
 
+      Userdata user = migrationService.okapiService.lookupUser(tenant, token, job.getUser());
+
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
@@ -175,6 +180,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         partitionContext.put(LOCATIONS_MAP, locationsMap);
         partitionContext.put(STATISTICAL_CODES, statisticalcodes);
         partitionContext.put(MATERIAL_TYPES, materialTypes);
+        partitionContext.put(USER_ID, user.getId());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new ItemPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -223,6 +229,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       Materialtypes materialtypes = (Materialtypes) partitionContext.get(MATERIAL_TYPES);
       Statisticalcodes statisticalcodes = (Statisticalcodes) partitionContext.get(STATISTICAL_CODES);
+
+      String userId = (String) partitionContext.get(USER_ID);
 
       ItemMaps maps = context.getMaps();
       ItemDefaults defaults = context.getDefaults();
@@ -367,11 +375,11 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           }
 
           Date createdDate = new Date();
-          itemRecord.setCreatedByUserId(job.getUserId());
+          itemRecord.setCreatedByUserId(userId);
           itemRecord.setCreatedDate(createdDate);
 
           String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-          String createdByUserId = job.getUserId();
+          String createdByUserId = userId;
 
           String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
 

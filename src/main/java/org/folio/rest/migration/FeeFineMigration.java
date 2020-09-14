@@ -24,6 +24,7 @@ import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Materialtype;
 import org.folio.rest.jaxrs.model.inventory.Materialtypes;
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.FeeFineRecord;
 import org.folio.rest.migration.model.request.feefine.FeeFineContext;
@@ -40,6 +41,8 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
   private static final String LOCATIONS_MAP = "LOCATIONS_MAP";
   private static final String MATERIAL_TYPES = "MATERIAL_TYPES";
+
+  private static final String USER_ID = "USER_ID";
 
   private static final String PATRON_ID = "PATRON_ID";
   private static final String ITEM_ID = "ITEM_ID";
@@ -120,6 +123,8 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
       log.info("{} count: {}", job.getSchema(), count);
 
+      Userdata user = migrationService.okapiService.lookupUser(tenant, token, job.getUser());
+
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
@@ -133,6 +138,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
         partitionContext.put(JOB, job);
         partitionContext.put(LOCATIONS_MAP, locationsMap);
         partitionContext.put(MATERIAL_TYPES, materialTypes);
+        partitionContext.put(USER_ID, user.getId());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new FeeFinePartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -173,6 +179,8 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       Materialtypes materialtypes = (Materialtypes) partitionContext.get(MATERIAL_TYPES);
 
       Map<String, String> locationsMap = (Map<String, String>) partitionContext.get(LOCATIONS_MAP);
+
+      String userId = (String) partitionContext.get(USER_ID);
 
       String schema = job.getSchema();
 
@@ -263,7 +271,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
           Accountdata account = feefineRecord.toAccount(maps, defaults, schema);
 
-          account.getMetadata().setCreatedByUserId(job.getUserId());
+          account.getMetadata().setCreatedByUserId(userId);
           account.getMetadata().setCreatedDate(new Date());
 
           Feefineactiondata feefineaction = feefineRecord.toFeefineaction(account, maps, defaults);
