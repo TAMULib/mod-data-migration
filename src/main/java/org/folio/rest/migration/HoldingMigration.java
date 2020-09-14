@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.HoldingMapper;
 import org.folio.rest.migration.model.HoldingRecord;
@@ -43,6 +44,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   private static final String HRID_START_NUMBER = "HRID_START_NUMBER";
 
   private static final String LOCATIONS_MAP = "LOCATIONS_MAP";
+
+  private static final String USER_ID = "USER_ID";
 
   private static final String MFHD_ID = "MFHD_ID";
   private static final String LOCATION_ID = "LOCATION_ID";
@@ -115,6 +118,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       log.info("{} count: {}", job.getSchema(), count);
 
+      Userdata user = migrationService.okapiService.lookupUser(tenant, token, job.getUser());
+
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
@@ -130,6 +135,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(JOB, job);
         partitionContext.put(LOCATIONS_MAP, locationsMap);
+        partitionContext.put(USER_ID, user.getId());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext));
         offset += limit;
@@ -176,6 +182,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       HoldingJob job = (HoldingJob) partitionContext.get(JOB);
 
       Map<String, String> locationsMap = (Map<String, String>) partitionContext.get(LOCATIONS_MAP);
+
+      String userId = (String) partitionContext.get(USER_ID);
 
       String schema = job.getSchema();
 
@@ -323,11 +331,11 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             holdingRecord.setInstanceId(instanceId);
 
             Date createdDate = new Date();
-            holdingRecord.setCreatedByUserId(job.getUserId());
+            holdingRecord.setCreatedByUserId(userId);
             holdingRecord.setCreatedDate(createdDate);
 
             String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-            String createdByUserId = job.getUserId();
+            String createdByUserId = userId;
 
             String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
 

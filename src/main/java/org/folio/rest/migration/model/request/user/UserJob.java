@@ -13,7 +13,7 @@ public class UserJob extends AbstractJob {
   private String decodeSql;
 
   @NotNull
-  private String userId;
+  private String user;
 
   @NotNull
   private String dbCode;
@@ -39,12 +39,12 @@ public class UserJob extends AbstractJob {
     this.decodeSql = decodeSql;
   }
 
-  public String getUserId() {
-    return userId;
+  public String getUser() {
+    return user;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
+  public void setUser(String user) {
+    this.user = user;
   }
 
   public String getDbCode() {

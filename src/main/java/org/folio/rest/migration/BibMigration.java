@@ -37,6 +37,7 @@ import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.J
 import org.folio.rest.jaxrs.model.dataimport.mod_source_record_storage.RecordModel;
 import org.folio.rest.jaxrs.model.inventory.Instance;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.InstanceMapper;
 import org.folio.rest.migration.model.BibRecord;
@@ -66,6 +67,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
   private static final String HRID_START_NUMBER = "HRID_START_NUMBER";
 
   private static final String STATISTICAL_CODES = "STATISTICAL_CODES";
+
+  private static final String USER_ID = "USER_ID";
 
   private static final String BIB_ID = "BIB_ID";
   private static final String SUPPRESS_IN_OPAC = "SUPPRESS_IN_OPAC";
@@ -149,6 +152,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       log.info("{} count: {}", job.getSchema(), count);
 
+      Userdata user = migrationService.okapiService.lookupUser(tenant, token, job.getUser());
+
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
@@ -164,6 +169,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(JOB, job);
         partitionContext.put(STATISTICAL_CODES, statisticalCodes);
+        partitionContext.put(USER_ID, user.getId());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new BibPartitionTask(migrationService, instanceMapper, partitionContext));
         offset += limit;
@@ -212,6 +218,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       Statisticalcodes statisticalCodes = (Statisticalcodes) partitionContext.get(STATISTICAL_CODES);
 
+      String userId = (String) partitionContext.get(USER_ID);
+
       String schema = job.getSchema();
 
       int index = this.getIndex();
@@ -223,7 +231,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
       InitJobExecutionsRqDto jobExecutionRqDto = new InitJobExecutionsRqDto();
       jobExecutionRqDto.setSourceType(SourceType.ONLINE);
       jobExecutionRqDto.setJobProfileInfo(profileInfo);
-      jobExecutionRqDto.setUserId(job.getUserId());
+      jobExecutionRqDto.setUserId(userId);
 
       InitJobExecutionsRsDto JobExecutionRsDto = migrationService.okapiService.createJobExecution(tenant, token, jobExecutionRqDto);
       JobExecution jobExecution = JobExecutionRsDto.getJobExecutions().get(0);
@@ -346,7 +354,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
             bibRecord.setParsedRecord(marcJsonObject);
 
             Date createdDate = new Date();
-            bibRecord.setCreatedByUserId(job.getUserId());
+            bibRecord.setCreatedByUserId(userId);
             bibRecord.setCreatedDate(createdDate);
 
             RawRecord rawRecord = bibRecord.toRawRecord();
@@ -361,7 +369,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
             }
 
             String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-            String createdByUserId = job.getUserId();
+            String createdByUserId = userId;
 
             String rrcUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(rawRecord.getContent())));
             String prcUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(parsedRecord.getContent())));
