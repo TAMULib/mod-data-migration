@@ -49,6 +49,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   private static final String USER_GROUPS = "USER_GROUPS";
 
+  private static final String USER_ID = "USER_ID";
+
   private static final String PATRON_ID = "PATRON_ID";
   private static final String EXTERNAL_SYSTEM_ID = "EXTERNAL_SYSTEM_ID";
   private static final String LAST_NAME = "LAST_NAME";
@@ -133,6 +135,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
       log.info("{} count: {}", job.getSchema(), count);
 
+      Userdata user = migrationService.okapiService.lookupUser(tenant, token, job.getUser());
+
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
@@ -146,6 +150,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
         partitionContext.put(TOKEN, token);
         partitionContext.put(JOB, job);
         partitionContext.put(USER_GROUPS, usergroups);
+        partitionContext.put(USER_ID, user.getId());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new UserPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -184,6 +189,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
       UserJob job = (UserJob) partitionContext.get(JOB);
 
       Usergroups usergroups = (Usergroups) partitionContext.get(USER_GROUPS);
+
+      String userId = (String) partitionContext.get(USER_ID);
 
       UserMaps maps = context.getMaps();
       UserDefaults defaults = context.getDefaults();
@@ -309,7 +316,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
           Date createdDate = new Date();
 
           String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-          String createdByUserId = job.getUserId();
+          String createdByUserId = userId;
 
           try {
             String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userdata)));
