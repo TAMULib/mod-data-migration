@@ -58,12 +58,12 @@
     },
     {
       "loanNotices": [],
-      "name": "send_no_notices",
-      "description": "A basic notice policy that does not define any notices",
+      "name": "send_no_notices_local",
+      "feeFineNotices": [],
+      "id": "2894f5eb-4e6b-40d5-a8c2-e3466fb11f2f",
       "requestNotices": [],
-      "id": "122b3d2b-4788-4f1e-9117-56daa91cb75c",
       "active": true,
-      "feeFineNotices": []
+      "description": "A basic notice policy that does not define any notices"
     }
   ]
 }
