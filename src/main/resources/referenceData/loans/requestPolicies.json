@@ -9,21 +9,21 @@
     },
     {
       "description": "Only allow page requests",
+      "id": "a7f729b4-54e7-424a-9793-8f763f01085a",
       "requestTypes": [
         "Page"
       ],
-      "name": "page_only",
-      "id": "4c6e1fb0-2ef1-4666-bd15-f9190ff89060"
+      "name": "page_only"
     },
     {
       "description": "Allow all request types",
+      "id": "2e888dcb-f7a1-4096-be5c-b417ea38e73b",
       "requestTypes": [
         "Hold",
         "Page",
         "Recall"
       ],
-      "name": "recall_hold_page",
-      "id": "334e5a9e-94f9-4673-8d1d-ab552863886b"
+      "name": "recall_hold_page"
     }
   ]
 }
