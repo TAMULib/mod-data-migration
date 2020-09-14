@@ -104,6 +104,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       @Override
       public void complete() {
         postActions(folioSettings, context.getPostActions());
+        migrationService.complete();
       }
 
     });
