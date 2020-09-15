@@ -72,6 +72,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
       @Override
       public void complete() {
         postActions(folioSettings, context.getPostActions());
+        migrationService.complete();
       }
 
     });
@@ -273,7 +274,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
       ? context.getMaps().getLocationCode().get(code)
       : code;
     Optional<Servicepoint> servicePoint = servicePoints.getServicepoints().stream()
-        .filter(sp -> sp.getCode().equals(folioLocationCode)).findAny();
+      .filter(sp -> sp.getCode().equals(folioLocationCode)).findAny();
     if (servicePoint.isPresent()) {
       return Optional.of(servicePoint.get().getId());
     }
