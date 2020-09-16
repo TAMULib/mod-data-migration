@@ -826,10 +826,10 @@
       "discoveryDisplayName": "Current Periodicals (Evans Library  1st floor)",
       "libraryId": "e19f62b7-5e0d-490f-b469-80a2b0940e74",
       "isActive": "true",
+      "primaryServicePoint": "3b80cfdf-438b-48c1-aadc-57965a0d7680",
       "servicePointIds": [
-        "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
+        "3b80cfdf-438b-48c1-aadc-57965a0d7680"
       ],
-      "primaryServicePoint": "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
       "name": "Current Periodicals",
       "id": "7b73f573-feb7-4f7d-bcaf-a0bc80bb45cd",
       "institutionId": "786bccb0-1795-4896-9452-a6e5bd5f28ac"
