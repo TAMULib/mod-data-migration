@@ -3481,34 +3481,6 @@
       "code": "Repair"
     },
     {
-      "primaryServicePoint": "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
-      "servicePointIds": [
-        "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
-      ],
-      "name": "Course Reserves (Evans)",
-      "id": "434f1cf3-25f5-4fdb-b667-71c6ca9118da",
-      "institutionId": "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-      "code": "res",
-      "campusId": "addb918a-5b84-48a2-81d2-0a086948c347",
-      "discoveryDisplayName": "Reserves (Annex  1st floor)",
-      "libraryId": "e19f62b7-5e0d-490f-b469-80a2b0940e74",
-      "isActive": "true"
-    },
-    {
-      "primaryServicePoint": "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
-      "servicePointIds": [
-        "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
-      ],
-      "id": "c4db66c2-1fde-400a-ba99-81a752a8436e",
-      "institutionId": "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-      "name": "Self Check Res (Evans)",
-      "campusId": "addb918a-5b84-48a2-81d2-0a086948c347",
-      "code": "res,schk",
-      "isActive": "true",
-      "discoveryDisplayName": "Self Check Reserves",
-      "libraryId": "e19f62b7-5e0d-490f-b469-80a2b0940e74"
-    },
-    {
       "campusId": "addb918a-5b84-48a2-81d2-0a086948c347",
       "code": "ResDesk",
       "isActive": "true",
