@@ -43,7 +43,6 @@ import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
-import org.springframework.cache.annotation.Cacheable;
 
 public class UserMigration extends AbstractMigration<UserContext> {
 
@@ -475,7 +474,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
     return threadConnections;
   }
 
-  @Cacheable(value = "patronGroups", key = "groupcode", sync = true)
   private Optional<String> getPatronGroup(String groupcode, Usergroups usergroups) {
     Optional<Usergroup> usergroup = usergroups.getUsergroups().stream()
       .filter(ug -> ug.getGroup().equals(groupcode))

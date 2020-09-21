@@ -57,7 +57,6 @@ import org.marc4j.marc.Record;
 import org.marc4j.marc.VariableField;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
-import org.springframework.cache.annotation.Cacheable;
 
 import io.vertx.core.json.JsonObject;
 
@@ -457,7 +456,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
     return threadConnections;
   }
 
-  @Cacheable(value = "statisticalCodes", key = "operatorId", sync = true)
   private Set<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalCodes) {
     return statisticalCodes.getStatisticalCodes().stream()
       .filter(sc -> sc.getCode().equals(operatorId))
