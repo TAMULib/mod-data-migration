@@ -25,7 +25,6 @@ import org.folio.rest.migration.model.request.loan.LoanContext;
 import org.folio.rest.migration.model.request.loan.LoanJob;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
-import org.springframework.cache.annotation.Cacheable;
 
 public class LoanMigration extends AbstractMigration<LoanContext> {
 
@@ -268,7 +267,6 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
     return idToCode;
   }
 
-  @Cacheable(value = "servicePoints", key = "code", sync = true)
   private Optional<String> getServicePoint(String code, Servicepoints servicePoints) {
     final String folioLocationCode = context.getMaps().getLocationCode().containsKey(code)
       ? context.getMaps().getLocationCode().get(code)
