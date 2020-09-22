@@ -278,27 +278,26 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
             feefineRecord.setItemRL(migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId));
           }
 
+          Date createdDate = new Date();
+          feefineRecord.setCreatedByUserId(userId);
+          feefineRecord.setCreatedDate(createdDate);
+
           Accountdata account = feefineRecord.toAccount(maps, defaults, schema);
 
-          account.getMetadata().setCreatedByUserId(userId);
-          account.getMetadata().setUpdatedByUserId(userId);
-          Date now = new Date();
-          account.getMetadata().setCreatedDate(now);
-          account.getMetadata().setUpdatedDate(now);
-
           Feefineactiondata feefineaction = feefineRecord.toFeefineaction(account, maps, defaults);
+
+          String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));;
+          String createdByUserId = userId;
 
           try {
             String aUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(account)));
             String ffaUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(feefineaction)));
-            String createdDate = DATE_TIME_FOMATTER.format(account.getMetadata().getCreatedDate().toInstant().atOffset(ZoneOffset.UTC));;
-            String createdByUserId = account.getMetadata().getCreatedByUserId();
 
             // (id,jsonb,creation_date,created_by)
-            accountWriter.println(String.join("\t", account.getId(), aUtf8Json, createdDate, createdByUserId));
+            accountWriter.println(String.join("\t", account.getId(), aUtf8Json, createdAt, createdByUserId));
 
             // (id,jsonb,creation_date,created_by)
-            feefineActionWriter.println(String.join("\t", feefineaction.getId(), ffaUtf8Json, createdDate, createdByUserId));
+            feefineActionWriter.println(String.join("\t", feefineaction.getId(), ffaUtf8Json, createdAt, createdByUserId));
 
           } catch (JsonProcessingException e) {
             log.error("{} fine fee id {} error serializing fee fine or action", schema, finefeeId);

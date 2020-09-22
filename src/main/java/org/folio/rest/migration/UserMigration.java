@@ -317,9 +317,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
             continue;
           }
 
-          Userdata userdata = userRecord.toUserdata(patronGroup.get(), defaults, maps);
-
           Date createdDate = new Date();
+          userRecord.setCreatedByUserId(userId);
+          userRecord.setCreatedDate(createdDate);
+
+          Userdata userdata = userRecord.toUserdata(patronGroup.get(), defaults, maps);
 
           String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
           String createdByUserId = userId;
