@@ -102,7 +102,6 @@ public class UserAddressRecord {
   public Address toAddress() {
     final Address address = new Address();
 
-    address.setId(UUID.randomUUID().toString());
     address.setAddressTypeId(addressTypeId);
 
     setAddressLine1(address);
