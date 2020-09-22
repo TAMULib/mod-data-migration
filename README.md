@@ -20,6 +20,19 @@ Other [modules](https://dev.folio.org/source-code/#server-side).
 
 Other FOLIO Developer documentation is at [dev.folio.org](https://dev.folio.org/).
 
+### Running on Windows
+
+To ensure correct character encoding follow below to develop on Windows.
+
+```
+SET PGCLIENTENCODING=UTF8
+SET NLS_LANG=American_America.US7ASCII
+
+chcp 65001
+mvn clean package
+java -jar -Dfile.encoding=UTF-8 target\mod-data-migration-1.0.0-SNAPSHOT.jar
+```
+
 ## Migration Information
 
 ### Reference Link Types
