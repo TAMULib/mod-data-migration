@@ -273,7 +273,10 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
           Accountdata account = feefineRecord.toAccount(maps, defaults, schema);
 
           account.getMetadata().setCreatedByUserId(userId);
-          account.getMetadata().setCreatedDate(new Date());
+          account.getMetadata().setUpdatedByUserId(userId);
+          Date now = new Date();
+          account.getMetadata().setCreatedDate(now);
+          account.getMetadata().setUpdatedDate(now);
 
           Feefineactiondata feefineaction = feefineRecord.toFeefineaction(account, maps, defaults);
 
