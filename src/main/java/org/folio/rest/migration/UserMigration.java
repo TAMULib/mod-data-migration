@@ -396,11 +396,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
             String stateProvince = resultSet.getString(STATE_PROVINCE);
             String zipPostal = resultSet.getString(ZIP_POSTAL);
             Optional<String> addressTypeId = getAddressTypeId(addressDescription, addresstypes);
-            if (addressTypeId.isPresent()) {
-              userAddressRecords.add(new UserAddressRecord(addressTypeId.get(), addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal));
-            } else {
-              log.warn("No address type found with description {}", addressDescription);
-            }
+            userAddressRecords.add(new UserAddressRecord(addressTypeId.isPresent() ? addressTypeId.get() : addressDescription, addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal));
           }
         } catch (SQLException e) {
           e.printStackTrace();
@@ -498,7 +494,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   private Optional<String> getAddressTypeId(String addressDescription, AddresstypeCollection addresstypes) {
     Optional<Addresstype> addresstype = addresstypes.getAddressTypes().stream()
-      .filter(at -> at.getAddressType().equals(addressDescription))
+      .filter(at -> at.getAddressType().equalsIgnoreCase(addressDescription))
       .findAny();
     if (addresstype.isPresent()) {
       return Optional.of(addresstype.get().getId());

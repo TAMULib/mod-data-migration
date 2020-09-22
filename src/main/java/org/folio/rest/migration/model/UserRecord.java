@@ -18,9 +18,9 @@ public class UserRecord {
 
   private static final String PATRON = "patron";
 
-  private static final String EMAIL = "email";
-  private static final String MAIL = "mail";
-  private static final String TEXT = "text";
+  private static final String EMAIL = "Email";
+  private static final String MAIL = "Mail";
+  private static final String TEXT = "Text message";
 
   private static final String PHONE_PRIMARY = "Primary";
   private static final String PHONE_MOBILE = "Mobile";
