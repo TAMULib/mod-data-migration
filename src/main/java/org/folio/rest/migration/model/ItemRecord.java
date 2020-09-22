@@ -19,6 +19,7 @@ import org.folio.rest.jaxrs.model.inventory.Statisticalcode;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
 import org.folio.rest.jaxrs.model.inventory.Status;
 import org.folio.rest.jaxrs.model.inventory.Status.Name;
+import org.folio.rest.migration.utility.DateUtility;
 
 public class ItemRecord {
 
@@ -299,8 +300,7 @@ public class ItemRecord {
         }
 
         if (isNotEmpty(s.getItemStatusDate())) {
-          Date date = Date.from(Instant.parse(s.getItemStatusDate()));
-          status.setDate(date);
+          status.setDate(DateUtility.toDate(s.getItemStatusDate()));
         }
 
       }
