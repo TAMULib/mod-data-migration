@@ -12,19 +12,18 @@ import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import org.apache.commons.lang3.time.DateUtils;
-import org.folio.rest.jaxrs.model.CheckOutByBarcodeRequest;
-import org.folio.rest.jaxrs.model.Loan;
-import org.folio.rest.jaxrs.model.Location;
-import org.folio.rest.jaxrs.model.Locations;
-import org.folio.rest.jaxrs.model.Servicepoint;
-import org.folio.rest.jaxrs.model.Servicepoints;
+import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
+import org.folio.rest.jaxrs.model.circulation.Loan;
+import org.folio.rest.jaxrs.model.inventory.Location;
+import org.folio.rest.jaxrs.model.inventory.Locations;
+import org.folio.rest.jaxrs.model.inventory.Servicepoint;
+import org.folio.rest.jaxrs.model.inventory.Servicepoints;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.loan.LoanContext;
 import org.folio.rest.migration.model.request.loan.LoanJob;
 import org.folio.rest.migration.service.MigrationService;
+import org.folio.rest.migration.utility.DateUtility;
 import org.folio.rest.migration.utility.TimingUtility;
-import org.springframework.cache.annotation.Cacheable;
 
 public class LoanMigration extends AbstractMigration<LoanContext> {
 
@@ -45,8 +44,6 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String LOCATION_CODE = "LOCATION_CODE";
-
-  private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 
   private LoanMigration(LoanContext context, String tenant) {
     super(context, tenant);
@@ -73,6 +70,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
       @Override
       public void complete() {
         postActions(folioSettings, context.getPostActions());
+        migrationService.complete();
       }
 
     });
@@ -86,7 +84,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
-      Map<Integer, String> locationsCodeMap = getLocationsCodeMap(locations, job.getSchema());
+      Map<String, String> locationsCodeMap = getLocationsCodeMap(locations, job.getSchema());
 
       int count = getCount(voyagerSettings, countContext);
 
@@ -142,7 +140,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
       LoanJob job = (LoanJob) partitionContext.get(JOB);
 
-      Map<Integer, String> locationsCodeMap = (Map<Integer, String>) partitionContext.get(LOCATIONS_CODE_MAP);
+      Map<String, String> locationsCodeMap = (Map<String, String>) partitionContext.get(LOCATIONS_CODE_MAP);
 
       Servicepoints servicePoints = (Servicepoints) partitionContext.get(SERVICE_POINTS);
 
@@ -160,7 +158,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
       ) {
         while (pageResultSet.next()) {
 
-          Integer chargeLocation = pageResultSet.getInt(CHARGE_LOCATION);
+          String chargeLocation = pageResultSet.getString(CHARGE_LOCATION);
           Integer renewalCount = pageResultSet.getInt(RENEWAL_COUNT);
 
           Integer patronId = pageResultSet.getInt(PATRON_ID);
@@ -200,8 +198,8 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
             Loan loan = migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
             try {
               loan.setAction("dueDateChanged");
-              loan.setLoanDate(DateUtils.parseDate(loanDate, DATE_FORMAT));
-              loan.setDueDate(DateUtils.parseDate(dueDate, DATE_FORMAT));
+              loan.setLoanDate(DateUtility.toDate((loanDate)));
+              loan.setDueDate(DateUtility.toDate((dueDate)));
               if (renewalCount > 0) {
                 loan.setRenewalCount(renewalCount);
               }
@@ -240,22 +238,23 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
     return threadConnections;
   }
 
-  private Map<Integer, String> getLocationsCodeMap(Locations locations, String schema) {
-    Map<Integer, String> idToCode = new HashMap<>();
+  private Map<String, String> getLocationsCodeMap(Locations locations, String schema) {
+    Map<String, String> idToCode = new HashMap<>();
     Map<String, Object> locationContext = new HashMap<>();
     locationContext.put(SQL, context.getExtraction().getLocationSql());
     locationContext.put(SCHEMA, schema);
     Database voyagerSettings = context.getExtraction().getDatabase();
-    Map<Integer, String> locConv = context.getMaps().getLocation().get(schema);
+    Map<String, String> locConv = context.getMaps().getLocation().get(schema);
     try (Connection voyagerConnection = getConnection(voyagerSettings);
-        Statement st = voyagerConnection.createStatement();
-        ResultSet rs = getResultSet(st, locationContext);) {
+      Statement st = voyagerConnection.createStatement();
+      ResultSet rs = getResultSet(st, locationContext);) {
       while (rs.next()) {
-        Integer id = rs.getInt(LOCATION_ID);
+        String id = rs.getString(LOCATION_ID);
         if (Objects.nonNull(id)) {
           String code = locConv.containsKey(id) ? locConv.get(id) : rs.getString(LOCATION_CODE);
-          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code))
-              .findFirst();
+          Optional<Location> location = locations.getLocations().stream()
+            .filter(loc -> loc.getCode().equals(code))
+            .findFirst();
           if (location.isPresent()) {
             idToCode.put(id, code);
           }
@@ -267,10 +266,12 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
     return idToCode;
   }
 
-  @Cacheable(value = "servicePoints", key = "code", sync = true)
   private Optional<String> getServicePoint(String code, Servicepoints servicePoints) {
+    final String folioLocationCode = context.getMaps().getLocationCode().containsKey(code)
+      ? context.getMaps().getLocationCode().get(code)
+      : code;
     Optional<Servicepoint> servicePoint = servicePoints.getServicepoints().stream()
-        .filter(sp -> sp.getCode().equals(code)).findAny();
+      .filter(sp -> sp.getCode().equals(folioLocationCode)).findAny();
     if (servicePoint.isPresent()) {
       return Optional.of(servicePoint.get().getId());
     }

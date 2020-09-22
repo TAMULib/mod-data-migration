@@ -7,13 +7,15 @@ public class ItemMfhdRecord {
   private final String itemEnum;
   private final String freetext;
   private final String year;
+  private final String location;
 
-  public ItemMfhdRecord(String caption, String chron, String itemEnum, String freetext, String year) {
+  public ItemMfhdRecord(String caption, String chron, String itemEnum, String freetext, String year, String location) {
     this.caption = caption;
     this.chron = chron;
     this.itemEnum = itemEnum;
     this.freetext = freetext;
     this.year = year;
+    this.location = location;
   }
 
   public String getCaption() {
@@ -34,6 +36,10 @@ public class ItemMfhdRecord {
 
   public String getYear() {
     return year;
+  }
+
+  public String getLocation() {
+    return location;
   }
 
 }

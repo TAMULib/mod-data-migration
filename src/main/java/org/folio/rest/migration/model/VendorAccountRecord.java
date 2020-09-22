@@ -3,8 +3,8 @@ package org.folio.rest.migration.model;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Account;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Account.PaymentMethod;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Account;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Account.PaymentMethod;
 import org.folio.rest.migration.model.request.vendor.VendorDefaults;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -115,7 +115,7 @@ public class VendorAccountRecord {
   }
 
   private void setStatus(Account account) {
-    if (Objects.nonNull(status) && status.contentEquals("1")) {
+    if (Objects.nonNull(status) && status.contentEquals("0")) {
       account.setAccountStatus("active");
     } else {
       account.setAccountStatus("inactive");

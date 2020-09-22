@@ -8,11 +8,11 @@ import java.util.Objects;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.acq_models.acquisitions_unit.schemas.Metadata;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Address;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Contact;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Email;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Url;
+import org.folio.rest.jaxrs.model.organizations.acq_models.acquisitions_unit.schemas.Metadata;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Address;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Contact;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Email;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Url;
 import org.folio.rest.migration.model.request.vendor.VendorDefaults;
 import org.folio.rest.migration.model.request.vendor.VendorMaps;
 import org.slf4j.Logger;
@@ -217,7 +217,6 @@ public class VendorAddressRecord {
   public Address toAddress(List<String> categories, VendorDefaults defaults, VendorMaps maps) {
     final Address address = new Address();
 
-    address.setId(addressId);
     address.setAddressLine1(addressLine1Full);
     address.setCity(city);
     address.setStateRegion(stateProvince);
@@ -238,7 +237,7 @@ public class VendorAddressRecord {
 
     contact.setId(UUID.randomUUID().toString());
     contact.setFirstName(contactName);
-    contact.setLastName(" ");
+    contact.setLastName(StringUtils.SPACE);
 
     contact.setCategories(categories);
 
@@ -252,7 +251,6 @@ public class VendorAddressRecord {
   public Email toEmail(List<String> categories) {
     final Email email = new Email();
 
-    email.setId(addressId);
     email.setValue(addressLine1);
 
     email.setCategories(categories);
@@ -266,8 +264,6 @@ public class VendorAddressRecord {
   public Url toUrl(List<String> categories) {
     final Url url = new Url();
 
-    url.setId(addressId);
-
     url.setCategories(categories);
 
     setDescription(url);
@@ -278,7 +274,7 @@ public class VendorAddressRecord {
   }
 
   private void setAddressLine2(Address address) {
-    if (Objects.nonNull(addressLine2) && addressLine2.matches("\\S")) {
+    if (StringUtils.isNotEmpty(addressLine2)) {
       address.setAddressLine2(addressLine2);
     }
   }
@@ -368,7 +364,7 @@ public class VendorAddressRecord {
   }
 
   private void setValue(Url url) {
-    if (addressLine1.toLowerCase().matches("^http")) {
+    if (addressLine1.toLowerCase().startsWith("http")) {
       url.setValue(addressLine1);
     } else {
       url.setValue("http://" + addressLine1);
@@ -379,6 +375,8 @@ public class VendorAddressRecord {
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
 
     address.setMetadata(metadata);
   }
@@ -387,6 +385,8 @@ public class VendorAddressRecord {
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
 
     contact.setMetadata(metadata);
   }
@@ -395,6 +395,8 @@ public class VendorAddressRecord {
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
 
     email.setMetadata(metadata);
   }
@@ -403,6 +405,8 @@ public class VendorAddressRecord {
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
 
     url.setMetadata(metadata);
   }

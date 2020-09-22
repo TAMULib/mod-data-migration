@@ -8,23 +8,24 @@ import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
-import org.folio.rest.jaxrs.model.Address;
-import org.folio.rest.jaxrs.model.Personal;
-import org.folio.rest.jaxrs.model.Userdata;
+import org.folio.rest.jaxrs.model.users.Address;
+import org.folio.rest.jaxrs.model.users.Personal;
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.model.request.user.UserDefaults;
+import org.folio.rest.migration.model.request.user.UserMaps;
 
 public class UserRecord {
 
   private static final String PATRON = "patron";
 
-  private static final String EMAIL = "email";
-  private static final String MAIL = "mail";
-  private static final String TEXT = "text";
+  private static final String EMAIL = "Email";
+  private static final String MAIL = "Mail";
+  private static final String TEXT = "Text message";
 
   private static final String PHONE_PRIMARY = "Primary";
   private static final String PHONE_MOBILE = "Mobile";
 
-  private static final String DATE_FORMAT = "YYYYMMDD";
+  private static final String EXPIRED_DATE_FORMAT = "YYYY-MM-DD";
 
   private final String referenceId;
   private final String patronId;
@@ -32,7 +33,6 @@ public class UserRecord {
   private final String lastName;
   private final String firstName;
   private final String middleName;
-  private final String activeDate;
   private final String expireDate;
   private final String smsNumber;
   private final String currentCharges;
@@ -46,14 +46,13 @@ public class UserRecord {
 
   private List<UserAddressRecord> userAddressRecords;
 
-  public UserRecord(String referenceId, String patronId, String externalSystemId, String lastName, String firstName, String middleName, String activeDate, String expireDate, String smsNumber, String currentCharges) {
+  public UserRecord(String referenceId, String patronId, String externalSystemId, String lastName, String firstName, String middleName, String expireDate, String smsNumber, String currentCharges) {
     this.referenceId = referenceId;
     this.patronId = patronId;
     this.externalSystemId = externalSystemId;
     this.lastName = lastName;
     this.firstName = firstName;
     this.middleName = middleName;
-    this.activeDate = activeDate;
     this.expireDate = expireDate;
     this.smsNumber = smsNumber;
     this.currentCharges = currentCharges;
@@ -81,10 +80,6 @@ public class UserRecord {
 
   public String getMiddleName() {
     return middleName;
-  }
-
-  public String getActiveDate() {
-    return activeDate;
   }
 
   public String getExpireDate() {
@@ -155,14 +150,14 @@ public class UserRecord {
     this.userAddressRecords = userAddressRecords;
   }
 
-  public Userdata toUserdata(String patronGroup, UserDefaults defaults) {
+  public Userdata toUserdata(String patronGroup, UserDefaults defaults, UserMaps maps) {
     final Userdata userdata = new Userdata();
     final Personal personal = new Personal();
 
     setLastName(personal);
     setFirstName(personal);
     setMiddleName(personal);
-    setPreferredContactTypeId(personal, defaults);
+    setPreferredContactTypeId(personal, defaults, maps);
 
     setAddresses(personal, defaults);
 
@@ -171,7 +166,7 @@ public class UserRecord {
     userdata.setType(PATRON);
 
     setExternalSystemId(userdata);
-    setActive(userdata);
+    setActive(userdata, defaults);
     setBarcode(userdata);
     setUsername(userdata);
 
@@ -198,18 +193,18 @@ public class UserRecord {
     }
   }
 
-  private void setPreferredContactTypeId(Personal personal, UserDefaults defaults) {
+  private void setPreferredContactTypeId(Personal personal, UserDefaults defaults, UserMaps maps) {
     if (Objects.nonNull(smsNumber)) {
-      preferredContactTypeId = TEXT;
+      preferredContactTypeId = maps.getPreferredContactType().get(TEXT);
       personal.setPreferredContactTypeId(preferredContactTypeId);
     }
 
     if (Objects.isNull(preferredContactTypeId)) {
       if (Objects.nonNull(addressType) && Objects.nonNull(addressStatus)) {
         if (addressType.equals("3") && addressStatus.equalsIgnoreCase("n")) {
-          preferredContactTypeId = EMAIL;
+          preferredContactTypeId = maps.getPreferredContactType().get(EMAIL);
         } else if ((addressType.equals("1") || addressType.equals("2")) && addressStatus.equalsIgnoreCase("n")) {
-          preferredContactTypeId = MAIL;
+          preferredContactTypeId = maps.getPreferredContactType().get(MAIL);
         }
       }
 
@@ -277,32 +272,37 @@ public class UserRecord {
         }
       }
     }
+
+    personal.setAddresses(addresses);
   }
 
   private void setExternalSystemId(Userdata userdata) {
     if (Objects.nonNull(externalSystemId)) {
-      userdata.setExternalSystemId(externalSystemId);  
+      userdata.setExternalSystemId(externalSystemId);
     }
   }
 
-  private void setActive(Userdata userdata) {
-    long charges = Long.parseLong(currentCharges);
-
-    if (Objects.nonNull(activeDate)) {
-      if (Objects.nonNull(currentCharges) && charges > 0) {
-        userdata.setActive(true);
-      } else {
-        if (Objects.nonNull(expireDate)) {
-          try {
-            Date now = new Date();
-            Date expirationDate = DateUtils.parseDate(expireDate, DATE_FORMAT);
-            userdata.setExpirationDate(expirationDate);
-            userdata.setActive(now.before(expirationDate));
-          } catch (ParseException e) {
-            // assume unexpired on invalid date.
+  private void setActive(Userdata userdata, UserDefaults defaults) {
+    if (Objects.nonNull(expireDate)) {
+      try {
+        Date expirationDate = DateUtils.parseDate(expireDate, EXPIRED_DATE_FORMAT);
+        userdata.setExpirationDate(expirationDate);
+        Date now = new Date();
+        boolean hasExpired = now.after(expirationDate);
+        if (Objects.nonNull(currentCharges) && Long.parseLong(currentCharges) > 0) {
+          userdata.setActive(true);
+          if (hasExpired) {
+            userdata.setExpirationDate(DateUtils.parseDate(defaults.getExpirationDate(), EXPIRED_DATE_FORMAT));
+          }
+        } else {
+          if (hasExpired) {
+            userdata.setActive(false);
+          } else {
             userdata.setActive(true);
           }
         }
+      } catch (ParseException e) {
+        userdata.setActive(true);
       }
     } else {
       userdata.setActive(true);

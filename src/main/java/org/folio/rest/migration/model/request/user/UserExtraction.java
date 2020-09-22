@@ -19,6 +19,9 @@ public class UserExtraction extends AbstractExtraction {
   @NotNull
   private String patronGroupSql;
 
+  @NotNull
+  private String patronNoteSql;
+
   public UserExtraction() {
     super();
   }
@@ -35,12 +38,32 @@ public class UserExtraction extends AbstractExtraction {
     return usernameSql;
   }
 
+  public void setUsernameSql(String usernameSql) {
+    this.usernameSql = usernameSql;
+  }
+
   public String getAddressSql() {
     return addressSql;
   }
 
+  public void setAddressSql(String addressSql) {
+    this.addressSql = addressSql;
+  }
+
   public String getPatronGroupSql() {
     return patronGroupSql;
+  }
+
+  public void setPatronGroupSql(String patronGroupSql) {
+    this.patronGroupSql = patronGroupSql;
+  }
+
+  public String getPatronNoteSql() {
+    return patronNoteSql;
+  }
+
+  public void setPatronNoteSql(String patronNoteSql) {
+    this.patronNoteSql = patronNoteSql;
   }
 
 }

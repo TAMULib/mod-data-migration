@@ -5,13 +5,14 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
-import org.folio.rest.jaxrs.model.Instance;
-import org.folio.rest.jaxrs.model.common.ExternalIdsHolder;
-import org.folio.rest.jaxrs.model.dto.AdditionalInfo;
-import org.folio.rest.jaxrs.model.dto.ParsedRecord;
-import org.folio.rest.jaxrs.model.dto.ParsedRecordDto.RecordType;
-import org.folio.rest.jaxrs.model.dto.RawRecord;
-import org.folio.rest.jaxrs.model.mod_source_record_storage.RecordModel;
+import org.folio.rest.jaxrs.model.dataimport.common.ExternalIdsHolder;
+import org.folio.rest.jaxrs.model.dataimport.dto.AdditionalInfo;
+import org.folio.rest.jaxrs.model.dataimport.dto.ParsedRecord;
+import org.folio.rest.jaxrs.model.dataimport.dto.ParsedRecordDto.RecordType;
+import org.folio.rest.jaxrs.model.dataimport.dto.RawRecord;
+import org.folio.rest.jaxrs.model.dataimport.mod_source_record_storage.RecordModel;
+import org.folio.rest.jaxrs.model.inventory.Instance;
+import org.folio.rest.jaxrs.model.inventory.Metadata;
 import org.folio.rest.migration.mapping.InstanceMapper;
 
 import io.vertx.core.json.JsonObject;
@@ -23,14 +24,13 @@ public class BibRecord {
   private final Boolean suppressDiscovery;
   private final Set<String> statisticalCodes;
 
-  private final String rawRecordId;
-  private final String parsedRecordId;
-
   private String marc;
   private String sourceRecordId;
   private String instanceId;
 
   private JsonObject parsedRecord;
+
+  private JsonObject originalParsedRecord;
 
   private String createdByUserId;
   private Date createdDate;
@@ -40,8 +40,6 @@ public class BibRecord {
     this.statusId = statusId;
     this.suppressDiscovery = suppressDiscovery;
     this.statisticalCodes = statisticalCodes;
-    this.rawRecordId = UUID.randomUUID().toString();
-    this.parsedRecordId = UUID.randomUUID().toString();
   }
 
   public String getBibId() {
@@ -50,14 +48,6 @@ public class BibRecord {
 
   public Boolean getSuppressDiscovery() {
     return suppressDiscovery;
-  }
-
-  public String getRawRecordId() {
-    return rawRecordId;
-  }
-
-  public String getParsedRecordId() {
-    return parsedRecordId;
   }
 
   public String getMarc() {
@@ -92,6 +82,14 @@ public class BibRecord {
     this.parsedRecord = parsedRecord;
   }
 
+  public JsonObject getOriginalParsedRecord() {
+    return originalParsedRecord;
+  }
+
+  public void setOriginalParsedRecord(JsonObject originalParsedRecord) {
+    this.originalParsedRecord = originalParsedRecord;
+  }
+
   public String getCreatedByUserId() {
     return createdByUserId;
   }
@@ -108,21 +106,22 @@ public class BibRecord {
     this.createdDate = createdDate;
   }
 
-  public RecordModel toRecordModel(String jobExecutionId) {
+  public RecordModel toRecordModel(String jobExecutionId, int order) {
     final RecordModel recordModel = new RecordModel();
     recordModel.setId(sourceRecordId);
     recordModel.setSnapshotId(jobExecutionId);
     recordModel.setMatchedId(sourceRecordId);
     recordModel.setRecordType(RecordType.MARC);
-    recordModel.setRawRecordId(rawRecordId);
-    recordModel.setParsedRecordId(parsedRecordId);
+    recordModel.setRawRecordId(sourceRecordId);
+    recordModel.setParsedRecordId(sourceRecordId);
+    recordModel.setOrder(order);
     ExternalIdsHolder externalIdsHolder = new ExternalIdsHolder();
     externalIdsHolder.setInstanceId(instanceId);
     recordModel.setExternalIdsHolder(externalIdsHolder);
     AdditionalInfo additionalInfo = new AdditionalInfo();
     additionalInfo.setSuppressDiscovery(suppressDiscovery);
     recordModel.setAdditionalInfo(additionalInfo);
-    org.folio.rest.jaxrs.model.dto.Metadata metadata = new org.folio.rest.jaxrs.model.dto.Metadata();
+    org.folio.rest.jaxrs.model.dataimport.dto.Metadata metadata = new org.folio.rest.jaxrs.model.dataimport.dto.Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
     recordModel.setMetadata(metadata);
@@ -131,20 +130,20 @@ public class BibRecord {
 
   public RawRecord toRawRecord() {
     final RawRecord rawRecord = new RawRecord();
-    rawRecord.setId(rawRecordId);
+    rawRecord.setId(sourceRecordId);
     rawRecord.setContent(marc);
     return rawRecord;
   }
 
   public ParsedRecord toParsedRecord() {
     final ParsedRecord parsedRecord = new ParsedRecord();
-    parsedRecord.setId(parsedRecordId);
+    parsedRecord.setId(sourceRecordId);
     parsedRecord.setContent(this.parsedRecord.getMap());
     return parsedRecord;
   }
 
   public Instance toInstance(InstanceMapper instanceMapper, String hridString) {
-    final Instance instance = instanceMapper.getInstance(parsedRecord);
+    final Instance instance = instanceMapper.getInstance(originalParsedRecord);
     if (Objects.nonNull(instance)) {
       instance.setId(instanceId);
       instance.setDiscoverySuppress(suppressDiscovery);
@@ -153,7 +152,7 @@ public class BibRecord {
 
       instance.setHrid(hridString);
 
-      org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
+      Metadata metadata = new Metadata();
       metadata.setCreatedByUserId(createdByUserId);
       metadata.setCreatedDate(createdDate);
       instance.setMetadata(metadata);

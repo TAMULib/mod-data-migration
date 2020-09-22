@@ -5,13 +5,13 @@ import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
-import org.folio.rest.jaxrs.model.mod_data_import_converter_storage.JobProfile;
+import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfile;
 import org.folio.rest.migration.model.request.AbstractJob;
 
 public class BibJob extends AbstractJob {
 
   @NotNull
-  private String userId;
+  private String user;
 
   @NotNull
   private String instanceStatusId;
@@ -29,12 +29,12 @@ public class BibJob extends AbstractJob {
     references = new HashMap<String, String>();
   }
 
-  public String getUserId() {
-    return userId;
+  public String getUser() {
+    return user;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
+  public void setUser(String user) {
+    this.user = user;
   }
 
   public String getInstanceStatusId() {

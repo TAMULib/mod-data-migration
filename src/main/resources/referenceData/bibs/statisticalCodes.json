@@ -216,9 +216,9 @@
     },
     {
       "id": "aa49eef3-3698-4098-874e-8ea92fb5e0b3",
-      "code": "eebo",
+      "code": "EEBO",
       "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-      "name": "eebo",
+      "name": "EEBO",
       "source": "voyager"
     },
     {
@@ -276,6 +276,13 @@
       "name": "evans",
       "statisticalCodeTypeId": "da9bf42b-5785-4945-9385-7e93fbcfe447",
       "source": "voyager"
+    },
+    {
+      "id": "53424b04-0bd2-4dc6-b8d7-499444be6943",
+      "code": "evans",
+      "name": "evans",
+      "source": "voyager",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8"
     },
     {
       "source": "voyager",
@@ -906,55 +913,6 @@
       "name": "Withdrawn",
       "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
       "source": "local"
-    },
-    {
-      "code": "wwi",
-      "id": "3c945493-9e36-42d3-af58-dcd239d316a1",
-      "name": "wwi",
-      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-      "source": "voyager"
-    },
-    {
-      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-      "name": "ybpebook",
-      "id": "2b1289e6-e39b-4168-8ff8-e102ab70bff6",
-      "code": "ybpebook",
-      "source": "voyager"
-    },
-    {
-      "source": "voyager",
-      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-      "name": "ybpebooks",
-      "id": "fc3fadf6-0879-417e-854b-5542392401a4",
-      "code": "ybpebooks"
-    },
-    {
-      "source": "voyager",
-      "code": "ybpepref",
-      "id": "82807c4e-5fc5-4379-b336-0dad1052ef94",
-      "name": "ybpepref",
-      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8"
-    },
-    {
-      "source": "voyager",
-      "name": "ybppapp",
-      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-      "code": "ybppapp",
-      "id": "18d4d1d5-bb85-4f39-b92c-0f195368c5c2"
-    },
-    {
-      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-      "name": "ybppdatrig",
-      "id": "8c6acfd3-24dd-4261-b81a-1085a396d5e2",
-      "code": "ybppdatrig",
-      "source": "voyager"
-    },
-    {
-      "source": "voyager",
-      "name": "ybppfirm",
-      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-      "code": "ybppfirm",
-      "id": "aa107ced-c0dc-4fcc-8da8-058482cc29a2"
     }
   ]
 }

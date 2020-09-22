@@ -8,7 +8,10 @@ public class UserDefaults {
 
   private String temporaryEmail;
 
-  public UserDefaults() { }
+  private String expirationDate;
+
+  public UserDefaults() {
+  }
 
   public Boolean getPrimaryAddress() {
     return primaryAddress;
@@ -32,6 +35,14 @@ public class UserDefaults {
 
   public void setTemporaryEmail(String temporaryEmail) {
     this.temporaryEmail = temporaryEmail;
+  }
+
+  public String getExpirationDate() {
+    return expirationDate;
+  }
+
+  public void setExpirationDate(String expirationDate) {
+    this.expirationDate = expirationDate;
   }
 
 }

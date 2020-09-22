@@ -1,11 +1,13 @@
 package org.folio.rest.migration.model;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.PhoneNumber;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.PhoneNumber.Type;
+import org.folio.rest.jaxrs.model.organizations.acq_models.acquisitions_unit.schemas.Metadata;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.PhoneNumber;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.PhoneNumber.Type;
 import org.folio.rest.migration.model.request.vendor.VendorDefaults;
 
 public class VendorPhoneRecord {
@@ -15,6 +17,9 @@ public class VendorPhoneRecord {
   private final String type;
 
   private List<String> categories;
+
+  private String createdByUserId;
+  private Date createdDate;
 
   public VendorPhoneRecord(String addressId, String number, String type, List<String> categories) {
     this.addressId = addressId;
@@ -39,15 +44,31 @@ public class VendorPhoneRecord {
     return categories;
   }
 
+  public String getCreatedByUserId() {
+    return createdByUserId;
+  }
+
+  public void setCreatedByUserId(String createdByUserId) {
+    this.createdByUserId = createdByUserId;
+  }
+
+  public Date getCreatedDate() {
+    return createdDate;
+  }
+
+  public void setCreatedDate(Date createdDate) {
+    this.createdDate = createdDate;
+  }
+
   public PhoneNumber toPhoneNumber(VendorDefaults defaults) {
     final PhoneNumber phoneNumber = new PhoneNumber();
 
     phoneNumber.setPhoneNumber(number);
-    
     phoneNumber.setCategories(categories);
 
     setLanguage(phoneNumber, defaults);
     setTypeAndPrimary(phoneNumber, defaults);
+    setMetadata(phoneNumber);
 
     return phoneNumber;
   }
@@ -91,6 +112,16 @@ public class VendorPhoneRecord {
         phoneNumber.setType(Type.OTHER);
       }
     }
+  }
+
+  private void setMetadata(PhoneNumber phoneNumber) {
+    Metadata metadata = new Metadata();
+    metadata.setCreatedByUserId(createdByUserId);
+    metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
+
+    phoneNumber.setMetadata(metadata);
   }
 
 }

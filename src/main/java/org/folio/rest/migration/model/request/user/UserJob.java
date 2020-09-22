@@ -13,7 +13,13 @@ public class UserJob extends AbstractJob {
   private String decodeSql;
 
   @NotNull
-  private String userId;
+  private String user;
+
+  @NotNull
+  private String dbCode;
+
+  @NotNull
+  private String noteTypeId;
 
   @NotNull
   private Boolean skipDuplicates;
@@ -33,12 +39,28 @@ public class UserJob extends AbstractJob {
     this.decodeSql = decodeSql;
   }
 
-  public String getUserId() {
-    return userId;
+  public String getUser() {
+    return user;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
+  public void setUser(String user) {
+    this.user = user;
+  }
+
+  public String getDbCode() {
+    return dbCode;
+  }
+
+  public void setDbCode(String dbCode) {
+    this.dbCode = dbCode;
+  }
+
+  public String getNoteTypeId() {
+    return noteTypeId;
+  }
+
+  public void setNoteTypeId(String noteTypeId) {
+    this.noteTypeId = noteTypeId;
   }
 
   public Boolean getSkipDuplicates() {

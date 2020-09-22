@@ -7,11 +7,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.acq_models.acquisitions_unit.schemas.Metadata;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Address;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Email;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Organization;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Url;
+import org.folio.rest.jaxrs.model.organizations.acq_models.acquisitions_unit.schemas.Metadata;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Address;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Email;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Organization;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Url;
 import org.folio.rest.migration.model.request.vendor.VendorDefaults;
 
 public class VendorRecord {
@@ -186,8 +186,12 @@ public class VendorRecord {
     organization.setId(referenceId);
     organization.setIsVendor(true);
     organization.setName(name);
-    organization.setTaxId(taxId);
-    organization.setClaimingInterval(claimingInterval);
+    if (StringUtils.isNotEmpty(taxId)) {
+      organization.setTaxId(taxId);
+    }
+    if (Objects.nonNull(claimingInterval)) {
+      organization.setClaimingInterval(claimingInterval);
+    }
 
     organization.setAccounts(vendorAccountRecords.stream().map(vendorAccount -> vendorAccount.toAccount(defaults)).collect(Collectors.toList()));
 
@@ -213,12 +217,14 @@ public class VendorRecord {
 
   private void setCode(Organization organization) {
     // vendor codes may not contain embedded blanks.
-    organization.setCode(code.replaceAll("/ /", StringUtils.EMPTY));
+    organization.setCode(code.replaceAll(StringUtils.SPACE, StringUtils.EMPTY));
   }
 
   private void setCurrencies(Organization organization) {
     List<String> currencies = new ArrayList<>();
-    currencies.add(defaultCurrency);
+    if (StringUtils.isNotEmpty(defaultCurrency)) {
+      currencies.add(defaultCurrency);
+    }
 
     organization.setVendorCurrencies(currencies);
   }
@@ -275,6 +281,8 @@ public class VendorRecord {
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
 
     organization.setMetadata(metadata);
   }

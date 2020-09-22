@@ -25,11 +25,12 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Address;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Contact;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Email;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Organization;
-import org.folio.rest.jaxrs.model.acq_models.mod_orgs.schemas.Url;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Address;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Contact;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Email;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Organization;
+import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Url;
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.VendorAccountRecord;
 import org.folio.rest.migration.model.VendorAddressRecord;
@@ -47,6 +48,8 @@ import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
 
 public class VendorMigration extends AbstractMigration<VendorContext> {
+
+  private static final String USER_ID = "USER_ID";
 
   private static final String VENDOR_ID = "VENDOR_ID";
   private static final String VENDOR_CODE = "VENDOR_CODE";
@@ -147,6 +150,8 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
       log.info("{} count: {}", job.getSchema(), count);
 
+      Userdata user = migrationService.okapiService.lookupUser(tenant, token, job.getUser());
+
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
@@ -162,6 +167,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         partitionContext.put(LOCATIONS, job.getLocations());
         partitionContext.put(STATUSES, job.getStatuses());
         partitionContext.put(TYPES, job.getTypes());
+        partitionContext.put(USER_ID, user.getId());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new VendorPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -201,6 +207,8 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
       VendorMaps maps = context.getMaps();
       VendorDefaults defaults = context.getDefaults();
+
+      String userId = (String) partitionContext.get(USER_ID);
 
       String schema = job.getSchema();
 
@@ -270,6 +278,10 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
           String referenceId = vendorRL.get().getFolioReference();
 
+          if (maps.getVendorTypes().containsKey(vendorType)) {
+            vendorType = maps.getVendorTypes().get(vendorType);
+          }
+
           VendorRecord vendorRecord = new VendorRecord(referenceId, vendorId, vendorCode, vendorType, vendorName, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
 
           try {
@@ -291,8 +303,14 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
             List<Email> emails = new ArrayList<>();
             List<Url> urls = new ArrayList<>();
 
+            Date createdDate = new Date();
+            String createdByUserId = userId;
+            String createdAt = DATE_TIME_FOMATTER.format(new Date().toInstant().atOffset(ZoneOffset.UTC));
+
             for (VendorAddressRecord vendorAddress : vendorRecord.getVendorAddresses()) {
               vendorAddress.setVendorId(vendorId);
+              vendorAddress.setCreatedDate(createdDate);
+              vendorAddress.setCreatedByUserId(createdByUserId);
 
               List<String> categories = vendorAddress.getCategories(maps);
 
@@ -301,12 +319,8 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
               } else if (vendorAddress.isContact()) {
                 Contact contact = vendorAddress.toContact(categories, defaults, maps);
 
-                String createdAt = DATE_TIME_FOMATTER.format(new Date().toInstant().atOffset(ZoneOffset.UTC));
-                String createdByUserId = job.getUserId();
-                
                 String contactUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(contact)));
 
-                // TODO: validate rows
                 contactWriter.println(String.join("\t", contact.getId(), contactUtf8Json, createdAt, createdByUserId));
 
                 contacts.add(contact.getId());
@@ -318,19 +332,21 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
               vendorAddressPhoneNumbersContext.put(ADDRESS_ID, vendorAddress.getAddressId());
               vendorAddressPhoneNumbersContext.put(CATEGORIES, categories);
               vendorPhoneNumbers.addAll(getVendorAddressPhoneNumbers(phoneStatement, vendorAddressPhoneNumbersContext));
+
+              vendorPhoneNumbers.forEach(vendorPhoneNumber -> {
+                vendorPhoneNumber.setCreatedDate(createdDate);
+                vendorPhoneNumber.setCreatedByUserId(userId);
+              });
             }
+
+            vendorRecord.setCreatedDate(createdDate);
+            vendorRecord.setCreatedByUserId(userId);
+
             vendorRecord.setAddresses(addresses);
             vendorRecord.setContacts(contacts);
             vendorRecord.setEmails(emails);
             vendorRecord.setUrls(urls);
             vendorRecord.setVendorPhoneNumbers(vendorPhoneNumbers);
-
-            Date createdDate = new Date();
-            vendorRecord.setCreatedDate(createdDate);
-            vendorRecord.setCreatedByUserId(job.getUserId());
-
-            String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-            String createdByUserId = job.getUserId();
 
             Organization organization = vendorRecord.toOrganization(defaults);
 
@@ -341,7 +357,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
             String orgUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(organization)));
 
-            // TODO: validate rows
             organizationWriter.println(String.join("\t", organization.getId(), orgUtf8Json, createdAt, createdByUserId));
 
           } catch (JsonProcessingException e) {
@@ -434,7 +449,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         try (ResultSet resultSet = getResultSet(statement, vendorAliasesContext)) {
           while (resultSet.next()) {
             String altVendorName = resultSet.getString(ALIAS_ALT_VENDOR_NAME);
-            if (StringUtils.isNoneEmpty(altVendorName)) {
+            if (StringUtils.isNotEmpty(altVendorName)) {
               vendorAliases.add(new VendorAliasRecord(altVendorName));
             }
           }
@@ -454,7 +469,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         try (ResultSet resultSet = getResultSet(statement, vendorNotesContext)) {
           while (resultSet.next()) {
             String note = resultSet.getString(NOTE);
-            if (StringUtils.isNoneEmpty(note)) {
+            if (StringUtils.isNotEmpty(note)) {
               if (vendorNotes.length() > 0) {
                 vendorNotes.append(StringUtils.SPACE);
               }

@@ -1,0 +1,96 @@
+{
+  "path": "/payments",
+  "dependencies": [],
+  "data": [
+    {
+      "nameMethod": "Check",
+      "id": "2ea4e093-e27b-4784-9ec8-631d4de0f0ba",
+      "ownerId": "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
+      "allowedRefundMethod": true
+    },
+    {
+      "id": "9a6d11e2-e092-4a14-ac44-38979c747ea6",
+      "ownerId": "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
+      "nameMethod": "Credit Card",
+      "allowedRefundMethod": true
+    },
+    {
+      "id": "4c8dc927-3102-4ac3-a4e8-119aa99b30a4",
+      "ownerId": "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
+      "nameMethod": "Food for Fines",
+      "allowedRefundMethod": false
+    },
+    {
+      "ownerId": "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
+      "id": "b96e9415-e822-4fee-9d1c-138f0b6a1632",
+      "nameMethod": "Interdepartmental transfer",
+      "allowedRefundMethod": true
+    },
+    {
+      "id": "32861ea1-e7d6-4ac8-bf59-699e5704dec0",
+      "ownerId": "014416f2-7609-4222-a812-1a3deb0591b8",
+      "nameMethod": "Check",
+      "allowedRefundMethod": true
+    },
+    {
+      "id": "ae22be7f-37d0-4d1e-bd8c-693e3c73ce42",
+      "ownerId": "014416f2-7609-4222-a812-1a3deb0591b8",
+      "nameMethod": "Credit Card",
+      "allowedRefundMethod": true
+    },
+    {
+      "id": "e7fb8bfa-250d-41bf-b738-9e05cc678c93",
+      "ownerId": "014416f2-7609-4222-a812-1a3deb0591b8",
+      "nameMethod": "Food for Fines",
+      "allowedRefundMethod": false
+    },
+    {
+      "id": "f6949f49-10ef-4b16-9534-f667c279bcf2",
+      "ownerId": "014416f2-7609-4222-a812-1a3deb0591b8",
+      "nameMethod": "Interdepartmental transfer",
+      "allowedRefundMethod": true
+    },
+    {
+      "nameMethod": "Check",
+      "id": "a079dd73-60b9-4997-89c3-b30c59fb87f3",
+      "ownerId": "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
+      "allowedRefundMethod": true
+    },
+    {
+      "id": "e9dfda82-98ac-4973-9e7c-7823173a92f4",
+      "ownerId": "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
+      "nameMethod": "Credit Card",
+      "allowedRefundMethod": true
+    },
+    {
+      "id": "1f7d5404-5b72-4429-99e5-9867c78b4042",
+      "ownerId": "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
+      "nameMethod": "Food for Fines",
+      "allowedRefundMethod": false
+    },
+    {
+      "ownerId": "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
+      "id": "ae1e9cac-f363-48ef-84d4-0754a7403524",
+      "nameMethod": "Interdepartmental transfer",
+      "allowedRefundMethod": true
+    },
+    {
+      "id": "4ccce8a9-edc9-4932-a1ac-fd9881cede4e",
+      "ownerId": "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
+      "nameMethod": "Check",
+      "allowedRefundMethod": true
+    },
+    {
+      "id": "9e9acbc6-fd3a-4da6-bfa3-9ac266b0bd4a",
+      "ownerId": "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
+      "nameMethod": "Credit Card",
+      "allowedRefundMethod": true
+    },
+    {
+      "id": "e373a646-a835-4b00-af5a-39c6d358760e",
+      "ownerId": "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
+      "nameMethod": "Interdepartmental transfer",
+      "allowedRefundMethod": true
+    }
+  ]
+}

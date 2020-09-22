@@ -19,11 +19,15 @@ public class ItemMaps {
   @NotNull
   private Map<String, String> statusName;
 
+  @NotNull
+  private Map<String, String> custodianStatisticalCode;
+
   public ItemMaps() {
     location = new HashMap<>();
     loanType = new HashMap<>();
     itemStatus = new HashMap<>();
     statusName = new HashMap<>();
+    custodianStatisticalCode = new HashMap<>();
   }
 
   public Map<String, Map<String, String>> getLocation() {
@@ -56,6 +60,14 @@ public class ItemMaps {
 
   public void setStatusName(Map<String, String> statusName) {
     this.statusName = statusName;
+  }
+
+  public Map<String, String> getCustodianStatisticalCode() {
+    return custodianStatisticalCode;
+  }
+
+  public void setCustodianStatisticalCode(Map<String, String> custodianStatisticalCode) {
+    this.custodianStatisticalCode = custodianStatisticalCode;
   }
 
 }

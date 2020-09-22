@@ -25,17 +25,19 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.CirculationNote;
-import org.folio.rest.jaxrs.model.CirculationNote.NoteType;
-import org.folio.rest.jaxrs.model.Item;
-import org.folio.rest.jaxrs.model.Loantype;
-import org.folio.rest.jaxrs.model.Loantypes;
-import org.folio.rest.jaxrs.model.Location;
-import org.folio.rest.jaxrs.model.Locations;
-import org.folio.rest.jaxrs.model.Materialtype;
-import org.folio.rest.jaxrs.model.Materialtypes;
-import org.folio.rest.jaxrs.model.Note__1;
-import org.folio.rest.jaxrs.model.Statisticalcodes;
+import org.folio.rest.jaxrs.model.inventory.CirculationNote;
+import org.folio.rest.jaxrs.model.inventory.CirculationNote.NoteType;
+import org.folio.rest.jaxrs.model.users.Userdata;
+import org.folio.rest.jaxrs.model.inventory.Item;
+import org.folio.rest.jaxrs.model.inventory.Loantype;
+import org.folio.rest.jaxrs.model.inventory.Loantypes;
+import org.folio.rest.jaxrs.model.inventory.Location;
+import org.folio.rest.jaxrs.model.inventory.Locations;
+import org.folio.rest.jaxrs.model.inventory.Materialtype;
+import org.folio.rest.jaxrs.model.inventory.Materialtypes;
+import org.folio.rest.jaxrs.model.inventory.Note__1;
+import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.ItemMfhdRecord;
 import org.folio.rest.migration.model.ItemRecord;
@@ -61,6 +63,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String LOCATIONS_MAP = "LOCATIONS_MAP";
   private static final String STATISTICAL_CODES = "STATISTICAL_CODES";
   private static final String MATERIAL_TYPES = "MATERIAL_TYPES";
+
+  private static final String USER_ID = "USER_ID";
 
   private static final String ITEM_ID = "ITEM_ID";
   private static final String PERM_ITEM_TYPE_ID = "ITEM_TYPE_ID";
@@ -143,9 +147,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
     JsonObject itemsHridSettings = hridSettings.getJsonObject("items");
     String hridPrefix = itemsHridSettings.getString(PREFIX);
-
-    int originalHridStartNumber = itemsHridSettings.getInteger(START_NUMBER);
-    int hridStartNumber = originalHridStartNumber;
+    int hridStartNumber = itemsHridSettings.getInteger(START_NUMBER);
 
     int index = 0;
 
@@ -159,6 +161,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       int count = getCount(voyagerSettings, countContext);
 
       log.info("{} count: {}", job.getSchema(), count);
+
+      Userdata user = migrationService.okapiService.lookupUser(tenant, token, job.getUser());
 
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);
@@ -177,15 +181,12 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         partitionContext.put(LOCATIONS_MAP, locationsMap);
         partitionContext.put(STATISTICAL_CODES, statisticalcodes);
         partitionContext.put(MATERIAL_TYPES, materialTypes);
+        partitionContext.put(USER_ID, user.getId());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new ItemPartitionTask(migrationService, partitionContext));
         offset += limit;
+        hridStartNumber += limit;
         index++;
-        if (i < partitions - 1) {
-          hridStartNumber += limit;
-        } else {
-          hridStartNumber = originalHridStartNumber + count;
-        }
       }
     }
 
@@ -229,6 +230,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       Materialtypes materialtypes = (Materialtypes) partitionContext.get(MATERIAL_TYPES);
       Statisticalcodes statisticalcodes = (Statisticalcodes) partitionContext.get(STATISTICAL_CODES);
+
+      String userId = (String) partitionContext.get(USER_ID);
 
       ItemMaps maps = context.getMaps();
       ItemDefaults defaults = context.getDefaults();
@@ -299,22 +302,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           noteContext.put(ITEM_ID, itemId);
           materialTypeContext.put(ITEM_ID, itemId);
 
-          String permLoanTypeId, permLocationId;
-
-          if (loanTypesMap.containsKey(voyagerPermTypeId)) {
-            permLoanTypeId = loanTypesMap.get(voyagerPermTypeId);
-          } else {
-            log.warn("using default permanent loan type for schema {} itemId {} type {}", schema, itemId, voyagerPermTypeId);
-            permLoanTypeId = defaults.getPermanentLoanTypeId();
-          }
-
-          if (locationsMap.containsKey(voyagerPermLocationId)) {
-            permLocationId = locationsMap.get(voyagerPermLocationId);
-          } else {
-            log.warn("using default permanent location for schema {} itemId {} location {}", schema, itemId, voyagerPermLocationId);
-            permLocationId = defaults.getPermanentLocationId();
-          }
-
           Optional<ReferenceLink> itemRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId);
           Optional<ReferenceLink> holdingRL = Optional.empty();
 
@@ -336,7 +323,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           String id = itemRL.get().getFolioReference();
           String holdingId = holdingRL.get().getFolioReference();
 
-          ItemRecord itemRecord = new ItemRecord(itemId, numberOfPieces, spineLabel, job.getItemNoteTypeId(), job.getItemDamagedStatusId());
+          String custodianStatisticalCodeId = maps.getCustodianStatisticalCode().get(schema);
+
+          ItemRecord itemRecord = new ItemRecord(itemId, numberOfPieces, spineLabel, job.getItemNoteTypeId(), job.getItemDamagedStatusId(), custodianStatisticalCodeId);
 
           CompletableFuture.allOf(
             getItemBarcode(barcodeStatement, barcodeContext)
@@ -357,23 +346,41 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           itemRecord.setId(id);
           itemRecord.setHoldingId(holdingId);
 
-          itemRecord.setPermanentLoanTypeId(permLoanTypeId);
-          itemRecord.setPermanentLocationId(permLocationId);
+          if (loanTypesMap.containsKey(voyagerPermTypeId)) {
+            itemRecord.setPermanentLoanTypeId(loanTypesMap.get(voyagerPermTypeId));
+          } else {
+            log.warn("using default permanent loan type for schema {} itemId {} type {}", schema, itemId, voyagerPermTypeId);
+            itemRecord.setPermanentLoanTypeId(defaults.getPermanentLoanTypeId());
+          }
 
           if (loanTypesMap.containsKey(voyagerTempTypeId)) {
             itemRecord.setTemporaryLoanTypeId(loanTypesMap.get(voyagerTempTypeId));
           }
 
-          if (locationsMap.containsKey(voyagerTempLocationId)) {
-            itemRecord.setTemporaryLocationId(locationsMap.get(voyagerTempLocationId));
+          if (!voyagerPermLocationId.equals(itemRecord.getMfhdItem().getLocation())) {
+            if (locationsMap.containsKey(voyagerPermLocationId)) {
+              itemRecord.setPermanentLocationId(locationsMap.get(voyagerPermLocationId));
+            }
+          }
+
+          if (Integer.parseInt(voyagerTempLocationId) > 0) {
+            if (locationsMap.containsKey(voyagerTempLocationId)) {
+              String folioTempLocationId = locationsMap.get(voyagerTempLocationId);
+              itemRecord.setTemporaryLocationId(folioTempLocationId);
+              itemRecord.setEffectiveLocationId(folioTempLocationId);
+            }
+          } else {
+            if (locationsMap.containsKey(voyagerPermLocationId)) {
+              itemRecord.setEffectiveLocationId(locationsMap.get(voyagerPermLocationId));
+            }
           }
 
           Date createdDate = new Date();
-          itemRecord.setCreatedByUserId(job.getUserId());
+          itemRecord.setCreatedByUserId(userId);
           itemRecord.setCreatedDate(createdDate);
 
           String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-          String createdByUserId = job.getUserId();
+          String createdByUserId = userId;
 
           String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
 
@@ -440,19 +447,19 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     private CompletableFuture<String> getMaterialTypeId(Statement statement, Map<String, Object> context, String defaultMaterialTypeId, Materialtypes materialtypes) {
       CompletableFuture<String> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
-        String materialType = defaultMaterialTypeId;
+        String materialTypeId = defaultMaterialTypeId;
         try (ResultSet resultSet = getResultSet(statement, context)) {
           while (resultSet.next()) {
             String materialTypeCode = resultSet.getString(MTYPE_CODE);
             Optional<Materialtype> potentialMaterialType = materialtypes.getMtypes().stream().filter(mt -> mt.getSource().equals(materialTypeCode)).findFirst();
             if (potentialMaterialType.isPresent()) {
-              materialType = potentialMaterialType.get().getId();
+              materialTypeId = potentialMaterialType.get().getId();
             }
           }
         } catch (SQLException e) {
           e.printStackTrace();
         } finally {
-          future.complete(materialType);
+          future.complete(materialTypeId);
         }
       });
       return future;
@@ -469,7 +476,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             String itemEnum = resultSet.getString(ITEM_ENUM);
             String freetext = resultSet.getString(FREETEXT);
             String year = resultSet.getString(YEAR);
-            mfhdItem = new ItemMfhdRecord(caption, chron, itemEnum, freetext, year);
+            String location = resultSet.getString(LOCATION_ID);
+            mfhdItem = new ItemMfhdRecord(caption, chron, itemEnum, freetext, year, location);
           }
         } catch (SQLException e) {
           e.printStackTrace();
@@ -489,14 +497,15 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             String itemStatus = statusNameMap.get(resultSet.getString(ITEM_STATUS));
             String itemStatusDate = resultSet.getString(ITEM_STATUS_DATE);
             String circtrans = resultSet.getString(CIRCTRANS);
-            Integer itemStatusDesc = itemStatusMap.get(resultSet.getString(ITEM_STATUS_DESC));
-            statuses.add(new ItemStatusRecord(itemStatus, itemStatusDate, circtrans, itemStatusDesc));
+            String itemStatusDesc = resultSet.getString(ITEM_STATUS_DESC);
+            Integer itemStatusOrder = itemStatusMap.get(resultSet.getString(ITEM_STATUS_DESC));
+            statuses.add(new ItemStatusRecord(itemStatus, itemStatusDate, circtrans, itemStatusDesc, itemStatusOrder));
           }
         } catch (SQLException e) {
           e.printStackTrace();
         } finally {
           future.complete(statuses.stream()
-            .sorted((is1, is2) -> is1.getItemStatusDesc().compareTo(is2.getItemStatusDesc()))
+            .sorted((is1, is2) -> is1.getItemStatusOrder().compareTo(is2.getItemStatusOrder()))
             .collect(Collectors.toList()));
         }
       });
@@ -511,13 +520,13 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         try (ResultSet resultSet = getResultSet(statement, context)) {
           while (resultSet.next()) {
             String itemNote = resultSet.getString(ITEM_NOTE);
-            String itemNoteType = resultSet.getString(ITEM_NOTE_TYPE);
-            if (StringUtils.isNotEmpty(itemNote) && StringUtils.isNotEmpty(itemNoteType)) {
+            int itemNoteType = resultSet.getInt(ITEM_NOTE_TYPE);
+            if (StringUtils.isNotEmpty(itemNote)) {
               itemNote = StringUtils.chomp(itemNote);
               itemNote = StringUtils.normalizeSpace(itemNote);
               itemNote = itemNote.replaceAll("[\\p{Cntrl}&&[^\r\n\t]]", "");
               itemNote = itemNote.replaceAll("\\p{C}", "");
-              if (itemNoteType.equals("1")) {
+              if (itemNoteType == 1) {
                 Note__1 note = new Note__1();
                 note.setNote(itemNote);
                 note.setItemNoteTypeId(itemNoteTypeId);
@@ -528,9 +537,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
                 circulationNote.setId(UUID.randomUUID().toString());
                 circulationNote.setNote(itemNote);
                 circulationNote.setStaffOnly(true);
-                if (itemNoteType.equals("2")) {
+                if (itemNoteType == 2) {
                   circulationNote.setNoteType(NoteType.CHECK_OUT);
-                } else if (itemNoteType.equals("3")) {
+                } else if (itemNoteType == 3) {
                   circulationNote.setNoteType(NoteType.CHECK_IN);
                 } else {
                   // is this possible?

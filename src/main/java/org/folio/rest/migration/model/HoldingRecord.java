@@ -8,12 +8,13 @@ import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import org.codehaus.plexus.util.StringUtils;
-import org.folio.rest.jaxrs.model.HoldingsStatement;
-import org.folio.rest.jaxrs.model.HoldingsStatementsForIndex;
-import org.folio.rest.jaxrs.model.HoldingsStatementsForSupplement;
-import org.folio.rest.jaxrs.model.Holdingsrecord;
-import org.folio.rest.jaxrs.model.Note;
+import org.apache.commons.lang3.StringUtils;
+import org.folio.rest.jaxrs.model.inventory.HoldingsStatement;
+import org.folio.rest.jaxrs.model.inventory.HoldingsStatementsForIndex;
+import org.folio.rest.jaxrs.model.inventory.HoldingsStatementsForSupplement;
+import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
+import org.folio.rest.jaxrs.model.inventory.Metadata;
+import org.folio.rest.jaxrs.model.inventory.Note;
 import org.folio.rest.migration.mapping.HoldingMapper;
 import org.folio.rest.migration.model.request.holding.HoldingMaps;
 import org.marc4j.marc.DataField;
@@ -155,7 +156,11 @@ public class HoldingRecord {
       holding.setPermanentLocationId(locationId);
       // holding.setTemporaryLocationId(null);
       holding.setHoldingsTypeId(holdingsType);
-      holding.setCallNumberTypeId(callNumberType);
+
+      if (Objects.nonNull(callNumberType)) {
+        holding.setCallNumberTypeId(callNumberType);
+      }
+
       // holding.setIllPolicyId(null);
 
       holding.setDiscoverySuppress(discoverySuppress);
@@ -173,7 +178,7 @@ public class HoldingRecord {
       formerIds.add(mfhdId);
       holding.setFormerIds(formerIds);
 
-      org.folio.rest.jaxrs.model.Metadata metadata = new org.folio.rest.jaxrs.model.Metadata();
+      Metadata metadata = new Metadata();
       metadata.setCreatedByUserId(createdByUserId);
       metadata.setCreatedDate(createdDate);
       holding.setMetadata(metadata);
@@ -191,7 +196,7 @@ public class HoldingRecord {
 
   public void process852Field(Holdingsrecord holding) {
     List<Note> notes = holding.getNotes();
-    StringBuilder callNumberBuilder = new StringBuilder(" ");
+    StringBuilder callNumberBuilder = new StringBuilder();
     DataField f852 = (DataField) record.getVariableField("852");
     if (Objects.nonNull(f852)) {
       f852.getSubfields().forEach(subfield -> {
@@ -208,7 +213,9 @@ public class HoldingRecord {
         } break;
         case 'h':
         case 'i':
-          callNumberBuilder.append(data);
+          callNumberBuilder
+            .append(StringUtils.SPACE)
+            .append(data);
           break;
         case 'k':
           holding.setCallNumberPrefix(data);
@@ -254,47 +261,56 @@ public class HoldingRecord {
 
   public void process5xxFields(Holdingsrecord holding) {
     List<Note> notes = holding.getNotes();
-    List<VariableField> f5xx = record.getVariableFields(new String[] { "506", "541", "562", "583" });
-    f5xx.stream().map(field -> (DataField) field).forEach(field -> {
-      String tag = field.getTag();
-      Note note = new Note();
-      note.setNote(field.toString());
-      switch (tag) {
-      case "506":
-        // access
-        note.setStaffOnly(false);
-        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("access"));
-        break;
-      case "541":
-        // provenance
-        note.setStaffOnly(false);
-        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("provenance"));
-        break;
-      case "562":
-        // copy
-        note.setStaffOnly(false);
-        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("copy"));
-        break;
-      case "583":
-        // action
-        note.setStaffOnly(true);
-        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("action"));
-        break;
-      default:
-        // do nothing
-      }
-      notes.add(note);
-    });
+    record.getVariableFields().stream()
+      .map(field -> (DataField) field)
+      .filter(field -> field.getTag().startsWith("5"))
+      .forEach(field -> {
+        String tag = field.getTag();
+        Note note = new Note();
+        note.setNote(field.toString());
+        switch (tag) {
+        case "506":
+          // access
+          note.setStaffOnly(false);
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("access"));
+          break;
+        case "541":
+        case "561":
+          // provenance
+          note.setStaffOnly(false);
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("provenance"));
+          break;
+        case "562":
+          // copy
+          note.setStaffOnly(false);
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("copy"));
+          break;
+        case "563":
+          // binding
+          note.setStaffOnly(false);
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("binding"));
+          break;
+        case "583":
+          // action
+          note.setStaffOnly(true);
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("action"));
+          break;
+        default:
+          note.setStaffOnly(true);
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
+          break;
+        }
+        notes.add(note);
+      });
   }
 
   public void process866Field(Holdingsrecord holding) {
     List<HoldingsStatement> holdingsStatements = holding.getHoldingsStatements();
-    DataField f866 = (DataField) record.getVariableField("866");
-    if (Objects.nonNull(f866)) {
+    record.getVariableFields("866").stream().map(vf -> (DataField) vf).forEach(f866 -> {
+      HoldingsStatement statement = new HoldingsStatement();
       f866.getSubfields().forEach(subfield -> {
         char code = subfield.getCode();
         String data = subfield.getData();
-        HoldingsStatement statement = new HoldingsStatement();
         switch (code) {
         case 'a':
           statement.setStatement(data);
@@ -307,19 +323,18 @@ public class HoldingRecord {
         default:
           // do nothing
         }
-        holdingsStatements.add(statement);
       });
-    }
+      holdingsStatements.add(statement);
+    });
   }
 
   public void process867Field(Holdingsrecord holding) {
     List<HoldingsStatementsForSupplement> holdingsStatements = holding.getHoldingsStatementsForSupplements();
-    DataField f867 = (DataField) record.getVariableField("867");
-    if (Objects.nonNull(f867)) {
+    record.getVariableFields("867").stream().map(vf -> (DataField) vf).forEach(f867 -> {
+      HoldingsStatementsForSupplement statement = new HoldingsStatementsForSupplement();
       f867.getSubfields().forEach(subfield -> {
         char code = subfield.getCode();
         String data = subfield.getData();
-        HoldingsStatementsForSupplement statement = new HoldingsStatementsForSupplement();
         switch (code) {
         case 'a':
           statement.setStatement(data);
@@ -332,19 +347,18 @@ public class HoldingRecord {
         default:
           // do nothing
         }
-        holdingsStatements.add(statement);
       });
-    }
+      holdingsStatements.add(statement);
+    });
   }
 
   public void process868Field(Holdingsrecord holding) {
     List<HoldingsStatementsForIndex> holdingsStatements = holding.getHoldingsStatementsForIndexes();
-    DataField f868 = (DataField) record.getVariableField("868");
-    if (Objects.nonNull(f868)) {
+    record.getVariableFields("868").stream().map(vf -> (DataField) vf).forEach(f868 -> {
+      HoldingsStatementsForIndex statement = new HoldingsStatementsForIndex();
       f868.getSubfields().forEach(subfield -> {
         char code = subfield.getCode();
         String data = subfield.getData();
-        HoldingsStatementsForIndex statement = new HoldingsStatementsForIndex();
         switch (code) {
         case 'a':
           statement.setStatement(data);
@@ -357,9 +371,9 @@ public class HoldingRecord {
         default:
           // do nothing
         }
-        holdingsStatements.add(statement);
       });
-    }
+      holdingsStatements.add(statement);
+    });
   }
 
 }

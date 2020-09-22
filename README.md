@@ -46,7 +46,7 @@ POST to http://localhost:9000/migrate/vendor-reference-links
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "parallelism": 12,
@@ -91,7 +91,7 @@ POST to http://localhost:9000/migrate/vendors
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "preActions": [],
@@ -101,7 +101,7 @@ POST to http://localhost:9000/migrate/vendors
     {
       "schema": "AMDB",
       "partitions": 12,
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "references": {
         "vendorTypeId": "08c7dd18-dbaf-11e9-8a34-2a2ae2dbcce4"
       },
@@ -112,7 +112,7 @@ POST to http://localhost:9000/migrate/vendors
     {
       "schema": "MSDB",
       "partitions": 2,
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "references": {
         "vendorTypeId": "b427aa0a-96f2-4338-8b3c-2ddcdca6cfe4"
       },
@@ -123,11 +123,11 @@ POST to http://localhost:9000/migrate/vendors
   ],
   "maps": {
     "categories": {
-      "claim": "d931bdc4-ef47-4871-98d7-2c48f5ff4fe0",
-      "order": "9718aa38-8fb4-49e4-910b-bbdc2b1aa579",
-      "other": "04f39c67-b212-4fe7-87f0-0875c8995d21",
-      "payment": "ac6528cc-8ba0-4678-9b08-627ca2314ffd",
-      "return": "544459af-fc5e-4e64-9b40-acb84ac4d3aa"
+      "claim": "9491fdad-b97b-45df-9783-337d86abc80f",
+      "order": "549d6d85-a51a-4cfc-8cfa-e4d46fb33823",
+      "other": "71a3e461-1777-4a6f-b1cc-d4a856d141ec",
+      "payment": "62042758-5266-472a-a3e9-ea1ca0ccf056",
+      "return": "3c31275e-7ed8-4ec0-9b18-31243461f6ea"
     },
     "countryCodes": {
       "AFGHANISTAN": "AFG",
@@ -393,6 +393,15 @@ POST to http://localhost:9000/migrate/vendors
       "YEMEN": "YEM",
       "ZAMBIA": "ZMB",
       "ZIMBABWE": "ZWE"
+    },
+    "vendorTypes": {
+      "BF": "Backfile vendor",
+      "CO": "Continuations vendor",
+      "DB": "Database vendor",
+      "ER": "Electronic resources vendor",
+      "MO": "Monographs vendor",
+      "NO": "Converted from NOTIS to Voyager",
+      "SR": "Serials vendor"
     }
   },
   "defaults": {
@@ -419,7 +428,7 @@ POST to http://localhost:9000/migrate/user-reference-links
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "parallelism": 12,
@@ -456,21 +465,22 @@ POST to http://localhost:9000/migrate/users
 {
   "extraction": {
     "countSql": "SELECT COUNT(*) as total FROM ${SCHEMA}.patron WHERE last_name is not null",
-    "pageSql": "SELECT patron_id, NVL2(institution_id, regexp_replace(institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\\1\\2\\3'), '${SCHEMA}_' || patron_id) AS external_system_id, last_name, first_name, middle_name, NVL2(expire_date, to_char(expire_date,'YYYYMMDD'), to_char(purge_date,'YYYYMMDD')) AS active_date, NVL2(expire_date, to_char(expire_date,'YYYY-MM-DD'), to_char(purge_date,'YYYY-MM-DD')) AS expire_date, sms_number, current_charges FROM ${SCHEMA}.patron WHERE last_name is not null ORDER BY patron_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "pageSql": "SELECT patron_id, NVL2(institution_id, regexp_replace(institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\\1\\2\\3'), '${SCHEMA}_' || patron_id) AS external_system_id, last_name, first_name, middle_name, NVL2(expire_date, to_char(expire_date,'YYYY-MM-DD'), to_char(purge_date,'YYYY-MM-DD')) AS expire_date, sms_number, current_charges FROM ${SCHEMA}.patron WHERE last_name is not null ORDER BY patron_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "usernameSql": "SELECT uin, tamu_netid FROM PATRON.person_identifiers WHERE uin = '${EXTERNAL_SYSTEM_ID}'",
     "addressSql": "SELECT address_type, address_desc, address_line1, address_line2, city, state_province, zip_postal, country, address_status, phone_number, phone_desc FROM ( SELECT pa.address_type AS address_type, address_desc, address_line1, trim(address_line2) ||' '|| trim(address_line3) ||' '|| trim(address_line4) ||' '|| trim(address_line5) AS address_line2, city, state_province, zip_postal, country, address_status, phone_number, phone_desc, rank() over (PARTITION BY pa.address_type order by effect_date desc) dest_rank FROM ${SCHEMA}.patron_address pa, ${SCHEMA}.address_type atype, ${SCHEMA}.patron_phone pp, ${SCHEMA}.phone_type pt WHERE pa.patron_id = ${PATRON_ID} AND pa.address_id = pp.address_id(+) AND pp.phone_type = pt.phone_type(+) AND effect_date < sysdate AND atype.address_type = pa.address_type AND pa.address_type in (2,3) ) WHERE dest_rank = 1 UNION SELECT pa.address_type AS address_type, address_desc, address_line1, trim(address_line2) ||' '|| trim(address_line3) ||' '|| trim(address_line4) ||' '|| trim(address_line5) AS address_line2, city, state_province, zip_postal, country, address_status, phone_number, phone_desc FROM ${SCHEMA}.patron_address pa, ${SCHEMA}.address_type atype, ${SCHEMA}.patron_phone pp, ${SCHEMA}.phone_type pt WHERE pa.address_type = 1 AND pa.patron_id = ${PATRON_ID} AND atype.address_type = pa.address_type AND pa.address_id = pp.address_id(+) AND pp.phone_type = pt.phone_type(+)",
     "patronGroupSql": "SELECT barcode_status, to_char(barcode_status_date,'YYYYMMDD') AS barcode_status_date, DECODE (patron_group_code, ${DECODE}) as patron_group_level, patron_group_code, patron_barcode FROM (select barcode_status, barcode_status_date, patron_barcode, patron_group_code, rank() OVER (PARTITION BY pg.patron_group_id ORDER BY barcode_status, barcode_status_date desc) barcode_rank from ${SCHEMA}.patron_barcode pb, ${SCHEMA}.patron_group pg WHERE pb.patron_id = ${PATRON_ID} and pb.patron_group_id = pg.patron_group_id) WHERE barcode_rank = 1 ORDER BY barcode_status asc, barcode_status_date desc, patron_group_level",
+    "patronNoteSql": "SELECT patron_id, patron_note_id, note FROM ${SCHEMA}.patron_notes WHERE note is not null AND patron_id = ${PATRON_ID} ORDER BY patron_id, patron_note_id",
     "database": {
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     },
     "usernameDatabase": {
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "preActions": [],
@@ -481,7 +491,9 @@ POST to http://localhost:9000/migrate/users
       "schema": "AMDB",
       "partitions": 12,
       "decodeSql": "'fast', 1, 'grad', 2, 'ungr', 3, 'illend', 4, 'libd', 5, 'comm', 6, 'cour', 7, 'texs', 8, 'nonr', 9",
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
+      "dbCode": "Evans",
+      "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
       "skipDuplicates": false,
       "references": {
         "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
@@ -492,7 +504,9 @@ POST to http://localhost:9000/migrate/users
       "schema": "MSDB",
       "partitions": 4,
       "decodeSql": "'fac/staff', 1, 'grad/prof', 2, 'undergrad', 3",
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
+      "dbCode": "MSL",
+      "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
       "skipDuplicates": true,
       "references": {
         "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
@@ -508,12 +522,20 @@ POST to http://localhost:9000/migrate/users
       "texshare": "texs",
       "other": "cour",
       "ill": "illend"
+    },
+    "preferredContactType": {
+      "Mail": "001",
+      "Email": "002",
+      "Text message": "003",
+      "Phone": "004",
+      "Mobile phone": "005"
     }
   },
   "defaults": {
     "primaryAddress": true,
     "preferredContactType": "email",
-    "temporaryEmail": "example@example.com"
+    "temporaryEmail": "example@example.com",
+    "expirationDate": "2021-09-01"
   }
 }
 ```
@@ -534,7 +556,7 @@ POST to http://localhost:9000/migrate/inventory-reference-links
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "parallelism": 12,
@@ -583,7 +605,7 @@ POST to http://localhost:9000/migrate/bibs
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "preActions": [],
@@ -594,8 +616,8 @@ POST to http://localhost:9000/migrate/bibs
       "schema": "AMDB",
       "partitions": 48,
       "controlNumberIdentifier": "evans",
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
-      "instanceStatusId": "9634a5ab-9228-4703-baf2-4d12ebc77d56",
+      "user": "tamu_admin",
+      "instanceStatusId": "c8d51dc6-2f84-4220-8aef-3c4894d53b93",
       "profile": {
         "name": "TAMU AMDB Bibligraphic Migration",
         "description": "Voyager migration profile",
@@ -610,8 +632,8 @@ POST to http://localhost:9000/migrate/bibs
       "schema": "MSDB",
       "partitions": 4,
       "controlNumberIdentifier": "msl",
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
-      "instanceStatusId": "9634a5ab-9228-4703-baf2-4d12ebc77d56",
+      "user": "tamu_admin",
+      "instanceStatusId": "c8d51dc6-2f84-4220-8aef-3c4894d53b93",
       "profile": {
         "name": "TAMU MSDB Bibligraphic Migration",
         "description": "Voyager migration profile",
@@ -643,7 +665,7 @@ POST to http://localhost:9000/migrate/holdings
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "preActions": [],
@@ -653,7 +675,7 @@ POST to http://localhost:9000/migrate/holdings
     {
       "schema": "AMDB",
       "partitions": 48,
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "references": {
         "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
         "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc"
@@ -662,7 +684,7 @@ POST to http://localhost:9000/migrate/holdings
     {
       "schema": "MSDB",
       "partitions": 4,
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "references": {
         "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
         "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba"
@@ -677,13 +699,18 @@ POST to http://localhost:9000/migrate/holdings
         "47": "ils,borr",
         "48": "ils,lend",
         "132": "blcc,circ",
+        "133": "blcc,cpd",
         "134": "blcc,stk",
         "135": "blcc,ref",
         "136": "blcc,res",
         "137": "blcc,rndx",
         "138": "www_evans",
         "182": "media,arcv",
+        "185": "blcc,cd",
+        "188": "blcc,lan",
         "201": "blcc,stand",
+        "210": "blcc,riMSL",
+        "217": "blcc,utc",
         "225": "blcc,nbs",
         "228": "blcc,audio",
         "241": "blcc,udoc",
@@ -721,12 +748,14 @@ POST to http://localhost:9000/migrate/holdings
       "y": "e6da6c98-6dd0-41bc-8b4b-cfd4bbd9c3ae"
     },
     "holdingsNotesType": {
-      "note": "b160f13a-ddba-4053-b9c4-60ec5ea45d56",
-      "latest_in": "b160f13a-ddba-4053-b9c4-60ec5ea45d56",
+      "action": "d6510242-5ec3-42ed-b593-3585d2e48fd6",
       "access": "f453de0f-8b54-4e99-9180-52932529e3a6",
       "provenance": "db9b4787-95f0-4e78-becf-26748ce6bdeb",
       "copy": "c4407cc7-d79f-4609-95bd-1cefb2e2b5c5",
-      "action": "d6510242-5ec3-42ed-b593-3585d2e48fd6"
+      "binding": "e19eabab-a85c-4aef-a7b2-33bd9acef24e",
+      "reproduction": "6a41b714-8574-4084-8d64-a9373c3fbb59",
+      "latest_in": "7ca7dc63-c053-4aec-8272-c03aeda4840c",
+      "note": "b160f13a-ddba-4053-b9c4-60ec5ea45d56"
     },
     "receiptStatus": {
       "0": "Unknown",
@@ -790,18 +819,18 @@ POST to http://localhost:9000/migrate/items
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.item",
     "pageSql": "SELECT item_id, copy_number, item_type_id, perm_location, pieces, price, spine_label, temp_location, temp_item_type_id, magnetic_media, sensitize FROM ${SCHEMA}.item ORDER BY item_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
-    "mfhdSql": "SELECT caption, chron, item_enum, freetext, year FROM ${SCHEMA}.mfhd_item WHERE item_id = ${ITEM_ID}",
+    "mfhdSql": "SELECT mi.caption, mi.chron, mi.item_enum, mi.freetext, mi.year, mm.location_id FROM ${SCHEMA}.mfhd_item mi LEFT JOIN ${SCHEMA}.mfhd_master mm ON mi.mfhd_id = mm.mfhd_id WHERE item_id = ${ITEM_ID}",
     "barcodeSql": "SELECT item_barcode FROM ${SCHEMA}.item_barcode WHERE item_id = ${ITEM_ID}",
     "itemTypeSql": "SELECT item_type_id, item_type_code FROM ${SCHEMA}.item_type",
     "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
-    "itemStatusSql": "SELECT item_status, TO_CHAR(cast(item_status_date AS timestamp) AT time ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS item_status_date, ct.circ_transaction_id AS circtrans, item_status_desc FROM ${SCHEMA}.item_status istat, ${SCHEMA}.item_status_type itype, ${SCHEMA}.circ_transactions ct WHERE istat.item_id = ${ITEM_ID} AND istat.item_status = itype.item_status_type AND istat.item_id = ct.item_id(+)",
+    "itemStatusSql": "SELECT item_status, TO_CHAR(cast(item_status_date AS timestamp) AT time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS item_status_date, ct.circ_transaction_id AS circtrans, item_status_desc FROM ${SCHEMA}.item_status istat, ${SCHEMA}.item_status_type itype, ${SCHEMA}.circ_transactions ct WHERE istat.item_id = ${ITEM_ID} AND istat.item_status = itype.item_status_type AND istat.item_id = ct.item_id(+)",
     "noteSql": "SELECT item_note, item_note_type FROM ${SCHEMA}.item_note WHERE item_note.item_id = ${ITEM_ID}",
     "materialTypeSql": "SELECT lower(normal_heading) AS mtype_code FROM ${SCHEMA}.bib_index bi, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.mfhd_item mi WHERE bi.bib_id = bm.bib_id AND bm.mfhd_id = mi.mfhd_id AND index_code = '338B' AND mi.item_id = ${ITEM_ID}",
     "database": {
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "preActions": [],
@@ -811,7 +840,7 @@ POST to http://localhost:9000/migrate/items
     {
       "schema": "AMDB",
       "partitions": 48,
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "itemNoteTypeId": "8d0a5eca-25de-4391-81a9-236eeefdd20b",
       "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
       "references": {
@@ -822,7 +851,7 @@ POST to http://localhost:9000/migrate/items
     {
       "schema": "MSDB",
       "partitions": 4,
-      "userId": "e0ffac53-6941-56e1-b6f6-0546edaf662e",
+      "user": "tamu_admin",
       "itemNoteTypeId": "8d0a5eca-25de-4391-81a9-236eeefdd20b",
       "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
       "references": {
@@ -839,13 +868,18 @@ POST to http://localhost:9000/migrate/items
         "47": "ils,borr",
         "48": "ils,lend",
         "132": "blcc,circ",
+        "133": "blcc,cpd",
         "134": "blcc,stk",
         "135": "blcc,ref",
         "136": "blcc,res",
         "137": "blcc,rndx",
         "138": "www_evans",
         "182": "media,arcv",
+        "185": "blcc,cd",
+        "188": "blcc,lan",
         "201": "blcc,stand",
+        "210": "blcc,riMSL",
+        "217": "blcc,utc",
         "225": "blcc,nbs",
         "228": "blcc,audio",
         "241": "blcc,udoc",
@@ -936,21 +970,25 @@ POST to http://localhost:9000/migrate/items
       "Remote Storage Request": 25
     },
     "statusName": {
-     "1": "Available",
-     "2": "Available",
-     "3": "Available",
-     "4": "Available",
-     "7": "Awaiting pickup",
-     "8": "In transit",
-     "9": "In transit",
-     "10": "In transit",
-     "11": "Available",
-     "12": "Missing",
-     "13": "Declared lost",
-     "14": "Declared lost",
-     "15": "Claimed returned",
-     "17": "Missing",
-     "22": "In process"
+      "1": "Available",
+      "2": "Available",
+      "3": "Available",
+      "4": "Available",
+      "7": "Awaiting pickup",
+      "8": "In transit",
+      "9": "In transit",
+      "10": "In transit",
+      "11": "Available",
+      "12": "Missing",
+      "13": "Declared lost",
+      "14": "Aged to lost",
+      "15": "Claimed returned",
+      "17": "Withdrawn",
+      "22": "In process"
+    },
+    "custodianStatisticalCode": {
+      "AMDB": "38c86b2b-8156-4b7e-943e-460e15ea0dc0",
+      "MSDB": "f5d1069d-f718-4f0e-8ff8-308f55540daf"
     }
   },
   "defaults": {
@@ -971,13 +1009,13 @@ POST to http://localhost:9000/migrate/loans
 {
   "extraction": {
     "countSql": "SELECT count(*) AS total FROM ${SCHEMA}.circ_transactions ct, ${SCHEMA}.patron_barcode pb, ${SCHEMA}.item_barcode ib WHERE ct.item_id = ib.item_id AND ct.patron_id = pb.patron_id",
-    "pageSql": "SELECT ct.patron_id AS patron_id, patron_barcode, ct.item_id AS item_id, item_barcode, TO_CHAR(cast(charge_date as timestamp) at time zone 'UTC', 'yyyy-MM-dd\"T\"HH:mm:ss\"Z\"') AS loan_date, TO_CHAR(cast(current_due_date as timestamp) at time zone 'UTC', 'yyyy-MM-dd\"T\"HH:mm:ss\"Z\"') AS due_date, charge_location, circ_transaction_id, renewal_count FROM ${SCHEMA}.circ_transactions ct, ${SCHEMA}.patron_barcode pb, ${SCHEMA}.item_barcode ib WHERE ct.item_id = ib.item_id AND ct.patron_id = pb.patron_id ORDER BY ct.circ_transaction_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "pageSql": "SELECT ct.patron_id AS patron_id, patron_barcode, ct.item_id AS item_id, item_barcode, TO_CHAR(cast(charge_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS loan_date, TO_CHAR(cast(current_due_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS due_date, charge_location, circ_transaction_id, renewal_count FROM ${SCHEMA}.circ_transactions ct, ${SCHEMA}.patron_barcode pb, ${SCHEMA}.item_barcode ib WHERE ct.item_id = ib.item_id AND ct.patron_id = pb.patron_id ORDER BY ct.circ_transaction_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
     "database": {
       "url": "",
       "username": "",
       "password": "",
-      "driverClassName": ""
+      "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
   "preActions": [],
@@ -992,6 +1030,105 @@ POST to http://localhost:9000/migrate/loans
       "schema": "MSDB",
       "partitions": 4
     }
+  ],
+  "maps": {
+    "location": {
+      "AMDB": {
+        "36": "media",
+        "37": "media,res",
+        "47": "ils,borr",
+        "48": "ils,lend",
+        "132": "blcc,circ",
+        "133": "blcc,cpd",
+        "134": "blcc,stk",
+        "135": "blcc,ref",
+        "136": "blcc,res",
+        "137": "blcc,rndx",
+        "138": "www_evans",
+        "182": "media,arcv",
+        "185": "blcc,cd",
+        "188": "blcc,lan",
+        "201": "blcc,stand",
+        "210": "blcc,riMSL",
+        "217": "blcc,utc",
+        "225": "blcc,nbs",
+        "228": "blcc,audio",
+        "241": "blcc,udoc",
+        "244": "blcc,schk",
+        "264": "evans_pda",
+        "278": "learn_outreach",
+        "285": "blcc,ebc",
+        "288": "evans_withdrawn"
+      },
+      "MSDB": {
+        "5": "AbstractIndex",
+        "40": "www_msl",
+        "44": "msl_withdrawn",
+        "68": "Mobile",
+        "126": "rs,hdr",
+        "127": "rs,hdr",
+        "186": "msl_pda"
+      }
+    },
+    "locationCode": {
+      "media,res": "media",
+      "ils,borr": "ils",
+      "ils,lend": "ils",
+      "msl,circ": "CircDesk",
+      "circ,schk": "circ"
+    }
+  }
+}
+```
+
+## Fee/Fine Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/feesfines
+
+```
+{
+  "extraction": {
+    "countSql": "SELECT COUNT(*) AS total FROM ( SELECT distinct patron_id, ff.item_id AS item_id, item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, mi.mfhd_id AS mfhd_id, display_call_no, item_enum, chron, CASE WHEN i.temp_location > 0 then i.temp_location ELSE i.perm_location end AS effective_location, ff.fine_fee_location AS fine_location, substr(title,1,80) AS title, bm.bib_id AS bib_id FROM ${SCHEMA}.fine_fee ff, ${SCHEMA}.item_barcode ib, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.mfhd_master mm, ${SCHEMA}.item i, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.bib_text bt WHERE ff.item_id = ib.item_id(+) AND ff.item_id = mi.item_id AND mi.mfhd_id = mm.mfhd_id AND ff.item_id = i.item_id AND mm.mfhd_id = bm.mfhd_id AND bm.bib_id = bt.bib_id AND (ib.barcode_status = 1 or ib.item_id is null) AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' UNION SELECT distinct patron_id, null AS item_id, null AS item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, null AS mfhd_id, null AS display_call_no, null AS item_enum, null AS chron, null AS effective_location, ff.fine_fee_location AS fine_location, null AS title, null AS bib_id FROM ${SCHEMA}.fine_fee ff WHERE ff.item_id = 0 AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' ORDER BY patron_id, create_date )",
+    "pageSql": "SELECT distinct patron_id, ff.item_id AS item_id, item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, mi.mfhd_id AS mfhd_id, display_call_no, item_enum, chron, CASE WHEN i.temp_location > 0 then i.temp_location ELSE i.perm_location end AS effective_location, ff.fine_fee_location AS fine_location, substr(title,1,80) AS title, bm.bib_id AS bib_id FROM ${SCHEMA}.fine_fee ff, ${SCHEMA}.item_barcode ib, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.mfhd_master mm, ${SCHEMA}.item i, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.bib_text bt WHERE ff.item_id = ib.item_id(+) AND ff.item_id = mi.item_id AND mi.mfhd_id = mm.mfhd_id AND ff.item_id = i.item_id AND mm.mfhd_id = bm.mfhd_id AND bm.bib_id = bt.bib_id AND (ib.barcode_status = 1 or ib.item_id is null) AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' UNION SELECT distinct patron_id, null AS item_id, null AS item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, null AS mfhd_id, null AS display_call_no, null AS item_enum, null AS chron, null AS effective_location, ff.fine_fee_location AS fine_location, null AS title, null AS bib_id FROM ${SCHEMA}.fine_fee ff WHERE ff.item_id = 0 AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' ORDER BY patron_id, create_date OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "materialTypeSql": "SELECT distinct lower(normal_heading) AS mtype_code FROM ${SCHEMA}.bib_index bi, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.fine_fee ff WHERE bi.bib_id = bm.bib_id AND bm.mfhd_id = mi.mfhd_id AND mi.item_id = ff.item_id AND index_code = '338B' AND ff.item_id = ${ITEM_ID}",
+    "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": "oracle.jdbc.OracleDriver"
+    }
+  },
+  "preActions": [],
+  "postActions": [],
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 12,
+      "user": "tamu_admin",
+      "references": {
+        "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672",
+        "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
+        "itemTypeId": "53e72510-dc82-4caa-a272-1522cca70bc2"
+      }
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 4,
+      "user": "tamu_admin",
+      "references": {
+        "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8",
+        "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
+        "itemTypeId": "0014559d-39f6-45c7-9406-03643459aaf0"
+      }
+    }
+  ],
+  "userIdRLTypeIds": [
+    "fb86289b-001d-4a6f-8adf-5076b162a6c7",
+    "7a244692-dc96-48f1-9bf8-39578b8fee45"
   ],
   "maps": {
     "location": {
@@ -1026,7 +1163,58 @@ POST to http://localhost:9000/migrate/loans
         "127": "rs,hdr",
         "186": "msl_pda"
       }
+    },
+    "feefineTypeLabels": {
+      1: "Overdue (migrated)",
+      2: "Lost item replacement (migrated)",
+      3: "Lost item processing (migrated)"
+    },
+    "feefineOwner": {
+      "AMDB": {
+        "^(24|36|37|47|48|51|223|242)$": {
+          "ownerId": "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
+          "feeFineOwner": "AskUs Services",
+          "fineFeeType": {
+            1: "f55678e3-b8a2-43a5-a8ca-8d89c99df283",
+            2: "eead2e33-4784-4b50-9e86-4101c16e8b25",
+            3: "869ae91d-1960-4746-a561-f63e2b429f97"
+          }
+        },
+        "^(132|136|166)$": {
+          "ownerId": "014416f2-7609-4222-a812-1a3deb0591b8",
+          "feeFineOwner": "Business & PSEL Services",
+          "fineFeeType": {
+            1: "3b188387-dbd4-4fb3-9a9b-847f72cab0d7",
+            2: "09e14083-c85b-4f41-86ac-b24c47a81b7b",
+            3: "672fd96c-e175-4a4f-82e8-8d5362da34f7"
+          }
+        },
+        "^(191)$": {
+          "ownerId": "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
+          "feeFineOwner": "Qatar Library (TAMUQ)",
+          "fineFeeType": {
+            1: "69482cfd-efce-4a32-a001-a6d9bdd217ec",
+            2: "11a3e001-9762-41a2-9aa0-8f373f0270ca",
+            3: "3761b4f5-c1a9-46b9-b12f-6a1c76fb5eb1"
+          }
+        }
+      },
+      "MSDB": {
+        "^.+$": {
+          "ownerId": "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
+          "feeFineOwner": "Medical Sciences Library",
+          "fineFeeType": {
+            1: "bdef6fb7-9380-40a2-9c5b-4ab4e3cbe7ff",
+            2: "aa9183b3-ed54-4c09-a5d6-0d8e574dcc43",
+            3: "a4b170b9-f572-4bc0-b39a-9426093dc280"
+          }
+        }
+      }
     }
+  },
+  "defaults": {
+    "materialTypeId": "3212b3e9-bce7-4ff1-88e2-8def758ba977",
+    "itemId": "0"
   }
 }
 ```

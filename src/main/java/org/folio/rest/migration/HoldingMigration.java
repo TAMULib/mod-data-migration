@@ -17,9 +17,10 @@ import java.util.concurrent.CompletableFuture;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
-import org.folio.rest.jaxrs.model.Holdingsrecord;
-import org.folio.rest.jaxrs.model.Location;
-import org.folio.rest.jaxrs.model.Locations;
+import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
+import org.folio.rest.jaxrs.model.inventory.Location;
+import org.folio.rest.jaxrs.model.inventory.Locations;
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.HoldingMapper;
 import org.folio.rest.migration.model.HoldingRecord;
@@ -44,10 +45,12 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
   private static final String LOCATIONS_MAP = "LOCATIONS_MAP";
 
+  private static final String USER_ID = "USER_ID";
+
   private static final String MFHD_ID = "MFHD_ID";
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String LOCATION_CODE = "LOCATION_CODE";
-  private static final String DISCOVERY_SUPPRESS = "SUPPRESS_IN_OPAC";
+  private static final String SUPPRESS_IN_OPAC = "SUPPRESS_IN_OPAC";
   private static final String CALL_NUMBER = "DISPLAY_CALL_NO";
   private static final String CALL_NUMBER_TYPE = "CALL_NO_TYPE";
   private static final String HOLDINGS_TYPE = "RECORD_TYPE";
@@ -101,9 +104,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     JsonObject holdingsHridSettings = hridSettings.getJsonObject("holdings");
     String hridPrefix = holdingsHridSettings.getString(PREFIX);
-
-    int originalHridStartNumber = holdingsHridSettings.getInteger(START_NUMBER);
-    int hridStartNumber = originalHridStartNumber;
+    int hridStartNumber = holdingsHridSettings.getInteger(START_NUMBER);
 
     int index = 0;
 
@@ -116,6 +117,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       int count = getCount(voyagerSettings, countContext);
 
       log.info("{} count: {}", job.getSchema(), count);
+
+      Userdata user = migrationService.okapiService.lookupUser(tenant, token, job.getUser());
 
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);
@@ -132,15 +135,12 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(JOB, job);
         partitionContext.put(LOCATIONS_MAP, locationsMap);
+        partitionContext.put(USER_ID, user.getId());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext));
         offset += limit;
+        hridStartNumber += limit;
         index++;
-        if (i < partitions - 1) {
-          hridStartNumber += limit;
-        } else {
-          hridStartNumber = originalHridStartNumber + count;
-        }
       }
     }
 
@@ -183,6 +183,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       Map<String, String> locationsMap = (Map<String, String>) partitionContext.get(LOCATIONS_MAP);
 
+      String userId = (String) partitionContext.get(USER_ID);
+
       String schema = job.getSchema();
 
       int index = this.getIndex();
@@ -219,7 +221,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
           String permanentLocationId = pageResultSet.getString(LOCATION_ID);
 
-          String discoverySuppressString = pageResultSet.getString(DISCOVERY_SUPPRESS);
+          String suppressInOpac = pageResultSet.getString(SUPPRESS_IN_OPAC);
           String callNumber = pageResultSet.getString(CALL_NUMBER);
 
           String callNumberType = pageResultSet.getString(CALL_NUMBER_TYPE);
@@ -235,10 +237,10 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
           Boolean discoverySuppress;
 
-          if (Objects.nonNull(discoverySuppressString)) {
-            if (discoverySuppressString.equalsIgnoreCase("y")) {
+          if (Objects.nonNull(suppressInOpac)) {
+            if (suppressInOpac.equalsIgnoreCase("y")) {
               discoverySuppress = true;
-            } else if (discoverySuppressString.equalsIgnoreCase("n")) {
+            } else if (suppressInOpac.equalsIgnoreCase("n")) {
               discoverySuppress = false;
             } else {
               discoverySuppress = holdingDefaults.getDiscoverySuppress();
@@ -247,10 +249,12 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             discoverySuppress = holdingDefaults.getDiscoverySuppress();
           }
 
-          if (holdingMaps.getCallNumberType().containsKey(callNumberType)) {
-            callNumberType = holdingMaps.getCallNumberType().get(callNumberType);
-          } else {
-            callNumberType = holdingDefaults.getCallNumberTypeId();
+          if (Objects.nonNull(callNumberType)) {
+            if (holdingMaps.getCallNumberType().containsKey(callNumberType)) {
+              callNumberType = holdingMaps.getCallNumberType().get(callNumberType);
+            } else {
+              callNumberType = holdingDefaults.getCallNumberTypeId();
+            }
           }
 
           if (holdingMaps.getHoldingsType().containsKey(holdingsType)) {
@@ -327,11 +331,11 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             holdingRecord.setInstanceId(instanceId);
 
             Date createdDate = new Date();
-            holdingRecord.setCreatedByUserId(job.getUserId());
+            holdingRecord.setCreatedByUserId(userId);
             holdingRecord.setCreatedDate(createdDate);
 
             String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-            String createdByUserId = job.getUserId();
+            String createdByUserId = userId;
 
             String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
 

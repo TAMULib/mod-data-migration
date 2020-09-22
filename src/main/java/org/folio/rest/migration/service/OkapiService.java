@@ -19,21 +19,24 @@ import org.folio.Instancenotetypes;
 import org.folio.Instancetypes;
 import org.folio.Issuancemodes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
-import org.folio.rest.jaxrs.model.CheckOutByBarcodeRequest;
-import org.folio.rest.jaxrs.model.Loan;
-import org.folio.rest.jaxrs.model.Loantypes;
-import org.folio.rest.jaxrs.model.Locations;
-import org.folio.rest.jaxrs.model.Materialtypes;
-import org.folio.rest.jaxrs.model.Servicepoints;
-import org.folio.rest.jaxrs.model.Statisticalcodes;
-import org.folio.rest.jaxrs.model.Usergroups;
-import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRqDto;
-import org.folio.rest.jaxrs.model.dto.InitJobExecutionsRsDto;
-import org.folio.rest.jaxrs.model.dto.JobExecution;
-import org.folio.rest.jaxrs.model.dto.RawRecordsDto;
-import org.folio.rest.jaxrs.model.mod_data_import_converter_storage.JobProfile;
-import org.folio.rest.jaxrs.model.mod_data_import_converter_storage.JobProfileCollection;
-import org.folio.rest.jaxrs.model.mod_data_import_converter_storage.JobProfileUpdateDto;
+import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
+import org.folio.rest.jaxrs.model.circulation.Loan;
+import org.folio.rest.jaxrs.model.dataimport.dto.InitJobExecutionsRqDto;
+import org.folio.rest.jaxrs.model.dataimport.dto.InitJobExecutionsRsDto;
+import org.folio.rest.jaxrs.model.dataimport.dto.JobExecution;
+import org.folio.rest.jaxrs.model.dataimport.dto.RawRecordsDto;
+import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfile;
+import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileCollection;
+import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileUpdateDto;
+import org.folio.rest.jaxrs.model.inventory.Loantypes;
+import org.folio.rest.jaxrs.model.inventory.Locations;
+import org.folio.rest.jaxrs.model.inventory.Materialtypes;
+import org.folio.rest.jaxrs.model.inventory.Servicepoints;
+import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
+import org.folio.rest.jaxrs.model.users.AddresstypeCollection;
+import org.folio.rest.jaxrs.model.users.Userdata;
+import org.folio.rest.jaxrs.model.users.UserdataCollection;
+import org.folio.rest.jaxrs.model.users.Usergroups;
 import org.folio.rest.migration.config.model.Credentials;
 import org.folio.rest.migration.config.model.Okapi;
 import org.folio.rest.migration.model.ReferenceDatum;
@@ -128,6 +131,22 @@ public class OkapiService {
     throw new RuntimeException("Failed to fetch service points: " + response.getStatusCodeValue());
   }
 
+  public Userdata lookupUser(String tenant, String token, String username) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/users?query=username==" + username;
+    ResponseEntity<UserdataCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, UserdataCollection.class);
+    log.debug("lookup user: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      UserdataCollection userCollection = response.getBody();
+      if (userCollection.getTotalRecords() > 0) {
+        return userCollection.getUsers().get(0);
+      }
+      throw new RuntimeException("User with username " + username + " not found");
+    }
+    throw new RuntimeException("Failed to lookup user: " + response.getStatusCodeValue());
+  }
+
   public Usergroups fetchUsergroups(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
@@ -138,6 +157,18 @@ public class OkapiService {
       return response.getBody();
     }
     throw new RuntimeException("Failed to fetch user groups: " + response.getStatusCodeValue());
+  }
+
+  public AddresstypeCollection fetchAddresstypes(String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/addresstypes?limit=99";
+    ResponseEntity<AddresstypeCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, AddresstypeCollection.class);
+    log.debug("fetch address types: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to fetch address types: " + response.getStatusCodeValue());
   }
 
   public void updateRules(JsonNode rules, String path, String tenant, String token) {

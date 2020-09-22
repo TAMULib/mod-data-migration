@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -25,9 +26,13 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.Userdata;
-import org.folio.rest.jaxrs.model.Usergroup;
-import org.folio.rest.jaxrs.model.Usergroups;
+import org.folio.rest.jaxrs.model.notes.types.notes.Link;
+import org.folio.rest.jaxrs.model.notes.types.notes.Note;
+import org.folio.rest.jaxrs.model.users.Addresstype;
+import org.folio.rest.jaxrs.model.users.AddresstypeCollection;
+import org.folio.rest.jaxrs.model.users.Userdata;
+import org.folio.rest.jaxrs.model.users.Usergroup;
+import org.folio.rest.jaxrs.model.users.Usergroups;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.UserAddressRecord;
 import org.folio.rest.migration.model.UserRecord;
@@ -40,18 +45,21 @@ import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
 import org.postgresql.copy.PGCopyOutputStream;
 import org.postgresql.core.BaseConnection;
-import org.springframework.cache.annotation.Cacheable;
 
 public class UserMigration extends AbstractMigration<UserContext> {
 
   private static final String USER_GROUPS = "USER_GROUPS";
+  private static final String ADDRESS_TYPES = "ADDRESS_TYPES";
+
+  private static final String USER_ID = "USER_ID";
+
+  private static final String USER_ID = "USER_ID";
 
   private static final String PATRON_ID = "PATRON_ID";
   private static final String EXTERNAL_SYSTEM_ID = "EXTERNAL_SYSTEM_ID";
   private static final String LAST_NAME = "LAST_NAME";
   private static final String FIRST_NAME = "FIRST_NAME";
   private static final String MIDDLE_NAME = "MIDDLE_NAME";
-  private static final String ACTIVE_DATE = "ACTIVE_DATE";
   private static final String EXPIRE_DATE = "EXPIRE_DATE";
   private static final String SMS_NUMBER = "SMS_NUMBER";
   private static final String CURRENT_CHARGES = "CURRENT_CHARGES";
@@ -74,6 +82,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   private static final String DECODE = "DECODE";
 
+  private static final String NOTE = "NOTE";
+
   private static final String USER_REFERENCE_ID = "userTypeId";
 
   private static final Set<String> BARCODES = new HashSet<>();
@@ -81,6 +91,9 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   // (id,jsonb,creation_date,created_by,patrongroup)
   private static final String USERS_COPY_SQL = "COPY %s_mod_users.users (id,jsonb,creation_date,created_by,patrongroup) FROM STDIN";
+
+  // (id,jsonb,temporary_type_id)
+  private static final String NOTES_COPY_SQL = "COPY %s_mod_notes.note_data (id,jsonb,temporary_type_id) FROM STDIN";
 
   private UserMigration(UserContext context, String tenant) {
     super(context, tenant);
@@ -95,6 +108,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
     String token = migrationService.okapiService.getToken(tenant);
 
     Usergroups usergroups = migrationService.okapiService.fetchUsergroups(tenant, token);
+
+    AddresstypeCollection addresstypes = migrationService.okapiService.fetchAddresstypes(tenant, token);
 
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
@@ -126,6 +141,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
       log.info("{} count: {}", job.getSchema(), count);
 
+      Userdata user = migrationService.okapiService.lookupUser(tenant, token, job.getUser());
+
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
@@ -139,6 +156,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
         partitionContext.put(TOKEN, token);
         partitionContext.put(JOB, job);
         partitionContext.put(USER_GROUPS, usergroups);
+        partitionContext.put(ADDRESS_TYPES, addresstypes);
+        partitionContext.put(USER_ID, user.getId());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new UserPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -177,6 +196,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
       UserJob job = (UserJob) partitionContext.get(JOB);
 
       Usergroups usergroups = (Usergroups) partitionContext.get(USER_GROUPS);
+      AddresstypeCollection addresstypes = (AddresstypeCollection) partitionContext.get(ADDRESS_TYPES);
+
+      String userId = (String) partitionContext.get(USER_ID);
+
+      String userId = (String) partitionContext.get(USER_ID);
 
       UserMaps maps = context.getMaps();
       UserDefaults defaults = context.getDefaults();
@@ -202,6 +226,10 @@ public class UserMigration extends AbstractMigration<UserContext> {
       patronGroupContext.put(SCHEMA, job.getSchema());
       patronGroupContext.put(DECODE, job.getDecodeSql());
 
+      Map<String, Object> patronNoteContext = new HashMap<>();
+      patronNoteContext.put(SQL, context.getExtraction().getPatronNoteSql());
+      patronNoteContext.put(SCHEMA, job.getSchema());
+
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
 
       String userIdRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
@@ -210,10 +238,12 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
       try (
         PrintWriter userWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getUserConnection(), String.format(USERS_COPY_SQL, tenant)), true);
+        PrintWriter noteWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getNoteConnection(), String.format(NOTES_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement usernameStatement = threadConnections.getUsernameConnection().createStatement();
-        Statement addressStatement = threadConnections.getAdressConnection().createStatement();
+        Statement addressStatement = threadConnections.getAddressConnection().createStatement();
         Statement patronGroupStatement = threadConnections.getPatronGroupConnection().createStatement();
+        Statement patronNoteStatement = threadConnections.getPatronNoteConnection().createStatement();
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
       ) {
 
@@ -223,7 +253,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
           String lastName = pageResultSet.getString(LAST_NAME);
           String firstName = pageResultSet.getString(FIRST_NAME);
           String middleName = pageResultSet.getString(MIDDLE_NAME);
-          String activeDate = pageResultSet.getString(ACTIVE_DATE);
           String expireDate = pageResultSet.getString(EXPIRE_DATE);
           String smsNumber = pageResultSet.getString(SMS_NUMBER);
           String currentCharges = pageResultSet.getString(CURRENT_CHARGES);
@@ -232,6 +261,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
           usernameContext.put(EXTERNAL_SYSTEM_ID, externalSystemId);
           addressContext.put(PATRON_ID, patronId);
           patronGroupContext.put(PATRON_ID, patronId);
+          patronNoteContext.put(PATRON_ID, patronId);
 
           Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
           if (!userRL.isPresent()) {
@@ -245,20 +275,24 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           String referenceId = userRL.get().getFolioReference().toString();
 
-          UserRecord userRecord = new UserRecord(referenceId, patronId, externalSystemId, lastName, firstName, middleName, activeDate, expireDate, smsNumber, currentCharges);
+          UserRecord userRecord = new UserRecord(referenceId, patronId, externalSystemId, lastName, firstName, middleName, expireDate, smsNumber, currentCharges);
 
           PatronCodes patronCodes = new PatronCodes();
+
+          List<PatronNote> patronNotes = new ArrayList<>();
 
           CompletableFuture.allOf(
             getUsername(usernameStatement, usernameContext)
               .thenAccept((un) -> userRecord.setUsername(un)),
-            getUserAddressRecords(addressStatement, addressContext)
+            getUserAddressRecords(addressStatement, addressContext, addresstypes)
               .thenAccept((uar) -> userRecord.setUserAddressRecords(uar)),
             getPatronCodes(patronGroupStatement, patronGroupContext)
-            .thenAccept((pc) -> {
-              patronCodes.setBarcode(pc.getBarcode());
-              patronCodes.setGroupcode(pc.getGroupcode());
-            })
+              .thenAccept((pc) -> {
+                patronCodes.setBarcode(pc.getBarcode());
+                patronCodes.setGroupcode(pc.getGroupcode());
+              }),
+            getPatronNotes(patronNoteStatement, patronNoteContext)
+              .thenAccept((pn) -> patronNotes.addAll(pn))
           ).get();
 
           if (!processUsername(userRecord.getUsername().toLowerCase())) {
@@ -287,17 +321,24 @@ public class UserMigration extends AbstractMigration<UserContext> {
             continue;
           }
 
-          Userdata userdata = userRecord.toUserdata(patronGroup.get(), defaults);
+          Userdata userdata = userRecord.toUserdata(patronGroup.get(), defaults, maps);
 
           Date createdDate = new Date();
 
           String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-          String createdByUserId = job.getUserId();
+          String createdByUserId = userId;
 
           try {
             String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userdata)));
 
             userWriter.println(String.join("\t", userdata.getId(), userUtf8Json, createdAt, createdByUserId, userdata.getPatronGroup()));
+
+            for (PatronNote patronNote : patronNotes) {
+              Note note = patronNote.toNote(userdata.getId(), job.getDbCode(), job.getNoteTypeId());
+              String noteUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(note)));
+
+              noteWriter.println(String.join("\t", note.getId(), noteUtf8Json, note.getTypeId()));
+            }
           } catch (JsonProcessingException e) {
             log.error("{} user id {} error serializing user", schema, userRecord.getPatronId());
           }
@@ -341,7 +382,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
       return future;
     }
   
-    private CompletableFuture<List<UserAddressRecord>> getUserAddressRecords(Statement statement, Map<String, Object> addressContext) {
+    private CompletableFuture<List<UserAddressRecord>> getUserAddressRecords(Statement statement, Map<String, Object> addressContext, AddresstypeCollection addresstypes) {
       CompletableFuture<List<UserAddressRecord>> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
         List<UserAddressRecord> userAddressRecords = new ArrayList<>();
@@ -358,7 +399,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
             String phoneDescription = resultSet.getString(PHONE_DESC);
             String stateProvince = resultSet.getString(STATE_PROVINCE);
             String zipPostal = resultSet.getString(ZIP_POSTAL);
-            userAddressRecords.add(new UserAddressRecord(addressDescription, addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal));
+            Optional<String> addressTypeId = getAddressTypeId(addressDescription, addresstypes);
+            userAddressRecords.add(new UserAddressRecord(addressTypeId.isPresent() ? addressTypeId.get() : addressDescription, addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal));
           }
         } catch (SQLException e) {
           e.printStackTrace();
@@ -396,6 +438,25 @@ public class UserMigration extends AbstractMigration<UserContext> {
       return future;
     }
 
+    private CompletableFuture<List<PatronNote>> getPatronNotes(Statement statement, Map<String, Object> patronNoteContext) {
+      CompletableFuture<List<PatronNote>> future = new CompletableFuture<>();
+      additionalExecutor.submit(() -> {
+        List<PatronNote> patronNotes = new ArrayList<>();
+        try (ResultSet resultSet = getResultSet(statement, patronNoteContext)) {
+          while(resultSet.next()) {
+            String note = resultSet.getString(NOTE);
+            patronNotes.add(new PatronNote(note));
+            break;
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          future.complete(patronNotes);
+        }
+      });
+      return future;
+    }
+
   }
 
   private synchronized Boolean processUsername(String username) {
@@ -409,12 +470,14 @@ public class UserMigration extends AbstractMigration<UserContext> {
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database usernameSettings, Database folioSettings) {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
-    threadConnections.setAddressesConnection(getConnection(voyagerSettings));
+    threadConnections.setAddressConnection(getConnection(voyagerSettings));
     threadConnections.setPatronGroupConnection(getConnection(voyagerSettings));
+    threadConnections.setPatronNoteConnection(getConnection(voyagerSettings));
     threadConnections.setUsernameConnection(getConnection(usernameSettings));
 
     try {
       threadConnections.setUserConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+      threadConnections.setNoteConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
     } catch (SQLException e) {
       log.error(e.getMessage());
       throw new RuntimeException(e);
@@ -423,7 +486,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
     return threadConnections;
   }
 
-  @Cacheable(value = "patronGroups", key = "groupcode", sync = true)
   private Optional<String> getPatronGroup(String groupcode, Usergroups usergroups) {
     Optional<Usergroup> usergroup = usergroups.getUsergroups().stream()
       .filter(ug -> ug.getGroup().equals(groupcode))
@@ -434,14 +496,26 @@ public class UserMigration extends AbstractMigration<UserContext> {
     return Optional.empty();
   }
 
+  private Optional<String> getAddressTypeId(String addressDescription, AddresstypeCollection addresstypes) {
+    Optional<Addresstype> addresstype = addresstypes.getAddressTypes().stream()
+      .filter(at -> at.getAddressType().equalsIgnoreCase(addressDescription))
+      .findAny();
+    if (addresstype.isPresent()) {
+      return Optional.of(addresstype.get().getId());
+    }
+    return Optional.empty();
+  }
+
   private class ThreadConnections {
 
     private Connection pageConnection;
     private Connection addressConnection;
     private Connection patronGroupConnection;
+    private Connection patronNoteConnection;
     private Connection usernameConnection;
 
     private BaseConnection userConnection;
+    private BaseConnection noteConnection;
 
     public ThreadConnections() {
 
@@ -455,11 +529,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
       this.pageConnection = pageConnection;
     }
 
-    public Connection getAdressConnection() {
+    public Connection getAddressConnection() {
       return addressConnection;
     }
 
-    public void setAddressesConnection(Connection addressConnection) {
+    public void setAddressConnection(Connection addressConnection) {
       this.addressConnection = addressConnection;
     }
 
@@ -469,6 +543,14 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
     public void setPatronGroupConnection(Connection patronGroupConnection) {
       this.patronGroupConnection = patronGroupConnection;
+    }
+
+    public Connection getPatronNoteConnection() {
+      return patronNoteConnection;
+    }
+
+    public void setPatronNoteConnection(Connection patronNoteConnection) {
+      this.patronNoteConnection = patronNoteConnection;
     }
 
     public Connection getUsernameConnection() {
@@ -487,13 +569,23 @@ public class UserMigration extends AbstractMigration<UserContext> {
       this.userConnection = userConnection;
     }
 
+    public BaseConnection getNoteConnection() {
+      return noteConnection;
+    }
+
+    public void setNoteConnection(BaseConnection noteConnection) {
+      this.noteConnection = noteConnection;
+    }
+
     public void closeAll() {
       try {
         pageConnection.close();
         addressConnection.close();
         patronGroupConnection.close();
+        patronNoteConnection.close();
         usernameConnection.close();
         userConnection.close();
+        noteConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
         throw new RuntimeException(e);
@@ -530,6 +622,38 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
     public void setBarcode(String barcode) {
       this.barcode = barcode;
+    }
+
+  }
+
+  private class PatronNote {
+
+    private String content;
+
+    public PatronNote(final String content) {
+      this.content = content;
+    }
+
+    public Note toNote(String userId, String dbCode, String noteTypeId) {
+      Note note = new Note();
+
+      note.setId(UUID.randomUUID().toString());
+      note.setTitle(String.format("Patron note (migrated %s)", dbCode));
+      note.setDomain("users");
+      note.setTypeId(noteTypeId);
+
+      note.setContent(content);
+
+      List<Link> links = new ArrayList<>();
+      Link link = new Link();
+      link.setId(userId);
+      link.setType("user");
+
+      links.add(link);
+
+      note.setLinks(links);
+
+      return note;
     }
 
   }
