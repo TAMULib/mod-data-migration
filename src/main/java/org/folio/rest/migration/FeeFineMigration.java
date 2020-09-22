@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -66,8 +67,6 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String LOCATION_CODE = "LOCATION_CODE";
-
-  private static final String USER_REFERENCE_ID = "userTypeId";
 
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
@@ -196,7 +195,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       materialTypeContext.put(SQL, context.getExtraction().getMaterialTypeSql());
       materialTypeContext.put(SCHEMA, schema);
 
-      String userIdRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
+      List<String> userIdRLTypeIds = context.getUserIdRLTypeIds();
 
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
       String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
@@ -254,7 +253,16 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
             feefineRecord.setLocation(locationsMap.get(effectiveLocation));
           }
 
-          Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
+          // look for reference link for user by patron id given a list of user reference link type ids
+          // essentially, use FOLIO id for AMDB reference link if patron id is in both AMDB and MSDB
+          Optional<ReferenceLink> userRL = Optional.empty();
+          for (String userIdRLTypeId : userIdRLTypeIds) {
+            userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
+            if (userRL.isPresent()) {
+              break;
+            }
+          }
+
           if (!userRL.isPresent()) {
             log.error("{} no user id found for patron id {}", schema, patronId);
             continue;
