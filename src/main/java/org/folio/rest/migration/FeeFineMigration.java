@@ -336,7 +336,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
   }
 
   private Map<String, String> getLocationsMap(Locations locations, String schema) {
-    Map<String, String> idToUuid = new HashMap<>();
+    Map<String, String> idToDisplayName = new HashMap<>();
     Map<String, Object> locationContext = new HashMap<>();
     locationContext.put(SQL, context.getExtraction().getLocationSql());
     locationContext.put(SCHEMA, schema);
@@ -353,14 +353,14 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
           String code = locConv.containsKey(id) ? locConv.get(id) : rs.getString(LOCATION_CODE);
           Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
           if (location.isPresent()) {
-            idToUuid.put(id, location.get().getId());
+            idToDisplayName.put(id, location.get().getDiscoveryDisplayName());
           }
         }
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return idToUuid;
+    return idToDisplayName;
   }
 
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
