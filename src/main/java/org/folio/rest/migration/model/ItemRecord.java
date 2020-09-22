@@ -278,7 +278,7 @@ public class ItemRecord {
           item.setItemDamagedStatusId(itemDamagedStatusId);
         } else {
           Optional<Statisticalcode> potentialStatisticalcode = statisticalcodes.getStatisticalCodes().stream()
-            .filter(sc -> sc.getName().equals(s.getItemStatus()))
+            .filter(sc -> sc.getName().equals(s.getItemStatusDesc()))
             .findFirst();
           if (potentialStatisticalcode.isPresent()) {
             statisticalCodeIds.add(potentialStatisticalcode.get().getId());
@@ -290,7 +290,7 @@ public class ItemRecord {
         }
       }
 
-      if (!haveMostImportantStatus && s.getItemStatusDesc() > 1) {
+      if (!haveMostImportantStatus && s.getItemStatusOrder() > 1) {
         haveMostImportantStatus = true;
 
         if (isNotEmpty(s.getItemStatus())) {
