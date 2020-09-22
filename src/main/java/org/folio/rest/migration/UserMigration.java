@@ -28,6 +28,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.notes.types.notes.Link;
 import org.folio.rest.jaxrs.model.notes.types.notes.Note;
+import org.folio.rest.jaxrs.model.users.Addresstype;
+import org.folio.rest.jaxrs.model.users.AddresstypeCollection;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.jaxrs.model.users.Usergroup;
 import org.folio.rest.jaxrs.model.users.Usergroups;
@@ -47,6 +49,7 @@ import org.postgresql.core.BaseConnection;
 public class UserMigration extends AbstractMigration<UserContext> {
 
   private static final String USER_GROUPS = "USER_GROUPS";
+  private static final String ADDRESS_TYPES = "ADDRESS_TYPES";
 
   private static final String USER_ID = "USER_ID";
 
@@ -104,6 +107,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
     Usergroups usergroups = migrationService.okapiService.fetchUsergroups(tenant, token);
 
+    AddresstypeCollection addresstypes = migrationService.okapiService.fetchAddresstypes(tenant, token);
+
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
@@ -149,6 +154,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
         partitionContext.put(TOKEN, token);
         partitionContext.put(JOB, job);
         partitionContext.put(USER_GROUPS, usergroups);
+        partitionContext.put(ADDRESS_TYPES, addresstypes);
         partitionContext.put(USER_ID, user.getId());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new UserPartitionTask(migrationService, partitionContext));
@@ -188,6 +194,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
       UserJob job = (UserJob) partitionContext.get(JOB);
 
       Usergroups usergroups = (Usergroups) partitionContext.get(USER_GROUPS);
+      AddresstypeCollection addresstypes = (AddresstypeCollection) partitionContext.get(ADDRESS_TYPES);
 
       String userId = (String) partitionContext.get(USER_ID);
 
@@ -273,7 +280,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
           CompletableFuture.allOf(
             getUsername(usernameStatement, usernameContext)
               .thenAccept((un) -> userRecord.setUsername(un)),
-            getUserAddressRecords(addressStatement, addressContext)
+            getUserAddressRecords(addressStatement, addressContext, addresstypes)
               .thenAccept((uar) -> userRecord.setUserAddressRecords(uar)),
             getPatronCodes(patronGroupStatement, patronGroupContext)
               .thenAccept((pc) -> {
@@ -310,7 +317,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
             continue;
           }
 
-          Userdata userdata = userRecord.toUserdata(patronGroup.get(), defaults);
+          Userdata userdata = userRecord.toUserdata(patronGroup.get(), defaults, maps);
 
           Date createdDate = new Date();
 
@@ -371,7 +378,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
       return future;
     }
   
-    private CompletableFuture<List<UserAddressRecord>> getUserAddressRecords(Statement statement, Map<String, Object> addressContext) {
+    private CompletableFuture<List<UserAddressRecord>> getUserAddressRecords(Statement statement, Map<String, Object> addressContext, AddresstypeCollection addresstypes) {
       CompletableFuture<List<UserAddressRecord>> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
         List<UserAddressRecord> userAddressRecords = new ArrayList<>();
@@ -388,7 +395,12 @@ public class UserMigration extends AbstractMigration<UserContext> {
             String phoneDescription = resultSet.getString(PHONE_DESC);
             String stateProvince = resultSet.getString(STATE_PROVINCE);
             String zipPostal = resultSet.getString(ZIP_POSTAL);
-            userAddressRecords.add(new UserAddressRecord(addressDescription, addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal));
+            Optional<String> addressTypeId = getAddressTypeId(addressDescription, addresstypes);
+            if (addressTypeId.isPresent()) {
+              userAddressRecords.add(new UserAddressRecord(addressTypeId.get(), addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal));
+            } else {
+              log.warn("No address type found with description {}", addressDescription);
+            }
           }
         } catch (SQLException e) {
           e.printStackTrace();
@@ -480,6 +492,16 @@ public class UserMigration extends AbstractMigration<UserContext> {
       .findAny();
     if (usergroup.isPresent()) {
       return Optional.of(usergroup.get().getId());
+    }
+    return Optional.empty();
+  }
+
+  private Optional<String> getAddressTypeId(String addressDescription, AddresstypeCollection addresstypes) {
+    Optional<Addresstype> addresstype = addresstypes.getAddressTypes().stream()
+      .filter(at -> at.getAddressType().equals(addressDescription))
+      .findAny();
+    if (addresstype.isPresent()) {
+      return Optional.of(addresstype.get().getId());
     }
     return Optional.empty();
   }

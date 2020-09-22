@@ -522,6 +522,13 @@ POST to http://localhost:9000/migrate/users
       "texshare": "texs",
       "other": "cour",
       "ill": "illend"
+    },
+    "preferredContactType": {
+      "Mail": "001",
+      "Email": "002",
+      "Text message": "003",
+      "Phone": "004",
+      "Mobile phone": "005"
     }
   },
   "defaults": {
