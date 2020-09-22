@@ -82,7 +82,7 @@ POST to http://localhost:9000/migrate/vendor-reference-links
 }
 ```
 
-## MARC Vendor Migration
+## Vendor Migration
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
 
