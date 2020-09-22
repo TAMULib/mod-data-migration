@@ -282,6 +282,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
           account.getMetadata().setCreatedByUserId(userId);
           account.getMetadata().setUpdatedByUserId(userId);
+
           Date now = new Date();
           account.getMetadata().setCreatedDate(now);
           account.getMetadata().setUpdatedDate(now);
