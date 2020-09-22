@@ -184,7 +184,7 @@ public class FeeFineRecord {
     feefineaction.setDateAction(account.getDateCreated());
     feefineaction.setUserId(account.getUserId());
 
-    if (StringUtils.isNoneEmpty(finefeeNote)) {
+    if (StringUtils.isNotEmpty(finefeeNote)) {
       feefineaction.setComments(finefeeNote);
     }
 

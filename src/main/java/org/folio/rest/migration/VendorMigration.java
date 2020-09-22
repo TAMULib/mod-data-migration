@@ -451,7 +451,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         try (ResultSet resultSet = getResultSet(statement, vendorAliasesContext)) {
           while (resultSet.next()) {
             String altVendorName = resultSet.getString(ALIAS_ALT_VENDOR_NAME);
-            if (StringUtils.isNoneEmpty(altVendorName)) {
+            if (StringUtils.isNotEmpty(altVendorName)) {
               vendorAliases.add(new VendorAliasRecord(altVendorName));
             }
           }
@@ -471,7 +471,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         try (ResultSet resultSet = getResultSet(statement, vendorNotesContext)) {
           while (resultSet.next()) {
             String note = resultSet.getString(NOTE);
-            if (StringUtils.isNoneEmpty(note)) {
+            if (StringUtils.isNotEmpty(note)) {
               if (vendorNotes.length() > 0) {
                 vendorNotes.append(StringUtils.SPACE);
               }
