@@ -19,6 +19,7 @@ import org.folio.rest.jaxrs.model.inventory.Statisticalcode;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
 import org.folio.rest.jaxrs.model.inventory.Status;
 import org.folio.rest.jaxrs.model.inventory.Status.Name;
+import org.folio.rest.migration.utility.DateUtility;
 
 public class ItemRecord {
 
@@ -278,7 +279,7 @@ public class ItemRecord {
           item.setItemDamagedStatusId(itemDamagedStatusId);
         } else {
           Optional<Statisticalcode> potentialStatisticalcode = statisticalcodes.getStatisticalCodes().stream()
-            .filter(sc -> sc.getName().equals(s.getItemStatus()))
+            .filter(sc -> sc.getName().equals(s.getItemStatusDesc()))
             .findFirst();
           if (potentialStatisticalcode.isPresent()) {
             statisticalCodeIds.add(potentialStatisticalcode.get().getId());
@@ -290,7 +291,7 @@ public class ItemRecord {
         }
       }
 
-      if (!haveMostImportantStatus && s.getItemStatusDesc() > 1) {
+      if (!haveMostImportantStatus && s.getItemStatusOrder() > 1) {
         haveMostImportantStatus = true;
 
         if (isNotEmpty(s.getItemStatus())) {
@@ -299,8 +300,7 @@ public class ItemRecord {
         }
 
         if (isNotEmpty(s.getItemStatusDate())) {
-          Date date = Date.from(Instant.parse(s.getItemStatusDate()));
-          status.setDate(date);
+          status.setDate(DateUtility.toDate(s.getItemStatusDate()));
         }
 
       }

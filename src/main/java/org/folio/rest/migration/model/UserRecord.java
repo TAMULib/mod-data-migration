@@ -12,14 +12,15 @@ import org.folio.rest.jaxrs.model.users.Address;
 import org.folio.rest.jaxrs.model.users.Personal;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.model.request.user.UserDefaults;
+import org.folio.rest.migration.model.request.user.UserMaps;
 
 public class UserRecord {
 
   private static final String PATRON = "patron";
 
-  private static final String EMAIL = "email";
-  private static final String MAIL = "mail";
-  private static final String TEXT = "text";
+  private static final String EMAIL = "Email";
+  private static final String MAIL = "Mail";
+  private static final String TEXT = "Text message";
 
   private static final String PHONE_PRIMARY = "Primary";
   private static final String PHONE_MOBILE = "Mobile";
@@ -149,14 +150,14 @@ public class UserRecord {
     this.userAddressRecords = userAddressRecords;
   }
 
-  public Userdata toUserdata(String patronGroup, UserDefaults defaults) {
+  public Userdata toUserdata(String patronGroup, UserDefaults defaults, UserMaps maps) {
     final Userdata userdata = new Userdata();
     final Personal personal = new Personal();
 
     setLastName(personal);
     setFirstName(personal);
     setMiddleName(personal);
-    setPreferredContactTypeId(personal, defaults);
+    setPreferredContactTypeId(personal, defaults, maps);
 
     setAddresses(personal, defaults);
 
@@ -192,18 +193,18 @@ public class UserRecord {
     }
   }
 
-  private void setPreferredContactTypeId(Personal personal, UserDefaults defaults) {
+  private void setPreferredContactTypeId(Personal personal, UserDefaults defaults, UserMaps maps) {
     if (Objects.nonNull(smsNumber)) {
-      preferredContactTypeId = TEXT;
+      preferredContactTypeId = maps.getPreferredContactType().get(TEXT);
       personal.setPreferredContactTypeId(preferredContactTypeId);
     }
 
     if (Objects.isNull(preferredContactTypeId)) {
       if (Objects.nonNull(addressType) && Objects.nonNull(addressStatus)) {
         if (addressType.equals("3") && addressStatus.equalsIgnoreCase("n")) {
-          preferredContactTypeId = EMAIL;
+          preferredContactTypeId = maps.getPreferredContactType().get(EMAIL);
         } else if ((addressType.equals("1") || addressType.equals("2")) && addressStatus.equalsIgnoreCase("n")) {
-          preferredContactTypeId = MAIL;
+          preferredContactTypeId = maps.getPreferredContactType().get(MAIL);
         }
       }
 

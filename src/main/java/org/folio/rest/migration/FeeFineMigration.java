@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -66,8 +67,6 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String LOCATION_CODE = "LOCATION_CODE";
-
-  private static final String USER_REFERENCE_ID = "userTypeId";
 
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
@@ -196,7 +195,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       materialTypeContext.put(SQL, context.getExtraction().getMaterialTypeSql());
       materialTypeContext.put(SCHEMA, schema);
 
-      String userIdRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
+      List<String> userIdRLTypeIds = context.getUserIdRLTypeIds();
 
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
       String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
@@ -254,7 +253,16 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
             feefineRecord.setLocation(locationsMap.get(effectiveLocation));
           }
 
-          Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
+          // look for reference link for user by patron id given a list of user reference link type ids
+          // essentially, use FOLIO id for AMDB reference link if patron id is in both AMDB and MSDB
+          Optional<ReferenceLink> userRL = Optional.empty();
+          for (String userIdRLTypeId : userIdRLTypeIds) {
+            userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
+            if (userRL.isPresent()) {
+              break;
+            }
+          }
+
           if (!userRL.isPresent()) {
             log.error("{} no user id found for patron id {}", schema, patronId);
             continue;
@@ -273,7 +281,11 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
           Accountdata account = feefineRecord.toAccount(maps, defaults, schema);
 
           account.getMetadata().setCreatedByUserId(userId);
-          account.getMetadata().setCreatedDate(new Date());
+          account.getMetadata().setUpdatedByUserId(userId);
+
+          Date now = new Date();
+          account.getMetadata().setCreatedDate(now);
+          account.getMetadata().setUpdatedDate(now);
 
           Feefineactiondata feefineaction = feefineRecord.toFeefineaction(account, maps, defaults);
 
@@ -333,7 +345,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
   }
 
   private Map<String, String> getLocationsMap(Locations locations, String schema) {
-    Map<String, String> idToUuid = new HashMap<>();
+    Map<String, String> idToDisplayName = new HashMap<>();
     Map<String, Object> locationContext = new HashMap<>();
     locationContext.put(SQL, context.getExtraction().getLocationSql());
     locationContext.put(SCHEMA, schema);
@@ -350,14 +362,14 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
           String code = locConv.containsKey(id) ? locConv.get(id) : rs.getString(LOCATION_CODE);
           Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
           if (location.isPresent()) {
-            idToUuid.put(id, location.get().getId());
+            idToDisplayName.put(id, location.get().getDiscoveryDisplayName());
           }
         }
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return idToUuid;
+    return idToDisplayName;
   }
 
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {

@@ -522,6 +522,13 @@ POST to http://localhost:9000/migrate/users
       "texshare": "texs",
       "other": "cour",
       "ill": "illend"
+    },
+    "preferredContactType": {
+      "Mail": "001",
+      "Email": "002",
+      "Text message": "003",
+      "Phone": "004",
+      "Mobile phone": "005"
     }
   },
   "defaults": {
@@ -692,13 +699,18 @@ POST to http://localhost:9000/migrate/holdings
         "47": "ils,borr",
         "48": "ils,lend",
         "132": "blcc,circ",
+        "133": "blcc,cpd",
         "134": "blcc,stk",
         "135": "blcc,ref",
         "136": "blcc,res",
         "137": "blcc,rndx",
         "138": "www_evans",
         "182": "media,arcv",
+        "185": "blcc,cd",
+        "188": "blcc,lan",
         "201": "blcc,stand",
+        "210": "blcc,riMSL",
+        "217": "blcc,utc",
         "225": "blcc,nbs",
         "228": "blcc,audio",
         "241": "blcc,udoc",
@@ -811,7 +823,7 @@ POST to http://localhost:9000/migrate/items
     "barcodeSql": "SELECT item_barcode FROM ${SCHEMA}.item_barcode WHERE item_id = ${ITEM_ID}",
     "itemTypeSql": "SELECT item_type_id, item_type_code FROM ${SCHEMA}.item_type",
     "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
-    "itemStatusSql": "SELECT item_status, TO_CHAR(cast(item_status_date AS timestamp) AT time ZONE 'UTC', 'yyyy-MM-dd\"T\"HH:mm:ss\"Z\"') AS item_status_date, ct.circ_transaction_id AS circtrans, item_status_desc FROM ${SCHEMA}.item_status istat, ${SCHEMA}.item_status_type itype, ${SCHEMA}.circ_transactions ct WHERE istat.item_id = ${ITEM_ID} AND istat.item_status = itype.item_status_type AND istat.item_id = ct.item_id(+)",
+    "itemStatusSql": "SELECT item_status, TO_CHAR(cast(item_status_date AS timestamp) AT time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS item_status_date, ct.circ_transaction_id AS circtrans, item_status_desc FROM ${SCHEMA}.item_status istat, ${SCHEMA}.item_status_type itype, ${SCHEMA}.circ_transactions ct WHERE istat.item_id = ${ITEM_ID} AND istat.item_status = itype.item_status_type AND istat.item_id = ct.item_id(+)",
     "noteSql": "SELECT item_note, item_note_type FROM ${SCHEMA}.item_note WHERE item_note.item_id = ${ITEM_ID}",
     "materialTypeSql": "SELECT lower(normal_heading) AS mtype_code FROM ${SCHEMA}.bib_index bi, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.mfhd_item mi WHERE bi.bib_id = bm.bib_id AND bm.mfhd_id = mi.mfhd_id AND index_code = '338B' AND mi.item_id = ${ITEM_ID}",
     "database": {
@@ -856,13 +868,18 @@ POST to http://localhost:9000/migrate/items
         "47": "ils,borr",
         "48": "ils,lend",
         "132": "blcc,circ",
+        "133": "blcc,cpd",
         "134": "blcc,stk",
         "135": "blcc,ref",
         "136": "blcc,res",
         "137": "blcc,rndx",
         "138": "www_evans",
         "182": "media,arcv",
+        "185": "blcc,cd",
+        "188": "blcc,lan",
         "201": "blcc,stand",
+        "210": "blcc,riMSL",
+        "217": "blcc,utc",
         "225": "blcc,nbs",
         "228": "blcc,audio",
         "241": "blcc,udoc",
@@ -953,21 +970,21 @@ POST to http://localhost:9000/migrate/items
       "Remote Storage Request": 25
     },
     "statusName": {
-     "1": "Available",
-     "2": "Available",
-     "3": "Available",
-     "4": "Available",
-     "7": "Awaiting pickup",
-     "8": "In transit",
-     "9": "In transit",
-     "10": "In transit",
-     "11": "Available",
-     "12": "Missing",
-     "13": "Declared lost",
-     "14": "Aged to lost",
-     "15": "Claimed returned",
-     "17": "Withdrawn",
-     "22": "In process"
+      "1": "Available",
+      "2": "Available",
+      "3": "Available",
+      "4": "Available",
+      "7": "Awaiting pickup",
+      "8": "In transit",
+      "9": "In transit",
+      "10": "In transit",
+      "11": "Available",
+      "12": "Missing",
+      "13": "Declared lost",
+      "14": "Aged to lost",
+      "15": "Claimed returned",
+      "17": "Withdrawn",
+      "22": "In process"
     },
     "custodianStatisticalCode": {
       "AMDB": "38c86b2b-8156-4b7e-943e-460e15ea0dc0",
@@ -992,7 +1009,7 @@ POST to http://localhost:9000/migrate/loans
 {
   "extraction": {
     "countSql": "SELECT count(*) AS total FROM ${SCHEMA}.circ_transactions ct, ${SCHEMA}.patron_barcode pb, ${SCHEMA}.item_barcode ib WHERE ct.item_id = ib.item_id AND ct.patron_id = pb.patron_id",
-    "pageSql": "SELECT ct.patron_id AS patron_id, patron_barcode, ct.item_id AS item_id, item_barcode, TO_CHAR(cast(charge_date as timestamp) at time zone 'UTC', 'yyyy-MM-dd\"T\"HH:mm:ss\"Z\"') AS loan_date, TO_CHAR(cast(current_due_date as timestamp) at time zone 'UTC', 'yyyy-MM-dd\"T\"HH:mm:ss\"Z\"') AS due_date, charge_location, circ_transaction_id, renewal_count FROM ${SCHEMA}.circ_transactions ct, ${SCHEMA}.patron_barcode pb, ${SCHEMA}.item_barcode ib WHERE ct.item_id = ib.item_id AND ct.patron_id = pb.patron_id ORDER BY ct.circ_transaction_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "pageSql": "SELECT ct.patron_id AS patron_id, patron_barcode, ct.item_id AS item_id, item_barcode, TO_CHAR(cast(charge_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS loan_date, TO_CHAR(cast(current_due_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS due_date, charge_location, circ_transaction_id, renewal_count FROM ${SCHEMA}.circ_transactions ct, ${SCHEMA}.patron_barcode pb, ${SCHEMA}.item_barcode ib WHERE ct.item_id = ib.item_id AND ct.patron_id = pb.patron_id ORDER BY ct.circ_transaction_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
     "database": {
       "url": "",
@@ -1022,13 +1039,18 @@ POST to http://localhost:9000/migrate/loans
         "47": "ils,borr",
         "48": "ils,lend",
         "132": "blcc,circ",
+        "133": "blcc,cpd",
         "134": "blcc,stk",
         "135": "blcc,ref",
         "136": "blcc,res",
         "137": "blcc,rndx",
         "138": "www_evans",
         "182": "media,arcv",
+        "185": "blcc,cd",
+        "188": "blcc,lan",
         "201": "blcc,stand",
+        "210": "blcc,riMSL",
+        "217": "blcc,utc",
         "225": "blcc,nbs",
         "228": "blcc,audio",
         "241": "blcc,udoc",
@@ -1059,7 +1081,7 @@ POST to http://localhost:9000/migrate/loans
 }
 ```
 
-## Fees/Fines Migration
+## Fee/Fine Migration
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
 
@@ -1068,8 +1090,8 @@ POST to http://localhost:9000/migrate/feesfines
 ```
 {
   "extraction": {
-    "countSql": "SELECT COUNT(*) AS total FROM ( SELECT distinct patron_id, ff.item_id AS item_id, item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'yyyy-MM-dd\"T\"HH:mm:ss\"Z\"') AS create_date, mi.mfhd_id AS mfhd_id, display_call_no, item_enum, chron, CASE WHEN i.temp_location > 0 then i.temp_location ELSE i.perm_location end AS effective_location, ff.fine_fee_location AS fine_location, substr(title,1,80) AS title, bm.bib_id AS bib_id FROM ${SCHEMA}.fine_fee ff, ${SCHEMA}.item_barcode ib, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.mfhd_master mm, ${SCHEMA}.item i, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.bib_text bt WHERE ff.item_id = ib.item_id(+) AND ff.item_id = mi.item_id AND mi.mfhd_id = mm.mfhd_id AND ff.item_id = i.item_id AND mm.mfhd_id = bm.mfhd_id AND bm.bib_id = bt.bib_id AND (ib.barcode_status = 1 or ib.item_id is null) AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' UNION SELECT distinct patron_id, null AS item_id, null AS item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'yyyy-MM-dd\"T\"HH:mm:ss\"Z\"') AS create_date, null AS mfhd_id, null AS display_call_no, null AS item_enum, null AS chron, null AS effective_location, ff.fine_fee_location AS fine_location, null AS title, null AS bib_id FROM ${SCHEMA}.fine_fee ff WHERE ff.item_id = 0 AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' ORDER BY patron_id, create_date )",
-    "pageSql": "SELECT distinct patron_id, ff.item_id AS item_id, item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'yyyy-MM-dd\"T\"HH:mm:ss\"Z\"') AS create_date, mi.mfhd_id AS mfhd_id, display_call_no, item_enum, chron, CASE WHEN i.temp_location > 0 then i.temp_location ELSE i.perm_location end AS effective_location, ff.fine_fee_location AS fine_location, substr(title,1,80) AS title, bm.bib_id AS bib_id FROM ${SCHEMA}.fine_fee ff, ${SCHEMA}.item_barcode ib, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.mfhd_master mm, ${SCHEMA}.item i, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.bib_text bt WHERE ff.item_id = ib.item_id(+) AND ff.item_id = mi.item_id AND mi.mfhd_id = mm.mfhd_id AND ff.item_id = i.item_id AND mm.mfhd_id = bm.mfhd_id AND bm.bib_id = bt.bib_id AND (ib.barcode_status = 1 or ib.item_id is null) AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' UNION SELECT distinct patron_id, null AS item_id, null AS item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'yyyy-MM-dd\"T\"HH:mm:ss\"Z\"') AS create_date, null AS mfhd_id, null AS display_call_no, null AS item_enum, null AS chron, null AS effective_location, ff.fine_fee_location AS fine_location, null AS title, null AS bib_id FROM ${SCHEMA}.fine_fee ff WHERE ff.item_id = 0 AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' ORDER BY patron_id, create_date OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "countSql": "SELECT COUNT(*) AS total FROM ( SELECT distinct patron_id, ff.item_id AS item_id, item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, mi.mfhd_id AS mfhd_id, display_call_no, item_enum, chron, CASE WHEN i.temp_location > 0 then i.temp_location ELSE i.perm_location end AS effective_location, ff.fine_fee_location AS fine_location, substr(title,1,80) AS title, bm.bib_id AS bib_id FROM ${SCHEMA}.fine_fee ff, ${SCHEMA}.item_barcode ib, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.mfhd_master mm, ${SCHEMA}.item i, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.bib_text bt WHERE ff.item_id = ib.item_id(+) AND ff.item_id = mi.item_id AND mi.mfhd_id = mm.mfhd_id AND ff.item_id = i.item_id AND mm.mfhd_id = bm.mfhd_id AND bm.bib_id = bt.bib_id AND (ib.barcode_status = 1 or ib.item_id is null) AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' UNION SELECT distinct patron_id, null AS item_id, null AS item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, null AS mfhd_id, null AS display_call_no, null AS item_enum, null AS chron, null AS effective_location, ff.fine_fee_location AS fine_location, null AS title, null AS bib_id FROM ${SCHEMA}.fine_fee ff WHERE ff.item_id = 0 AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' ORDER BY patron_id, create_date )",
+    "pageSql": "SELECT distinct patron_id, ff.item_id AS item_id, item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, mi.mfhd_id AS mfhd_id, display_call_no, item_enum, chron, CASE WHEN i.temp_location > 0 then i.temp_location ELSE i.perm_location end AS effective_location, ff.fine_fee_location AS fine_location, substr(title,1,80) AS title, bm.bib_id AS bib_id FROM ${SCHEMA}.fine_fee ff, ${SCHEMA}.item_barcode ib, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.mfhd_master mm, ${SCHEMA}.item i, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.bib_text bt WHERE ff.item_id = ib.item_id(+) AND ff.item_id = mi.item_id AND mi.mfhd_id = mm.mfhd_id AND ff.item_id = i.item_id AND mm.mfhd_id = bm.mfhd_id AND bm.bib_id = bt.bib_id AND (ib.barcode_status = 1 or ib.item_id is null) AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' UNION SELECT distinct patron_id, null AS item_id, null AS item_barcode, fine_fee_id, fine_fee_amount/100 AS amount, fine_fee_balance/100 AS remaining, fine_fee_type, fine_fee_note, to_char(cast(ff.create_date AS timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS create_date, null AS mfhd_id, null AS display_call_no, null AS item_enum, null AS chron, null AS effective_location, ff.fine_fee_location AS fine_location, null AS title, null AS bib_id FROM ${SCHEMA}.fine_fee ff WHERE ff.item_id = 0 AND fine_fee_type between 1 AND 3 AND fine_fee_balance > 0 AND ff.create_date > '31-Dec-2012' ORDER BY patron_id, create_date OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "materialTypeSql": "SELECT distinct lower(normal_heading) AS mtype_code FROM ${SCHEMA}.bib_index bi, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.fine_fee ff WHERE bi.bib_id = bm.bib_id AND bm.mfhd_id = mi.mfhd_id AND mi.item_id = ff.item_id AND index_code = '338B' AND ff.item_id = ${ITEM_ID}",
     "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
     "database": {
@@ -1088,7 +1110,6 @@ POST to http://localhost:9000/migrate/feesfines
       "partitions": 12,
       "user": "tamu_admin",
       "references": {
-        "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
         "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672",
         "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
         "itemTypeId": "53e72510-dc82-4caa-a272-1522cca70bc2"
@@ -1099,12 +1120,15 @@ POST to http://localhost:9000/migrate/feesfines
       "partitions": 4,
       "user": "tamu_admin",
       "references": {
-        "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
         "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8",
         "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
         "itemTypeId": "0014559d-39f6-45c7-9406-03643459aaf0"
       }
     }
+  ],
+  "userIdRLTypeIds": [
+    "fb86289b-001d-4a6f-8adf-5076b162a6c7",
+    "7a244692-dc96-48f1-9bf8-39578b8fee45"
   ],
   "maps": {
     "location": {

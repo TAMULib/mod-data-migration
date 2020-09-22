@@ -9,7 +9,7 @@ import org.folio.rest.migration.model.request.user.UserDefaults;
 
 public class UserAddressRecord {
 
-  private final String addressDescription;
+  private final String addressTypeId;
   private final String addressStatus;
   private final String addressType;
   private final String addressLine1;
@@ -21,8 +21,8 @@ public class UserAddressRecord {
   private final String stateProvince;
   private final String zipPostal;
 
-  public UserAddressRecord(String addressDescription, String addressStatus, String addressType, String addressLine1, String addressLine2, String city, String country, String phoneNumber, String phoneDescription, String stateProvince, String zipPostal) {
-    this.addressDescription = addressDescription;
+  public UserAddressRecord(String addressTypeId, String addressStatus, String addressType, String addressLine1, String addressLine2, String city, String country, String phoneNumber, String phoneDescription, String stateProvince, String zipPostal) {
+    this.addressTypeId = addressTypeId;
     this.addressStatus = addressStatus;
     this.addressType = addressType;
     this.addressLine1 = addressLine1;
@@ -35,8 +35,8 @@ public class UserAddressRecord {
     this.zipPostal = zipPostal;
   }
 
-  public String getAddressDescription() {
-    return addressDescription;
+  public String getAddressTypeId() {
+    return addressTypeId;
   }
 
   public String getAddressStatus() {
@@ -103,7 +103,7 @@ public class UserAddressRecord {
     final Address address = new Address();
 
     address.setId(UUID.randomUUID().toString());
-    address.setAddressTypeId(addressDescription);
+    address.setAddressTypeId(addressTypeId);
 
     setAddressLine1(address);
     setAddressLine2(address);

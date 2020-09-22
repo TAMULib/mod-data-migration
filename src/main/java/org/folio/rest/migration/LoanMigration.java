@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.Instant;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -24,6 +22,7 @@ import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.loan.LoanContext;
 import org.folio.rest.migration.model.request.loan.LoanJob;
 import org.folio.rest.migration.service.MigrationService;
+import org.folio.rest.migration.utility.DateUtility;
 import org.folio.rest.migration.utility.TimingUtility;
 
 public class LoanMigration extends AbstractMigration<LoanContext> {
@@ -85,7 +84,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
-      Map<Integer, String> locationsCodeMap = getLocationsCodeMap(locations, job.getSchema());
+      Map<String, String> locationsCodeMap = getLocationsCodeMap(locations, job.getSchema());
 
       int count = getCount(voyagerSettings, countContext);
 
@@ -141,7 +140,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
       LoanJob job = (LoanJob) partitionContext.get(JOB);
 
-      Map<Integer, String> locationsCodeMap = (Map<Integer, String>) partitionContext.get(LOCATIONS_CODE_MAP);
+      Map<String, String> locationsCodeMap = (Map<String, String>) partitionContext.get(LOCATIONS_CODE_MAP);
 
       Servicepoints servicePoints = (Servicepoints) partitionContext.get(SERVICE_POINTS);
 
@@ -159,7 +158,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
       ) {
         while (pageResultSet.next()) {
 
-          Integer chargeLocation = pageResultSet.getInt(CHARGE_LOCATION);
+          String chargeLocation = pageResultSet.getString(CHARGE_LOCATION);
           Integer renewalCount = pageResultSet.getInt(RENEWAL_COUNT);
 
           Integer patronId = pageResultSet.getInt(PATRON_ID);
@@ -199,8 +198,8 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
             Loan loan = migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
             try {
               loan.setAction("dueDateChanged");
-              loan.setLoanDate(Date.from(Instant.parse(loanDate)));
-              loan.setDueDate(Date.from(Instant.parse(dueDate)));
+              loan.setLoanDate(DateUtility.toDate((loanDate)));
+              loan.setDueDate(DateUtility.toDate((dueDate)));
               if (renewalCount > 0) {
                 loan.setRenewalCount(renewalCount);
               }
@@ -239,18 +238,18 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
     return threadConnections;
   }
 
-  private Map<Integer, String> getLocationsCodeMap(Locations locations, String schema) {
-    Map<Integer, String> idToCode = new HashMap<>();
+  private Map<String, String> getLocationsCodeMap(Locations locations, String schema) {
+    Map<String, String> idToCode = new HashMap<>();
     Map<String, Object> locationContext = new HashMap<>();
     locationContext.put(SQL, context.getExtraction().getLocationSql());
     locationContext.put(SCHEMA, schema);
     Database voyagerSettings = context.getExtraction().getDatabase();
-    Map<Integer, String> locConv = context.getMaps().getLocation().get(schema);
+    Map<String, String> locConv = context.getMaps().getLocation().get(schema);
     try (Connection voyagerConnection = getConnection(voyagerSettings);
       Statement st = voyagerConnection.createStatement();
       ResultSet rs = getResultSet(st, locationContext);) {
       while (rs.next()) {
-        Integer id = rs.getInt(LOCATION_ID);
+        String id = rs.getString(LOCATION_ID);
         if (Objects.nonNull(id)) {
           String code = locConv.containsKey(id) ? locConv.get(id) : rs.getString(LOCATION_CODE);
           Optional<Location> location = locations.getLocations().stream()

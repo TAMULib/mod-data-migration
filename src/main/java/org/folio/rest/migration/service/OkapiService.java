@@ -33,6 +33,7 @@ import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.inventory.Servicepoints;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
+import org.folio.rest.jaxrs.model.users.AddresstypeCollection;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.jaxrs.model.users.UserdataCollection;
 import org.folio.rest.jaxrs.model.users.Usergroups;
@@ -156,6 +157,18 @@ public class OkapiService {
       return response.getBody();
     }
     throw new RuntimeException("Failed to fetch user groups: " + response.getStatusCodeValue());
+  }
+
+  public AddresstypeCollection fetchAddresstypes(String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/addresstypes?limit=99";
+    ResponseEntity<AddresstypeCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, AddresstypeCollection.class);
+    log.debug("fetch address types: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to fetch address types: " + response.getStatusCodeValue());
   }
 
   public void updateRules(JsonNode rules, String path, String tenant, String token) {

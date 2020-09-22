@@ -261,45 +261,47 @@ public class HoldingRecord {
 
   public void process5xxFields(Holdingsrecord holding) {
     List<Note> notes = holding.getNotes();
-    List<VariableField> f5xx = record.getVariableFields(new String[] { "506", "541", "562", "583" });
-    f5xx.stream().map(field -> (DataField) field).forEach(field -> {
-      String tag = field.getTag();
-      Note note = new Note();
-      note.setNote(field.toString());
-      switch (tag) {
-      case "506":
-        // access
-        note.setStaffOnly(false);
-        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("access"));
-        break;
-      case "541":
-      case "561":
-        // provenance
-        note.setStaffOnly(false);
-        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("provenance"));
-        break;
-      case "562":
-        // copy
-        note.setStaffOnly(false);
-        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("copy"));
-        break;
-      case "563":
-        // binding
-        note.setStaffOnly(false);
-        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("binding"));
-        break;
-      case "583":
-        // action
-        note.setStaffOnly(true);
-        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("action"));
-        break;
-      default:
-        note.setStaffOnly(true);
-        note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
-        break;
-      }
-      notes.add(note);
-    });
+    record.getVariableFields().stream()
+      .map(field -> (DataField) field)
+      .filter(field -> field.getTag().startsWith("5"))
+      .forEach(field -> {
+        String tag = field.getTag();
+        Note note = new Note();
+        note.setNote(field.toString());
+        switch (tag) {
+        case "506":
+          // access
+          note.setStaffOnly(false);
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("access"));
+          break;
+        case "541":
+        case "561":
+          // provenance
+          note.setStaffOnly(false);
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("provenance"));
+          break;
+        case "562":
+          // copy
+          note.setStaffOnly(false);
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("copy"));
+          break;
+        case "563":
+          // binding
+          note.setStaffOnly(false);
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("binding"));
+          break;
+        case "583":
+          // action
+          note.setStaffOnly(true);
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("action"));
+          break;
+        default:
+          note.setStaffOnly(true);
+          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
+          break;
+        }
+        notes.add(note);
+      });
   }
 
   public void process866Field(Holdingsrecord holding) {
