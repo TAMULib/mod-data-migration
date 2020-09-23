@@ -1,5 +1,6 @@
 package org.folio.rest.migration.model;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -44,11 +45,14 @@ public class FeeFineRecord {
 
   private Optional<String> materialTypeId;
 
-  private Optional<ReferenceLink> userRL;
+  private String userId;
 
   private Optional<ReferenceLink> instanceRL;
   private Optional<ReferenceLink> holdingRL;
   private Optional<ReferenceLink> itemRL;
+
+  private String createdByUserId;
+  private Date createdDate;
 
   public FeeFineRecord(
     String patronId,
@@ -88,108 +92,9 @@ public class FeeFineRecord {
     this.bibId = bibId;
 
     this.id = UUID.randomUUID().toString();
-    this.userRL = Optional.empty();
     this.instanceRL = Optional.empty();
     this.holdingRL = Optional.empty();
     this.itemRL = Optional.empty();
-  }
-
-  public Accountdata toAccount(FeeFineMaps maps, FeeFineDefaults defaults, String schema) {
-    Accountdata account = new Accountdata();
-    account.setId(id);
-
-    account.setAmount(Double.parseDouble(amount));
-    account.setRemaining(Double.parseDouble(remaining));
-
-    String feeFineType = maps.getFeefineTypeLabels().get(finefeeType);
-    account.setFeeFineType(feeFineType);
-
-    account.setDateCreated(DateUtility.toDate(createDate));
-
-    account.setUserId(userRL.get().getFolioReference());
-
-    PaymentStatus paymentStatus = new PaymentStatus();
-    paymentStatus.setName("Outstanding");
-    account.setPaymentStatus(paymentStatus);
-
-    Status status = new Status();
-    status.setName("Open");
-    account.setStatus(status);
-
-    account.setMaterialTypeId(defaults.getMaterialTypeId());
-
-    if (itemRL.isPresent()) {
-
-      if (materialTypeId.isPresent()) {
-        account.setMaterialTypeId(materialTypeId.get());
-      }
-
-      if (instanceRL.isPresent()) {
-        account.setInstanceId(instanceRL.get().getFolioReference());
-      }
-
-      if (holdingRL.isPresent()) {
-        account.setHoldingsRecordId(holdingRL.get().getFolioReference());
-      }
-
-      account.setItemId(itemRL.get().getFolioReference());
-
-      account.setLocation(location);
-
-      if (Objects.nonNull(itemBarcode)) {
-        account.setBarcode(itemBarcode);
-      }
-
-      account.setTitle(title);
-
-      String callNumber = displayCallNo;
-      if (Objects.nonNull(itemEnum)) {
-        callNumber += StringUtils.SPACE + itemEnum;
-      }
-      if (Objects.nonNull(chron)) {
-        callNumber += StringUtils.SPACE + chron;
-      }
-      account.setCallNumber(callNumber);
-    } else {
-      account.setItemId(defaults.getItemId());
-    }
-
-    Map<String, FeeFineOwner> feeFineOwnerMap = maps.getFeefineOwner().get(schema);
-    for (Entry<String, FeeFineOwner> feeDineOwnerEntry : feeFineOwnerMap.entrySet()) {
-      String regex = feeDineOwnerEntry.getKey();
-      if (fineLocation.matches(regex)) {
-        FeeFineOwner feeFineOwner = feeDineOwnerEntry.getValue();
-        account.setOwnerId(feeFineOwner.getOwnerId());
-        account.setFeeFineOwner(feeFineOwner.getFeeFineOwner());
-        account.setFeeFineId(feeFineOwner.getFineFeeType().get(getFinefeeType()));
-      }
-    }
-
-    Metadata metadata = new Metadata();
-    account.setMetadata(metadata);
-    return account;
-  }
-
-  public Feefineactiondata toFeefineaction(Accountdata account, FeeFineMaps maps, FeeFineDefaults defaults) {
-    Feefineactiondata feefineaction = new Feefineactiondata();
-    feefineaction.setAccountId(account.getId());
-    feefineaction.setId(UUID.randomUUID().toString());
-    feefineaction.setNotify(false);
-    feefineaction.setTransactionInformation("-");
-
-    feefineaction.setAmountAction(account.getAmount());
-    feefineaction.setBalance(account.getRemaining());
-    feefineaction.setTypeAction(account.getFeeFineType());
-    feefineaction.setDateAction(account.getDateCreated());
-    feefineaction.setUserId(account.getUserId());
-
-    if (StringUtils.isNotEmpty(finefeeNote)) {
-      feefineaction.setComments(finefeeNote);
-    }
-
-    feefineaction.setCreatedAt(account.getFeeFineOwner());
-
-    return feefineaction;
   }
 
   public String getId() {
@@ -280,12 +185,12 @@ public class FeeFineRecord {
     this.materialTypeId = materialTypeId;
   }
 
-  public Optional<ReferenceLink> getUserRL() {
-    return userRL;
+  public String getUserId() {
+    return userId;
   }
 
-  public void setUserRL(Optional<ReferenceLink> userRL) {
-    this.userRL = userRL;
+  public void setUserId(String userId) {
+    this.userId = userId;
   }
 
   public Optional<ReferenceLink> getInstanceRL() {
@@ -310,6 +215,124 @@ public class FeeFineRecord {
 
   public void setItemRL(Optional<ReferenceLink> itemRL) {
     this.itemRL = itemRL;
+  }
+
+  public String getCreatedByUserId() {
+    return createdByUserId;
+  }
+
+  public void setCreatedByUserId(String createdByUserId) {
+    this.createdByUserId = createdByUserId;
+  }
+
+  public Date getCreatedDate() {
+    return createdDate;
+  }
+
+  public void setCreatedDate(Date createdDate) {
+    this.createdDate = createdDate;
+  }
+
+  public Accountdata toAccount(FeeFineMaps maps, FeeFineDefaults defaults, String schema) {
+    Accountdata account = new Accountdata();
+    account.setId(id);
+
+    account.setAmount(Double.parseDouble(amount));
+    account.setRemaining(Double.parseDouble(remaining));
+
+    String feeFineType = maps.getFeefineTypeLabels().get(finefeeType);
+    account.setFeeFineType(feeFineType);
+
+    account.setDateCreated(DateUtility.toDate(createDate));
+
+    account.setUserId(userId);
+
+    PaymentStatus paymentStatus = new PaymentStatus();
+    paymentStatus.setName("Outstanding");
+    account.setPaymentStatus(paymentStatus);
+
+    Status status = new Status();
+    status.setName("Open");
+    account.setStatus(status);
+
+    account.setMaterialTypeId(defaults.getMaterialTypeId());
+
+    if (itemRL.isPresent()) {
+
+      if (materialTypeId.isPresent()) {
+        account.setMaterialTypeId(materialTypeId.get());
+      }
+
+      if (instanceRL.isPresent()) {
+        account.setInstanceId(instanceRL.get().getFolioReference());
+      }
+
+      if (holdingRL.isPresent()) {
+        account.setHoldingsRecordId(holdingRL.get().getFolioReference());
+      }
+
+      account.setItemId(itemRL.get().getFolioReference());
+
+      account.setLocation(location);
+
+      if (Objects.nonNull(itemBarcode)) {
+        account.setBarcode(itemBarcode);
+      }
+
+      account.setTitle(title);
+
+      String callNumber = displayCallNo;
+      if (Objects.nonNull(itemEnum)) {
+        callNumber += StringUtils.SPACE + itemEnum;
+      }
+      if (Objects.nonNull(chron)) {
+        callNumber += StringUtils.SPACE + chron;
+      }
+      account.setCallNumber(callNumber);
+    } else {
+      account.setItemId(defaults.getItemId());
+    }
+
+    Map<String, FeeFineOwner> feeFineOwnerMap = maps.getFeefineOwner().get(schema);
+    for (Entry<String, FeeFineOwner> feeDineOwnerEntry : feeFineOwnerMap.entrySet()) {
+      String regex = feeDineOwnerEntry.getKey();
+      if (fineLocation.matches(regex)) {
+        FeeFineOwner feeFineOwner = feeDineOwnerEntry.getValue();
+        account.setOwnerId(feeFineOwner.getOwnerId());
+        account.setFeeFineOwner(feeFineOwner.getFeeFineOwner());
+        account.setFeeFineId(feeFineOwner.getFineFeeType().get(getFinefeeType()));
+      }
+    }
+
+    Metadata metadata = new Metadata();
+    metadata.setCreatedByUserId(createdByUserId);
+    metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
+    account.setMetadata(metadata);
+    return account;
+  }
+
+  public Feefineactiondata toFeefineaction(Accountdata account, FeeFineMaps maps, FeeFineDefaults defaults) {
+    Feefineactiondata feefineaction = new Feefineactiondata();
+    feefineaction.setAccountId(account.getId());
+    feefineaction.setId(UUID.randomUUID().toString());
+    feefineaction.setNotify(false);
+    feefineaction.setTransactionInformation("-");
+
+    feefineaction.setAmountAction(account.getAmount());
+    feefineaction.setBalance(account.getRemaining());
+    feefineaction.setTypeAction(account.getFeeFineType());
+    feefineaction.setDateAction(account.getDateCreated());
+    feefineaction.setUserId(account.getUserId());
+
+    if (StringUtils.isNotEmpty(finefeeNote)) {
+      feefineaction.setComments(finefeeNote);
+    }
+
+    feefineaction.setCreatedAt(account.getFeeFineOwner());
+
+    return feefineaction;
   }
 
 }

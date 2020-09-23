@@ -1,5 +1,6 @@
 package org.folio.rest.migration.model.request.loan;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -18,6 +19,7 @@ public class LoanContext extends AbstractContext {
 
   public LoanContext() {
     super();
+    jobs = new ArrayList<>();
   }
 
   public LoanExtraction getExtraction() {

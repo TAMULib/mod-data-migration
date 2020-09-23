@@ -19,7 +19,6 @@ import org.folio.rest.migration.mapping.HoldingMapper;
 import org.folio.rest.migration.model.request.holding.HoldingMaps;
 import org.marc4j.marc.DataField;
 import org.marc4j.marc.Record;
-import org.marc4j.marc.VariableField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -181,6 +180,8 @@ public class HoldingRecord {
       Metadata metadata = new Metadata();
       metadata.setCreatedByUserId(createdByUserId);
       metadata.setCreatedDate(createdDate);
+      metadata.setUpdatedByUserId(createdByUserId);
+      metadata.setUpdatedDate(createdDate);
       holding.setMetadata(metadata);
     }
     return holding;

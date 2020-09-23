@@ -53,7 +53,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   private static final String USER_ID = "USER_ID";
 
-  private static final String USER_ID = "USER_ID";
+  private static final String WHERE_CLAUSE = "WHERE_CLAUSE";
 
   private static final String PATRON_ID = "PATRON_ID";
   private static final String EXTERNAL_SYSTEM_ID = "EXTERNAL_SYSTEM_ID";
@@ -83,8 +83,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
   private static final String DECODE = "DECODE";
 
   private static final String NOTE = "NOTE";
-
-  private static final String USER_REFERENCE_ID = "userTypeId";
 
   private static final Set<String> BARCODES = new HashSet<>();
   private static final Set<String> USERNAMES = new HashSet<>();
@@ -229,10 +227,9 @@ public class UserMigration extends AbstractMigration<UserContext> {
       Map<String, Object> patronNoteContext = new HashMap<>();
       patronNoteContext.put(SQL, context.getExtraction().getPatronNoteSql());
       patronNoteContext.put(SCHEMA, job.getSchema());
+      patronNoteContext.put(WHERE_CLAUSE, job.getNoteWhereClause());
 
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
-
-      String userIdRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, usernameSettings, folioSettings);
 
@@ -263,23 +260,39 @@ public class UserMigration extends AbstractMigration<UserContext> {
           patronGroupContext.put(PATRON_ID, patronId);
           patronNoteContext.put(PATRON_ID, patronId);
 
-          Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
-          if (!userRL.isPresent()) {
-            log.error("{} no user id found for patron id {}", schema, patronId);
+          List<ReferenceLink> userReferenceLinks = migrationService.referenceLinkRepo.findAllByExternalReference(externalSystemId);
+
+          if (userReferenceLinks.isEmpty()) {
+            log.error("{} no user id found for patron id {} with external id {}", schema, patronId, externalSystemId);
             continue;
           }
+
+          String referenceId = userReferenceLinks.get(0).getFolioReference().toString();
+
+          List<PatronNote> patronNotes = new ArrayList<>();
 
           if (job.getSkipDuplicates() && migrationService.referenceLinkRepo.countByExternalReference(externalSystemId) > 1) {
+
+            getPatronNotes(patronNoteStatement, patronNoteContext)
+              .thenAccept((pn) -> patronNotes.addAll(pn))
+              .get();
+
+            for (PatronNote patronNote : patronNotes) {
+              Note note = patronNote.toNote(referenceId, job.getDbCode(), job.getNoteTypeId());
+              try {
+                String noteUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(note)));
+                noteWriter.println(String.join("\t", note.getId(), noteUtf8Json));
+              } catch (JsonProcessingException e) {
+                log.error("{} patron id {} note id {} error serializing note", schema, patronId, note.getId());
+              }
+            }
+
             continue;
           }
-
-          String referenceId = userRL.get().getFolioReference().toString();
 
           UserRecord userRecord = new UserRecord(referenceId, patronId, externalSystemId, lastName, firstName, middleName, expireDate, smsNumber, currentCharges);
 
           PatronCodes patronCodes = new PatronCodes();
-
-          List<PatronNote> patronNotes = new ArrayList<>();
 
           CompletableFuture.allOf(
             getUsername(usernameStatement, usernameContext)
@@ -321,9 +334,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
             continue;
           }
 
-          Userdata userdata = userRecord.toUserdata(patronGroup.get(), defaults, maps);
-
           Date createdDate = new Date();
+          userRecord.setCreatedByUserId(userId);
+          userRecord.setCreatedDate(createdDate);
+
+          Userdata userdata = userRecord.toUserdata(patronGroup.get(), defaults, maps);
 
           String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
           String createdByUserId = userId;
@@ -335,12 +350,15 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
             for (PatronNote patronNote : patronNotes) {
               Note note = patronNote.toNote(userdata.getId(), job.getDbCode(), job.getNoteTypeId());
-              String noteUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(note)));
-
-              noteWriter.println(String.join("\t", note.getId(), noteUtf8Json, note.getTypeId()));
+              try {
+                String noteUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(note)));
+                noteWriter.println(String.join("\t", note.getId(), noteUtf8Json));
+              } catch (JsonProcessingException e) {
+                log.error("{} patron id {} note id {} error serializing note", schema, patronId, note.getId());
+              }
             }
           } catch (JsonProcessingException e) {
-            log.error("{} user id {} error serializing user", schema, userRecord.getPatronId());
+            log.error("{} patron id {} error serializing user", schema, patronId);
           }
         }
 

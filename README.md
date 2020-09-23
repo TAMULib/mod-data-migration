@@ -20,6 +20,19 @@ Other [modules](https://dev.folio.org/source-code/#server-side).
 
 Other FOLIO Developer documentation is at [dev.folio.org](https://dev.folio.org/).
 
+### Running on Windows
+
+To ensure correct character encoding follow below to develop on Windows.
+
+```
+SET PGCLIENTENCODING=UTF8
+SET NLS_LANG=American_America.US7ASCII
+
+chcp 65001
+mvn clean package
+java -jar -Dfile.encoding=UTF-8 target\mod-data-migration-1.0.0-SNAPSHOT.jar
+```
+
 ## Migration Information
 
 ### Reference Link Types
@@ -69,7 +82,7 @@ POST to http://localhost:9000/migrate/vendor-reference-links
 }
 ```
 
-## MARC Vendor Migration
+## Vendor Migration
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
 
@@ -438,7 +451,8 @@ POST to http://localhost:9000/migrate/user-reference-links
       "partitions": 12,
       "references": {
         "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
-        "userExternalTypeId": "0ed6f994-8dbd-4827-94c0-905504169c90"
+        "userExternalTypeId": "0ed6f994-8dbd-4827-94c0-905504169c90",
+        "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
       }
     },
     {
@@ -446,7 +460,8 @@ POST to http://localhost:9000/migrate/user-reference-links
       "partitions": 4,
       "references": {
         "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
-        "userExternalTypeId": "426ce32f-388c-4edf-9c79-d6b8348148a0"
+        "userExternalTypeId": "426ce32f-388c-4edf-9c79-d6b8348148a0",
+        "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
       }
     }
   ]
@@ -459,8 +474,6 @@ Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropr
 
 POST to http://localhost:9000/migrate/users
 
-> There is something with user migration that is breaking parallelization. Parallelism is set to 1 for it to succeed.
-
 ```
 {
   "extraction": {
@@ -469,7 +482,7 @@ POST to http://localhost:9000/migrate/users
     "usernameSql": "SELECT uin, tamu_netid FROM PATRON.person_identifiers WHERE uin = '${EXTERNAL_SYSTEM_ID}'",
     "addressSql": "SELECT address_type, address_desc, address_line1, address_line2, city, state_province, zip_postal, country, address_status, phone_number, phone_desc FROM ( SELECT pa.address_type AS address_type, address_desc, address_line1, trim(address_line2) ||' '|| trim(address_line3) ||' '|| trim(address_line4) ||' '|| trim(address_line5) AS address_line2, city, state_province, zip_postal, country, address_status, phone_number, phone_desc, rank() over (PARTITION BY pa.address_type order by effect_date desc) dest_rank FROM ${SCHEMA}.patron_address pa, ${SCHEMA}.address_type atype, ${SCHEMA}.patron_phone pp, ${SCHEMA}.phone_type pt WHERE pa.patron_id = ${PATRON_ID} AND pa.address_id = pp.address_id(+) AND pp.phone_type = pt.phone_type(+) AND effect_date < sysdate AND atype.address_type = pa.address_type AND pa.address_type in (2,3) ) WHERE dest_rank = 1 UNION SELECT pa.address_type AS address_type, address_desc, address_line1, trim(address_line2) ||' '|| trim(address_line3) ||' '|| trim(address_line4) ||' '|| trim(address_line5) AS address_line2, city, state_province, zip_postal, country, address_status, phone_number, phone_desc FROM ${SCHEMA}.patron_address pa, ${SCHEMA}.address_type atype, ${SCHEMA}.patron_phone pp, ${SCHEMA}.phone_type pt WHERE pa.address_type = 1 AND pa.patron_id = ${PATRON_ID} AND atype.address_type = pa.address_type AND pa.address_id = pp.address_id(+) AND pp.phone_type = pt.phone_type(+)",
     "patronGroupSql": "SELECT barcode_status, to_char(barcode_status_date,'YYYYMMDD') AS barcode_status_date, DECODE (patron_group_code, ${DECODE}) as patron_group_level, patron_group_code, patron_barcode FROM (select barcode_status, barcode_status_date, patron_barcode, patron_group_code, rank() OVER (PARTITION BY pg.patron_group_id ORDER BY barcode_status, barcode_status_date desc) barcode_rank from ${SCHEMA}.patron_barcode pb, ${SCHEMA}.patron_group pg WHERE pb.patron_id = ${PATRON_ID} and pb.patron_group_id = pg.patron_group_id) WHERE barcode_rank = 1 ORDER BY barcode_status asc, barcode_status_date desc, patron_group_level",
-    "patronNoteSql": "SELECT patron_id, patron_note_id, note FROM ${SCHEMA}.patron_notes WHERE note is not null AND patron_id = ${PATRON_ID} ORDER BY patron_id, patron_note_id",
+    "patronNoteSql": "SELECT patron_id, patron_note_id, note FROM ${SCHEMA}.patron_notes WHERE ${WHERE_CLAUSE} AND patron_id = ${PATRON_ID} ORDER BY patron_id, patron_note_id",
     "database": {
       "url": "",
       "username": "",
@@ -485,7 +498,7 @@ POST to http://localhost:9000/migrate/users
   },
   "preActions": [],
   "postActions": [],
-  "parallelism": 1,
+  "parallelism": 12,
   "jobs": [
     {
       "schema": "AMDB",
@@ -493,12 +506,9 @@ POST to http://localhost:9000/migrate/users
       "decodeSql": "'fast', 1, 'grad', 2, 'ungr', 3, 'illend', 4, 'libd', 5, 'comm', 6, 'cour', 7, 'texs', 8, 'nonr', 9",
       "user": "tamu_admin",
       "dbCode": "Evans",
+      "noteWhereClause": "note IS NOT NULL",
       "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
-      "skipDuplicates": false,
-      "references": {
-        "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
-        "userExternalTypeId": "0ed6f994-8dbd-4827-94c0-905504169c90"
-      }
+      "skipDuplicates": false
     },
     {
       "schema": "MSDB",
@@ -506,12 +516,9 @@ POST to http://localhost:9000/migrate/users
       "decodeSql": "'fac/staff', 1, 'grad/prof', 2, 'undergrad', 3",
       "user": "tamu_admin",
       "dbCode": "MSL",
+      "noteWhereClause": "note IS NOT NULL AND lower(note) NOT LIKE '%patron has graduated%'",
       "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
-      "skipDuplicates": true,
-      "references": {
-        "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
-        "userExternalTypeId": "426ce32f-388c-4edf-9c79-d6b8348148a0"
-      }
+      "skipDuplicates": true
     }
   ],
   "maps": {
@@ -533,7 +540,7 @@ POST to http://localhost:9000/migrate/users
   },
   "defaults": {
     "primaryAddress": true,
-    "preferredContactType": "email",
+    "preferredContactType": "002",
     "temporaryEmail": "example@example.com",
     "expirationDate": "2021-09-01"
   }
@@ -1110,6 +1117,8 @@ POST to http://localhost:9000/migrate/feesfines
       "partitions": 12,
       "user": "tamu_admin",
       "references": {
+        "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
+        "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
         "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672",
         "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
         "itemTypeId": "53e72510-dc82-4caa-a272-1522cca70bc2"
@@ -1120,15 +1129,13 @@ POST to http://localhost:9000/migrate/feesfines
       "partitions": 4,
       "user": "tamu_admin",
       "references": {
+        "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
+        "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
         "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8",
         "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
         "itemTypeId": "0014559d-39f6-45c7-9406-03643459aaf0"
       }
     }
-  ],
-  "userIdRLTypeIds": [
-    "fb86289b-001d-4a6f-8adf-5076b162a6c7",
-    "7a244692-dc96-48f1-9bf8-39578b8fee45"
   ],
   "maps": {
     "location": {

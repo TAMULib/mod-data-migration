@@ -11,6 +11,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.folio.rest.jaxrs.model.users.Address;
 import org.folio.rest.jaxrs.model.users.Personal;
 import org.folio.rest.jaxrs.model.users.Userdata;
+import org.folio.rest.jaxrs.model.users.Metadata;
 import org.folio.rest.migration.model.request.user.UserDefaults;
 import org.folio.rest.migration.model.request.user.UserMaps;
 
@@ -45,6 +46,9 @@ public class UserRecord {
   private String username;
 
   private List<UserAddressRecord> userAddressRecords;
+
+  private String createdByUserId;
+  private Date createdDate;
 
   public UserRecord(String referenceId, String patronId, String externalSystemId, String lastName, String firstName, String middleName, String expireDate, String smsNumber, String currentCharges) {
     this.referenceId = referenceId;
@@ -150,6 +154,22 @@ public class UserRecord {
     this.userAddressRecords = userAddressRecords;
   }
 
+  public String getCreatedByUserId() {
+    return createdByUserId;
+  }
+
+  public void setCreatedByUserId(String createdByUserId) {
+    this.createdByUserId = createdByUserId;
+  }
+
+  public Date getCreatedDate() {
+    return createdDate;
+  }
+
+  public void setCreatedDate(Date createdDate) {
+    this.createdDate = createdDate;
+  }
+
   public Userdata toUserdata(String patronGroup, UserDefaults defaults, UserMaps maps) {
     final Userdata userdata = new Userdata();
     final Personal personal = new Personal();
@@ -171,6 +191,13 @@ public class UserRecord {
     setUsername(userdata);
 
     userdata.setPatronGroup(patronGroup);
+
+    Metadata metadata = new Metadata();
+    metadata.setCreatedByUserId(createdByUserId);
+    metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
+    userdata.setMetadata(metadata);
 
     return userdata;
   }

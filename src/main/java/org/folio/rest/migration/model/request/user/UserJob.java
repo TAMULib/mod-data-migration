@@ -1,8 +1,5 @@
 package org.folio.rest.migration.model.request.user;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.validation.constraints.NotNull;
 
 import org.folio.rest.migration.model.request.AbstractJob;
@@ -19,16 +16,16 @@ public class UserJob extends AbstractJob {
   private String dbCode;
 
   @NotNull
+  private String noteWhereClause;
+
+  @NotNull
   private String noteTypeId;
 
   @NotNull
   private Boolean skipDuplicates;
 
-  private Map<String, String> references;
-
   public UserJob() {
     super();
-    references = new HashMap<String, String>();
   }
 
   public String getDecodeSql() {
@@ -55,6 +52,14 @@ public class UserJob extends AbstractJob {
     this.dbCode = dbCode;
   }
 
+  public String getNoteWhereClause() {
+    return noteWhereClause;
+  }
+
+  public void setNoteWhereClause(String noteWhereClause) {
+    this.noteWhereClause = noteWhereClause;
+  }
+
   public String getNoteTypeId() {
     return noteTypeId;
   }
@@ -69,14 +74,6 @@ public class UserJob extends AbstractJob {
 
   public void setSkipDuplicates(Boolean skipDuplicates) {
     this.skipDuplicates = skipDuplicates;
-  }
-
-  public Map<String, String> getReferences() {
-    return references;
-  }
-
-  public void setReferences(Map<String, String> references) {
-    this.references = references;
   }
 
 }

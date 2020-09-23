@@ -68,6 +68,9 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String LOCATION_CODE = "LOCATION_CODE";
 
+  private static final String USER_REFERENCE_ID = "userTypeId";
+  private static final String USER_TO_EXTERNAL_REFERENCE_ID = "userToExternalTypeId";
+
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
   private static final String ITEM_REFERENCE_ID = "itemTypeId";
@@ -195,8 +198,8 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       materialTypeContext.put(SQL, context.getExtraction().getMaterialTypeSql());
       materialTypeContext.put(SCHEMA, schema);
 
-      List<String> userIdRLTypeIds = context.getUserIdRLTypeIds();
-
+      String userRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
+      String userToExternalRLTypeId = job.getReferences().get(USER_TO_EXTERNAL_REFERENCE_ID);
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
       String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
       String itemRLTypeId = job.getReferences().get(ITEM_REFERENCE_ID);
@@ -253,22 +256,39 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
             feefineRecord.setLocation(locationsMap.get(effectiveLocation));
           }
 
-          // look for reference link for user by patron id given a list of user reference link type ids
-          // essentially, use FOLIO id for AMDB reference link if patron id is in both AMDB and MSDB
-          Optional<ReferenceLink> userRL = Optional.empty();
-          for (String userIdRLTypeId : userIdRLTypeIds) {
-            userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
-            if (userRL.isPresent()) {
-              break;
-            }
-          }
+          Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userRLTypeId, patronId);
 
           if (!userRL.isPresent()) {
             log.error("{} no user id found for patron id {}", schema, patronId);
             continue;
           }
 
-          feefineRecord.setUserRL(userRL);
+          Optional<ReferenceLink> userToExternalRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userToExternalRLTypeId, userRL.get().getId());
+
+          if (!userToExternalRL.isPresent()) {
+            log.error("{} no user to external id found for patron id {}", schema, patronId);
+            continue;
+          }
+
+          Optional<ReferenceLink> userExternalRL = migrationService.referenceLinkRepo.findById(userToExternalRL.get().getId());
+
+          if (!userExternalRL.isPresent()) {
+            log.error("{} no user external id found for patron id {}", schema, patronId);
+            continue;
+          }
+
+          String externalSystemId = userExternalRL.get().getExternalReference();
+
+          List<ReferenceLink> userReferenceLinks = migrationService.referenceLinkRepo.findAllByExternalReference(externalSystemId);
+
+          if (userReferenceLinks.isEmpty()) {
+            log.error("{} no user id found for patron id {}", schema, patronId);
+            continue;
+          }
+
+          String referenceId = userReferenceLinks.get(0).getFolioReference().toString();
+
+          feefineRecord.setUserId(referenceId);
 
           if (StringUtils.isNotEmpty(itemId)) {
             materialTypeContext.put(ITEM_ID, itemId);
@@ -278,28 +298,26 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
             feefineRecord.setItemRL(migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId));
           }
 
+          Date createdDate = new Date();
+          feefineRecord.setCreatedByUserId(userId);
+          feefineRecord.setCreatedDate(createdDate);
+
           Accountdata account = feefineRecord.toAccount(maps, defaults, schema);
 
-          account.getMetadata().setCreatedByUserId(userId);
-          account.getMetadata().setUpdatedByUserId(userId);
-
-          Date now = new Date();
-          account.getMetadata().setCreatedDate(now);
-          account.getMetadata().setUpdatedDate(now);
-
           Feefineactiondata feefineaction = feefineRecord.toFeefineaction(account, maps, defaults);
+
+          String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));;
+          String createdByUserId = userId;
 
           try {
             String aUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(account)));
             String ffaUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(feefineaction)));
-            String createdDate = DATE_TIME_FOMATTER.format(account.getMetadata().getCreatedDate().toInstant().atOffset(ZoneOffset.UTC));;
-            String createdByUserId = account.getMetadata().getCreatedByUserId();
 
             // (id,jsonb,creation_date,created_by)
-            accountWriter.println(String.join("\t", account.getId(), aUtf8Json, createdDate, createdByUserId));
+            accountWriter.println(String.join("\t", account.getId(), aUtf8Json, createdAt, createdByUserId));
 
             // (id,jsonb,creation_date,created_by)
-            feefineActionWriter.println(String.join("\t", feefineaction.getId(), ffaUtf8Json, createdDate, createdByUserId));
+            feefineActionWriter.println(String.join("\t", feefineaction.getId(), ffaUtf8Json, createdAt, createdByUserId));
 
           } catch (JsonProcessingException e) {
             log.error("{} fine fee id {} error serializing fee fine or action", schema, finefeeId);
