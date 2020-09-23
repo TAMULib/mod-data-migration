@@ -505,11 +505,7 @@ POST to http://localhost:9000/migrate/users
       "user": "tamu_admin",
       "dbCode": "Evans",
       "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
-      "skipDuplicates": false,
-      "references": {
-        "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
-        "userExternalTypeId": "0ed6f994-8dbd-4827-94c0-905504169c90"
-      }
+      "skipDuplicates": false
     },
     {
       "schema": "MSDB",
@@ -518,11 +514,7 @@ POST to http://localhost:9000/migrate/users
       "user": "tamu_admin",
       "dbCode": "MSL",
       "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
-      "skipDuplicates": true,
-      "references": {
-        "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
-        "userExternalTypeId": "426ce32f-388c-4edf-9c79-d6b8348148a0"
-      }
+      "skipDuplicates": true
     }
   ],
   "maps": {

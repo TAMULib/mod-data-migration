@@ -1,7 +1,6 @@
 package org.folio.rest.migration.model.request.user;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
@@ -23,8 +22,6 @@ public class UserJob extends AbstractJob {
 
   @NotNull
   private Boolean skipDuplicates;
-
-  private Map<String, String> references;
 
   public UserJob() {
     super();
@@ -69,14 +66,6 @@ public class UserJob extends AbstractJob {
 
   public void setSkipDuplicates(Boolean skipDuplicates) {
     this.skipDuplicates = skipDuplicates;
-  }
-
-  public Map<String, String> getReferences() {
-    return references;
-  }
-
-  public void setReferences(Map<String, String> references) {
-    this.references = references;
   }
 
 }
