@@ -69,7 +69,6 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
   private static final String LOCATION_CODE = "LOCATION_CODE";
 
   private static final String USER_REFERENCE_ID = "userTypeId";
-  private static final String USER_EXTERNAL_REFERENCE_ID = "userExternalTypeId";
   private static final String USER_TO_EXTERNAL_REFERENCE_ID = "userToExternalTypeId";
 
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
@@ -200,7 +199,6 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       materialTypeContext.put(SCHEMA, schema);
 
       String userRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
-      String userExternalRLTypeId = job.getReferences().get(USER_EXTERNAL_REFERENCE_ID);
       String userToExternalRLTypeId = job.getReferences().get(USER_TO_EXTERNAL_REFERENCE_ID);
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
       String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
