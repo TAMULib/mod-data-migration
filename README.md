@@ -472,8 +472,6 @@ Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropr
 
 POST to http://localhost:9000/migrate/users
 
-> There is something with user migration that is breaking parallelization. Parallelism is set to 1 for it to succeed.
-
 ```
 {
   "extraction": {
@@ -498,7 +496,7 @@ POST to http://localhost:9000/migrate/users
   },
   "preActions": [],
   "postActions": [],
-  "parallelism": 1,
+  "parallelism": 12,
   "jobs": [
     {
       "schema": "AMDB",
@@ -1139,7 +1137,7 @@ POST to http://localhost:9000/migrate/feesfines
       }
     }
   ],
-  "userIdRLTypeIds": [
+  "userTypeIds": [
     "fb86289b-001d-4a6f-8adf-5076b162a6c7",
     "7a244692-dc96-48f1-9bf8-39578b8fee45"
   ],

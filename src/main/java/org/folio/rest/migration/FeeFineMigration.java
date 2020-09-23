@@ -195,7 +195,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       materialTypeContext.put(SQL, context.getExtraction().getMaterialTypeSql());
       materialTypeContext.put(SCHEMA, schema);
 
-      List<String> userIdRLTypeIds = context.getUserIdRLTypeIds();
+      List<String> userTypeIds = context.getUserTypeIds();
 
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
       String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
@@ -256,7 +256,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
           // look for reference link for user by patron id given a list of user reference link type ids
           // essentially, use FOLIO id for AMDB reference link if patron id is in both AMDB and MSDB
           Optional<ReferenceLink> userRL = Optional.empty();
-          for (String userIdRLTypeId : userIdRLTypeIds) {
+          for (String userIdRLTypeId : userTypeIds) {
             userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
             if (userRL.isPresent()) {
               break;
