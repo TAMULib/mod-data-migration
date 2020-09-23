@@ -1,7 +1,5 @@
 package org.folio.rest.migration.model.request.user;
 
-import java.util.HashMap;
-
 import javax.validation.constraints.NotNull;
 
 import org.folio.rest.migration.model.request.AbstractJob;
@@ -25,7 +23,6 @@ public class UserJob extends AbstractJob {
 
   public UserJob() {
     super();
-    references = new HashMap<String, String>();
   }
 
   public String getDecodeSql() {
