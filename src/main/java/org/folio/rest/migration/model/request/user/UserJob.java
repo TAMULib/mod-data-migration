@@ -16,6 +16,9 @@ public class UserJob extends AbstractJob {
   private String dbCode;
 
   @NotNull
+  private String noteWhereClause;
+
+  @NotNull
   private String noteTypeId;
 
   @NotNull
@@ -47,6 +50,14 @@ public class UserJob extends AbstractJob {
 
   public void setDbCode(String dbCode) {
     this.dbCode = dbCode;
+  }
+
+  public String getNoteWhereClause() {
+    return noteWhereClause;
+  }
+
+  public void setNoteWhereClause(String noteWhereClause) {
+    this.noteWhereClause = noteWhereClause;
   }
 
   public String getNoteTypeId() {

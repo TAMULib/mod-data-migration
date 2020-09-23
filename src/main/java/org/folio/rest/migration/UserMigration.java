@@ -53,6 +53,8 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   private static final String USER_ID = "USER_ID";
 
+  private static final String WHERE_CLAUSE = "WHERE_CLAUSE";
+
   private static final String PATRON_ID = "PATRON_ID";
   private static final String EXTERNAL_SYSTEM_ID = "EXTERNAL_SYSTEM_ID";
   private static final String LAST_NAME = "LAST_NAME";
@@ -223,6 +225,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
       Map<String, Object> patronNoteContext = new HashMap<>();
       patronNoteContext.put(SQL, context.getExtraction().getPatronNoteSql());
       patronNoteContext.put(SCHEMA, job.getSchema());
+      patronNoteContext.put(WHERE_CLAUSE, job.getNoteWhereClause());
 
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
 
