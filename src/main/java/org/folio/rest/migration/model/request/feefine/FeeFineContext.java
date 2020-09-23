@@ -20,13 +20,9 @@ public class FeeFineContext extends AbstractContext {
   @NotNull
   private FeeFineDefaults defaults;
 
-  @NotNull
-  private List<String> userTypeIds;
-
   public FeeFineContext() {
     super();
     jobs = new ArrayList<>();
-    userTypeIds = new ArrayList<>();
   }
 
   public FeeFineExtraction getExtraction() {
@@ -59,14 +55,6 @@ public class FeeFineContext extends AbstractContext {
 
   public void setDefaults(FeeFineDefaults defaults) {
     this.defaults = defaults;
-  }
-
-  public List<String> getUserTypeIds() {
-    return userTypeIds;
-  }
-
-  public void setUserTypeIds(List<String> userTypeIds) {
-    this.userTypeIds = userTypeIds;
   }
 
 }
