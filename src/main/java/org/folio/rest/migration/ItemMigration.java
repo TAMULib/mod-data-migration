@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote.NoteType;
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.jaxrs.model.inventory.Item;
 import org.folio.rest.jaxrs.model.inventory.Loantype;
 import org.folio.rest.jaxrs.model.inventory.Loantypes;
