@@ -198,8 +198,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
       String userId = (String) partitionContext.get(USER_ID);
 
-      String userId = (String) partitionContext.get(USER_ID);
-
       UserMaps maps = context.getMaps();
       UserDefaults defaults = context.getDefaults();
 
