@@ -45,7 +45,7 @@ public class FeeFineRecord {
 
   private Optional<String> materialTypeId;
 
-  private Optional<ReferenceLink> userRL;
+  private String userId;
 
   private Optional<ReferenceLink> instanceRL;
   private Optional<ReferenceLink> holdingRL;
@@ -92,7 +92,6 @@ public class FeeFineRecord {
     this.bibId = bibId;
 
     this.id = UUID.randomUUID().toString();
-    this.userRL = Optional.empty();
     this.instanceRL = Optional.empty();
     this.holdingRL = Optional.empty();
     this.itemRL = Optional.empty();
@@ -186,12 +185,12 @@ public class FeeFineRecord {
     this.materialTypeId = materialTypeId;
   }
 
-  public Optional<ReferenceLink> getUserRL() {
-    return userRL;
+  public String getUserId() {
+    return userId;
   }
 
-  public void setUserRL(Optional<ReferenceLink> userRL) {
-    this.userRL = userRL;
+  public void setUserId(String userId) {
+    this.userId = userId;
   }
 
   public Optional<ReferenceLink> getInstanceRL() {
@@ -246,7 +245,7 @@ public class FeeFineRecord {
 
     account.setDateCreated(DateUtility.toDate(createDate));
 
-    account.setUserId(userRL.get().getFolioReference());
+    account.setUserId(userId);
 
     PaymentStatus paymentStatus = new PaymentStatus();
     paymentStatus.setName("Outstanding");

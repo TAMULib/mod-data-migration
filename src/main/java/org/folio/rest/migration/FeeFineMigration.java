@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -68,6 +69,9 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
   private static final String LOCATION_CODE = "LOCATION_CODE";
 
   private static final String USER_REFERENCE_ID = "userTypeId";
+  private static final String USER_EXTERNAL_REFERENCE_ID = "userExternalTypeId";
+  private static final String USER_TO_EXTERNAL_REFERENCE_ID = "userToExternalTypeId";
+
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
   private static final String ITEM_REFERENCE_ID = "itemTypeId";
@@ -195,7 +199,9 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       materialTypeContext.put(SQL, context.getExtraction().getMaterialTypeSql());
       materialTypeContext.put(SCHEMA, schema);
 
-      String userIdRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
+      String userRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
+      String userExternalRLTypeId = job.getReferences().get(USER_EXTERNAL_REFERENCE_ID);
+      String userToExternalRLTypeId = job.getReferences().get(USER_TO_EXTERNAL_REFERENCE_ID);
       String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
       String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
       String itemRLTypeId = job.getReferences().get(ITEM_REFERENCE_ID);
@@ -252,14 +258,39 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
             feefineRecord.setLocation(locationsMap.get(effectiveLocation));
           }
 
-          Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userIdRLTypeId, patronId);
-          
+          Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userRLTypeId, patronId);
+
           if (!userRL.isPresent()) {
             log.error("{} no user id found for patron id {}", schema, patronId);
             continue;
           }
 
-          feefineRecord.setUserRL(userRL);
+          Optional<ReferenceLink> userToExternalRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userToExternalRLTypeId, userRL.get().getId());
+
+          if (!userToExternalRL.isPresent()) {
+            log.error("{} no user to external id found for patron id {}", schema, patronId);
+            continue;
+          }
+
+          Optional<ReferenceLink> userExternalRL = migrationService.referenceLinkRepo.findById(userToExternalRL.get().getId());
+
+          if (!userExternalRL.isPresent()) {
+            log.error("{} no user external id found for patron id {}", schema, patronId);
+            continue;
+          }
+
+          String externalSystemId = userExternalRL.get().getExternalReference();
+
+          List<ReferenceLink> userReferenceLinks = migrationService.referenceLinkRepo.findAllByExternalReference(externalSystemId);
+
+          if (userReferenceLinks.isEmpty()) {
+            log.error("{} no user id found for patron id {}", schema, patronId);
+            continue;
+          }
+
+          String referenceId = userReferenceLinks.get(0).getFolioReference().toString();
+
+          feefineRecord.setUserId(referenceId);
 
           if (StringUtils.isNotEmpty(itemId)) {
             materialTypeContext.put(ITEM_ID, itemId);
