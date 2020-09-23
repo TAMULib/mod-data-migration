@@ -1,5 +1,6 @@
 package org.folio.rest.migration.model.request.item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,7 @@ public class ItemContext extends AbstractContext {
 
   public ItemContext() {
     super();
+    jobs = new ArrayList<>();
   }
 
   public ItemExtraction getExtraction() {

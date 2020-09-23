@@ -1,5 +1,6 @@
 package org.folio.rest.migration.model.request.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,7 @@ public class UserContext extends AbstractContext {
 
   public UserContext() {
     super();
+    jobs = new ArrayList<>();
   }
 
   public UserExtraction getExtraction() {

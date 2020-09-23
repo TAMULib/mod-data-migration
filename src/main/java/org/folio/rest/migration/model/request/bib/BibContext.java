@@ -1,5 +1,6 @@
 package org.folio.rest.migration.model.request.bib;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -15,6 +16,7 @@ public class BibContext extends AbstractContext {
 
   public BibContext() {
     super();
+    jobs = new ArrayList<>();
   }
 
   public BibExtraction getExtraction() {

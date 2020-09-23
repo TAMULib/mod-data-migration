@@ -1,5 +1,6 @@
 package org.folio.rest.migration.model.request.vendor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,7 @@ public class VendorContext extends AbstractContext {
 
   public VendorContext() {
     super();
+    jobs = new ArrayList<>();
   }
 
   public VendorExtraction getExtraction() {

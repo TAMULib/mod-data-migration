@@ -1,5 +1,6 @@
 package org.folio.rest.migration.model.request.inventory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -15,6 +16,7 @@ public class InventoryReferenceLinkContext extends AbstractContext {
 
   public InventoryReferenceLinkContext() {
     super();
+    jobs = new ArrayList<>();
   }
 
   public InventoryReferenceLinkExtraction getExtraction() {
