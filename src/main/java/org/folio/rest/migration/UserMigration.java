@@ -269,7 +269,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           List<PatronNote> patronNotes = new ArrayList<>();
 
-          if (job.getSkipDuplicates() && migrationService.referenceLinkRepo.countByExternalReference(externalSystemId) > 1) {
+          if (job.getSkipDuplicates() && userReferenceLinks.size() > 1) {
 
             getPatronNotes(patronNoteStatement, patronNoteContext)
               .thenAccept((pn) -> patronNotes.addAll(pn))

@@ -270,7 +270,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
             continue;
           }
 
-          Optional<ReferenceLink> userExternalRL = migrationService.referenceLinkRepo.findById(userToExternalRL.get().getId());
+          Optional<ReferenceLink> userExternalRL = migrationService.referenceLinkRepo.findById(userToExternalRL.get().getFolioReference());
 
           if (!userExternalRL.isPresent()) {
             log.error("{} no user external id found for patron id {}", schema, patronId);
