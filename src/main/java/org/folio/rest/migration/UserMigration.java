@@ -462,7 +462,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
           while(resultSet.next()) {
             String note = resultSet.getString(NOTE);
             patronNotes.add(new PatronNote(note));
-            break;
           }
         } catch (SQLException e) {
           e.printStackTrace();
