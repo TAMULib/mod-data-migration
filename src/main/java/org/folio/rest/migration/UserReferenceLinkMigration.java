@@ -146,7 +146,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
           String userFolioReference = UUID.randomUUID().toString();
           referenceLinkWriter.println(String.join("\t", userRLId, userId, userFolioReference, userRLTypeId));
           referenceLinkWriter.println(String.join("\t", userExternalRLId, userExternalId, userFolioReference, userExternalRLTypeId));
-          referenceLinkWriter.println(String.join("\t", userToExternalRLId, userRLId, userExternalId, userToExternalRLTypeId));
+          referenceLinkWriter.println(String.join("\t", userToExternalRLId, userRLId, userExternalRLId, userToExternalRLTypeId));
         }
       } catch (SQLException e) {
         e.printStackTrace();
