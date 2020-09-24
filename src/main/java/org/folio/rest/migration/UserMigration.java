@@ -269,7 +269,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           List<PatronNote> patronNotes = new ArrayList<>();
 
-          if (job.getSkipDuplicates() && migrationService.referenceLinkRepo.countByExternalReference(externalSystemId) > 1) {
+          if (job.getSkipDuplicates() && userReferenceLinks.size() > 1) {
 
             getPatronNotes(patronNoteStatement, patronNoteContext)
               .thenAccept((pn) -> patronNotes.addAll(pn))
@@ -347,7 +347,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
             userWriter.println(String.join("\t", userdata.getId(), userUtf8Json, createdAt, createdByUserId, userdata.getPatronGroup()));
 
             for (PatronNote patronNote : patronNotes) {
-              Note note = patronNote.toNote(userdata.getId(), job.getDbCode(), job.getNoteTypeId());
+              Note note = patronNote.toNote(referenceId, job.getDbCode(), job.getNoteTypeId());
               try {
                 String noteUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(note)));
                 noteWriter.println(String.join("\t", note.getId(), noteUtf8Json));
@@ -462,7 +462,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
           while(resultSet.next()) {
             String note = resultSet.getString(NOTE);
             patronNotes.add(new PatronNote(note));
-            break;
           }
         } catch (SQLException e) {
           e.printStackTrace();
