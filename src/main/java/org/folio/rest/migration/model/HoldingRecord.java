@@ -263,7 +263,10 @@ public class HoldingRecord {
   public void process5xxFields(Holdingsrecord holding) {
     List<Note> notes = holding.getNotes();
     record.getVariableFields().stream()
+      .filter(Objects::nonNull)
+      .filter(field -> field instanceof DataField)
       .map(field -> (DataField) field)
+      .filter(field -> StringUtils.isNotEmpty(field.getTag()))
       .filter(field -> field.getTag().startsWith("5"))
       .forEach(field -> {
         String tag = field.getTag();
