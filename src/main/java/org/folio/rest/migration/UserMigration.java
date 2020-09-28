@@ -460,7 +460,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
         List<PatronNote> patronNotes = new ArrayList<>();
         try (ResultSet resultSet = getResultSet(statement, patronNoteContext)) {
           while(resultSet.next()) {
-            String note = resultSet.getString(NOTE);
+            String note = String.format("<p>%s</p>", resultSet.getString(NOTE));
             patronNotes.add(new PatronNote(note));
           }
         } catch (SQLException e) {
