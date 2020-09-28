@@ -334,7 +334,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
               .thenAccept((materialTypeId) -> itemRecord.setMaterialTypeId(materialTypeId)),
             getMfhdItem(mfhdItemStatement, mfhdContext)
               .thenAccept((mfhdItem) -> itemRecord.setMfhdItem(mfhdItem)),
-            getItemStatuses(itemStatusStatement, itemStatusContext, maps.getItemStatus(), maps.getStatusName())
+            getItemStatuses(itemStatusStatement, itemStatusContext, maps.getItemStatus())
               .thenAccept((statuses) -> itemRecord.setStatuses(statuses)),
             getNotes(noteStatement, noteContext, job.getItemNoteTypeId())
               .thenAccept((noteWrapper) -> {
@@ -384,7 +384,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
           String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
 
-          Item item = itemRecord.toItem(hridString, statisticalcodes, materialtypes);
+          Item item = itemRecord.toItem(hridString, statisticalcodes, materialtypes, maps);
 
           try {
 
@@ -488,13 +488,13 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       return future;
     }
 
-    private CompletableFuture<List<ItemStatusRecord>> getItemStatuses(Statement statement, Map<String, Object> context, Map<String, Integer> itemStatusMap, Map<String, String> statusNameMap) {
+    private CompletableFuture<List<ItemStatusRecord>> getItemStatuses(Statement statement, Map<String, Object> context, Map<String, Integer> itemStatusMap) {
       CompletableFuture<List<ItemStatusRecord>> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
         List<ItemStatusRecord> statuses = new ArrayList<>();
         try (ResultSet resultSet = getResultSet(statement, context)) {
           while (resultSet.next()) {
-            String itemStatus = statusNameMap.get(resultSet.getString(ITEM_STATUS));
+            String itemStatus = resultSet.getString(ITEM_STATUS);
             String itemStatusDate = resultSet.getString(ITEM_STATUS_DATE);
             String circtrans = resultSet.getString(CIRCTRANS);
             String itemStatusDesc = resultSet.getString(ITEM_STATUS_DESC);

@@ -6,10 +6,12 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import org.codehaus.plexus.util.StringUtils;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote;
 import org.folio.rest.jaxrs.model.inventory.Item;
 import org.folio.rest.jaxrs.model.inventory.Materialtypes;
@@ -19,9 +21,14 @@ import org.folio.rest.jaxrs.model.inventory.Statisticalcode;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
 import org.folio.rest.jaxrs.model.inventory.Status;
 import org.folio.rest.jaxrs.model.inventory.Status.Name;
+import org.folio.rest.migration.model.request.item.ItemMaps;
 import org.folio.rest.migration.utility.DateUtility;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ItemRecord {
+
+  private final static Logger log = LoggerFactory.getLogger(ItemRecord.class);
 
   private final String itemId;
 
@@ -210,7 +217,7 @@ public class ItemRecord {
     this.createdDate = createdDate;
   }
 
-  public Item toItem(String hridString, Statisticalcodes statisticalcodes, Materialtypes materilatypes) {
+  public Item toItem(String hridString, Statisticalcodes statisticalcodes, Materialtypes materilatypes, ItemMaps maps) {
     final Item item = new Item();
     item.setId(id);
     item.setHoldingsRecordId(holdingId);
@@ -269,40 +276,42 @@ public class ItemRecord {
 
     statisticalCodeIds.add(custodianStatisticalCodeId);
 
-    boolean haveMostImportantStatus = false;
+    Map<String, String> statusNameMap = maps.getStatusName();
 
     for (int i = 0; i < statuses.size(); i++) {
       ItemStatusRecord s = statuses.get(i);
 
-      if (isNotEmpty(s.getItemStatus())) {
-        if (s.getItemStatus().equals("Damaged")) {
-          item.setItemDamagedStatusId(itemDamagedStatusId);
-        } else {
-          Optional<Statisticalcode> potentialStatisticalcode = statisticalcodes.getStatisticalCodes().stream()
-            .filter(sc -> sc.getName().equals(s.getItemStatusDesc()))
-            .findFirst();
-          if (potentialStatisticalcode.isPresent()) {
-            statisticalCodeIds.add(potentialStatisticalcode.get().getId());
-          }
-        }
+      String folioItemStatus = "Available";
 
-        if (s.getItemStatus().contains("Missing") || s.getItemStatus().contains("Lost") || s.getItemStatus().contains("Withdrawn")) {
-          item.setDiscoverySuppress(true);
+      if (StringUtils.isEmpty(s.getCirctrans()) && StringUtils.isNotEmpty(s.getItemStatus()) && statusNameMap.containsKey(s.getItemStatus())) {
+        folioItemStatus = statusNameMap.get(s.getItemStatus());
+      }
+
+      if (s.getItemStatusDesc().equals("Damaged")) {
+        item.setItemDamagedStatusId(itemDamagedStatusId);
+      } else {
+        Optional<Statisticalcode> potentialStatisticalcode = statisticalcodes.getStatisticalCodes().stream()
+          .filter(sc -> sc.getName().equals(s.getItemStatusDesc()))
+          .findFirst();
+        if (potentialStatisticalcode.isPresent()) {
+          statisticalCodeIds.add(potentialStatisticalcode.get().getId());
         }
       }
 
-      if (!haveMostImportantStatus && s.getItemStatusOrder() > 1) {
-        haveMostImportantStatus = true;
+      if (s.getItemStatusDesc().equals("Missing") ||
+          s.getItemStatusDesc().equals("Lost--Library Applied") ||
+          s.getItemStatusDesc().equals("Lost--System Applied") ||
+          s.getItemStatusDesc().equals("Withdrawn")) {
+        item.setDiscoverySuppress(true);
+      }
 
-        if (isNotEmpty(s.getItemStatus())) {
-          Name name = Name.fromValue(s.getItemStatus());
-          status.setName(name);
-        }
-
+      if (i == 0) {
+        status.setName(Name.fromValue(folioItemStatus));
         if (isNotEmpty(s.getItemStatusDate())) {
           status.setDate(DateUtility.toDate(s.getItemStatusDate()));
+        } else {
+          log.warn(String.format("Item with barcode %s status does not have a date", barcode));
         }
-
       }
 
     }
