@@ -291,9 +291,9 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
               getVendorAddresses(addressStatement, vendorAddressesContext)
                 .thenAccept((vendorAddresses) -> vendorRecord.setVendorAddresses(vendorAddresses)),
               getVendorAliases(aliasStatement, vendorAliasesContext)
-                .thenAccept((vendorAliases) -> vendorRecord.setVendorAliases(vendorAliases)),
-              getVendorNotes(noteStatement, vendorNotesContext)
-                .thenAccept((vendorNotes) -> vendorRecord.setVendorNotes(vendorNotes))
+                .thenAccept((vendorAliases) -> vendorRecord.setVendorAliases(vendorAliases))
+              // getVendorNotes(noteStatement, vendorNotesContext)
+              //   .thenAccept((vendorNotes) -> vendorRecord.setVendorNotes(vendorNotes))
             ).get();
 
             List<VendorPhoneRecord> vendorPhoneNumbers = new ArrayList<>();

@@ -1081,8 +1081,13 @@ POST to http://localhost:9000/migrate/loans
       "media,res": "media",
       "ils,borr": "ils",
       "ils,lend": "ils",
+      "circ,schk": "circ",
+      "psel,ref": "psel,circ",
+      "psel,res": "psel,circ",
+      "west,res": "blcc,circ",
       "msl,circ": "CircDesk",
-      "circ,schk": "circ"
+      "ResDesk": "CircDesk",
+      "CircDesk": "CircDesk"
     }
   }
 }
@@ -1145,13 +1150,18 @@ POST to http://localhost:9000/migrate/feesfines
         "47": "ils,borr",
         "48": "ils,lend",
         "132": "blcc,circ",
+        "133": "blcc,cpd",
         "134": "blcc,stk",
         "135": "blcc,ref",
         "136": "blcc,res",
         "137": "blcc,rndx",
         "138": "www_evans",
         "182": "media,arcv",
+        "185": "blcc,cd",
+        "188": "blcc,lan",
         "201": "blcc,stand",
+        "210": "blcc,riMSL",
+        "217": "blcc,utc",
         "225": "blcc,nbs",
         "228": "blcc,audio",
         "241": "blcc,udoc",

@@ -163,7 +163,6 @@ public class BibRecord {
       instance.setDiscoverySuppress(suppressDiscovery);
       instance.setStatisticalCodeIds(statisticalCodes);
       instance.setStatusId(statusId);
-
       instance.setHrid(hridString);
 
       Metadata metadata = new Metadata();
