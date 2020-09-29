@@ -15,7 +15,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguratio
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 @Configuration
-public class RepositoryRestConfig extends RepositoryRestMvcConfiguration {
+public class RepositoryMvcRestConfig extends RepositoryRestMvcConfiguration {
 
   @Autowired
   private AsyncTaskExecutor asyncTaskExecutor;
@@ -23,7 +23,7 @@ public class RepositoryRestConfig extends RepositoryRestMvcConfiguration {
   @Value("${spring.mvc.async.request-timeout:172800000}")
   private long asyncRequestTimeout;
 
-  public RepositoryRestConfig(ApplicationContext context, ObjectFactory<ConversionService> conversionService) {
+  public RepositoryMvcRestConfig(ApplicationContext context, ObjectFactory<ConversionService> conversionService) {
     super(context, conversionService);
   }
 

@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 @EnableAsync
 @Configuration
@@ -25,6 +26,14 @@ public class AsyncConfig implements AsyncConfigurer {
     executor.setThreadNamePrefix("async-task-executor-");
     executor.initialize();
     return executor;
+  }
+
+  @Bean(name = "taskScheduler")
+  public ThreadPoolTaskScheduler threadPoolTaskScheduler() {
+    ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
+    scheduler.setPoolSize(16);
+    scheduler.setThreadNamePrefix("thread-pool-task-scheduler-");
+    return scheduler;
   }
 
   @Override
