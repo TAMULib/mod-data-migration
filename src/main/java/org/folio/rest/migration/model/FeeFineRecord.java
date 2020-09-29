@@ -1,5 +1,6 @@
 package org.folio.rest.migration.model;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -16,7 +17,6 @@ import org.folio.rest.jaxrs.model.feesfines.Status;
 import org.folio.rest.migration.model.request.feefine.FeeFineDefaults;
 import org.folio.rest.migration.model.request.feefine.FeeFineMaps;
 import org.folio.rest.migration.model.request.feefine.FeeFineOwner;
-import org.folio.rest.migration.utility.DateUtility;
 import org.folio.rest.model.ReferenceLink;
 
 public class FeeFineRecord {
@@ -243,7 +243,7 @@ public class FeeFineRecord {
     String feeFineType = maps.getFeefineTypeLabels().get(finefeeType);
     account.setFeeFineType(feeFineType);
 
-    account.setDateCreated(DateUtility.toDate(createDate));
+    account.setDateCreated(Date.from(Instant.parse(createDate)));
 
     account.setUserId(userId);
 
