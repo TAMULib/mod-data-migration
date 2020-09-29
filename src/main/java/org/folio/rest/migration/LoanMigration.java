@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Instant;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -22,7 +24,6 @@ import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.loan.LoanContext;
 import org.folio.rest.migration.model.request.loan.LoanJob;
 import org.folio.rest.migration.service.MigrationService;
-import org.folio.rest.migration.utility.DateUtility;
 import org.folio.rest.migration.utility.TimingUtility;
 
 public class LoanMigration extends AbstractMigration<LoanContext> {
@@ -198,8 +199,8 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
             Loan loan = migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
             try {
               loan.setAction("dueDateChanged");
-              loan.setLoanDate(DateUtility.toDate((loanDate)));
-              loan.setDueDate(DateUtility.toDate((dueDate)));
+              loan.setLoanDate(Date.from(Instant.parse(loanDate)));
+              loan.setDueDate(Date.from(Instant.parse(dueDate)));
               if (renewalCount > 0) {
                 loan.setRenewalCount(renewalCount);
               }

@@ -22,7 +22,6 @@ import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
 import org.folio.rest.jaxrs.model.inventory.Status;
 import org.folio.rest.jaxrs.model.inventory.Status.Name;
 import org.folio.rest.migration.model.request.item.ItemMaps;
-import org.folio.rest.migration.utility.DateUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -308,7 +307,7 @@ public class ItemRecord {
       if (i == 0) {
         status.setName(Name.fromValue(folioItemStatus));
         if (isNotEmpty(s.getItemStatusDate())) {
-          status.setDate(DateUtility.toDate(s.getItemStatusDate()));
+          status.setDate(Date.from(Instant.parse(s.getItemStatusDate())));
         } else {
           log.warn(String.format("Item with barcode %s status does not have a date", barcode));
         }
