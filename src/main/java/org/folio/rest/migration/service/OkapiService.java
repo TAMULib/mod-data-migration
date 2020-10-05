@@ -68,7 +68,6 @@ public class OkapiService {
   @Autowired
   public Okapi okapi;
 
-  // TODO: make into a bean
   public RestTemplate restTemplate;
 
   public OkapiService() {
@@ -84,6 +83,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 201) {
       return response.getHeaders().getFirst("X-Okapi-Token");
     }
+    log.error("Failed to login: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to login: " + response.getStatusCodeValue());
   }
 
@@ -96,6 +96,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 201) {
       return response.getBody();
     }
+    log.error("Failed to create reference data: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to create reference data: " + response.getStatusCodeValue());
   }
 
@@ -108,6 +109,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 201) {
       return response.getBody();
     }
+    log.error("Failed to checkout by barcode: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to checkout by barcode: " + response.getStatusCodeValue());
   }
 
@@ -118,6 +120,7 @@ public class OkapiService {
     ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
     log.debug("update loan: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() < 200 || response.getStatusCodeValue() > 204) {
+      log.error("Failed to create job execution: " + response.getStatusCodeValue());
       throw new RuntimeException("Failed to update loan: " + response.getStatusCodeValue());
     }
   }
@@ -131,6 +134,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
     }
+    log.error("Failed to fetch service points: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch service points: " + response.getStatusCodeValue());
   }
 
@@ -145,8 +149,10 @@ public class OkapiService {
       if (userCollection.getTotalRecords() > 0) {
         return userCollection.getUsers().get(0);
       }
+      log.error("User with username " + username + " not found");
       throw new RuntimeException("User with username " + username + " not found");
     }
+    log.error("Failed to lookup user: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to lookup user: " + response.getStatusCodeValue());
   }
 
@@ -159,6 +165,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
     }
+    log.error("Failed to fetch user groups: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch user groups: " + response.getStatusCodeValue());
   }
 
@@ -171,6 +178,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
     }
+    log.error("Failed to fetch address types: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch address types: " + response.getStatusCodeValue());
   }
 
@@ -181,11 +189,11 @@ public class OkapiService {
     ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
     log.debug("update rules: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() < 200 || response.getStatusCodeValue() > 204) {
+      log.error("Failed to update rules: " + response.getStatusCodeValue());
       throw new RuntimeException("Failed to update rules: " + response.getStatusCodeValue());  
     }
   }
 
-  // TODO: get JsonSchema for mapping-rules
   public JsonObject fetchRules(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
@@ -195,6 +203,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 200) {
       return new JsonObject(response.getBody());
     }
+    log.error("Failed to fetch rules: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch rules: " + response.getStatusCodeValue());
   }
 
@@ -205,11 +214,11 @@ public class OkapiService {
     ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
     log.debug("update hrid settings: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() < 200 || response.getStatusCodeValue() > 204) {
-      throw new RuntimeException("Failed to update hrid settings: " + response.getStatusCodeValue());  
+      log.error("Failed to update hrid settings: " + response.getStatusCodeValue());
+      throw new RuntimeException("Failed to update hrid settings: " + response.getStatusCodeValue());
     }
   }
 
-  // TODO: get JsonSchema for hrid-settings
   public JsonObject fetchHridSettings(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
@@ -219,6 +228,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 200) {
       return new JsonObject(response.getBody());
     }
+    log.error("Failed to fetch hrid settings: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch hrid settings: " + response.getStatusCodeValue());
   }
 
@@ -231,6 +241,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
     }
+    log.error("Failed to fetch statistical codes: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch statistical codes: " + response.getStatusCodeValue());
   }
 
@@ -243,6 +254,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
     }
+    log.error("Failed to fetch material types: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch material types: " + response.getStatusCodeValue());
   }
 
@@ -262,6 +274,7 @@ public class OkapiService {
         return createJobProfile(tenant, token, jobProfileUpdateDto);
       }
     }
+    log.error("Failed to fetch statistical codes: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch statistical codes: " + response.getStatusCodeValue());
   }
 
@@ -270,12 +283,13 @@ public class OkapiService {
     HttpEntity<JobProfileUpdateDto> entity = new HttpEntity<>(jobProfileUpdateDto, headers(tenant, token));
     String url = okapi.getUrl() + "/data-import-profiles/jobProfiles";
     ResponseEntity<JobProfileUpdateDto> response = restTemplate.exchange(url, HttpMethod.POST, entity, JobProfileUpdateDto.class);
-    log.debug("create job execution: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    log.debug("create job profile: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 201) {
       return DatabindCodec.mapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
           .convertValue(response.getBody().getProfile(), JobProfile.class);
     }
-    throw new RuntimeException("Failed to create job execution: " + response.getStatusCodeValue());
+    log.error("Failed to create job profile: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create job profile: " + response.getStatusCodeValue());
   }
 
   public InitJobExecutionsRsDto createJobExecution(String tenant, String token, InitJobExecutionsRqDto jobExecutionDto) {
@@ -287,6 +301,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 201) {
       return response.getBody();
     }
+    log.error("Failed to create job execution: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to create job execution: " + response.getStatusCodeValue());
   }
 
@@ -305,6 +320,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 200) {
       return;
     }
+    log.error("Failed to finish job execution: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to finish job execution: " + response.getStatusCodeValue());
   }
 
@@ -317,6 +333,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 204) {
       return;
     }
+    log.error("Failed to update job execution: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to update job execution: " + response.getStatusCodeValue());
   }
 
@@ -329,6 +346,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
     }
+    log.error("Failed to fetch job execution: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch job execution: " + response.getStatusCodeValue());
   }
 
@@ -341,6 +359,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
     }
+    log.error("Failed to fetch locations: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch locations: " + response.getStatusCodeValue());
   }
 
@@ -353,6 +372,7 @@ public class OkapiService {
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
     }
+    log.error("Failed to fetch loan types: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch loan types: " + response.getStatusCodeValue());
   }
 
@@ -383,7 +403,7 @@ public class OkapiService {
         target.setAccessible(true);
         target.set(mappingParameters, new UnmodifiableList<>((List<?>) source.get(response.getBody())));
       } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
-        e.printStackTrace();
+        log.error(e.getMessage());
         throw new RuntimeException(e);
       }
     });
