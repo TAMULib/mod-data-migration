@@ -26,6 +26,7 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.StringUtils;
+import org.folio.rest.jaxrs.model.notes.raml_util.schemas.tagged_record_example.Metadata;
 import org.folio.rest.jaxrs.model.notes.types.notes.Link;
 import org.folio.rest.jaxrs.model.notes.types.notes.Note;
 import org.folio.rest.jaxrs.model.users.Addresstype;
@@ -269,6 +270,9 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           List<PatronNote> patronNotes = new ArrayList<>();
 
+          String createdByUserId = userId;
+          Date createdDate = new Date();
+
           if (job.getSkipDuplicates() && userReferenceLinks.size() > 1) {
 
             getPatronNotes(patronNoteStatement, patronNoteContext)
@@ -276,7 +280,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
               .get();
 
             for (PatronNote patronNote : patronNotes) {
-              Note note = patronNote.toNote(referenceId, job.getDbCode(), job.getNoteTypeId());
+              Note note = patronNote.toNote(referenceId, job.getDbCode(), job.getNoteTypeId(), createdByUserId, createdDate);
               try {
                 String noteUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(note)));
                 noteWriter.println(String.join("\t", note.getId(), noteUtf8Json));
@@ -332,14 +336,12 @@ public class UserMigration extends AbstractMigration<UserContext> {
             continue;
           }
 
-          Date createdDate = new Date();
           userRecord.setCreatedByUserId(userId);
           userRecord.setCreatedDate(createdDate);
 
           Userdata userdata = userRecord.toUserdata(patronGroup.get(), defaults, maps);
 
           String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-          String createdByUserId = userId;
 
           try {
             String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userdata)));
@@ -347,7 +349,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
             userWriter.println(String.join("\t", userdata.getId(), userUtf8Json, createdAt, createdByUserId, userdata.getPatronGroup()));
 
             for (PatronNote patronNote : patronNotes) {
-              Note note = patronNote.toNote(referenceId, job.getDbCode(), job.getNoteTypeId());
+              Note note = patronNote.toNote(referenceId, job.getDbCode(), job.getNoteTypeId(), createdByUserId, createdDate);
               try {
                 String noteUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(note)));
                 noteWriter.println(String.join("\t", note.getId(), noteUtf8Json));
@@ -649,7 +651,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
       this.content = content;
     }
 
-    public Note toNote(String userId, String dbCode, String noteTypeId) {
+    public Note toNote(String userId, String dbCode, String noteTypeId, String createdByUserId, Date createdDate) {
       Note note = new Note();
 
       note.setId(UUID.randomUUID().toString());
@@ -657,7 +659,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
       note.setDomain("users");
       note.setTypeId(noteTypeId);
 
-      note.setContent(content);
+      note.setContent(content.replaceAll("(\r\n|\n)", "<br />"));
 
       List<Link> links = new ArrayList<>();
       Link link = new Link();
@@ -667,6 +669,13 @@ public class UserMigration extends AbstractMigration<UserContext> {
       links.add(link);
 
       note.setLinks(links);
+
+      Metadata metadata = new Metadata();
+      metadata.setCreatedByUserId(createdByUserId);
+      metadata.setCreatedDate(createdDate);
+      metadata.setUpdatedByUserId(createdByUserId);
+      metadata.setUpdatedDate(createdDate);
+      note.setMetadata(metadata);
 
       return note;
     }
