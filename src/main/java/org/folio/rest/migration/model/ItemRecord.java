@@ -309,7 +309,7 @@ public class ItemRecord {
         if (isNotEmpty(s.getItemStatusDate())) {
           status.setDate(Date.from(Instant.parse(s.getItemStatusDate())));
         } else {
-          log.warn(String.format("Item with barcode %s status does not have a date", barcode));
+          log.debug(String.format("Item with barcode %s status does not have a date", barcode));
         }
       }
 
