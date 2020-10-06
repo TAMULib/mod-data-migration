@@ -26,7 +26,7 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.notes.raml_util.schemas.tagged_record_example.Metadata;
+import org.folio.rest.jaxrs.model.notes.raml_util.schemas.mod_login.Metadata;
 import org.folio.rest.jaxrs.model.notes.types.notes.Link;
 import org.folio.rest.jaxrs.model.notes.types.notes.Note;
 import org.folio.rest.jaxrs.model.users.Addresstype;
@@ -462,7 +462,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
         List<PatronNote> patronNotes = new ArrayList<>();
         try (ResultSet resultSet = getResultSet(statement, patronNoteContext)) {
           while(resultSet.next()) {
-            String note = String.format("<p>%s</p>", resultSet.getString(NOTE));
+            String note = resultSet.getString(NOTE);
             patronNotes.add(new PatronNote(note));
           }
         } catch (SQLException e) {
@@ -659,7 +659,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
       note.setDomain("users");
       note.setTypeId(noteTypeId);
 
-      note.setContent(content.replaceAll("(\r\n|\n)", "<br />"));
+      note.setContent(String.format("<p>%s</p>", content.replaceAll("(\r\n|\n)", "<br />")));
 
       List<Link> links = new ArrayList<>();
       Link link = new Link();
