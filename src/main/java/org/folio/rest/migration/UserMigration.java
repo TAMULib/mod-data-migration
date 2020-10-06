@@ -26,7 +26,7 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.notes.raml_util.schemas.mod_login.Metadata;
+import org.folio.rest.jaxrs.model.notes.raml_util.schemas.tagged_record_example.Metadata;
 import org.folio.rest.jaxrs.model.notes.types.notes.Link;
 import org.folio.rest.jaxrs.model.notes.types.notes.Note;
 import org.folio.rest.jaxrs.model.users.Addresstype;
