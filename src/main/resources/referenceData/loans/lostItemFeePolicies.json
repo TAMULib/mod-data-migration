@@ -3,37 +3,37 @@
   "dependencies": [],
   "data": [
     {
-      "lostItemProcessingFee": 2,
       "chargeAmountItem": {
-        "amount": 50,
-        "chargeType": "actualCost"
+        "chargeType": "actualCost",
+        "amount": 50
       },
-      "chargeAmountItemPatron": true,
+      "patronBilledAfterAgedLost": {
+        "intervalId": "Days",
+        "duration": 15
+      },
       "feesFinesShallRefunded": {
         "duration": 365,
         "intervalId": "Days"
       },
       "replacementAllowed": true,
-      "description": "Test lost item fee policy",
+      "chargeAmountItemSystem": true,
+      "lostItemProcessingFee": 2,
       "returnedLostItemProcessingFee": false,
+      "description": "Test lost item fee policy",
+      "name": "lost_item_fee_policy",
+      "chargeAmountItemPatron": true,
       "lostItemReturned": "Remove",
-      "replacementProcessingFee": 2,
-      "patronBilledAfterAgedLost": {
-        "duration": 15,
+      "lostItemChargeFeeFine": {
+        "duration": 2,
         "intervalId": "Days"
       },
-      "replacedLostItemProcessingFee": false,
-      "chargeAmountItemSystem": true,
-      "lostItemChargeFeeFine": {
-        "intervalId": "Days",
-        "duration": 2
-      },
-      "id": "ac5ec0dc-9de1-48e1-80ad-53f581857c9d",
-      "name": "lost_item_fee_policy_local",
+      "id": "ed892c0e-52e0-4cd9-8133-c0ef07b4a709",
       "itemAgedLostOverdue": {
-        "intervalId": "Days",
-        "duration": 45
-      }
+        "duration": 45,
+        "intervalId": "Days"
+      },
+      "replacementProcessingFee": 2,
+      "replacedLostItemProcessingFee": false
     }
   ]
 }
