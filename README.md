@@ -1084,6 +1084,7 @@ POST to http://localhost:9000/migrate/loans
       "circ,schk": "circ",
       "psel,ref": "psel,circ",
       "psel,res": "psel,circ",
+      "blcc,res": "blcc,circ",
       "west,res": "blcc,circ",
       "msl,circ": "CircDesk",
       "ResDesk": "CircDesk",
