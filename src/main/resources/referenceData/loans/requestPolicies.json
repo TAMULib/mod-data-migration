@@ -4,8 +4,8 @@
   "data": [
     {
       "id": "d3171262-dec3-4963-9382-50b171a2d9e5",
-      "name": "no_request",
-      "requestTypes": []
+      "requestTypes": [],
+      "name": "no_request"
     },
     {
       "description": "Only allow page requests",
