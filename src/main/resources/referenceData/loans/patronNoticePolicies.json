@@ -3,62 +3,62 @@
   "dependencies": [],
   "data": [
     {
-      "active": true,
-      "loanNotices": [
-        {
-          "templateId": "2c8b5912-99f1-4b6b-87eb-fc8acaf7a3a8",
-          "realTime": false,
-          "frequency": "One time",
-          "sendOptions": {
-            "sendHow": "Before",
-            "sendBy": {
-              "intervalId": "Days",
-              "duration": 3
-            },
-            "sendWhen": "Due date"
-          },
-          "format": "Email"
-        },
-        {
-          "sendOptions": {
-            "sendBy": {
-              "duration": 3,
-              "intervalId": "Days"
-            },
-            "sendHow": "After",
-            "sendWhen": "Due date"
-          },
-          "format": "Email",
-          "frequency": "One time",
-          "realTime": false,
-          "templateId": "03697536-6b0e-49ff-a545-d1b3de691b4a"
-        },
-        {
-          "realTime": false,
-          "templateId": "a68995b4-d64e-401e-ad1b-4970929fc698",
-          "format": "Email",
-          "sendOptions": {
-            "sendWhen": "Item recalled"
-          }
-        }
-      ],
       "feeFineNotices": [],
       "name": "notices_basic",
       "requestNotices": [
         {
           "format": "Email",
+          "realTime": false,
+          "templateId": "631ff684-e221-45d8-822d-bc3a444c489b",
           "sendOptions": {
             "sendWhen": "Available"
-          },
-          "templateId": "631ff684-e221-45d8-822d-bc3a444c489b",
-          "realTime": false
+          }
         }
       ],
-      "id": "a570df1b-763e-4622-828b-fc9b546efc8b"
+      "active": true,
+      "id": "a570df1b-763e-4622-828b-fc9b546efc8b",
+      "loanNotices": [
+        {
+          "realTime": false,
+          "format": "Email",
+          "frequency": "One time",
+          "templateId": "2c8b5912-99f1-4b6b-87eb-fc8acaf7a3a8",
+          "sendOptions": {
+            "sendBy": {
+              "intervalId": "Days",
+              "duration": 3
+            },
+            "sendHow": "Before",
+            "sendWhen": "Due date"
+          }
+        },
+        {
+          "frequency": "One time",
+          "sendOptions": {
+            "sendWhen": "Due date",
+            "sendBy": {
+              "intervalId": "Days",
+              "duration": 3
+            },
+            "sendHow": "After"
+          },
+          "templateId": "03697536-6b0e-49ff-a545-d1b3de691b4a",
+          "realTime": false,
+          "format": "Email"
+        },
+        {
+          "realTime": false,
+          "format": "Email",
+          "sendOptions": {
+            "sendWhen": "Item recalled"
+          },
+          "templateId": "a68995b4-d64e-401e-ad1b-4970929fc698"
+        }
+      ]
     },
     {
       "loanNotices": [],
-      "name": "send_no_notices_local",
+      "name": "send_no_notices",
       "feeFineNotices": [],
       "id": "2894f5eb-4e6b-40d5-a8c2-e3466fb11f2f",
       "requestNotices": [],
