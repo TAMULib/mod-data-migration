@@ -92,7 +92,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
   private static final String USERS_COPY_SQL = "COPY %s_mod_users.users (id,jsonb,creation_date,created_by,patrongroup) FROM STDIN";
 
   // (id,jsonb,temporary_type_id)
-  private static final String NOTES_COPY_SQL = "COPY %s_mod_notes.note_data (id,jsonb,temporary_type_id) FROM STDIN";
+  private static final String NOTES_COPY_SQL = "COPY %s_mod_notes.note_data (id,jsonb) FROM STDIN";
 
   private UserMigration(UserContext context, String tenant) {
     super(context, tenant);
