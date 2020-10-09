@@ -497,7 +497,9 @@ POST to http://localhost:9000/migrate/users
     }
   },
   "preActions": [],
-  "postActions": [],
+  "postActions": [
+    "WITH temp AS (SELECT id AS userId, gen_random_uuid() AS permId, to_char (now()::timestamp at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS createdDate, 'e73f4d40-7e7e-40fe-a216-cf0bc3c46039' AS createdBy FROM ${TENANT}_mod_users.users WHERE jsonb->>'username' NOT IN ('${TENANT}_admin','pub-sub')) INSERT INTO ${TENANT}_mod_permissions.permissions_users (id,jsonb,creation_date,created_by) SELECT permId AS id, concat('{\"id\": \"', permId, '\", \"userId\": \"', userId, '\", \"metadata\": {\"createdDate\": \"', createdDate, '\", \"updatedDate\": \"', createdDate, '\", \"createdByUserId\": \"', createdBy, '\", \"updatedByUserId\": \"', createdBy, '\"}, \"permissions\": []}')::jsonb AS jsonb, now()::timestamp at time zone 'UTC' AS creation_date, createdBy AS created_by FROM temp"
+  ],
   "parallelism": 12,
   "jobs": [
     {
@@ -1071,6 +1073,7 @@ POST to http://localhost:9000/migrate/loans
         "5": "AbstractIndex",
         "40": "www_msl",
         "44": "msl_withdrawn",
+        "67": "Mobile",
         "68": "Mobile",
         "126": "rs,hdr",
         "127": "rs,hdr",
@@ -1088,7 +1091,8 @@ POST to http://localhost:9000/migrate/loans
       "west,res": "blcc,circ",
       "msl,circ": "CircDesk",
       "ResDesk": "CircDesk",
-      "CircDesk": "CircDesk"
+      "CircDesk": "CircDesk",
+      "Mobile": "CircDesk"
     }
   }
 }
