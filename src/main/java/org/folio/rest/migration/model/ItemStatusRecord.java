@@ -6,14 +6,12 @@ public class ItemStatusRecord {
   private final String itemStatusDate;
   private final String circtrans;
   private final String itemStatusDesc;
-  private final Integer itemStatusOrder;
 
-  public ItemStatusRecord(String itemStatus, String itemStatusDate, String circtrans, String itemStatusDesc, Integer itemStatusOrder) {
+  public ItemStatusRecord(String itemStatus, String itemStatusDate, String circtrans, String itemStatusDesc) {
     this.itemStatus = itemStatus;
     this.itemStatusDate = itemStatusDate;
     this.circtrans = circtrans;
     this.itemStatusDesc = itemStatusDesc;
-    this.itemStatusOrder = itemStatusOrder;
   }
 
   public String getItemStatus() {
@@ -30,10 +28,6 @@ public class ItemStatusRecord {
 
   public String getItemStatusDesc() {
     return itemStatusDesc;
-  }
-
-  public Integer getItemStatusOrder() {
-    return itemStatusOrder;
   }
 
 }

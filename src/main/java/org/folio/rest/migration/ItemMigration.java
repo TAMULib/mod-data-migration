@@ -37,7 +37,6 @@ import org.folio.rest.jaxrs.model.inventory.Materialtype;
 import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.inventory.Note__1;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
-import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.ItemMfhdRecord;
 import org.folio.rest.migration.model.ItemRecord;
@@ -498,15 +497,10 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             String itemStatusDate = resultSet.getString(ITEM_STATUS_DATE);
             String circtrans = resultSet.getString(CIRCTRANS);
             String itemStatusDesc = resultSet.getString(ITEM_STATUS_DESC);
-            Integer itemStatusOrder = itemStatusMap.get(resultSet.getString(ITEM_STATUS_DESC));
-            statuses.add(new ItemStatusRecord(itemStatus, itemStatusDate, circtrans, itemStatusDesc, itemStatusOrder));
+            statuses.add(new ItemStatusRecord(itemStatus, itemStatusDate, circtrans, itemStatusDesc));
           }
         } catch (SQLException e) {
           e.printStackTrace();
-        } finally {
-          future.complete(statuses.stream()
-            .sorted((is1, is2) -> is1.getItemStatusOrder().compareTo(is2.getItemStatusOrder()))
-            .collect(Collectors.toList()));
         }
       });
       return future;
