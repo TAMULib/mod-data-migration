@@ -1250,7 +1250,7 @@ POST to http://localhost:9000/migrate/proxyfor
 ```
 {
   "extraction": {
-    "countSql": "WITH proxies AS (SELECT DISTINCT sponsor.patron_id AS patron_id, proxy_bar.patron_id AS proxy_patron_id, to_char(proxy.expiration_date,'YYYY-MM-DD') AS expiration_date FROM ${SCHEMA}.patron_barcode sponsor, ${SCHEMA}.patron_barcode proxy_bar, ${SCHEMA}.proxy_patron proxy WHERE sponsor.patron_barcode_id = proxy.patron_barcode_id AND proxy_bar.patron_barcode_id = proxy.patron_barcode_id_proxy) SELECT COUNT(*) FROM proxies",
+    "countSql": "WITH proxies AS (SELECT DISTINCT sponsor.patron_id AS patron_id, proxy_bar.patron_id AS proxy_patron_id, to_char(proxy.expiration_date,'YYYY-MM-DD') AS expiration_date FROM ${SCHEMA}.patron_barcode sponsor, ${SCHEMA}.patron_barcode proxy_bar, ${SCHEMA}.proxy_patron proxy WHERE sponsor.patron_barcode_id = proxy.patron_barcode_id AND proxy_bar.patron_barcode_id = proxy.patron_barcode_id_proxy) SELECT COUNT(*) AS total FROM proxies",
     "pageSql": "SELECT DISTINCT sponsor.patron_id AS patron_id, proxy_bar.patron_id AS proxy_patron_id, to_char(proxy.expiration_date,'YYYY-MM-DD') AS expiration_date FROM ${SCHEMA}.patron_barcode sponsor, ${SCHEMA}.patron_barcode proxy_bar, ${SCHEMA}.proxy_patron proxy WHERE sponsor.patron_barcode_id = proxy.patron_barcode_id AND proxy_bar.patron_barcode_id = proxy.patron_barcode_id_proxy ORDER BY patron_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "database": {
       "url": "",
