@@ -19,6 +19,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.folio.rest.jaxrs.model.users.Metadata;
 import org.folio.rest.jaxrs.model.users.Proxyfor;
@@ -181,11 +182,13 @@ public class ProxyForMigration extends AbstractMigration<ProxyForContext> {
           proxyfor.setUserId(userRL.get().getFolioReference());
           proxyfor.setProxyUserId(proxyUserRL.get().getFolioReference());
 
-          try {
-            proxyfor.setExpirationDate(DateUtils.parseDate(expirationDate, EXPIRATION_DATE_FORMAT));
-          } catch (ParseException e) {
-            log.error("{} proxy for patron {} failed to parse date {}", schema, patronId, expirationDate);
-            e.printStackTrace();
+          if (StringUtils.isNotEmpty(expirationDate)) {
+            try {
+              proxyfor.setExpirationDate(DateUtils.parseDate(expirationDate, EXPIRATION_DATE_FORMAT));
+            } catch (ParseException e) {
+              log.error("{} proxy for patron {} failed to parse date {}", schema, patronId, expirationDate);
+              e.printStackTrace();
+            }
           }
 
           Date createdDate = new Date();
