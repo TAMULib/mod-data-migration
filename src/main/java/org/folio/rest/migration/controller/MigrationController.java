@@ -8,6 +8,7 @@ import org.folio.rest.migration.HoldingMigration;
 import org.folio.rest.migration.InventoryReferenceLinkMigration;
 import org.folio.rest.migration.ItemMigration;
 import org.folio.rest.migration.LoanMigration;
+import org.folio.rest.migration.ProxyForMigration;
 import org.folio.rest.migration.UserMigration;
 import org.folio.rest.migration.UserReferenceLinkMigration;
 import org.folio.rest.migration.VendorMigration;
@@ -22,6 +23,7 @@ import org.folio.rest.migration.model.request.holding.HoldingContext;
 import org.folio.rest.migration.model.request.inventory.InventoryReferenceLinkContext;
 import org.folio.rest.migration.model.request.item.ItemContext;
 import org.folio.rest.migration.model.request.loan.LoanContext;
+import org.folio.rest.migration.model.request.proxyfor.ProxyForContext;
 import org.folio.rest.migration.model.request.user.UserContext;
 import org.folio.rest.migration.model.request.user.UserReferenceLinkContext;
 import org.folio.rest.migration.model.request.vendor.VendorContext;
@@ -102,6 +104,11 @@ public class MigrationController {
   @CreateReferenceData(pattern = "classpath:/referenceData/feesfines/*.json")
   public CompletableFuture<String> feesfines(@RequestBody FeeFineContext context, @TenantHeader String tenant) {
     return migrationService.migrate(FeeFineMigration.with(context, tenant));
+  }
+
+  @PostMapping("/proxyfor")
+  public CompletableFuture<String> proxyfor(@RequestBody ProxyForContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(ProxyForMigration.with(context, tenant));
   }
 
 }

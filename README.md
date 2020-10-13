@@ -1241,6 +1241,48 @@ POST to http://localhost:9000/migrate/feesfines
 }
 ```
 
+## Proxy For User Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/proxyfor
+
+```
+{
+  "extraction": {
+    "countSql": "WITH proxies AS (SELECT DISTINCT sponsor.patron_id AS patron_id, proxy_bar.patron_id AS proxy_patron_id, to_char(proxy.expiration_date,'YYYY-MM-DD') AS expiration_date FROM ${SCHEMA}.patron_barcode sponsor, ${SCHEMA}.patron_barcode proxy_bar, ${SCHEMA}.proxy_patron proxy WHERE sponsor.patron_barcode_id = proxy.patron_barcode_id AND proxy_bar.patron_barcode_id = proxy.patron_barcode_id_proxy) SELECT COUNT(*) FROM proxies",
+    "pageSql": "SELECT DISTINCT sponsor.patron_id AS patron_id, proxy_bar.patron_id AS proxy_patron_id, to_char(proxy.expiration_date,'YYYY-MM-DD') AS expiration_date FROM ${SCHEMA}.patron_barcode sponsor, ${SCHEMA}.patron_barcode proxy_bar, ${SCHEMA}.proxy_patron proxy WHERE sponsor.patron_barcode_id = proxy.patron_barcode_id AND proxy_bar.patron_barcode_id = proxy.patron_barcode_id_proxy ORDER BY patron_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": "oracle.jdbc.OracleDriver"
+    }
+  },
+  "preActions": [],
+  "postActions": [],
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 1,
+      "user": "tamu_admin",
+      "references": {
+        "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7"
+      }
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 1,
+      "user": "tamu_admin",
+      "references": {
+        "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45"
+      }
+    }
+  ]
+}
+```
+
 ## Migration Notes
 
 The `parallelism` property designates the number of processes executed in parallel.
