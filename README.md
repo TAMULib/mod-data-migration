@@ -687,7 +687,9 @@ POST to http://localhost:9000/migrate/holdings
       "user": "tamu_admin",
       "references": {
         "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
-        "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc"
+        "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc",
+        "holdingToCallNumberPrefixTypeId": "bdc5c8b1-7b21-45ea-943b-585764f3715c",
+        "holdingToCallNumberSuffixTypeId": "fcd2963b-b75d-4401-8eda-7e91efd8ddc3"
       }
     },
     {
@@ -696,7 +698,9 @@ POST to http://localhost:9000/migrate/holdings
       "user": "tamu_admin",
       "references": {
         "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
-        "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba"
+        "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba",
+        "holdingToCallNumberPrefixTypeId": "78991218-9141-4807-9175-7147c861a596",
+        "holdingToCallNumberSuffixTypeId": "be7288c9-7c67-4b6b-b662-a57816569e46"
       }
     }
   ],
