@@ -653,7 +653,12 @@ POST to http://localhost:9000/migrate/bibs
         "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8"
       }
     }
-  ]
+  ],
+  "maps": {
+    "statisticalCode": {
+      "ybpebook": "ybpebooks"
+    }
+  }
 }
 ```
 
