@@ -18,7 +18,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
@@ -26,6 +25,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote;
+import org.folio.rest.jaxrs.model.inventory.EffectiveCallNumberComponents;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote.NoteType;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.jaxrs.model.inventory.Item;
@@ -77,6 +77,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String ITEM_ENUM = "ITEM_ENUM";
   private static final String FREETEXT = "FREETEXT";
   private static final String YEAR = "YEAR";
+
+  private static final String CALL_NUMBER = "DISPLAY_CALL_NO";
+  private static final String CALL_NUMBER_TYPE = "CALL_NO_TYPE";
 
   private static final String ITEM_BARCODE = "ITEM_BARCODE";
   private static final String SPINE_LABEL = "SPINE_LABEL";
@@ -374,6 +377,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             }
           }
 
+          // TODO: get and set call number prefix and suffix if available
+
           Date createdDate = new Date();
           itemRecord.setCreatedByUserId(userId);
           itemRecord.setCreatedDate(createdDate);
@@ -383,7 +388,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
           String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
 
-          Item item = itemRecord.toItem(hridString, statisticalcodes, materialtypes, maps);
+          Item item = itemRecord.toItem(hridString, statisticalcodes, materialtypes, maps, defaults);
 
           try {
 
@@ -476,7 +481,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             String freetext = resultSet.getString(FREETEXT);
             String year = resultSet.getString(YEAR);
             String location = resultSet.getString(LOCATION_ID);
-            mfhdItem = new ItemMfhdRecord(caption, chron, itemEnum, freetext, year, location);
+            String callNumber = resultSet.getString(CALL_NUMBER);
+            String callNumberType = resultSet.getString(CALL_NUMBER_TYPE);
+            mfhdItem = new ItemMfhdRecord(caption, chron, itemEnum, freetext, year, location, callNumber, callNumberType);
           }
         } catch (SQLException e) {
           e.printStackTrace();

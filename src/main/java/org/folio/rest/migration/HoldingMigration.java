@@ -17,6 +17,7 @@ import java.util.concurrent.CompletableFuture;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
@@ -237,7 +238,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
           Boolean discoverySuppress;
 
-          if (Objects.nonNull(suppressInOpac)) {
+          if (StringUtils.isNotEmpty(suppressInOpac)) {
             if (suppressInOpac.equalsIgnoreCase("y")) {
               discoverySuppress = true;
             } else if (suppressInOpac.equalsIgnoreCase("n")) {
@@ -249,12 +250,10 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
             discoverySuppress = holdingDefaults.getDiscoverySuppress();
           }
 
-          if (Objects.nonNull(callNumberType)) {
-            if (holdingMaps.getCallNumberType().containsKey(callNumberType)) {
-              callNumberType = holdingMaps.getCallNumberType().get(callNumberType);
-            } else {
-              callNumberType = holdingDefaults.getCallNumberTypeId();
-            }
+          if (StringUtils.isNotEmpty(callNumberType) && holdingMaps.getCallNumberType().containsKey(callNumberType)) {
+            callNumberType = holdingMaps.getCallNumberType().get(callNumberType);
+          } else {
+            callNumberType = holdingDefaults.getCallNumberTypeId();
           }
 
           if (holdingMaps.getHoldingsType().containsKey(holdingsType)) {
