@@ -65,6 +65,10 @@ public class ItemRecord {
   private String createdByUserId;
   private Date createdDate;
 
+  private String callNumberPrefix;
+
+  private String callNumberSuffix;
+
   public ItemRecord(String itemId, int numberOfPieces, String spineLabel, String itemNoteTypeId, String itemDamagedStatusId, String custodianStatisticalCodeId) {
     this.itemId = itemId;
     this.numberOfPieces = numberOfPieces;
@@ -218,6 +222,22 @@ public class ItemRecord {
     this.createdDate = createdDate;
   }
 
+  public String getCallNumberPrefix() {
+    return callNumberPrefix;
+  }
+
+  public void setCallNumberPrefix(String callNumberPrefix) {
+    this.callNumberPrefix = callNumberPrefix;
+  }
+
+  public String getCallNumberSuffix() {
+    return callNumberSuffix;
+  }
+
+  public void setCallNumberSuffix(String callNumberSuffix) {
+    this.callNumberSuffix = callNumberSuffix;
+  }
+
   public Item toItem(String hridString, Statisticalcodes statisticalcodes, Materialtypes materilatypes, ItemMaps maps, ItemDefaults defaults) {
     final Item item = new Item();
     item.setId(id);
@@ -336,6 +356,9 @@ public class ItemRecord {
     } else {
       effectiveCallNumberComponents.setTypeId(defaults.getCallNumberTypeId());
     }
+
+    effectiveCallNumberComponents.setPrefix(callNumberPrefix);
+    effectiveCallNumberComponents.setSuffix(callNumberSuffix);
 
     item.setEffectiveCallNumberComponents(effectiveCallNumberComponents);
 

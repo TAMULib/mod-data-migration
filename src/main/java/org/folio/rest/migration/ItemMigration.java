@@ -89,9 +89,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String LOCATION_CODE = "LOCATION_CODE";
 
-  private static final String ITEM_REFERENCE_ID = "itemTypeId";
-  private static final String ITEM_TO_HOLDING_REFERENCE_ID = "itemToHoldingTypeId";
-
   private static final String ITEM_STATUS = "ITEM_STATUS";
   private static final String ITEM_STATUS_DATE = "ITEM_STATUS_DATE";
   private static final String CIRCTRANS = "CIRCTRANS";
@@ -101,6 +98,12 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String ITEM_NOTE_TYPE = "ITEM_NOTE_TYPE";
 
   private static final String MTYPE_CODE = "MTYPE_CODE";
+
+  private static final String ITEM_REFERENCE_ID = "itemTypeId";
+  private static final String ITEM_TO_HOLDING_REFERENCE_ID = "itemToHoldingTypeId";
+
+  private static final String HOLDING_TO_CALL_NUMBER_PREFIX_ID = "holdingToCallNumberPrefixTypeId";
+  private static final String HOLDING_TO_CALL_NUMBER_SUFFIX_ID = "holdingToCallNumberSuffixTypeId";
 
   // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
   private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid) FROM STDIN WITH NULL AS 'null'";
@@ -273,6 +276,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       String itemRLTypeId = job.getReferences().get(ITEM_REFERENCE_ID);
       String itemToHoldingRLTypeId = job.getReferences().get(ITEM_TO_HOLDING_REFERENCE_ID);
 
+      String holdingToCallNumberPrefixTypeId = job.getReferences().get(HOLDING_TO_CALL_NUMBER_PREFIX_ID);
+      String holdingToCallNumberSuffixTypeId = job.getReferences().get(HOLDING_TO_CALL_NUMBER_SUFFIX_ID);
+
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
       int count = 0;
@@ -376,7 +382,17 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             }
           }
 
-          // TODO: get and set call number prefix and suffix if available
+          Optional<ReferenceLink> callNumberPrefixRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToCallNumberPrefixTypeId, holdingRL.get().getId());
+
+          if (callNumberPrefixRL.isPresent()) {
+            itemRecord.setCallNumberPrefix(callNumberPrefixRL.get().getFolioReference());
+          }
+
+          Optional<ReferenceLink> callNumberSuffixRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToCallNumberSuffixTypeId, holdingRL.get().getId());
+          
+          if (callNumberSuffixRL.isPresent()) {
+            itemRecord.setCallNumberSuffix(callNumberSuffixRL.get().getFolioReference());
+          }
 
           Date createdDate = new Date();
           itemRecord.setCreatedByUserId(userId);

@@ -858,7 +858,9 @@ POST to http://localhost:9000/migrate/items
       "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
       "references": {
         "itemTypeId": "53e72510-dc82-4caa-a272-1522cca70bc2",
-        "itemToHoldingTypeId": "39670cf7-de23-4473-b5e3-abf6d79735e1"
+        "itemToHoldingTypeId": "39670cf7-de23-4473-b5e3-abf6d79735e1",
+        "holdingToCallNumberPrefixTypeId": "bdc5c8b1-7b21-45ea-943b-585764f3715c",
+        "holdingToCallNumberSuffixTypeId": "fcd2963b-b75d-4401-8eda-7e91efd8ddc3"
       }
     },
     {
@@ -869,7 +871,9 @@ POST to http://localhost:9000/migrate/items
       "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
       "references": {
         "itemTypeId": "0014559d-39f6-45c7-9406-03643459aaf0",
-        "itemToHoldingTypeId": "492fea54-399a-4822-8d4b-242096c2ab12"
+        "itemToHoldingTypeId": "492fea54-399a-4822-8d4b-242096c2ab12",
+        "holdingToCallNumberPrefixTypeId": "78991218-9141-4807-9175-7147c861a596",
+        "holdingToCallNumberSuffixTypeId": "be7288c9-7c67-4b6b-b662-a57816569e46"
       }
     }
   ],
