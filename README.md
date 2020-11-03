@@ -1033,15 +1033,19 @@ POST to http://localhost:9000/migrate/boundwith
     {
       "schema": "AMDB",
       "partitions": 1,
+      "user": "tamu_admin",
       "references": {
-
+        "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
+        "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc"
       }
     },
     {
       "schema": "MSDB",
       "partitions": 1,
+      "user": "tamu_admin",
       "references": {
-
+        "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
+        "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba"
       }
     }
   ]

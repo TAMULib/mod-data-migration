@@ -9,9 +9,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.boundwith.BoundWithContext;
 import org.folio.rest.migration.model.request.boundwith.BoundWithJob;
@@ -20,8 +20,13 @@ import org.folio.rest.migration.utility.TimingUtility;
 
 public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
+  private static final String USER_ID = "USER_ID";
+
   private static final String MFHD_ID = "MFHD_ID";
   private static final String BOUND_WITH = "BOUND_WITH";
+
+  private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
+  private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
 
   // (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid)
   private static final String INSTANCE_COPY_SQL = "COPY %s_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid) FROM STDIN WITH NULL AS 'null'";
@@ -38,6 +43,8 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
     log.info("tenant: {}", tenant);
 
     log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
+
+    String token = migrationService.okapiService.getToken(tenant);
 
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
@@ -67,6 +74,8 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
       log.info("{} count: {}", job.getSchema(), count);
 
+      Userdata user = migrationService.okapiService.lookupUser(tenant, token, job.getUser());
+
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
@@ -78,6 +87,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
         partitionContext.put(JOB, job);
+        partitionContext.put(USER_ID, user.getId());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new BoundWithPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -118,6 +128,9 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
       Database voyagerSettings = context.getExtraction().getDatabase();
       Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
+
+      String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
+      String holdingToBibRLTypeId = job.getReferences().get(HOLDING_TO_BIB_REFERENCE_ID);
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
