@@ -4,35 +4,36 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import org.folio.rest.jaxrs.model.users.Userdata;
+import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
+import org.folio.rest.jaxrs.model.inventory.Instance;
+import org.folio.rest.jaxrs.model.inventory.Instancerelationship;
+import org.folio.rest.jaxrs.model.inventory.Item;
+import org.folio.rest.jaxrs.model.inventory.Items;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.boundwith.BoundWithContext;
 import org.folio.rest.migration.model.request.boundwith.BoundWithJob;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
+import org.folio.rest.model.ReferenceLink;
 
 public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
-
-  private static final String USER_ID = "USER_ID";
 
   private static final String MFHD_ID = "MFHD_ID";
   private static final String BOUND_WITH = "BOUND_WITH";
 
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
-  private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
-
-  // (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid)
-  private static final String INSTANCE_COPY_SQL = "COPY %s_mod_inventory_storage.instance (id,jsonb,creation_date,created_by,instancestatusid,modeofissuanceid,instancetypeid) FROM STDIN WITH NULL AS 'null'";
-
-  // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
-  private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid) FROM STDIN WITH NULL AS 'null'";
+  private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
 
   private BoundWithMigration(BoundWithContext context, String tenant) {
     super(context, tenant);
@@ -74,8 +75,6 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
       log.info("{} count: {}", job.getSchema(), count);
 
-      Userdata user = migrationService.okapiService.lookupUser(tenant, token, job.getUser());
-
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);
       int offset = 0;
@@ -87,7 +86,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
         partitionContext.put(JOB, job);
-        partitionContext.put(USER_ID, user.getId());
+        partitionContext.put(TOKEN, token);
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new BoundWithPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -122,6 +121,8 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
       BoundWithJob job = (BoundWithJob) partitionContext.get(JOB);
 
+      String token = (String) partitionContext.get(TOKEN);
+
       String schema = job.getSchema();
 
       int index = this.getIndex();
@@ -130,7 +131,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
       Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
       String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
-      String holdingToBibRLTypeId = job.getReferences().get(HOLDING_TO_BIB_REFERENCE_ID);
+      String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
@@ -144,6 +145,62 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
           String boundWith = pageResultSet.getString(BOUND_WITH);
 
           System.out.println(mfhdId + ": " + boundWith);
+
+          List<String> bibIds = Arrays.asList(boundWith.split(","));
+
+          Optional<ReferenceLink> holdingsRl = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
+          if (!holdingsRl.isPresent()) {
+            log.error("{} no holdings record id found for bib id {}", schema, mfhdId);
+            continue;
+          }
+
+          List<ReferenceLink> instanceRLs = migrationService.referenceLinkRepo.findByTypeIdAndExternalReferenceIn(instanceRLTypeId, bibIds);
+          if (instanceRLs.size() != bibIds.size()) {
+            log.error("{} no all instance id found for bib id {}", schema, mfhdId);
+            continue;
+          }
+
+          String existingHoldingsRecordId = holdingsRl.get().getFolioReference();
+
+          Holdingsrecord existingHoldingsRecord = migrationService.okapiService.fetchHoldingsRecordById(tenant, token, existingHoldingsRecordId);
+
+          Instance parentInstance = new Instance();
+          parentInstance.setId(UUID.randomUUID().toString());
+          parentInstance.setTitle(String.format("%s_bound_with_%s", schema, mfhdId));
+          parentInstance.setDiscoverySuppress(true);
+          parentInstance.setStatusId(job.getStatusId());
+          parentInstance.setInstanceTypeId(job.getInstanceTypeId());
+          parentInstance.setModeOfIssuanceId(job.getModeOfIssuanceId());
+
+          migrationService.okapiService.postInstance(tenant, token, parentInstance);
+
+          for (ReferenceLink instanceRL : instanceRLs) {
+            Instancerelationship instanceRelationship = new Instancerelationship();
+            instanceRelationship.setSuperInstanceId(parentInstance.getId());
+            instanceRelationship.setSubInstanceId(instanceRL.getFolioReference());
+            instanceRelationship.setInstanceRelationshipTypeId(job.getInstanceRelationshipTypeId());
+
+            migrationService.okapiService.postInstancerelationship(tenant, token, instanceRelationship);
+          }
+
+          Holdingsrecord parentHoldingsRecord = new Holdingsrecord();
+          parentHoldingsRecord.setId(UUID.randomUUID().toString());
+          parentHoldingsRecord.setFormerIds(existingHoldingsRecord.getFormerIds());
+          parentHoldingsRecord.setCallNumber(existingHoldingsRecord.getCallNumber());
+          parentHoldingsRecord.setInstanceId(parentInstance.getId());
+          parentHoldingsRecord.setHoldingsTypeId(job.getHoldingsTypeId());
+          parentHoldingsRecord.setCallNumberTypeId(existingHoldingsRecord.getCallNumberTypeId());
+          parentHoldingsRecord.setDiscoverySuppress(true);
+          parentHoldingsRecord.setPermanentLocationId(existingHoldingsRecord.getPermanentLocationId());
+
+          migrationService.okapiService.postHoldingsrecord(tenant, token, parentHoldingsRecord);
+
+          Items existingItems = migrationService.okapiService.fetchItemRecordsByHoldingsRecordId(tenant, token, existingHoldingsRecordId);
+
+          for (Item existingItem : existingItems.getItems()) {
+            existingItem.setHoldingsRecordId(parentHoldingsRecord.getId());
+            migrationService.okapiService.putItem(tenant, token, existingItem);
+          }
 
         }
 

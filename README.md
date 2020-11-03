@@ -1028,25 +1028,33 @@ POST to http://localhost:9000/migrate/boundwith
   },
   "preActions": [],
   "postActions": [],
-  "parallelism": 2,
+  "parallelism": 12,
   "jobs": [
     {
       "schema": "AMDB",
-      "partitions": 1,
-      "user": "tamu_admin",
+      "partitions": 10,
       "references": {
         "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
-        "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc"
-      }
+        "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672"
+      },
+      "statusId": "daf2681c-25af-4202-a3fa-e58fdf806183",
+      "instanceTypeId": "6312d172-f0cf-40f6-b27d-9fa8feaf332f",
+      "modeOfIssuanceId": "612bbd3d-c16b-4bfb-8517-2afafc60204a",
+      "instanceRelationshipTypeId": "758f13db-ffb4-440e-bb10-8a364aa6cb4a",
+      "holdingsTypeId": "61155a36-148b-4664-bb7f-64ad708e0b32"
     },
     {
       "schema": "MSDB",
       "partitions": 1,
-      "user": "tamu_admin",
       "references": {
         "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
-        "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba"
-      }
+        "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8"
+      },
+      "statusId": "daf2681c-25af-4202-a3fa-e58fdf806183",
+      "instanceTypeId": "6312d172-f0cf-40f6-b27d-9fa8feaf332f",
+      "modeOfIssuanceId": "612bbd3d-c16b-4bfb-8517-2afafc60204a",
+      "instanceRelationshipTypeId": "758f13db-ffb4-440e-bb10-8a364aa6cb4a",
+      "holdingsTypeId": "61155a36-148b-4664-bb7f-64ad708e0b32"
     }
   ]
 }
