@@ -1008,6 +1008,46 @@ POST to http://localhost:9000/migrate/items
 }
 ```
 
+## Bound-With Instance Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/boundwith
+
+```
+{
+  "extraction": {
+    "countSql": "WITH boundwith AS (SELECT DISTINCT mfhd_id FROM ${SCHEMA}.bib_mfhd WHERE mfhd_id IN (SELECT mfhd_id FROM ${SCHEMA}.bib_mfhd GROUP BY mfhd_id HAVING COUNT(rownum) > 1)) SELECT COUNT(*) AS total FROM boundwith",
+    "pageSql": "SELECT DISTINCT mfhd_id, LISTAGG(bib_id, ',') WITHIN GROUP(ORDER BY mfhd_id) AS bound_with FROM ${SCHEMA}.bib_mfhd WHERE mfhd_id IN (SELECT mfhd_id FROM ${SCHEMA}.bib_mfhd GROUP BY mfhd_id HAVING COUNT(rownum) > 1) GROUP BY mfhd_id ORDER BY mfhd_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": "oracle.jdbc.OracleDriver"
+    }
+  },
+  "preActions": [],
+  "postActions": [],
+  "parallelism": 2,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 1,
+      "references": {
+
+      }
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 1,
+      "references": {
+
+      }
+    }
+  ]
+}
+```
+
 ## Loan Migration
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
