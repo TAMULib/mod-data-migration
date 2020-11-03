@@ -41,7 +41,6 @@ import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.inventory.Servicepoints;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
-import org.folio.rest.jaxrs.model.inventory.raml_util.schemas.codex_next.ItemCollection;
 import org.folio.rest.jaxrs.model.users.AddresstypeCollection;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.jaxrs.model.users.UserdataCollection;
