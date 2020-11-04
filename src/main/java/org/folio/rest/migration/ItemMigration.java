@@ -18,7 +18,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
@@ -78,6 +77,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String FREETEXT = "FREETEXT";
   private static final String YEAR = "YEAR";
 
+  private static final String CALL_NUMBER = "DISPLAY_CALL_NO";
+  private static final String CALL_NUMBER_TYPE = "CALL_NO_TYPE";
+
   private static final String ITEM_BARCODE = "ITEM_BARCODE";
   private static final String SPINE_LABEL = "SPINE_LABEL";
 
@@ -86,9 +88,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String LOCATION_CODE = "LOCATION_CODE";
-
-  private static final String ITEM_REFERENCE_ID = "itemTypeId";
-  private static final String ITEM_TO_HOLDING_REFERENCE_ID = "itemToHoldingTypeId";
 
   private static final String ITEM_STATUS = "ITEM_STATUS";
   private static final String ITEM_STATUS_DATE = "ITEM_STATUS_DATE";
@@ -99,6 +98,12 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String ITEM_NOTE_TYPE = "ITEM_NOTE_TYPE";
 
   private static final String MTYPE_CODE = "MTYPE_CODE";
+
+  private static final String ITEM_REFERENCE_ID = "itemTypeId";
+  private static final String ITEM_TO_HOLDING_REFERENCE_ID = "itemToHoldingTypeId";
+
+  private static final String HOLDING_TO_CALL_NUMBER_PREFIX_ID = "holdingToCallNumberPrefixTypeId";
+  private static final String HOLDING_TO_CALL_NUMBER_SUFFIX_ID = "holdingToCallNumberSuffixTypeId";
 
   // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
   private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid) FROM STDIN WITH NULL AS 'null'";
@@ -271,6 +276,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       String itemRLTypeId = job.getReferences().get(ITEM_REFERENCE_ID);
       String itemToHoldingRLTypeId = job.getReferences().get(ITEM_TO_HOLDING_REFERENCE_ID);
 
+      String holdingToCallNumberPrefixTypeId = job.getReferences().get(HOLDING_TO_CALL_NUMBER_PREFIX_ID);
+      String holdingToCallNumberSuffixTypeId = job.getReferences().get(HOLDING_TO_CALL_NUMBER_SUFFIX_ID);
+
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
 
       int count = 0;
@@ -374,6 +382,18 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             }
           }
 
+          Optional<ReferenceLink> callNumberPrefixRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToCallNumberPrefixTypeId, holdingRL.get().getId());
+
+          if (callNumberPrefixRL.isPresent()) {
+            itemRecord.setCallNumberPrefix(callNumberPrefixRL.get().getFolioReference());
+          }
+
+          Optional<ReferenceLink> callNumberSuffixRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToCallNumberSuffixTypeId, holdingRL.get().getId());
+          
+          if (callNumberSuffixRL.isPresent()) {
+            itemRecord.setCallNumberSuffix(callNumberSuffixRL.get().getFolioReference());
+          }
+
           Date createdDate = new Date();
           itemRecord.setCreatedByUserId(userId);
           itemRecord.setCreatedDate(createdDate);
@@ -383,7 +403,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
           String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
 
-          Item item = itemRecord.toItem(hridString, statisticalcodes, materialtypes, maps);
+          Item item = itemRecord.toItem(hridString, statisticalcodes, materialtypes, maps, defaults);
 
           try {
 
@@ -476,7 +496,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             String freetext = resultSet.getString(FREETEXT);
             String year = resultSet.getString(YEAR);
             String location = resultSet.getString(LOCATION_ID);
-            mfhdItem = new ItemMfhdRecord(caption, chron, itemEnum, freetext, year, location);
+            String callNumber = resultSet.getString(CALL_NUMBER);
+            String callNumberType = resultSet.getString(CALL_NUMBER_TYPE);
+            mfhdItem = new ItemMfhdRecord(caption, chron, itemEnum, freetext, year, location, callNumber, callNumberType);
           }
         } catch (SQLException e) {
           e.printStackTrace();

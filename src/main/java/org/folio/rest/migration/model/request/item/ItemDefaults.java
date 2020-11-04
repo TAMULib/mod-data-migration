@@ -8,6 +8,8 @@ public class ItemDefaults {
 
   private String materialTypeId;
 
+  private String callNumberTypeId;
+
   public ItemDefaults() { }
 
   public String getPermanentLoanTypeId() {
@@ -32,6 +34,14 @@ public class ItemDefaults {
 
   public void setMaterialTypeId(String materialTypeId) {
     this.materialTypeId = materialTypeId;
+  }
+
+  public String getCallNumberTypeId() {
+    return callNumberTypeId;
+  }
+
+  public void setCallNumberTypeId(String callNumber) {
+    this.callNumberTypeId = callNumber;
   }
 
 }

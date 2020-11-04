@@ -82,6 +82,7 @@ public class MigrationController {
 
   @PostMapping("/holdings")
   @CreateReferenceData(pattern = "classpath:/referenceData/holdings/*.json")
+  @CreateReferenceLinkTypes(path = "classpath:/referenceLinkTypes/holdings/*.json")
   public CompletableFuture<String> holdings(@RequestBody HoldingContext context, @TenantHeader String tenant) {
     return migrationService.migrate(HoldingMigration.with(context, tenant));
   }

@@ -657,7 +657,7 @@ POST to http://localhost:9000/migrate/bibs
 }
 ```
 
-## MARC Holding Migration
+## MARC Holdings Migration
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
 
@@ -687,7 +687,9 @@ POST to http://localhost:9000/migrate/holdings
       "user": "tamu_admin",
       "references": {
         "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
-        "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc"
+        "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc",
+        "holdingToCallNumberPrefixTypeId": "bdc5c8b1-7b21-45ea-943b-585764f3715c",
+        "holdingToCallNumberSuffixTypeId": "fcd2963b-b75d-4401-8eda-7e91efd8ddc3"
       }
     },
     {
@@ -696,7 +698,9 @@ POST to http://localhost:9000/migrate/holdings
       "user": "tamu_admin",
       "references": {
         "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
-        "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba"
+        "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba",
+        "holdingToCallNumberPrefixTypeId": "78991218-9141-4807-9175-7147c861a596",
+        "holdingToCallNumberSuffixTypeId": "be7288c9-7c67-4b6b-b662-a57816569e46"
       }
     }
   ],
@@ -828,7 +832,7 @@ POST to http://localhost:9000/migrate/items
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.item",
     "pageSql": "SELECT item_id, copy_number, item_type_id, perm_location, pieces, price, spine_label, temp_location, temp_item_type_id, magnetic_media, sensitize FROM ${SCHEMA}.item ORDER BY item_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
-    "mfhdSql": "SELECT mi.caption, mi.chron, mi.item_enum, mi.freetext, mi.year, mm.location_id FROM ${SCHEMA}.mfhd_item mi LEFT JOIN ${SCHEMA}.mfhd_master mm ON mi.mfhd_id = mm.mfhd_id WHERE item_id = ${ITEM_ID}",
+    "mfhdSql": "SELECT mi.caption, mi.chron, mi.item_enum, mi.freetext, mi.year, mm.location_id, mm.call_no_type, mm.display_call_no FROM ${SCHEMA}.mfhd_item mi LEFT JOIN ${SCHEMA}.mfhd_master mm ON mi.mfhd_id = mm.mfhd_id WHERE item_id = ${ITEM_ID}",
     "barcodeSql": "SELECT item_barcode FROM ${SCHEMA}.item_barcode WHERE item_id = ${ITEM_ID}",
     "itemTypeSql": "SELECT item_type_id, item_type_code FROM ${SCHEMA}.item_type",
     "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
@@ -854,7 +858,9 @@ POST to http://localhost:9000/migrate/items
       "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
       "references": {
         "itemTypeId": "53e72510-dc82-4caa-a272-1522cca70bc2",
-        "itemToHoldingTypeId": "39670cf7-de23-4473-b5e3-abf6d79735e1"
+        "itemToHoldingTypeId": "39670cf7-de23-4473-b5e3-abf6d79735e1",
+        "holdingToCallNumberPrefixTypeId": "bdc5c8b1-7b21-45ea-943b-585764f3715c",
+        "holdingToCallNumberSuffixTypeId": "fcd2963b-b75d-4401-8eda-7e91efd8ddc3"
       }
     },
     {
@@ -865,7 +871,9 @@ POST to http://localhost:9000/migrate/items
       "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
       "references": {
         "itemTypeId": "0014559d-39f6-45c7-9406-03643459aaf0",
-        "itemToHoldingTypeId": "492fea54-399a-4822-8d4b-242096c2ab12"
+        "itemToHoldingTypeId": "492fea54-399a-4822-8d4b-242096c2ab12",
+        "holdingToCallNumberPrefixTypeId": "78991218-9141-4807-9175-7147c861a596",
+        "holdingToCallNumberSuffixTypeId": "be7288c9-7c67-4b6b-b662-a57816569e46"
       }
     }
   ],
@@ -998,12 +1006,24 @@ POST to http://localhost:9000/migrate/items
     "custodianStatisticalCode": {
       "AMDB": "38c86b2b-8156-4b7e-943e-460e15ea0dc0",
       "MSDB": "f5d1069d-f718-4f0e-8ff8-308f55540daf"
+    },
+    "callNumberType": {
+      " ": "24badefa-4456-40c5-845c-3f45ffbc4c03",
+      "0": "95467209-6d7b-468b-94df-0f5d7ad2747d",
+      "1": "03dd64d0-5626-4ecd-8ece-4531e0069f35",
+      "2": "054d460d-d6b9-4469-9e37-7a78a2266655",
+      "3": "fc388041-6cd0-4806-8a74-ebe3b9ab4c6e",
+      "4": "28927d76-e097-4f63-8510-e56f2b7a3ad0",
+      "5": "5ba6b62e-6858-490a-8102-5b1369873835",
+      "6": "cd70562c-dd0b-42f6-aa80-ce803d24d4a1",
+      "8": "6caca63e-5651-4db6-9247-3205156e9699"
     }
   },
   "defaults": {
     "permanentLoanTypeId": "dcdb0cef-c30f-4a3b-b0b6-757d1400535d",
     "permanentLocationId": "2b8f7d63-706a-4b56-8a5e-50ad24e33e4c",
-    "materialTypeId": "3212b3e9-bce7-4ff1-88e2-8def758ba977"
+    "materialTypeId": "3212b3e9-bce7-4ff1-88e2-8def758ba977",
+    "callNumberTypeId": "24badefa-4456-40c5-845c-3f45ffbc4c03"
   }
 }
 ```
