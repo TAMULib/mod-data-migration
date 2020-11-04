@@ -523,6 +523,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           }
         } catch (SQLException e) {
           e.printStackTrace();
+        } finally {
+          future.complete(statuses);
         }
       });
       return future;
