@@ -164,6 +164,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
           Instance parentInstance = new Instance();
           parentInstance.setId(UUID.randomUUID().toString());
+          parentInstance.setSource("FOLIO");
           parentInstance.setTitle(String.format("%s_bound_with_%s", schema, mfhdId));
           parentInstance.setDiscoverySuppress(true);
           parentInstance.setStatusId(job.getStatusId());
