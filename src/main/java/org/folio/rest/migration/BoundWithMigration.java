@@ -144,8 +144,6 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
           String mfhdId = pageResultSet.getString(MFHD_ID);
           String boundWith = pageResultSet.getString(BOUND_WITH);
 
-          System.out.println(mfhdId + ": " + boundWith);
-
           List<String> bibIds = Arrays.asList(boundWith.split(","));
 
           Optional<ReferenceLink> holdingsRl = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
@@ -156,7 +154,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
           List<ReferenceLink> instanceRLs = migrationService.referenceLinkRepo.findByTypeIdAndExternalReferenceIn(instanceRLTypeId, bibIds);
           if (instanceRLs.size() != bibIds.size()) {
-            log.error("{} no all instance id found for bib id {}", schema, mfhdId);
+            log.error("{} not all instance ids found for bib ids {}", schema, bibIds);
             continue;
           }
 
