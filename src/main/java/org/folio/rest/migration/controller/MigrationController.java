@@ -3,6 +3,7 @@ package org.folio.rest.migration.controller;
 import java.util.concurrent.CompletableFuture;
 
 import org.folio.rest.migration.BibMigration;
+import org.folio.rest.migration.BoundWithMigration;
 import org.folio.rest.migration.FeeFineMigration;
 import org.folio.rest.migration.HoldingMigration;
 import org.folio.rest.migration.InventoryReferenceLinkMigration;
@@ -18,6 +19,7 @@ import org.folio.rest.migration.aspect.annotation.CreateReferenceData;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceLinkTypes;
 import org.folio.rest.migration.aspect.annotation.UpdateRules;
 import org.folio.rest.migration.model.request.bib.BibContext;
+import org.folio.rest.migration.model.request.boundwith.BoundWithContext;
 import org.folio.rest.migration.model.request.feefine.FeeFineContext;
 import org.folio.rest.migration.model.request.holding.HoldingContext;
 import org.folio.rest.migration.model.request.inventory.InventoryReferenceLinkContext;
@@ -110,6 +112,12 @@ public class MigrationController {
   @PostMapping("/proxyfor")
   public CompletableFuture<String> proxyfor(@RequestBody ProxyForContext context, @TenantHeader String tenant) {
     return migrationService.migrate(ProxyForMigration.with(context, tenant));
+  }
+
+  @PostMapping("/boundwith")
+  @CreateReferenceData(pattern = "classpath:/referenceData/boundwith/*.json")
+  public CompletableFuture<String> boundwith(@RequestBody BoundWithContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(BoundWithMigration.with(context, tenant));
   }
 
 }

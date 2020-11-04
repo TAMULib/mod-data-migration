@@ -1033,6 +1033,58 @@ POST to http://localhost:9000/migrate/items
 }
 ```
 
+## Bound-With Instance Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/boundwith
+
+```
+{
+  "extraction": {
+    "countSql": "WITH boundwith AS (SELECT DISTINCT mfhd_id FROM ${SCHEMA}.bib_mfhd WHERE mfhd_id IN (SELECT mfhd_id FROM ${SCHEMA}.bib_mfhd GROUP BY mfhd_id HAVING COUNT(rownum) > 1)) SELECT COUNT(*) AS total FROM boundwith",
+    "pageSql": "SELECT DISTINCT mfhd_id, LISTAGG(bib_id, ',') WITHIN GROUP(ORDER BY mfhd_id) AS bound_with FROM ${SCHEMA}.bib_mfhd WHERE mfhd_id IN (SELECT mfhd_id FROM ${SCHEMA}.bib_mfhd GROUP BY mfhd_id HAVING COUNT(rownum) > 1) GROUP BY mfhd_id ORDER BY mfhd_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": "oracle.jdbc.OracleDriver"
+    }
+  },
+  "preActions": [],
+  "postActions": [],
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 10,
+      "references": {
+        "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
+        "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672"
+      },
+      "statusId": "daf2681c-25af-4202-a3fa-e58fdf806183",
+      "instanceTypeId": "6312d172-f0cf-40f6-b27d-9fa8feaf332f",
+      "modeOfIssuanceId": "612bbd3d-c16b-4bfb-8517-2afafc60204a",
+      "instanceRelationshipTypeId": "758f13db-ffb4-440e-bb10-8a364aa6cb4a",
+      "holdingsTypeId": "61155a36-148b-4664-bb7f-64ad708e0b32"
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 1,
+      "references": {
+        "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
+        "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8"
+      },
+      "statusId": "daf2681c-25af-4202-a3fa-e58fdf806183",
+      "instanceTypeId": "6312d172-f0cf-40f6-b27d-9fa8feaf332f",
+      "modeOfIssuanceId": "612bbd3d-c16b-4bfb-8517-2afafc60204a",
+      "instanceRelationshipTypeId": "758f13db-ffb4-440e-bb10-8a364aa6cb4a",
+      "holdingsTypeId": "61155a36-148b-4664-bb7f-64ad708e0b32"
+    }
+  ]
+}
+```
+
 ## Loan Migration
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
