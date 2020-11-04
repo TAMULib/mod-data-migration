@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import org.apache.commons.lang3.StringUtils;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
 import org.folio.rest.jaxrs.model.dataimport.common.ProfileInfo;
 import org.folio.rest.jaxrs.model.dataimport.dto.InitJobExecutionsRqDto;
@@ -43,6 +44,7 @@ import org.folio.rest.migration.mapping.InstanceMapper;
 import org.folio.rest.migration.model.BibRecord;
 import org.folio.rest.migration.model.request.bib.BibContext;
 import org.folio.rest.migration.model.request.bib.BibJob;
+import org.folio.rest.migration.model.request.bib.BibMaps;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
@@ -112,7 +114,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
     MappingParameters mappingParameters = migrationService.okapiService.getMappingParamaters(tenant, token);
     JsonObject mappingRules = migrationService.okapiService.fetchRules(tenant, token);
     JsonObject hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
-    Statisticalcodes statisticalCodes = migrationService.okapiService.fetchStatisticalCodes(tenant, token);
+    Statisticalcodes statisticalcodes = migrationService.okapiService.fetchStatisticalCodes(tenant, token);
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
     InstanceMapper instanceMapper = new InstanceMapper(mappingParameters, mappingRules);
@@ -167,7 +169,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
         partitionContext.put(HRID_PREFIX, hridPrefix);
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(JOB, job);
-        partitionContext.put(STATISTICAL_CODES, statisticalCodes);
+        partitionContext.put(STATISTICAL_CODES, statisticalcodes);
         partitionContext.put(USER_ID, user.getId());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new BibPartitionTask(migrationService, instanceMapper, partitionContext));
@@ -215,7 +217,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       BibJob job = (BibJob) partitionContext.get(JOB);
 
-      Statisticalcodes statisticalCodes = (Statisticalcodes) partitionContext.get(STATISTICAL_CODES);
+      Statisticalcodes statisticalcodes = (Statisticalcodes) partitionContext.get(STATISTICAL_CODES);
 
       String userId = (String) partitionContext.get(USER_ID);
 
@@ -242,6 +244,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
       Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
+
+      BibMaps bibMaps = context.getMaps();
 
       MarcFactory factory = MarcFactory.newInstance();
 
@@ -285,9 +289,15 @@ public class BibMigration extends AbstractMigration<BibContext> {
               continue;
             }
 
-            Set<String> matchedCodes = Objects.nonNull(operatorId)
-              ? getMatchingStatisticalCodes(operatorId, statisticalCodes)
-              : new HashSet<>();
+            Set<String> matchedCodes;
+            if (StringUtils.isNotEmpty(operatorId)) {
+              if (bibMaps.getStatisticalCode().containsKey(operatorId)) {
+                operatorId = bibMaps.getStatisticalCode().get(operatorId);
+              }
+              matchedCodes = getMatchingStatisticalCodes(operatorId, statisticalcodes);
+            } else {
+              matchedCodes = new HashSet<>();
+            }
 
             BibRecord bibRecord = new BibRecord(bibId, job.getInstanceStatusId(), suppressDiscovery, matchedCodes);
 
@@ -456,8 +466,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
     return threadConnections;
   }
 
-  private Set<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalCodes) {
-    return statisticalCodes.getStatisticalCodes().stream()
+  private Set<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalcodes) {
+    return statisticalcodes.getStatisticalCodes().stream()
       .filter(sc -> sc.getCode().equals(operatorId))
       .map(sc -> sc.getId())
       .collect(Collectors.toSet());
