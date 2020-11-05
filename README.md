@@ -1360,6 +1360,31 @@ POST to http://localhost:9000/migrate/proxyfor
 }
 ```
 
+## DivIT Patron Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/divitpatron
+
+```
+{
+  "database": {
+    "url": "",
+    "username": "",
+    "password": "",
+    "driverClassName": "oracle.jdbc.OracleDriver"
+  },
+  "preActions": [],
+  "postActions": [],
+  "parallelism": 12,
+  "jobs": [
+    {
+      "sql": ""
+    }
+  ]
+}
+```
+
 ## Migration Notes
 
 The `parallelism` property designates the number of processes executed in parallel.
