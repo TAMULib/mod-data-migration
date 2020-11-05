@@ -35,11 +35,6 @@ spring:
 
     username: folio_admin
     password: folio_admin
-  devtools:
-    add-properties: false
-    restart:
-      enabled: false
-      exclude: target
   h2:
     console:
       enabled: false
