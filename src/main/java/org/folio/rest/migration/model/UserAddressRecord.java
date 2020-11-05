@@ -1,7 +1,6 @@
 package org.folio.rest.migration.model;
 
 import java.util.Objects;
-import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.users.Address;
