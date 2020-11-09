@@ -115,6 +115,8 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
 
       String token = (String) partitionContext.get(TENANT);
 
+      log.info("processing {} patrons", job.getName());
+
       try (
         Statement statement = threadConnections.getConnection().createStatement();
         ResultSet resultSet = getResultSet(statement, partitionContext);
@@ -147,7 +149,6 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
           String departments_0 = resultSet.getString(DEPARTMENTS_0);
           String expirationDate = resultSet.getString(EXPIRATIONDATE);
 
-          System.out.println("*************************************************************");
           System.out.println("\tusername: " + username);
           System.out.println("\texternalSystemId: " + externalSystemId);
           System.out.println("\tbarcode: " + barcode);
