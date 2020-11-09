@@ -55,7 +55,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
   private static final String DEPARTMENTS_0 = "DEPARTMENTS_0";
   private static final String EXPIRATIONDATE = "EXPIRATIONDATE";
 
-  private static final String EXPIRATION_DATE_FORMAT = "YYYY-MM-DD";
+  private static final String EXPIRATION_DATE_FORMAT = "yyyy-MM-dd";
 
   private DivITPatronMigration(DivITPatronContext context, String tenant) {
     super(context, tenant);
