@@ -1,5 +1,5 @@
 # build base image
-FROM maven:3-jdk-8-alpine as maven
+FROM maven:3-openjdk-11-slim as maven
 
 # copy pom.xml
 COPY ./pom.xml ./pom.xml
@@ -20,7 +20,7 @@ COPY ./mod-notes ./mod-notes
 RUN mvn package
 
 # final base image
-FROM openjdk:8u191-jre-alpine
+FROM openjdk:11-jre-slim
 
 # set deployment directory
 WORKDIR /mod-data-migration
