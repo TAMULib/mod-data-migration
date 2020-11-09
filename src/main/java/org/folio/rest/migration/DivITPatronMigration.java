@@ -36,13 +36,12 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
   private static final String ADDRESSES_PERMANENT_REGION = "ADDRESSES_PERMANENT_REGION";
   private static final String ADDRESSES_PERMANENT_POSTALCODE = "ADDRESSES_PERMANENT_POSTALCODE";
   private static final String ADDRESSES_TEMPORARY_ADDRESSTYPEID = "ADDRESSES_TEMPORARY_ADDRESSTYPEID";
-  private static final String ADDRESSES_TEMPORARY_COUNTRYID = "ADDRESSES_TEMPORARY_COUNTRYID";
   private static final String ADDRESSES_TEMPORARY_ADDRESSLINE1 = "ADDRESSES_TEMPORARY_ADDRESSLINE1";
   private static final String ADDRESSES_TEMPORARY_ADDRESSLINE2 = "ADDRESSES_TEMPORARY_ADDRESSLINE2";
   private static final String ADDRESSES_TEMPORARY_CITY = "ADDRESSES_TEMPORARY_CITY";
   private static final String ADDRESSES_TEMPORARY_REGION = "ADDRESSES_TEMPORARY_REGION";
   private static final String ADDRESSES_TEMPORARY_POSTALCODE = "ADDRESSES_TEMPORARY_POSTALCODE";
-  private static final String DEPARTMENT_0 = "DEPARTMENT_0";
+  private static final String DEPARTMENTS_0 = "DEPARTMENTS_0";
   private static final String EXPIRATIONDATE = "EXPIRATIONDATE";
 
   private DivITPatronMigration(DivITPatronContext context, String tenant) {
@@ -140,12 +139,12 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
           String addresses_permanent_region = resultSet.getString(ADDRESSES_PERMANENT_REGION);
           String addresses_permanent_postalCode = resultSet.getString(ADDRESSES_PERMANENT_POSTALCODE);
           String addresses_temporary_addressTypeId = resultSet.getString(ADDRESSES_TEMPORARY_ADDRESSTYPEID);
-          String addresses_temporary_addressLine2 = resultSet.getString(ADDRESSES_TEMPORARY_ADDRESSLINE1);
-          String addresses_temporary_addressLine1 = resultSet.getString(ADDRESSES_TEMPORARY_ADDRESSLINE2);
+          String addresses_temporary_addressLine1 = resultSet.getString(ADDRESSES_TEMPORARY_ADDRESSLINE1);
+          String addresses_temporary_addressLine2 = resultSet.getString(ADDRESSES_TEMPORARY_ADDRESSLINE2);
           String addresses_temporary_city = resultSet.getString(ADDRESSES_TEMPORARY_CITY);
           String addresses_temporary_region = resultSet.getString(ADDRESSES_TEMPORARY_REGION);
           String addresses_temporary_postalCode = resultSet.getString(ADDRESSES_TEMPORARY_POSTALCODE);
-          String departments_0 = resultSet.getString(DEPARTMENT_0);
+          String departments_0 = resultSet.getString(DEPARTMENTS_0);
           String expirationDate = resultSet.getString(EXPIRATIONDATE);
 
           System.out.println("*************************************************************");
