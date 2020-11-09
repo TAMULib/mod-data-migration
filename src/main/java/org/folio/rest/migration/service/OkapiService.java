@@ -462,7 +462,7 @@ public class OkapiService {
   }
 
   public ImportResponse postUserdataimportCollection(String tenant, String token, UserdataimportCollection userdataimportCollection) {
-    log.info("subimtting user import with {} users", userdataimportCollection.getTotalRecords());
+    log.info("submitting user import with {} users", userdataimportCollection.getTotalRecords());
     long startTime = System.nanoTime();
     HttpEntity<UserdataimportCollection> entity = new HttpEntity<>(userdataimportCollection, headers(tenant, token));
     String url = okapi.getUrl() + "/user-import";
