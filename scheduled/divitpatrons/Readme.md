@@ -2,6 +2,8 @@
 
 `docker build -t import-users .`
 
+Deploy in Rancher with following daily cron `0 1 * * *`
+
 ### Linux console run command
 
 `docker run --rm -d --network folio-network --name import-users -h import-users -e TENANT_ID=tamu -e DIVIT_DB_PASSWORD=password import-users`
