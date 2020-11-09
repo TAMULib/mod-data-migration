@@ -199,7 +199,6 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
             permanentAddress.setPostalCode(addresses_permanent_postalCode);
 
             personal.getAddresses().add(permanentAddress);
-
           }
 
           if (StringUtils.isNotEmpty(addresses_temporary_addressLine1)) {
@@ -213,7 +212,6 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
             temporaryAddress.setPostalCode(addresses_temporary_postalCode);
 
             personal.getAddresses().add(temporaryAddress);
-
           }
 
           userImport.setPersonal(personal);
