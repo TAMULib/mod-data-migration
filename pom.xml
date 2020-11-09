@@ -145,6 +145,17 @@
               <targetPackage>org.folio.rest.jaxrs.model.notes</targetPackage>
             </configuration>
           </execution>
+          <execution>
+            <id>mod-user-import/ramls</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <sourceDirectory>${basedir}/mod-user-import/ramls</sourceDirectory>
+              <targetPackage>org.folio.rest.jaxrs.model.userimport</targetPackage>
+            </configuration>
+          </execution>
          </executions>
       </plugin>
 

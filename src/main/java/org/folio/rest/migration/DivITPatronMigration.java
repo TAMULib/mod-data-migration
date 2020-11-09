@@ -18,6 +18,33 @@ import org.folio.rest.migration.service.MigrationService;
 
 public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> {
 
+  private static final String USERNAME = "USERNAME";
+  private static final String EXTERNALSYSTEMID = "EXTERNALSYSTEMID";
+  private static final String BARCODE = "BARCODE";
+  private static final String ACTIVE = "ACTIVE";
+  private static final String PATRONGROUP = "PATRONGROUP";
+  private static final String PERSONAL_LASTNAME = "PERSONAL_LASTNAME";
+  private static final String PERSONAL_FIRSTNAME = "PERSONAL_FIRSTNAME";
+  private static final String PERSONAL_MIDDLENAME = "PERSONAL_MIDDLENAME";
+  private static final String PERSONAL_EMAIL = "PERSONAL_EMAIL";
+  private static final String PERSONAL_PHONE = "PERSONAL_PHONE";
+  private static final String ADDRESSES_PERMANENT_ADDRESSTYPEID = "ADDRESSES_PERMANENT_ADDRESSTYPEID";
+  private static final String ADDRESSES_PERMANENT_COUNTRYID = "ADDRESSES_PERMANENT_COUNTRYID";
+  private static final String ADDRESSES_PERMANENT_ADDRESSLINE1 = "ADDRESSES_PERMANENT_ADDRESSLINE1";
+  private static final String ADDRESSES_PERMANENT_ADDRESSLINE2 = "ADDRESSES_PERMANENT_ADDRESSLINE2";
+  private static final String ADDRESSES_PERMANENT_CITY = "ADDRESSES_PERMANENT_CITY";
+  private static final String ADDRESSES_PERMANENT_REGION = "ADDRESSES_PERMANENT_REGION";
+  private static final String ADDRESSES_PERMANENT_POSTALCODE = "ADDRESSES_PERMANENT_POSTALCODE";
+  private static final String ADDRESSES_TEMPORARY_ADDRESSTYPEID = "ADDRESSES_TEMPORARY_ADDRESSTYPEID";
+  private static final String ADDRESSES_TEMPORARY_COUNTRYID = "ADDRESSES_TEMPORARY_COUNTRYID";
+  private static final String ADDRESSES_TEMPORARY_ADDRESSLINE1 = "ADDRESSES_TEMPORARY_ADDRESSLINE1";
+  private static final String ADDRESSES_TEMPORARY_ADDRESSLINE2 = "ADDRESSES_TEMPORARY_ADDRESSLINE2";
+  private static final String ADDRESSES_TEMPORARY_CITY = "ADDRESSES_TEMPORARY_CITY";
+  private static final String ADDRESSES_TEMPORARY_REGION = "ADDRESSES_TEMPORARY_REGION";
+  private static final String ADDRESSES_TEMPORARY_POSTALCODE = "ADDRESSES_TEMPORARY_POSTALCODE";
+  private static final String DEPARTMENT_0 = "DEPARTMENT_0";
+  private static final String EXPIRATIONDATE = "EXPIRATIONDATE";
+
   private DivITPatronMigration(DivITPatronContext context, String tenant) {
     super(context, tenant);
   }
@@ -95,7 +122,59 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
       ) {
 
         while (resultSet.next()) {
-          System.out.println(resultSet);
+          String username = resultSet.getString(USERNAME);
+          String externalSystemId = resultSet.getString(EXTERNALSYSTEMID);
+          String barcode = resultSet.getString(BARCODE);
+          String active = resultSet.getString(ACTIVE);
+          String patronGroup = resultSet.getString(PATRONGROUP);
+          String personal_lastName = resultSet.getString(PERSONAL_LASTNAME);
+          String personal_firstName = resultSet.getString(PERSONAL_FIRSTNAME);
+          String personal_middleName = resultSet.getString(PERSONAL_MIDDLENAME);
+          String personal_email = resultSet.getString(PERSONAL_EMAIL);
+          String personal_phone = resultSet.getString(PERSONAL_PHONE);
+          String addresses_permanent_addressTypeId = resultSet.getString(ADDRESSES_PERMANENT_ADDRESSTYPEID);
+          String addresses_permanent_countryId = resultSet.getString(ADDRESSES_PERMANENT_COUNTRYID);
+          String addresses_permanent_addressLine1 = resultSet.getString(ADDRESSES_PERMANENT_ADDRESSLINE1);
+          String addresses_permanent_addressLine2 = resultSet.getString(ADDRESSES_PERMANENT_ADDRESSLINE2);
+          String addresses_permanent_city = resultSet.getString(ADDRESSES_PERMANENT_CITY);
+          String addresses_permanent_region = resultSet.getString(ADDRESSES_PERMANENT_REGION);
+          String addresses_permanent_postalCode = resultSet.getString(ADDRESSES_PERMANENT_POSTALCODE);
+          String addresses_temporary_addressTypeId = resultSet.getString(ADDRESSES_TEMPORARY_ADDRESSTYPEID);
+          String addresses_temporary_addressLine2 = resultSet.getString(ADDRESSES_TEMPORARY_ADDRESSLINE1);
+          String addresses_temporary_addressLine1 = resultSet.getString(ADDRESSES_TEMPORARY_ADDRESSLINE2);
+          String addresses_temporary_city = resultSet.getString(ADDRESSES_TEMPORARY_CITY);
+          String addresses_temporary_region = resultSet.getString(ADDRESSES_TEMPORARY_REGION);
+          String addresses_temporary_postalCode = resultSet.getString(ADDRESSES_TEMPORARY_POSTALCODE);
+          String departments_0 = resultSet.getString(DEPARTMENT_0);
+          String expirationDate = resultSet.getString(EXPIRATIONDATE);
+
+          System.out.println("*************************************************************");
+          System.out.println("\tusername: " + username);
+          System.out.println("\texternalSystemId: " + externalSystemId);
+          System.out.println("\tbarcode: " + barcode);
+          System.out.println("\tactive: " + active);
+          System.out.println("\tpatronGroup: " + patronGroup);
+          System.out.println("\tpersonal_lastName: " + personal_lastName);
+          System.out.println("\tpersonal_firstName: " + personal_firstName);
+          System.out.println("\tpersonal_middleName: " + personal_middleName);
+          System.out.println("\tpersonal_email: " + personal_email);
+          System.out.println("\tpersonal_phone: " + personal_phone);
+          System.out.println("\taddresses_permanent_addressTypeId: " + addresses_permanent_addressTypeId);
+          System.out.println("\taddresses_permanent_countryId: " + addresses_permanent_countryId);
+          System.out.println("\taddresses_permanent_addressLine1: " + addresses_permanent_addressLine1);
+          System.out.println("\taddresses_permanent_addressLine2: " + addresses_permanent_addressLine2);
+          System.out.println("\taddresses_permanent_city: " + addresses_permanent_city);
+          System.out.println("\taddresses_permanent_region: " + addresses_permanent_region);
+          System.out.println("\taddresses_permanent_postalCode: " + addresses_permanent_postalCode);
+          System.out.println("\taddresses_temporary_addressTypeId: " + addresses_temporary_addressTypeId);
+          System.out.println("\taddresses_temporary_addressLine2: " + addresses_temporary_addressLine2);
+          System.out.println("\taddresses_temporary_addressLine1: " + addresses_temporary_addressLine1);
+          System.out.println("\taddresses_temporary_city: " + addresses_temporary_city);
+          System.out.println("\taddresses_temporary_region: " + addresses_temporary_region);
+          System.out.println("\taddresses_temporary_postalCode: " + addresses_temporary_postalCode);
+          System.out.println("\tdepartments_0: " + departments_0);
+          System.out.println("\texpirationDate: " + expirationDate);
+          System.out.println("*************************************************************");
         }
 
       } catch (SQLException e) {
