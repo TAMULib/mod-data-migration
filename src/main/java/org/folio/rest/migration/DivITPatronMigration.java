@@ -183,6 +183,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
 
           personal.setLastName(personal_lastName);
           personal.setFirstName(personal_firstName);
+          personal.setPreferredFirstName(personal_firstName);
           personal.setMiddleName(personal_middleName);
           personal.setEmail(personal_email);
           personal.setPhone(personal_phone);
