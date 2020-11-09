@@ -218,7 +218,9 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
 
           userImport.setPersonal(personal);
 
-          userImport.getDepartments().add(departments_0);
+          if (StringUtils.isNotEmpty(departments_0)) {
+            // userImport.getDepartments().add(departments_0);
+          }
 
           try {
             userImport.setExpirationDate(DateUtils.parseDate(expirationDate, EXPIRATION_DATE_FORMAT));
