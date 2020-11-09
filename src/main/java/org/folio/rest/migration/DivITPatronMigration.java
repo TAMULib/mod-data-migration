@@ -126,7 +126,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
 
       DivITPatronJob job = (DivITPatronJob) partitionContext.get(JOB);
 
-      String token = (String) partitionContext.get(TENANT);
+      String token = (String) partitionContext.get(TOKEN);
 
       log.info("processing {} patrons", job.getName());
 
