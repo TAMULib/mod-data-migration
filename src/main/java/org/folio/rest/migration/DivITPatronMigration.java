@@ -52,7 +52,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
       partitionContext.put(INDEX, index);
       partitionContext.put(TOKEN, token);
       partitionContext.put(JOB, job);
-      log.info("submitting index {}", index++);
+      log.info("submitting job {} index {}", job.getName(), index++);
       taskQueue.submit(new DivITPatronPartitionTask(migrationService, partitionContext));
     }
 
