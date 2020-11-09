@@ -4,17 +4,28 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import org.apache.commons.lang3.time.DateUtils;
+import org.codehaus.plexus.util.StringUtils;
+import org.folio.rest.jaxrs.model.userimport.schemas.Address;
+import org.folio.rest.jaxrs.model.userimport.schemas.ImportResponse;
+import org.folio.rest.jaxrs.model.userimport.schemas.Personal;
+import org.folio.rest.jaxrs.model.userimport.schemas.Userdataimport;
+import org.folio.rest.jaxrs.model.userimport.schemas.UserdataimportCollection;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.divitpatron.DivITPatronContext;
 import org.folio.rest.migration.model.request.divitpatron.DivITPatronJob;
 import org.folio.rest.migration.service.MigrationService;
+import org.folio.rest.migration.utility.TimingUtility;
 
 public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> {
 
@@ -43,6 +54,8 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
   private static final String ADDRESSES_TEMPORARY_POSTALCODE = "ADDRESSES_TEMPORARY_POSTALCODE";
   private static final String DEPARTMENTS_0 = "DEPARTMENTS_0";
   private static final String EXPIRATIONDATE = "EXPIRATIONDATE";
+
+  private static final String EXPIRATION_DATE_FORMAT = "YYYY-MM-DD";
 
   private DivITPatronMigration(DivITPatronContext context, String tenant) {
     super(context, tenant);
@@ -117,6 +130,10 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
 
       log.info("processing {} patrons", job.getName());
 
+      UserdataimportCollection userImportCollection = new UserdataimportCollection();
+
+      List<Userdataimport> users = new ArrayList<>();
+
       try (
         Statement statement = threadConnections.getConnection().createStatement();
         ResultSet resultSet = getResultSet(statement, partitionContext);
@@ -126,7 +143,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
           String username = resultSet.getString(USERNAME);
           String externalSystemId = resultSet.getString(EXTERNALSYSTEMID);
           String barcode = resultSet.getString(BARCODE);
-          String active = resultSet.getString(ACTIVE);
+          Boolean active = resultSet.getBoolean(ACTIVE);
           String patronGroup = resultSet.getString(PATRONGROUP);
           String personal_lastName = resultSet.getString(PERSONAL_LASTNAME);
           String personal_firstName = resultSet.getString(PERSONAL_FIRSTNAME);
@@ -149,32 +166,91 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
           String departments_0 = resultSet.getString(DEPARTMENTS_0);
           String expirationDate = resultSet.getString(EXPIRATIONDATE);
 
-          System.out.println("\tusername: " + username);
-          System.out.println("\texternalSystemId: " + externalSystemId);
-          System.out.println("\tbarcode: " + barcode);
-          System.out.println("\tactive: " + active);
-          System.out.println("\tpatronGroup: " + patronGroup);
-          System.out.println("\tpersonal_lastName: " + personal_lastName);
-          System.out.println("\tpersonal_firstName: " + personal_firstName);
-          System.out.println("\tpersonal_middleName: " + personal_middleName);
-          System.out.println("\tpersonal_email: " + personal_email);
-          System.out.println("\tpersonal_phone: " + personal_phone);
-          System.out.println("\taddresses_permanent_addressTypeId: " + addresses_permanent_addressTypeId);
-          System.out.println("\taddresses_permanent_countryId: " + addresses_permanent_countryId);
-          System.out.println("\taddresses_permanent_addressLine1: " + addresses_permanent_addressLine1);
-          System.out.println("\taddresses_permanent_addressLine2: " + addresses_permanent_addressLine2);
-          System.out.println("\taddresses_permanent_city: " + addresses_permanent_city);
-          System.out.println("\taddresses_permanent_region: " + addresses_permanent_region);
-          System.out.println("\taddresses_permanent_postalCode: " + addresses_permanent_postalCode);
-          System.out.println("\taddresses_temporary_addressTypeId: " + addresses_temporary_addressTypeId);
-          System.out.println("\taddresses_temporary_addressLine2: " + addresses_temporary_addressLine2);
-          System.out.println("\taddresses_temporary_addressLine1: " + addresses_temporary_addressLine1);
-          System.out.println("\taddresses_temporary_city: " + addresses_temporary_city);
-          System.out.println("\taddresses_temporary_region: " + addresses_temporary_region);
-          System.out.println("\taddresses_temporary_postalCode: " + addresses_temporary_postalCode);
-          System.out.println("\tdepartments_0: " + departments_0);
-          System.out.println("\texpirationDate: " + expirationDate);
-          System.out.println("*************************************************************");
+          if (StringUtils.isEmpty(barcode)) {
+            log.warn("{} patron {} does not have a barcode", job.getName(), username);
+            continue;
+          }
+
+          Userdataimport userImport = new Userdataimport();
+
+          if (StringUtils.isNotEmpty(username)) userImport.setUsername(username);
+          if (StringUtils.isNotEmpty(externalSystemId)) userImport.setExternalSystemId(externalSystemId);
+          if (StringUtils.isNotEmpty(barcode)) userImport.setBarcode(barcode);
+          if (Objects.nonNull(active)) userImport.setActive(active);
+          if (StringUtils.isNotEmpty(patronGroup)) userImport.setPatronGroup(patronGroup);
+
+          Personal personal = new Personal();
+
+          if (StringUtils.isNotEmpty(personal_lastName)) personal.setLastName(personal_lastName);
+          if (StringUtils.isNotEmpty(personal_firstName)) personal.setFirstName(personal_firstName);
+          if (StringUtils.isNotEmpty(personal_middleName)) personal.setMiddleName(personal_middleName);
+          if (StringUtils.isNotEmpty(personal_email)) personal.setEmail(personal_email);
+          if (StringUtils.isNotEmpty(personal_phone)) personal.setPhone(personal_phone);
+
+          if (StringUtils.isNotEmpty(addresses_permanent_addressTypeId)) {
+            Address permanentAddress = new Address();
+
+            if (StringUtils.isNotEmpty(addresses_permanent_addressTypeId)) permanentAddress.setAddressTypeId(addresses_permanent_addressTypeId);
+            if (StringUtils.isNotEmpty(addresses_permanent_countryId)) permanentAddress.setCountryId(addresses_permanent_countryId);
+            if (StringUtils.isNotEmpty(addresses_permanent_addressLine1)) permanentAddress.setAddressLine1(addresses_permanent_addressLine1);
+            if (StringUtils.isNotEmpty(addresses_permanent_addressLine2)) permanentAddress.setAddressLine2(addresses_permanent_addressLine2);
+            if (StringUtils.isNotEmpty(addresses_permanent_city)) permanentAddress.setCity(addresses_permanent_city);
+            if (StringUtils.isNotEmpty(addresses_permanent_region)) permanentAddress.setRegion(addresses_permanent_region);
+            if (StringUtils.isNotEmpty(addresses_permanent_postalCode)) permanentAddress.setPostalCode(addresses_permanent_postalCode);
+
+            if (StringUtils.isNotEmpty(addresses_permanent_addressTypeId) ||
+                StringUtils.isNotEmpty(addresses_permanent_countryId) ||
+                StringUtils.isNotEmpty(addresses_permanent_addressLine1) ||
+                StringUtils.isNotEmpty(addresses_permanent_addressLine2) ||
+                StringUtils.isNotEmpty(addresses_permanent_city) ||
+                StringUtils.isNotEmpty(addresses_permanent_region) ||
+                StringUtils.isNotEmpty(addresses_permanent_postalCode)) {
+              personal.getAddresses().add(permanentAddress);
+            }
+
+          }
+
+          if (StringUtils.isNotEmpty(addresses_temporary_addressTypeId)) {
+            Address temporaryAddress = new Address();
+
+            if (StringUtils.isNotEmpty(addresses_temporary_addressTypeId)) temporaryAddress.setAddressTypeId(addresses_temporary_addressTypeId);
+            if (StringUtils.isNotEmpty(addresses_temporary_addressLine1)) temporaryAddress.setAddressLine1(addresses_temporary_addressLine1);
+            if (StringUtils.isNotEmpty(addresses_temporary_addressLine2)) temporaryAddress.setAddressLine2(addresses_temporary_addressLine2);
+            if (StringUtils.isNotEmpty(addresses_temporary_city)) temporaryAddress.setCity(addresses_temporary_city);
+            if (StringUtils.isNotEmpty(addresses_temporary_region)) temporaryAddress.setRegion(addresses_temporary_region);
+            if (StringUtils.isNotEmpty(addresses_temporary_postalCode)) temporaryAddress.setPostalCode(addresses_temporary_postalCode);
+
+            if (StringUtils.isNotEmpty(addresses_temporary_addressTypeId) ||
+                StringUtils.isNotEmpty(addresses_temporary_addressLine1) ||
+                StringUtils.isNotEmpty(addresses_temporary_addressLine2) ||
+                StringUtils.isNotEmpty(addresses_temporary_city) ||
+                StringUtils.isNotEmpty(addresses_temporary_region) ||
+                StringUtils.isNotEmpty(addresses_temporary_postalCode)) {
+              personal.getAddresses().add(temporaryAddress);
+            }
+
+          }
+
+          if (StringUtils.isNotEmpty(username) ||
+              StringUtils.isNotEmpty(externalSystemId) ||
+              StringUtils.isNotEmpty(barcode) ||
+              Objects.nonNull(active) ||
+              StringUtils.isNotEmpty(patronGroup) ||
+              personal.getAddresses().size() > 0) {
+            userImport.setPersonal(personal);
+          }
+
+          if (StringUtils.isNotEmpty(departments_0)) userImport.getDepartments().add(departments_0);
+
+          if (StringUtils.isNotEmpty(expirationDate)) {
+            try {
+              userImport.setExpirationDate(DateUtils.parseDate(expirationDate, EXPIRATION_DATE_FORMAT));
+            } catch (ParseException e) {
+              e.printStackTrace();
+            }
+          }
+
+          users.add(userImport);
         }
 
       } catch (SQLException e) {
@@ -182,6 +258,41 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
       } finally {
         threadConnections.closeAll();
       }
+
+      if (users.isEmpty()) {
+        log.info("{} has no patrons at this time", job.getName());
+        return this;
+      }
+
+      userImportCollection.setUsers(users);
+      userImportCollection.setTotalRecords(users.size());
+
+      userImportCollection.setDeactivateMissingUsers(false);
+      userImportCollection.setUpdateOnlyPresentFields(true);
+
+      ImportResponse importResponse =  migrationService.okapiService.postUserdataimportCollection(tenant, token, userImportCollection);
+
+      if (StringUtils.isNotEmpty(importResponse.getError())) {
+        log.error("{}", importResponse.getError());
+      } else {
+        log.info("{}: {}", job.getName(), importResponse.getMessage());
+
+        log.info("{} total records", importResponse.getTotalRecords());
+  
+        log.info("{} newly created users", importResponse.getCreatedRecords());
+  
+        log.info("{} updated users", importResponse.getUpdatedRecords());
+  
+        log.info("{} failed records", importResponse.getFailedRecords());
+
+        if (importResponse.getFailedRecords() > 0) {
+          importResponse.getFailedUsers().forEach(failedUser -> {
+            log.info("{} {} {}", failedUser.getUsername(), failedUser.getExternalSystemId(), failedUser.getErrorMessage());
+          });
+        }
+      }
+
+      log.info("{} finished in {} milliseconds", job.getName(), TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
     }
