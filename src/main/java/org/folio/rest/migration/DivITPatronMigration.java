@@ -187,7 +187,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
           personal.setEmail(personal_email);
           personal.setPhone(personal_phone);
 
-          if (StringUtils.isNotEmpty(addresses_permanent_addressTypeId)) {
+          if (StringUtils.isNotEmpty(addresses_permanent_addressLine1)) {
             Address permanentAddress = new Address();
 
             permanentAddress.setAddressTypeId(addresses_permanent_addressTypeId);
@@ -202,7 +202,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
 
           }
 
-          if (StringUtils.isNotEmpty(addresses_temporary_addressTypeId)) {
+          if (StringUtils.isNotEmpty(addresses_temporary_addressLine1)) {
             Address temporaryAddress = new Address();
 
             temporaryAddress.setAddressTypeId(addresses_temporary_addressTypeId);
