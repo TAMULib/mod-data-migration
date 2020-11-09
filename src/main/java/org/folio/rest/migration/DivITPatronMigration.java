@@ -173,81 +173,57 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
 
           Userdataimport userImport = new Userdataimport();
 
-          if (StringUtils.isNotEmpty(username)) userImport.setUsername(username);
-          if (StringUtils.isNotEmpty(externalSystemId)) userImport.setExternalSystemId(externalSystemId);
-          if (StringUtils.isNotEmpty(barcode)) userImport.setBarcode(barcode);
-          if (Objects.nonNull(active)) userImport.setActive(active);
-          if (StringUtils.isNotEmpty(patronGroup)) userImport.setPatronGroup(patronGroup);
+          userImport.setUsername(username);
+          userImport.setExternalSystemId(externalSystemId);
+          userImport.setBarcode(barcode);
+          userImport.setActive(active);
+          userImport.setPatronGroup(patronGroup);
 
           Personal personal = new Personal();
 
-          if (StringUtils.isNotEmpty(personal_lastName)) personal.setLastName(personal_lastName);
-          if (StringUtils.isNotEmpty(personal_firstName)) personal.setFirstName(personal_firstName);
-          if (StringUtils.isNotEmpty(personal_middleName)) personal.setMiddleName(personal_middleName);
-          if (StringUtils.isNotEmpty(personal_email)) personal.setEmail(personal_email);
-          if (StringUtils.isNotEmpty(personal_phone)) personal.setPhone(personal_phone);
+          personal.setLastName(personal_lastName);
+          personal.setFirstName(personal_firstName);
+          personal.setMiddleName(personal_middleName);
+          personal.setEmail(personal_email);
+          personal.setPhone(personal_phone);
 
           if (StringUtils.isNotEmpty(addresses_permanent_addressTypeId)) {
             Address permanentAddress = new Address();
 
-            if (StringUtils.isNotEmpty(addresses_permanent_addressTypeId)) permanentAddress.setAddressTypeId(addresses_permanent_addressTypeId);
-            if (StringUtils.isNotEmpty(addresses_permanent_countryId)) permanentAddress.setCountryId(addresses_permanent_countryId);
-            if (StringUtils.isNotEmpty(addresses_permanent_addressLine1)) permanentAddress.setAddressLine1(addresses_permanent_addressLine1);
-            if (StringUtils.isNotEmpty(addresses_permanent_addressLine2)) permanentAddress.setAddressLine2(addresses_permanent_addressLine2);
-            if (StringUtils.isNotEmpty(addresses_permanent_city)) permanentAddress.setCity(addresses_permanent_city);
-            if (StringUtils.isNotEmpty(addresses_permanent_region)) permanentAddress.setRegion(addresses_permanent_region);
-            if (StringUtils.isNotEmpty(addresses_permanent_postalCode)) permanentAddress.setPostalCode(addresses_permanent_postalCode);
+            permanentAddress.setAddressTypeId(addresses_permanent_addressTypeId);
+            permanentAddress.setCountryId(addresses_permanent_countryId);
+            permanentAddress.setAddressLine1(addresses_permanent_addressLine1);
+            permanentAddress.setAddressLine2(addresses_permanent_addressLine2);
+            permanentAddress.setCity(addresses_permanent_city);
+            permanentAddress.setRegion(addresses_permanent_region);
+            permanentAddress.setPostalCode(addresses_permanent_postalCode);
 
-            if (StringUtils.isNotEmpty(addresses_permanent_addressTypeId) ||
-                StringUtils.isNotEmpty(addresses_permanent_countryId) ||
-                StringUtils.isNotEmpty(addresses_permanent_addressLine1) ||
-                StringUtils.isNotEmpty(addresses_permanent_addressLine2) ||
-                StringUtils.isNotEmpty(addresses_permanent_city) ||
-                StringUtils.isNotEmpty(addresses_permanent_region) ||
-                StringUtils.isNotEmpty(addresses_permanent_postalCode)) {
-              personal.getAddresses().add(permanentAddress);
-            }
+            personal.getAddresses().add(permanentAddress);
 
           }
 
           if (StringUtils.isNotEmpty(addresses_temporary_addressTypeId)) {
             Address temporaryAddress = new Address();
 
-            if (StringUtils.isNotEmpty(addresses_temporary_addressTypeId)) temporaryAddress.setAddressTypeId(addresses_temporary_addressTypeId);
-            if (StringUtils.isNotEmpty(addresses_temporary_addressLine1)) temporaryAddress.setAddressLine1(addresses_temporary_addressLine1);
-            if (StringUtils.isNotEmpty(addresses_temporary_addressLine2)) temporaryAddress.setAddressLine2(addresses_temporary_addressLine2);
-            if (StringUtils.isNotEmpty(addresses_temporary_city)) temporaryAddress.setCity(addresses_temporary_city);
-            if (StringUtils.isNotEmpty(addresses_temporary_region)) temporaryAddress.setRegion(addresses_temporary_region);
-            if (StringUtils.isNotEmpty(addresses_temporary_postalCode)) temporaryAddress.setPostalCode(addresses_temporary_postalCode);
+            temporaryAddress.setAddressTypeId(addresses_temporary_addressTypeId);
+            temporaryAddress.setAddressLine1(addresses_temporary_addressLine1);
+            temporaryAddress.setAddressLine2(addresses_temporary_addressLine2);
+            temporaryAddress.setCity(addresses_temporary_city);
+            temporaryAddress.setRegion(addresses_temporary_region);
+            temporaryAddress.setPostalCode(addresses_temporary_postalCode);
 
-            if (StringUtils.isNotEmpty(addresses_temporary_addressTypeId) ||
-                StringUtils.isNotEmpty(addresses_temporary_addressLine1) ||
-                StringUtils.isNotEmpty(addresses_temporary_addressLine2) ||
-                StringUtils.isNotEmpty(addresses_temporary_city) ||
-                StringUtils.isNotEmpty(addresses_temporary_region) ||
-                StringUtils.isNotEmpty(addresses_temporary_postalCode)) {
-              personal.getAddresses().add(temporaryAddress);
-            }
+            personal.getAddresses().add(temporaryAddress);
 
           }
 
-          if (StringUtils.isNotEmpty(username) ||
-              StringUtils.isNotEmpty(externalSystemId) ||
-              StringUtils.isNotEmpty(barcode) ||
-              Objects.nonNull(active) ||
-              StringUtils.isNotEmpty(patronGroup) ||
-              personal.getAddresses().size() > 0) {
-            userImport.setPersonal(personal);
-          }
+          userImport.setPersonal(personal);
 
-          if (StringUtils.isNotEmpty(departments_0)) userImport.getDepartments().add(departments_0);
+          userImport.getDepartments().add(departments_0);
 
-          if (StringUtils.isNotEmpty(expirationDate)) {
-            try {
-              userImport.setExpirationDate(DateUtils.parseDate(expirationDate, EXPIRATION_DATE_FORMAT));
-            } catch (ParseException e) {
-              e.printStackTrace();
-            }
+          try {
+            userImport.setExpirationDate(DateUtils.parseDate(expirationDate, EXPIRATION_DATE_FORMAT));
+          } catch (ParseException e) {
+            e.printStackTrace();
           }
 
           users.add(userImport);
@@ -270,7 +246,9 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
       userImportCollection.setDeactivateMissingUsers(false);
       userImportCollection.setUpdateOnlyPresentFields(true);
 
-      ImportResponse importResponse =  migrationService.okapiService.postUserdataimportCollection(tenant, token, userImportCollection);
+      log.info("submitting user import with {} users", userImportCollection.getTotalRecords());
+
+      ImportResponse importResponse = migrationService.okapiService.postUserdataimportCollection(tenant, token, userImportCollection);
 
       if (StringUtils.isNotEmpty(importResponse.getError())) {
         log.error("{}", importResponse.getError());
@@ -278,16 +256,17 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
         log.info("{}: {}", job.getName(), importResponse.getMessage());
 
         log.info("{} total records", importResponse.getTotalRecords());
-  
+
         log.info("{} newly created users", importResponse.getCreatedRecords());
-  
+
         log.info("{} updated users", importResponse.getUpdatedRecords());
-  
+
         log.info("{} failed records", importResponse.getFailedRecords());
 
         if (importResponse.getFailedRecords() > 0) {
           importResponse.getFailedUsers().forEach(failedUser -> {
-            log.info("{} {} {}", failedUser.getUsername(), failedUser.getExternalSystemId(), failedUser.getErrorMessage());
+            log.info("{} {} {}", failedUser.getUsername(), failedUser.getExternalSystemId(),
+                failedUser.getErrorMessage());
           });
         }
       }

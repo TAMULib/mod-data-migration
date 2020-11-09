@@ -462,12 +462,10 @@ public class OkapiService {
   }
 
   public ImportResponse postUserdataimportCollection(String tenant, String token, UserdataimportCollection userdataimportCollection) {
-    log.info("submitting user import with {} users", userdataimportCollection.getTotalRecords());
     long startTime = System.nanoTime();
     HttpEntity<UserdataimportCollection> entity = new HttpEntity<>(userdataimportCollection, headers(tenant, token));
     String url = okapi.getUrl() + "/user-import";
     ResponseEntity<ImportResponse> response = restTemplate.exchange(url, HttpMethod.POST, entity, ImportResponse.class);
-    log.info("user import response: " + response.getStatusCodeValue());
     log.debug("importing users: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
