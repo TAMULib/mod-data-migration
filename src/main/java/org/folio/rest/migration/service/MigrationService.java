@@ -12,6 +12,7 @@ import org.folio.rest.migration.Migration;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.model.repo.ReferenceLinkRepo;
 import org.folio.rest.model.repo.ReferenceLinkTypeRepo;
+import org.folio.spring.tenant.service.SchemaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class MigrationService {
 
   @Autowired
   public OkapiService okapiService;
+
+  @Autowired
+  public SchemaService schemaService;
 
   @Autowired
   public ReferenceLinkRepo referenceLinkRepo;
