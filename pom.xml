@@ -145,6 +145,17 @@
               <targetPackage>org.folio.rest.jaxrs.model.notes</targetPackage>
             </configuration>
           </execution>
+          <execution>
+            <id>mod-user-import/ramls</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <sourceDirectory>${basedir}/mod-user-import/ramls</sourceDirectory>
+              <targetPackage>org.folio.rest.jaxrs.model.userimport</targetPackage>
+            </configuration>
+          </execution>
          </executions>
       </plugin>
 
@@ -186,8 +197,9 @@
       </resource>
       <resource>
         <filtering>false</filtering>
-        <directory>application.yml</directory>
+        <directory>src/main/resources</directory>
         <excludes>
+          <exclude>application.yml</exclude>
           <exclude>descriptors/**</exclude>
           <exclude>descriptors/**</exclude>
         </excludes>
@@ -257,13 +269,7 @@
 
     <dependency>
       <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-rest-hal-browser</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-      <scope>runtime</scope>
+      <artifactId>spring-data-rest-hal-explorer</artifactId>
     </dependency>
 
     <dependency>

@@ -26,7 +26,7 @@ public class UserRecord {
   private static final String PHONE_PRIMARY = "Primary";
   private static final String PHONE_MOBILE = "Mobile";
 
-  private static final String EXPIRED_DATE_FORMAT = "YYYY-MM-DD";
+  private static final String EXPIRED_DATE_FORMAT = "yyyy-MM-dd";
 
   private final String referenceId;
   private final String patronId;

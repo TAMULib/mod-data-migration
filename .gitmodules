@@ -19,3 +19,6 @@
 [submodule "mod-feesfines"]
 	path = mod-feesfines
 	url = https://github.com/folio-org/mod-feesfines.git
+[submodule "mod-user-import"]
+	path = mod-user-import
+	url = https://github.com/folio-org/mod-user-import.git
