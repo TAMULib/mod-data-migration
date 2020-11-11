@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -19,6 +20,7 @@ import org.folio.rest.migration.mapping.HoldingMapper;
 import org.folio.rest.migration.model.request.holding.HoldingMaps;
 import org.marc4j.marc.DataField;
 import org.marc4j.marc.Record;
+import org.marc4j.marc.Subfield;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -271,7 +273,7 @@ public class HoldingRecord {
       .forEach(field -> {
         String tag = field.getTag();
         Note note = new Note();
-        note.setNote(field.toString());
+        note.setNote(field.getSubfields().stream().map(Subfield::getData).collect(Collectors.joining(". ")));
         switch (tag) {
         case "506":
           // access
