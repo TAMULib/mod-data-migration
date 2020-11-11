@@ -461,6 +461,26 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       });
       return future;
     }
+
+    private List<VendorPhoneRecord> getVendorAddressPhoneNumbers(Statement statement, Map<String, Object> vendorAddressPhoneNumberContext) throws SQLException {
+      List<VendorPhoneRecord> vendorPhoneNumbers = new ArrayList<>();
+      String schema = (String) vendorAddressPhoneNumberContext.get(SCHEMA);
+      String vendorId = (String) vendorAddressPhoneNumberContext.get(VENDOR_ID);
+      String addressId = (String) vendorAddressPhoneNumberContext.get(ADDRESS_ID);
+      List<String> categories = (List<String>) vendorAddressPhoneNumberContext.get(CATEGORIES);
+      try (ResultSet resultSet = getResultSet(statement, vendorAddressPhoneNumberContext)) {
+        while (resultSet.next()) {
+          String phoneNumber = resultSet.getString(PHONE_NUMBER);
+          String phoneType = resultSet.getString(PHONE_TYPE);
+          if (phoneNumber.contains("@") || phoneNumber.toLowerCase().matches("www\\.")) {
+            log.error("{} E-mail or URL is used as phone number for vendor id {} for address id {}", schema, vendorId, addressId);
+            continue;
+          }
+          vendorPhoneNumbers.add(new VendorPhoneRecord(addressId, phoneNumber, phoneType, categories));
+        }
+      }
+      return vendorPhoneNumbers;
+    }
   
     private CompletableFuture<String> getVendorNotes(Statement statement, Map<String, Object> vendorNotesContext) {
       CompletableFuture<String> future = new CompletableFuture<>();
@@ -507,26 +527,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       throw new RuntimeException(e);
     }
     return threadConnections;
-  }
-
-  private List<VendorPhoneRecord> getVendorAddressPhoneNumbers(Statement statement, Map<String, Object> vendorAddressPhoneNumberContext) throws SQLException {
-    List<VendorPhoneRecord> vendorPhoneNumbers = new ArrayList<>();
-    String schema = (String) vendorAddressPhoneNumberContext.get(SCHEMA);
-    String vendorId = (String) vendorAddressPhoneNumberContext.get(VENDOR_ID);
-    String addressId = (String) vendorAddressPhoneNumberContext.get(ADDRESS_ID);
-    List<String> categories = (List<String>) vendorAddressPhoneNumberContext.get(CATEGORIES);
-    try (ResultSet resultSet = getResultSet(statement, vendorAddressPhoneNumberContext)) {
-      while (resultSet.next()) {
-        String phoneNumber = resultSet.getString(PHONE_NUMBER);
-        String phoneType = resultSet.getString(PHONE_TYPE);
-        if (phoneNumber.contains("@") || phoneNumber.toLowerCase().matches("www\\.")) {
-          log.error("{} E-mail or URL is used as phone number for vendor id {} for address id {}", schema, vendorId, addressId);
-          continue;
-        }
-        vendorPhoneNumbers.add(new VendorPhoneRecord(addressId, phoneNumber, phoneType, categories));
-      }
-    }
-    return vendorPhoneNumbers;
   }
 
   private class ThreadConnections {

@@ -484,25 +484,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
     return BARCODES.add(barcode);
   }
 
-  private ThreadConnections getThreadConnections(Database voyagerSettings, Database usernameSettings, Database folioSettings) {
-    ThreadConnections threadConnections = new ThreadConnections();
-    threadConnections.setPageConnection(getConnection(voyagerSettings));
-    threadConnections.setAddressConnection(getConnection(voyagerSettings));
-    threadConnections.setPatronGroupConnection(getConnection(voyagerSettings));
-    threadConnections.setPatronNoteConnection(getConnection(voyagerSettings));
-    threadConnections.setUsernameConnection(getConnection(usernameSettings));
-
-    try {
-      threadConnections.setUserConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-      threadConnections.setNoteConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-      throw new RuntimeException(e);
-    }
-
-    return threadConnections;
-  }
-
   private Optional<String> getPatronGroup(String groupcode, Usergroups usergroups) {
     Optional<Usergroup> usergroup = usergroups.getUsergroups().stream()
       .filter(ug -> ug.getGroup().equals(groupcode))
@@ -521,6 +502,25 @@ public class UserMigration extends AbstractMigration<UserContext> {
       return Optional.of(addresstype.get().getId());
     }
     return Optional.empty();
+  }
+
+  private ThreadConnections getThreadConnections(Database voyagerSettings, Database usernameSettings, Database folioSettings) {
+    ThreadConnections threadConnections = new ThreadConnections();
+    threadConnections.setPageConnection(getConnection(voyagerSettings));
+    threadConnections.setAddressConnection(getConnection(voyagerSettings));
+    threadConnections.setPatronGroupConnection(getConnection(voyagerSettings));
+    threadConnections.setPatronNoteConnection(getConnection(voyagerSettings));
+    threadConnections.setUsernameConnection(getConnection(usernameSettings));
+
+    try {
+      threadConnections.setUserConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+      threadConnections.setNoteConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+    } catch (SQLException e) {
+      log.error(e.getMessage());
+      throw new RuntimeException(e);
+    }
+
+    return threadConnections;
   }
 
   private class ThreadConnections {
