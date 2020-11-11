@@ -25,6 +25,7 @@ import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.divitpatron.DivITPatronContext;
 import org.folio.rest.migration.model.request.divitpatron.DivITPatronJob;
 import org.folio.rest.migration.service.MigrationService;
+import org.folio.rest.migration.utility.FormatUtility;
 import org.folio.rest.migration.utility.TimingUtility;
 
 public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> {
@@ -185,7 +186,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
           personal.setFirstName(personal_firstName);
           personal.setMiddleName(personal_middleName);
           personal.setEmail(personal_email);
-          personal.setPhone(personal_phone);
+          personal.setPhone(FormatUtility.normalizePhoneNumber(personal_phone));
 
           if (StringUtils.isNotEmpty(addresses_permanent_addressLine1)) {
             Address permanentAddress = new Address();
@@ -196,7 +197,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
             permanentAddress.setAddressLine2(addresses_permanent_addressLine2);
             permanentAddress.setCity(addresses_permanent_city);
             permanentAddress.setRegion(addresses_permanent_region);
-            permanentAddress.setPostalCode(addresses_permanent_postalCode);
+            permanentAddress.setPostalCode(FormatUtility.normalizePostalCode(addresses_permanent_postalCode));
 
             personal.getAddresses().add(permanentAddress);
           }
@@ -209,7 +210,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
             temporaryAddress.setAddressLine2(addresses_temporary_addressLine2);
             temporaryAddress.setCity(addresses_temporary_city);
             temporaryAddress.setRegion(addresses_temporary_region);
-            temporaryAddress.setPostalCode(addresses_temporary_postalCode);
+            temporaryAddress.setPostalCode(FormatUtility.normalizePostalCode(addresses_temporary_postalCode));
 
             personal.getAddresses().add(temporaryAddress);
           }
@@ -265,8 +266,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
 
         if (importResponse.getFailedRecords() > 0) {
           importResponse.getFailedUsers().forEach(failedUser -> {
-            log.info("{} {} {}", failedUser.getUsername(), failedUser.getExternalSystemId(),
-                failedUser.getErrorMessage());
+            log.info("{} {} {}", failedUser.getUsername(), failedUser.getExternalSystemId(), failedUser.getErrorMessage());
           });
         }
       }

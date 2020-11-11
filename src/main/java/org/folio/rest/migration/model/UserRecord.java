@@ -14,6 +14,7 @@ import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.jaxrs.model.users.Metadata;
 import org.folio.rest.migration.model.request.user.UserDefaults;
 import org.folio.rest.migration.model.request.user.UserMaps;
+import org.folio.rest.migration.utility.FormatUtility;
 
 public class UserRecord {
 
@@ -258,7 +259,7 @@ public class UserRecord {
       } else {
         if (userAddressRecord.hasPhoneNumber()) {
           // phone type is stored as phone description.
-          phoneNumbers.add(userAddressRecord.getPhoneNumber());
+          phoneNumbers.add(FormatUtility.normalizePhoneNumber(userAddressRecord.getPhoneNumber()));
           phoneTypes.add(userAddressRecord.getPhoneDescription());
         } else {
           phoneNumbers.add(StringUtils.EMPTY);
