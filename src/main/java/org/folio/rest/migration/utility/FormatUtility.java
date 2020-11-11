@@ -8,8 +8,12 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FormatUtility {
+
+  private static final Logger log = LoggerFactory.getLogger(FormatUtility.class);
 
   private FormatUtility() {
 
@@ -36,16 +40,13 @@ public class FormatUtility {
       String country = Locale.getDefault().getCountry();
       try {
         PhoneNumber numberProto = phoneUtil.parseAndKeepRawInput(phoneNumber, country);
-        System.out.println("before " + phoneNumber);
         if (numberProto.getCountryCode() == phoneUtil.getCountryCodeForRegion(country)) {
           phoneNumber = phoneUtil.format(numberProto, PhoneNumberFormat.NATIONAL);
         } else {
-          System.out.println("international ******************************************************");
           phoneNumber = phoneUtil.format(numberProto, PhoneNumberFormat.INTERNATIONAL);
         }
-        System.out.println("after " + phoneNumber);
       } catch (NumberParseException e) {
-        System.err.println(phoneNumber + " could not be parsed: " + e.toString());
+        log.error(phoneNumber + " could not be parsed ", e);
       }
     }
     return phoneNumber;
