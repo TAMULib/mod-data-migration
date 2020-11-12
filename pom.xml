@@ -301,6 +301,12 @@
       <artifactId>ojdbc8</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.googlecode.libphonenumber</groupId>
+      <artifactId>libphonenumber</artifactId>
+      <version>8.12.12</version>
+    </dependency>
+
   </dependencies>
 
   <distributionManagement>

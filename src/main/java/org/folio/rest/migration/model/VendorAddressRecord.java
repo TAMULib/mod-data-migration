@@ -15,6 +15,7 @@ import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Emai
 import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Url;
 import org.folio.rest.migration.model.request.vendor.VendorDefaults;
 import org.folio.rest.migration.model.request.vendor.VendorMaps;
+import org.folio.rest.migration.utility.FormatUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -220,7 +221,7 @@ public class VendorAddressRecord {
     address.setAddressLine1(addressLine1Full);
     address.setCity(city);
     address.setStateRegion(stateProvince);
-    address.setZipCode(zipPostal);
+    address.setZipCode(FormatUtility.normalizePostalCode(zipPostal));
 
     address.setCategories(categories);
 

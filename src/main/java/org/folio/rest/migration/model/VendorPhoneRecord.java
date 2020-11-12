@@ -9,6 +9,7 @@ import org.folio.rest.jaxrs.model.organizations.acq_models.acquisitions_unit.sch
 import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.PhoneNumber;
 import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.PhoneNumber.Type;
 import org.folio.rest.migration.model.request.vendor.VendorDefaults;
+import org.folio.rest.migration.utility.FormatUtility;
 
 public class VendorPhoneRecord {
 
@@ -63,7 +64,7 @@ public class VendorPhoneRecord {
   public PhoneNumber toPhoneNumber(VendorDefaults defaults) {
     final PhoneNumber phoneNumber = new PhoneNumber();
 
-    phoneNumber.setPhoneNumber(number);
+    phoneNumber.setPhoneNumber(FormatUtility.normalizePhoneNumber(number));
     phoneNumber.setCategories(categories);
 
     setLanguage(phoneNumber, defaults);
