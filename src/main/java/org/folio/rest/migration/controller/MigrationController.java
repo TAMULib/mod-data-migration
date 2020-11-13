@@ -117,7 +117,6 @@ public class MigrationController {
   }
 
   @PostMapping("/boundwith")
-  @CreateReferenceData(pattern = "classpath:/referenceData/boundwith/*.json")
   public CompletableFuture<String> boundwith(@RequestBody BoundWithContext context, @TenantHeader String tenant) {
     return migrationService.migrate(BoundWithMigration.with(context, tenant));
   }
