@@ -1,5 +1,6 @@
 logging:
-  file: logs/mod-data-migration.log
+  file:
+    name: mod-data-migration.log
   level:
     com:
       zaxxer:
