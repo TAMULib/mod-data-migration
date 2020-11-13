@@ -23,7 +23,7 @@ public class FormatUtility {
     if (StringUtils.isNotEmpty(postalCode)) {
       // simple fix for trailing hyphens
       postalCode = StringUtils.removeEnd(postalCode, "-");
-      // handle postal codes from DivITs patron database
+      // add hyphen if 9 digit postal code
       if (postalCode.length() == 9 && !postalCode.contains("-")) {
         postalCode = String.format("%s-%s", postalCode.substring(0, 5), postalCode.substring(5));
       }
@@ -37,10 +37,10 @@ public class FormatUtility {
     }
     PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
     if (StringUtils.isNotEmpty(phoneNumber)) {
-      String country = Locale.getDefault().getCountry();
+      String defaultRegion = "US";
       try {
-        PhoneNumber numberProto = phoneUtil.parseAndKeepRawInput(phoneNumber, country);
-        if (numberProto.getCountryCode() == phoneUtil.getCountryCodeForRegion(country)) {
+        PhoneNumber numberProto = phoneUtil.parseAndKeepRawInput(phoneNumber, defaultRegion);
+        if (numberProto.getCountryCode() == phoneUtil.getCountryCodeForRegion(defaultRegion)) {
           phoneNumber = phoneUtil.format(numberProto, PhoneNumberFormat.NATIONAL);
         } else {
           phoneNumber = phoneUtil.format(numberProto, PhoneNumberFormat.INTERNATIONAL);
