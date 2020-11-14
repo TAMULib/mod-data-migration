@@ -28,9 +28,9 @@ import org.slf4j.LoggerFactory;
 
 import io.vertx.core.json.JsonObject;
 
-public class HoldingRecord {
+public class HoldingsRecord {
 
-  private final static Logger log = LoggerFactory.getLogger(HoldingRecord.class);
+  private final static Logger log = LoggerFactory.getLogger(HoldingsRecord.class);
 
   private final HoldingsMaps holdingMaps;
 
@@ -56,7 +56,7 @@ public class HoldingRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public HoldingRecord(HoldingsMaps holdingMaps, Record record, String mfhdId, String locationId, Boolean discoverySuppress,
+  public HoldingsRecord(HoldingsMaps holdingMaps, Record record, String mfhdId, String locationId, Boolean discoverySuppress,
     String callNumber, String callNumberType, String holdingsType, String receiptStatus, String acquisitionMethod, String retentionPolicy) {
     this.holdingMaps = holdingMaps;
     this.record = record;
