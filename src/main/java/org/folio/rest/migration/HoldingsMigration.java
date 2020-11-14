@@ -25,7 +25,7 @@ import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.HoldingMapper;
-import org.folio.rest.migration.model.HoldingRecord;
+import org.folio.rest.migration.model.HoldingsRecord;
 import org.folio.rest.migration.model.request.holdings.HoldingsContext;
 import org.folio.rest.migration.model.request.holdings.HoldingsDefaults;
 import org.folio.rest.migration.model.request.holdings.HoldingsJob;
@@ -337,7 +337,7 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
               continue;
             }
 
-            HoldingRecord holdingRecord = new HoldingRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
+            HoldingsRecord holdingRecord = new HoldingsRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
             holdingRecord.setHoldingId(holdingId);
             holdingRecord.setInstanceId(instanceId);
