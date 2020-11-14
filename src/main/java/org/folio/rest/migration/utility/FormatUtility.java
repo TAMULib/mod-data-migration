@@ -44,7 +44,7 @@ public class FormatUtility {
           phoneNumber = phoneUtil.format(numberProto, PhoneNumberFormat.INTERNATIONAL);
         }
       } catch (NumberParseException e) {
-        log.error(phoneNumber + " could not be parsed ", e);
+        log.error(phoneNumber + " could not be parsed " + e.getMessage());
       }
     }
     return phoneNumber;
