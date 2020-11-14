@@ -13,6 +13,8 @@ public class FormatUtility {
 
   private static final Logger log = LoggerFactory.getLogger(FormatUtility.class);
 
+  private static final PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+
   private FormatUtility() {
 
   }
@@ -33,10 +35,9 @@ public class FormatUtility {
     if (phoneNumber.startsWith("#") || phoneNumber.startsWith("*")) {
       return phoneNumber;
     }
-    PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
     if (StringUtils.isNotEmpty(phoneNumber)) {
-      String defaultRegion = "US";
       try {
+        String defaultRegion = "US";
         PhoneNumber numberProto = phoneUtil.parseAndKeepRawInput(phoneNumber, defaultRegion);
         if (numberProto.getCountryCode() == phoneUtil.getCountryCodeForRegion(defaultRegion)) {
           phoneNumber = phoneUtil.format(numberProto, PhoneNumberFormat.NATIONAL);
@@ -44,7 +45,7 @@ public class FormatUtility {
           phoneNumber = phoneUtil.format(numberProto, PhoneNumberFormat.INTERNATIONAL);
         }
       } catch (NumberParseException e) {
-        log.error(phoneNumber + " could not be parsed " + e.getMessage());
+        log.error(phoneNumber + " could not be parsed. " + e.getMessage());
       }
     }
     return phoneNumber;
