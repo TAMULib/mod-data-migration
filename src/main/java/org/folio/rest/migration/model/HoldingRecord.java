@@ -3,7 +3,9 @@ package org.folio.rest.migration.model;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,7 +19,7 @@ import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Metadata;
 import org.folio.rest.jaxrs.model.inventory.Note;
 import org.folio.rest.migration.mapping.HoldingMapper;
-import org.folio.rest.migration.model.request.holding.HoldingMaps;
+import org.folio.rest.migration.model.request.holdings.HoldingsMaps;
 import org.marc4j.marc.DataField;
 import org.marc4j.marc.Record;
 import org.marc4j.marc.Subfield;
@@ -30,7 +32,7 @@ public class HoldingRecord {
 
   private final static Logger log = LoggerFactory.getLogger(HoldingRecord.class);
 
-  private final HoldingMaps holdingMaps;
+  private final HoldingsMaps holdingMaps;
 
   private final Record record;
 
@@ -54,7 +56,7 @@ public class HoldingRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public HoldingRecord(HoldingMaps holdingMaps, Record record, String mfhdId, String locationId, Boolean discoverySuppress,
+  public HoldingRecord(HoldingsMaps holdingMaps, Record record, String mfhdId, String locationId, Boolean discoverySuppress,
     String callNumber, String callNumberType, String holdingsType, String receiptStatus, String acquisitionMethod, String retentionPolicy) {
     this.holdingMaps = holdingMaps;
     this.record = record;
@@ -149,7 +151,7 @@ public class HoldingRecord {
     this.createdDate = createdDate;
   }
 
-  public Holdingsrecord toHolding(HoldingMapper holdingMapper, String hridString) throws JsonProcessingException {
+  public Holdingsrecord toHolding(HoldingMapper holdingMapper, HoldingsMaps holdingsMaps, String hridString) throws JsonProcessingException {
     final Holdingsrecord holding = holdingMapper.getHolding(parsedRecord);
     if (Objects.nonNull(holding)) {
       holding.setId(holdingId);
@@ -171,7 +173,7 @@ public class HoldingRecord {
       holding.setRetentionPolicy(retentionPolicy);
       // holding.setStatisticalCodeIds(null);
 
-      processMarcHolding(holding);
+      processMarcHolding(holding, holdingsMaps.getFieldRegexExclusion());
 
       holding.setHrid(hridString);
 
@@ -189,12 +191,65 @@ public class HoldingRecord {
     return holding;
   }
 
-  public void processMarcHolding(Holdingsrecord holding) {
+  public void processMarcHolding(Holdingsrecord holding, Map<String, String> fieldRegexExclusion) {
+    process5xxFields(holding, fieldRegexExclusion);
     process852Field(holding);
-    process5xxFields(holding);
     process866Field(holding);
     process867Field(holding);
     process868Field(holding);
+  }
+
+  public void process5xxFields(Holdingsrecord holding, Map<String, String> fieldRegexExclusion) {
+    List<Note> notes = holding.getNotes();
+    record.getVariableFields().stream()
+      .filter(Objects::nonNull)
+      .filter(field -> field instanceof DataField)
+      .map(field -> (DataField) field)
+      .filter(field -> StringUtils.isNotEmpty(field.getTag()))
+      .filter(field -> field.getTag().startsWith("5"))
+      .forEach(field -> {
+        String tag = field.getTag();
+        Optional<String> regexExclusion = Optional.ofNullable(fieldRegexExclusion.get(tag));
+        if (regexExclusion.isPresent() && field.toString().matches(regexExclusion.get())) {
+          log.info("Skipping field {} by exclusion regex {}", field.toString(), regexExclusion.get());
+        } else {
+          Note note = new Note();
+          note.setNote(field.getSubfields().stream().map(Subfield::getData).collect(Collectors.joining(". ")));
+          switch (tag) {
+          case "506":
+            // access
+            note.setStaffOnly(false);
+            note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("access"));
+            break;
+          case "541":
+          case "561":
+            // provenance
+            note.setStaffOnly(false);
+            note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("provenance"));
+            break;
+          case "562":
+            // copy
+            note.setStaffOnly(false);
+            note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("copy"));
+            break;
+          case "563":
+            // binding
+            note.setStaffOnly(false);
+            note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("binding"));
+            break;
+          case "583":
+            // action
+            note.setStaffOnly(true);
+            note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("action"));
+            break;
+          default:
+            note.setStaffOnly(true);
+            note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
+            break;
+          }
+          notes.add(note);
+        }
+      });
   }
 
   public void process852Field(Holdingsrecord holding) {
@@ -260,54 +315,6 @@ public class HoldingRecord {
         holding.setCallNumber(callNumber);
       }
     }
-  }
-
-  public void process5xxFields(Holdingsrecord holding) {
-    List<Note> notes = holding.getNotes();
-    record.getVariableFields().stream()
-      .filter(Objects::nonNull)
-      .filter(field -> field instanceof DataField)
-      .map(field -> (DataField) field)
-      .filter(field -> StringUtils.isNotEmpty(field.getTag()))
-      .filter(field -> field.getTag().startsWith("5"))
-      .forEach(field -> {
-        String tag = field.getTag();
-        Note note = new Note();
-        note.setNote(field.getSubfields().stream().map(Subfield::getData).collect(Collectors.joining(". ")));
-        switch (tag) {
-        case "506":
-          // access
-          note.setStaffOnly(false);
-          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("access"));
-          break;
-        case "541":
-        case "561":
-          // provenance
-          note.setStaffOnly(false);
-          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("provenance"));
-          break;
-        case "562":
-          // copy
-          note.setStaffOnly(false);
-          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("copy"));
-          break;
-        case "563":
-          // binding
-          note.setStaffOnly(false);
-          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("binding"));
-          break;
-        case "583":
-          // action
-          note.setStaffOnly(true);
-          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("action"));
-          break;
-        default:
-          note.setStaffOnly(true);
-          note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
-          break;
-        }
-        notes.add(note);
-      });
   }
 
   public void process866Field(Holdingsrecord holding) {

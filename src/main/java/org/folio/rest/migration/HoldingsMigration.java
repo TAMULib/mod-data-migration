@@ -26,10 +26,10 @@ import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.HoldingMapper;
 import org.folio.rest.migration.model.HoldingRecord;
-import org.folio.rest.migration.model.request.holding.HoldingContext;
-import org.folio.rest.migration.model.request.holding.HoldingDefaults;
-import org.folio.rest.migration.model.request.holding.HoldingJob;
-import org.folio.rest.migration.model.request.holding.HoldingMaps;
+import org.folio.rest.migration.model.request.holdings.HoldingsContext;
+import org.folio.rest.migration.model.request.holdings.HoldingsDefaults;
+import org.folio.rest.migration.model.request.holdings.HoldingsJob;
+import org.folio.rest.migration.model.request.holdings.HoldingsMaps;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
@@ -40,7 +40,7 @@ import org.postgresql.core.BaseConnection;
 
 import io.vertx.core.json.JsonObject;
 
-public class HoldingMigration extends AbstractMigration<HoldingContext> {
+public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
 
   private static final String HRID_PREFIX = "HRID_PREFIX";
   private static final String HRID_START_NUMBER = "HRID_START_NUMBER";
@@ -70,7 +70,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
   // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
   private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid) FROM STDIN WITH NULL AS 'null'";
 
-  private HoldingMigration(HoldingContext context, String tenant) {
+  private HoldingsMigration(HoldingsContext context, String tenant) {
     super(context, tenant);
   }
 
@@ -95,7 +95,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     preActions(folioSettings, context.getPreActions());
 
-    taskQueue = new PartitionTaskQueue<HoldingContext>(context, new TaskCallback() {
+    taskQueue = new PartitionTaskQueue<HoldingsContext>(context, new TaskCallback() {
 
       @Override
       public void complete() {
@@ -116,7 +116,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
     int index = 0;
 
-    for (HoldingJob job : context.getJobs()) {
+    for (HoldingsJob job : context.getJobs()) {
 
       countContext.put(SCHEMA, job.getSchema());
 
@@ -157,11 +157,11 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
     return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }
 
-  public static HoldingMigration with(HoldingContext context, String tenant) {
-    return new HoldingMigration(context, tenant);
+  public static HoldingsMigration with(HoldingsContext context, String tenant) {
+    return new HoldingsMigration(context, tenant);
   }
 
-  public class HoldingPartitionTask implements PartitionTask<HoldingContext> {
+  public class HoldingPartitionTask implements PartitionTask<HoldingsContext> {
 
     private final MigrationService migrationService;
 
@@ -182,12 +182,12 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
       return (int) partitionContext.get(INDEX);
     }
 
-    public HoldingPartitionTask execute(HoldingContext context) {
+    public HoldingPartitionTask execute(HoldingsContext context) {
       long startTime = System.nanoTime();
 
       String hridPrefix = (String) partitionContext.get(HRID_PREFIX);
 
-      HoldingJob job = (HoldingJob) partitionContext.get(JOB);
+      HoldingsJob job = (HoldingsJob) partitionContext.get(JOB);
 
       Map<String, String> locationsMap = (Map<String, String>) partitionContext.get(LOCATIONS_MAP);
 
@@ -205,8 +205,8 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
       JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
 
-      HoldingMaps holdingMaps = context.getMaps();
-      HoldingDefaults holdingDefaults = context.getDefaults();
+      HoldingsMaps holdingMaps = context.getMaps();
+      HoldingsDefaults holdingDefaults = context.getDefaults();
 
       Map<String, Object> marcContext = new HashMap<>();
       marcContext.put(SQL, context.getExtraction().getMarcSql());
@@ -351,7 +351,7 @@ public class HoldingMigration extends AbstractMigration<HoldingContext> {
 
             String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
 
-            Holdingsrecord holdingsRecord = holdingRecord.toHolding(holdingMapper, hridString);
+            Holdingsrecord holdingsRecord = holdingRecord.toHolding(holdingMapper, holdingMaps, hridString);
 
             String callNumberPrefix = holdingsRecord.getCallNumberPrefix();
             String callNumberSuffix = holdingsRecord.getCallNumberSuffix();

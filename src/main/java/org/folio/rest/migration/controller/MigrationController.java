@@ -6,7 +6,7 @@ import org.folio.rest.migration.BibMigration;
 import org.folio.rest.migration.BoundWithMigration;
 import org.folio.rest.migration.DivITPatronMigration;
 import org.folio.rest.migration.FeeFineMigration;
-import org.folio.rest.migration.HoldingMigration;
+import org.folio.rest.migration.HoldingsMigration;
 import org.folio.rest.migration.InventoryReferenceLinkMigration;
 import org.folio.rest.migration.ItemMigration;
 import org.folio.rest.migration.LoanMigration;
@@ -23,7 +23,7 @@ import org.folio.rest.migration.model.request.bib.BibContext;
 import org.folio.rest.migration.model.request.boundwith.BoundWithContext;
 import org.folio.rest.migration.model.request.divitpatron.DivITPatronContext;
 import org.folio.rest.migration.model.request.feefine.FeeFineContext;
-import org.folio.rest.migration.model.request.holding.HoldingContext;
+import org.folio.rest.migration.model.request.holdings.HoldingsContext;
 import org.folio.rest.migration.model.request.inventory.InventoryReferenceLinkContext;
 import org.folio.rest.migration.model.request.item.ItemContext;
 import org.folio.rest.migration.model.request.loan.LoanContext;
@@ -87,8 +87,8 @@ public class MigrationController {
   @PostMapping("/holdings")
   @CreateReferenceData(pattern = "classpath:/referenceData/holdings/*.json")
   @CreateReferenceLinkTypes(path = "classpath:/referenceLinkTypes/holdings/*.json")
-  public CompletableFuture<String> holdings(@RequestBody HoldingContext context, @TenantHeader String tenant) {
-    return migrationService.migrate(HoldingMigration.with(context, tenant));
+  public CompletableFuture<String> holdings(@RequestBody HoldingsContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(HoldingsMigration.with(context, tenant));
   }
 
   @PostMapping("/items")

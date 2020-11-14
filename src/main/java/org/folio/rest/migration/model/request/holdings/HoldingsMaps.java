@@ -1,11 +1,11 @@
-package org.folio.rest.migration.model.request.holding;
+package org.folio.rest.migration.model.request.holdings;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
-public class HoldingMaps {
+public class HoldingsMaps {
 
   @NotNull
   private Map<String, Map<String, String>> location;
@@ -28,7 +28,10 @@ public class HoldingMaps {
   @NotNull
   private Map<String, String> retentionPolicy;
 
-  public HoldingMaps() {
+  @NotNull
+  private Map<String, String> fieldRegexExclusion;
+
+  public HoldingsMaps() {
     location = new HashMap<>();
     acqMethod = new HashMap<>();
     callNumberType = new HashMap<>();
@@ -36,6 +39,7 @@ public class HoldingMaps {
     holdingsNotesType = new HashMap<>();
     receiptStatus = new HashMap<>();
     retentionPolicy = new HashMap<>();
+    fieldRegexExclusion = new HashMap<>();
   }
 
   public Map<String, Map<String, String>> getLocation() {
@@ -92,6 +96,14 @@ public class HoldingMaps {
 
   public void setRetentionPolicy(Map<String, String> retentionPolicy) {
     this.retentionPolicy = retentionPolicy;
+  }
+
+  public Map<String, String> getFieldRegexExclusion() {
+    return fieldRegexExclusion;
+  }
+
+  public void setFieldRegexExclusion(Map<String, String> fieldRegexExclusion) {
+    this.fieldRegexExclusion = fieldRegexExclusion;
   }
 
 }

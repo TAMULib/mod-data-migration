@@ -1,4 +1,4 @@
-package org.folio.rest.migration.model.request.holding;
+package org.folio.rest.migration.model.request.holdings;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,14 +7,14 @@ import javax.validation.constraints.NotNull;
 
 import org.folio.rest.migration.model.request.AbstractJob;
 
-public class HoldingJob extends AbstractJob {
+public class HoldingsJob extends AbstractJob {
 
   @NotNull
   private String user;
 
   private Map<String, String> references;
 
-  public HoldingJob() {
+  public HoldingsJob() {
     super();
     references = new HashMap<String, String>();
   }

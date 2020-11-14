@@ -812,6 +812,9 @@ POST to http://localhost:9000/migrate/holdings
       "6": "Retained for a limited period",
       "7": "Not retained",
       "8": "Permanently retained"
+    },
+    "fieldRegexExclusion": {
+      "583": "(?i).*sub pattern created.*"
     }
   },
   "defaults": {
