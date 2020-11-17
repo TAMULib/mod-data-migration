@@ -1,5 +1,6 @@
 logging:
-  file: logs/mod-data-migration.log
+  file:
+    name: mod-data-migration.log
   level:
     com:
       zaxxer:
@@ -29,20 +30,12 @@ spring:
       idleTimeout: 600000
       maxLifetime: 1800000
       maximumPoolSize: 16
-    # platform: h2
-    # url: jdbc:h2:./target/mod_data_migration;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    # driverClassName: org.h2.Driver
     platform: postgres
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/mod_data_migration
 
     username: folio_admin
     password: folio_admin
-  devtools:
-    add-properties: false
-    restart:
-      enabled: false
-      exclude: target
   h2:
     console:
       enabled: false
@@ -50,14 +43,12 @@ spring:
       settings:
         web-allow-others: false
   jpa:
-    # database-platform: org.folio.rest.dialect.H2Dialect
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
     properties:
       hibernate:
         order_inserts: true
         order_updates: true
-        # dialect: org.folio.rest.dialect.H2Dialect
         dialect: org.hibernate.dialect.PostgreSQLDialect
         jdbc:
           batch_size: 100
@@ -107,3 +98,10 @@ management:
       enabled: true
     logfile:
       enabled: true
+
+info:
+  build:
+    artifact: "@project.artifactId@"
+    name: "@project.name@"
+    description: "@project.description@"
+    version: "@project.version@"

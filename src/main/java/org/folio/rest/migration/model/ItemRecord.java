@@ -13,6 +13,7 @@ import java.util.Set;
 
 import org.codehaus.plexus.util.StringUtils;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote;
+import org.folio.rest.jaxrs.model.inventory.EffectiveCallNumberComponents;
 import org.folio.rest.jaxrs.model.inventory.Item;
 import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.inventory.Metadata;
@@ -21,6 +22,7 @@ import org.folio.rest.jaxrs.model.inventory.Statisticalcode;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
 import org.folio.rest.jaxrs.model.inventory.Status;
 import org.folio.rest.jaxrs.model.inventory.Status.Name;
+import org.folio.rest.migration.model.request.item.ItemDefaults;
 import org.folio.rest.migration.model.request.item.ItemMaps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,6 +64,10 @@ public class ItemRecord {
 
   private String createdByUserId;
   private Date createdDate;
+
+  private String callNumberPrefix;
+
+  private String callNumberSuffix;
 
   public ItemRecord(String itemId, int numberOfPieces, String spineLabel, String itemNoteTypeId, String itemDamagedStatusId, String custodianStatisticalCodeId) {
     this.itemId = itemId;
@@ -216,7 +222,23 @@ public class ItemRecord {
     this.createdDate = createdDate;
   }
 
-  public Item toItem(String hridString, Statisticalcodes statisticalcodes, Materialtypes materilatypes, ItemMaps maps) {
+  public String getCallNumberPrefix() {
+    return callNumberPrefix;
+  }
+
+  public void setCallNumberPrefix(String callNumberPrefix) {
+    this.callNumberPrefix = callNumberPrefix;
+  }
+
+  public String getCallNumberSuffix() {
+    return callNumberSuffix;
+  }
+
+  public void setCallNumberSuffix(String callNumberSuffix) {
+    this.callNumberSuffix = callNumberSuffix;
+  }
+
+  public Item toItem(String hridString, Statisticalcodes statisticalcodes, Materialtypes materilatypes, ItemMaps maps, ItemDefaults defaults) {
     final Item item = new Item();
     item.setId(id);
     item.setHoldingsRecordId(holdingId);
@@ -323,6 +345,23 @@ public class ItemRecord {
     Set<String> formerIds = new HashSet<>();
     formerIds.add(itemId);
     item.setFormerIds(formerIds);
+
+
+    EffectiveCallNumberComponents effectiveCallNumberComponents = new EffectiveCallNumberComponents();
+    effectiveCallNumberComponents.setCallNumber(mfhdItem.getCallNumber());
+
+    String callNumberType = mfhdItem.getCallNumberType();
+    if (StringUtils.isNotEmpty(callNumberType) && maps.getCallNumberType().containsKey(callNumberType)) {
+      effectiveCallNumberComponents.setTypeId(maps.getCallNumberType().get(callNumberType));
+    } else {
+      effectiveCallNumberComponents.setTypeId(defaults.getCallNumberTypeId());
+    }
+
+    effectiveCallNumberComponents.setPrefix(callNumberPrefix);
+    effectiveCallNumberComponents.setSuffix(callNumberSuffix);
+
+    item.setEffectiveCallNumberComponents(effectiveCallNumberComponents);
+
 
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);

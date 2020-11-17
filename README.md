@@ -496,7 +496,9 @@ POST to http://localhost:9000/migrate/users
       "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
-  "preActions": [],
+  "preActions": [
+    "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";"
+  ],
   "postActions": [
     "WITH temp AS (SELECT id AS userId, uuid_generate_v4() AS permId, to_char (now()::timestamp at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS createdDate, (SELECT id FROM ${TENANT}_mod_users.users WHERE jsonb->>'username' = '${TENANT}_admin') AS createdBy FROM ${TENANT}_mod_users.users WHERE jsonb->>'username' NOT IN ('${TENANT}_admin','pub-sub')) INSERT INTO ${TENANT}_mod_permissions.permissions_users (id,jsonb,creation_date,created_by) SELECT permId AS id, concat('{\"id\": \"', permId, '\", \"userId\": \"', userId, '\", \"metadata\": {\"createdDate\": \"', createdDate, '\", \"updatedDate\": \"', createdDate, '\", \"createdByUserId\": \"', createdBy, '\", \"updatedByUserId\": \"', createdBy, '\"}, \"permissions\": []}')::jsonb AS jsonb, now()::timestamp at time zone 'UTC' AS creation_date, createdBy AS created_by FROM temp"
   ],
@@ -653,11 +655,16 @@ POST to http://localhost:9000/migrate/bibs
         "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8"
       }
     }
-  ]
+  ],
+  "maps": {
+    "statisticalCode": {
+      "ybpebook": "ybpebooks"
+    }
+  }
 }
 ```
 
-## MARC Holding Migration
+## MARC Holdings Migration
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
 
@@ -687,7 +694,9 @@ POST to http://localhost:9000/migrate/holdings
       "user": "tamu_admin",
       "references": {
         "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
-        "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc"
+        "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc",
+        "holdingToCallNumberPrefixTypeId": "bdc5c8b1-7b21-45ea-943b-585764f3715c",
+        "holdingToCallNumberSuffixTypeId": "fcd2963b-b75d-4401-8eda-7e91efd8ddc3"
       }
     },
     {
@@ -696,7 +705,9 @@ POST to http://localhost:9000/migrate/holdings
       "user": "tamu_admin",
       "references": {
         "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
-        "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba"
+        "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba",
+        "holdingToCallNumberPrefixTypeId": "78991218-9141-4807-9175-7147c861a596",
+        "holdingToCallNumberSuffixTypeId": "be7288c9-7c67-4b6b-b662-a57816569e46"
       }
     }
   ],
@@ -803,6 +814,9 @@ POST to http://localhost:9000/migrate/holdings
       "6": "Retained for a limited period",
       "7": "Not retained",
       "8": "Permanently retained"
+    },
+    "fieldRegexExclusion": {
+      "583": "(?i).*sub pattern created.*"
     }
   },
   "defaults": {
@@ -828,7 +842,7 @@ POST to http://localhost:9000/migrate/items
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.item",
     "pageSql": "SELECT item_id, copy_number, item_type_id, perm_location, pieces, price, spine_label, temp_location, temp_item_type_id, magnetic_media, sensitize FROM ${SCHEMA}.item ORDER BY item_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
-    "mfhdSql": "SELECT mi.caption, mi.chron, mi.item_enum, mi.freetext, mi.year, mm.location_id FROM ${SCHEMA}.mfhd_item mi LEFT JOIN ${SCHEMA}.mfhd_master mm ON mi.mfhd_id = mm.mfhd_id WHERE item_id = ${ITEM_ID}",
+    "mfhdSql": "SELECT mi.caption, mi.chron, mi.item_enum, mi.freetext, mi.year, mm.location_id, mm.call_no_type, mm.display_call_no FROM ${SCHEMA}.mfhd_item mi LEFT JOIN ${SCHEMA}.mfhd_master mm ON mi.mfhd_id = mm.mfhd_id WHERE item_id = ${ITEM_ID}",
     "barcodeSql": "SELECT item_barcode FROM ${SCHEMA}.item_barcode WHERE item_id = ${ITEM_ID}",
     "itemTypeSql": "SELECT item_type_id, item_type_code FROM ${SCHEMA}.item_type",
     "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
@@ -854,7 +868,9 @@ POST to http://localhost:9000/migrate/items
       "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
       "references": {
         "itemTypeId": "53e72510-dc82-4caa-a272-1522cca70bc2",
-        "itemToHoldingTypeId": "39670cf7-de23-4473-b5e3-abf6d79735e1"
+        "itemToHoldingTypeId": "39670cf7-de23-4473-b5e3-abf6d79735e1",
+        "holdingToCallNumberPrefixTypeId": "bdc5c8b1-7b21-45ea-943b-585764f3715c",
+        "holdingToCallNumberSuffixTypeId": "fcd2963b-b75d-4401-8eda-7e91efd8ddc3"
       }
     },
     {
@@ -865,7 +881,9 @@ POST to http://localhost:9000/migrate/items
       "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
       "references": {
         "itemTypeId": "0014559d-39f6-45c7-9406-03643459aaf0",
-        "itemToHoldingTypeId": "492fea54-399a-4822-8d4b-242096c2ab12"
+        "itemToHoldingTypeId": "492fea54-399a-4822-8d4b-242096c2ab12",
+        "holdingToCallNumberPrefixTypeId": "78991218-9141-4807-9175-7147c861a596",
+        "holdingToCallNumberSuffixTypeId": "be7288c9-7c67-4b6b-b662-a57816569e46"
       }
     }
   ],
@@ -998,13 +1016,77 @@ POST to http://localhost:9000/migrate/items
     "custodianStatisticalCode": {
       "AMDB": "38c86b2b-8156-4b7e-943e-460e15ea0dc0",
       "MSDB": "f5d1069d-f718-4f0e-8ff8-308f55540daf"
+    },
+    "callNumberType": {
+      " ": "24badefa-4456-40c5-845c-3f45ffbc4c03",
+      "0": "95467209-6d7b-468b-94df-0f5d7ad2747d",
+      "1": "03dd64d0-5626-4ecd-8ece-4531e0069f35",
+      "2": "054d460d-d6b9-4469-9e37-7a78a2266655",
+      "3": "fc388041-6cd0-4806-8a74-ebe3b9ab4c6e",
+      "4": "28927d76-e097-4f63-8510-e56f2b7a3ad0",
+      "5": "5ba6b62e-6858-490a-8102-5b1369873835",
+      "6": "cd70562c-dd0b-42f6-aa80-ce803d24d4a1",
+      "8": "6caca63e-5651-4db6-9247-3205156e9699"
     }
   },
   "defaults": {
     "permanentLoanTypeId": "dcdb0cef-c30f-4a3b-b0b6-757d1400535d",
     "permanentLocationId": "2b8f7d63-706a-4b56-8a5e-50ad24e33e4c",
-    "materialTypeId": "3212b3e9-bce7-4ff1-88e2-8def758ba977"
+    "materialTypeId": "3212b3e9-bce7-4ff1-88e2-8def758ba977",
+    "callNumberTypeId": "24badefa-4456-40c5-845c-3f45ffbc4c03"
   }
+}
+```
+
+## Bound-With Instance Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/boundwith
+
+```
+{
+  "extraction": {
+    "countSql": "WITH boundwith AS (SELECT DISTINCT mfhd_id FROM ${SCHEMA}.bib_mfhd WHERE mfhd_id IN (SELECT mfhd_id FROM ${SCHEMA}.bib_mfhd GROUP BY mfhd_id HAVING COUNT(rownum) > 1)) SELECT COUNT(*) AS total FROM boundwith",
+    "pageSql": "SELECT DISTINCT mfhd_id, LISTAGG(bib_id, ',') WITHIN GROUP(ORDER BY mfhd_id) AS bound_with FROM ${SCHEMA}.bib_mfhd WHERE mfhd_id IN (SELECT mfhd_id FROM ${SCHEMA}.bib_mfhd GROUP BY mfhd_id HAVING COUNT(rownum) > 1) GROUP BY mfhd_id ORDER BY mfhd_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": "oracle.jdbc.OracleDriver"
+    }
+  },
+  "preActions": [],
+  "postActions": [],
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 10,
+      "references": {
+        "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
+        "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672"
+      },
+      "statusId": "daf2681c-25af-4202-a3fa-e58fdf806183",
+      "instanceTypeId": "6312d172-f0cf-40f6-b27d-9fa8feaf332f",
+      "modeOfIssuanceId": "612bbd3d-c16b-4bfb-8517-2afafc60204a",
+      "instanceRelationshipTypeId": "758f13db-ffb4-440e-bb10-8a364aa6cb4a",
+      "holdingsTypeId": "61155a36-148b-4664-bb7f-64ad708e0b32"
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 1,
+      "references": {
+        "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
+        "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8"
+      },
+      "statusId": "daf2681c-25af-4202-a3fa-e58fdf806183",
+      "instanceTypeId": "6312d172-f0cf-40f6-b27d-9fa8feaf332f",
+      "modeOfIssuanceId": "612bbd3d-c16b-4bfb-8517-2afafc60204a",
+      "instanceRelationshipTypeId": "758f13db-ffb4-440e-bb10-8a364aa6cb4a",
+      "holdingsTypeId": "61155a36-148b-4664-bb7f-64ad708e0b32"
+    }
+  ]
 }
 ```
 
@@ -1278,6 +1360,40 @@ POST to http://localhost:9000/migrate/proxyfor
       "references": {
         "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45"
       }
+    }
+  ]
+}
+```
+
+## DivIT Patron Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/divitpatron
+
+```
+{
+  "database": {
+    "url": "",
+    "username": "",
+    "password": "",
+    "driverClassName": "oracle.jdbc.OracleDriver"
+  },
+  "preActions": [],
+  "postActions": [],
+  "parallelism": 12,
+  "jobs": [
+    {
+      "name": "employee",
+      "sql": "SELECT DISTINCT nvl2(emp.tamu_netid, emp.tamu_netid, emp.uin) AS username, emp.uin AS externalSystemId, pi.id_card_num AS barcode, 'true' AS active, 'fast' AS patronGroup, emp.last_name AS personal_lastName, emp.first_name AS personal_firstName, emp.middle_name AS personal_middleName, emp.tamu_preferred_alias AS personal_email, emp.office_phone AS personal_phone, 'Permanent' AS addresses_permanent_addressTypeId, NULL AS addresses_permanent_countryId, emp.mail_street AS addresses_permanent_addressLine1, NULL AS addresses_permanent_addressLine2, emp.mail_city AS addresses_permanent_city, emp.mail_state AS addresses_permanent_region, emp.mail_zip AS addresses_permanent_postalCode, 'Temporary' AS addresses_temporary_addressTypeId, NULL AS addresses_temporary_addressLine2, emp.adloc_dept_name AS addresses_temporary_addressLine1, emp.work_city AS addresses_temporary_city, emp.work_state AS addresses_temporary_region, emp.work_zip AS addresses_temporary_postalCode, emp.adloc_dept AS departments_0, to_char(sysdate+500, 'YYYY-MM-DD') AS expirationDate FROM patron.employees_retirees emp, patron.person_identifiers pi WHERE upper(emp.adloc_system_member_name) in('TEXAS A' || chr(38) || 'M AGRILIFE EXTENSION SERVICE', 'TEXAS A' || chr(38) || 'M AGRILIFE RESEARCH', 'TEXAS A' || chr(38) || 'M ENGINEERING EXPERIMENT STATION', 'TEXAS A' || chr(38) || 'M ENGINEERING EXTENSION SERVICE', 'TEXAS A' || chr(38) || 'M FOREST SERVICE', 'TEXAS A' || chr(38) || 'M HEALTH', 'TEXAS A' || chr(38) || 'M SYSTEM OFFICES', 'TEXAS A' || chr(38) || 'M SYSTEM SHARED SERVICE CENTER', 'TEXAS A' || chr(38) || 'M SYSTEM SPONSORED RESEARCH SERVICES', 'TEXAS A' || chr(38) || 'M SYSTEM TECHNOLOGY COMMERCIALIZATION', 'TEXAS A' || chr(38) || 'M TRANSPORTATION INSTITUTE', 'TEXAS A' || chr(38) || 'M UNIVERSITY', 'TEXAS A' || chr(38) || 'M UNIVERSITY AT GALVESTON', 'TEXAS A' || chr(38) || 'M VETERINARY MEDICAL DIAGNOSTIC LABORATORY') AND employment_status_name not in('Affiliate Non-Employee', 'Deceased', 'Terminated') AND emp.employee_type_name != 'Student' AND emp.employee_type_name IS NOT NULL AND emp.uin = pi.uin(+) AND (emp.last_updated > sysdate-1 OR pi.last_updated > sysdate-1)"
+    },
+    {
+      "name": "student",
+      "sql": "SELECT DISTINCT nvl2(stu.tamu_netid, stu.tamu_netid, stu.uin) AS username, stu.uin AS externalSystemId, pi.id_card_num AS barcode, 'true' AS active, CASE WHEN substr(stu.classification, 1, 1) in('D', 'G', 'L', 'M', 'P', 'V') THEN 'grad' WHEN substr(stu.classification, 1, 1) in ('I', 'U') THEN 'ungr' END AS patronGroup, stu.last_name AS personal_lastName, stu.first_name AS personal_firstName, stu.middle_name AS personal_middleName, stu.tamu_preferred_alias AS personal_email, stu.local_phone AS personal_phone, 'Permanent' AS addresses_permanent_addressTypeId, stu.perm_country AS addresses_permanent_countryId, stu.perm_street1 AS addresses_permanent_addressLine1, stu.perm_street2 || ' ' || stu.perm_street3 AS addresses_permanent_addressLine2, stu.perm_city AS addresses_permanent_city, stu.perm_state AS addresses_permanent_region, stu.perm_zip AS addresses_permanent_postalCode, 'Temporary' AS addresses_temporary_addressTypeId, stu.local_street1 AS addresses_temporary_addressLine1, stu.local_street2 || ' ' || stu.local_street3 AS addresses_temporary_addressLine2, stu.local_city AS addresses_temporary_city, stu.local_state AS addresses_temporary_region, stu.local_zip AS addresses_temporary_postalCode, stu.acad_dept AS departments_0, to_char(sysdate+200, 'YYYY-MM-DD') AS expirationDate FROM patron.students stu, patron.employees_retirees emp, person_identifiers pi WHERE stu.uin = pi.uin(+) AND stu.enroll_status_name in ('Enrolled', 'Not Enrolled') AND stu.uin = emp.uin(+) AND ((emp.employee_type = 1) OR (emp.uin IS NULL) OR (emp.employee_type IS NULL)) AND (stu.last_updated > sysdate-1 OR pi.last_updated > sysdate-1)"
+    },
+    {
+      "name": "other people",
+      "sql": "SELECT nvl2(op.tamu_netid, op.tamu_netid, op.uin) AS username, op.uin AS externalSystemId, pi.id_card_num AS barcode, 'true' AS active, 'fast' AS patronGroup, op.last_name AS personal_lastName, op.first_name AS personal_firstName, op.middle_name AS personal_middleName, op.tamu_preferred_alias AS personal_email, op.office_phone AS personal_phone, NULL AS addresses_permanent_addressTypeId, NULL AS addresses_permanent_countryId, NULL AS addresses_permanent_addressLine1, NULL AS addresses_permanent_addressLine2, NULL AS addresses_permanent_city, NULL AS addresses_permanent_region, NULL AS addresses_permanent_postalCode, NULL AS addresses_temporary_addressTypeId, NULL AS addresses_temporary_addressLine1, NULL AS addresses_temporary_addressLine2, NULL AS addresses_temporary_city, NULL AS addresses_temporary_region, NULL AS addresses_temporary_postalCode, NULL AS departments_0, to_char(sysdate+200, 'YYYY-MM-DD') AS expirationDate FROM patron.other_people op, patron.person_identifiers pi, patron.employees_retirees emp, students stu WHERE op.uin = pi.uin(+) AND op.uin = stu.uin(+) AND op.uin = emp.uin(+) AND stu.uin IS NULL AND emp.uin IS NULL AND op.tamu_preferred_alias IS NOT NULL AND((affiliate_role in ('affiliate:continuingeducationstudent', 'affiliate:clinicaltrainee', 'affiliate:faculty:future', 'affiliate:graduateassistant:future', 'affiliate:librarian', 'affiliate:medicalresident', 'affiliate:regent', 'affiliate:staff:future', 'affiliate:usda', 'affiliate:veteransprogram', 'affiliate:visitingscholar', 'employee:faculty:retired', 'faculty:adjunct') AND system_member in ('01', '02', '06', '07', '09', '10', '11', '12', '20', '23', '26', '28')) OR (op.data_provider in ('HSCAFFILIATES', 'QATAR'))) AND (op.last_updated > sysdate-1 OR pi.last_updated > sysdate-1)"
     }
   ]
 }

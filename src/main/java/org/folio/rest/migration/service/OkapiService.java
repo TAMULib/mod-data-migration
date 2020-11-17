@@ -31,11 +31,18 @@ import org.folio.rest.jaxrs.model.dataimport.dto.RawRecordsDto;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfile;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileCollection;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileUpdateDto;
+import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
+import org.folio.rest.jaxrs.model.inventory.Instance;
+import org.folio.rest.jaxrs.model.inventory.Instancerelationship;
+import org.folio.rest.jaxrs.model.inventory.Item;
+import org.folio.rest.jaxrs.model.inventory.Items;
 import org.folio.rest.jaxrs.model.inventory.Loantypes;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.inventory.Servicepoints;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
+import org.folio.rest.jaxrs.model.userimport.schemas.ImportResponse;
+import org.folio.rest.jaxrs.model.userimport.schemas.UserdataimportCollection;
 import org.folio.rest.jaxrs.model.users.AddresstypeCollection;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.jaxrs.model.users.UserdataCollection;
@@ -374,6 +381,97 @@ public class OkapiService {
     }
     log.error("Failed to fetch loan types: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch loan types: " + response.getStatusCodeValue());
+  }
+
+  public Items fetchItemRecordsByHoldingsRecordId(String tenant, String token, String holdingsRecordId) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/item-storage/items?query=holdingsRecordId==" + holdingsRecordId;
+    ResponseEntity<Items> response = restTemplate.exchange(url, HttpMethod.GET, entity, Items.class);
+    log.debug("fetch item records: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    log.error("Failed to fetch item records: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch item records: " + response.getStatusCodeValue());
+  }
+
+  public Instance postInstance(String tenant, String token, Instance instance) {
+    long startTime = System.nanoTime();
+    HttpEntity<Instance> entity = new HttpEntity<>(instance, headers(tenant, token));
+    String url = okapi.getUrl() + "/instance-storage/instances";
+    ResponseEntity<Instance> response = restTemplate.exchange(url, HttpMethod.POST, entity, Instance.class);
+    log.debug("create instance: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 201) {
+      return response.getBody();
+    }
+    log.error("Failed to create instance: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create instance: " + response.getStatusCodeValue());
+  }
+
+  public Instancerelationship postInstancerelationship(String tenant, String token, Instancerelationship holdingsrecord) {
+    long startTime = System.nanoTime();
+    HttpEntity<Instancerelationship> entity = new HttpEntity<>(holdingsrecord, headers(tenant, token));
+    String url = okapi.getUrl() + "/instance-storage/instance-relationships";
+    ResponseEntity<Instancerelationship> response = restTemplate.exchange(url, HttpMethod.POST, entity, Instancerelationship.class);
+    log.debug("create instance relationships: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 201) {
+      return response.getBody();
+    }
+    log.error("Failed to create instance relationships: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create instance relationships: " + response.getStatusCodeValue());
+  }
+
+  public Holdingsrecord fetchHoldingsRecordById(String tenant, String token, String id) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/holdings-storage/holdings/" + id;
+    ResponseEntity<Holdingsrecord> response = restTemplate.exchange(url, HttpMethod.GET, entity, Holdingsrecord.class);
+    log.debug("fetch holdings record: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    log.error("Failed to fetch holdings record: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch holdings record: " + response.getStatusCodeValue());
+  }
+
+  public Holdingsrecord postHoldingsrecord(String tenant, String token, Holdingsrecord holdingsrecord) {
+    long startTime = System.nanoTime();
+    HttpEntity<Holdingsrecord> entity = new HttpEntity<>(holdingsrecord, headers(tenant, token));
+    String url = okapi.getUrl() + "/holdings-storage/holdings";
+    ResponseEntity<Holdingsrecord> response = restTemplate.exchange(url, HttpMethod.POST, entity, Holdingsrecord.class);
+    log.debug("create holdings record: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 201) {
+      return response.getBody();
+    }
+    log.error("Failed to create holdings record: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create holdings record: " + response.getStatusCodeValue());
+  }
+
+  public void putItem(String tenant, String token, Item item) {
+    long startTime = System.nanoTime();
+    HttpEntity<Item> entity = new HttpEntity<>(item, headers(tenant, token));
+    String url = okapi.getUrl() + "/item-storage/items/" + item.getId();
+    ResponseEntity<Item> response = restTemplate.exchange(url, HttpMethod.PUT, entity, Item.class);
+    log.debug("Update item: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 204) {
+      return;
+    }
+    log.error("Failed to update item: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to update item: " + response.getStatusCodeValue());
+  }
+
+  public ImportResponse postUserdataimportCollection(String tenant, String token, UserdataimportCollection userdataimportCollection) {
+    long startTime = System.nanoTime();
+    HttpEntity<UserdataimportCollection> entity = new HttpEntity<>(userdataimportCollection, headers(tenant, token));
+    String url = okapi.getUrl() + "/user-import";
+    ResponseEntity<ImportResponse> response = restTemplate.exchange(url, HttpMethod.POST, entity, ImportResponse.class);
+    log.debug("importing users: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    log.error("Failed to import users: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to import users: " + response.getStatusCodeValue());
   }
 
   public MappingParameters getMappingParamaters(String tenant, String token) {

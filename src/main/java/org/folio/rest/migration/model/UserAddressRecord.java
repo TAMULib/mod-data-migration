@@ -1,11 +1,11 @@
 package org.folio.rest.migration.model;
 
 import java.util.Objects;
-import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.users.Address;
 import org.folio.rest.migration.model.request.user.UserDefaults;
+import org.folio.rest.migration.utility.FormatUtility;
 
 public class UserAddressRecord {
 
@@ -154,7 +154,7 @@ public class UserAddressRecord {
 
   private void setPostalCode(Address address) {
     if (Objects.nonNull(zipPostal)) {
-      address.setPostalCode(zipPostal);
+      address.setPostalCode(FormatUtility.normalizePostalCode(zipPostal));
     }
   }
 

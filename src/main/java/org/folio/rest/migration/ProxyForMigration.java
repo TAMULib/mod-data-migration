@@ -35,7 +35,7 @@ import org.postgresql.core.BaseConnection;
 
 public class ProxyForMigration extends AbstractMigration<ProxyForContext> {
 
-  private static final String EXPIRATION_DATE_FORMAT = "YYYY-MM-DD";
+  private static final String EXPIRATION_DATE_FORMAT = "yyyy-MM-dd";
 
   private static final String USER_ID = "USER_ID";
 

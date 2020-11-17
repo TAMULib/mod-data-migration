@@ -14,6 +14,9 @@ public class BibContext extends AbstractContext {
 
   private List<BibJob> jobs;
 
+  @NotNull
+  private BibMaps maps;
+
   public BibContext() {
     super();
     jobs = new ArrayList<>();
@@ -33,6 +36,14 @@ public class BibContext extends AbstractContext {
 
   public void setJobs(List<BibJob> jobs) {
     this.jobs = jobs;
+  }
+
+  public BibMaps getMaps() {
+    return maps;
+  }
+
+  public void setMaps(BibMaps maps) {
+    this.maps = maps;
   }
 
 }

@@ -158,8 +158,10 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings, migrationService.referenceLinkSettings);
 
+      String tenantSchema = migrationService.schemaService.getSchema(tenant);
+
       try (
-        PrintWriter referenceLinkWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenant)), true);
+        PrintWriter referenceLinkWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenantSchema)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement holdingStatement = threadConnections.getHoldingConnection().createStatement();
         Statement itemStatement = threadConnections.getItemConnection().createStatement();

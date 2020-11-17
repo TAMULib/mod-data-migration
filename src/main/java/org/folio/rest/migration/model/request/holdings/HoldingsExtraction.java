@@ -1,10 +1,10 @@
-package org.folio.rest.migration.model.request.holding;
+package org.folio.rest.migration.model.request.holdings;
 
 import javax.validation.constraints.NotNull;
 
 import org.folio.rest.migration.model.request.AbstractExtraction;
 
-public class HoldingExtraction extends AbstractExtraction {
+public class HoldingsExtraction extends AbstractExtraction {
 
   @NotNull
   private String locationSql;
@@ -12,7 +12,7 @@ public class HoldingExtraction extends AbstractExtraction {
   @NotNull
   private String marcSql;
 
-  public HoldingExtraction() {
+  public HoldingsExtraction() {
     super();
   }
 

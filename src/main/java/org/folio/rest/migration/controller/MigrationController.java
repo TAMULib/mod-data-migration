@@ -3,8 +3,10 @@ package org.folio.rest.migration.controller;
 import java.util.concurrent.CompletableFuture;
 
 import org.folio.rest.migration.BibMigration;
+import org.folio.rest.migration.BoundWithMigration;
+import org.folio.rest.migration.DivITPatronMigration;
 import org.folio.rest.migration.FeeFineMigration;
-import org.folio.rest.migration.HoldingMigration;
+import org.folio.rest.migration.HoldingsMigration;
 import org.folio.rest.migration.InventoryReferenceLinkMigration;
 import org.folio.rest.migration.ItemMigration;
 import org.folio.rest.migration.LoanMigration;
@@ -18,8 +20,10 @@ import org.folio.rest.migration.aspect.annotation.CreateReferenceData;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceLinkTypes;
 import org.folio.rest.migration.aspect.annotation.UpdateRules;
 import org.folio.rest.migration.model.request.bib.BibContext;
+import org.folio.rest.migration.model.request.boundwith.BoundWithContext;
+import org.folio.rest.migration.model.request.divitpatron.DivITPatronContext;
 import org.folio.rest.migration.model.request.feefine.FeeFineContext;
-import org.folio.rest.migration.model.request.holding.HoldingContext;
+import org.folio.rest.migration.model.request.holdings.HoldingsContext;
 import org.folio.rest.migration.model.request.inventory.InventoryReferenceLinkContext;
 import org.folio.rest.migration.model.request.item.ItemContext;
 import org.folio.rest.migration.model.request.loan.LoanContext;
@@ -82,8 +86,9 @@ public class MigrationController {
 
   @PostMapping("/holdings")
   @CreateReferenceData(pattern = "classpath:/referenceData/holdings/*.json")
-  public CompletableFuture<String> holdings(@RequestBody HoldingContext context, @TenantHeader String tenant) {
-    return migrationService.migrate(HoldingMigration.with(context, tenant));
+  @CreateReferenceLinkTypes(path = "classpath:/referenceLinkTypes/holdings/*.json")
+  public CompletableFuture<String> holdings(@RequestBody HoldingsContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(HoldingsMigration.with(context, tenant));
   }
 
   @PostMapping("/items")
@@ -109,6 +114,16 @@ public class MigrationController {
   @PostMapping("/proxyfor")
   public CompletableFuture<String> proxyfor(@RequestBody ProxyForContext context, @TenantHeader String tenant) {
     return migrationService.migrate(ProxyForMigration.with(context, tenant));
+  }
+
+  @PostMapping("/boundwith")
+  public CompletableFuture<String> boundwith(@RequestBody BoundWithContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(BoundWithMigration.with(context, tenant));
+  }
+
+  @PostMapping("/divitpatron")
+  public CompletableFuture<String> divitpatron(@RequestBody DivITPatronContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(DivITPatronMigration.with(context, tenant));
   }
 
 }

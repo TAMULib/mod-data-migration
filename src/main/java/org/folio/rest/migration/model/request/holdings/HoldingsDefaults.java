@@ -1,6 +1,6 @@
-package org.folio.rest.migration.model.request.holding;
+package org.folio.rest.migration.model.request.holdings;
 
-public class HoldingDefaults {
+public class HoldingsDefaults {
 
   private String acqMethod;
 
@@ -16,7 +16,7 @@ public class HoldingDefaults {
 
   private String retentionPolicy;
 
-  public HoldingDefaults() { }
+  public HoldingsDefaults() { }
 
   public String getAcqMethod() {
     return acqMethod;

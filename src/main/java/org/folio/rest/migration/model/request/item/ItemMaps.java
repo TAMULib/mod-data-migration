@@ -22,12 +22,16 @@ public class ItemMaps {
   @NotNull
   private Map<String, String> custodianStatisticalCode;
 
+  @NotNull
+  private Map<String, String> callNumberType;
+
   public ItemMaps() {
     location = new HashMap<>();
     loanType = new HashMap<>();
     itemStatus = new HashMap<>();
     statusName = new HashMap<>();
     custodianStatisticalCode = new HashMap<>();
+    callNumberType = new HashMap<>();
   }
 
   public Map<String, Map<String, String>> getLocation() {
@@ -68,6 +72,14 @@ public class ItemMaps {
 
   public void setCustodianStatisticalCode(Map<String, String> custodianStatisticalCode) {
     this.custodianStatisticalCode = custodianStatisticalCode;
+  }
+
+  public Map<String, String> getCallNumberType() {
+    return callNumberType;
+  }
+
+  public void setCallNumberType(Map<String, String> callNumberType) {
+    this.callNumberType = callNumberType;
   }
 
 }

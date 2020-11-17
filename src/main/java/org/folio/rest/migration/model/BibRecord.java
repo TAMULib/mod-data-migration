@@ -3,7 +3,6 @@ package org.folio.rest.migration.model;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 
 import org.folio.rest.jaxrs.model.dataimport.common.ExternalIdsHolder;
 import org.folio.rest.jaxrs.model.dataimport.dto.AdditionalInfo;

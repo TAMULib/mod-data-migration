@@ -34,9 +34,6 @@
   <packaging>jar</packaging>
 
   <properties>
-    <java.version>1.8</java.version>
-    <maven.compiler.source>${java.version}</maven.compiler.source>
-    <maven.compiler.target>${java.version}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -148,6 +145,17 @@
               <targetPackage>org.folio.rest.jaxrs.model.notes</targetPackage>
             </configuration>
           </execution>
+          <execution>
+            <id>mod-user-import/ramls</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <sourceDirectory>${basedir}/mod-user-import/ramls</sourceDirectory>
+              <targetPackage>org.folio.rest.jaxrs.model.userimport</targetPackage>
+            </configuration>
+          </execution>
          </executions>
       </plugin>
 
@@ -191,8 +199,17 @@
         <filtering>false</filtering>
         <directory>src/main/resources</directory>
         <excludes>
+          <exclude>application.yml</exclude>
+          <exclude>descriptors/**</exclude>
           <exclude>descriptors/**</exclude>
         </excludes>
+      </resource>
+      <resource>
+        <filtering>true</filtering>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>application.yml</include>
+        </includes>
       </resource>
       <resource>
         <filtering>true</filtering>
@@ -252,13 +269,7 @@
 
     <dependency>
       <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-rest-hal-browser</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-      <scope>runtime</scope>
+      <artifactId>spring-data-rest-hal-explorer</artifactId>
     </dependency>
 
     <dependency>
@@ -288,6 +299,12 @@
     <dependency>
       <groupId>com.oracle.ojdbc</groupId>
       <artifactId>ojdbc8</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.googlecode.libphonenumber</groupId>
+      <artifactId>libphonenumber</artifactId>
+      <version>8.12.12</version>
     </dependency>
 
   </dependencies>
