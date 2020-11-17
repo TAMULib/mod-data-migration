@@ -5,21 +5,9 @@
     {
       "id": "7fd42e23-08bf-4bf3-ad66-f6e27c446649",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-29T20:09:46.435",
-        "updatedDate": "2020-10-29T20:56:48.938+0000",
-        "createdByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51",
-        "updatedByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51"
-      },
-      "grantedTo": [
-        "902fb3ff-69fd-408f-8113-e2db6d1fb8d4",
-        "4fee1ea8-f36e-47f5-b6df-f443b6010cda",
-        "8900d5df-fd57-4773-8a55-5c865cce0dce"
-      ],
       "displayName": "Acquisitions_Admin_Staff",
       "permissionName": "7fd42e23-08bf-4bf3-ad66-f6e27c446649",
       "subPermissions": [
@@ -75,20 +63,9 @@
     {
       "id": "bbc81742-5f20-4517-9e38-a1ed0631d874",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-15T18:30:13.739",
-        "updatedDate": "2020-10-15T18:30:13.739+0000",
-        "createdByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51",
-        "updatedByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51"
-      },
-      "grantedTo": [
-        "dc3ab69e-2ffc-4b37-92b0-60c1ac5e59ec",
-        "97b1c5d7-c72a-4ce7-8581-c19fbecaae82"
-      ],
       "displayName": "Acquisitions_Financial_Staff",
       "permissionName": "bbc81742-5f20-4517-9e38-a1ed0631d874",
       "subPermissions": [
@@ -98,24 +75,9 @@
     {
       "id": "2347a558-b532-4b28-971f-3dd05420375a",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-15T18:31:05.544",
-        "updatedDate": "2020-10-15T18:31:05.544+0000",
-        "createdByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51",
-        "updatedByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51"
-      },
-      "grantedTo": [
-        "4fee1ea8-f36e-47f5-b6df-f443b6010cda",
-        "b5022a54-100c-4f63-92bb-bfb5b0138c0a",
-        "dc3ab69e-2ffc-4b37-92b0-60c1ac5e59ec",
-        "97b1c5d7-c72a-4ce7-8581-c19fbecaae82",
-        "eca9004c-ac68-4178-b63e-811eb4d9c59b",
-        "a251904c-c435-4ba5-9d53-b907a1c8af9a"
-      ],
       "displayName": "Acquisitions_Invoicing_Staff",
       "permissionName": "2347a558-b532-4b28-971f-3dd05420375a",
       "subPermissions": [
@@ -125,23 +87,9 @@
     {
       "id": "09f9b0a3-6be0-4fac-ac18-2f379337868b",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-15T18:28:24.962",
-        "updatedDate": "2020-10-29T20:46:18.849+0000",
-        "createdByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51",
-        "updatedByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51"
-      },
-      "grantedTo": [
-        "4fee1ea8-f36e-47f5-b6df-f443b6010cda",
-        "b5022a54-100c-4f63-92bb-bfb5b0138c0a",
-        "97b1c5d7-c72a-4ce7-8581-c19fbecaae82",
-        "e32b05f5-da83-41b6-a60e-3fd6a46b01b1",
-        "372009ac-3afc-4125-b4da-df38d2d79e28"
-      ],
       "displayName": "Acquisitions_Orders_Staff",
       "permissionName": "09f9b0a3-6be0-4fac-ac18-2f379337868b",
       "subPermissions": [
@@ -163,19 +111,9 @@
     {
       "id": "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-29T20:04:40.38",
-        "updatedDate": "2020-10-29T20:04:40.380+0000",
-        "createdByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51",
-        "updatedByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51"
-      },
-      "grantedTo": [
-        "4fee1ea8-f36e-47f5-b6df-f443b6010cda"
-      ],
       "displayName": "Acquisitions_Organizations_Staff",
       "permissionName": "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3",
       "subPermissions": [
@@ -188,22 +126,9 @@
     {
       "id": "cc4a6624-190c-4872-95dd-be090a74b61f",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-15T18:37:09.443",
-        "updatedDate": "2020-10-15T18:37:09.443+0000",
-        "createdByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51",
-        "updatedByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51"
-      },
-      "grantedTo": [
-        "4fee1ea8-f36e-47f5-b6df-f443b6010cda",
-        "b5022a54-100c-4f63-92bb-bfb5b0138c0a",
-        "97b1c5d7-c72a-4ce7-8581-c19fbecaae82",
-        "eca9004c-ac68-4178-b63e-811eb4d9c59b"
-      ],
       "displayName": "Acquisitions_Receiving_Staff",
       "permissionName": "cc4a6624-190c-4872-95dd-be090a74b61f",
       "subPermissions": [
@@ -214,16 +139,9 @@
     {
       "id": "d2f1856c-d6f9-450f-b6be-a3d455282abe",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-15T18:37:36.185",
-        "updatedDate": "2020-10-15T18:37:36.185+0000",
-        "createdByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51",
-        "updatedByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51"
-      },
       "grantedTo": [],
       "displayName": "Acquisitions_Receiving_Students",
       "permissionName": "d2f1856c-d6f9-450f-b6be-a3d455282abe",
@@ -234,20 +152,9 @@
     {
       "id": "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-16T20:31:37.67",
-        "updatedDate": "2020-10-29T15:11:46.317+0000",
-        "createdByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51",
-        "updatedByUserId": "9c10948a-17bf-4ead-9b3c-a7396dda176c"
-      },
-      "grantedTo": [
-        "4fee1ea8-f36e-47f5-b6df-f443b6010cda",
-        "b5022a54-100c-4f63-92bb-bfb5b0138c0a"
-      ],
       "description": "Set of permissions for Staff and Professionals",
       "displayName": "Cat_AllStaff",
       "permissionName": "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
@@ -259,16 +166,9 @@
     {
       "id": "f10e7d66-e6c5-4db9-a6e1-42fc2d568aa5",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-16T20:47:40.943",
-        "updatedDate": "2020-10-22T20:48:40.922+0000",
-        "createdByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51",
-        "updatedByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51"
-      },
       "grantedTo": [],
       "description": "For Circ staff having to create Circ on the Fly records  Is there a FASTADD feature?",
       "displayName": "Cat_On_the_Fly",
@@ -283,23 +183,9 @@
     {
       "id": "09f9b0a3-6be0-4fac-ac18-2f379337868b",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-15T18:28:24.962",
-        "updatedDate": "2020-10-29T20:46:18.849+0000",
-        "createdByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51",
-        "updatedByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51"
-      },
-      "grantedTo": [
-        "4fee1ea8-f36e-47f5-b6df-f443b6010cda",
-        "b5022a54-100c-4f63-92bb-bfb5b0138c0a",
-        "97b1c5d7-c72a-4ce7-8581-c19fbecaae82",
-        "e32b05f5-da83-41b6-a60e-3fd6a46b01b1",
-        "372009ac-3afc-4125-b4da-df38d2d79e28"
-      ],
       "displayName": "Acquisitions_Orders_Staff",
       "permissionName": "09f9b0a3-6be0-4fac-ac18-2f379337868b",
       "subPermissions": [
@@ -321,19 +207,9 @@
     {
       "id": "8641feeb-07f3-495e-86cb-93df4eb85068",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-16T20:41:09.732",
-        "updatedDate": "2020-10-16T20:41:09.732+0000",
-        "createdByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51",
-        "updatedByUserId": "aac499ae-6f6d-4c26-af45-85e371bbaa51"
-      },
-      "grantedTo": [
-        "74f1cf08-01f6-4717-8003-8c347becac12"
-      ],
       "description": "Permits non-catalogers to view Inventory, FOLIO Holdings, and Items",
       "displayName": "Cat_View",
       "permissionName": "8641feeb-07f3-495e-86cb-93df4eb85068",
@@ -345,19 +221,9 @@
     {
       "id": "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-29T12:11:54.199",
-        "updatedDate": "2020-10-29T16:28:10.072+0000",
-        "createdByUserId": "c349b87f-a1b0-45b5-8969-ae1c5c381fa0",
-        "updatedByUserId": "c349b87f-a1b0-45b5-8969-ae1c5c381fa0"
-      },
-      "grantedTo": [
-        "6a6bf0ff-2b8b-4c35-8e91-1dfd57d67cff"
-      ],
       "displayName": "Circ_Staff",
       "permissionName": "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
       "subPermissions": [
@@ -393,19 +259,9 @@
     {
       "id": "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-29T12:12:21.946",
-        "updatedDate": "2020-10-29T15:36:39.925+0000",
-        "createdByUserId": "c349b87f-a1b0-45b5-8969-ae1c5c381fa0",
-        "updatedByUserId": "c349b87f-a1b0-45b5-8969-ae1c5c381fa0"
-      },
-      "grantedTo": [
-        "6a6bf0ff-2b8b-4c35-8e91-1dfd57d67cff"
-      ],
       "displayName": "Circ_Students",
       "permissionName": "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
       "subPermissions": [
@@ -424,20 +280,9 @@
     {
       "id": "bd76b150-f075-4bdc-a93a-e6f7a563067e",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-29T12:11:22.367",
-        "updatedDate": "2020-10-29T18:26:16.316+0000",
-        "createdByUserId": "c349b87f-a1b0-45b5-8969-ae1c5c381fa0",
-        "updatedByUserId": "c349b87f-a1b0-45b5-8969-ae1c5c381fa0"
-      },
-      "grantedTo": [
-        "8900d5df-fd57-4773-8a55-5c865cce0dce",
-        "6a6bf0ff-2b8b-4c35-8e91-1dfd57d67cff"
-      ],
       "displayName": "Circ_Supervisors",
       "permissionName": "bd76b150-f075-4bdc-a93a-e6f7a563067e",
       "subPermissions": [
@@ -492,19 +337,9 @@
     {
       "id": "55f0aae9-50bc-4041-88bd-1719a19ca167",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-29T20:27:25.767",
-        "updatedDate": "2020-11-10T17:18:15.500+0000",
-        "createdByUserId": "60d91e1f-6f69-495a-b3c0-8c24c75107d0",
-        "updatedByUserId": "60d91e1f-6f69-495a-b3c0-8c24c75107d0"
-      },
-      "grantedTo": [
-        "8900d5df-fd57-4773-8a55-5c865cce0dce"
-      ],
       "displayName": "ER_eHoldings_Staff",
       "permissionName": "55f0aae9-50bc-4041-88bd-1719a19ca167",
       "subPermissions": [
@@ -517,19 +352,9 @@
     {
       "id": "7301b3b0-7075-4e66-8c43-12ed005e6c6b",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-29T20:23:30.921",
-        "updatedDate": "2020-11-10T17:20:15.740+0000",
-        "createdByUserId": "60d91e1f-6f69-495a-b3c0-8c24c75107d0",
-        "updatedByUserId": "60d91e1f-6f69-495a-b3c0-8c24c75107d0"
-      },
-      "grantedTo": [
-        "8900d5df-fd57-4773-8a55-5c865cce0dce"
-      ],
       "displayName": "ER_ERM_Staff",
       "permissionName": "7301b3b0-7075-4e66-8c43-12ed005e6c6b",
       "subPermissions": [
@@ -548,19 +373,9 @@
     {
       "id": "61978e3d-e0aa-4329-a2c0-36c6191aa09b",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-29T20:25:28.923",
-        "updatedDate": "2020-11-10T17:18:56.755+0000",
-        "createdByUserId": "60d91e1f-6f69-495a-b3c0-8c24c75107d0",
-        "updatedByUserId": "60d91e1f-6f69-495a-b3c0-8c24c75107d0"
-      },
-      "grantedTo": [
-        "8900d5df-fd57-4773-8a55-5c865cce0dce"
-      ],
       "displayName": "ER_eUsage_Staff",
       "permissionName": "61978e3d-e0aa-4329-a2c0-36c6191aa09b",
       "subPermissions": [
@@ -571,19 +386,9 @@
     {
       "id": "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-29T20:28:43.362",
-        "updatedDate": "2020-10-29T20:28:43.362+0000",
-        "createdByUserId": "60d91e1f-6f69-495a-b3c0-8c24c75107d0",
-        "updatedByUserId": "60d91e1f-6f69-495a-b3c0-8c24c75107d0"
-      },
-      "grantedTo": [
-        "8900d5df-fd57-4773-8a55-5c865cce0dce"
-      ],
       "displayName": "ER_Financial_Staff",
       "permissionName": "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1",
       "subPermissions": [
@@ -593,19 +398,9 @@
     {
       "id": "50a15dba-6ea2-426a-9118-369084f1247b",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-29T13:00:27.257",
-        "updatedDate": "2020-10-29T13:00:27.257+0000",
-        "createdByUserId": "c349b87f-a1b0-45b5-8969-ae1c5c381fa0",
-        "updatedByUserId": "c349b87f-a1b0-45b5-8969-ae1c5c381fa0"
-      },
-      "grantedTo": [
-        "8900d5df-fd57-4773-8a55-5c865cce0dce"
-      ],
       "displayName": "ILS_Staff",
       "permissionName": "50a15dba-6ea2-426a-9118-369084f1247b",
       "subPermissions": []
@@ -613,16 +408,9 @@
     {
       "id": "3c62be56-0b25-43bb-a2b3-05e8891369b0",
       "tags": [],
-      "dummy": false,
       "childOf": [],
       "mutable": true,
       "visible": true,
-      "metadata": {
-        "createdDate": "2020-10-29T13:00:49.301",
-        "updatedDate": "2020-10-29T13:00:49.301+0000",
-        "createdByUserId": "c349b87f-a1b0-45b5-8969-ae1c5c381fa0",
-        "updatedByUserId": "c349b87f-a1b0-45b5-8969-ae1c5c381fa0"
-      },
       "grantedTo": [],
       "displayName": "ILS_Students",
       "permissionName": "3c62be56-0b25-43bb-a2b3-05e8891369b0",
