@@ -211,7 +211,7 @@ public class HoldingsRecord {
         String tag = field.getTag();
         Optional<String> regexExclusion = Optional.ofNullable(fieldRegexExclusion.get(tag));
         if (regexExclusion.isPresent() && field.toString().matches(regexExclusion.get())) {
-          log.info("Skipping field {} by exclusion regex {}", field.toString(), regexExclusion.get());
+          log.debug("Skipping field {} by exclusion regex {}", field.toString(), regexExclusion.get());
         } else {
           Note note = new Note();
           note.setNote(field.getSubfields().stream().map(Subfield::getData).collect(Collectors.joining(". ")));
