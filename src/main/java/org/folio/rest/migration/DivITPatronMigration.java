@@ -224,7 +224,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
           try {
             userImport.setExpirationDate(DateUtils.parseDate(expirationDate, EXPIRATION_DATE_FORMAT));
           } catch (ParseException e) {
-            e.printStackTrace();
+            log.error("failed to parse expiration date {}", expirationDate);
           }
 
           users.add(userImport);

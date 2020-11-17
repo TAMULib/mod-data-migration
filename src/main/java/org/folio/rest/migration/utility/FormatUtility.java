@@ -32,10 +32,10 @@ public class FormatUtility {
   }
 
   public static String normalizePhoneNumber(String phoneNumber) {
-    if (phoneNumber.startsWith("#") || phoneNumber.startsWith("*")) {
-      return phoneNumber;
-    }
     if (StringUtils.isNotEmpty(phoneNumber)) {
+      if (phoneNumber.startsWith("#") || phoneNumber.startsWith("*")) {
+        return phoneNumber;
+      }
       try {
         String defaultRegion = "US";
         PhoneNumber numberProto = phoneUtil.parseAndKeepRawInput(phoneNumber, defaultRegion);
