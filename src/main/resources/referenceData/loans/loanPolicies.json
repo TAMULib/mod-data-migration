@@ -3,83 +3,84 @@
   "dependencies": [],
   "data": [
     {
+      "name": "day_1_renew_0_recall_n",
       "id": "36e97605-0d8a-4f96-86ca-7ed1bbc7876a",
-      "loanable": true,
+      "renewable": false,
       "loansPolicy": {
-        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
         "profileId": "Rolling",
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
         "period": {
           "intervalId": "Days",
           "duration": 1
         }
       },
-      "renewable": false,
-      "name": "day_1_renew_0_recall_n"
+      "loanable": true
     },
     {
       "renewalsPolicy": {
-        "renewFromId": "SYSTEM_DATE",
-        "unlimited": true
+        "unlimited": true,
+        "renewFromId": "SYSTEM_DATE"
       },
       "id": "034a3207-0cdd-4378-8684-c4b04ec0e91d",
+      "renewable": true,
       "loanable": true,
+      "requestManagement": {
+        "recalls": {
+          "minimumGuaranteedLoanPeriod": {
+            "duration": 14,
+            "intervalId": "Days"
+          }
+        }
+      },
       "loansPolicy": {
-        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
-        "profileId": "Rolling",
         "period": {
           "duration": 125,
           "intervalId": "Days"
-        }
+        },
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
+        "profileId": "Rolling"
       },
-      "requestManagement": {
-        "recalls": {
-          "minimumGuaranteedLoanPeriod": {
-            "duration": 14,
-            "intervalId": "Days"
-          }
-        }
-      },
-      "name": "day_125_renew_indefinite_recall_y",
-      "renewable": true
+      "name": "day_125_renew_indefinite_recall_y"
     },
     {
-      "loanable": true,
-      "description": "Used for ILS Lending",
       "id": "83a90b7a-3cc7-4cc4-8d9b-39dfb16e3915",
-      "renewable": false,
       "name": "day_125_renew_n_recall_n",
+      "renewable": false,
+      "loanable": true,
       "loansPolicy": {
-        "profileId": "Rolling",
-        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
         "period": {
           "intervalId": "Days",
           "duration": 125
-        }
-      }
+        },
+        "profileId": "Rolling",
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY"
+      },
+      "description": "Used for ILS Lending"
     },
     {
-      "name": "day_14_renew_0_recall_n",
-      "renewable": false,
       "loansPolicy": {
         "profileId": "Rolling",
         "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
-        "itemLimit": 5,
         "period": {
-          "intervalId": "Days",
-          "duration": 14
+          "duration": 14,
+          "intervalId": "Days"
         }
       },
       "loanable": true,
-      "id": "a88dca8b-c56c-4758-9b64-974c3e89e40c"
+      "renewable": false,
+      "id": "a88dca8b-c56c-4758-9b64-974c3e89e40c",
+      "name": "day_14_renew_0_recall_n"
     },
     {
-      "renewalsPolicy": {
-        "numberAllowed": 1,
-        "differentPeriod": false,
-        "renewFromId": "SYSTEM_DATE"
+      "name": "day_14_renew_1_recall_y",
+      "loansPolicy": {
+        "profileId": "Rolling",
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
+        "period": {
+          "duration": 14,
+          "intervalId": "Days"
+        }
       },
-      "id": "851a879e-f5bc-44a4-a32b-b95bb5b3edad",
-      "loanable": true,
       "requestManagement": {
         "recalls": {
           "minimumGuaranteedLoanPeriod": {
@@ -88,39 +89,34 @@
           }
         }
       },
-      "loansPolicy": {
-        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
-        "profileId": "Rolling",
-        "period": {
-          "duration": 14,
-          "intervalId": "Days"
-        },
-        "itemLimit": 5
-      },
+      "loanable": true,
       "renewable": true,
-      "name": "day_14_renew_1_recall_y"
+      "id": "851a879e-f5bc-44a4-a32b-b95bb5b3edad",
+      "renewalsPolicy": {
+        "differentPeriod": false,
+        "renewFromId": "SYSTEM_DATE",
+        "numberAllowed": 1
+      }
     },
     {
+      "name": "day_3_renew_0_recall_n",
       "id": "18720906-f622-4259-8cdb-e7b2949b9c5a",
       "loanable": true,
       "loansPolicy": {
         "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
         "profileId": "Rolling",
         "period": {
-          "intervalId": "Days",
-          "duration": 3
-        },
-        "itemLimit": 5
+          "duration": 3,
+          "intervalId": "Days"
+        }
       },
-      "renewable": false,
-      "name": "day_3_renew_0_recall_n"
+      "renewable": false
     },
     {
       "name": "day_30_renew_0_recall_n",
       "id": "7cc84105-fa31-4562-b5e7-421dbe3a60b8",
       "loansPolicy": {
         "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
-        "itemLimit": 100,
         "profileId": "Rolling",
         "period": {
           "duration": 30,
@@ -131,6 +127,177 @@
       "renewable": false
     },
     {
+      "loansPolicy": {
+        "period": {
+          "intervalId": "Days",
+          "duration": 30
+        },
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
+        "profileId": "Rolling"
+      },
+      "requestManagement": {
+        "recalls": {
+          "minimumGuaranteedLoanPeriod": {
+            "duration": 14,
+            "intervalId": "Days"
+          }
+        }
+      },
+      "loanable": true,
+      "renewable": true,
+      "name": "day_30_renew_1_recall_y",
+      "id": "c8bfa248-3430-417e-9740-46db8b4307dd",
+      "renewalsPolicy": {
+        "renewFromId": "SYSTEM_DATE",
+        "numberAllowed": 1
+      }
+    },
+    {
+      "name": "day_30_renew_3_recall_y",
+      "requestManagement": {
+        "recalls": {
+          "minimumGuaranteedLoanPeriod": {
+            "duration": 14,
+            "intervalId": "Days"
+          }
+        }
+      },
+      "loansPolicy": {
+        "profileId": "Rolling",
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
+        "period": {
+          "duration": 30,
+          "intervalId": "Days"
+        }
+      },
+      "loanable": true,
+      "renewable": true,
+      "id": "bd1282ac-f760-4fb9-bf39-3b4cf088530b",
+      "renewalsPolicy": {
+        "numberAllowed": 3,
+        "renewFromId": "SYSTEM_DATE",
+        "unlimited": false
+      }
+    },
+    {
+      "name": "day_367_renew_indefinite_recall_y",
+      "renewable": true,
+      "requestManagement": {
+        "recalls": {
+          "minimumGuaranteedLoanPeriod": {
+            "duration": 14,
+            "intervalId": "Days"
+          }
+        }
+      },
+      "loansPolicy": {
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
+        "profileId": "Rolling",
+        "period": {
+          "intervalId": "Days",
+          "duration": 367
+        }
+      },
+      "loanable": true,
+      "renewalsPolicy": {
+        "renewFromId": "SYSTEM_DATE",
+        "unlimited": true
+      },
+      "id": "168d255c-7f8e-4b53-a775-ae344f8ae48e"
+    },
+    {
+      "id": "db329829-84a3-4bec-93dd-9c040c2fdb9e",
+      "name": "day_5_renew_0_recall_n",
+      "renewable": false,
+      "loansPolicy": {
+        "profileId": "Rolling",
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
+        "period": {
+          "duration": 5,
+          "intervalId": "Days"
+        }
+      },
+      "loanable": true
+    },
+    {
+      "name": "day_60_renew_1_recall_n",
+      "renewable": true,
+      "loansPolicy": {
+        "period": {
+          "duration": 60,
+          "intervalId": "Days"
+        },
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
+        "profileId": "Rolling"
+      },
+      "loanable": true,
+      "renewalsPolicy": {
+        "differentPeriod": true,
+        "renewFromId": "CURRENT_DUE_DATE",
+        "period": {
+          "duration": 14,
+          "intervalId": "Days"
+        },
+        "numberAllowed": 1
+      },
+      "id": "4d12a86f-3ca2-4288-98b2-74f812d879ec",
+      "description": "Used by Evans ILS for HDR materials."
+    },
+    {
+      "id": "8dcfa981-6876-4c91-bc71-7fdc423c49ca",
+      "name": "day_7_renew_0_recall_n",
+      "loansPolicy": {
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
+        "profileId": "Rolling",
+        "period": {
+          "intervalId": "Days",
+          "duration": 7
+        }
+      },
+      "loanable": true,
+      "description": "7 day loan, no renewals, no recall",
+      "renewable": false
+    },
+    {
+      "description": "7 day loan, no renewals, can recall",
+      "id": "c998a3ad-8b3b-43da-be34-a40a89165959",
+      "renewable": false,
+      "requestManagement": {
+        "recalls": {
+          "minimumGuaranteedLoanPeriod": {
+            "duration": 7,
+            "intervalId": "Days"
+          }
+        }
+      },
+      "loansPolicy": {
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
+        "profileId": "Rolling",
+        "period": {
+          "intervalId": "Days",
+          "duration": 7
+        }
+      },
+      "loanable": true,
+      "name": "day_7_renew_0_recall_y"
+    },
+    {
+      "renewalsPolicy": {
+        "unlimited": false,
+        "numberAllowed": 3,
+        "renewFromId": "SYSTEM_DATE"
+      },
+      "id": "c8bfa248-3490-417e-9740-46db8b4907dd",
+      "name": "day_90_renew_3_recall_y",
+      "renewable": true,
+      "loansPolicy": {
+        "period": {
+          "duration": 90,
+          "intervalId": "Days"
+        },
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
+        "profileId": "Rolling"
+      },
       "requestManagement": {
         "recalls": {
           "minimumGuaranteedLoanPeriod": {
@@ -139,272 +306,98 @@
           }
         }
       },
-      "loansPolicy": {
-        "itemLimit": 25,
-        "period": {
-          "duration": 30,
-          "intervalId": "Days"
-        },
-        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
-        "profileId": "Rolling"
-      },
-      "renewable": true,
-      "name": "day_30_renew_1_recall_y",
-      "renewalsPolicy": {
-        "numberAllowed": 1,
-        "renewFromId": "SYSTEM_DATE"
-      },
-      "id": "c8bfa248-3430-417e-9740-46db8b4307dd",
       "loanable": true
     },
     {
-      "name": "day_30_renew_3_recall_y",
-      "renewable": true,
-      "loansPolicy": {
-        "profileId": "Rolling",
-        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
-        "itemLimit": 100,
-        "period": {
-          "duration": 30,
-          "intervalId": "Days"
-        }
-      },
-      "requestManagement": {
-        "recalls": {
-          "minimumGuaranteedLoanPeriod": {
-            "duration": 14,
-            "intervalId": "Days"
-          }
-        }
-      },
-      "renewalsPolicy": {
-        "unlimited": false,
-        "numberAllowed": 3,
-        "renewFromId": "SYSTEM_DATE"
-      },
-      "loanable": true,
-      "id": "bd1282ac-f760-4fb9-bf39-3b4cf088530b"
-    },
-    {
-      "renewalsPolicy": {
-        "renewFromId": "SYSTEM_DATE",
-        "unlimited": true
-      },
-      "id": "168d255c-7f8e-4b53-a775-ae344f8ae48e",
+      "id": "a7d0c3ec-503f-44d0-ab72-2de61abc3031",
+      "name": "hour_2_renew_0_recall_n",
       "loanable": true,
       "loansPolicy": {
-        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
         "profileId": "Rolling",
-        "period": {
-          "duration": 367,
-          "intervalId": "Days"
-        }
-      },
-      "requestManagement": {
-        "recalls": {
-          "minimumGuaranteedLoanPeriod": {
-            "duration": 14,
-            "intervalId": "Days"
-          }
-        }
-      },
-      "name": "day_367_renew_indefinite_recall_y",
-      "renewable": true
-    },
-    {
-      "loanable": true,
-      "id": "db329829-84a3-4bec-93dd-9c040c2fdb9e",
-      "renewable": false,
-      "name": "day_5_renew_0_recall_n",
-      "loansPolicy": {
-        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
-        "profileId": "Rolling",
-        "period": {
-          "intervalId": "Days",
-          "duration": 5
-        }
-      }
-    },
-    {
-      "description": "Used by Evans ILS for HDR materials.",
-      "name": "day_60_renew_1_recall_n",
-      "renewable": true,
-      "loansPolicy": {
-        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
-        "profileId": "Rolling",
-        "period": {
-          "duration": 60,
-          "intervalId": "Days"
-        }
-      },
-      "loanable": true,
-      "id": "4d12a86f-3ca2-4288-98b2-74f812d879ec",
-      "renewalsPolicy": {
-        "period": {
-          "duration": 14,
-          "intervalId": "Days"
-        },
-        "renewFromId": "CURRENT_DUE_DATE",
-        "differentPeriod": true,
-        "numberAllowed": 1
-      }
-    },
-    {
-      "loansPolicy": {
-        "period": {
-          "intervalId": "Days",
-          "duration": 7
-        },
-        "profileId": "Rolling",
-        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY"
-      },
-      "renewable": false,
-      "name": "day_7_renew_0_recall_n",
-      "description": "7 day loan, no renewals, no recall",
-      "id": "8dcfa981-6876-4c91-bc71-7fdc423c49ca",
-      "loanable": true
-    },
-    {
-      "loanable": true,
-      "id": "c998a3ad-8b3b-43da-be34-a40a89165959",
-      "description": "7 day loan, no renewals, can recall",
-      "renewable": false,
-      "name": "day_7_renew_0_recall_y",
-      "requestManagement": {
-        "recalls": {
-          "minimumGuaranteedLoanPeriod": {
-            "intervalId": "Days",
-            "duration": 7
-          }
-        }
-      },
-      "loansPolicy": {
-        "profileId": "Rolling",
-        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
-        "period": {
-          "duration": 7,
-          "intervalId": "Days"
-        }
-      }
-    },
-    {
-      "renewable": true,
-      "name": "day_90_renew_3_recall_y",
-      "requestManagement": {
-        "recalls": {
-          "minimumGuaranteedLoanPeriod": {
-            "duration": 14,
-            "intervalId": "Days"
-          }
-        }
-      },
-      "loansPolicy": {
-        "itemLimit": 100,
-        "period": {
-          "duration": 90,
-          "intervalId": "Days"
-        },
-        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
-        "profileId": "Rolling"
-      },
-      "loanable": true,
-      "id": "c8bfa248-3490-417e-9740-46db8b4907dd",
-      "renewalsPolicy": {
-        "numberAllowed": 3,
-        "renewFromId": "SYSTEM_DATE",
-        "unlimited": false
-      }
-    },
-    {
-      "loansPolicy": {
         "closedLibraryDueDateManagementId": "BEGINNING_OF_THE_NEXT_OPEN_SERVICE_POINT_HOURS",
         "openingTimeOffset": {
           "duration": 2,
           "intervalId": "Hours"
         },
-        "profileId": "Rolling",
         "period": {
-          "duration": 1,
-          "intervalId": "Hours"
-        }
-      },
-      "name": "hour_2_renew_0_recall_n",
-      "renewable": false,
-      "id": "a7d0c3ec-503f-44d0-ab72-2de61abc3031",
-      "loanable": true
-    },
-    {
-      "id": "6ef675b5-1bb0-46f2-938d-85c8a612b7c5",
-      "loanable": true,
-      "loansPolicy": {
-        "profileId": "Rolling",
-        "openingTimeOffset": {
-          "duration": 4,
-          "intervalId": "Hours"
-        },
-        "closedLibraryDueDateManagementId": "BEGINNING_OF_THE_NEXT_OPEN_SERVICE_POINT_HOURS",
-        "period": {
-          "duration": 4,
-          "intervalId": "Hours"
-        }
-      },
-      "renewable": false,
-      "name": "hour_4_renew_0_recall_n"
-    },
-    {
-      "name": "hour_4_renew_1_recall_y",
-      "renewable": true,
-      "loansPolicy": {
-        "closedLibraryDueDateManagementId": "BEGINNING_OF_THE_NEXT_OPEN_SERVICE_POINT_HOURS",
-        "profileId": "Rolling",
-        "openingTimeOffset": {
           "intervalId": "Hours",
           "duration": 1
-        },
-        "period": {
+        }
+      },
+      "renewable": false
+    },
+    {
+      "renewable": false,
+      "loansPolicy": {
+        "openingTimeOffset": {
           "intervalId": "Hours",
           "duration": 4
-        }
+        },
+        "period": {
+          "duration": 4,
+          "intervalId": "Hours"
+        },
+        "profileId": "Rolling",
+        "closedLibraryDueDateManagementId": "BEGINNING_OF_THE_NEXT_OPEN_SERVICE_POINT_HOURS"
+      },
+      "loanable": true,
+      "name": "hour_4_renew_0_recall_n",
+      "id": "6ef675b5-1bb0-46f2-938d-85c8a612b7c5"
+    },
+    {
+      "renewalsPolicy": {
+        "numberAllowed": 1,
+        "renewFromId": "SYSTEM_DATE"
+      },
+      "id": "75a81283-6571-4c66-9f52-a4cc59ff766a",
+      "renewable": true,
+      "loansPolicy": {
+        "period": {
+          "duration": 4,
+          "intervalId": "Hours"
+        },
+        "openingTimeOffset": {
+          "duration": 1,
+          "intervalId": "Hours"
+        },
+        "profileId": "Rolling",
+        "closedLibraryDueDateManagementId": "BEGINNING_OF_THE_NEXT_OPEN_SERVICE_POINT_HOURS"
       },
       "requestManagement": {
         "recalls": {
           "minimumGuaranteedLoanPeriod": {
-            "intervalId": "Hours",
-            "duration": 2
+            "duration": 2,
+            "intervalId": "Hours"
           }
         }
       },
       "loanable": true,
-      "id": "75a81283-6571-4c66-9f52-a4cc59ff766a",
-      "renewalsPolicy": {
-        "renewFromId": "SYSTEM_DATE",
-        "numberAllowed": 1
-      }
+      "name": "hour_4_renew_1_recall_y"
     },
     {
-      "name": "noncirc",
       "renewable": false,
       "description": "Non-circulating policy",
+      "loanable": false,
       "id": "b1c3d40f-f3e5-4b37-ab08-babf061db2da",
-      "loanable": false
+      "name": "noncirc"
     },
     {
-      "renewable": true,
-      "name": "remote_hathitrust",
-      "renewalsPolicy": {
-        "renewFromId": "SYSTEM_DATE",
-        "unlimited": true
-      },
+      "loanable": true,
       "loansPolicy": {
+        "profileId": "Rolling",
+        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
         "period": {
           "intervalId": "Months",
           "duration": 48
-        },
-        "closedLibraryDueDateManagementId": "END_OF_THE_NEXT_OPEN_DAY",
-        "profileId": "Rolling"
+        }
       },
-      "loanable": true,
-      "id": "3f92e92c-2781-40a1-b53f-596d271d616d"
+      "renewable": true,
+      "name": "remote_hathitrust",
+      "id": "3f92e92c-2781-40a1-b53f-596d271d616d",
+      "renewalsPolicy": {
+        "unlimited": true,
+        "renewFromId": "SYSTEM_DATE"
+      }
     }
   ]
 }
