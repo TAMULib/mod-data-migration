@@ -249,7 +249,7 @@ public class RequestMigration extends AbstractMigration<RequestContext> {
           try {
             migrationService.okapiService.createRequest(request, tenant, token);
           } catch(Exception e) {
-            log.error(e.getMessage());
+            log.error("{} failed creating request for user external id {} and item id {} - {}", schema, requesterExternalSystemId, itemId, e.getMessage());
           }
 
         }
