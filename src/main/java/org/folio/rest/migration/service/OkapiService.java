@@ -1,6 +1,5 @@
 package org.folio.rest.migration.service;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Date;
@@ -10,9 +9,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.collections4.list.UnmodifiableList;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.folio.Alternativetitletypes;
 import org.folio.Classificationtypes;
 import org.folio.Contributornametypes;
@@ -26,7 +22,6 @@ import org.folio.Issuancemodes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
 import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
 import org.folio.rest.jaxrs.model.circulation.Loan;
-import org.folio.rest.jaxrs.model.circulation.Request__2;
 import org.folio.rest.jaxrs.model.dataimport.common.Status;
 import org.folio.rest.jaxrs.model.dataimport.dto.InitJobExecutionsRqDto;
 import org.folio.rest.jaxrs.model.dataimport.dto.InitJobExecutionsRsDto;
