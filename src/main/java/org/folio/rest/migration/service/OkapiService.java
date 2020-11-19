@@ -97,8 +97,7 @@ public class OkapiService {
   public JsonNode createReferenceData(ReferenceDatum referenceDatum) {
     long startTime = System.nanoTime();
     String url = okapi.getUrl() + referenceDatum.getPath();
-    HttpEntity<JsonNode> entity = new HttpEntity<>(referenceDatum.getData(),
-        headers(referenceDatum.getTenant(), referenceDatum.getToken()));
+    HttpEntity<JsonNode> entity = new HttpEntity<>(referenceDatum.getData(), headers(referenceDatum.getTenant(), referenceDatum.getToken()));
     ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.POST, entity, JsonNode.class);
     log.debug("create reference data: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 201) {
