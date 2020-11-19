@@ -194,8 +194,6 @@ public class RequestMigration extends AbstractMigration<RequestContext> {
 
           String userReferenceId = userReferenceLinks.get(0).getFolioReference().toString();
 
-          userReferenceLinks.stream().map(ReferenceLink::getFolioReference).forEach(System.out::println);
-
           Optional<ReferenceLink> itemRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId);
 
           if (!itemRL.isPresent()) {
