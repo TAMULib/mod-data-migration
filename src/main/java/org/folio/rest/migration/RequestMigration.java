@@ -212,8 +212,6 @@ public class RequestMigration extends AbstractMigration<RequestContext> {
 
           ObjectNode request = migrationService.objectMapper.createObjectNode();
 
-          // Request__2 request = new Request__2();
-
           request.put("id", UUID.randomUUID().toString());
           
           request.put("requesterId", userReferenceId);
