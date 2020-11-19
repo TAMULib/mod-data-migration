@@ -5,7 +5,6 @@
     {
       "id": "7fd42e23-08bf-4bf3-ad66-f6e27c446649",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "displayName": "Acquisitions_Admin_Staff",
@@ -63,7 +62,6 @@
     {
       "id": "bbc81742-5f20-4517-9e38-a1ed0631d874",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "displayName": "Acquisitions_Financial_Staff",
@@ -75,7 +73,6 @@
     {
       "id": "2347a558-b532-4b28-971f-3dd05420375a",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "displayName": "Acquisitions_Invoicing_Staff",
@@ -85,33 +82,8 @@
       ]
     },
     {
-      "id": "09f9b0a3-6be0-4fac-ac18-2f379337868b",
-      "tags": [],
-      "childOf": [],
-      "mutable": true,
-      "visible": true,
-      "displayName": "Acquisitions_Orders_Staff",
-      "permissionName": "09f9b0a3-6be0-4fac-ac18-2f379337868b",
-      "subPermissions": [
-        "ui-orders.order-lines.create",
-        "ui-orders.order.create",
-        "ui-orders.order-lines.delete",
-        "ui-orders.order-lines.edit",
-        "ui-orders.order.edit",
-        "ui-orders.order.delete",
-        "ui-orders.order.reopen",
-        "ui-orders.order.unopen",
-        "ui-orders.order-lines.view",
-        "ui-orders.order.view",
-        "module.finance.enabled",
-        "module.invoice.enabled",
-        "module.orders.enabled"
-      ]
-    },
-    {
       "id": "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "displayName": "Acquisitions_Organizations_Staff",
@@ -126,7 +98,6 @@
     {
       "id": "cc4a6624-190c-4872-95dd-be090a74b61f",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "displayName": "Acquisitions_Receiving_Staff",
@@ -139,10 +110,8 @@
     {
       "id": "d2f1856c-d6f9-450f-b6be-a3d455282abe",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
-      "grantedTo": [],
       "displayName": "Acquisitions_Receiving_Students",
       "permissionName": "d2f1856c-d6f9-450f-b6be-a3d455282abe",
       "subPermissions": [
@@ -152,7 +121,6 @@
     {
       "id": "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "description": "Set of permissions for Staff and Professionals",
@@ -166,10 +134,8 @@
     {
       "id": "f10e7d66-e6c5-4db9-a6e1-42fc2d568aa5",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
-      "grantedTo": [],
       "description": "For Circ staff having to create Circ on the Fly records  Is there a FASTADD feature?",
       "displayName": "Cat_On_the_Fly",
       "permissionName": "f10e7d66-e6c5-4db9-a6e1-42fc2d568aa5",
@@ -183,7 +149,6 @@
     {
       "id": "09f9b0a3-6be0-4fac-ac18-2f379337868b",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "displayName": "Acquisitions_Orders_Staff",
@@ -207,7 +172,6 @@
     {
       "id": "8641feeb-07f3-495e-86cb-93df4eb85068",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "description": "Permits non-catalogers to view Inventory, FOLIO Holdings, and Items",
@@ -221,7 +185,6 @@
     {
       "id": "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "displayName": "Circ_Staff",
@@ -259,7 +222,6 @@
     {
       "id": "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "displayName": "Circ_Students",
@@ -280,7 +242,6 @@
     {
       "id": "bd76b150-f075-4bdc-a93a-e6f7a563067e",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "displayName": "Circ_Supervisors",
@@ -337,7 +298,6 @@
     {
       "id": "55f0aae9-50bc-4041-88bd-1719a19ca167",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "displayName": "ER_eHoldings_Staff",
@@ -352,7 +312,6 @@
     {
       "id": "7301b3b0-7075-4e66-8c43-12ed005e6c6b",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "displayName": "ER_ERM_Staff",
@@ -373,7 +332,6 @@
     {
       "id": "61978e3d-e0aa-4329-a2c0-36c6191aa09b",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "displayName": "ER_eUsage_Staff",
@@ -386,7 +344,6 @@
     {
       "id": "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "displayName": "ER_Financial_Staff",
@@ -398,7 +355,6 @@
     {
       "id": "50a15dba-6ea2-426a-9118-369084f1247b",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
       "displayName": "ILS_Staff",
@@ -408,10 +364,8 @@
     {
       "id": "3c62be56-0b25-43bb-a2b3-05e8891369b0",
       "tags": [],
-      "childOf": [],
       "mutable": true,
       "visible": true,
-      "grantedTo": [],
       "displayName": "ILS_Students",
       "permissionName": "3c62be56-0b25-43bb-a2b3-05e8891369b0",
       "subPermissions": []

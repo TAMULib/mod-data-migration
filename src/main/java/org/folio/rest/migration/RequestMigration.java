@@ -7,46 +7,55 @@ import java.sql.Statement;
 import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
-import org.folio.rest.jaxrs.model.circulation.Loan;
+import org.apache.commons.lang3.StringUtils;
+import org.folio.rest.jaxrs.model.circulation.Item__4;
+import org.folio.rest.jaxrs.model.circulation.Request__2;
+import org.folio.rest.jaxrs.model.circulation.Requester__1;
 import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Servicepoint;
 import org.folio.rest.jaxrs.model.inventory.Servicepoints;
 import org.folio.rest.migration.config.model.Database;
-import org.folio.rest.migration.model.request.loan.LoanContext;
-import org.folio.rest.migration.model.request.loan.LoanJob;
+import org.folio.rest.migration.model.request.request.RequestContext;
+import org.folio.rest.migration.model.request.request.RequestJob;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
+import org.folio.rest.model.ReferenceLink;
 
-public class LoanMigration extends AbstractMigration<LoanContext> {
+public class RequestMigration extends AbstractMigration<RequestContext> {
 
   private static final String LOCATIONS_CODE_MAP = "LOCATIONS_CODE_MAP";
   private static final String SERVICE_POINTS = "SERVICE_POINTS";
 
-  private static final String CHARGE_LOCATION = "CHARGE_LOCATION";
-  private static final String RENEWAL_COUNT = "RENEWAL_COUNT";
-
-  private static final String PATRON_ID = "PATRON_ID";
-  private static final String PATRON_BARCODE = "PATRON_BARCODE";
-
+  private static final String REQUESTTYPE = "REQUESTTYPE";
+  private static final String REQUESTDATE = "REQUESTDATE";
+  private static final String STATUS = "STATUS";
+  private static final String POSITION = "POSITION";
   private static final String ITEM_ID = "ITEM_ID";
+  private static final String ITEM_TITLE = "ITEM_TITLE";
   private static final String ITEM_BARCODE = "ITEM_BARCODE";
-
-  private static final String LOAN_DATE = "LOAN_DATE";
-  private static final String DUE_DATE = "DUE_DATE";
-
+  private static final String REQUESTER_EXTERNAL_SYSTEM_ID = "REQUESTER_EXTERNAL_SYSTEM_ID";
+  private static final String REQUESTER_LASTNAME = "REQUESTER_LASTNAME";
+  private static final String REQUESTER_FIRSTNAME = "REQUESTER_FIRSTNAME";
+  private static final String FULFILMENTPREFERENCE = "FULFILMENTPREFERENCE";
+  private static final String REQUESTEXPIRATIONDATE = "REQUESTEXPIRATIONDATE";
+  private static final String HOLDSHELFEXPIRATIONDATE = "HOLDSHELFEXPIRATIONDATE";
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String LOCATION_CODE = "LOCATION_CODE";
 
-  private LoanMigration(LoanContext context, String tenant) {
+  private static final String ITEM_REFERENCE_ID = "itemTypeId";
+
+  private RequestMigration(RequestContext context, String tenant) {
     super(context, tenant);
   }
 
@@ -66,7 +75,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
     preActions(folioSettings, context.getPreActions());
 
-    taskQueue = new PartitionTaskQueue<LoanContext>(context, new TaskCallback() {
+    taskQueue = new PartitionTaskQueue<RequestContext>(context, new TaskCallback() {
 
       @Override
       public void complete() {
@@ -81,7 +90,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
     int index = 0;
 
-    for (LoanJob job : context.getJobs()) {
+    for (RequestJob job : context.getJobs()) {
 
       countContext.put(SCHEMA, job.getSchema());
 
@@ -106,7 +115,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
         partitionContext.put(LOCATIONS_CODE_MAP, locationsCodeMap);
         partitionContext.put(SERVICE_POINTS, servicePoints);
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
-        taskQueue.submit(new LoanPartitionTask(migrationService, partitionContext));
+        taskQueue.submit(new RequestPartitionTask(migrationService, partitionContext));
         offset += limit;
         index++;
       }
@@ -115,17 +124,17 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
     return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }
 
-  public static LoanMigration with(LoanContext context, String tenant) {
-    return new LoanMigration(context, tenant);
+  public static RequestMigration with(RequestContext context, String tenant) {
+    return new RequestMigration(context, tenant);
   }
 
-  public class LoanPartitionTask implements PartitionTask<LoanContext> {
+  public class RequestPartitionTask implements PartitionTask<RequestContext> {
 
     private final MigrationService migrationService;
 
     private final Map<String, Object> partitionContext;
 
-    public LoanPartitionTask(MigrationService migrationService, Map<String, Object> partitionContext) {
+    public RequestPartitionTask(MigrationService migrationService, Map<String, Object> partitionContext) {
       this.migrationService = migrationService;
       this.partitionContext = partitionContext;
     }
@@ -134,12 +143,12 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
       return (int) partitionContext.get(INDEX);
     }
 
-    public LoanPartitionTask execute(LoanContext context) {
+    public RequestPartitionTask execute(RequestContext context) {
       long startTime = System.nanoTime();
 
       String token = (String) partitionContext.get(TOKEN);
 
-      LoanJob job = (LoanJob) partitionContext.get(JOB);
+      RequestJob job = (RequestJob) partitionContext.get(JOB);
 
       Map<String, String> locationsCodeMap = (Map<String, String>) partitionContext.get(LOCATIONS_CODE_MAP);
 
@@ -151,6 +160,8 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
       Database voyagerSettings = context.getExtraction().getDatabase();
 
+      String itemRLTypeId = job.getReferences().get(ITEM_REFERENCE_ID);
+
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings);
 
       try (
@@ -159,61 +170,90 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
       ) {
         while (pageResultSet.next()) {
 
-          String chargeLocation = pageResultSet.getString(CHARGE_LOCATION);
-          Integer renewalCount = pageResultSet.getInt(RENEWAL_COUNT);
-
-          Integer patronId = pageResultSet.getInt(PATRON_ID);
-          String patronBarcode = pageResultSet.getString(PATRON_BARCODE);
-
-          Integer itemId = pageResultSet.getInt(ITEM_ID);
+          String requestType = pageResultSet.getString(REQUESTTYPE);
+          String requestDate = pageResultSet.getString(REQUESTDATE);
+          String status = pageResultSet.getString(STATUS);
+          Integer position = pageResultSet.getInt(POSITION);
+          String itemId = pageResultSet.getString(ITEM_ID);
+          String itemTitle = pageResultSet.getString(ITEM_TITLE);
           String itemBarcode = pageResultSet.getString(ITEM_BARCODE);
+          String requesterExternalSystemId = pageResultSet.getString(REQUESTER_EXTERNAL_SYSTEM_ID);
+          String requesterLastname = pageResultSet.getString(REQUESTER_LASTNAME);
+          String requesterFirstname = pageResultSet.getString(REQUESTER_FIRSTNAME);
+          String fulfilmentPreference = pageResultSet.getString(FULFILMENTPREFERENCE);
+          String requestExpirationDate = pageResultSet.getString(REQUESTEXPIRATIONDATE);
+          String holdshelfExpirationDate = pageResultSet.getString(HOLDSHELFEXPIRATIONDATE);
+          String locationId = pageResultSet.getString(LOCATION_ID);
 
-          String loanDate = pageResultSet.getString(LOAN_DATE);
-          String dueDate = pageResultSet.getString(DUE_DATE);
+          List<ReferenceLink> userReferenceLinks = migrationService.referenceLinkRepo.findAllByExternalReference(requesterExternalSystemId);
 
-          if (Objects.isNull(patronBarcode)) {
-            log.debug("{} no patron barcode found for patron id {}", schema, patronId);
+          if (userReferenceLinks.isEmpty()) {
+            log.error("{} no user id found for with external id {}", schema, requesterExternalSystemId);
             continue;
           }
 
-          if (Objects.isNull(itemBarcode)) {
-            log.info("{} no item barcode found for item id {}", schema, itemId);
+          String userReferenceId = userReferenceLinks.get(0).getFolioReference().toString();
+
+          userReferenceLinks.stream().map(ReferenceLink::getFolioReference).forEach(System.out::println);
+
+          Optional<ReferenceLink> itemRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(itemRLTypeId, itemId);
+
+          if (!itemRL.isPresent()) {
+            log.error("{} no item id found for item id {}", schema, itemId);
             continue;
           }
 
-          String locationCode = locationsCodeMap.get(chargeLocation);
+          String locationCode = locationsCodeMap.get(locationId);
 
           Optional<String> servicePointId = getServicePoint(locationCode, servicePoints);
 
           if (!servicePointId.isPresent()) {
-            log.info("{} could not find service point for item id {} with charge location {}", schema, itemId, chargeLocation);
+            log.info("{} could not find service point for item id {} with location id {} and code", schema, itemId, locationId, locationCode);
             continue;
           }
 
-          CheckOutByBarcodeRequest checkoutRequest = new CheckOutByBarcodeRequest();
-          checkoutRequest.setItemBarcode(itemBarcode.toLowerCase());
-          checkoutRequest.setUserBarcode(patronBarcode.toLowerCase());
-          checkoutRequest.setServicePointId(servicePointId.get());
+          ObjectNode request = migrationService.objectMapper.createObjectNode();
+
+          // Request__2 request = new Request__2();
+
+          request.put("id", UUID.randomUUID().toString());
+          
+          request.put("requesterId", userReferenceId);
+          request.put("requestType", requestType);
+          request.put("requestDate", requestDate);
+          request.put("status", status);
+          request.put("position", position);
+          request.put("itemId", itemRL.get().getFolioReference());
+
+          ObjectNode item = request.with("item");
+
+          item.put("title", itemTitle);
+          item.put("barcode", itemBarcode);
+
+          ObjectNode requester = request.with("requester");
+
+          requester.put("firstName", requesterFirstname);
+          requester.put("lastName", requesterLastname);
+
+          request.put("fulfilmentPreference", fulfilmentPreference);
+
+          request.put("pickupServicePointId", servicePointId.get());
+
+
+          if (StringUtils.isNoneEmpty(holdshelfExpirationDate)) {
+            request.put("holdShelfExpirationDate", holdshelfExpirationDate);
+          }
+
+          if (StringUtils.isNoneEmpty(requestExpirationDate)) {
+            request.put("requestExpirationDate", requestExpirationDate);
+          }
 
           try {
-            Loan loan = migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
-            try {
-              loan.setAction("dueDateChanged");
-              loan.setLoanDate(Date.from(Instant.parse(loanDate)));
-              loan.setDueDate(Date.from(Instant.parse(dueDate)));
-              if (renewalCount > 0) {
-                loan.setRenewalCount(renewalCount);
-              }
-              JsonNode updateLoanRequest = migrationService.objectMapper.valueToTree(loan);
-              migrationService.okapiService.updateLoan(updateLoanRequest, tenant, token);
-            } catch (Exception e) {
-              log.error("{} failed to update loan with id {}", schema, loan.getId());
-              log.error(e.getMessage());
-            }
-          } catch (Exception e) {
-            log.error("{} failed to checkout item with barcode {} to user with barcode {} at service point {}", schema, itemBarcode, patronBarcode, servicePointId.get());
+            migrationService.okapiService.createRequest(request, tenant, token);
+          } catch(Exception e) {
             log.error(e.getMessage());
           }
+
         }
 
       } catch (SQLException e) {
@@ -228,7 +268,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
     @Override
     public boolean equals(Object obj) {
-      return Objects.nonNull(obj) && ((LoanPartitionTask) obj).getIndex() == this.getIndex();
+      return Objects.nonNull(obj) && ((RequestPartitionTask) obj).getIndex() == this.getIndex();
     }
 
   }
@@ -240,16 +280,16 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
     locationContext.put(SCHEMA, schema);
     Database voyagerSettings = context.getExtraction().getDatabase();
     Map<String, String> locConv = context.getMaps().getLocation().get(schema);
-    try (Connection voyagerConnection = getConnection(voyagerSettings);
+    try (
+      Connection voyagerConnection = getConnection(voyagerSettings);
       Statement st = voyagerConnection.createStatement();
-      ResultSet rs = getResultSet(st, locationContext);) {
+      ResultSet rs = getResultSet(st, locationContext);
+    ) {
       while (rs.next()) {
         String id = rs.getString(LOCATION_ID);
         if (Objects.nonNull(id)) {
           String code = locConv.containsKey(id) ? locConv.get(id) : rs.getString(LOCATION_CODE);
-          Optional<Location> location = locations.getLocations().stream()
-            .filter(loc -> loc.getCode().equals(code))
-            .findFirst();
+          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
           if (location.isPresent()) {
             idToCode.put(id, code);
           }
@@ -263,10 +303,10 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
   private Optional<String> getServicePoint(String code, Servicepoints servicePoints) {
     final String folioLocationCode = context.getMaps().getLocationCode().containsKey(code)
-      ? context.getMaps().getLocationCode().get(code)
-      : code;
+        ? context.getMaps().getLocationCode().get(code)
+        : code;
     Optional<Servicepoint> servicePoint = servicePoints.getServicepoints().stream()
-      .filter(sp -> sp.getCode().equals(folioLocationCode)).findAny();
+        .filter(sp -> sp.getCode().equals(folioLocationCode)).findAny();
     if (servicePoint.isPresent()) {
       return Optional.of(servicePoint.get().getId());
     }

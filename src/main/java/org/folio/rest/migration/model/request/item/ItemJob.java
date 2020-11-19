@@ -1,5 +1,6 @@
 package org.folio.rest.migration.model.request.item;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.constraints.NotNull;
@@ -18,6 +19,10 @@ public class ItemJob extends AbstractJob {
   private String itemDamagedStatusId;
 
   private Map<String, String> references;
+
+  public ItemJob() {
+    this.references = new HashMap<>();
+  }
 
   public String getUser() {
     return user;

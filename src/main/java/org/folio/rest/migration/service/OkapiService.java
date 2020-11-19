@@ -1,5 +1,6 @@
 package org.folio.rest.migration.service;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Date;
@@ -9,6 +10,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.collections4.list.UnmodifiableList;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.folio.Alternativetitletypes;
 import org.folio.Classificationtypes;
 import org.folio.Contributornametypes;
@@ -22,6 +26,7 @@ import org.folio.Issuancemodes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
 import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
 import org.folio.rest.jaxrs.model.circulation.Loan;
+import org.folio.rest.jaxrs.model.circulation.Request__2;
 import org.folio.rest.jaxrs.model.dataimport.common.Status;
 import org.folio.rest.jaxrs.model.dataimport.dto.InitJobExecutionsRqDto;
 import org.folio.rest.jaxrs.model.dataimport.dto.InitJobExecutionsRsDto;
@@ -97,7 +102,8 @@ public class OkapiService {
   public JsonNode createReferenceData(ReferenceDatum referenceDatum) {
     long startTime = System.nanoTime();
     String url = okapi.getUrl() + referenceDatum.getPath();
-    HttpEntity<JsonNode> entity = new HttpEntity<>(referenceDatum.getData(), headers(referenceDatum.getTenant(), referenceDatum.getToken()));
+    HttpEntity<JsonNode> entity = new HttpEntity<>(referenceDatum.getData(),
+        headers(referenceDatum.getTenant(), referenceDatum.getToken()));
     ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.POST, entity, JsonNode.class);
     log.debug("create reference data: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 201) {
@@ -105,6 +111,19 @@ public class OkapiService {
     }
     log.error("Failed to create reference data: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to create reference data: " + response.getStatusCodeValue());
+  }
+
+  public JsonNode createRequest(JsonNode request, String tenant, String token) {
+    long startTime = System.nanoTime();
+    String url = okapi.getUrl() + "/circulation/requests";
+    HttpEntity<JsonNode> entity = new HttpEntity<>(request, headers(tenant, token));
+    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.POST, entity, JsonNode.class);
+    log.debug("creating request: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 201) {
+      return response.getBody();
+    }
+    log.error("Failed to create request: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create request: " + response.getStatusCodeValue());
   }
 
   public Loan checkoutByBarcode(CheckOutByBarcodeRequest request, String tenant, String token) {
