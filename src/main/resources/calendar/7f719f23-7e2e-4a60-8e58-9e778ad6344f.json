@@ -1,4 +1,95 @@
 {
-  "openingPeriods" : [ ],
-  "totalRecords" : 0
+  "openingPeriods" : [ {
+    "id" : "5f71c29a-cc2d-438e-bc43-491eda16cf3e",
+    "servicePointId" : "7f719f23-7e2e-4a60-8e58-9e778ad6344f",
+    "name" : "Coll. of Pharmacy Kingsville Calendar",
+    "startDate" : "1988-01-01T00:00:00.000+0000",
+    "endDate" : "2024-12-31T00:00:00.000+0000",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  } ],
+  "totalRecords" : 1
 }
