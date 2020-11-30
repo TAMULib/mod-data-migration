@@ -496,10 +496,9 @@ POST to http://localhost:9000/migrate/users
       "driverClassName": "oracle.jdbc.OracleDriver"
     }
   },
-  "preActions": [
-    "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";"
-  ],
+  "preActions": [],
   "postActions": [
+    "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\"",
     "WITH temp AS (SELECT id AS userId, uuid_generate_v4() AS permId, to_char (now()::timestamp at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS createdDate, (SELECT id FROM ${TENANT}_mod_users.users WHERE jsonb->>'username' = '${TENANT}_admin') AS createdBy FROM ${TENANT}_mod_users.users WHERE jsonb->>'username' NOT IN ('${TENANT}_admin','pub-sub')) INSERT INTO ${TENANT}_mod_permissions.permissions_users (id,jsonb,creation_date,created_by) SELECT permId AS id, concat('{\"id\": \"', permId, '\", \"userId\": \"', userId, '\", \"metadata\": {\"createdDate\": \"', createdDate, '\", \"updatedDate\": \"', createdDate, '\", \"createdByUserId\": \"', createdBy, '\", \"updatedByUserId\": \"', createdBy, '\"}, \"permissions\": []}')::jsonb AS jsonb, now()::timestamp at time zone 'UTC' AS creation_date, createdBy AS created_by FROM temp"
   ],
   "parallelism": 12,
@@ -1087,6 +1086,102 @@ POST to http://localhost:9000/migrate/boundwith
       "holdingsTypeId": "61155a36-148b-4664-bb7f-64ad708e0b32"
     }
   ]
+}
+```
+
+## Request Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/requests
+
+```
+{
+  "extraction": {
+    "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.hold_recall hr, ${SCHEMA}.hold_recall_items hri, ${SCHEMA}.hold_recall_status hrs, ${SCHEMA}.bib_text bt, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.item_barcode ib, ${SCHEMA}.patron p, ${SCHEMA}.location pickup_loc WHERE hr.hold_recall_id = hri.hold_recall_id AND hri.hold_recall_status = hrs.hr_status_type AND hri.item_id = mi.item_id AND mi.mfhd_id = bm.mfhd_id AND bm.bib_id = bt.bib_id AND mi.item_id = ib.item_id AND p.patron_id = hr.patron_id AND hr.pickup_location = pickup_loc.location_id",
+    "pageSql": "SELECT hr.hold_recall_id AS hr_id, CASE WHEN hr.hold_recall_type = 'H' THEN 'Hold' WHEN hr.hold_recall_type = 'R' THEN 'Recall' END AS requesttype, TO_CHAR(cast(hr.create_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS requestdate, hri.item_id AS item_id, CASE WHEN hrs.hr_status_desc = 'Pending' THEN 'Open - Awaiting pickup' WHEN hrs.hr_status_desc = 'Active' THEN 'Open - Not yet filled' END AS status, hri.queue_position AS position, bt.title_brief AS item_title, ib.item_barcode AS item_barcode, NVL2(p.institution_id, regexp_replace(p.institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\\1\\2\\3'), '${SCHEMA}_' || p.patron_id) AS requester_external_system_id, p.last_name AS requester_lastname, p.first_name AS requester_firstname, 'Hold Shelf' AS fulfilmentpreference, CASE WHEN hrs.hr_status_desc = 'Pending' AND hr.expire_date IS NOT NULL THEN TO_CHAR(cast(hr.expire_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') END AS requestexpirationdate, CASE WHEN hrs.hr_status_desc = 'Active' AND hr.expire_date IS NOT NULL THEN TO_CHAR(cast(hr.expire_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') END AS holdshelfexpirationdate, pickup_loc.location_id AS location_id FROM ${SCHEMA}.hold_recall hr, ${SCHEMA}.hold_recall_items hri, ${SCHEMA}.hold_recall_status hrs, ${SCHEMA}.bib_text bt, ${SCHEMA}.bib_mfhd bm, ${SCHEMA}.mfhd_item mi, ${SCHEMA}.item_barcode ib, ${SCHEMA}.patron p, ${SCHEMA}.location pickup_loc WHERE hr.hold_recall_id = hri.hold_recall_id AND hri.hold_recall_status = hrs.hr_status_type AND hri.item_id = mi.item_id AND mi.mfhd_id = bm.mfhd_id AND bm.bib_id = bt.bib_id AND mi.item_id = ib.item_id AND p.patron_id = hr.patron_id AND hr.pickup_location = pickup_loc.location_id ORDER BY hr_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": "oracle.jdbc.OracleDriver"
+    }
+  },
+  "preActions": [],
+  "postActions": [],
+  "parallelism": 2,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 1,
+      "references": {
+        "itemTypeId": "53e72510-dc82-4caa-a272-1522cca70bc2"
+      }
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 1,
+      "references": {
+        "itemTypeId": "0014559d-39f6-45c7-9406-03643459aaf0"
+      }
+    }
+  ],
+  "maps": {
+    "location": {
+      "AMDB": {
+        "36": "media",
+        "37": "media,res",
+        "47": "ils,borr",
+        "48": "ils,lend",
+        "132": "blcc,circ",
+        "133": "blcc,cpd",
+        "134": "blcc,stk",
+        "135": "blcc,ref",
+        "136": "blcc,res",
+        "137": "blcc,rndx",
+        "138": "www_evans",
+        "182": "media,arcv",
+        "185": "blcc,cd",
+        "188": "blcc,lan",
+        "201": "blcc,stand",
+        "210": "blcc,riMSL",
+        "217": "blcc,utc",
+        "225": "blcc,nbs",
+        "228": "blcc,audio",
+        "241": "blcc,udoc",
+        "244": "blcc,schk",
+        "264": "evans_pda",
+        "278": "learn_outreach",
+        "285": "blcc,ebc",
+        "288": "evans_withdrawn"
+      },
+      "MSDB": {
+        "5": "AbstractIndex",
+        "40": "www_msl",
+        "44": "msl_withdrawn",
+        "67": "Mobile",
+        "68": "Mobile",
+        "126": "rs,hdr",
+        "127": "rs,hdr",
+        "186": "msl_pda"
+      }
+    },
+    "locationCode": {
+      "media,res": "media",
+      "ils,borr": "ils",
+      "ils,lend": "ils",
+      "circ,schk": "circ",
+      "psel,ref": "psel,circ",
+      "psel,res": "psel,circ",
+      "blcc,res": "blcc,circ",
+      "west,res": "blcc,circ",
+      "msl,circ": "CircDesk",
+      "ResDesk": "CircDesk",
+      "CircDesk": "CircDesk",
+      "Mobile": "CircDesk"
+    }
+  }
 }
 ```
 

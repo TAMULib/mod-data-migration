@@ -107,6 +107,19 @@ public class OkapiService {
     throw new RuntimeException("Failed to create reference data: " + response.getStatusCodeValue());
   }
 
+  public JsonNode createRequest(JsonNode request, String tenant, String token) {
+    long startTime = System.nanoTime();
+    String url = okapi.getUrl() + "/circulation/requests";
+    HttpEntity<JsonNode> entity = new HttpEntity<>(request, headers(tenant, token));
+    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.POST, entity, JsonNode.class);
+    log.debug("creating request: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 201) {
+      return response.getBody();
+    }
+    log.error("Failed to create request: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create request: " + response.getStatusCodeValue());
+  }
+
   public Loan checkoutByBarcode(CheckOutByBarcodeRequest request, String tenant, String token) {
     long startTime = System.nanoTime();
     String url = okapi.getUrl() + "/circulation/check-out-by-barcode";
