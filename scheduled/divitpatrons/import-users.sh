@@ -13,7 +13,9 @@ curl --location --request POST 'http://mod-data-migration:8081/migrate/divitpatr
     "driverClassName": "oracle.jdbc.OracleDriver"
   },
   "preActions": [],
-  "postActions": [],
+  "postActions": [
+    "UPDATE ${TENANT}_mod_users.users SET jsonb = jsonb_set(jsonb, '\''{personal}'\'', '\''{\"email\": \"folio_user@library.tamu.edu\"}'\''::jsonb) WHERE jsonb->'\''personal'\''->>'\''email'\'' != '\''folio_user@library.tamu.edu'\''"
+  ],
   "parallelism": 1,
   "jobs": [
     {
