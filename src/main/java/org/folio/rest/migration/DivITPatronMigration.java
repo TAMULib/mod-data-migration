@@ -12,8 +12,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import org.apache.commons.lang3.time.DateUtils;
 import org.codehaus.plexus.util.StringUtils;
 import org.folio.rest.jaxrs.model.userimport.schemas.Address;
@@ -64,9 +62,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
 
   @Override
   public CompletableFuture<String> run(MigrationService migrationService) {
-    log.info("tenant: {}", tenant);
-
-    log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
+    log.info("Running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
 

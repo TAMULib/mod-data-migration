@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.Instant;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,13 +12,9 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.circulation.Item__4;
-import org.folio.rest.jaxrs.model.circulation.Request__2;
-import org.folio.rest.jaxrs.model.circulation.Requester__1;
 import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Servicepoint;
@@ -61,9 +55,7 @@ public class RequestMigration extends AbstractMigration<RequestContext> {
 
   @Override
   public CompletableFuture<String> run(MigrationService migrationService) {
-    log.info("tenant: {}", tenant);
-
-    log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
+    log.info("Running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
 

@@ -12,8 +12,6 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.user.UserReferenceLinkContext;
 import org.folio.rest.migration.model.request.user.UserReferenceLinkJob;
@@ -42,9 +40,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
 
   @Override
   public CompletableFuture<String> run(MigrationService migrationService) {
-    log.info("tenant: {}", tenant);
-
-    log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
+    log.info("Running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     preActions(migrationService.referenceLinkSettings, context.getPreActions());
 
