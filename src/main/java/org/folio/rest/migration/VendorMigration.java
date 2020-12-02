@@ -111,7 +111,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
   @Override
   public CompletableFuture<String> run(MigrationService migrationService) {
-    log.info("Running {} for tenant {}", this.getClass().getSimpleName(), tenant);
+    log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
 

@@ -77,7 +77,6 @@ public class MigrationService {
       log.info("queued {}, position {}", migration.getClass().getSimpleName(), queue.size());      
       return CompletableFuture.completedFuture(String.format(QUEUED_RESPONSE_TEMPLATE, queue.size()));
     }
-    log.info("starting {}", migration.getClass().getSimpleName());
     inProgress = true;
     return migration.run(this);
   }
