@@ -2,6 +2,9 @@ package org.folio.rest.migration.config.model;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 public class Database {
 
   @NotNull
@@ -11,6 +14,7 @@ public class Database {
   private String username;
 
   @NotNull
+  @JsonProperty(access = Access.WRITE_ONLY)
   private String password;
 
   @NotNull
