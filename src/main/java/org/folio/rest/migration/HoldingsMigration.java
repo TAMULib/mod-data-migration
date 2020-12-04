@@ -76,11 +76,7 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
 
   @Override
   public CompletableFuture<String> run(MigrationService migrationService) {
-    log.info("tenant: {}", tenant);
-
-    log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
-
-    log.info("available processors: {}", Runtime.getRuntime().availableProcessors());
+    log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
 

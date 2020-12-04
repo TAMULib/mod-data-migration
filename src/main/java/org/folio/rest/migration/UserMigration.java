@@ -23,7 +23,6 @@ import java.util.concurrent.Executors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
-import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.notes.raml_util.schemas.tagged_record_example.Metadata;
@@ -100,9 +99,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   @Override
   public CompletableFuture<String> run(MigrationService migrationService) {
-    log.info("tenant: {}", tenant);
-
-    log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
+    log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
 

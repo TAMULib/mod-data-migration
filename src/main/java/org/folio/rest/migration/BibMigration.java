@@ -20,7 +20,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
-import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
@@ -104,11 +103,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
   @Override
   public CompletableFuture<String> run(MigrationService migrationService) {
-    log.info("tenant: {}", tenant);
-
-    log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
-
-    log.info("available processors: {}", Runtime.getRuntime().availableProcessors());
+    log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
     MappingParameters mappingParameters = migrationService.okapiService.getMappingParamaters(tenant, token);

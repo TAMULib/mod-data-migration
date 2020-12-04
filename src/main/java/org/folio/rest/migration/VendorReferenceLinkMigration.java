@@ -11,8 +11,6 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.vendor.VendorReferenceLinkContext;
 import org.folio.rest.migration.model.request.vendor.VendorReferenceLinkJob;
@@ -36,10 +34,7 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
 
   @Override
   public CompletableFuture<String> run(MigrationService migrationService) {
-
-    log.info("tenant: {}", tenant);
-
-    log.info("context:\n{}", migrationService.objectMapper.convertValue(context, JsonNode.class).toPrettyString());
+    log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     preActions(migrationService.referenceLinkSettings, context.getPreActions());
 
