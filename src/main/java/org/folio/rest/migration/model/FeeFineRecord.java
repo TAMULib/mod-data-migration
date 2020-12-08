@@ -10,7 +10,7 @@ import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.feesfines.Accountdata;
-import org.folio.rest.jaxrs.model.feesfines.Feefineactiondata;
+import org.folio.rest.jaxrs.model.feesfines.actions.Feefineactiondata;
 import org.folio.rest.jaxrs.model.feesfines.Metadata;
 import org.folio.rest.jaxrs.model.feesfines.PaymentStatus;
 import org.folio.rest.jaxrs.model.feesfines.Status;

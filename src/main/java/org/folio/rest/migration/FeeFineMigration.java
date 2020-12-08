@@ -19,7 +19,7 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 
 import org.codehaus.plexus.util.StringUtils;
 import org.folio.rest.jaxrs.model.feesfines.Accountdata;
-import org.folio.rest.jaxrs.model.feesfines.Feefineactiondata;
+import org.folio.rest.jaxrs.model.feesfines.actions.Feefineactiondata;
 import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Materialtype;
