@@ -46,16 +46,16 @@ public class RulesAspect {
       return;
     }
     MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-      UpdateRules updateRules = signature.getMethod().getAnnotation(UpdateRules.class);
-      try {
-        JsonNode rules = objectMapper.readValue(loadResource(updateRules.file()).getInputStream(), JsonNode.class);
-        okapiService.updateRules(rules, updateRules.path(), tenant, token);
-        logger.info("updated mapping rules {}", rules);
-      } catch (IOException e) {
-        logger.error("failed reading resource {}: {}", updateRules.file(), e.getMessage());
-      } catch (OkapiRequestException e) {
-        logger.debug("failed updating mapping rules: {}", e.getMessage());
-      }
+    UpdateRules updateRules = signature.getMethod().getAnnotation(UpdateRules.class);
+    try {
+      JsonNode rules = objectMapper.readValue(loadResource(updateRules.file()).getInputStream(), JsonNode.class);
+      okapiService.updateRules(rules, updateRules.path(), tenant, token);
+      logger.info("updated mapping rules {}", rules);
+    } catch (IOException e) {
+      logger.error("failed reading resource {}: {}", updateRules.file(), e.getMessage());
+    } catch (OkapiRequestException e) {
+      logger.debug("failed updating mapping rules: {}", e.getMessage());
+    }
   }
 
   private Resource loadResource(String path) throws IOException {
