@@ -14,6 +14,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.folio.rest.migration.aspect.annotation.CreateCalendarPeriods;
+import org.folio.rest.migration.exception.OkapiRequestException;
 import org.folio.rest.migration.model.ReferenceDatum;
 import org.folio.rest.migration.service.OkapiService;
 import org.slf4j.Logger;
@@ -47,22 +48,26 @@ public class CalendarPeriodAspect {
 
   @Before("@annotation(org.folio.rest.migration.aspect.annotation.CreateCalendarPeriods) && args(..,tenant)")
   public void createCalendarPeriods(JoinPoint joinPoint, String tenant) throws IOException {
-    String token = okapiService.getToken(tenant);
-    MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-    CreateCalendarPeriods createCalendarPeriods = signature.getMethod().getAnnotation(CreateCalendarPeriods.class);
-    for (Resource resource : loadResources(createCalendarPeriods.pattern())) {
-      String servicePointId = FilenameUtils.removeExtension(resource.getFilename());
-      String path = String.format(CALENDAR_PERIOD_PATH_TEMPLATE, servicePointId);
-      JsonNode periods = objectMapper.readTree(resource.getInputStream());
-      ((ArrayNode) periods.get(OPENING_PERIODS)).forEach(data -> {
-        ReferenceDatum referenceDatum = ReferenceDatum.of(tenant, token, path, data);
-        try {
-          JsonNode response = okapiService.createReferenceData(referenceDatum);
-          logger.info("created calendar period for service point {} {}", servicePointId, response);
-        } catch (Exception e) {
-          logger.debug("failed creating calendar period for service point {} {}", servicePointId, e.getMessage());
-        }
-      });
+    try {
+      String token = okapiService.getToken(tenant);
+      MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+      CreateCalendarPeriods createCalendarPeriods = signature.getMethod().getAnnotation(CreateCalendarPeriods.class);
+      for (Resource resource : loadResources(createCalendarPeriods.pattern())) {
+        String servicePointId = FilenameUtils.removeExtension(resource.getFilename());
+        String path = String.format(CALENDAR_PERIOD_PATH_TEMPLATE, servicePointId);
+        JsonNode periods = objectMapper.readTree(resource.getInputStream());
+        ((ArrayNode) periods.get(OPENING_PERIODS)).forEach(data -> {
+          ReferenceDatum referenceDatum = ReferenceDatum.of(tenant, token, path, data);
+          try {
+            JsonNode response = okapiService.createReferenceData(referenceDatum);
+            logger.info("created calendar period for service point {}: {}", servicePointId, response);
+          } catch (OkapiRequestException e) {
+            logger.debug("failed creating calendar period for service point {}: {}", servicePointId, e.getMessage());
+          }
+        });
+      }
+    } catch (OkapiRequestException e) {
+      logger.error("failed getting token for tenant {}: {}", tenant, e.getMessage());
     }
   }
 

@@ -21,6 +21,7 @@ import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Servicepoint;
 import org.folio.rest.jaxrs.model.inventory.Servicepoints;
 import org.folio.rest.migration.config.model.Database;
+import org.folio.rest.migration.exception.MigrationException;
 import org.folio.rest.migration.model.request.loan.LoanContext;
 import org.folio.rest.migration.model.request.loan.LoanJob;
 import org.folio.rest.migration.service.MigrationService;
@@ -51,7 +52,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
   }
 
   @Override
-  public CompletableFuture<String> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) throws MigrationException {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
@@ -69,7 +70,11 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
       @Override
       public void complete() {
         postActions(folioSettings, context.getPostActions());
-        migrationService.complete();
+        try {
+          migrationService.complete();
+        } catch (MigrationException e) {
+          log.error("failed to complete {}, {}", this.getClass().getSimpleName(), e.getMessage());
+        }
       }
 
     });

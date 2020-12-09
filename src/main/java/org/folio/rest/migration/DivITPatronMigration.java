@@ -20,6 +20,8 @@ import org.folio.rest.jaxrs.model.userimport.schemas.Personal;
 import org.folio.rest.jaxrs.model.userimport.schemas.Userdataimport;
 import org.folio.rest.jaxrs.model.userimport.schemas.UserdataimportCollection;
 import org.folio.rest.migration.config.model.Database;
+import org.folio.rest.migration.exception.MigrationException;
+import org.folio.rest.migration.exception.OkapiRequestException;
 import org.folio.rest.migration.model.request.divitpatron.DivITPatronContext;
 import org.folio.rest.migration.model.request.divitpatron.DivITPatronJob;
 import org.folio.rest.migration.service.MigrationService;
@@ -61,8 +63,8 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
   }
 
   @Override
-  public CompletableFuture<String> run(MigrationService migrationService) {
-    log.info("Running {} for tenant {}", this.getClass().getSimpleName(), tenant);
+  public CompletableFuture<String> run(MigrationService migrationService) throws MigrationException {
+    log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
 
@@ -75,7 +77,11 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
       @Override
       public void complete() {
         postActions(folioSettings, context.getPostActions());
-        migrationService.complete();
+        try {
+          migrationService.complete();
+        } catch (MigrationException e) {
+          log.error("failed to complete {}, {}", this.getClass().getSimpleName(), e.getMessage());
+        }
       }
 
     });
@@ -245,26 +251,31 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
 
       log.info("submitting user import with {} users", userImportCollection.getTotalRecords());
 
-      ImportResponse importResponse = migrationService.okapiService.postUserdataimportCollection(tenant, token, userImportCollection);
+      try {
+        ImportResponse importResponse = migrationService.okapiService.postUserdataimportCollection(tenant, token, userImportCollection);
 
-      if (StringUtils.isNotEmpty(importResponse.getError())) {
-        log.error("{}", importResponse.getError());
-      } else {
-        log.info("{}: {}", job.getName(), importResponse.getMessage());
-
-        log.info("{} total records", importResponse.getTotalRecords());
-
-        log.info("{} newly created users", importResponse.getCreatedRecords());
-
-        log.info("{} updated users", importResponse.getUpdatedRecords());
-
-        log.info("{} failed records", importResponse.getFailedRecords());
-
-        if (importResponse.getFailedRecords() > 0) {
-          importResponse.getFailedUsers().forEach(failedUser -> {
-            log.info("{} {} {}", failedUser.getUsername(), failedUser.getExternalSystemId(), failedUser.getErrorMessage());
-          });
+        if (StringUtils.isNotEmpty(importResponse.getError())) {
+          log.error("{}", importResponse.getError());
+        } else {
+          log.info("{}: {}", job.getName(), importResponse.getMessage());
+  
+          log.info("{} total records", importResponse.getTotalRecords());
+  
+          log.info("{} newly created users", importResponse.getCreatedRecords());
+  
+          log.info("{} updated users", importResponse.getUpdatedRecords());
+  
+          log.info("{} failed records", importResponse.getFailedRecords());
+  
+          if (importResponse.getFailedRecords() > 0) {
+            importResponse.getFailedUsers().forEach(failedUser -> {
+              log.info("{} {} {}", failedUser.getUsername(), failedUser.getExternalSystemId(), failedUser.getErrorMessage());
+            });
+          }
         }
+
+      } catch (OkapiRequestException e) {
+        log.error("failed to import users: {}", e.getMessage());
       }
 
       log.info("{} finished in {} milliseconds", job.getName(), TimingUtility.getDeltaInMilliseconds(startTime));

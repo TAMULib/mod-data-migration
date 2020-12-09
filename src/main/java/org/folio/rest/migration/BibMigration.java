@@ -39,6 +39,8 @@ import org.folio.rest.jaxrs.model.inventory.Instance;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
+import org.folio.rest.migration.exception.MigrationException;
+import org.folio.rest.migration.exception.OkapiRequestException;
 import org.folio.rest.migration.mapping.InstanceMapper;
 import org.folio.rest.migration.model.BibRecord;
 import org.folio.rest.migration.model.request.bib.BibContext;
@@ -102,7 +104,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
   }
 
   @Override
-  public CompletableFuture<String> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) throws MigrationException {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
@@ -120,10 +122,18 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       @Override
       public void complete() {
-        migrationService.okapiService.updateHridSettings(hridSettings, tenant, token);
-        log.info("updated hrid settings: {}", hridSettings);
+        try {
+          migrationService.okapiService.updateHridSettings(hridSettings, tenant, token);
+          log.info("updated hrid settings: {}", hridSettings);
+        } catch (OkapiRequestException e) {
+          log.error("failed to updated hrid settings: {}", e.getMessage());
+        }
         postActions(folioSettings, context.getPostActions());
-        migrationService.complete();
+        try {
+          migrationService.complete();
+        } catch (MigrationException e) {
+          log.error("failed to complete {}: {}", this.getClass().getSimpleName(), e.getMessage());
+        }
       }
 
     });
@@ -229,7 +239,14 @@ public class BibMigration extends AbstractMigration<BibContext> {
       jobExecutionRqDto.setJobProfileInfo(profileInfo);
       jobExecutionRqDto.setUserId(userId);
 
-      InitJobExecutionsRsDto JobExecutionRsDto = migrationService.okapiService.createJobExecution(tenant, token, jobExecutionRqDto);
+      InitJobExecutionsRsDto JobExecutionRsDto;
+      try {
+        JobExecutionRsDto = migrationService.okapiService.createJobExecution(tenant, token, jobExecutionRqDto);
+      } catch (OkapiRequestException e) {
+        log.error("failed to create job execution: {}", e.getMessage());
+        return this;
+      }
+
       JobExecution jobExecution = JobExecutionRsDto.getJobExecutions().get(0);
 
       String jobExecutionId = jobExecution.getId();
@@ -431,7 +448,11 @@ public class BibMigration extends AbstractMigration<BibContext> {
       recordsMetadata.setContentType(ContentType.MARC_RAW);
       rawRecordsDto.setRecordsMetadata(recordsMetadata);
 
-      migrationService.okapiService.finishJobExecution(tenant, token, jobExecutionId, rawRecordsDto);
+      try {
+        migrationService.okapiService.finishJobExecution(tenant, token, jobExecutionId, rawRecordsDto);
+      } catch (OkapiRequestException e) {
+        log.error("failed to finish job execution: {}", e.getMessage());
+      }
 
       log.info("{} {} finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
 
