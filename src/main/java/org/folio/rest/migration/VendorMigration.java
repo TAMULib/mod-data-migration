@@ -31,7 +31,6 @@ import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Orga
 import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Url;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
-import org.folio.rest.migration.exception.MigrationException;
 import org.folio.rest.migration.model.VendorAccountRecord;
 import org.folio.rest.migration.model.VendorAddressRecord;
 import org.folio.rest.migration.model.VendorAliasRecord;
@@ -111,7 +110,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
   }
 
   @Override
-  public CompletableFuture<String> run(MigrationService migrationService) throws MigrationException {
+  public CompletableFuture<String> run(MigrationService migrationService) {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
@@ -127,11 +126,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       public void complete() {
         postActions(folioSettings, context.getPostActions());
         CODES.clear();
-        try {
-          migrationService.complete();
-        } catch (MigrationException e) {
-          log.error("failed to complete VendorMigration: {}", e.getMessage());
-        }
+        migrationService.complete();
       }
 
     });

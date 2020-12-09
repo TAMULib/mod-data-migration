@@ -14,7 +14,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.folio.rest.migration.aspect.annotation.CreateCalendarPeriods;
-import org.folio.rest.migration.exception.OkapiRequestException;
 import org.folio.rest.migration.model.ReferenceDatum;
 import org.folio.rest.migration.service.OkapiService;
 import org.slf4j.Logger;
@@ -48,13 +47,7 @@ public class CalendarPeriodAspect {
 
   @Before("@annotation(org.folio.rest.migration.aspect.annotation.CreateCalendarPeriods) && args(..,tenant)")
   public void createCalendarPeriods(JoinPoint joinPoint, String tenant) throws IOException {
-    String token;
-    try {
-      token = okapiService.getToken(tenant);
-    } catch (OkapiRequestException e) {
-      logger.error("failed getting token for tenant {}: {}", tenant, e.getMessage());
-      return;
-    }
+    String token = okapiService.getToken(tenant);
     MethodSignature signature = (MethodSignature) joinPoint.getSignature();
     CreateCalendarPeriods createCalendarPeriods = signature.getMethod().getAnnotation(CreateCalendarPeriods.class);
     for (Resource resource : loadResources(createCalendarPeriods.pattern())) {
@@ -66,7 +59,7 @@ public class CalendarPeriodAspect {
         try {
           JsonNode response = okapiService.createReferenceData(referenceDatum);
           logger.info("created calendar period for service point {}: {}", servicePointId, response);
-        } catch (OkapiRequestException e) {
+        } catch (Exception e) {
           logger.debug("failed creating calendar period for service point {}: {}", servicePointId, e.getMessage());
         }
       });

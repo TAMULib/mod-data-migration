@@ -12,7 +12,6 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 import org.folio.rest.migration.config.model.Database;
-import org.folio.rest.migration.exception.MigrationException;
 import org.folio.rest.migration.model.request.vendor.VendorReferenceLinkContext;
 import org.folio.rest.migration.model.request.vendor.VendorReferenceLinkJob;
 import org.folio.rest.migration.service.MigrationService;
@@ -34,7 +33,7 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
   }
 
   @Override
-  public CompletableFuture<String> run(MigrationService migrationService) throws MigrationException {
+  public CompletableFuture<String> run(MigrationService migrationService) {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     preActions(migrationService.referenceLinkSettings, context.getPreActions());
@@ -44,11 +43,7 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
       @Override
       public void complete() {
         postActions(migrationService.referenceLinkSettings, context.getPostActions());
-        try {
-          migrationService.complete();
-        } catch (MigrationException e) {
-          log.error("failed to complete VendorReferenceLinkMigration: {}", e.getMessage());
-        }
+        migrationService.complete();
       }
 
     });

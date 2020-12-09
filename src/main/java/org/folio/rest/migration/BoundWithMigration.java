@@ -19,8 +19,6 @@ import org.folio.rest.jaxrs.model.inventory.Instancerelationship;
 import org.folio.rest.jaxrs.model.inventory.Item;
 import org.folio.rest.jaxrs.model.inventory.Items;
 import org.folio.rest.migration.config.model.Database;
-import org.folio.rest.migration.exception.MigrationException;
-import org.folio.rest.migration.exception.OkapiRequestException;
 import org.folio.rest.migration.model.request.boundwith.BoundWithContext;
 import org.folio.rest.migration.model.request.boundwith.BoundWithJob;
 import org.folio.rest.migration.service.MigrationService;
@@ -40,7 +38,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
   }
 
   @Override
-  public CompletableFuture<String> run(MigrationService migrationService) throws MigrationException {
+  public CompletableFuture<String> run(MigrationService migrationService) {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
@@ -55,11 +53,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
       @Override
       public void complete() {
         postActions(folioSettings, context.getPostActions());
-        try {
-          migrationService.complete();
-        } catch (MigrationException e) {
-          log.error("failed to complete BoundWithMigration: {}", e.getMessage());
-        }
+        migrationService.complete();
       }
 
     });
@@ -165,7 +159,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
           Holdingsrecord existingHoldingsRecord;
           try {
             existingHoldingsRecord = migrationService.okapiService.fetchHoldingsRecordById(tenant, token, existingHoldingsRecordId);
-          } catch (OkapiRequestException e) {
+          } catch (Exception e) {
             log.error("failed to fetch holdings record by id {}: {}", existingHoldingsRecordId, e.getMessage());
             continue;
           }
@@ -182,7 +176,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
           try {
             migrationService.okapiService.postInstance(tenant, token, parentInstance);
-          } catch (OkapiRequestException e) {
+          } catch (Exception e) {
             log.error("failed to create parent instance {}: {}", parentInstanceTitle, e.getMessage());
             continue;
           }
@@ -195,7 +189,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
             try {
               migrationService.okapiService.postInstancerelationship(tenant, token, instanceRelationship);
-            } catch (OkapiRequestException e) {
+            } catch (Exception e) {
               log.error("failed to create instance relationship between super instance {} amd sub instance {}: {}", parentInstance.getId(), instanceRL.getFolioReference(), e.getMessage());
             }
           }
@@ -212,7 +206,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
           try {
             migrationService.okapiService.postHoldingsrecord(tenant, token, parentHoldingsRecord);
-          } catch (OkapiRequestException e) {
+          } catch (Exception e) {
             log.error("failed to create parent holdings record for parent instance {}: {}", parentInstance.getId(), e.getMessage());
             continue;
           }
@@ -220,7 +214,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
           Items existingItems;
           try {
             existingItems = migrationService.okapiService.fetchItemRecordsByHoldingsRecordId(tenant, token, existingHoldingsRecordId);
-          } catch (OkapiRequestException e) {
+          } catch (Exception e) {
             log.error("failed to fetch item records by holdings record {}: {}", existingHoldingsRecordId, e.getMessage());
             continue;
           }
@@ -229,7 +223,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
             existingItem.setHoldingsRecordId(parentHoldingsRecord.getId());
             try {
               migrationService.okapiService.putItem(tenant, token, existingItem);
-            } catch (OkapiRequestException e) {
+            } catch (Exception e) {
               log.error("failed to update item {}: {}", existingItem.getId(), e.getMessage());
             }
           }

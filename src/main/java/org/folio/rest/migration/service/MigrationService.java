@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.folio.rest.migration.Migration;
 import org.folio.rest.migration.config.model.Database;
-import org.folio.rest.migration.exception.MigrationException;
 import org.folio.rest.model.repo.ReferenceLinkRepo;
 import org.folio.rest.model.repo.ReferenceLinkTypeRepo;
 import org.folio.spring.tenant.service.SchemaService;
@@ -72,7 +71,7 @@ public class MigrationService {
   }
 
   @Async("asyncTaskExecutor")
-  public synchronized CompletableFuture<String> migrate(Migration migration) throws MigrationException {
+  public synchronized CompletableFuture<String> migrate(Migration migration) {
     if (inProgress) {
       queue.add(migration);
       log.info("queued {}, position {}", migration.getClass().getSimpleName(), queue.size());
@@ -82,7 +81,7 @@ public class MigrationService {
     return migration.run(this);
   }
 
-  public synchronized void complete() throws MigrationException {
+  public synchronized void complete() {
     inProgress = false;
     if (!queue.isEmpty()) {
       Migration migration = queue.poll();

@@ -20,8 +20,6 @@ import org.folio.rest.jaxrs.model.userimport.schemas.Personal;
 import org.folio.rest.jaxrs.model.userimport.schemas.Userdataimport;
 import org.folio.rest.jaxrs.model.userimport.schemas.UserdataimportCollection;
 import org.folio.rest.migration.config.model.Database;
-import org.folio.rest.migration.exception.MigrationException;
-import org.folio.rest.migration.exception.OkapiRequestException;
 import org.folio.rest.migration.model.request.divitpatron.DivITPatronContext;
 import org.folio.rest.migration.model.request.divitpatron.DivITPatronJob;
 import org.folio.rest.migration.service.MigrationService;
@@ -63,7 +61,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
   }
 
   @Override
-  public CompletableFuture<String> run(MigrationService migrationService) throws MigrationException {
+  public CompletableFuture<String> run(MigrationService migrationService) {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
@@ -77,11 +75,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
       @Override
       public void complete() {
         postActions(folioSettings, context.getPostActions());
-        try {
-          migrationService.complete();
-        } catch (MigrationException e) {
-          log.error("failed to complete DivITPatronMigration: {}", e.getMessage());
-        }
+        migrationService.complete();
       }
 
     });
@@ -274,7 +268,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
           }
         }
 
-      } catch (OkapiRequestException e) {
+      } catch (Exception e) {
         log.error("failed to import users: {}", e.getMessage());
       }
 

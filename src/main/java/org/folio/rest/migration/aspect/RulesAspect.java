@@ -10,7 +10,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.folio.rest.migration.aspect.annotation.UpdateRules;
-import org.folio.rest.migration.exception.OkapiRequestException;
 import org.folio.rest.migration.service.OkapiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,13 +37,7 @@ public class RulesAspect {
 
   @Before("@annotation(org.folio.rest.migration.aspect.annotation.UpdateRules) && args(..,tenant)")
   public void updateRules(JoinPoint joinPoint, String tenant) throws IOException {
-    String token;
-    try {
-      token = okapiService.getToken(tenant);
-    } catch (OkapiRequestException e) {
-      logger.error("failed getting token for tenant {}: {}", tenant, e.getMessage());
-      return;
-    }
+    String token = okapiService.getToken(tenant);
     MethodSignature signature = (MethodSignature) joinPoint.getSignature();
     UpdateRules updateRules = signature.getMethod().getAnnotation(UpdateRules.class);
     try {
@@ -53,7 +46,7 @@ public class RulesAspect {
       logger.info("updated mapping rules {}", rules);
     } catch (IOException e) {
       logger.error("failed reading resource {}: {}", updateRules.file(), e.getMessage());
-    } catch (OkapiRequestException e) {
+    } catch (Exception e) {
       logger.debug("failed updating mapping rules: {}", e.getMessage());
     }
   }
