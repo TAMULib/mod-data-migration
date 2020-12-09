@@ -24,6 +24,8 @@ import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
+import org.folio.rest.migration.exception.MigrationException;
+import org.folio.rest.migration.exception.OkapiRequestException;
 import org.folio.rest.migration.mapping.HoldingMapper;
 import org.folio.rest.migration.model.HoldingsRecord;
 import org.folio.rest.migration.model.request.holdings.HoldingsContext;
@@ -75,7 +77,7 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
   }
 
   @Override
-  public CompletableFuture<String> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) throws MigrationException {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
@@ -95,10 +97,18 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
 
       @Override
       public void complete() {
-        migrationService.okapiService.updateHridSettings(hridSettings, tenant, token);
-        log.info("updated hrid settings: {}", hridSettings);
+        try {
+          migrationService.okapiService.updateHridSettings(hridSettings, tenant, token);
+          log.info("updated hrid settings: {}", hridSettings);
+        } catch (OkapiRequestException e) {
+          log.error("failed to updated hrid settings: {}", e.getMessage());
+        }
         postActions(folioSettings, context.getPostActions());
-        migrationService.complete();
+        try {
+          migrationService.complete();
+        } catch (MigrationException e) {
+          log.error("failed to complete {}, {}", this.getClass().getSimpleName(), e.getMessage());
+        }
       }
 
     });

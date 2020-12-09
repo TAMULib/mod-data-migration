@@ -25,7 +25,6 @@ import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote.NoteType;
-import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.jaxrs.model.inventory.Item;
 import org.folio.rest.jaxrs.model.inventory.Loantype;
 import org.folio.rest.jaxrs.model.inventory.Loantypes;
@@ -35,7 +34,10 @@ import org.folio.rest.jaxrs.model.inventory.Materialtype;
 import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.inventory.Note__1;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
+import org.folio.rest.migration.exception.MigrationException;
+import org.folio.rest.migration.exception.OkapiRequestException;
 import org.folio.rest.migration.model.ItemMfhdRecord;
 import org.folio.rest.migration.model.ItemRecord;
 import org.folio.rest.migration.model.ItemStatusRecord;
@@ -112,7 +114,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   }
 
   @Override
-  public CompletableFuture<String> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) throws MigrationException {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
@@ -133,10 +135,18 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
       @Override
       public void complete() {
-        migrationService.okapiService.updateHridSettings(hridSettings, tenant, token);
-        log.info("updated hrid settings: {}", hridSettings);
+        try {
+          migrationService.okapiService.updateHridSettings(hridSettings, tenant, token);
+          log.info("updated hrid settings: {}", hridSettings);
+        } catch (OkapiRequestException e) {
+          log.error("failed to updated hrid settings: {}", e.getMessage());
+        }
         postActions(folioSettings, context.getPostActions());
-        migrationService.complete();
+        try {
+          migrationService.complete();
+        } catch (MigrationException e) {
+          log.error("failed to complete migration", e.getMessage());
+        }
       }
 
     });

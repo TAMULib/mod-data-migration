@@ -14,6 +14,7 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 import org.folio.rest.migration.config.model.Database;
+import org.folio.rest.migration.exception.MigrationException;
 import org.folio.rest.migration.model.request.inventory.InventoryReferenceLinkContext;
 import org.folio.rest.migration.model.request.inventory.InventoryReferenceLinkJob;
 import org.folio.rest.migration.service.MigrationService;
@@ -45,7 +46,7 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
   }
 
   @Override
-  public CompletableFuture<String> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) throws MigrationException {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     preActions(migrationService.referenceLinkSettings, context.getPreActions());
@@ -57,7 +58,11 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
         postActions(migrationService.referenceLinkSettings, context.getPostActions());
         HOLDING_EXTERNAL_REFERENCES.clear();
         ITEM_EXTERNAL_REFERENCES.clear();
-        migrationService.complete();
+        try {
+          migrationService.complete();
+        } catch (MigrationException e) {
+          log.error("failed to complete {}, {}", this.getClass().getSimpleName(), e.getMessage());
+        }
       }
 
     });

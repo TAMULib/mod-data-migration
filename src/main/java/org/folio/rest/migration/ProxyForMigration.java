@@ -24,6 +24,7 @@ import org.folio.rest.jaxrs.model.users.Metadata;
 import org.folio.rest.jaxrs.model.users.Proxyfor;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
+import org.folio.rest.migration.exception.MigrationException;
 import org.folio.rest.migration.model.request.proxyfor.ProxyForContext;
 import org.folio.rest.migration.model.request.proxyfor.ProxyForJob;
 import org.folio.rest.migration.service.MigrationService;
@@ -52,7 +53,7 @@ public class ProxyForMigration extends AbstractMigration<ProxyForContext> {
   }
 
   @Override
-  public CompletableFuture<String> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) throws MigrationException {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
@@ -67,7 +68,11 @@ public class ProxyForMigration extends AbstractMigration<ProxyForContext> {
       @Override
       public void complete() {
         postActions(folioSettings, context.getPostActions());
-        migrationService.complete();
+        try {
+          migrationService.complete();
+        } catch (MigrationException e) {
+          log.error("failed to complete {}, {}", this.getClass().getSimpleName(), e.getMessage());
+        }
       }
 
     });

@@ -34,6 +34,7 @@ import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.jaxrs.model.users.Usergroup;
 import org.folio.rest.jaxrs.model.users.Usergroups;
 import org.folio.rest.migration.config.model.Database;
+import org.folio.rest.migration.exception.MigrationException;
 import org.folio.rest.migration.model.UserAddressRecord;
 import org.folio.rest.migration.model.UserRecord;
 import org.folio.rest.migration.model.request.user.UserContext;
@@ -98,7 +99,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
   }
 
   @Override
-  public CompletableFuture<String> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) throws MigrationException {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
@@ -119,7 +120,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
         postActions(folioSettings, context.getPostActions());
         USERNAMES.clear();
         BARCODES.clear();
-        migrationService.complete();
+        try {
+          migrationService.complete();
+        } catch (MigrationException e) {
+          log.error("failed to complete {}, {}", this.getClass().getSimpleName(), e.getMessage());
+        }
       }
 
     });

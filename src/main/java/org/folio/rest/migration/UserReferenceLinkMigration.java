@@ -13,6 +13,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.folio.rest.migration.config.model.Database;
+import org.folio.rest.migration.exception.MigrationException;
 import org.folio.rest.migration.model.request.user.UserReferenceLinkContext;
 import org.folio.rest.migration.model.request.user.UserReferenceLinkJob;
 import org.folio.rest.migration.service.MigrationService;
@@ -39,7 +40,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
   }
 
   @Override
-  public CompletableFuture<String> run(MigrationService migrationService) {
+  public CompletableFuture<String> run(MigrationService migrationService) throws MigrationException {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     preActions(migrationService.referenceLinkSettings, context.getPreActions());
@@ -50,7 +51,11 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
       public void complete() {
         postActions(migrationService.referenceLinkSettings, context.getPostActions());
         EXTERNAL_ID_TO_FOLIO_REFERENCE.clear();
-        migrationService.complete();
+        try {
+          migrationService.complete();
+        } catch (MigrationException e) {
+          log.error("failed to complete {}, {}", this.getClass().getSimpleName(), e.getMessage());
+        }
       }
 
     });
