@@ -123,7 +123,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
         try {
           migrationService.complete();
         } catch (MigrationException e) {
-          log.error("failed to complete {}, {}", this.getClass().getSimpleName(), e.getMessage());
+          log.error("failed to complete UserMigration: {}", e.getMessage());
         }
       }
 

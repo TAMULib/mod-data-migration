@@ -46,27 +46,29 @@ public class ReferenceDataAspect {
   private ObjectMapper objectMapper;
 
   @Before("@annotation(org.folio.rest.migration.aspect.annotation.CreateReferenceData) && args(..,tenant)")
-  public void createReferenceLinks(JoinPoint joinPoint, String tenant) throws IOException {
+  public void createReferenceData(JoinPoint joinPoint, String tenant) throws IOException {
+    String token;
     try {
-      String token = okapiService.getToken(tenant);
-      MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-      CreateReferenceData createReferenceData = signature.getMethod().getAnnotation(CreateReferenceData.class);
-      List<ReferenceData> referenceData = loadResources(createReferenceData.pattern()).stream().map(rdr -> {
-        Optional<ReferenceData> ord = Optional.empty();
-        try {
-          ord = Optional.of(objectMapper.readValue(rdr.getInputStream(), ReferenceData.class).withName(FilenameUtils.getBaseName(rdr.getFilename())));
-        } catch (IOException e) {
-          logger.debug("failed reading reference data {}: {}", rdr.getFilename(), e.getMessage());
-        }
-        return ord;
-      }).filter(ord -> ord.isPresent())
-        .map(ord -> ord.get().withTenant(tenant).withToken(token))
-        .collect(Collectors.toList());
-      logger.info("creating reference data");
-      createReferenceData(referenceData);
+      token = okapiService.getToken(tenant);
     } catch (OkapiRequestException e) {
       logger.error("failed getting token for tenant {}: {}", tenant, e.getMessage());
+      return;
     }
+    MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+    CreateReferenceData createReferenceData = signature.getMethod().getAnnotation(CreateReferenceData.class);
+    List<ReferenceData> referenceData = loadResources(createReferenceData.pattern()).stream().map(rdr -> {
+      Optional<ReferenceData> ord = Optional.empty();
+      try {
+        ord = Optional.of(objectMapper.readValue(rdr.getInputStream(), ReferenceData.class).withName(FilenameUtils.getBaseName(rdr.getFilename())));
+      } catch (IOException e) {
+        logger.debug("failed reading reference data {}: {}", rdr.getFilename(), e.getMessage());
+      }
+      return ord;
+    }).filter(ord -> ord.isPresent())
+      .map(ord -> ord.get().withTenant(tenant).withToken(token))
+      .collect(Collectors.toList());
+    logger.info("creating reference data");
+    createReferenceData(referenceData);
   }
 
   private List<Resource> loadResources(String pattern) throws IOException {
@@ -101,8 +103,8 @@ public class ReferenceDataAspect {
       try {
         JsonNode response = okapiService.createReferenceData(datum);
         logger.info("created reference data {} {}", referenceData.getName(), response);
-      } catch (Exception e) {
-        logger.warn("failed creating reference data {} {}", referenceData.getName(), e.getMessage());
+      } catch (OkapiRequestException e) {
+        logger.warn("failed creating reference data {}: {}", referenceData.getName(), e.getMessage());
       }
     }
   }

@@ -38,21 +38,23 @@ public class RulesAspect {
 
   @Before("@annotation(org.folio.rest.migration.aspect.annotation.UpdateRules) && args(..,tenant)")
   public void updateRules(JoinPoint joinPoint, String tenant) throws IOException {
+    String token;
     try {
-      String token = okapiService.getToken(tenant);
-      MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-      UpdateRules updateRules = signature.getMethod().getAnnotation(UpdateRules.class);
-      try {
-        JsonNode rules = objectMapper.readValue(loadResource(updateRules.file()).getInputStream(), JsonNode.class);
-        okapiService.updateRules(rules, updateRules.path(), tenant, token);
-        logger.info("updated mapping rules {}", rules);
-      } catch (IOException e) {
-        logger.error("failed reading resource {}: {}", updateRules.file(), e.getMessage());
-      } catch (OkapiRequestException e) {
-        logger.debug("failed updating mapping rules: {}", e.getMessage());
-      }
+      token = okapiService.getToken(tenant);
     } catch (OkapiRequestException e) {
       logger.error("failed getting token for tenant {}: {}", tenant, e.getMessage());
+      return;
+    }
+    MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+    UpdateRules updateRules = signature.getMethod().getAnnotation(UpdateRules.class);
+    try {
+      JsonNode rules = objectMapper.readValue(loadResource(updateRules.file()).getInputStream(), JsonNode.class);
+      okapiService.updateRules(rules, updateRules.path(), tenant, token);
+      logger.info("updated mapping rules {}", rules);
+    } catch (IOException e) {
+      logger.error("failed reading resource {}: {}", updateRules.file(), e.getMessage());
+    } catch (OkapiRequestException e) {
+      logger.debug("failed updating mapping rules: {}", e.getMessage());
     }
   }
 

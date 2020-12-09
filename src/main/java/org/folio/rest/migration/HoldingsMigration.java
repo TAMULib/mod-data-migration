@@ -107,7 +107,7 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
         try {
           migrationService.complete();
         } catch (MigrationException e) {
-          log.error("failed to complete {}, {}", this.getClass().getSimpleName(), e.getMessage());
+          log.error("failed to complete HoldingsMigration: {}", e.getMessage());
         }
       }
 

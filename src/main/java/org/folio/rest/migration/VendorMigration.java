@@ -130,7 +130,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         try {
           migrationService.complete();
         } catch (MigrationException e) {
-          log.error("failed to complete {}, {}", this.getClass().getSimpleName(), e.getMessage());
+          log.error("failed to complete VendorMigration: {}", e.getMessage());
         }
       }
 
