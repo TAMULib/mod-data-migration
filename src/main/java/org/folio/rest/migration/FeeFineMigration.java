@@ -107,7 +107,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
         try {
           migrationService.complete();
         } catch (MigrationException e) {
-          log.error("failed to complete {}, {}", this.getClass().getSimpleName(), e.getMessage());
+          log.error("failed to complete FeeFineMigration: {}", e.getMessage());
         }
       }
 

@@ -145,7 +145,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         try {
           migrationService.complete();
         } catch (MigrationException e) {
-          log.error("failed to complete migration", e.getMessage());
+          log.error("failed to complete ItemMigration: {}", e.getMessage());
         }
       }
 
