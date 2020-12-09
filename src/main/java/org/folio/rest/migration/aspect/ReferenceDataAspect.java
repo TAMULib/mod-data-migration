@@ -46,7 +46,7 @@ public class ReferenceDataAspect {
   private ObjectMapper objectMapper;
 
   @Before("@annotation(org.folio.rest.migration.aspect.annotation.CreateReferenceData) && args(..,tenant)")
-  public void createReferenceLinks(JoinPoint joinPoint, String tenant) throws IOException {
+  public void createReferenceData(JoinPoint joinPoint, String tenant) throws IOException {
     try {
       String token = okapiService.getToken(tenant);
       MethodSignature signature = (MethodSignature) joinPoint.getSignature();
@@ -101,8 +101,8 @@ public class ReferenceDataAspect {
       try {
         JsonNode response = okapiService.createReferenceData(datum);
         logger.info("created reference data {} {}", referenceData.getName(), response);
-      } catch (Exception e) {
-        logger.warn("failed creating reference data {} {}", referenceData.getName(), e.getMessage());
+      } catch (OkapiRequestException e) {
+        logger.warn("failed creating reference data {}: {}", referenceData.getName(), e.getMessage());
       }
     }
   }
