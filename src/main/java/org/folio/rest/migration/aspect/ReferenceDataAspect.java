@@ -16,7 +16,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceData;
-import org.folio.rest.migration.exception.OkapiRequestException;
 import org.folio.rest.migration.model.ReferenceData;
 import org.folio.rest.migration.model.ReferenceDatum;
 import org.folio.rest.migration.service.OkapiService;
@@ -47,13 +46,7 @@ public class ReferenceDataAspect {
 
   @Before("@annotation(org.folio.rest.migration.aspect.annotation.CreateReferenceData) && args(..,tenant)")
   public void createReferenceData(JoinPoint joinPoint, String tenant) throws IOException {
-    String token;
-    try {
-      token = okapiService.getToken(tenant);
-    } catch (OkapiRequestException e) {
-      logger.error("failed getting token for tenant {}: {}", tenant, e.getMessage());
-      return;
-    }
+    String token = okapiService.getToken(tenant);
     MethodSignature signature = (MethodSignature) joinPoint.getSignature();
     CreateReferenceData createReferenceData = signature.getMethod().getAnnotation(CreateReferenceData.class);
     List<ReferenceData> referenceData = loadResources(createReferenceData.pattern()).stream().map(rdr -> {
@@ -103,7 +96,7 @@ public class ReferenceDataAspect {
       try {
         JsonNode response = okapiService.createReferenceData(datum);
         logger.info("created reference data {} {}", referenceData.getName(), response);
-      } catch (OkapiRequestException e) {
+      } catch (Exception e) {
         logger.warn("failed creating reference data {}: {}", referenceData.getName(), e.getMessage());
       }
     }

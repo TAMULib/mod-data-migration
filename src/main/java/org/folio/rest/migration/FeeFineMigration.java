@@ -26,7 +26,6 @@ import org.folio.rest.jaxrs.model.inventory.Materialtype;
 import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
-import org.folio.rest.migration.exception.MigrationException;
 import org.folio.rest.migration.model.FeeFineRecord;
 import org.folio.rest.migration.model.request.feefine.FeeFineContext;
 import org.folio.rest.migration.model.request.feefine.FeeFineDefaults;
@@ -86,7 +85,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
   }
 
   @Override
-  public CompletableFuture<String> run(MigrationService migrationService) throws MigrationException {
+  public CompletableFuture<String> run(MigrationService migrationService) {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
@@ -104,11 +103,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       @Override
       public void complete() {
         postActions(folioSettings, context.getPostActions());
-        try {
-          migrationService.complete();
-        } catch (MigrationException e) {
-          log.error("failed to complete FeeFineMigration: {}", e.getMessage());
-        }
+        migrationService.complete();
       }
 
     });

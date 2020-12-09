@@ -49,7 +49,6 @@ import org.folio.rest.jaxrs.model.users.UserdataCollection;
 import org.folio.rest.jaxrs.model.users.Usergroups;
 import org.folio.rest.migration.config.model.Credentials;
 import org.folio.rest.migration.config.model.Okapi;
-import org.folio.rest.migration.exception.OkapiRequestException;
 import org.folio.rest.migration.model.ReferenceDatum;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.slf4j.Logger;
@@ -82,7 +81,7 @@ public class OkapiService {
     restTemplate = new RestTemplate();
   }
 
-  public String getToken(String tenant) throws OkapiRequestException {
+  public String getToken(String tenant) {
     long startTime = System.nanoTime();
     String url = okapi.getUrl() + "/authn/login";
     HttpEntity<Credentials> entity = new HttpEntity<>(okapi.getCredentials(), headers(tenant));
@@ -92,10 +91,10 @@ public class OkapiService {
       return response.getHeaders().getFirst("X-Okapi-Token");
     }
     log.error("Failed to login: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to login: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to login: " + response.getStatusCodeValue());
   }
 
-  public JsonNode createReferenceData(ReferenceDatum referenceDatum) throws OkapiRequestException {
+  public JsonNode createReferenceData(ReferenceDatum referenceDatum) {
     long startTime = System.nanoTime();
     String url = okapi.getUrl() + referenceDatum.getPath();
     HttpEntity<JsonNode> entity = new HttpEntity<>(referenceDatum.getData(), headers(referenceDatum.getTenant(), referenceDatum.getToken()));
@@ -105,10 +104,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to create reference data: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to create reference data: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create reference data: " + response.getStatusCodeValue());
   }
 
-  public JsonNode createRequest(JsonNode request, String tenant, String token) throws OkapiRequestException {
+  public JsonNode createRequest(JsonNode request, String tenant, String token) {
     long startTime = System.nanoTime();
     String url = okapi.getUrl() + "/circulation/requests";
     HttpEntity<JsonNode> entity = new HttpEntity<>(request, headers(tenant, token));
@@ -118,10 +117,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to create request: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to create request: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create request: " + response.getStatusCodeValue());
   }
 
-  public Loan checkoutByBarcode(CheckOutByBarcodeRequest request, String tenant, String token) throws OkapiRequestException {
+  public Loan checkoutByBarcode(CheckOutByBarcodeRequest request, String tenant, String token) {
     long startTime = System.nanoTime();
     String url = okapi.getUrl() + "/circulation/check-out-by-barcode";
     HttpEntity<CheckOutByBarcodeRequest> entity = new HttpEntity<>(request, headers(tenant, token));
@@ -131,10 +130,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to checkout by barcode: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to checkout by barcode: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to checkout by barcode: " + response.getStatusCodeValue());
   }
 
-  public void updateLoan(JsonNode loan, String tenant, String token) throws OkapiRequestException {
+  public void updateLoan(JsonNode loan, String tenant, String token) {
     long startTime = System.nanoTime();
     String url = okapi.getUrl() + "/circulation/loans/" + loan.get("id").asText();
     HttpEntity<?> entity = new HttpEntity<>(loan, headers(tenant, token));
@@ -142,11 +141,11 @@ public class OkapiService {
     log.debug("update loan: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() < 200 || response.getStatusCodeValue() > 204) {
       log.error("Failed to create job execution: " + response.getStatusCodeValue());
-      throw new OkapiRequestException("Failed to update loan: " + response.getStatusCodeValue());
+      throw new RuntimeException("Failed to update loan: " + response.getStatusCodeValue());
     }
   }
 
-  public Servicepoints fetchServicepoints(String tenant, String token) throws OkapiRequestException {
+  public Servicepoints fetchServicepoints(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/service-points?limit=9999";
@@ -156,10 +155,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to fetch service points: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to fetch service points: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch service points: " + response.getStatusCodeValue());
   }
 
-  public Userdata lookupUser(String tenant, String token, String username) throws OkapiRequestException {
+  public Userdata lookupUser(String tenant, String token, String username) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/users?query=username==" + username;
@@ -171,13 +170,13 @@ public class OkapiService {
         return userCollection.getUsers().get(0);
       }
       log.error("User with username " + username + " not found");
-      throw new OkapiRequestException("User with username " + username + " not found");
+      throw new RuntimeException("User with username " + username + " not found");
     }
     log.error("Failed to lookup user: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to lookup user: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to lookup user: " + response.getStatusCodeValue());
   }
 
-  public Usergroups fetchUsergroups(String tenant, String token) throws OkapiRequestException {
+  public Usergroups fetchUsergroups(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/groups?limit=9999";
@@ -187,10 +186,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to fetch user groups: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to fetch user groups: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch user groups: " + response.getStatusCodeValue());
   }
 
-  public AddresstypeCollection fetchAddresstypes(String tenant, String token) throws OkapiRequestException {
+  public AddresstypeCollection fetchAddresstypes(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/addresstypes?limit=99";
@@ -200,10 +199,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to fetch address types: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to fetch address types: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch address types: " + response.getStatusCodeValue());
   }
 
-  public void updateRules(JsonNode rules, String path, String tenant, String token) throws OkapiRequestException {
+  public void updateRules(JsonNode rules, String path, String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(rules, headers(tenant, token));
     String url = okapi.getUrl() + "/" + path;
@@ -211,11 +210,11 @@ public class OkapiService {
     log.debug("update rules: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() < 200 || response.getStatusCodeValue() > 204) {
       log.error("Failed to update rules: " + response.getStatusCodeValue());
-      throw new OkapiRequestException("Failed to update rules: " + response.getStatusCodeValue());  
+      throw new RuntimeException("Failed to update rules: " + response.getStatusCodeValue());  
     }
   }
 
-  public JsonObject fetchRules(String tenant, String token) throws OkapiRequestException {
+  public JsonObject fetchRules(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/mapping-rules";
@@ -225,10 +224,10 @@ public class OkapiService {
       return new JsonObject(response.getBody());
     }
     log.error("Failed to fetch rules: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to fetch rules: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch rules: " + response.getStatusCodeValue());
   }
 
-  public void updateHridSettings(JsonObject hridSettings, String tenant, String token) throws OkapiRequestException {
+  public void updateHridSettings(JsonObject hridSettings, String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(hridSettings.getMap(), headers(tenant, token));
     String url = okapi.getUrl() + "/hrid-settings-storage/hrid-settings";
@@ -236,11 +235,11 @@ public class OkapiService {
     log.debug("update hrid settings: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() < 200 || response.getStatusCodeValue() > 204) {
       log.error("Failed to update hrid settings: " + response.getStatusCodeValue());
-      throw new OkapiRequestException("Failed to update hrid settings: " + response.getStatusCodeValue());
+      throw new RuntimeException("Failed to update hrid settings: " + response.getStatusCodeValue());
     }
   }
 
-  public JsonObject fetchHridSettings(String tenant, String token) throws OkapiRequestException {
+  public JsonObject fetchHridSettings(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/hrid-settings-storage/hrid-settings";
@@ -250,10 +249,10 @@ public class OkapiService {
       return new JsonObject(response.getBody());
     }
     log.error("Failed to fetch hrid settings: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to fetch hrid settings: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch hrid settings: " + response.getStatusCodeValue());
   }
 
-  public Statisticalcodes fetchStatisticalCodes(String tenant, String token) throws OkapiRequestException {
+  public Statisticalcodes fetchStatisticalCodes(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/statistical-codes?limit=999";
@@ -263,10 +262,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to fetch statistical codes: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to fetch statistical codes: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch statistical codes: " + response.getStatusCodeValue());
   }
 
-  public Materialtypes fetchMaterialtypes(String tenant, String token) throws OkapiRequestException {
+  public Materialtypes fetchMaterialtypes(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/material-types?limit=999";
@@ -276,10 +275,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to fetch material types: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to fetch material types: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch material types: " + response.getStatusCodeValue());
   }
 
-  public JobProfile getOrCreateJobProfile(String tenant, String token, JobProfile jobProfile) throws OkapiRequestException {
+  public JobProfile getOrCreateJobProfile(String tenant, String token, JobProfile jobProfile) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = String.format("%s/data-import-profiles/jobProfiles?query=name='%s'", okapi.getUrl(), jobProfile.getName());
@@ -296,10 +295,10 @@ public class OkapiService {
       }
     }
     log.error("Failed to fetch statistical codes: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to fetch statistical codes: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch statistical codes: " + response.getStatusCodeValue());
   }
 
-  public JobProfile createJobProfile(String tenant, String token, JobProfileUpdateDto jobProfileUpdateDto) throws OkapiRequestException {
+  public JobProfile createJobProfile(String tenant, String token, JobProfileUpdateDto jobProfileUpdateDto) {
     long startTime = System.nanoTime();
     HttpEntity<JobProfileUpdateDto> entity = new HttpEntity<>(jobProfileUpdateDto, headers(tenant, token));
     String url = okapi.getUrl() + "/data-import-profiles/jobProfiles";
@@ -310,10 +309,10 @@ public class OkapiService {
           .convertValue(response.getBody().getProfile(), JobProfile.class);
     }
     log.error("Failed to create job profile: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to create job profile: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create job profile: " + response.getStatusCodeValue());
   }
 
-  public InitJobExecutionsRsDto createJobExecution(String tenant, String token, InitJobExecutionsRqDto jobExecutionDto) throws OkapiRequestException {
+  public InitJobExecutionsRsDto createJobExecution(String tenant, String token, InitJobExecutionsRqDto jobExecutionDto) {
     long startTime = System.nanoTime();
     HttpEntity<InitJobExecutionsRqDto> entity = new HttpEntity<>(jobExecutionDto, headers(tenant, token));
     String url = okapi.getUrl() + "/change-manager/jobExecutions";
@@ -323,10 +322,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to create job execution: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to create job execution: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create job execution: " + response.getStatusCodeValue());
   }
 
-  public void finishJobExecution(String tenant, String token, String jobExecutionId,  RawRecordsDto rawRecordsDto) throws OkapiRequestException {
+  public void finishJobExecution(String tenant, String token, String jobExecutionId,  RawRecordsDto rawRecordsDto) {
     postJobExecutionRecords(tenant, token, jobExecutionId, rawRecordsDto);
     JobExecution jobExecution = getJobExecution(tenant, token, jobExecutionId);
     jobExecution.setCompletedDate(new Date());
@@ -342,10 +341,10 @@ public class OkapiService {
       return;
     }
     log.error("Failed to finish job execution: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to finish job execution: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to finish job execution: " + response.getStatusCodeValue());
   }
 
-  public void postJobExecutionRecords(String tenant, String token, String jobExecutionId, RawRecordsDto rawRecordsDto) throws OkapiRequestException {
+  public void postJobExecutionRecords(String tenant, String token, String jobExecutionId, RawRecordsDto rawRecordsDto) {
     long startTime = System.nanoTime();
     HttpEntity<RawRecordsDto> entity = new HttpEntity<>(rawRecordsDto, headers(tenant, token));
     String url = okapi.getUrl() + "/change-manager/jobExecutions/" + jobExecutionId + "/records";
@@ -355,10 +354,10 @@ public class OkapiService {
       return;
     }
     log.error("Failed to update job execution: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to update job execution: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to update job execution: " + response.getStatusCodeValue());
   }
 
-  public JobExecution getJobExecution(String tenant, String token, String jobExecutionId) throws OkapiRequestException {
+  public JobExecution getJobExecution(String tenant, String token, String jobExecutionId) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/change-manager/jobExecutions/" + jobExecutionId;
@@ -368,10 +367,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to fetch job execution: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to fetch job execution: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch job execution: " + response.getStatusCodeValue());
   }
 
-  public Locations fetchLocations(String tenant, String token) throws OkapiRequestException {
+  public Locations fetchLocations(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/locations?limit=9999";
@@ -381,10 +380,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to fetch locations: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to fetch locations: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch locations: " + response.getStatusCodeValue());
   }
 
-  public Loantypes fetchLoanTypes(String tenant, String token) throws OkapiRequestException {
+  public Loantypes fetchLoanTypes(String tenant, String token) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/loan-types?limit=999";
@@ -394,10 +393,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to fetch loan types: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to fetch loan types: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch loan types: " + response.getStatusCodeValue());
   }
 
-  public Items fetchItemRecordsByHoldingsRecordId(String tenant, String token, String holdingsRecordId) throws OkapiRequestException {
+  public Items fetchItemRecordsByHoldingsRecordId(String tenant, String token, String holdingsRecordId) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/item-storage/items?query=holdingsRecordId==" + holdingsRecordId;
@@ -407,10 +406,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to fetch item records: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to fetch item records: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch item records: " + response.getStatusCodeValue());
   }
 
-  public Instance postInstance(String tenant, String token, Instance instance) throws OkapiRequestException {
+  public Instance postInstance(String tenant, String token, Instance instance) {
     long startTime = System.nanoTime();
     HttpEntity<Instance> entity = new HttpEntity<>(instance, headers(tenant, token));
     String url = okapi.getUrl() + "/instance-storage/instances";
@@ -420,10 +419,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to create instance: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to create instance: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create instance: " + response.getStatusCodeValue());
   }
 
-  public Instancerelationship postInstancerelationship(String tenant, String token, Instancerelationship holdingsrecord) throws OkapiRequestException {
+  public Instancerelationship postInstancerelationship(String tenant, String token, Instancerelationship holdingsrecord) {
     long startTime = System.nanoTime();
     HttpEntity<Instancerelationship> entity = new HttpEntity<>(holdingsrecord, headers(tenant, token));
     String url = okapi.getUrl() + "/instance-storage/instance-relationships";
@@ -433,10 +432,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to create instance relationships: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to create instance relationships: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create instance relationships: " + response.getStatusCodeValue());
   }
 
-  public Holdingsrecord fetchHoldingsRecordById(String tenant, String token, String id) throws OkapiRequestException {
+  public Holdingsrecord fetchHoldingsRecordById(String tenant, String token, String id) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/holdings-storage/holdings/" + id;
@@ -446,10 +445,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to fetch holdings record: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to fetch holdings record: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch holdings record: " + response.getStatusCodeValue());
   }
 
-  public Holdingsrecord postHoldingsrecord(String tenant, String token, Holdingsrecord holdingsrecord) throws OkapiRequestException {
+  public Holdingsrecord postHoldingsrecord(String tenant, String token, Holdingsrecord holdingsrecord) {
     long startTime = System.nanoTime();
     HttpEntity<Holdingsrecord> entity = new HttpEntity<>(holdingsrecord, headers(tenant, token));
     String url = okapi.getUrl() + "/holdings-storage/holdings";
@@ -459,10 +458,10 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to create holdings record: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to create holdings record: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create holdings record: " + response.getStatusCodeValue());
   }
 
-  public void putItem(String tenant, String token, Item item) throws OkapiRequestException {
+  public void putItem(String tenant, String token, Item item) {
     long startTime = System.nanoTime();
     HttpEntity<Item> entity = new HttpEntity<>(item, headers(tenant, token));
     String url = okapi.getUrl() + "/item-storage/items/" + item.getId();
@@ -472,10 +471,10 @@ public class OkapiService {
       return;
     }
     log.error("Failed to update item: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to update item: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to update item: " + response.getStatusCodeValue());
   }
 
-  public ImportResponse postUserdataimportCollection(String tenant, String token, UserdataimportCollection userdataimportCollection) throws OkapiRequestException {
+  public ImportResponse postUserdataimportCollection(String tenant, String token, UserdataimportCollection userdataimportCollection) {
     long startTime = System.nanoTime();
     HttpEntity<UserdataimportCollection> entity = new HttpEntity<>(userdataimportCollection, headers(tenant, token));
     String url = okapi.getUrl() + "/user-import";
@@ -485,7 +484,7 @@ public class OkapiService {
       return response.getBody();
     }
     log.error("Failed to import users: " + response.getStatusCodeValue());
-    throw new OkapiRequestException("Failed to import users: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to import users: " + response.getStatusCodeValue());
   }
 
   public MappingParameters getMappingParamaters(String tenant, String token) {
