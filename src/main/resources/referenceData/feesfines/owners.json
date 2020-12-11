@@ -29,14 +29,10 @@
         {
           "value": "fc64d24e-5247-402a-ae19-21de454c025d",
           "label": "Business Library Circulation"
-        },
-        {
-          "value": "24f55faf-d42e-4fef-9ad3-43c34b75962f",
-          "label": "PSEL Circulation Desk"
         }
       ],
       "id": "014416f2-7609-4222-a812-1a3deb0591b8",
-      "owner": "Business & PSEL Services"
+      "owner": "Business Library & Collaboration Commons"
     },
     {
       "servicePointOwner": [
@@ -67,6 +63,16 @@
       ],
       "id": "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
       "owner": "Medical Sciences Library"
+    },
+    {
+      "id": "7e6832e2-b047-471e-9194-7e4106e0af1e",
+      "owner": "Policy Sciences & Economics Library",
+      "servicePointOwner": [
+        {
+          "label": "PSEL Circulation Desk",
+          "value": "24f55faf-d42e-4fef-9ad3-43c34b75962f"
+        }
+      ]
     },
     {
       "owner": "Qatar LIbrary (TAMUQ)",
