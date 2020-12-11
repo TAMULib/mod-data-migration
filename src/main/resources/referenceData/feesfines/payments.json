@@ -75,6 +75,30 @@
       "allowedRefundMethod": true
     },
     {
+      "nameMethod": "Check",
+      "id": "dc3c7e7c-ea34-4ea8-9425-d2af29c1e1bc",
+      "ownerId": "7e6832e2-b047-471e-9194-7e4106e0af1e",
+      "allowedRefundMethod": true
+    },
+    {
+      "id": "1e11f4a7-c9da-4702-9aae-9d16dec7af3a",
+      "ownerId": "7e6832e2-b047-471e-9194-7e4106e0af1e",
+      "nameMethod": "Credit Card",
+      "allowedRefundMethod": true
+    },
+    {
+      "id": "e6626e3d-b019-441d-bdfc-a20a107e6864",
+      "ownerId": "7e6832e2-b047-471e-9194-7e4106e0af1e",
+      "nameMethod": "Food for Fines",
+      "allowedRefundMethod": false
+    },
+    {
+      "ownerId": "7e6832e2-b047-471e-9194-7e4106e0af1e",
+      "id": "1829a0f5-d1c5-4b05-9d8d-8d25673fd821",
+      "nameMethod": "Interdepartmental transfer",
+      "allowedRefundMethod": true
+    },
+    {
       "id": "4ccce8a9-edc9-4932-a1ac-fd9881cede4e",
       "ownerId": "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
       "nameMethod": "Check",
