@@ -1365,9 +1365,9 @@ POST to http://localhost:9000/migrate/feesfines
       }
     },
     "feefineTypeLabels": {
-      1: "Overdue (migrated-do not use)",
-      2: "Lost item replacement (migrated-do not use)",
-      3: "Lost item processing (migrated-do not use)"
+      "1": "Overdue (migrated-do not use)",
+      "2": "Lost item replacement (migrated-do not use)",
+      "3": "Lost item processing (migrated-do not use)"
     },
     "feefineOwner": {
       "AMDB": {
@@ -1375,44 +1375,44 @@ POST to http://localhost:9000/migrate/feesfines
           "ownerId": "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
           "feeFineOwner": "AskUs Services",
           "fineFeeType": {
-            1: "f55678e3-b8a2-43a5-a8ca-8d89c99df283",
-            2: "eead2e33-4784-4b50-9e86-4101c16e8b25",
-            6: "eead2e33-4784-4b50-9e86-4101c16e8b25",
-            3: "869ae91d-1960-4746-a561-f63e2b429f97",
-            7: "869ae91d-1960-4746-a561-f63e2b429f97"
+            "1": "f55678e3-b8a2-43a5-a8ca-8d89c99df283",
+            "2": "eead2e33-4784-4b50-9e86-4101c16e8b25",
+            "6": "eead2e33-4784-4b50-9e86-4101c16e8b25",
+            "3": "869ae91d-1960-4746-a561-f63e2b429f97",
+            "7": "869ae91d-1960-4746-a561-f63e2b429f97"
           }
         },
         "^(132|136)$": {
           "ownerId": "014416f2-7609-4222-a812-1a3deb0591b8",
           "feeFineOwner": "Business Library & Collaboration Commons",
           "fineFeeType": {
-            1: "3b188387-dbd4-4fb3-9a9b-847f72cab0d7",
-            2: "09e14083-c85b-4f41-86ac-b24c47a81b7b",
-            6: "09e14083-c85b-4f41-86ac-b24c47a81b7b",
-            3: "672fd96c-e175-4a4f-82e8-8d5362da34f7",
-            7: "672fd96c-e175-4a4f-82e8-8d5362da34f7"
+            "1": "3b188387-dbd4-4fb3-9a9b-847f72cab0d7",
+            "2": "09e14083-c85b-4f41-86ac-b24c47a81b7b",
+            "6": "09e14083-c85b-4f41-86ac-b24c47a81b7b",
+            "3": "672fd96c-e175-4a4f-82e8-8d5362da34f7",
+            "7": "672fd96c-e175-4a4f-82e8-8d5362da34f7"
           }
         },
         "^(191)$": {
           "ownerId": "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
           "feeFineOwner": "Qatar Library (TAMUQ)",
           "fineFeeType": {
-            1: "69482cfd-efce-4a32-a001-a6d9bdd217ec",
-            2: "11a3e001-9762-41a2-9aa0-8f373f0270ca",
-            6: "11a3e001-9762-41a2-9aa0-8f373f0270ca",
-            3: "3761b4f5-c1a9-46b9-b12f-6a1c76fb5eb1",
-            7: "3761b4f5-c1a9-46b9-b12f-6a1c76fb5eb1"
+            "1": "69482cfd-efce-4a32-a001-a6d9bdd217ec",
+            "2": "11a3e001-9762-41a2-9aa0-8f373f0270ca",
+            "6": "11a3e001-9762-41a2-9aa0-8f373f0270ca",
+            "3": "3761b4f5-c1a9-46b9-b12f-6a1c76fb5eb1",
+            "7": "3761b4f5-c1a9-46b9-b12f-6a1c76fb5eb1"
           }
         },
         "^(166)$": {
           "ownerId": "7e6832e2-b047-471e-9194-7e4106e0af1e",
           "feeFineOwner": "Policy Sciences & Economics Library",
           "fineFeeType": {
-            1: "8d252cda-dda5-4b5c-9d59-be06e47066fb",
-            2: "75426640-40d2-460a-86d5-7691bf1c6d2a",
-            6: "75426640-40d2-460a-86d5-7691bf1c6d2a",
-            3: "8e0913e4-4569-4250-9d34-5139c5705884",
-            7: "8e0913e4-4569-4250-9d34-5139c5705884"
+            "1": "8d252cda-dda5-4b5c-9d59-be06e47066fb",
+            "2": "75426640-40d2-460a-86d5-7691bf1c6d2a",
+            "6": "75426640-40d2-460a-86d5-7691bf1c6d2a",
+            "3": "8e0913e4-4569-4250-9d34-5139c5705884",
+            "7": "8e0913e4-4569-4250-9d34-5139c5705884"
           }
         }
       },
@@ -1421,11 +1421,11 @@ POST to http://localhost:9000/migrate/feesfines
           "ownerId": "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
           "feeFineOwner": "Medical Sciences Library",
           "fineFeeType": {
-            1: "bdef6fb7-9380-40a2-9c5b-4ab4e3cbe7ff",
-            2: "aa9183b3-ed54-4c09-a5d6-0d8e574dcc43",
-            6: "aa9183b3-ed54-4c09-a5d6-0d8e574dcc43",
-            3: "a4b170b9-f572-4bc0-b39a-9426093dc280",
-            7: "a4b170b9-f572-4bc0-b39a-9426093dc280"
+            "1": "bdef6fb7-9380-40a2-9c5b-4ab4e3cbe7ff",
+            "2": "aa9183b3-ed54-4c09-a5d6-0d8e574dcc43",
+            "6": "aa9183b3-ed54-4c09-a5d6-0d8e574dcc43",
+            "3": "a4b170b9-f572-4bc0-b39a-9426093dc280",
+            "7": "a4b170b9-f572-4bc0-b39a-9426093dc280"
           }
         }
       }
