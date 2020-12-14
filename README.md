@@ -816,7 +816,7 @@ POST to http://localhost:9000/migrate/holdings
       "8": "Permanently retained"
     },
     "fieldRegexExclusion": {
-      "583": "(?i).*sub pattern created.*"
+      "583": "(?i).*[sub pattern created|subpattern created|subscription pattern created].*"
     }
   },
   "defaults": {
