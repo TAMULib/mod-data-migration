@@ -227,6 +227,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
       ProfileInfo profileInfo = new ProfileInfo();
       profileInfo.setId(job.getProfile().getId());
       profileInfo.setName(job.getProfile().getName());
+      profileInfo.setDataType(job.getProfile().getDataType());
 
       InitJobExecutionsRqDto jobExecutionRqDto = new InitJobExecutionsRqDto();
       jobExecutionRqDto.setSourceType(SourceType.ONLINE);

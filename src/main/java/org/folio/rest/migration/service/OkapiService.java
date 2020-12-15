@@ -20,6 +20,7 @@ import org.folio.Instancenotetypes;
 import org.folio.Instancetypes;
 import org.folio.Issuancemodes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
+import org.folio.rest.jaxrs.model.ProfileSnapshotWrapper;
 import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
 import org.folio.rest.jaxrs.model.circulation.Loan;
 import org.folio.rest.jaxrs.model.dataimport.common.Status;
@@ -283,7 +284,7 @@ public class OkapiService {
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = String.format("%s/data-import-profiles/jobProfiles?query=name='%s'", okapi.getUrl(), jobProfile.getName());
     ResponseEntity<JobProfileCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, JobProfileCollection.class);
-    log.debug("fetch statistical codes: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    log.debug("fetch job profiles: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
       JobProfileCollection jobProfileCollection = response.getBody();
       if (jobProfileCollection.getTotalRecords() > 0) {
@@ -294,8 +295,8 @@ public class OkapiService {
         return createJobProfile(tenant, token, jobProfileUpdateDto);
       }
     }
-    log.error("Failed to fetch statistical codes: " + response.getStatusCodeValue());
-    throw new RuntimeException("Failed to fetch statistical codes: " + response.getStatusCodeValue());
+    log.error("Failed to fetch job profiles: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch job profiles: " + response.getStatusCodeValue());
   }
 
   public JobProfile createJobProfile(String tenant, String token, JobProfileUpdateDto jobProfileUpdateDto) {
@@ -325,13 +326,14 @@ public class OkapiService {
     throw new RuntimeException("Failed to create job execution: " + response.getStatusCodeValue());
   }
 
-  public void finishJobExecution(String tenant, String token, String jobExecutionId,  RawRecordsDto rawRecordsDto) {
+  public void finishJobExecution(String tenant, String token, String jobExecutionId, RawRecordsDto rawRecordsDto) {
     postJobExecutionRecords(tenant, token, jobExecutionId, rawRecordsDto);
     JobExecution jobExecution = getJobExecution(tenant, token, jobExecutionId);
     jobExecution.setCompletedDate(new Date());
     jobExecution.setStatus(Status.COMMITTED);
     jobExecution.setUiStatus(UiStatus.RUNNING_COMPLETE);
     jobExecution.getProgress().setCurrent(rawRecordsDto.getRecordsMetadata().getCounter());
+    jobExecution.setJobProfileSnapshotWrapper(new ProfileSnapshotWrapper());
     long startTime = System.nanoTime();
     HttpEntity<JobExecution> entity = new HttpEntity<>(jobExecution, headers(tenant, token));
     String url = okapi.getUrl() + "/change-manager/jobExecutions/" + jobExecutionId;
