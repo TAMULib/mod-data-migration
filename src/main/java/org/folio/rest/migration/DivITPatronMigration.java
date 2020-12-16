@@ -163,14 +163,16 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
           String departments_0 = resultSet.getString(DEPARTMENTS_0);
           String expirationDate = resultSet.getString(EXPIRATIONDATE);
 
+          Userdataimport userImport = new Userdataimport();
+          userImport.setUsername(username);
+
           if (StringUtils.isEmpty(barcode)) {
-            log.warn("{} patron {} does not have a barcode", job.getName(), username);
-            continue;
+            log.warn("{} patron {} does not have a barcode, using external system id {}", job.getName(), username, externalSystemId);
+            userImport.setBarcode(externalSystemId);
+          } else {
+            userImport.setBarcode(barcode);
           }
 
-          Userdataimport userImport = new Userdataimport();
-
-          userImport.setUsername(username);
           userImport.setExternalSystemId(externalSystemId);
           userImport.setBarcode(barcode);
           userImport.setActive(active);
