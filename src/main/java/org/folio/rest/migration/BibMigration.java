@@ -461,22 +461,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
   }
 
-  private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
-    ThreadConnections threadConnections = new ThreadConnections();
-    threadConnections.setPageConnection(getConnection(voyagerSettings));
-    threadConnections.setMarcConnection(getConnection(voyagerSettings));
-    try {
-      threadConnections.setRawRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-      threadConnections.setParsedRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-      threadConnections.setRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-      threadConnections.setInstanceConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-      throw new RuntimeException(e);
-    }
-    return threadConnections;
-  }
-
   private Set<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalcodes) {
     return statisticalcodes.getStatisticalCodes().stream()
       .filter(sc -> sc.getCode().equals(operatorId))
@@ -505,6 +489,22 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
   private VariableField getSingleFieldByIndicators(List<VariableField> list, char ind1, char ind2) {
     return list.stream().filter(f -> ((DataField) f).getIndicator1() == ind1 && ((DataField) f).getIndicator2() == ind2).findFirst().orElse(null);
+  }
+
+  private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
+    ThreadConnections threadConnections = new ThreadConnections();
+    threadConnections.setPageConnection(getConnection(voyagerSettings));
+    threadConnections.setMarcConnection(getConnection(voyagerSettings));
+    try {
+      threadConnections.setRawRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+      threadConnections.setParsedRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+      threadConnections.setRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+      threadConnections.setInstanceConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+    } catch (SQLException e) {
+      log.error(e.getMessage());
+      throw new RuntimeException(e);
+    }
+    return threadConnections;
   }
 
   private class ThreadConnections {

@@ -38,6 +38,7 @@ public class HoldingsRecord {
 
   private final String mfhdId;
   private final String locationId;
+  private final Set<String> statisticalCodes;
 
   private final Boolean discoverySuppress;
 
@@ -56,12 +57,13 @@ public class HoldingsRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public HoldingsRecord(HoldingsMaps holdingMaps, Record record, String mfhdId, String locationId, Boolean discoverySuppress,
+  public HoldingsRecord(HoldingsMaps holdingMaps, Record record, String mfhdId, String locationId, Set<String> statisticalCodes, Boolean discoverySuppress,
     String callNumber, String callNumberType, String holdingsType, String receiptStatus, String acquisitionMethod, String retentionPolicy) {
     this.holdingMaps = holdingMaps;
     this.record = record;
     this.mfhdId = mfhdId;
     this.locationId = locationId;
+    this.statisticalCodes = statisticalCodes;
     this.discoverySuppress = discoverySuppress;
     this.callNumber = callNumber;
     this.callNumberType = callNumberType;
@@ -171,7 +173,7 @@ public class HoldingsRecord {
       holding.setReceiptStatus(receiptStatus);
       holding.setAcquisitionMethod(acquisitionMethod);
       holding.setRetentionPolicy(retentionPolicy);
-      // holding.setStatisticalCodeIds(null);
+      holding.setStatisticalCodeIds(statisticalCodes);
 
       processMarcHolding(holding, holdingsMaps.getFieldRegexExclusion());
 
