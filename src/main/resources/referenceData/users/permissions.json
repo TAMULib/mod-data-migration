@@ -10,12 +10,10 @@
       "displayName": "Acquisitions_Admin_Staff",
       "permissionName": "7fd42e23-08bf-4bf3-ad66-f6e27c446649",
       "subPermissions": [
-        "ui-finance.all",
         "ui-finance.acq.unit.assignment.assign",
         "ui-finance.allocations.create",
         "ui-finance.transfers.create",
         "ui-finance.acq.unit.assignment.manage",
-        "ui-finance.view",
         "ui-invoice.all",
         "ui-invoice.approve",
         "ui-invoice.acq.unit.assignment.assign",
@@ -66,9 +64,7 @@
       "visible": true,
       "displayName": "Acquisitions_Financial_Staff",
       "permissionName": "bbc81742-5f20-4517-9e38-a1ed0631d874",
-      "subPermissions": [
-        "ui-finance.all"
-      ]
+      "subPermissions": []
     },
     {
       "id": "2347a558-b532-4b28-971f-3dd05420375a",
@@ -348,9 +344,7 @@
       "visible": true,
       "displayName": "ER_Financial_Staff",
       "permissionName": "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1",
-      "subPermissions": [
-        "ui-finance.view"
-      ]
+      "subPermissions": []
     },
     {
       "id": "50a15dba-6ea2-426a-9118-369084f1247b",
