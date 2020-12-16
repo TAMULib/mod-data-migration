@@ -313,7 +313,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
           }
 
           if (StringUtils.isEmpty(patronCodes.getBarcode())) {
-            log.warn("{} patron with id {} does not have a barcode, using external system id {}", schema, patronId, externalSystemId);
+            log.debug("{} patron with id {} does not have a barcode, using external system id {}", schema, patronId, externalSystemId);
             patronCodes.setBarcode(externalSystemId);
           }
 

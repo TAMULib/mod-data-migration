@@ -167,7 +167,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
           userImport.setUsername(username);
 
           if (StringUtils.isEmpty(barcode)) {
-            log.warn("{} patron {} does not have a barcode, using external system id {}", job.getName(), username, externalSystemId);
+            log.debug("{} patron {} does not have a barcode, using external system id {}", job.getName(), username, externalSystemId);
             userImport.setBarcode(externalSystemId);
           } else {
             userImport.setBarcode(barcode);
