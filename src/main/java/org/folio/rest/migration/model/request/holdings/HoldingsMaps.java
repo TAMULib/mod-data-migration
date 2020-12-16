@@ -11,6 +11,9 @@ public class HoldingsMaps {
   private Map<String, Map<String, String>> location;
 
   @NotNull
+  private Map<String, String> statisticalCode;
+
+  @NotNull
   private Map<String, String> acqMethod;
 
   @NotNull
@@ -33,6 +36,7 @@ public class HoldingsMaps {
 
   public HoldingsMaps() {
     location = new HashMap<>();
+    statisticalCode = new HashMap<>();
     acqMethod = new HashMap<>();
     callNumberType = new HashMap<>();
     holdingsType = new HashMap<>();
@@ -48,6 +52,14 @@ public class HoldingsMaps {
 
   public void setLocation(Map<String, Map<String, String>> location) {
     this.location = location;
+  }
+
+  public Map<String, String> getStatisticalCode() {
+    return statisticalCode;
+  }
+
+  public void setStatisticalCode(Map<String, String> statisticalCode) {
+    this.statisticalCode = statisticalCode;
   }
 
   public Map<String, String> getAcqMethod() {

@@ -9,19 +9,22 @@ import java.sql.Statement;
 import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
-import com.fasterxml.jackson.databind.JsonNode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
+import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.HoldingMapper;
@@ -45,11 +48,14 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
   private static final String HRID_PREFIX = "HRID_PREFIX";
   private static final String HRID_START_NUMBER = "HRID_START_NUMBER";
 
+  private static final String STATISTICAL_CODES = "STATISTICAL_CODES";
+
   private static final String LOCATIONS_MAP = "LOCATIONS_MAP";
 
   private static final String USER_ID = "USER_ID";
 
   private static final String MFHD_ID = "MFHD_ID";
+  private static final String OPERATOR_ID = "OPERATOR_ID";
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String LOCATION_CODE = "LOCATION_CODE";
   private static final String SUPPRESS_IN_OPAC = "SUPPRESS_IN_OPAC";
@@ -79,11 +85,9 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
-
     JsonObject hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
-
     Locations locations = migrationService.okapiService.fetchLocations(tenant, token);
-
+    Statisticalcodes statisticalcodes = migrationService.okapiService.fetchStatisticalCodes(tenant, token);
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
@@ -143,6 +147,7 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
         partitionContext.put(HRID_START_NUMBER, hridStartNumber);
         partitionContext.put(JOB, job);
         partitionContext.put(LOCATIONS_MAP, locationsMap);
+        partitionContext.put(STATISTICAL_CODES, statisticalcodes);
         partitionContext.put(USER_ID, user.getId());
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new HoldingPartitionTask(migrationService, holdingMapper, partitionContext));
@@ -191,6 +196,8 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
 
       Map<String, String> locationsMap = (Map<String, String>) partitionContext.get(LOCATIONS_MAP);
 
+      Statisticalcodes statisticalcodes = (Statisticalcodes) partitionContext.get(STATISTICAL_CODES);
+
       String userId = (String) partitionContext.get(USER_ID);
 
       String schema = job.getSchema();
@@ -234,6 +241,7 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
 
         while (pageResultSet.next()) {
           String mfhdId = pageResultSet.getString(MFHD_ID);
+          String operatorId = pageResultSet.getString(OPERATOR_ID);
 
           String permanentLocationId = pageResultSet.getString(LOCATION_ID);
 
@@ -339,7 +347,17 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
               continue;
             }
 
-            HoldingsRecord holdingRecord = new HoldingsRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
+            Set<String> matchedCodes;
+            if (StringUtils.isNotEmpty(operatorId)) {
+              if (holdingMaps.getStatisticalCode().containsKey(operatorId)) {
+                operatorId = holdingMaps.getStatisticalCode().get(operatorId);
+              }
+              matchedCodes = getMatchingStatisticalCodes(operatorId, statisticalcodes);
+            } else {
+              matchedCodes = new HashSet<>();
+            }
+
+            HoldingsRecord holdingRecord = new HoldingsRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, matchedCodes, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
             holdingRecord.setHoldingId(holdingId);
             holdingRecord.setInstanceId(instanceId);
@@ -442,6 +460,13 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
       e.printStackTrace();
     }
     return idToUuid;
+  }
+
+  private Set<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalcodes) {
+    return statisticalcodes.getStatisticalCodes().stream()
+      .filter(sc -> sc.getCode().equals(operatorId))
+      .map(sc -> sc.getId())
+      .collect(Collectors.toSet());
   }
 
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database referenceLinkSettings, Database folioSettings) {
