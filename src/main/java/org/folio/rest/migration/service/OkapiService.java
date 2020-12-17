@@ -20,7 +20,6 @@ import org.folio.Instancenotetypes;
 import org.folio.Instancetypes;
 import org.folio.Issuancemodes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
-import org.folio.rest.jaxrs.model.ProfileSnapshotWrapper;
 import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
 import org.folio.rest.jaxrs.model.circulation.Loan;
 import org.folio.rest.jaxrs.model.dataimport.common.Status;
@@ -333,17 +332,7 @@ public class OkapiService {
     jobExecution.setStatus(Status.COMMITTED);
     jobExecution.setUiStatus(UiStatus.RUNNING_COMPLETE);
     jobExecution.getProgress().setCurrent(rawRecordsDto.getRecordsMetadata().getCounter());
-    jobExecution.setJobProfileSnapshotWrapper(new ProfileSnapshotWrapper());
-    long startTime = System.nanoTime();
-    HttpEntity<JobExecution> entity = new HttpEntity<>(jobExecution, headers(tenant, token));
-    String url = okapi.getUrl() + "/change-manager/jobExecutions/" + jobExecutionId;
-    ResponseEntity<JobExecution> response = restTemplate.exchange(url, HttpMethod.PUT, entity, JobExecution.class);
-    log.debug("finish job execution: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
-    if (response.getStatusCodeValue() == 200) {
-      return;
-    }
-    log.error("Failed to finish job execution: " + response.getStatusCodeValue());
-    throw new RuntimeException("Failed to finish job execution: " + response.getStatusCodeValue());
+    putJobExecution(tenant, token, jobExecution);
   }
 
   public void postJobExecutionRecords(String tenant, String token, String jobExecutionId, RawRecordsDto rawRecordsDto) {
@@ -370,6 +359,19 @@ public class OkapiService {
     }
     log.error("Failed to fetch job execution: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch job execution: " + response.getStatusCodeValue());
+  }
+
+  public JobExecution putJobExecution(String tenant, String token, JobExecution jobExecution) {
+    long startTime = System.nanoTime();
+    HttpEntity<JobExecution> entity = new HttpEntity<>(jobExecution, headers(tenant, token));
+    String url = okapi.getUrl() + "/change-manager/jobExecutions/" + jobExecution.getId();
+    ResponseEntity<JobExecution> response = restTemplate.exchange(url, HttpMethod.PUT, entity, JobExecution.class);
+    log.debug("finish job execution: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    log.error("Failed to finish job execution: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to finish job execution: " + response.getStatusCodeValue());
   }
 
   public Locations fetchLocations(String tenant, String token) {

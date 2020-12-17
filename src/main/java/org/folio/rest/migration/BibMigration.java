@@ -19,10 +19,13 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 
 import org.apache.commons.lang3.StringUtils;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
+import org.folio.rest.jaxrs.model.ProfileSnapshotWrapper;
+import org.folio.rest.jaxrs.model.ProfileSnapshotWrapper.ProfileSnapshotType;
 import org.folio.rest.jaxrs.model.dataimport.common.ProfileInfo;
 import org.folio.rest.jaxrs.model.dataimport.dto.InitJobExecutionsRqDto;
 import org.folio.rest.jaxrs.model.dataimport.dto.InitJobExecutionsRqDto.SourceType;
@@ -197,7 +200,8 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     private int hrid;
 
-    public BibPartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext) {
+    public BibPartitionTask(MigrationService migrationService, InstanceMapper instanceMapper,
+        Map<String, Object> partitionContext) {
       this.migrationService = migrationService;
       this.instanceMapper = instanceMapper;
       this.partitionContext = partitionContext;
@@ -234,15 +238,23 @@ public class BibMigration extends AbstractMigration<BibContext> {
       jobExecutionRqDto.setJobProfileInfo(profileInfo);
       jobExecutionRqDto.setUserId(userId);
 
-      InitJobExecutionsRsDto JobExecutionRsDto;
+      InitJobExecutionsRsDto jobExecutionRsDto;
       try {
-        JobExecutionRsDto = migrationService.okapiService.createJobExecution(tenant, token, jobExecutionRqDto);
+        jobExecutionRsDto = migrationService.okapiService.createJobExecution(tenant, token, jobExecutionRqDto);
       } catch (Exception e) {
         log.error("failed to create job execution: {}", e.getMessage());
         return this;
       }
 
-      JobExecution jobExecution = JobExecutionRsDto.getJobExecutions().get(0);
+      JobExecution jobExecution = jobExecutionRsDto.getJobExecutions().get(0);
+
+      ProfileSnapshotWrapper snapshotWrapper = new ProfileSnapshotWrapper();
+      snapshotWrapper.setProfileId(job.getProfile().getId());
+      snapshotWrapper.setContent(job.getProfile());
+      snapshotWrapper.setContentType(ProfileSnapshotType.JOB_PROFILE);
+
+      jobExecution.setJobProfileSnapshotWrapper(snapshotWrapper);
+      jobExecution = migrationService.okapiService.putJobExecution(tenant, token, jobExecution);
 
       String jobExecutionId = jobExecution.getId();
 
