@@ -21,8 +21,6 @@ import org.folio.rest.model.ReferenceLink;
 
 public class FeeFineRecord {
 
-  private final String id;
-
   private final String patronId;
   private final String itemId;
   private final String itemBarcode;
@@ -91,14 +89,9 @@ public class FeeFineRecord {
     this.title = title;
     this.bibId = bibId;
 
-    this.id = UUID.randomUUID().toString();
     this.instanceRL = Optional.empty();
     this.holdingRL = Optional.empty();
     this.itemRL = Optional.empty();
-  }
-
-  public String getId() {
-    return id;
   }
 
   public String getPatronId() {
@@ -235,7 +228,7 @@ public class FeeFineRecord {
 
   public Accountdata toAccount(FeeFineMaps maps, FeeFineDefaults defaults, String schema) {
     Accountdata account = new Accountdata();
-    account.setId(id);
+    account.setId(UUID.randomUUID().toString());
 
     account.setAmount(Double.parseDouble(amount));
     account.setRemaining(Double.parseDouble(remaining));

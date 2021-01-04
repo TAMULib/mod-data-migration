@@ -166,7 +166,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
           String parentInstanceTitle = String.format("%s_bound_with_%s", schema, mfhdId);
           Instance parentInstance = new Instance();
-          parentInstance.setId(UUID.randomUUID().toString());
+          parentInstance.setId(craftUUID("bound-with-parent-instance", schema, mfhdId));
           parentInstance.setSource("FOLIO");
           parentInstance.setTitle(parentInstanceTitle);
           parentInstance.setDiscoverySuppress(true);
@@ -195,7 +195,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
           }
 
           Holdingsrecord parentHoldingsRecord = new Holdingsrecord();
-          parentHoldingsRecord.setId(UUID.randomUUID().toString());
+          parentHoldingsRecord.setId(craftUUID("bound-with-parent-holdings-record", schema, mfhdId));
           parentHoldingsRecord.setFormerIds(existingHoldingsRecord.getFormerIds());
           parentHoldingsRecord.setCallNumber(existingHoldingsRecord.getCallNumber());
           parentHoldingsRecord.setInstanceId(parentInstance.getId());
