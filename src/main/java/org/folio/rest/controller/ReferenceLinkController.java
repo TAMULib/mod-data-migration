@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.folio.rest.model.ReferenceLink;
 import org.folio.rest.model.repo.ReferenceLinkRepo;
 import org.folio.rest.model.response.BatchReport;
@@ -13,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,8 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import reactor.core.publisher.Flux;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 @RestController
 @RequestMapping("/referenceLinks")
@@ -32,6 +34,9 @@ public class ReferenceLinkController {
 
   @Autowired
   private ReferenceLinkRepo referenceLinkRepo;
+
+  @Autowired
+  private ObjectMapper objectMapper;
 
   @Value("${data-extractor.batch.partition-size:10}")
   public int partitionSize;
@@ -55,10 +60,27 @@ public class ReferenceLinkController {
   }
 
   @GetMapping(value = "/stream/{typeId}", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
-  public Flux<ReferenceLink> streamAllByTypeId(@PathVariable String typeId,
+  public ResponseEntity<StreamingResponseBody> streamAllByTypeId(@PathVariable String typeId,
       @RequestParam(defaultValue = "Integer") String orderClass) throws IOException, ClassNotFoundException {
     logger.info("Streaming all ExternalReference by type id {} order by class {}", typeId, orderClass);
-    return Flux.fromStream(referenceLinkRepo.streamAllByTypeIdOrderByExternalReferenceAsc(typeId, orderClass));
+    StreamingResponseBody responseBody = response -> {
+      try {
+        referenceLinkRepo.streamAllByTypeIdOrderByExternalReferenceAsc(typeId, orderClass).forEach(rl -> {
+          try {
+            String jsonString = objectMapper.writeValueAsString(rl) + "\n";
+            response.write(jsonString.getBytes());
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+        });
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      }
+      response.flush();
+    };
+    return ResponseEntity.ok()
+      .contentType(MediaType.APPLICATION_STREAM_JSON)
+      .body(responseBody);
   }
 
   public static <T> Stream<List<T>> batches(List<T> source, int length) {
