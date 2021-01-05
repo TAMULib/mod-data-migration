@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
@@ -160,6 +161,10 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
       }
     }
     return Optional.empty();
+  }
+
+  String craftUUID(String type, String schema, String id) {
+    return UUID.fromString(String.format("%s:%s:%s", type, schema, id)).toString();
   }
 
   private class SequencedMarc {

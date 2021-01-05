@@ -133,7 +133,7 @@ public class VendorReferenceLinkMigration extends AbstractMigration<VendorRefere
         while (pageResultSet.next()) {
           String vendorId = pageResultSet.getString(VENDOR_ID);
           String vendorRLId = UUID.randomUUID().toString();
-          String vendorFolioReference = UUID.randomUUID().toString();
+          String vendorFolioReference = craftUUID("vendor", schema, vendorId);
           referenceLinkWriter.println(String.join("\t", vendorRLId, vendorId, vendorFolioReference, vendorRLTypeId));
         }
       } catch (SQLException e) {

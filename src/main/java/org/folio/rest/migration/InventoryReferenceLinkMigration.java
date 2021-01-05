@@ -169,9 +169,9 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
           holdingContext.put(BIB_ID, bibId);
 
           String sourceRecordRLId = UUID.randomUUID().toString();
-          String sourceRecordFolioReference = UUID.randomUUID().toString();
+          String sourceRecordFolioReference = craftUUID("source-record", schema, bibId);
           String instanceRLId = UUID.randomUUID().toString();
-          String instanceFolioReference = UUID.randomUUID().toString();
+          String instanceFolioReference = craftUUID("instance", schema, bibId);
 
           referenceLinkWriter.println(String.join("\t", sourceRecordRLId, bibId, sourceRecordFolioReference, sourceRecordRLTypeId));
           referenceLinkWriter.println(String.join("\t", instanceRLId, bibId, instanceFolioReference, instanceRLTypeId));
@@ -181,7 +181,7 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
             while (holdingIdsResultSet.next()) {
               String holdingId = holdingIdsResultSet.getString(MFHD_ID);
               String holdingRLId = UUID.randomUUID().toString();
-              String holdingFolioReference = UUID.randomUUID().toString();
+              String holdingFolioReference = craftUUID("holdings-record", schema, bibId);
 
               if (!holdingAlreadyProcessed(schema, holdingId)) {
                 referenceLinkWriter.println(String.join("\t", holdingRLId, holdingId, holdingFolioReference, holdingTypeId));
@@ -195,7 +195,7 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
                 while (itemIdsResultSet.next()) {
                   String itemId = itemIdsResultSet.getString(ITEM_ID);
                   String itemRLId = UUID.randomUUID().toString();
-                  String itemFolioReference = UUID.randomUUID().toString();
+                  String itemFolioReference = craftUUID("item", schema, bibId);
 
                   if (!itemAlreadyProcessed(schema, itemId)) {
                     referenceLinkWriter.println(String.join("\t", itemRLId, itemId, itemFolioReference, itemTypeId));
