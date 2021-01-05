@@ -22,12 +22,16 @@ import org.postgresql.core.BaseConnection;
 
 public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceLinkContext> {
 
-  private static final String USER_ID = "PATRON_ID";
-  private static final String USER_EXTERNAL_ID = "EXTERNAL_SYSTEM_ID";
+  private static final String PATRON_ID = "PATRON_ID";
+  private static final String PATRON_BARCODE = "PATRON_BARCODE";
+  private static final String EXTERNAL_SYSTEM_ID = "EXTERNAL_SYSTEM_ID";
 
   private static final String USER_REFERENCE_ID = "userTypeId";
+  private static final String USER_BARCODE_REFERENCE_ID = "userBarcodeTypeId";
   private static final String USER_EXTERNAL_REFERENCE_ID = "userExternalTypeId";
   private static final String USER_TO_EXTERNAL_REFERENCE_ID = "userToExternalTypeId";
+
+  private static final String DECODE = "DECODE";
 
   private static final Map<String, String> EXTERNAL_ID_TO_FOLIO_REFERENCE = new ConcurrentHashMap<>();
 
@@ -77,6 +81,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
         Map<String, Object> partitionContext = new HashMap<String, Object>();
         partitionContext.put(SQL, context.getExtraction().getPageSql());
         partitionContext.put(SCHEMA, job.getSchema());
+        partitionContext.put(DECODE, job.getDecodeSql());
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
@@ -127,6 +132,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
       Database voyagerSettings = context.getExtraction().getDatabase();
 
       String userRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
+      String userBarcodeRLTypeId = job.getReferences().get(USER_BARCODE_REFERENCE_ID);
       String userExternalRLTypeId = job.getReferences().get(USER_EXTERNAL_REFERENCE_ID);
       String userToExternalRLTypeId = job.getReferences().get(USER_TO_EXTERNAL_REFERENCE_ID);
 
@@ -140,12 +146,14 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
       ) {
         while (pageResultSet.next()) {
-          String userId = pageResultSet.getString(USER_ID);
-          String userExternalId = pageResultSet.getString(USER_EXTERNAL_ID);
+          String patronId = pageResultSet.getString(PATRON_ID);
+          String patronBarcode = pageResultSet.getString(PATRON_BARCODE);
+          String externalSystemId = pageResultSet.getString(EXTERNAL_SYSTEM_ID);
 
-          String existingUserFolioReference = EXTERNAL_ID_TO_FOLIO_REFERENCE.get(userExternalId);
+          String existingUserFolioReference = EXTERNAL_ID_TO_FOLIO_REFERENCE.get(externalSystemId);
 
           String userRLId = UUID.randomUUID().toString();
+          String userBarcodeRLId = UUID.randomUUID().toString();
           String userExternalRLId = UUID.randomUUID().toString();
           String userToExternalRLId = UUID.randomUUID().toString();
           String userFolioReference;
@@ -153,12 +161,13 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
           if (existingUserFolioReference != null) {
             userFolioReference = existingUserFolioReference;
           } else {
-            userFolioReference = craftUUID("user", schema, userId);
-            EXTERNAL_ID_TO_FOLIO_REFERENCE.put(userExternalId, userFolioReference);
+            userFolioReference = craftUUID("user", schema, patronId);
+            EXTERNAL_ID_TO_FOLIO_REFERENCE.put(externalSystemId, userFolioReference);
           }
 
-          referenceLinkWriter.println(String.join("\t", userRLId, userId, userFolioReference, userRLTypeId));
-          referenceLinkWriter.println(String.join("\t", userExternalRLId, userExternalId, userFolioReference, userExternalRLTypeId));
+          referenceLinkWriter.println(String.join("\t", userRLId, patronId, userFolioReference, userRLTypeId));
+          referenceLinkWriter.println(String.join("\t", userBarcodeRLId, patronBarcode, userFolioReference, userBarcodeRLTypeId));
+          referenceLinkWriter.println(String.join("\t", userExternalRLId, externalSystemId, userFolioReference, userExternalRLTypeId));
           referenceLinkWriter.println(String.join("\t", userToExternalRLId, userRLId, userExternalRLId, userToExternalRLTypeId));
         }
       } catch (SQLException e) {
