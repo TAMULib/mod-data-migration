@@ -12,6 +12,7 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.user.UserReferenceLinkContext;
 import org.folio.rest.migration.model.request.user.UserReferenceLinkJob;
@@ -149,6 +150,10 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
           String patronId = pageResultSet.getString(PATRON_ID);
           String patronBarcode = pageResultSet.getString(PATRON_BARCODE);
           String externalSystemId = pageResultSet.getString(EXTERNAL_SYSTEM_ID);
+
+          if (Objects.isNull(patronBarcode)) {
+            patronBarcode = StringUtils.EMPTY;
+          }
 
           String existingUserFolioReference = EXTERNAL_ID_TO_FOLIO_REFERENCE.get(externalSystemId);
 
