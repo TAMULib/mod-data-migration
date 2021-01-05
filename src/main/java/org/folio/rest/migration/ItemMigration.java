@@ -18,7 +18,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
@@ -36,6 +35,7 @@ import org.folio.rest.jaxrs.model.inventory.Materialtype;
 import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.inventory.Note__1;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.ItemMfhdRecord;
 import org.folio.rest.migration.model.ItemRecord;
