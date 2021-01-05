@@ -70,11 +70,11 @@ public class ReferenceLinkController {
             String jsonString = objectMapper.writeValueAsString(rl) + "\n";
             response.write(jsonString.getBytes());
           } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Failed to serialize reference link", e);
           }
         });
       } catch (ClassNotFoundException e) {
-        e.printStackTrace();
+        logger.error("Failed to cast order class", e);
       }
       response.flush();
     };

@@ -12,7 +12,7 @@ logging:
         web: INFO
 
 server:
-  port: 9003
+  port: 9000
   tomcat:
     connection-timeout: -1
     accept-count: 1000
@@ -20,6 +20,7 @@ server:
     max-threads: 400
 
 spring:
+  mvc.async.request-timeout: 172800000
   data.rest:
     returnBodyOnCreate: true
     returnBodyOnUpdate: true
