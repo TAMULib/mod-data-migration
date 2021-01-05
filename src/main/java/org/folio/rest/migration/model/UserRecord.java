@@ -1,17 +1,16 @@
 package org.folio.rest.migration.model;
 
-import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
 import org.folio.rest.jaxrs.model.users.Address;
+import org.folio.rest.jaxrs.model.users.Metadata;
 import org.folio.rest.jaxrs.model.users.Personal;
 import org.folio.rest.jaxrs.model.users.Userdata;
-import org.folio.rest.jaxrs.model.users.Metadata;
 import org.folio.rest.migration.model.request.user.UserDefaults;
 import org.folio.rest.migration.model.request.user.UserMaps;
 import org.folio.rest.migration.utility.FormatUtility;
@@ -311,6 +310,14 @@ public class UserRecord {
   }
 
   private void setActive(Userdata userdata, UserDefaults defaults) {
+    userdata.setActive(true);
+
+    Calendar c = Calendar.getInstance();
+    c.setTime(new Date());
+    c.add(Calendar.DATE, 370);
+    userdata.setExpirationDate(c.getTime());
+
+    /*
     if (Objects.nonNull(expireDate)) {
       try {
         Date expirationDate = DateUtils.parseDate(expireDate, EXPIRED_DATE_FORMAT);
@@ -335,6 +342,7 @@ public class UserRecord {
     } else {
       userdata.setActive(true);
     }
+    */
   }
 
   private void setBarcode(Userdata userdata) {
