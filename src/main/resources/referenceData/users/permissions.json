@@ -4,7 +4,6 @@
   "data": [
     {
       "id": "7fd42e23-08bf-4bf3-ad66-f6e27c446649",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "displayName": "Acquisitions_Admin_Staff",
@@ -14,6 +13,22 @@
         "ui-finance.allocations.create",
         "ui-finance.transfers.create",
         "ui-finance.acq.unit.assignment.manage",
+        "ui-finance.fiscal-year.view",
+        "ui-finance.fund-budget.view",
+        "ui-finance.group.view",
+        "ui-finance.ledger.view",
+        "ui-finance.fiscal-year.edit",
+        "ui-finance.fund-budget.edit",
+        "ui-finance.group.edit",
+        "ui-finance.ledger.edit",
+        "ui-finance.fiscal-year.create",
+        "ui-finance.fund-budget.create",
+        "ui-finance.group.create",
+        "ui-finance.ledger.create",
+        "ui-finance.fiscal-year.delete",
+        "ui-finance.fund-budget.delete",
+        "ui-finance.group.delete",
+        "ui-finance.ledger.delete",
         "ui-invoice.all",
         "ui-invoice.approve",
         "ui-invoice.acq.unit.assignment.assign",
@@ -44,47 +59,106 @@
         "ui-receiving.create",
         "ui-receiving.delete",
         "settings.acquisition-units.enabled",
-        "settings.data-export.enabled",
         "settings.data-import.enabled",
-        "settings.finance.enabled",
         "settings.invoice.enabled",
         "settings.orders.enabled",
         "ui-organizations.settings",
         "ui-receiving.settings",
         "settings.tags.enabled",
-        "module.finance.enabled",
-        "module.invoice.enabled",
-        "module.orders.enabled"
+        "module.invoice.enabled"
       ]
     },
     {
       "id": "bbc81742-5f20-4517-9e38-a1ed0631d874",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "displayName": "Acquisitions_Financial_Staff",
       "permissionName": "bbc81742-5f20-4517-9e38-a1ed0631d874",
-      "subPermissions": []
+      "subPermissions": [
+        "ui-finance.allocations.create",
+        "ui-finance.transfers.create",
+        "ui-finance.acq.unit.assignment.manage",
+        "ui-finance.fiscal-year.view",
+        "ui-finance.fund-budget.view",
+        "ui-finance.group.view",
+        "ui-finance.ledger.view",
+        "ui-finance.fiscal-year.edit",
+        "ui-finance.fund-budget.edit",
+        "ui-finance.group.edit",
+        "ui-finance.ledger.edit",
+        "ui-finance.fiscal-year.create",
+        "ui-finance.fund-budget.create",
+        "ui-finance.group.create",
+        "ui-finance.ledger.create",
+        "ui-invoice.approve",
+        "ui-invoice.pay",
+        "module.invoice.enabled"
+      ]
     },
     {
       "id": "2347a558-b532-4b28-971f-3dd05420375a",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "displayName": "Acquisitions_Invoicing_Staff",
       "permissionName": "2347a558-b532-4b28-971f-3dd05420375a",
       "subPermissions": [
-        "ui-invoice.all"
+        "ui-invoice.all",
+        "ui-invoice.approve",
+        "ui-invoice.acq.unit.assignment.assign",
+        "ui-invoice.batchVoucher.download",
+        "ui-invoice.acq.unit.assignment.manage",
+        "ui-invoice.pay",
+        "module.invoice.enabled"
+      ]
+    },
+    {
+      "id": "09f9b0a3-6be0-4fac-ac18-2f379337868b",
+      "mutable": true,
+      "visible": true,
+      "displayName": "Acquisitions_Orders_Staff",
+      "permissionName": "09f9b0a3-6be0-4fac-ac18-2f379337868b",
+      "subPermissions": [
+        "ui-orders.acq.unit.assignment.assign",
+        "ui-orders.order-lines.create",
+        "ui-orders.order.create",
+        "ui-orders.order-lines.delete",
+        "ui-orders.order-lines.edit",
+        "ui-orders.order.edit",
+        "ui-orders.acq.unit.assignment.manage",
+        "ui-orders.order.delete",
+        "ui-orders.order.reopen",
+        "ui-orders.order.unopen",
+        "ui-orders.order-lines.view",
+        "ui-orders.order.view",
+        "module.invoice.enabled"
+      ]
+    },
+    {
+      "id": "3bc06f71-3a30-4d79-853f-ca6b6170b97b",
+      "mutable": true,
+      "visible": true,
+      "grantedTo": [
+        "30ca2165-8ddd-45d9-89b6-7dbb9c835244",
+        "4f73d3be-ff06-4ce5-a702-225ebd256597"
+      ],
+      "displayName": "Acquisitions_Orders_View",
+      "permissionName": "3bc06f71-3a30-4d79-853f-ca6b6170b97b",
+      "subPermissions": [
+        "ui-orders.order-lines.view",
+        "ui-orders.order.view"
       ]
     },
     {
       "id": "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "displayName": "Acquisitions_Organizations_Staff",
       "permissionName": "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3",
       "subPermissions": [
+        "ui-organizations.acqUnits.assign",
+        "ui-organizations.creds.view",
+        "ui-organizations.creds.manage",
+        "ui-organizations.acqUnits.manage",
         "ui-organizations.view",
         "ui-organizations.edit",
         "ui-organizations.create",
@@ -93,7 +167,6 @@
     },
     {
       "id": "cc4a6624-190c-4872-95dd-be090a74b61f",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "displayName": "Acquisitions_Receiving_Staff",
@@ -105,9 +178,11 @@
     },
     {
       "id": "d2f1856c-d6f9-450f-b6be-a3d455282abe",
-      "tags": [],
       "mutable": true,
       "visible": true,
+      "grantedTo": [
+        "30ca2165-8ddd-45d9-89b6-7dbb9c835244"
+      ],
       "displayName": "Acquisitions_Receiving_Students",
       "permissionName": "d2f1856c-d6f9-450f-b6be-a3d455282abe",
       "subPermissions": [
@@ -116,7 +191,6 @@
     },
     {
       "id": "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "description": "Set of permissions for Staff and Professionals",
@@ -128,46 +202,23 @@
       ]
     },
     {
-      "id": "f10e7d66-e6c5-4db9-a6e1-42fc2d568aa5",
-      "tags": [],
+      "id": "80a761b1-fdb8-4bfa-988e-65760ff72ec5",
       "mutable": true,
       "visible": true,
-      "description": "For Circ staff having to create Circ on the Fly records  Is there a FASTADD feature?",
-      "displayName": "Cat_On_the_Fly",
-      "permissionName": "f10e7d66-e6c5-4db9-a6e1-42fc2d568aa5",
+      "description": "Student Workers doing maintenance operations ",
+      "displayName": "Cat_Student",
+      "permissionName": "80a761b1-fdb8-4bfa-988e-65760ff72ec5",
       "subPermissions": [
+        "ui-inventory.items.mark-items-withdrawn",
         "ui-inventory.instance.view-staff-suppressed-records",
-        "ui-inventory.holdings.create",
-        "ui-inventory.instance.create",
-        "ui-inventory.item.create"
-      ]
-    },
-    {
-      "id": "09f9b0a3-6be0-4fac-ac18-2f379337868b",
-      "tags": [],
-      "mutable": true,
-      "visible": true,
-      "displayName": "Acquisitions_Orders_Staff",
-      "permissionName": "09f9b0a3-6be0-4fac-ac18-2f379337868b",
-      "subPermissions": [
-        "ui-orders.order-lines.create",
-        "ui-orders.order.create",
-        "ui-orders.order-lines.delete",
-        "ui-orders.order-lines.edit",
-        "ui-orders.order.edit",
-        "ui-orders.order.delete",
-        "ui-orders.order.reopen",
-        "ui-orders.order.unopen",
-        "ui-orders.order-lines.view",
-        "ui-orders.order.view",
-        "module.finance.enabled",
-        "module.invoice.enabled",
-        "module.orders.enabled"
+        "ui-inventory.instance.view",
+        "ui-inventory.holdings.delete",
+        "ui-inventory.item.delete",
+        "ui-inventory.item.markasmissing"
       ]
     },
     {
       "id": "8641feeb-07f3-495e-86cb-93df4eb85068",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "description": "Permits non-catalogers to view Inventory, FOLIO Holdings, and Items",
@@ -179,8 +230,18 @@
       ]
     },
     {
+      "id": "f10e7d66-e6c5-4db9-a6e1-42fc2d568aa5",
+      "mutable": true,
+      "visible": true,
+      "description": "For Circ staff having to create Circ on the Fly records",
+      "displayName": "Circ_On_the_Fly",
+      "permissionName": "f10e7d66-e6c5-4db9-a6e1-42fc2d568aa5",
+      "subPermissions": [
+        "ui-plugin-create-inventory-records.create"
+      ]
+    },
+    {
       "id": "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "displayName": "Circ_Staff",
@@ -217,7 +278,6 @@
     },
     {
       "id": "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "displayName": "Circ_Students",
@@ -237,7 +297,6 @@
     },
     {
       "id": "bd76b150-f075-4bdc-a93a-e6f7a563067e",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "displayName": "Circ_Supervisors",
@@ -279,6 +338,7 @@
         "ui-users.viewperms",
         "ui-users.viewproxies",
         "ui-users.viewuserservicepoints",
+        "ui-users.edituserservicepoints",
         "ui-users.view",
         "ui-users.loans.edit",
         "ui-users.loans.claim-item-returned",
@@ -292,8 +352,32 @@
       ]
     },
     {
+      "id": "dfe8fa76-9e3f-420e-bada-10d077ddf1ae",
+      "mutable": true,
+      "visible": true,
+      "description": "Staff needing to view Circ records",
+      "displayName": "Circ_View_only",
+      "permissionName": "dfe8fa76-9e3f-420e-bada-10d077ddf1ae",
+      "subPermissions": [
+        "ui-notes.item.view",
+        "ui-requests.view",
+        "ui-users.loans.view",
+        "ui-users.requests.all"
+      ]
+    },
+    {
+      "id": "9ccfdbfe-ad7e-4103-9906-b06a47940eca",
+      "mutable": true,
+      "visible": true,
+      "description": "Allows user to create data import profiles and run data import jobs",
+      "displayName": "Data_import",
+      "permissionName": "9ccfdbfe-ad7e-4103-9906-b06a47940eca",
+      "subPermissions": [
+        "module.data-import.enabled"
+      ]
+    },
+    {
       "id": "55f0aae9-50bc-4041-88bd-1719a19ca167",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "displayName": "ER_eHoldings_Staff",
@@ -307,7 +391,6 @@
     },
     {
       "id": "7301b3b0-7075-4e66-8c43-12ed005e6c6b",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "displayName": "ER_ERM_Staff",
@@ -327,7 +410,6 @@
     },
     {
       "id": "61978e3d-e0aa-4329-a2c0-36c6191aa09b",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "displayName": "ER_eUsage_Staff",
@@ -339,7 +421,6 @@
     },
     {
       "id": "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "displayName": "ER_Financial_Staff",
@@ -348,7 +429,6 @@
     },
     {
       "id": "50a15dba-6ea2-426a-9118-369084f1247b",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "displayName": "ILS_Staff",
@@ -357,12 +437,34 @@
     },
     {
       "id": "3c62be56-0b25-43bb-a2b3-05e8891369b0",
-      "tags": [],
       "mutable": true,
       "visible": true,
       "displayName": "ILS_Students",
       "permissionName": "3c62be56-0b25-43bb-a2b3-05e8891369b0",
       "subPermissions": []
+    },
+    {
+      "id": "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
+      "mutable": true,
+      "visible": true,
+      "description": "Can assign permission sets to users",
+      "displayName": "Permission_sets_assign",
+      "permissionName": "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
+      "subPermissions": [
+        "ui-users.editperms"
+      ]
+    },
+    {
+      "id": "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
+      "mutable": true,
+      "visible": true,
+      "description": "Ability to create permission sets",
+      "displayName": "Permission_sets_create_edit",
+      "permissionName": "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
+      "subPermissions": [
+        "ui-users.settings.permsets",
+        "ui-users.settings.profilePictures"
+      ]
     }
   ]
 }

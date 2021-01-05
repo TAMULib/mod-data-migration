@@ -63,6 +63,7 @@ select '/addresstypes/' || id from diku_mod_users.addresstype;
 select '/owners/' || id from diku_mod_feesfines.owners;
 select '/finance/fund-types/' || id from diku_mod_finance_storage.fund_type where jsonb->>'name' in ('Audio','College/University funds','Exchange','Faculty','Gifts','Grants','Physical','Restricted','State funds','Technical','Unrestricted');
 select '/configurations/entries/' || id from diku_mod_configuration.config_data where jsonb->>'configName' in ('poLines-limit');
+select '/finance-storage/expense-classes/' || id from diku_mod_finance_storage.expense_class;
 EOM
 
 # iterate select statements
