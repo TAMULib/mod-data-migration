@@ -164,7 +164,7 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
   }
 
   String craftUUID(String type, String schema, String id) {
-    return UUID.fromString(String.format("%s:%s:%s", type, schema, id)).toString();
+    return UUID.nameUUIDFromBytes(String.format("%s:%s:%s", type, schema, id).getBytes()).toString();
   }
 
   private class SequencedMarc {

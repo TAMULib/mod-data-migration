@@ -1,5 +1,8 @@
 package org.folio.rest.migration.model.request.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
 
 import org.folio.rest.migration.model.request.AbstractJob;
@@ -24,8 +27,11 @@ public class UserJob extends AbstractJob {
   @NotNull
   private Boolean skipDuplicates;
 
+  private List<String> barcodeReferenceTypeIds;
+
   public UserJob() {
     super();
+    this.barcodeReferenceTypeIds = new ArrayList<>();
   }
 
   public String getDecodeSql() {
@@ -74,6 +80,14 @@ public class UserJob extends AbstractJob {
 
   public void setSkipDuplicates(Boolean skipDuplicates) {
     this.skipDuplicates = skipDuplicates;
+  }
+
+  public List<String> getBarcodeReferenceTypeIds() {
+    return barcodeReferenceTypeIds;
+  }
+
+  public void setBarcodeReferenceTypeIds(List<String> barcodeReferenceTypeIds) {
+    this.barcodeReferenceTypeIds = barcodeReferenceTypeIds;
   }
 
 }
