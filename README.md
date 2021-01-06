@@ -516,7 +516,11 @@ POST to http://localhost:9000/migrate/users
       "dbCode": "Evans",
       "noteWhereClause": "note IS NOT NULL",
       "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
-      "skipDuplicates": false
+      "skipDuplicates": false,
+      "barcodeReferenceTypeIds": [
+        "f2eca16b-a6bd-4688-8424-ef5d47e06750",
+        "9c5efc8b-4e97-4631-ad6f-6a68d9eb48de"
+      ]
     },
     {
       "schema": "MSDB",
@@ -526,7 +530,11 @@ POST to http://localhost:9000/migrate/users
       "dbCode": "MSL",
       "noteWhereClause": "note IS NOT NULL AND lower(note) NOT LIKE '%patron has graduated%'",
       "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
-      "skipDuplicates": true
+      "skipDuplicates": true,
+      "barcodeReferenceTypeIds": [
+        "f2eca16b-a6bd-4688-8424-ef5d47e06750",
+        "9c5efc8b-4e97-4631-ad6f-6a68d9eb48de"
+      ]
     }
   ],
   "maps": {

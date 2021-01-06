@@ -163,7 +163,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
           String userToExternalRLId = UUID.randomUUID().toString();
           String userFolioReference;
 
-          if (existingUserFolioReference != null) {
+          if (Objects.nonNull(existingUserFolioReference)) {
             userFolioReference = existingUserFolioReference;
           } else {
             userFolioReference = craftUUID("user", schema, patronId);

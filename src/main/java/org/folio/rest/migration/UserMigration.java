@@ -313,8 +313,23 @@ public class UserMigration extends AbstractMigration<UserContext> {
           }
 
           if (StringUtils.isEmpty(patronCodes.getBarcode())) {
-            log.debug("{} patron with id {} does not have a barcode, using external system id {}", schema, patronId, externalSystemId);
-            patronCodes.setBarcode(externalSystemId);
+            List<ReferenceLink> barcodeReferenceLinks = migrationService.referenceLinkRepo.findAllByFolioReferenceAndTypeIdIn(referenceId, job.getBarcodeReferenceTypeIds());
+
+            boolean barcodeFound = false;
+            for (ReferenceLink barcodeReferenceLink : barcodeReferenceLinks) {
+              String barcode = barcodeReferenceLink.getExternalReference();
+              if (StringUtils.isNoneEmpty(barcode)) {
+                patronCodes.setBarcode(barcode);
+                barcodeFound = true;
+                log.info("{} patron with id {} using barcode {} from reference {}", schema, patronId, barcode, barcodeReferenceLink.getType().getName());
+                break;
+              }
+            }
+
+            if (!barcodeFound) {
+              log.info("{} patron with id {} does not have a barcode, using external system id {}", schema, patronId, externalSystemId);
+              patronCodes.setBarcode(externalSystemId);
+            }
           }
 
           if (!processBarcode(patronCodes.getBarcode().toLowerCase())) {
