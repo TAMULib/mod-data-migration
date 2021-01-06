@@ -401,10 +401,10 @@ public class OkapiService {
     throw new RuntimeException("Failed to fetch loan types: " + response.getStatusCodeValue());
   }
 
-  public Holdingsrecords fetchHoldingsRecordsByInstanceId(String tenant, String token, String instanceId) {
+  public Holdingsrecords fetchHoldingsRecordsByIdAndInstanceId(String tenant, String token, String id, String instanceId) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
-    String url = okapi.getUrl() + "/holdings-storage/holdings?query=instanceId==" + instanceId;
+    String url = okapi.getUrl() + "/holdings-storage/holdings?query=(id==" + id + " AND instanceId==" + instanceId + ")";
     ResponseEntity<Holdingsrecords> response = restTemplate.exchange(url, HttpMethod.GET, entity, Holdingsrecords.class);
     log.debug("fetch item records: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {

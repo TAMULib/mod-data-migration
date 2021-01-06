@@ -182,15 +182,8 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
           }
 
           for (ReferenceLink instanceRL : instanceRLs) {
-            Holdingsrecords holdingsRecords = migrationService.okapiService.fetchHoldingsRecordsByInstanceId(tenant, token, instanceRL.getFolioReference());
-            boolean hasExistingHoldingsRecord = false;
-            for (Holdingsrecord childHoldingsRecord : holdingsRecords.getHoldingsRecords()) {
-              if (childHoldingsRecord.getId().equals(existingHoldingsRecord.getId())) {
-                hasExistingHoldingsRecord = true;
-                break;
-              }
-            }
-            if (!hasExistingHoldingsRecord) {
+            Holdingsrecords holdingsRecords = migrationService.okapiService.fetchHoldingsRecordsByIdAndInstanceId(tenant, token, existingHoldingsRecordId, instanceRL.getFolioReference());
+            if (holdingsRecords.getTotalRecords() == 0) {
               Holdingsrecord childHoldingsRecord = existingHoldingsRecord;
               String bibId = instanceRL.getExternalReference();
               childHoldingsRecord.setId(craftUUID("bound-with-child-holdings-record", schema, mfhdId + ":" + bibId));
