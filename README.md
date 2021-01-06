@@ -1382,7 +1382,9 @@ POST to http://localhost:9000/migrate/feesfines
     "feefineTypeLabels": {
       "1": "Overdue (migrated-do not use)",
       "2": "Lost item replacement (migrated-do not use)",
-      "3": "Lost item processing (migrated-do not use)"
+      "3": "Lost item processing (migrated-do not use)",
+      "6": "Lost item replacement (migrated-do not use)",
+      "7": "Lost item processing (migrated-do not use)"
     },
     "feefineOwner": {
       "AMDB": {
