@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
+import org.folio.rest.jaxrs.model.inventory.Holdingsrecords;
 import org.folio.rest.jaxrs.model.inventory.Instance;
 import org.folio.rest.jaxrs.model.inventory.Instancerelationship;
 import org.folio.rest.jaxrs.model.inventory.Item;
@@ -182,6 +182,22 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
           }
 
           for (ReferenceLink instanceRL : instanceRLs) {
+            Holdingsrecords holdingsRecords = migrationService.okapiService.fetchHoldingsRecordsByIdAndInstanceId(tenant, token, existingHoldingsRecordId, instanceRL.getFolioReference());
+            if (holdingsRecords.getTotalRecords() == 0) {
+              Holdingsrecord childHoldingsRecord = existingHoldingsRecord;
+              String bibId = instanceRL.getExternalReference();
+              childHoldingsRecord.setId(craftUUID("bound-with-child-holdings-record", schema, mfhdId + ":" + bibId));
+              childHoldingsRecord.setInstanceId(instanceRL.getFolioReference());
+              try {
+                migrationService.okapiService.postHoldingsrecord(tenant, token, childHoldingsRecord);
+              } catch (Exception e) {
+                log.error("failed to create duplicate child holdings record for child instance {}: {}", instanceRL.getFolioReference(), e.getMessage());
+                continue;
+              }
+            }
+          }
+
+          for (ReferenceLink instanceRL : instanceRLs) {
             Instancerelationship instanceRelationship = new Instancerelationship();
             instanceRelationship.setSuperInstanceId(parentInstance.getId());
             instanceRelationship.setSubInstanceId(instanceRL.getFolioReference());
@@ -195,13 +211,15 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
           }
 
           Holdingsrecord parentHoldingsRecord = new Holdingsrecord();
+
           parentHoldingsRecord.setId(craftUUID("bound-with-parent-holdings-record", schema, mfhdId));
-          parentHoldingsRecord.setFormerIds(existingHoldingsRecord.getFormerIds());
-          parentHoldingsRecord.setCallNumber(existingHoldingsRecord.getCallNumber());
           parentHoldingsRecord.setInstanceId(parentInstance.getId());
           parentHoldingsRecord.setHoldingsTypeId(job.getHoldingsTypeId());
-          parentHoldingsRecord.setCallNumberTypeId(existingHoldingsRecord.getCallNumberTypeId());
           parentHoldingsRecord.setDiscoverySuppress(true);
+
+          parentHoldingsRecord.setFormerIds(existingHoldingsRecord.getFormerIds());
+          parentHoldingsRecord.setCallNumber(existingHoldingsRecord.getCallNumber());
+          parentHoldingsRecord.setCallNumberTypeId(existingHoldingsRecord.getCallNumberTypeId());
           parentHoldingsRecord.setPermanentLocationId(existingHoldingsRecord.getPermanentLocationId());
 
           try {

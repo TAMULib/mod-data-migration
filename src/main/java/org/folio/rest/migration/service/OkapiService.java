@@ -32,6 +32,7 @@ import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.J
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileCollection;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileUpdateDto;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
+import org.folio.rest.jaxrs.model.inventory.Holdingsrecords;
 import org.folio.rest.jaxrs.model.inventory.Instance;
 import org.folio.rest.jaxrs.model.inventory.Instancerelationship;
 import org.folio.rest.jaxrs.model.inventory.Item;
@@ -398,6 +399,19 @@ public class OkapiService {
     }
     log.error("Failed to fetch loan types: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch loan types: " + response.getStatusCodeValue());
+  }
+
+  public Holdingsrecords fetchHoldingsRecordsByIdAndInstanceId(String tenant, String token, String id, String instanceId) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/holdings-storage/holdings?query=(id==" + id + " AND instanceId==" + instanceId + ")";
+    ResponseEntity<Holdingsrecords> response = restTemplate.exchange(url, HttpMethod.GET, entity, Holdingsrecords.class);
+    log.debug("fetch item records: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    log.error("Failed to fetch holdings records: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch holdings records: " + response.getStatusCodeValue());
   }
 
   public Items fetchItemRecordsByHoldingsRecordId(String tenant, String token, String holdingsRecordId) {
