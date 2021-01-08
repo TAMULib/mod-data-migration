@@ -19,6 +19,14 @@ public interface ReferenceLinkRepo extends JpaRepository<ReferenceLink, String>,
   public Optional<ReferenceLink> findByTypeIdAndExternalReference(@Param("typeId") String typeId,
       @Param("externalReference") String externalReference);
 
+public List<ReferenceLink> findByTypeIdAndExternalReferenceIn(@Param("typeId") String typeId,
+      @Param("externalReferences") List<String> externalReferences);
+
+  public List<ReferenceLink> findAllByTypeNameAndExternalReferenceIn(@Param("typeName") String typeName,
+      @Param("externalReferences") List<String> externalReferences);
+
+  public Long countByExternalReference(@Param("externalReference") String externalReference);
+
   public Page<ReferenceLink> findAllByTypeId(@Param("typeId") String typeId, Pageable page);
 
   public Page<ReferenceLink> findAllByTypeName(@Param("typeName") String typeName, Pageable page);
@@ -27,15 +35,10 @@ public interface ReferenceLinkRepo extends JpaRepository<ReferenceLink, String>,
 
   public List<ReferenceLink> findAllByFolioReference(@Param("folioReference") String folioReference);
 
+  public Optional<ReferenceLink> findAllByFolioReferenceAndTypeId(@Param("folioReference") String folioReference,
+      @Param("typeId") String typeId);
+
   public List<ReferenceLink> findAllByFolioReferenceAndTypeIdIn(@Param("folioReference") String folioReference,
       @Param("typeIds") List<String> typeIds);
-
-  public List<ReferenceLink> findByTypeIdAndExternalReferenceIn(@Param("typeId") String typeId,
-      @Param("externalReferences") List<String> externalReferences);
-
-  public List<ReferenceLink> findAllByTypeNameAndExternalReferenceIn(@Param("typeName") String typeName,
-      @Param("externalReferences") List<String> externalReferences);
-
-  public Long countByExternalReference(@Param("externalReference") String externalReference);
 
 }

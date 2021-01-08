@@ -1,7 +1,9 @@
 package org.folio.rest.migration.model.request.user;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
@@ -29,9 +31,12 @@ public class UserJob extends AbstractJob {
 
   private List<String> barcodeReferenceTypeIds;
 
+  private Map<String, String> alternativeExternalReferenceTypeIds;
+
   public UserJob() {
     super();
     this.barcodeReferenceTypeIds = new ArrayList<>();
+    this.alternativeExternalReferenceTypeIds = new HashMap<>();
   }
 
   public String getDecodeSql() {
@@ -88,6 +93,14 @@ public class UserJob extends AbstractJob {
 
   public void setBarcodeReferenceTypeIds(List<String> barcodeReferenceTypeIds) {
     this.barcodeReferenceTypeIds = barcodeReferenceTypeIds;
+  }
+
+  public Map<String, String> getAlternativeExternalReferenceTypeIds() {
+    return alternativeExternalReferenceTypeIds;
+  }
+
+  public void setAlternativeExternalReferenceTypeIds(Map<String, String> alternativeExternalReferenceTypeIds) {
+    this.alternativeExternalReferenceTypeIds = alternativeExternalReferenceTypeIds;
   }
 
 }
