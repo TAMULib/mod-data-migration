@@ -314,37 +314,31 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           if (StringUtils.isEmpty(patronCodes.getBarcode())) {
             List<ReferenceLink> barcodeReferenceLinks = migrationService.referenceLinkRepo.findAllByFolioReferenceAndTypeIdIn(referenceId, job.getBarcodeReferenceTypeIds());
-
-            boolean barcodeFound = false;
-            for (ReferenceLink barcodeReferenceLink : barcodeReferenceLinks) {
+            if (barcodeReferenceLinks.size() > 0) {
+              ReferenceLink barcodeReferenceLink = barcodeReferenceLinks.get(0);
               String barcode = barcodeReferenceLink.getExternalReference();
-              if (StringUtils.isNoneEmpty(barcode)) {
+              patronCodes.setBarcode(barcode);
+              log.info("{} patron with id {} using barcode {} from barcode reference {}", schema, patronId, barcode, barcodeReferenceLink.getType().getName());
+            }
+          }
+
+          if (StringUtils.isEmpty(patronCodes.getBarcode()) && externalSystemId.startsWith(job.getSchema())) {
+            for (Map.Entry<String, String> entry : job.getAlternativeExternalReferenceTypeIds().entrySet()) {
+              String altSchema = entry.getKey();
+              String altExternalReferenceTypeId = entry.getValue();
+              Optional<ReferenceLink> altExternalReferenceLink = migrationService.referenceLinkRepo.findAllByFolioReferenceAndTypeId(referenceId, altExternalReferenceTypeId);
+              if (altExternalReferenceLink.isPresent() && !altExternalReferenceLink.get().getExternalReference().startsWith(altSchema)) {
+                String barcode = altExternalReferenceLink.get().getExternalReference();
                 patronCodes.setBarcode(barcode);
-                barcodeFound = true;
-                log.info("{} patron with id {} using barcode {} from barcode reference {}", schema, patronId, barcode, barcodeReferenceLink.getType().getName());
+                log.info("{} patron with id {} using barcode {} from external reference {}", schema, patronId, barcode, altExternalReferenceLink.get().getType().getName());
                 break;
               }
             }
+          }
 
-            if (!barcodeFound && externalSystemId.startsWith(job.getSchema())) {
-              for (Map.Entry<String, String> entry : job.getAlternativeExternalReferenceTypeIds().entrySet()) {
-                String altSchema = entry.getKey();
-                String altExternalReferenceTypeId = entry.getValue();
-                Optional<ReferenceLink> altExternalReferenceLink = migrationService.referenceLinkRepo.findAllByFolioReferenceAndTypeId(referenceId, altExternalReferenceTypeId);
-                if (altExternalReferenceLink.isPresent() && !altExternalReferenceLink.get().getExternalReference().startsWith(altSchema)) {
-                  String barcode = altExternalReferenceLink.get().getExternalReference();
-                  patronCodes.setBarcode(barcode);
-                  barcodeFound = true;
-                  log.info("{} patron with id {} using barcode {} from external reference {}", schema, patronId, barcode, altExternalReferenceLink.get().getType().getName());
-                  break;
-                }
-              }
-            }
-
-            if (!barcodeFound) {
-              log.info("{} patron with id {} does not have a barcode, using external system id {}", schema, patronId, externalSystemId);
-              patronCodes.setBarcode(externalSystemId);
-            }
+          if (StringUtils.isEmpty(patronCodes.getBarcode())) {
+            log.info("{} patron with id {} does not have a barcode, using external system id {}", schema, patronId, externalSystemId);
+            patronCodes.setBarcode(externalSystemId);
           }
 
           if (!processBarcode(patronCodes.getBarcode().toLowerCase())) {

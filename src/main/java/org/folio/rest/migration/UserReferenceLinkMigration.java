@@ -151,10 +151,6 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
           String patronBarcode = pageResultSet.getString(PATRON_BARCODE);
           String externalSystemId = pageResultSet.getString(EXTERNAL_SYSTEM_ID);
 
-          if (Objects.isNull(patronBarcode)) {
-            patronBarcode = StringUtils.EMPTY;
-          }
-
           String existingUserFolioReference = EXTERNAL_ID_TO_FOLIO_REFERENCE.get(externalSystemId);
 
           String userRLId = UUID.randomUUID().toString();
@@ -163,7 +159,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
           String userToExternalRLId = UUID.randomUUID().toString();
           String userFolioReference;
 
-          if (Objects.nonNull(existingUserFolioReference)) {
+          if (StringUtils.isNoneEmpty(existingUserFolioReference)) {
             userFolioReference = existingUserFolioReference;
           } else {
             userFolioReference = craftUUID("user", schema, patronId);
@@ -171,7 +167,11 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
           }
 
           referenceLinkWriter.println(String.join("\t", userRLId, patronId, userFolioReference, userRLTypeId));
-          referenceLinkWriter.println(String.join("\t", userBarcodeRLId, patronBarcode, userFolioReference, userBarcodeRLTypeId));
+
+          if (StringUtils.isNoneEmpty(patronBarcode)) {
+            referenceLinkWriter.println(String.join("\t", userBarcodeRLId, patronBarcode, userFolioReference, userBarcodeRLTypeId));
+          }
+
           referenceLinkWriter.println(String.join("\t", userExternalRLId, externalSystemId, userFolioReference, userExternalRLTypeId));
           referenceLinkWriter.println(String.join("\t", userToExternalRLId, userRLId, userExternalRLId, userToExternalRLTypeId));
         }
