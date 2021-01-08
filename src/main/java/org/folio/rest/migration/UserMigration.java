@@ -330,7 +330,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
               if (altExternalReferenceLink.isPresent() && !altExternalReferenceLink.get().getExternalReference().startsWith(altSchema)) {
                 String barcode = altExternalReferenceLink.get().getExternalReference();
                 patronCodes.setBarcode(barcode);
-                log.info("{} patron with id {} using barcode {} from external reference {}", schema, patronId, barcode, altExternalReferenceLink.get().getType().getName());
+                log.info("{} patron with id {} using external system id {} from external reference {}", schema, patronId, barcode, altExternalReferenceLink.get().getType().getName());
                 break;
               }
             }
