@@ -137,10 +137,6 @@
       "id": "3bc06f71-3a30-4d79-853f-ca6b6170b97b",
       "mutable": true,
       "visible": true,
-      "grantedTo": [
-        "30ca2165-8ddd-45d9-89b6-7dbb9c835244",
-        "4f73d3be-ff06-4ce5-a702-225ebd256597"
-      ],
       "displayName": "Acquisitions_Orders_View",
       "permissionName": "3bc06f71-3a30-4d79-853f-ca6b6170b97b",
       "subPermissions": [
@@ -180,9 +176,6 @@
       "id": "d2f1856c-d6f9-450f-b6be-a3d455282abe",
       "mutable": true,
       "visible": true,
-      "grantedTo": [
-        "30ca2165-8ddd-45d9-89b6-7dbb9c835244"
-      ],
       "displayName": "Acquisitions_Receiving_Students",
       "permissionName": "d2f1856c-d6f9-450f-b6be-a3d455282abe",
       "subPermissions": [
