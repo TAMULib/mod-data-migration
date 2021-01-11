@@ -318,7 +318,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
               ReferenceLink barcodeReferenceLink = barcodeReferenceLinks.get(0);
               String barcode = barcodeReferenceLink.getExternalReference();
               patronCodes.setBarcode(barcode);
-              log.info("{} patron with id {} using barcode {} from barcode reference {}", schema, patronId, barcode, barcodeReferenceLink.getType().getName());
+              log.debug("{} patron with id {} using barcode {} from barcode reference {}", schema, patronId, barcode, barcodeReferenceLink.getType().getName());
             }
           }
 
@@ -330,14 +330,14 @@ public class UserMigration extends AbstractMigration<UserContext> {
               if (altExternalReferenceLink.isPresent() && !altExternalReferenceLink.get().getExternalReference().startsWith(altSchema)) {
                 String barcode = altExternalReferenceLink.get().getExternalReference();
                 patronCodes.setBarcode(barcode);
-                log.info("{} patron with id {} using external system id {} from external reference {}", schema, patronId, barcode, altExternalReferenceLink.get().getType().getName());
+                log.debug("{} patron with id {} using external system id {} from external reference {}", schema, patronId, barcode, altExternalReferenceLink.get().getType().getName());
                 break;
               }
             }
           }
 
           if (StringUtils.isEmpty(patronCodes.getBarcode())) {
-            log.info("{} patron with id {} does not have a barcode, using external system id {}", schema, patronId, externalSystemId);
+            log.debug("{} patron with id {} does not have a barcode, using external system id {}", schema, patronId, externalSystemId);
             patronCodes.setBarcode(externalSystemId);
           }
 
