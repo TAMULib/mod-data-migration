@@ -452,11 +452,10 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           while (resultSet.next()) {
             itemBarcode = resultSet.getString(ITEM_BARCODE);
           }
-          future.complete(itemBarcode);
         } catch (SQLException e) {
           e.printStackTrace();
         } finally {
-
+          future.complete(itemBarcode);
         }
       });
       return future;
