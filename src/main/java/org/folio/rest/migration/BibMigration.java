@@ -112,8 +112,10 @@ public class BibMigration extends AbstractMigration<BibContext> {
     JsonObject mappingRules = migrationService.okapiService.fetchRules(tenant, token);
     JsonObject hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
     Statisticalcodes statisticalcodes = migrationService.okapiService.fetchStatisticalCodes(tenant, token);
+
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
+
     InstanceMapper instanceMapper = new InstanceMapper(mappingParameters, mappingRules);
 
     preActions(folioSettings, context.getPreActions());

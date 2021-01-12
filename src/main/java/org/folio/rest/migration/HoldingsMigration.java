@@ -88,6 +88,7 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
     JsonObject hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
     Locations locations = migrationService.okapiService.fetchLocations(tenant, token);
     Statisticalcodes statisticalcodes = migrationService.okapiService.fetchStatisticalCodes(tenant, token);
+
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 

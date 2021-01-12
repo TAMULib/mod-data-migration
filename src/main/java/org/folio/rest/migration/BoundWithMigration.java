@@ -25,7 +25,15 @@ import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
 
+import io.vertx.core.json.JsonObject;
+
 public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
+
+  private static final String INSTANCE_HRID_PREFIX = "INSTANCE_HRID_PREFIX";
+  private static final String INSTANCE_HRID_START_NUMBER = "INSTANCE_HRID_START_NUMBER";
+
+  private static final String HOLDINGS_HRID_PREFIX = "HOLDINGS_HRID_PREFIX";
+  private static final String HOLDINGS_HRID_START_NUMBER = "HOLDINGS_HRID_START_NUMBER";
 
   private static final String MFHD_ID = "MFHD_ID";
   private static final String BOUND_WITH = "BOUND_WITH";
@@ -42,6 +50,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
     log.info("running {} for tenant {}", this.getClass().getSimpleName(), tenant);
 
     String token = migrationService.okapiService.getToken(tenant);
+    JsonObject hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
 
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
@@ -52,6 +61,12 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
       @Override
       public void complete() {
+        try {
+          migrationService.okapiService.updateHridSettings(hridSettings, tenant, token);
+          log.info("updated hrid settings: {}", hridSettings);
+        } catch (Exception e) {
+          log.error("failed to updated hrid settings: {}", e.getMessage());
+        }
         postActions(folioSettings, context.getPostActions());
         migrationService.complete();
       }
@@ -60,6 +75,14 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
     Map<String, Object> countContext = new HashMap<>();
     countContext.put(SQL, context.getExtraction().getCountSql());
+
+    JsonObject instancesHridSettings = hridSettings.getJsonObject("instances");
+    String instanceHridPrefix = instancesHridSettings.getString(PREFIX);
+    int instanceHridStartNumber = instancesHridSettings.getInteger(START_NUMBER);
+
+    JsonObject holdingsHridSettings = hridSettings.getJsonObject("holdings");
+    String holdingsHridPrefix = holdingsHridSettings.getString(PREFIX);
+    int holdingsHridStartNumber = holdingsHridSettings.getInteger(START_NUMBER);
 
     int index = 0;
 
@@ -81,14 +104,23 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
+        partitionContext.put(INSTANCE_HRID_PREFIX, instanceHridPrefix);
+        partitionContext.put(INSTANCE_HRID_START_NUMBER, instanceHridStartNumber);
+        partitionContext.put(HOLDINGS_HRID_PREFIX, holdingsHridPrefix);
+        partitionContext.put(HOLDINGS_HRID_START_NUMBER, holdingsHridStartNumber);
         partitionContext.put(JOB, job);
         partitionContext.put(TOKEN, token);
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new BoundWithPartitionTask(migrationService, partitionContext));
         offset += limit;
+        instanceHridStartNumber += limit;
+        holdingsHridStartNumber += limit;
         index++;
       }
     }
+
+    instancesHridSettings.put(START_NUMBER, ++instanceHridStartNumber);
+    holdingsHridSettings.put(START_NUMBER, ++holdingsHridStartNumber);
 
     return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }
@@ -103,9 +135,15 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
     private final Map<String, Object> partitionContext;
 
+    private int instanceHrid;
+
+    private int holdingsHrid;
+
     public BoundWithPartitionTask(MigrationService migrationService, Map<String, Object> partitionContext) {
       this.migrationService = migrationService;
       this.partitionContext = partitionContext;
+      this.instanceHrid = (int) partitionContext.get(INSTANCE_HRID_START_NUMBER);
+      this.holdingsHrid = (int) partitionContext.get(HOLDINGS_HRID_START_NUMBER);
     }
 
     public int getIndex() {
@@ -114,6 +152,9 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
     public BoundWithPartitionTask execute(BoundWithContext context) {
       long startTime = System.nanoTime();
+
+      String instanceHridPrefix = (String) partitionContext.get(INSTANCE_HRID_PREFIX);
+      String holdingsHridPrefix = (String) partitionContext.get(HOLDINGS_HRID_PREFIX);
 
       BoundWithJob job = (BoundWithJob) partitionContext.get(JOB);
 
@@ -167,6 +208,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
           String parentInstanceTitle = String.format("%s_bound_with_%s", schema, mfhdId);
           Instance parentInstance = new Instance();
           parentInstance.setId(craftUUID("bound-with-parent-instance", schema, mfhdId));
+          parentInstance.setHrid(String.format(HRID_TEMPLATE, instanceHridPrefix, instanceHrid));
           parentInstance.setSource("FOLIO");
           parentInstance.setTitle(parentInstanceTitle);
           parentInstance.setDiscoverySuppress(true);
@@ -176,6 +218,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
           try {
             migrationService.okapiService.postInstance(tenant, token, parentInstance);
+            instanceHrid++;
           } catch (Exception e) {
             log.error("failed to create parent instance {}: {}", parentInstanceTitle, e.getMessage());
             continue;
@@ -187,9 +230,11 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
               Holdingsrecord childHoldingsRecord = existingHoldingsRecord;
               String bibId = instanceRL.getExternalReference();
               childHoldingsRecord.setId(craftUUID("bound-with-child-holdings-record", schema, mfhdId + ":" + bibId));
+              childHoldingsRecord.setHrid(String.format(HRID_TEMPLATE, holdingsHridPrefix, holdingsHrid));
               childHoldingsRecord.setInstanceId(instanceRL.getFolioReference());
               try {
                 migrationService.okapiService.postHoldingsrecord(tenant, token, childHoldingsRecord);
+                holdingsHrid++;
               } catch (Exception e) {
                 log.error("failed to create duplicate child holdings record for child instance {}: {}", instanceRL.getFolioReference(), e.getMessage());
                 continue;
