@@ -453,6 +453,7 @@ POST to http://localhost:9000/migrate/user-reference-links
       "references": {
         "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
         "userBarcodeTypeId": "f2eca16b-a6bd-4688-8424-ef5d47e06750",
+        "userToBarcodeTypeId": "3ed9f301-3426-4e7f-8cc9-3044d5e1e192",
         "userExternalTypeId": "0ed6f994-8dbd-4827-94c0-905504169c90",
         "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
       }
@@ -464,6 +465,7 @@ POST to http://localhost:9000/migrate/user-reference-links
       "references": {
         "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
         "userBarcodeTypeId": "9c5efc8b-4e97-4631-ad6f-6a68d9eb48de",
+        "userToBarcodeTypeId": "3ed9f301-3426-4e7f-8cc9-3044d5e1e192",
         "userExternalTypeId": "426ce32f-388c-4edf-9c79-d6b8348148a0",
         "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
       }
@@ -1217,7 +1219,7 @@ POST to http://localhost:9000/migrate/loans
 {
   "extraction": {
     "countSql": "SELECT count(*) AS total FROM ${SCHEMA}.circ_transactions ct, ${SCHEMA}.patron_barcode pb, ${SCHEMA}.item_barcode ib WHERE ct.item_id = ib.item_id AND ct.patron_id = pb.patron_id AND pb.patron_group_id != 14",
-    "pageSql": "SELECT ct.patron_id AS patron_id, (SELECT DISTINCT patron_barcode FROM (SELECT barcode_status, barcode_status_date, patron_barcode, patron_group_code, rank() OVER (PARTITION BY pg.patron_group_id ORDER BY barcode_status asc, barcode_status_date desc) barcode_rank FROM ${SCHEMA}.patron_barcode pb, ${SCHEMA}.patron_group pg WHERE pb.patron_id = ct.patron_id AND pb.patron_group_id = pg.patron_group_id) WHERE barcode_rank = 1) AS patron_barcode, ct.item_id AS item_id, item_barcode, TO_CHAR(cast(charge_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS loan_date, TO_CHAR(cast(current_due_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS due_date, charge_location, circ_transaction_id, renewal_count FROM ${SCHEMA}.circ_transactions ct, ${SCHEMA}.patron_barcode pb, ${SCHEMA}.item_barcode ib WHERE ct.item_id = ib.item_id AND ct.patron_id = pb.patron_id AND pb.patron_group_id != 14 ORDER BY ct.circ_transaction_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "pageSql": "SELECT ct.patron_id AS patron_id, ct.item_id AS item_id, item_barcode, TO_CHAR(cast(charge_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS loan_date, TO_CHAR(cast(current_due_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS due_date, charge_location, circ_transaction_id, renewal_count FROM ${SCHEMA}.circ_transactions ct, ${SCHEMA}.patron_barcode pb, ${SCHEMA}.item_barcode ib WHERE ct.item_id = ib.item_id AND ct.patron_id = pb.patron_id AND pb.patron_group_id != 14 ORDER BY ct.circ_transaction_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
     "database": {
       "url": "",
@@ -1232,11 +1234,19 @@ POST to http://localhost:9000/migrate/loans
   "jobs": [
     {
       "schema": "AMDB",
-      "partitions": 12
+      "partitions": 12,
+      "references": {
+        "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
+        "userToBarcodeTypeId": "3ed9f301-3426-4e7f-8cc9-3044d5e1e192"
+      }
     },
     {
       "schema": "MSDB",
-      "partitions": 4
+      "partitions": 4,
+      "references": {
+        "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
+        "userToBarcodeTypeId": "3ed9f301-3426-4e7f-8cc9-3044d5e1e192"
+      }
     }
   ],
   "maps": {
@@ -1327,7 +1337,7 @@ POST to http://localhost:9000/migrate/feesfines
       "user": "tamu_admin",
       "references": {
         "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
-        "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
+        "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49",
         "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672",
         "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
         "itemTypeId": "53e72510-dc82-4caa-a272-1522cca70bc2"
@@ -1339,7 +1349,7 @@ POST to http://localhost:9000/migrate/feesfines
       "user": "tamu_admin",
       "references": {
         "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
-        "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
+        "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49",
         "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8",
         "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
         "itemTypeId": "0014559d-39f6-45c7-9406-03643459aaf0"

@@ -29,6 +29,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
 
   private static final String USER_REFERENCE_ID = "userTypeId";
   private static final String USER_BARCODE_REFERENCE_ID = "userBarcodeTypeId";
+  private static final String USER_TO_BARCODE_REFERENCE_ID = "userToBarcodeTypeId";
   private static final String USER_EXTERNAL_REFERENCE_ID = "userExternalTypeId";
   private static final String USER_TO_EXTERNAL_REFERENCE_ID = "userToExternalTypeId";
 
@@ -134,6 +135,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
 
       String userRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
       String userBarcodeRLTypeId = job.getReferences().get(USER_BARCODE_REFERENCE_ID);
+      String userToBarcodeRLTypeId = job.getReferences().get(USER_TO_BARCODE_REFERENCE_ID);
       String userExternalRLTypeId = job.getReferences().get(USER_EXTERNAL_REFERENCE_ID);
       String userToExternalRLTypeId = job.getReferences().get(USER_TO_EXTERNAL_REFERENCE_ID);
 
@@ -155,6 +157,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
 
           String userRLId = UUID.randomUUID().toString();
           String userBarcodeRLId = UUID.randomUUID().toString();
+          String userToBarcodeRLId = UUID.randomUUID().toString();
           String userExternalRLId = UUID.randomUUID().toString();
           String userToExternalRLId = UUID.randomUUID().toString();
           String userFolioReference;
@@ -170,6 +173,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
 
           if (StringUtils.isNoneEmpty(patronBarcode)) {
             referenceLinkWriter.println(String.join("\t", userBarcodeRLId, patronBarcode, userFolioReference, userBarcodeRLTypeId));
+            referenceLinkWriter.println(String.join("\t", userToBarcodeRLId, userRLId, userBarcodeRLId, userToBarcodeRLTypeId));
           }
 
           referenceLinkWriter.println(String.join("\t", userExternalRLId, externalSystemId, userFolioReference, userExternalRLTypeId));
