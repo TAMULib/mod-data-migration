@@ -158,7 +158,7 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
       }
     }
 
-    holdingsHridSettings.put(START_NUMBER, ++hridStartNumber);
+    holdingsHridSettings.put(START_NUMBER, hridStartNumber);
 
     return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }

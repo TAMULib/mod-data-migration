@@ -182,7 +182,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
       }
     }
 
-    instancesHridSettings.put(START_NUMBER, ++hridStartNumber);
+    instancesHridSettings.put(START_NUMBER, hridStartNumber);
 
     return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }

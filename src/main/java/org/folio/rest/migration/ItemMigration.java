@@ -193,7 +193,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       }
     }
 
-    itemsHridSettings.put(START_NUMBER, ++hridStartNumber);
+    itemsHridSettings.put(START_NUMBER, hridStartNumber);
 
     return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }
