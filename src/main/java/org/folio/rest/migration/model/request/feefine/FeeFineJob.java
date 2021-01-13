@@ -1,5 +1,6 @@
 package org.folio.rest.migration.model.request.feefine;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.constraints.NotNull;
@@ -11,18 +12,11 @@ public class FeeFineJob extends AbstractJob {
   @NotNull
   private String user;
 
+  @NotNull
   private Map<String, String> references;
 
   public FeeFineJob() {
-
-  }
-
-  public Map<String, String> getReferences() {
-    return references;
-  }
-
-  public void setReferences(Map<String, String> references) {
-    this.references = references;
+    references = new HashMap<>();
   }
 
   public String getUser() {
@@ -31,6 +25,14 @@ public class FeeFineJob extends AbstractJob {
 
   public void setUser(String user) {
     this.user = user;
+  }
+
+  public Map<String, String> getReferences() {
+    return references;
+  }
+
+  public void setReferences(Map<String, String> references) {
+    this.references = references;
   }
 
 }

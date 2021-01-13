@@ -25,6 +25,7 @@ import org.folio.rest.migration.model.request.loan.LoanContext;
 import org.folio.rest.migration.model.request.loan.LoanJob;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
+import org.folio.rest.model.ReferenceLink;
 
 public class LoanMigration extends AbstractMigration<LoanContext> {
 
@@ -35,7 +36,6 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
   private static final String RENEWAL_COUNT = "RENEWAL_COUNT";
 
   private static final String PATRON_ID = "PATRON_ID";
-  private static final String PATRON_BARCODE = "PATRON_BARCODE";
 
   private static final String ITEM_ID = "ITEM_ID";
   private static final String ITEM_BARCODE = "ITEM_BARCODE";
@@ -45,6 +45,9 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String LOCATION_CODE = "LOCATION_CODE";
+
+  private static final String USER_REFERENCE_ID = "userTypeId";
+  private static final String USER_TO_BARCODE_REFERENCE_ID = "userToBarcodeTypeId";
 
   private LoanMigration(LoanContext context, String tenant) {
     super(context, tenant);
@@ -149,6 +152,9 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
       Database voyagerSettings = context.getExtraction().getDatabase();
 
+      String userRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
+      String userToBarcodeRLTypeId = job.getReferences().get(USER_TO_BARCODE_REFERENCE_ID);
+
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings);
 
       try (
@@ -160,24 +166,41 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
           String chargeLocation = pageResultSet.getString(CHARGE_LOCATION);
           Integer renewalCount = pageResultSet.getInt(RENEWAL_COUNT);
 
-          Integer patronId = pageResultSet.getInt(PATRON_ID);
-          String patronBarcode = pageResultSet.getString(PATRON_BARCODE);
+          String patronId = pageResultSet.getString(PATRON_ID);
 
-          Integer itemId = pageResultSet.getInt(ITEM_ID);
+          String itemId = pageResultSet.getString(ITEM_ID);
           String itemBarcode = pageResultSet.getString(ITEM_BARCODE);
 
           String loanDate = pageResultSet.getString(LOAN_DATE);
           String dueDate = pageResultSet.getString(DUE_DATE);
 
-          if (Objects.isNull(patronBarcode)) {
-            log.debug("{} no patron barcode found for patron id {}", schema, patronId);
-            continue;
-          }
-
           if (Objects.isNull(itemBarcode)) {
             log.info("{} no item barcode found for item id {}", schema, itemId);
             continue;
           }
+
+          Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userRLTypeId, patronId);
+
+          if (!userRL.isPresent()) {
+            log.error("{} no user id found for patron id {}", schema, patronId);
+            continue;
+          }
+
+          Optional<ReferenceLink> userToBarcodeRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userToBarcodeRLTypeId, userRL.get().getId());
+
+          if (!userToBarcodeRL.isPresent()) {
+            log.error("{} no user to barcode found for patron id {}", schema, patronId);
+            continue;
+          }
+
+          Optional<ReferenceLink> userBarcodeRL = migrationService.referenceLinkRepo.findById(userToBarcodeRL.get().getFolioReference());
+
+          if (!userBarcodeRL.isPresent()) {
+            log.error("{} no barcode found for patron id {}", schema, patronId);
+            continue;
+          }
+
+          String patronBarcode = userBarcodeRL.get().getExternalReference();
 
           String locationCode = locationsCodeMap.get(chargeLocation);
 
