@@ -15,10 +15,13 @@ import java.util.concurrent.CompletableFuture;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import org.apache.commons.lang3.StringUtils;
+import org.folio.rest.jaxrs.model.inventory.Item;
 import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Servicepoint;
 import org.folio.rest.jaxrs.model.inventory.Servicepoints;
+import org.folio.rest.jaxrs.model.inventory.Status;
+import org.folio.rest.jaxrs.model.inventory.Status.Name;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.request.RequestContext;
 import org.folio.rest.migration.model.request.request.RequestJob;
@@ -202,6 +205,19 @@ public class RequestMigration extends AbstractMigration<RequestContext> {
             continue;
           }
 
+          if (requestType.equals("Hold")) {
+            try {
+              Item item = migrationService.okapiService.fetchItemById(tenant, token, itemRL.get().getFolioReference());
+              if (item.getStatus().getName().equals(Name.AVAILABLE)) {
+                requestType = "Paged";
+              }
+            } catch(Exception e) {
+              log.error("{} could not find corresponding item {}", schema, itemRL.get().getFolioReference());
+              continue;
+            }
+            
+          }
+
           ObjectNode request = migrationService.objectMapper.createObjectNode();
 
           request.put("id", UUID.randomUUID().toString());
@@ -226,7 +242,6 @@ public class RequestMigration extends AbstractMigration<RequestContext> {
           request.put("fulfilmentPreference", fulfilmentPreference);
 
           request.put("pickupServicePointId", servicePointId.get());
-
 
           if (StringUtils.isNoneEmpty(holdshelfExpirationDate)) {
             request.put("holdShelfExpirationDate", holdshelfExpirationDate);

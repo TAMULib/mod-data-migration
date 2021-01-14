@@ -466,6 +466,19 @@ public class OkapiService {
     throw new RuntimeException("Failed to fetch holdings record: " + response.getStatusCodeValue());
   }
 
+  public Item fetchItemById(String tenant, String token, String id) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/item-storage/items/" + id;
+    ResponseEntity<Item> response = restTemplate.exchange(url, HttpMethod.GET, entity, Item.class);
+    log.debug("fetch item: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    log.error("Failed to fetch item: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch item: " + response.getStatusCodeValue());
+  }
+
   public Holdingsrecord postHoldingsrecord(String tenant, String token, Holdingsrecord holdingsrecord) {
     long startTime = System.nanoTime();
     HttpEntity<Holdingsrecord> entity = new HttpEntity<>(holdingsrecord, headers(tenant, token));
