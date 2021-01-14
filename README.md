@@ -1024,7 +1024,7 @@ POST to http://localhost:9000/migrate/items
       "2": "Available",
       "3": "Available",
       "4": "Available",
-      "7": "Awaiting pickup",
+      "7": "Available",
       "8": "In transit",
       "9": "In transit",
       "10": "In transit",
