@@ -162,7 +162,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
           String userToExternalRLId = UUID.randomUUID().toString();
           String userFolioReference;
 
-          if (StringUtils.isNoneEmpty(existingUserFolioReference)) {
+          if (StringUtils.isNotEmpty(existingUserFolioReference)) {
             userFolioReference = existingUserFolioReference;
           } else {
             userFolioReference = craftUUID("user", schema, patronId);
@@ -171,7 +171,7 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
 
           referenceLinkWriter.println(String.join("\t", userRLId, patronId, userFolioReference, userRLTypeId));
 
-          if (StringUtils.isNoneEmpty(patronBarcode)) {
+          if (StringUtils.isNotEmpty(patronBarcode)) {
             referenceLinkWriter.println(String.join("\t", userBarcodeRLId, patronBarcode, userFolioReference, userBarcodeRLTypeId));
             referenceLinkWriter.println(String.join("\t", userToBarcodeRLId, userRLId, userBarcodeRLId, userToBarcodeRLTypeId));
           }

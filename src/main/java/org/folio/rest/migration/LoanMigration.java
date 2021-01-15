@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,6 +15,7 @@ import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
 import org.folio.rest.jaxrs.model.circulation.Loan;
 import org.folio.rest.jaxrs.model.inventory.Location;
@@ -47,6 +49,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
   private static final String LOCATION_CODE = "LOCATION_CODE";
 
   private static final String USER_REFERENCE_ID = "userTypeId";
+  private static final String USER_TO_EXTERNAL_REFERENCE_ID = "userToExternalTypeId";
   private static final String USER_TO_BARCODE_REFERENCE_ID = "userToBarcodeTypeId";
 
   private LoanMigration(LoanContext context, String tenant) {
@@ -153,6 +156,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
       Database voyagerSettings = context.getExtraction().getDatabase();
 
       String userRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
+      String userToExternalRLTypeId = job.getReferences().get(USER_TO_EXTERNAL_REFERENCE_ID);
       String userToBarcodeRLTypeId = job.getReferences().get(USER_TO_BARCODE_REFERENCE_ID);
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings);
@@ -186,21 +190,64 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
             continue;
           }
 
+          String referenceId = userRL.get().getFolioReference().toString();
+
+          String patronBarcode = null;
+
           Optional<ReferenceLink> userToBarcodeRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userToBarcodeRLTypeId, userRL.get().getId());
 
-          if (!userToBarcodeRL.isPresent()) {
-            log.error("{} no user to barcode found for patron id {}", schema, patronId);
-            continue;
+          if (userToBarcodeRL.isPresent()) {
+            Optional<ReferenceLink> userBarcodeRL = migrationService.referenceLinkRepo.findById(userToBarcodeRL.get().getFolioReference());
+            if (userBarcodeRL.isPresent()) {
+              patronBarcode = userBarcodeRL.get().getExternalReference();
+            } else {
+              log.error("{} no patron to barcode found for patron id {} and folio reference {}", schema, patronId, userToBarcodeRL.get().getFolioReference());
+              continue;
+            }
+          } else {
+
+            Optional<ReferenceLink> userToExternalRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userToExternalRLTypeId, userRL.get().getId());
+
+            if (!userToExternalRL.isPresent()) {
+              log.error("{} no user to external id found for patron id {}", schema, patronId);
+              continue;
+            }
+
+            Optional<ReferenceLink> userExternalRL = migrationService.referenceLinkRepo.findById(userToExternalRL.get().getFolioReference());
+
+            if (!userExternalRL.isPresent()) {
+              log.error("{} no user external id found for patron id {}", schema, patronId);
+              continue;
+            }
+
+            String externalSystemId = userExternalRL.get().getExternalReference();
+
+            List<ReferenceLink> barcodeReferenceLinks = migrationService.referenceLinkRepo.findAllByFolioReferenceAndTypeIdIn(referenceId, job.getBarcodeReferenceTypeIds());
+            if (barcodeReferenceLinks.size() > 0) {
+              ReferenceLink barcodeReferenceLink = barcodeReferenceLinks.get(0);
+              patronBarcode = barcodeReferenceLink.getExternalReference();
+              log.debug("{} patron with id {} using barcode {} from barcode reference {}", schema, patronId, patronBarcode, barcodeReferenceLink.getType().getName());
+            }
+
+            if (StringUtils.isEmpty(patronBarcode) && externalSystemId.startsWith(job.getSchema())) {
+              for (Map.Entry<String, String> entry : job.getAlternativeExternalReferenceTypeIds().entrySet()) {
+                String altSchema = entry.getKey();
+                String altExternalReferenceTypeId = entry.getValue();
+                Optional<ReferenceLink> altExternalReferenceLink = migrationService.referenceLinkRepo.findAllByFolioReferenceAndTypeId(referenceId, altExternalReferenceTypeId);
+                if (altExternalReferenceLink.isPresent() && !altExternalReferenceLink.get().getExternalReference().startsWith(altSchema)) {
+                  patronBarcode = altExternalReferenceLink.get().getExternalReference();
+                  log.debug("{} patron with id {} using external system id {} from external reference {}", schema, patronId, patronBarcode, altExternalReferenceLink.get().getType().getName());
+                  break;
+                }
+              }
+            }
+
+            if (StringUtils.isEmpty(patronBarcode)) {
+              log.debug("{} patron with id {} does not have a barcode, using external system id {}", schema, patronId, externalSystemId);
+              patronBarcode = externalSystemId;
+            }
+
           }
-
-          Optional<ReferenceLink> userBarcodeRL = migrationService.referenceLinkRepo.findById(userToBarcodeRL.get().getFolioReference());
-
-          if (!userBarcodeRL.isPresent()) {
-            log.error("{} no barcode found for patron id {}", schema, patronId);
-            continue;
-          }
-
-          String patronBarcode = userBarcodeRL.get().getExternalReference();
 
           String locationCode = locationsCodeMap.get(chargeLocation);
 
