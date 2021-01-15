@@ -209,7 +209,7 @@ public class RequestMigration extends AbstractMigration<RequestContext> {
             try {
               Item item = migrationService.okapiService.fetchItemById(tenant, token, itemRL.get().getFolioReference());
               if (item.getStatus().getName().equals(Name.AVAILABLE)) {
-                requestType = "Paged";
+                requestType = "Page";
               }
             } catch(Exception e) {
               log.error("{} could not find corresponding item {}", schema, itemRL.get().getFolioReference());
