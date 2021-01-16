@@ -1237,7 +1237,8 @@ POST to http://localhost:9000/migrate/loans
       "partitions": 12,
       "references": {
         "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
-        "userToBarcodeTypeId": "3ed9f301-3426-4e7f-8cc9-3044d5e1e192"
+        "userToBarcodeTypeId": "3ed9f301-3426-4e7f-8cc9-3044d5e1e192",
+        "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
       },
       "barcodeReferenceTypeIds": [
         "f2eca16b-a6bd-4688-8424-ef5d47e06750",
@@ -1252,7 +1253,8 @@ POST to http://localhost:9000/migrate/loans
       "partitions": 4,
       "references": {
         "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
-        "userToBarcodeTypeId": "3ed9f301-3426-4e7f-8cc9-3044d5e1e192"
+        "userToBarcodeTypeId": "3ed9f301-3426-4e7f-8cc9-3044d5e1e192",
+        "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
       },
       "barcodeReferenceTypeIds": [
         "f2eca16b-a6bd-4688-8424-ef5d47e06750",
