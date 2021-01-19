@@ -1240,10 +1240,6 @@ POST to http://localhost:9000/migrate/loans
         "userToBarcodeTypeId": "3ed9f301-3426-4e7f-8cc9-3044d5e1e192",
         "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
       },
-      "barcodeReferenceTypeIds": [
-        "f2eca16b-a6bd-4688-8424-ef5d47e06750",
-        "9c5efc8b-4e97-4631-ad6f-6a68d9eb48de"
-      ],
       "alternativeExternalReferenceTypeIds": {
         "MSDB": "426ce32f-388c-4edf-9c79-d6b8348148a0"
       }
@@ -1256,10 +1252,6 @@ POST to http://localhost:9000/migrate/loans
         "userToBarcodeTypeId": "3ed9f301-3426-4e7f-8cc9-3044d5e1e192",
         "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
       },
-      "barcodeReferenceTypeIds": [
-        "f2eca16b-a6bd-4688-8424-ef5d47e06750",
-        "9c5efc8b-4e97-4631-ad6f-6a68d9eb48de"
-      ],
       "alternativeExternalReferenceTypeIds": {
         "AMDB": "0ed6f994-8dbd-4827-94c0-905504169c90"
       }
