@@ -251,9 +251,9 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
           String locationCode = locationsCodeMap.get(chargeLocation);
 
-          Optional<String> servicePointId = getServicePoint(locationCode, servicePoints);
+          Optional<Servicepoint> servicePoint = getServicePoint(locationCode, servicePoints);
 
-          if (!servicePointId.isPresent()) {
+          if (!servicePoint.isPresent()) {
             log.info("{} could not find service point for item id {} with charge location {}", schema, itemId, chargeLocation);
             continue;
           }
@@ -261,7 +261,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
           CheckOutByBarcodeRequest checkoutRequest = new CheckOutByBarcodeRequest();
           checkoutRequest.setItemBarcode(itemBarcode.toLowerCase());
           checkoutRequest.setUserBarcode(patronBarcode.toLowerCase());
-          checkoutRequest.setServicePointId(servicePointId.get());
+          checkoutRequest.setServicePointId(servicePoint.get().getId());
 
           try {
             Loan loan = migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
@@ -279,7 +279,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
               log.error(e.getMessage());
             }
           } catch (Exception e) {
-            log.error("{} failed to checkout item with barcode {} to user with barcode {} at service point {}", schema, itemBarcode, patronBarcode, servicePointId.get());
+            log.error("{} failed to checkout item with barcode {} to user with barcode {} at service point {}", schema, itemBarcode, patronBarcode, servicePoint.get().getName());
             log.error(e.getMessage());
           }
         }
@@ -329,14 +329,14 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
     return idToCode;
   }
 
-  private Optional<String> getServicePoint(String code, Servicepoints servicePoints) {
+  private Optional<Servicepoint> getServicePoint(String code, Servicepoints servicePoints) {
     final String folioLocationCode = context.getMaps().getLocationCode().containsKey(code)
       ? context.getMaps().getLocationCode().get(code)
       : code;
     Optional<Servicepoint> servicePoint = servicePoints.getServicepoints().stream()
       .filter(sp -> sp.getCode().equals(folioLocationCode)).findAny();
     if (servicePoint.isPresent()) {
-      return Optional.of(servicePoint.get().getId());
+      return Optional.of(servicePoint.get());
     }
     return Optional.empty();
   }
