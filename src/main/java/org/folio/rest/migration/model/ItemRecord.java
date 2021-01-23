@@ -304,7 +304,9 @@ public class ItemRecord {
 
       String folioItemStatus = "Available";
 
-      if (StringUtils.isEmpty(s.getCirctrans()) && StringUtils.isNotEmpty(s.getItemStatus()) && statusNameMap.containsKey(s.getItemStatus())) {
+      if (StringUtils.isEmpty(s.getCirctrans())
+          && StringUtils.isNotEmpty(s.getItemStatus())
+          && statusNameMap.containsKey(s.getItemStatus())) {
         folioItemStatus = statusNameMap.get(s.getItemStatus());
       }
 

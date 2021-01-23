@@ -340,7 +340,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
               .thenAccept((materialTypeId) -> itemRecord.setMaterialTypeId(materialTypeId)),
             getMfhdItem(mfhdItemStatement, mfhdContext)
               .thenAccept((mfhdItem) -> itemRecord.setMfhdItem(mfhdItem)),
-            getItemStatuses(itemStatusStatement, itemStatusContext, maps.getItemStatus())
+            getItemStatuses(itemStatusStatement, itemStatusContext)
               .thenAccept((statuses) -> itemRecord.setStatuses(statuses)),
             getNotes(noteStatement, noteContext, job.getItemNoteTypeId())
               .thenAccept((noteWrapper) -> {
@@ -507,7 +507,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       return future;
     }
 
-    private CompletableFuture<List<ItemStatusRecord>> getItemStatuses(Statement statement, Map<String, Object> context, Map<String, Integer> itemStatusMap) {
+    private CompletableFuture<List<ItemStatusRecord>> getItemStatuses(Statement statement, Map<String, Object> context) {
       CompletableFuture<List<ItemStatusRecord>> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
         List<ItemStatusRecord> statuses = new ArrayList<>();
