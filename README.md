@@ -990,7 +990,9 @@ POST to http://localhost:9000/migrate/items
       "preserv": "preservation",
       "HSCtablet": "tablet",
       "7day": "7_day",
-      "4hour": "4_hour"
+      "4hour": "4_hour",
+      "14day": "14_day",
+      "30day": "30_day"
     },
     "itemStatus": {
       "Not Charged": 1,
