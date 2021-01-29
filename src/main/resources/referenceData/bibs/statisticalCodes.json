@@ -362,6 +362,13 @@
       "code": "IOP3"
     },
     {
+      "code": "jstdda",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "name": "jstdda",
+      "id": "d861861d-ee59-4038-8256-7ee264bb08b0"
+    },
+    {
       "code": "jstor",
       "id": "6d0fb589-9cb0-46b5-8979-b52d2a12e047",
       "name": "jstor",
