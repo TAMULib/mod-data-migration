@@ -1,0 +1,313 @@
+{
+  "path": "/configurations/entries",
+  "dependencies": [],
+  "data": [
+    {
+      "id": "68041a19-8c02-449f-ac54-7e8d35bd9575",
+      "value": "{\"name\":\"acq_admin\",\"address\":\"Acquisitions Staff Accountant\\nTexas A&M University Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}",
+      "module": "TENANT",
+      "code": "ADDRESS_acq_admin",
+      "configName": "tenant.addresses",
+      "enabled": "true"
+    },
+    {
+      "id": "ba5359cf-bd9b-441f-b54a-46992dbcff06",
+      "configName": "tenant.addresses",
+      "enabled": "true",
+      "value": "{\"name\":\"acq_bind\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-BINDING DEPT\\n5000 TAMUS\\nCOLLEGE STATION, TX   77843-5000\"}",
+      "code": "ADDRESS_acq_bind",
+      "module": "TENANT"
+    },
+    {
+      "configName": "tenant.addresses",
+      "module": "TENANT",
+      "code": "ADDRESS_AcqMoBO",
+      "value": "{\"name\":\"AcqMono BO\",\"address\":\"AcqMono BO\"}",
+      "enabled": "true"
+    },
+    {
+      "value": "{\"name\":\"AcqMono Bulk Purchases\",\"address\":\"AcqMono Bulk Purchases\"}",
+      "enabled": "true",
+      "configName": "tenant.addresses",
+      "code": "ADDRESS_AcqMoBU",
+      "module": "TENANT"
+    },
+    {
+      "module": "TENANT",
+      "code": "ADDRESS_AcqMoDE",
+      "configName": "tenant.addresses",
+      "enabled": "true",
+      "value": "{\"name\":\"AcqMono Delayed\",\"address\":\"AcqMono Delayed\"}"
+    },
+    {
+      "value": "{\"name\":\"AcqMono Conventional\",\"address\":\"CONVENTIONAL ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}",
+      "enabled": "true",
+      "configName": "tenant.addresses",
+      "code": "ADDRESS_AcqMoMO",
+      "module": "TENANT"
+    },
+    {
+      "module": "TENANT",
+      "code": "ADDRESS_AcqMoNY",
+      "configName": "tenant.addresses",
+      "enabled": "true",
+      "value": "{\"name\":\"AcqMono NYP\",\"address\":\"CONVENTIONAL ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}"
+    },
+    {
+      "configName": "tenant.addresses",
+      "code": "ADDRESS_AcqMoPC",
+      "module": "TENANT",
+      "value": "{\"name\":\"AcqMono ProCard\",\"address\":\"PROCARD ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}",
+      "enabled": "true"
+    },
+    {
+      "enabled": "true",
+      "value": "{\"name\":\"AcqMono Prepay\",\"address\":\"AcqMono Prepay\"}",
+      "code": "ADDRESS_AcqMoPP",
+      "module": "TENANT",
+      "configName": "tenant.addresses"
+    },
+    {
+      "code": "ADDRESS_AcqMoRU",
+      "module": "TENANT",
+      "configName": "tenant.addresses",
+      "enabled": "true",
+      "value": "{\"name\":\"AcqMono RUSH\",\"address\":\"RUSH ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}"
+    },
+    {
+      "code": "ADDRESS_AcqMoUR",
+      "module": "TENANT",
+      "configName": "tenant.addresses",
+      "enabled": "true",
+      "value": "{\"name\":\"AcqMono URGENT\",\"address\":\"URGENT ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}"
+    },
+    {
+      "id": "3e7c5cc3-ac27-46e7-b81b-b838a38a3158",
+      "code": "ADDRESS_AcqProcess",
+      "value": "{\"name\":\"AcqProcess\",\"address\":\"Acquisitions\\nMedical Sciences Library\\nTexas A&M University\\nCollege Station, TX   77843-4462\"}",
+      "enabled": "true",
+      "module": "TENANT",
+      "configName": "tenant.addresses"
+    },
+    {
+      "id": "2a7e7b7d-342a-4d04-aef9-2beeb07a5b94",
+      "module": "ORDERS",
+      "configName": "inventory-instanceStatusCode",
+      "enabled": true,
+      "value": "temp"
+    },
+    {
+      "id": "673bffe8-898d-49b4-bcee-981002ac11f0",
+      "module": "ORDERS",
+      "configName": "inventory-instanceTypeCode",
+      "enabled": "true",
+      "value": "txt"
+    },
+    {
+      "id": "c116ac8c-a51e-4f30-a30f-77c073386e83",
+      "module": "ORDERS",
+      "configName": "inventory-loanTypeName",
+      "enabled": true,
+      "value": "normal"
+    },
+    {
+      "id": "60ce0c6e-eab0-473d-99aa-89f45404e330",
+      "module": "ORDERS",
+      "configName": "order.closing-reasons",
+      "code": "CLOSING_REASON_1",
+      "enabled": true,
+      "value": "Title change"
+    },
+    {
+      "id": "064c6f3f-025e-478f-9ffe-11efdd754818",
+      "module": "ORDERS",
+      "configName": "orders.prefix",
+      "code": "PREFIX_1581956664912",
+      "enabled": true,
+      "value": "{\"name\":\"CHARGEBACK\"}"
+    },
+    {
+      "id": "0db0750c-d9c0-43e4-a5d6-b4788a9d40e9",
+      "value": "350",
+      "module": "ORDERS",
+      "enabled": true,
+      "configName": "poLines-limit"
+    },
+    {
+      "id": "aac86edc-e379-45f9-98da-5885a11f3f72",
+      "configName": "tenant.addresses",
+      "enabled": "true",
+      "value": "{\"name\":\"SerArea\",\"address\":\"TEXAS A&M UNIVERSITY\\nMedical Sciences Library\\nSerials Section\\n4462 TAMU\\nCOLLEGE STATION, TX   77843-4462\"}",
+      "code": "ADDRESS_SerArea",
+      "module": "TENANT"
+    },
+    {
+      "id": "a84ab456-028b-4d8b-9e66-22f4591e7e4b",
+      "enabled": "true",
+      "configName": "tenant.addresses",
+      "code": "ADDRESS_SR",
+      "module": "TENANT",
+      "value": "{\"name\":\"SR\",\"address\":\"EVANS LIBRARY-SERIALS RECORD\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
+    },
+    {
+      "id": "bf6934e7-40e6-4807-a262-31f84c110c64",
+      "configName": "tenant.addresses",
+      "enabled": "true",
+      "value": "{\"name\":\"SRDB\",\"address\":\"5000 TAMU\\nCollege Station, TX 77843-5000\"}",
+      "module": "TENANT",
+      "code": "ADDRESS_SRDB"
+    },
+    {
+      "id": "6d64426c-dff3-473a-b349-a34dda533433",
+      "value": "{\"name\":\"SRDIR\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+      "code": "ADDRESS_SRDIR",
+      "module": "TENANT",
+      "configName": "tenant.addresses",
+      "enabled": "true"
+    },
+    {
+      "id": "f981f253-cdbf-4022-8b28-f9d00859552f",
+      "value": "{\"name\":\"SRDIRM\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+      "code": "ADDRESS_SRDIRM",
+      "module": "TENANT",
+      "configName": "tenant.addresses",
+      "enabled": "true"
+    },
+    {
+      "id": "5439ee2f-f903-437a-b49b-84c3b921c669",
+      "code": "ADDRESS_SRDIRMP",
+      "module": "TENANT",
+      "value": "{\"name\":\"SRDIRMP\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+      "enabled": "true",
+      "configName": "tenant.addresses"
+    },
+    {
+      "id": "e4e13666-58cf-491f-8fbf-bd5aa20db019",
+      "module": "TENANT",
+      "code": "ADDRESS_SRDIRN",
+      "value": "{\"name\":\"SRDIRN\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+      "enabled": "true",
+      "configName": "tenant.addresses"
+    },
+    {
+      "id": "e98b8612-80c5-482b-a680-9d05b762fbef",
+      "enabled": "true",
+      "configName": "tenant.addresses",
+      "module": "TENANT",
+      "code": "ADDRESS_SRDIRO",
+      "value": "{\"name\":\"SRDIRO\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
+    },
+    {
+      "id": "d247e071-a2c8-4d8e-8faa-1b59f0e1387d",
+      "value": "{\"name\":\"SRDIRP\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+      "module": "TENANT",
+      "code": "ADDRESS_SRDIRP",
+      "configName": "tenant.addresses",
+      "enabled": "true"
+    },
+    {
+      "id": "b4bc5bc4-f37b-4b75-a6a4-bfba38e1811d",
+      "enabled": "true",
+      "configName": "tenant.addresses",
+      "module": "TENANT",
+      "code": "ADDRESS_SRGFT",
+      "value": "{\"name\":\"SRGFT\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
+    },
+    {
+      "id": "73e5ec11-eb68-480e-b66c-7384fd5feee2",
+      "code": "ADDRESS_SRMSV",
+      "module": "TENANT",
+      "value": "{\"name\":\"SRMSV\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+      "enabled": "true",
+      "configName": "tenant.addresses"
+    },
+    {
+      "id": "ca394adf-d362-4cb7-8251-82c7a96df1ad",
+      "configName": "tenant.addresses",
+      "enabled": "true",
+      "value": "{\"name\":\"SRMSVM\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+      "module": "TENANT",
+      "code": "ADDRESS_SRMSVM"
+    },
+    {
+      "id": "0e81addc-a3ec-49d3-9973-108fc313db8b",
+      "value": "{\"name\":\"SRMSVMO\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+      "code": "ADDRESS_SRMSVMO",
+      "module": "TENANT",
+      "configName": "tenant.addresses",
+      "enabled": "true"
+    },
+    {
+      "id": "fb5ad323-b9e1-487b-bfce-84171254b2e0",
+      "enabled": "true",
+      "configName": "tenant.addresses",
+      "code": "ADDRESS_SRMSVO",
+      "module": "TENANT",
+      "value": "{\"name\":\"SRMSVO\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
+    },
+    {
+      "id": "b34e29a2-bcfc-4388-baa1-36142731688b",
+      "module": "TENANT",
+      "code": "ADDRESS_SRMSVP",
+      "value": "{\"name\":\"SRMSVP\",\"address\":\"POLICY SCIENCES & ECONOMICS LIBRARY\\nTEXAS A&M UNIVERSITY\\n5002 TAMU\\nCOLLEGE STATION, TX   77843-5002\"}",
+      "enabled": "true",
+      "configName": "tenant.addresses"
+    },
+    {
+      "id": "72d68939-4cff-4885-a623-c16aa352fa8e",
+      "configName": "tenant.addresses",
+      "enabled": "true",
+      "value": "{\"name\":\"SRMSVPM\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-SERIALS RECORDS\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+      "module": "TENANT",
+      "code": "ADDRESS_SRMSVPM"
+    },
+    {
+      "id": "8c8616c8-b45b-408d-932e-e98ab528d95e",
+      "code": "ADDRESS_SRMSVW",
+      "module": "TENANT",
+      "value": "{\"name\":\"SRMSVW\",\"address\":\"WEST CAMPUS LIBRARY\\nTEXAS A&M UNIVERSITY\\n5001 TAMU\\nCOLLEGE STATION, TX   77843-5001\"}",
+      "enabled": "true",
+      "configName": "tenant.addresses"
+    },
+    {
+      "id": "3e121647-2251-4286-bc25-4e6b40f911e6",
+      "code": "ADDRESS_SRMSVWM",
+      "module": "TENANT",
+      "value": "{\"name\":\"SRMSVWM\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-SERIALS RECORDS\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+      "enabled": "true",
+      "configName": "tenant.addresses"
+    },
+    {
+      "id": "06e9d410-30ed-46ba-89f4-395fa519eb9c",
+      "value": "{\"name\":\"SRSOV\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-SERIALS RECORDS\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+      "code": "ADDRESS_SRSOV",
+      "module": "TENANT",
+      "configName": "tenant.addresses",
+      "enabled": "true"
+    },
+    {
+      "id": "b7bc7a7e-b026-485f-bdbf-705d70523291",
+      "enabled": "true",
+      "configName": "tenant.addresses",
+      "code": "ADDRESS_SRSOVM",
+      "module": "TENANT",
+      "value": "{\"name\":\"SRSOVM\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
+    },
+    {
+      "id": "5013287f-1e34-477e-bfe5-6e21298f455b",
+      "configName": "tenant.addresses",
+      "enabled": "true",
+      "value": "{\"name\":\"SRVSVO\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-SERIALS RECORDS\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+      "module": "TENANT",
+      "code": "ADDRESS_SRVSVO"
+    },
+    {
+      "id": "eb7252b6-b125-4ab8-9b1c-b73b15a32b25",
+      "configName": "tenant.addresses",
+      "enabled": "true",
+      "value": "{\"name\":\"west_res\",\"address\":\"West Campus Library\\nTexas A&M University\\nCollege Station, TX   77843-5001\"}",
+      "code": "ADDRESS_west_res",
+      "module": "TENANT"
+    }
+  ]
+}

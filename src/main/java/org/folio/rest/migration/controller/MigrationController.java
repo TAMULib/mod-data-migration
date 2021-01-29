@@ -10,6 +10,7 @@ import org.folio.rest.migration.HoldingsMigration;
 import org.folio.rest.migration.InventoryReferenceLinkMigration;
 import org.folio.rest.migration.ItemMigration;
 import org.folio.rest.migration.LoanMigration;
+import org.folio.rest.migration.OrderMigration;
 import org.folio.rest.migration.ProxyForMigration;
 import org.folio.rest.migration.RequestMigration;
 import org.folio.rest.migration.UserMigration;
@@ -28,6 +29,7 @@ import org.folio.rest.migration.model.request.holdings.HoldingsContext;
 import org.folio.rest.migration.model.request.inventory.InventoryReferenceLinkContext;
 import org.folio.rest.migration.model.request.item.ItemContext;
 import org.folio.rest.migration.model.request.loan.LoanContext;
+import org.folio.rest.migration.model.request.order.OrderContext;
 import org.folio.rest.migration.model.request.proxyfor.ProxyForContext;
 import org.folio.rest.migration.model.request.request.RequestContext;
 import org.folio.rest.migration.model.request.user.UserContext;
@@ -131,6 +133,12 @@ public class MigrationController {
   @PostMapping("/divitpatron")
   public CompletableFuture<String> divitpatron(@RequestBody DivITPatronContext context, @TenantHeader String tenant) {
     return migrationService.migrate(DivITPatronMigration.with(context, tenant));
+  }
+
+  @PostMapping("/orders")
+  @CreateReferenceData(pattern = "classpath:/referenceData/orders/*.json")
+  public CompletableFuture<String> orders(@RequestBody OrderContext context, @TenantHeader String tenant) {
+    return migrationService.migrate(OrderMigration.with(context, tenant));
   }
 
 }
