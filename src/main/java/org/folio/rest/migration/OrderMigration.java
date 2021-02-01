@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,20 +19,21 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.FundDistribution;
 
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePoLine;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePurchaseOrder;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Cost;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Details;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Eresource;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Ongoing;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Physical;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.VendorDetail;
-import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.PurchaseOrder;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePoLine.ReceiptStatus;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece.PieceFormat;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece.ReceivingStatus;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.migration.config.model.Database;
@@ -62,7 +65,8 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
   private static final String BIB_ID = "BIB_ID";
   private static final String LINE_ITEM_ID = "LINE_ITEM_ID";
-  private static final String LINE_PRICE = "LINE_PRICE";
+  // NOTE: ignored
+  // private static final String LINE_PRICE = "LINE_PRICE";
   private static final String PO_TYPE = "PO_TYPE";
   private static final String LOCATION_CODE = "LOCATION_CODE";
   private static final String LOCATION_ID = "LOCATION_ID";
@@ -74,6 +78,12 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
   private static final String VENDOR_REF_NUM = "VENDOR_REF_NUM";
   private static final String ACCOUNT_NAME = "ACCOUNT_NAME";
   private static final String FUND_CODE = "FUND_CODE";
+
+  private static final String PREDICT = "PREDICT";
+  private static final String OPAC_SUPPRESSED = "OPAC_SUPPRESSED";
+  private static final String RECEIVING_NOTE = "RECEIVING_NOTE";
+  private static final String ENUMCHRON = "ENUMCHRON";
+  private static final String RECEIVED_DATE = "RECEIVED_DATE";
 
   private static final String VENDOR_REFERENCE_ID = "vendorTypeId";
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
@@ -208,6 +218,10 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
       poLinesContext.put(TABLES, job.getPoLinesAdditionalContext().get(TABLES));
       poLinesContext.put(CONDITIONS, job.getPoLinesAdditionalContext().get(CONDITIONS));
 
+      Map<String, Object> piecesContext = new HashMap<>();
+      piecesContext.put(SQL, context.getExtraction().getPiecesSql());
+      piecesContext.put(SCHEMA, schema);
+
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings);
 
       String vendorRLTypeId = job.getReferences().get(VENDOR_REFERENCE_ID);
@@ -216,6 +230,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement lineItemNoteStatement = threadConnections.getLineItemNoteConnection().createStatement();
         Statement poLinesStatement = threadConnections.getPurchaseOrderLinesConnection().createStatement();
+        Statement piecesStatement = threadConnections.getPiecesConnection().createStatement();
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
       ) {
         while (pageResultSet.next()) {
@@ -270,11 +285,20 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
           po.setOngoing(ongoing);
 
+          List<Piece> pieces = new ArrayList<>();
+
           CompletableFuture.allOf(
             getLineItemNotes(lineItemNoteStatement, lineItemNoteContext)
               .thenAccept((notes) -> po.setNotes(notes)),
-            getPurchaseOrderLines(poLinesStatement, poLinesContext, job, maps, defaults, locationsMap, fundsMap, vendorReferenceId)
-              .thenAccept((poLines) -> po.setCompositePoLines(poLines))
+            getPurchaseOrderLines(poLinesStatement, poLinesContext, piecesStatement, piecesContext, job, maps, defaults, locationsMap, fundsMap, vendorReferenceId)
+              .thenAccept((poLines) -> {
+                List<CompositePoLine> cPoLines = new ArrayList<>();
+                poLines.stream().forEach(cpowp -> {
+                  cPoLines.add(cpowp.getCompositePoLine());
+                  pieces.addAll(cpowp.getPieces());
+                });
+                po.setCompositePoLines(cPoLines);
+              })
           ).get();
 
           System.out.println(po);
@@ -315,34 +339,53 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
       return future;
     }
 
-    private CompletableFuture<List<CompositePoLine>> getPurchaseOrderLines(Statement statement, Map<String, Object> context, OrderJob job, OrderMaps maps, OrderDefaults defaults, Map<String, String> locationsMap, Map<String, String> fundsMap, String vendorId) {
-      CompletableFuture<List<CompositePoLine>> future = new CompletableFuture<>();
+    private CompletableFuture<List<CompositePoLineWithPieces>> getPurchaseOrderLines(Statement poLinesStatement, Map<String, Object> poLinesContext, Statement piecesStatement, Map<String, Object> piecesContext, OrderJob job, OrderMaps maps, OrderDefaults defaults, Map<String, String> locationsMap, Map<String, String> fundsMap, String vendorId) {
+      CompletableFuture<List<CompositePoLineWithPieces>> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
 
-        String poId = (String) context.get(PO_ID);
+        String poId = (String) poLinesContext.get(PO_ID);
         String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
 
         Map<String, String> expenseClasses = maps.getExpenseClasses().get(job.getSchema());
         Map<String, String> fundCodes = maps.getFundCodes().get(job.getSchema());
 
-        List<CompositePoLine> poLines = new ArrayList<>();
-        try (ResultSet resultSet = getResultSet(statement, context)) {
-          while (resultSet.next()) {
-            String bibId = resultSet.getString(BIB_ID);
-            String lineItemId = resultSet.getString(LINE_ITEM_ID);
-            String linePrice = resultSet.getString(LINE_PRICE);
-            String poType = resultSet.getString(PO_TYPE);
-            String locationCode = resultSet.getString(LOCATION_CODE);
-            String locationId = resultSet.getString(LOCATION_ID);
-            String title = resultSet.getString(TITLE);
-            String lineItemStatus = resultSet.getString(LINE_ITEM_STATUS);
-            String requester = resultSet.getString(REQUESTER);
-            String vendorTitleNumber = resultSet.getString(VENDOR_TITLE_NUM);
-            String vendorRefQual = resultSet.getString(VENDOR_REF_QUAL);
-            String vendorRefNumber = resultSet.getString(VENDOR_REF_NUM);
-            String accountName = resultSet.getString(ACCOUNT_NAME);
-            String fundCode = resultSet.getString(FUND_CODE);
-            String note = resultSet.getString(NOTE);
+        List<CompositePoLineWithPieces> poLines = new ArrayList<>();
+        try (ResultSet poLinesResultSet = getResultSet(poLinesStatement, poLinesContext)) {
+          while (poLinesResultSet.next()) {
+            String bibId = poLinesResultSet.getString(BIB_ID);
+            String lineItemId = poLinesResultSet.getString(LINE_ITEM_ID);
+            // NOTE: ignored
+            // String linePrice = poLinesResultSet.getString(LINE_PRICE);
+            String poType = poLinesResultSet.getString(PO_TYPE);
+            String locationCode = poLinesResultSet.getString(LOCATION_CODE);
+            String locationId = poLinesResultSet.getString(LOCATION_ID);
+            String title = poLinesResultSet.getString(TITLE);
+            String lineItemStatus = poLinesResultSet.getString(LINE_ITEM_STATUS);
+            String requester = poLinesResultSet.getString(REQUESTER);
+            String vendorTitleNumber = poLinesResultSet.getString(VENDOR_TITLE_NUM);
+            String vendorRefQual = poLinesResultSet.getString(VENDOR_REF_QUAL);
+            String vendorRefNumber = poLinesResultSet.getString(VENDOR_REF_NUM);
+            String accountName = poLinesResultSet.getString(ACCOUNT_NAME);
+            String fundCode = poLinesResultSet.getString(FUND_CODE);
+            // NOTE: ignored
+            // String note = poLinesResultSet.getString(NOTE);
+
+            System.out.println(
+              String.format("\t%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
+                bibId,
+                lineItemId,
+                locationCode,
+                locationId,
+                title,
+                lineItemStatus,
+                requester,
+                vendorTitleNumber,
+                vendorRefQual,
+                vendorRefNumber,
+                accountName,
+                fundCode
+              )
+            );
 
             Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, bibId);
             if (!instanceRL.isPresent()) {
@@ -490,26 +533,66 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
               compositePoLine.setVendorDetail(vendorDetail);
             }
 
-            // System.out.println(
-            //   String.format("\t%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
-            //     bibId,
-            //     lineItemId,
-            //     linePrice,
-            //     locationCode,
-            //     locationId,
-            //     title,
-            //     lineItemStatus,
-            //     requester,
-            //     vendorTitleNumber,
-            //     vendorRefQual,
-            //     vendorRefNumber,
-            //     accountName,
-            //     fundCode,
-            //     note
-            //   )
-            // );
+            if (StringUtils.isNotEmpty(lineItemStatus)) {
+              compositePoLine.setReceiptStatus(ReceiptStatus.fromValue(maps.getPoLineReceiptStatus().get(lineItemStatus)));
+            }
+            if (StringUtils.isNotEmpty(requester)) {
+              compositePoLine.setRequester(requester);
+            }
 
-            poLines.add(compositePoLine);
+            piecesContext.put(LINE_ITEM_ID, lineItemId);
+
+            String note = StringUtils.EMPTY;
+            List<Piece> pieces = new ArrayList<>();
+            try (ResultSet piecesResultSet = getResultSet(piecesStatement, piecesContext)) {
+              while (piecesResultSet.next()) {
+                // NOTE: ignored
+                // String predict = poLinesResultSet.getString(PREDICT);
+                // String opacSuppressed = poLinesResultSet.getString(OPAC_SUPPRESSED);
+                String receivingNote = poLinesResultSet.getString(RECEIVING_NOTE);
+                String enumchron = poLinesResultSet.getString(ENUMCHRON);
+                String receivedDate = poLinesResultSet.getString(RECEIVED_DATE);
+
+                Piece piece = new Piece();
+
+                piece.setId(UUID.randomUUID().toString());
+                piece.setPoLineId(compositePoLine.getId());
+                piece.setLocationId(compositePoLine.getLocations().get(0).getLocationId());
+                piece.setCaption(enumchron);
+                piece.setFormat(PieceFormat.PHYSICAL);
+                piece.setReceivingStatus(ReceivingStatus.RECEIVED);
+                piece.setReceivedDate(Date.from(Instant.parse(receivedDate)));
+
+                note += receivingNote
+                  .replaceAll("[\\n\\t ]", StringUtils.EMPTY)
+                  .replaceAll("\\s+", StringUtils.SPACE)
+                  .replaceAll("(.*?)(MFHD<.*?>)(.*)", "$1$3")
+                  .replaceAll("(.*?)(LOC<.*?>)(.*)", "$1$3");
+
+                System.out.println(
+                  String.format("\t\t%s,%s,%s",
+                    receivingNote,
+                    enumchron,
+                    receivedDate
+                  )
+                );
+
+              }
+            } catch (SQLException e) {
+              e.printStackTrace();
+            } finally {
+              future.complete(poLines);
+            }
+
+            if (StringUtils.isNotEmpty(note)) {
+              Details details = new Details();
+              details.setReceivingNote(note);
+              compositePoLine.setDetails(details);
+            }
+
+            compositePoLine.setCheckinItems(!pieces.isEmpty());
+
+            poLines.add(new CompositePoLineWithPieces(compositePoLine, pieces));
 
           }
         } catch (SQLException e) {
@@ -519,6 +602,27 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
         }
       });
       return future;
+    }
+
+  }
+
+  private class CompositePoLineWithPieces {
+
+    private final CompositePoLine compositePoLine;
+
+    private final List<Piece> pieces;
+
+    public CompositePoLineWithPieces(CompositePoLine compositePoLine, List<Piece> pieces) {
+      this.compositePoLine = compositePoLine;
+      this.pieces = pieces;
+    }
+
+    public CompositePoLine getCompositePoLine() {
+      return compositePoLine;
+    }
+
+    public List<Piece> getPieces() {
+      return pieces;
     }
 
   }
@@ -556,6 +660,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     threadConnections.setLineItemNoteConnection(getConnection(voyagerSettings));
     threadConnections.setPurchaseOrderLinesConnection(getConnection(voyagerSettings));
+    threadConnections.setPiecesConnection(getConnection(voyagerSettings));
     return threadConnections;
   }
 
@@ -566,6 +671,8 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
     private Connection lineItemNoteConnection;
 
     private Connection purchaseOrderLinesConnection;
+
+    private Connection piecesConnection;
 
     public ThreadConnections() {
 
@@ -595,11 +702,20 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
       this.purchaseOrderLinesConnection = purchaseOrderLinesConnection;
     }
 
+    public Connection getPiecesConnection() {
+      return piecesConnection;
+    }
+
+    public void setPiecesConnection(Connection piecesConnection) {
+      this.piecesConnection = piecesConnection;
+    }
+
     public void closeAll() {
       try {
         pageConnection.close();
         lineItemNoteConnection.close();
         purchaseOrderLinesConnection.close();
+        piecesConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
         throw new RuntimeException(e);

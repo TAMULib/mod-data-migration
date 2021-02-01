@@ -7,16 +7,27 @@ import org.folio.rest.migration.model.request.AbstractExtraction;
 public class OrderExtraction extends AbstractExtraction {
 
   @NotNull
+  private String locationSql;
+
+  @NotNull
   private String lineItemNotesSql;
 
   @NotNull
   private String poLinesSql;
 
   @NotNull
-  private String locationSql;
+  private String piecesSql;
 
   public OrderExtraction() {
     super();
+  }
+
+  public String getLocationSql() {
+    return locationSql;
+  }
+
+  public void setLocationSql(String locationSql) {
+    this.locationSql = locationSql;
   }
 
   public String getLineItemNotesSql() {
@@ -35,12 +46,12 @@ public class OrderExtraction extends AbstractExtraction {
     this.poLinesSql = poLinesSql;
   }
 
-  public String getLocationSql() {
-    return locationSql;
+  public String getPiecesSql() {
+    return piecesSql;
   }
 
-  public void setLocationSql(String locationSql) {
-    this.locationSql = locationSql;
+  public void setPiecesSql(String piecesSql) {
+    this.piecesSql = piecesSql;
   }
 
 }
