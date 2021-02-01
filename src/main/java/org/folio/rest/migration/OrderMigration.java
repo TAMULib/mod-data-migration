@@ -17,6 +17,17 @@ import org.folio.rest.migration.utility.TimingUtility;
 
 public class OrderMigration extends AbstractMigration<OrderContext> {
 
+  private static final String COLUMNS = "COLUMNS";
+  private static final String TABLES = "TABLES";
+  private static final String CONDITIONS = "CONDITIONS";
+
+  private static final String PO_ID = "PO_ID";
+  private static final String PO_NUMBER = "PO_NUMBER";
+  private static final String PO_STATUS = "PO_STATUS";
+  private static final String VENDOR_ID = "VENDOR_ID";
+  private static final String SHIPLOC = "SHIPLOC";
+  private static final String BILLLOC = "BILLLOC";
+
   private OrderMigration(OrderContext context, String tenant) {
     super(context, tenant);
   }
@@ -50,6 +61,9 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
     for (OrderJob job : context.getJobs()) {
 
       countContext.put(SCHEMA, job.getSchema());
+      countContext.put(COLUMNS, job.getColumns());
+      countContext.put(TABLES, job.getTables());
+      countContext.put(CONDITIONS, job.getConditions());
 
       int count = getCount(voyagerSettings, countContext);
 
@@ -62,6 +76,9 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
         Map<String, Object> partitionContext = new HashMap<String, Object>();
         partitionContext.put(SQL, context.getExtraction().getPageSql());
         partitionContext.put(SCHEMA, job.getSchema());
+        partitionContext.put(COLUMNS, job.getColumns());
+        partitionContext.put(TABLES, job.getTables());
+        partitionContext.put(CONDITIONS, job.getConditions());
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
@@ -117,10 +134,16 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
       ) {
         while (pageResultSet.next()) {
 
-          System.out.print(".");
+          String poId = pageResultSet.getString(PO_ID);
+          String poNumber = pageResultSet.getString(PO_NUMBER);
+          String poStatus = pageResultSet.getString(PO_STATUS);
+          String vendorId = pageResultSet.getString(VENDOR_ID);
+          String shipLoc = pageResultSet.getString(SHIPLOC);
+          String billLoc = pageResultSet.getString(BILLLOC);
+
+          System.out.println(String.format("%s,%s,%s,%s,%s,%s,%s,%s", index, schema, poId, poNumber, poStatus, vendorId, shipLoc, billLoc));
 
         }
-
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
