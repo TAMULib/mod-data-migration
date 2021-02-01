@@ -13,11 +13,13 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import org.apache.commons.lang3.StringUtils;
+import org.folio.rest.jaxrs.model.finance.acq_models.mod_finance.schemas.FundCollection;
 import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.migration.config.model.Database;
@@ -36,6 +38,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
   private static final String CONDITIONS = "CONDITIONS";
 
   private static final String LOCATIONS_MAP = "LOCATIONS_MAP";
+  private static final String FUNDS_MAP = "FUNDS_MAP";
 
   private static final String PO_ID = "PO_ID";
   private static final String PO_NUMBER = "PO_NUMBER";
@@ -75,6 +78,9 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
     String token = migrationService.okapiService.getToken(tenant);
 
     Locations locations = migrationService.okapiService.fetchLocations(tenant, token);
+
+    Map<String, String> fundsMap = migrationService.okapiService.fetchFunds(tenant, token)
+      .getFunds().stream().collect(Collectors.toMap(fund -> fund.getCode(), fund -> fund.getId()));
 
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
@@ -126,6 +132,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
         partitionContext.put(MAPS, context.getMaps());
         partitionContext.put(DEFAULTS, context.getDefaults());
         partitionContext.put(LOCATIONS_MAP, locationsMap);
+        partitionContext.put(FUNDS_MAP, fundsMap);
         partitionContext.put(TOKEN, token);
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new OrderPartitionTask(migrationService, partitionContext));
@@ -171,6 +178,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
       OrderDefaults defaults = (OrderDefaults) partitionContext.get(DEFAULTS);
 
       Map<String, String> locationsMap = (Map<String, String>) partitionContext.get(LOCATIONS_MAP);
+      Map<String, String> fundsMap = (Map<String, String>) partitionContext.get(FUNDS_MAP);
 
       String schema = job.getSchema();
 
@@ -255,7 +263,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
           CompletableFuture.allOf(
             getLineItemNotes(lineItemNoteStatement, lineItemNoteContext)
               .thenAccept((notes) -> po.set("notes", notes)),
-            getPurchaseOrderLines(poLinesStatement, poLinesContext, job, maps, defaults, locationsMap, vendorReferenceId)
+            getPurchaseOrderLines(poLinesStatement, poLinesContext, job, maps, defaults, locationsMap, fundsMap, vendorReferenceId)
               .thenAccept((notes) -> po.set("compositePoLines", notes))
           ).get();
 
@@ -297,7 +305,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
       return future;
     }
 
-    private CompletableFuture<ArrayNode> getPurchaseOrderLines(Statement statement, Map<String, Object> context, OrderJob job, OrderMaps maps, OrderDefaults defaults, Map<String, String> locationsMap, String vendorId) {
+    private CompletableFuture<ArrayNode> getPurchaseOrderLines(Statement statement, Map<String, Object> context, OrderJob job, OrderMaps maps, OrderDefaults defaults, Map<String, String> locationsMap, Map<String, String> fundsMap, String vendorId) {
       CompletableFuture<ArrayNode> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
 
@@ -306,9 +314,6 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
         Map<String, String> expenseClasses = maps.getExpenseClasses().get(job.getSchema());
         Map<String, String> fundCodes = maps.getFundCodes().get(job.getSchema());
-
-        // TODO: lookup and prepare map before migration
-        Map<String, String> funds = new HashMap<>();
 
         ArrayNode poLines =  migrationService.objectMapper.createArrayNode();
         try (ResultSet resultSet = getResultSet(statement, context)) {
@@ -418,8 +423,8 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                   break;
                 }
 
-                if (funds.containsKey(fundCode)) {
-                  fundDistributionObject.put("fundId", funds.get(fundCode));
+                if (fundsMap.containsKey(fundCode)) {
+                  fundDistributionObject.put("fundId", fundsMap.get(fundCode));
                 } else {
                   log.error("{} fund code {} not found for po {}", job.getSchema(), fundCode, poId);
                 }
@@ -428,9 +433,9 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
                 String fundCodePrefix = fundCode.substring(0, 2);
                 if (fundCodes.containsKey(fundCodePrefix)) {
-                  String mappedFunCode = funds.get(fundCodePrefix);
-                  if (funds.containsKey(mappedFunCode)) {
-                    fundDistributionObject.put("fundId", funds.get(mappedFunCode));
+                  String mappedFunCode = fundCodes.get(fundCodePrefix);
+                  if (fundsMap.containsKey(mappedFunCode)) {
+                    fundDistributionObject.put("fundId", fundsMap.get(mappedFunCode));
                   } else {
                     log.error("{} fund code {} not found for po {}", job.getSchema(), mappedFunCode, poId);
                   }
@@ -451,6 +456,25 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
             } else {
               log.error("{} no fund code for po {}", job.getSchema(), poId);
+            }
+
+            // NOTE: conditioning on schema again :(
+            if (job.getSchema().equals("AMDB")) {
+              ObjectNode vendorDetailsObject = migrationService.objectMapper.createObjectNode();
+              if (StringUtils.isNotEmpty(accountName)) {
+                vendorDetailsObject.put("vendorAccount", accountName);
+              }
+              vendorDetailsObject.put("instructions", StringUtils.SPACE);
+
+              if (StringUtils.isNotEmpty(vendorRefNumber)) {
+                vendorDetailsObject.put("refNumberType", maps.getVendorRefQual().get(vendorRefQual));
+                vendorDetailsObject.put("refNumber", vendorRefNumber);
+              } else if (StringUtils.isNotEmpty(vendorTitleNumber)) {
+                vendorDetailsObject.put("refNumberType", maps.getVendorRefQual().get("VN"));
+                vendorDetailsObject.put("refNumber", vendorTitleNumber);
+              }
+
+              compositePurchaseOrderLineObject.set("vendorDetail", vendorDetailsObject);
             }
 
             // System.out.println(

@@ -156,6 +156,17 @@
               <targetPackage>org.folio.rest.jaxrs.model.userimport</targetPackage>
             </configuration>
           </execution>
+          <execution>
+            <id>mod-finance-storage/ramls</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <sourceDirectory>${basedir}/mod-finance-storage/ramls</sourceDirectory>
+              <targetPackage>org.folio.rest.jaxrs.model.finance</targetPackage>
+            </configuration>
+          </execution>
          </executions>
       </plugin>
 

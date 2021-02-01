@@ -31,6 +31,7 @@ import org.folio.rest.jaxrs.model.dataimport.dto.RawRecordsDto;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfile;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileCollection;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileUpdateDto;
+import org.folio.rest.jaxrs.model.finance.acq_models.mod_finance.schemas.FundCollection;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecords;
 import org.folio.rest.jaxrs.model.inventory.Instance;
@@ -277,6 +278,19 @@ public class OkapiService {
     }
     log.error("Failed to fetch material types: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to fetch material types: " + response.getStatusCodeValue());
+  }
+
+  public FundCollection fetchFunds(String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/finance/funds?limit=999";
+    ResponseEntity<FundCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, FundCollection.class);
+    log.debug("fetch funds: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    log.error("Failed to fetch funds: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch funds: " + response.getStatusCodeValue());
   }
 
   public JobProfile getOrCreateJobProfile(String tenant, String token, JobProfile jobProfile) {

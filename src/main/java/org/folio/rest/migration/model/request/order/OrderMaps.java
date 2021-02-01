@@ -25,6 +25,9 @@ public class OrderMaps {
   @NotNull
   private Map<String, Map<String, String>> fundCodes;
 
+  @NotNull
+  private Map<String, String> vendorRefQual;
+
   public OrderMaps() {
     super();
     acqAddresses = new HashMap<>();
@@ -33,6 +36,7 @@ public class OrderMaps {
     location = new HashMap<>();
     expenseClasses = new HashMap<>();
     fundCodes = new HashMap<>();
+    vendorRefQual = new HashMap<>();
   }
 
   public Map<String, String> getAcqAddresses() {
@@ -81,6 +85,14 @@ public class OrderMaps {
 
   public void setFundCodes(Map<String, Map<String, String>> fundCodes) {
     this.fundCodes = fundCodes;
+  }
+
+  public Map<String, String> getVendorRefQual() {
+    return vendorRefQual;
+  }
+
+  public void setVendorRefQual(Map<String, String> vendorRefQual) {
+    this.vendorRefQual = vendorRefQual;
   }
 
 }
