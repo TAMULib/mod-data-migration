@@ -79,8 +79,9 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
   private static final String ACCOUNT_NAME = "ACCOUNT_NAME";
   private static final String FUND_CODE = "FUND_CODE";
 
-  private static final String PREDICT = "PREDICT";
-  private static final String OPAC_SUPPRESSED = "OPAC_SUPPRESSED";
+  // NOTE: ignored
+  // private static final String PREDICT = "PREDICT";
+  // private static final String OPAC_SUPPRESSED = "OPAC_SUPPRESSED";
   private static final String RECEIVING_NOTE = "RECEIVING_NOTE";
   private static final String ENUMCHRON = "ENUMCHRON";
   private static final String RECEIVED_DATE = "RECEIVED_DATE";
@@ -563,11 +564,15 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                 piece.setReceivingStatus(ReceivingStatus.RECEIVED);
                 piece.setReceivedDate(Date.from(Instant.parse(receivedDate)));
 
-                note += receivingNote
-                  .replaceAll("[\\n\\t ]", StringUtils.EMPTY)
-                  .replaceAll("\\s+", StringUtils.SPACE)
-                  .replaceAll("(.*?)(MFHD<.*?>)(.*)", "$1$3")
-                  .replaceAll("(.*?)(LOC<.*?>)(.*)", "$1$3");
+                pieces.add(piece);
+
+                if (StringUtils.isNotEmpty(receivingNote)) {
+                  note += receivingNote
+                    .replaceAll("[\\n\\t ]", StringUtils.EMPTY)
+                    .replaceAll("\\s+", StringUtils.SPACE)
+                    .replaceAll("(.*?)(MFHD<.*?>)(.*)", "$1$3")
+                    .replaceAll("(.*?)(LOC<.*?>)(.*)", "$1$3");
+                }
 
                 System.out.println(
                   String.format("\t\t%s,%s,%s",
