@@ -305,7 +305,10 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
         String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
 
         Map<String, String> expenseClasses = maps.getExpenseClasses().get(job.getSchema());
-        Map<String, String> funds = maps.getFunds().get(job.getSchema());
+        Map<String, String> fundCodes = maps.getFundCodes().get(job.getSchema());
+
+        // TODO: lookup and prepare map before migration
+        Map<String, String> funds = new HashMap<>();
 
         ArrayNode poLines =  migrationService.objectMapper.createArrayNode();
         try (ResultSet resultSet = getResultSet(statement, context)) {
@@ -415,13 +418,22 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                   break;
                 }
 
-                // find fund in FOLIO by fundCode
+                if (funds.containsKey(fundCode)) {
+                  fundDistributionObject.put("fundId", funds.get(fundCode));
+                } else {
+                  log.error("{} fund code {} not found for po {}", job.getSchema(), fundCode, poId);
+                }
 
               } else if (job.getSchema().equals("MSDB")) {
 
                 String fundCodePrefix = fundCode.substring(0, 2);
-                if (funds.containsKey(fundCodePrefix)) {
-                  // find fund in FOLIO by funds.get(fundCodePrefix);
+                if (fundCodes.containsKey(fundCodePrefix)) {
+                  String mappedFunCode = funds.get(fundCodePrefix);
+                  if (funds.containsKey(mappedFunCode)) {
+                    fundDistributionObject.put("fundId", funds.get(mappedFunCode));
+                  } else {
+                    log.error("{} fund code {} not found for po {}", job.getSchema(), mappedFunCode, poId);
+                  }
                 } else {
                   log.error("{} fund code {} as {} not mapped", job.getSchema(), fundCode, fundCodePrefix);
                 }

@@ -23,7 +23,7 @@ public class OrderMaps {
   private Map<String, Map<String, String>> expenseClasses;
 
   @NotNull
-  private Map<String, Map<String, String>> funds;
+  private Map<String, Map<String, String>> fundCodes;
 
   public OrderMaps() {
     super();
@@ -32,7 +32,7 @@ public class OrderMaps {
     poLineReceiptStatus = new HashMap<>();
     location = new HashMap<>();
     expenseClasses = new HashMap<>();
-    funds = new HashMap<>();
+    fundCodes = new HashMap<>();
   }
 
   public Map<String, String> getAcqAddresses() {
@@ -75,12 +75,12 @@ public class OrderMaps {
     this.expenseClasses = expenseClasses;
   }
 
-  public Map<String, Map<String, String>> getFunds() {
-    return funds;
+  public Map<String, Map<String, String>> getFundCodes() {
+    return fundCodes;
   }
 
-  public void setFunds(Map<String, Map<String, String>> funds) {
-    this.funds = funds;
+  public void setFundCodes(Map<String, Map<String, String>> fundCodes) {
+    this.fundCodes = fundCodes;
   }
 
 }
