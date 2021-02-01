@@ -19,12 +19,20 @@ public class OrderMaps {
   @NotNull
   private Map<String, Map<String, String>> location;
 
+  @NotNull
+  private Map<String, Map<String, String>> expenseClasses;
+
+  @NotNull
+  private Map<String, Map<String, String>> funds;
+
   public OrderMaps() {
     super();
     acqAddresses = new HashMap<>();
     poLineAcqMethods = new HashMap<>();
     poLineReceiptStatus = new HashMap<>();
     location = new HashMap<>();
+    expenseClasses = new HashMap<>();
+    funds = new HashMap<>();
   }
 
   public Map<String, String> getAcqAddresses() {
@@ -57,6 +65,22 @@ public class OrderMaps {
 
   public void setLocation(Map<String, Map<String, String>> location) {
     this.location = location;
+  }
+
+  public Map<String, Map<String, String>> getExpenseClasses() {
+    return expenseClasses;
+  }
+
+  public void setExpenseClasses(Map<String, Map<String, String>> expenseClasses) {
+    this.expenseClasses = expenseClasses;
+  }
+
+  public Map<String, Map<String, String>> getFunds() {
+    return funds;
+  }
+
+  public void setFunds(Map<String, Map<String, String>> funds) {
+    this.funds = funds;
   }
 
 }

@@ -255,7 +255,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
           CompletableFuture.allOf(
             getLineItemNotes(lineItemNoteStatement, lineItemNoteContext)
               .thenAccept((notes) -> po.set("notes", notes)),
-            getPurchaseOrderLines(poLinesStatement, poLinesContext, job, maps, defaults, locationsMap, vendorReferenceId, poNumber)
+            getPurchaseOrderLines(poLinesStatement, poLinesContext, job, maps, defaults, locationsMap, vendorReferenceId)
               .thenAccept((notes) -> po.set("compositePoLines", notes))
           ).get();
 
@@ -297,12 +297,15 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
       return future;
     }
 
-    private CompletableFuture<ArrayNode> getPurchaseOrderLines(Statement statement, Map<String, Object> context, OrderJob job, OrderMaps maps, OrderDefaults defaults, Map<String, String> locationsMap, String vendorId, String poNumber) {
+    private CompletableFuture<ArrayNode> getPurchaseOrderLines(Statement statement, Map<String, Object> context, OrderJob job, OrderMaps maps, OrderDefaults defaults, Map<String, String> locationsMap, String vendorId) {
       CompletableFuture<ArrayNode> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
 
         String poId = (String) context.get(PO_ID);
         String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
+
+        Map<String, String> expenseClasses = maps.getExpenseClasses().get(job.getSchema());
+        Map<String, String> funds = maps.getFunds().get(job.getSchema());
 
         ArrayNode poLines =  migrationService.objectMapper.createArrayNode();
         try (ResultSet resultSet = getResultSet(statement, context)) {
@@ -377,30 +380,85 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
             }
 
             compositePurchaseOrderLineObject.set("cost", costObject);
-            compositePurchaseOrderLineObject.withArray("locations").add(locationObject);
+            compositePurchaseOrderLineObject.withArray("locations")
+              .add(locationObject);
 
-            ObjectNode fundDistributionObject = migrationService.objectMapper.createObjectNode();
-            fundDistributionObject.put("distributionType", "percentage");
-            fundDistributionObject.put("value", 100);
+            if (StringUtils.isNotEmpty(fundCode)) {
 
-            System.out.println(
-              String.format("\t%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
-                bibId,
-                lineItemId,
-                linePrice,
-                locationCode,
-                locationId,
-                title,
-                lineItemStatus,
-                requester,
-                vendorTitleNumber,
-                vendorRefQual,
-                vendorRefNumber,
-                accountName,
-                fundCode,
-                note
-              )
-            );
+              ObjectNode fundDistributionObject = migrationService.objectMapper.createObjectNode();
+              fundDistributionObject.put("distributionType", "percentage");
+              fundDistributionObject.put("value", 100);
+
+              // NOTE: conditioning on schema :(
+              if (job.getSchema().equals("AMDB")) {
+
+                if (fundCode.startsWith("msv")) {
+                  fundCode = fundCode.substring(3);
+                }
+
+                switch (fundCode) {
+                  case "seri": fundCode = "serials"; break;
+                  case "serial": fundCode = "serials"; break;
+                  case "qatar": fundCode = "etxtqatar"; break;
+                  case "btetext": fundCode = "etxt"; break;
+                  case "btetxt": fundCode = "etxt"; break;
+                  case "e-72997": fundCode = "barclay"; break;
+                  case "chargeback":
+                  case "access":
+                    fundDistributionObject.put("expenseClassId", expenseClasses.get(fundCode));
+                    fundCode = "etxt";
+                    break;
+                  case "costshare":
+                   // delete po ref by po id
+                  break;
+                  default:
+                  break;
+                }
+
+                // find fund in FOLIO by fundCode
+
+              } else if (job.getSchema().equals("MSDB")) {
+
+                String fundCodePrefix = fundCode.substring(0, 2);
+                if (funds.containsKey(fundCodePrefix)) {
+                  // find fund in FOLIO by funds.get(fundCodePrefix);
+                } else {
+                  log.error("{} fund code {} as {} not mapped", job.getSchema(), fundCode, fundCodePrefix);
+                }
+
+                if (expenseClasses.containsKey(fundCode)) {
+                  fundDistributionObject.put("expenseClassId", expenseClasses.get(fundCode));
+                } else {
+                  log.error("{} expense class not mapped from {}", job.getSchema(), fundCode);
+                }
+
+              }
+
+              compositePurchaseOrderLineObject.withArray("fundDistribution")
+                .add(fundDistributionObject);
+
+            } else {
+              log.error("{} no fund code for po {}", job.getSchema(), poId);
+            }
+
+            // System.out.println(
+            //   String.format("\t%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
+            //     bibId,
+            //     lineItemId,
+            //     linePrice,
+            //     locationCode,
+            //     locationId,
+            //     title,
+            //     lineItemStatus,
+            //     requester,
+            //     vendorTitleNumber,
+            //     vendorRefQual,
+            //     vendorRefNumber,
+            //     accountName,
+            //     fundCode,
+            //     note
+            //   )
+            // );
 
           }
         } catch (SQLException e) {
