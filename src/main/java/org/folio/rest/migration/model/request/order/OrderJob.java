@@ -10,13 +10,7 @@ import org.folio.rest.migration.model.request.AbstractJob;
 public class OrderJob extends AbstractJob {
 
   @NotNull
-  private String columns;
-
-  @NotNull
-  private String tables;
-
-  @NotNull
-  private String conditions;
+  private Map<String, String> pageAdditionalContext;
 
   @NotNull
   private String poNumberPrefix;
@@ -24,35 +18,27 @@ public class OrderJob extends AbstractJob {
   @NotNull
   private Boolean includeAddresses;
 
+  @NotNull
   private Map<String, String> references;
+
+  @NotNull
+  private Map<String, String> poLinesAdditionalContext;
+
+  private String defaultLocationId;
 
   public OrderJob() {
     super();
+    pageAdditionalContext = new HashMap<>();
     references = new HashMap<>();
+    poLinesAdditionalContext = new HashMap<>();
   }
 
-  public String getColumns() {
-    return columns;
+  public Map<String, String> getPageAdditionalContext() {
+    return pageAdditionalContext;
   }
 
-  public void setColumns(String columns) {
-    this.columns = columns;
-  }
-
-  public String getTables() {
-    return tables;
-  }
-
-  public void setTables(String tables) {
-    this.tables = tables;
-  }
-
-  public String getConditions() {
-    return conditions;
-  }
-
-  public void setConditions(String conditions) {
-    this.conditions = conditions;
+  public void setPageAdditionalContext(Map<String, String> pageAdditionalContext) {
+    this.pageAdditionalContext = pageAdditionalContext;
   }
 
   public String getPoNumberPrefix() {
@@ -77,6 +63,22 @@ public class OrderJob extends AbstractJob {
 
   public void setReferences(Map<String, String> references) {
     this.references = references;
+  }
+
+  public Map<String, String> getPoLinesAdditionalContext() {
+    return poLinesAdditionalContext;
+  }
+
+  public void setPoLinesAdditionalContext(Map<String, String> poLinesAdditionalContext) {
+    this.poLinesAdditionalContext = poLinesAdditionalContext;
+  }
+
+  public String getDefaultLocationId() {
+    return defaultLocationId;
+  }
+
+  public void setDefaultLocationId(String defaultLocationId) {
+    this.defaultLocationId = defaultLocationId;
   }
 
 }

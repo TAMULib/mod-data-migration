@@ -17,6 +17,9 @@ public class OrderContext extends AbstractContext {
   @NotNull
   private OrderMaps maps;
 
+  @NotNull
+  private OrderDefaults defaults;
+
   public OrderContext() {
     super();
     jobs = new ArrayList<>();
@@ -44,6 +47,14 @@ public class OrderContext extends AbstractContext {
 
   public void setMaps(OrderMaps maps) {
     this.maps = maps;
+  }
+
+  public OrderDefaults getDefaults() {
+    return defaults;
+  }
+
+  public void setDefaults(OrderDefaults defaults) {
+    this.defaults = defaults;
   }
 
 }

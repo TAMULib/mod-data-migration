@@ -42,6 +42,8 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
 
   static final String SQL = "SQL";
   static final String JOB = "JOB";
+  static final String MAPS = "MAPS";
+  static final String DEFAULTS = "DEFAULTS";
   static final String SCHEMA = "SCHEMA";
   static final String OFFSET = "OFFSET";
   static final String LIMIT = "LIMIT";

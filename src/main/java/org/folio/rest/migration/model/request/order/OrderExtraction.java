@@ -9,6 +9,12 @@ public class OrderExtraction extends AbstractExtraction {
   @NotNull
   private String lineItemNotesSql;
 
+  @NotNull
+  private String poLinesSql;
+
+  @NotNull
+  private String locationSql;
+
   public OrderExtraction() {
     super();
   }
@@ -19,6 +25,22 @@ public class OrderExtraction extends AbstractExtraction {
 
   public void setLineItemNotesSql(String lineItemNotesSql) {
     this.lineItemNotesSql = lineItemNotesSql;
+  }
+
+  public String getPoLinesSql() {
+    return poLinesSql;
+  }
+
+  public void setPoLinesSql(String poLinesSql) {
+    this.poLinesSql = poLinesSql;
+  }
+
+  public String getLocationSql() {
+    return locationSql;
+  }
+
+  public void setLocationSql(String locationSql) {
+    this.locationSql = locationSql;
   }
 
 }
