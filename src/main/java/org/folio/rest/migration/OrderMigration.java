@@ -7,13 +7,23 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.order.OrderContext;
 import org.folio.rest.migration.model.request.order.OrderJob;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
+import org.folio.rest.model.ReferenceLink;
 
 public class OrderMigration extends AbstractMigration<OrderContext> {
 
@@ -27,6 +37,10 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
   private static final String VENDOR_ID = "VENDOR_ID";
   private static final String SHIPLOC = "SHIPLOC";
   private static final String BILLLOC = "BILLLOC";
+
+  private static final String NOTE = "NOTE";
+
+  private static final String VENDOR_REFERENCE_ID = "vendorTypeId";
 
   private OrderMigration(OrderContext context, String tenant) {
     super(context, tenant);
@@ -104,9 +118,12 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
     private final Map<String, Object> partitionContext;
 
+    private final ExecutorService additionalExecutor;
+
     public OrderPartitionTask(MigrationService migrationService, Map<String, Object> partitionContext) {
       this.migrationService = migrationService;
       this.partitionContext = partitionContext;
+      this.additionalExecutor = Executors.newFixedThreadPool(1);
     }
 
     public int getIndex() {
@@ -126,10 +143,17 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
       Database voyagerSettings = context.getExtraction().getDatabase();
 
+      Map<String, Object> lineItemNoteContext = new HashMap<>();
+      lineItemNoteContext.put(SQL, context.getExtraction().getLineItemNotesSql());
+      lineItemNoteContext.put(SCHEMA, schema);
+
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings);
+
+      String vendorRLTypeId = job.getReferences().get(VENDOR_REFERENCE_ID);
 
       try (
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
+        Statement lineItemNoteStatement = threadConnections.getLineItemNoteConnection().createStatement();
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
       ) {
         while (pageResultSet.next()) {
@@ -141,10 +165,63 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
           String shipLoc = pageResultSet.getString(SHIPLOC);
           String billLoc = pageResultSet.getString(BILLLOC);
 
+          lineItemNoteContext.put(PO_ID, poId);
+
           System.out.println(String.format("%s,%s,%s,%s,%s,%s,%s,%s", index, schema, poId, poNumber, poStatus, vendorId, shipLoc, billLoc));
 
+          ObjectNode po = migrationService.objectMapper.createObjectNode();
+
+          po.put("id", UUID.randomUUID().toString());
+
+          po.put("approved", false);
+          po.put("workflowStatus", "Pending");
+          po.put("manualPo", false);
+
+          if (StringUtils.isNotEmpty(poNumber)) {
+            po.put("poNumber", StringUtils.deleteWhitespace(String.format("%s%s", job.getPoNumberPrefix(), poNumber)));
+          }
+
+          if (job.getIncludeAddresses()) {
+            if (StringUtils.isNotEmpty(poNumber)) {
+
+            } else {
+  
+            }
+  
+            if (StringUtils.isNotEmpty(poNumber)) {
+  
+            } else {
+              
+            }
+          }
+
+          po.put("orderType", "Ongoing");
+
+          Optional<ReferenceLink> vendorRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(vendorRLTypeId, vendorId);
+          if (!vendorRL.isPresent()) {
+            log.error("{} no vendor id found for vendor id {}", schema, vendorId);
+            continue;
+          }
+
+          po.put("vendor", vendorRL.get().getFolioReference());
+
+          ObjectNode ongoingObject = migrationService.objectMapper.createObjectNode();
+
+          ongoingObject.put("interval", 365);
+          ongoingObject.put("isSubscription", true);
+          ongoingObject.put("manualRenewal", true);
+
+          po.set("ongoing", ongoingObject);
+
+          CompletableFuture.allOf(
+            getLineItemNotes(lineItemNoteStatement, lineItemNoteContext)
+              .thenAccept((notes) -> po.set("notes", notes))
+          ).get();
+
+          System.out.println(po);
+
         }
-      } catch (SQLException e) {
+      } catch (SQLException | InterruptedException | ExecutionException e) {
         e.printStackTrace();
       } finally {
         threadConnections.closeAll();
@@ -159,17 +236,38 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
       return Objects.nonNull(obj) && ((OrderPartitionTask) obj).getIndex() == this.getIndex();
     }
 
+    private CompletableFuture<ArrayNode> getLineItemNotes(Statement statement, Map<String, Object> context) {
+      CompletableFuture<ArrayNode> future = new CompletableFuture<>();
+      additionalExecutor.submit(() -> {
+        ArrayNode notes =  migrationService.objectMapper.createArrayNode();
+        try (ResultSet resultSet = getResultSet(statement, context)) {
+          while (resultSet.next()) {
+            String note = resultSet.getString(NOTE);
+            notes.add(note);
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          future.complete(notes);
+        }
+      });
+      return future;
+    }
+
   }
 
   private ThreadConnections getThreadConnections(Database voyagerSettings) {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
+    threadConnections.setLineItemNoteConnection(getConnection(voyagerSettings));
     return threadConnections;
   }
 
   private class ThreadConnections {
 
     private Connection pageConnection;
+
+    private Connection lineItemNoteConnection;
 
     public ThreadConnections() {
 
@@ -183,9 +281,18 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
       this.pageConnection = pageConnection;
     }
 
+    public Connection getLineItemNoteConnection() {
+      return lineItemNoteConnection;
+    }
+
+    public void setLineItemNoteConnection(Connection lineItemNoteConnection) {
+      this.lineItemNoteConnection = lineItemNoteConnection;
+    }
+
     public void closeAll() {
       try {
         pageConnection.close();
+        lineItemNoteConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
         throw new RuntimeException(e);

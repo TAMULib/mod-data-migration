@@ -444,6 +444,11 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       return this;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+      return Objects.nonNull(obj) && ((ItemPartitionTask) obj).getIndex() == this.getIndex();
+    }
+
     private CompletableFuture<String> getItemBarcode(Statement statement, Map<String, Object> context) {
       CompletableFuture<String> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
