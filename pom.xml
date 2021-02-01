@@ -157,14 +157,14 @@
             </configuration>
           </execution>
           <execution>
-            <id>mod-finance-storage/ramls</id>
+            <id>mod-orders/ramls</id>
             <phase>generate-sources</phase>
             <goals>
               <goal>generate</goal>
             </goals>
             <configuration>
-              <sourceDirectory>${basedir}/mod-finance-storage/ramls</sourceDirectory>
-              <targetPackage>org.folio.rest.jaxrs.model.finance</targetPackage>
+              <sourceDirectory>${basedir}/mod-orders/ramls</sourceDirectory>
+              <targetPackage>org.folio.rest.jaxrs.model.orders</targetPackage>
             </configuration>
           </execution>
          </executions>

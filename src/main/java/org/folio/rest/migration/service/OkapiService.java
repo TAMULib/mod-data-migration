@@ -31,7 +31,7 @@ import org.folio.rest.jaxrs.model.dataimport.dto.RawRecordsDto;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfile;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileCollection;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileUpdateDto;
-import org.folio.rest.jaxrs.model.finance.acq_models.mod_finance.schemas.FundCollection;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_finance.schemas.FundCollection;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecords;
 import org.folio.rest.jaxrs.model.inventory.Instance;

@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,9 +20,18 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.FundDistribution;
+
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.finance.acq_models.mod_finance.schemas.FundCollection;
-import org.folio.rest.jaxrs.model.inventory.Location;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePoLine;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePurchaseOrder;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Cost;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Eresource;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Ongoing;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Physical;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.VendorDetail;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.PurchaseOrder;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.order.OrderContext;
@@ -221,26 +232,26 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
           System.out.println(String.format("%s,%s,%s,%s,%s,%s,%s,%s", index, schema, poId, poNumber, poStatus, vendorId, shipLoc, billLoc));
 
-          ObjectNode po = migrationService.objectMapper.createObjectNode();
+          CompositePurchaseOrder po = new CompositePurchaseOrder();
 
-          po.put("id", UUID.randomUUID().toString());
+          po.setId(UUID.randomUUID().toString());
 
-          po.put("approved", false);
-          po.put("workflowStatus", "Pending");
-          po.put("manualPo", false);
+          po.setApproved(false);
+          po.setWorkflowStatus(CompositePurchaseOrder.WorkflowStatus.PENDING);
+          po.setManualPo(false);
 
           if (StringUtils.isNotEmpty(poNumber)) {
-            po.put("poNumber", StringUtils.deleteWhitespace(String.format("%s%s", job.getPoNumberPrefix(), poNumber)));
+            po.setPoNumber(StringUtils.deleteWhitespace(String.format("%s%s", job.getPoNumberPrefix(), poNumber)));
           }
 
           if (job.getIncludeAddresses()) {
             String billToKey = StringUtils.isNotEmpty(billLoc) ? billLoc : defaults.getAqcAddressCode();
             String shipToKey = StringUtils.isNotEmpty(shipLoc) ? shipLoc : defaults.getAqcAddressCode();
-            po.put("billTo", maps.getAcqAddresses().get(billToKey));
-            po.put("shipTo", maps.getAcqAddresses().get(shipToKey));
+            po.setBillTo(maps.getAcqAddresses().get(billToKey));
+            po.setShipTo(maps.getAcqAddresses().get(shipToKey));
           }
 
-          po.put("orderType", "Ongoing");
+          po.setOrderType(CompositePurchaseOrder.OrderType.ONGOING);
 
           Optional<ReferenceLink> vendorRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(vendorRLTypeId, vendorId);
           if (!vendorRL.isPresent()) {
@@ -250,21 +261,20 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
           String vendorReferenceId = vendorRL.get().getFolioReference();
 
-          po.put("vendor", vendorReferenceId);
+          po.setVendor(vendorReferenceId);
 
-          ObjectNode ongoingObject = migrationService.objectMapper.createObjectNode();
+          Ongoing ongoing = new Ongoing();
+          ongoing.setInterval(365);
+          ongoing.setIsSubscription(true);
+          ongoing.setManualRenewal(true);
 
-          ongoingObject.put("interval", 365);
-          ongoingObject.put("isSubscription", true);
-          ongoingObject.put("manualRenewal", true);
-
-          po.set("ongoing", ongoingObject);
+          po.setOngoing(ongoing);
 
           CompletableFuture.allOf(
             getLineItemNotes(lineItemNoteStatement, lineItemNoteContext)
-              .thenAccept((notes) -> po.set("notes", notes)),
+              .thenAccept((notes) -> po.setNotes(notes)),
             getPurchaseOrderLines(poLinesStatement, poLinesContext, job, maps, defaults, locationsMap, fundsMap, vendorReferenceId)
-              .thenAccept((notes) -> po.set("compositePoLines", notes))
+              .thenAccept((poLines) -> po.setCompositePoLines(poLines))
           ).get();
 
           System.out.println(po);
@@ -285,10 +295,10 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
       return Objects.nonNull(obj) && ((OrderPartitionTask) obj).getIndex() == this.getIndex();
     }
 
-    private CompletableFuture<ArrayNode> getLineItemNotes(Statement statement, Map<String, Object> context) {
-      CompletableFuture<ArrayNode> future = new CompletableFuture<>();
+    private CompletableFuture<List<String>> getLineItemNotes(Statement statement, Map<String, Object> context) {
+      CompletableFuture<List<String>> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
-        ArrayNode notes =  migrationService.objectMapper.createArrayNode();
+        List<String> notes =  new ArrayList<>();
         try (ResultSet resultSet = getResultSet(statement, context)) {
           while (resultSet.next()) {
             String note = resultSet.getString(NOTE);
@@ -305,8 +315,8 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
       return future;
     }
 
-    private CompletableFuture<ArrayNode> getPurchaseOrderLines(Statement statement, Map<String, Object> context, OrderJob job, OrderMaps maps, OrderDefaults defaults, Map<String, String> locationsMap, Map<String, String> fundsMap, String vendorId) {
-      CompletableFuture<ArrayNode> future = new CompletableFuture<>();
+    private CompletableFuture<List<CompositePoLine>> getPurchaseOrderLines(Statement statement, Map<String, Object> context, OrderJob job, OrderMaps maps, OrderDefaults defaults, Map<String, String> locationsMap, Map<String, String> fundsMap, String vendorId) {
+      CompletableFuture<List<CompositePoLine>> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
 
         String poId = (String) context.get(PO_ID);
@@ -315,7 +325,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
         Map<String, String> expenseClasses = maps.getExpenseClasses().get(job.getSchema());
         Map<String, String> fundCodes = maps.getFundCodes().get(job.getSchema());
 
-        ArrayNode poLines =  migrationService.objectMapper.createArrayNode();
+        List<CompositePoLine> poLines = new ArrayList<>();
         try (ResultSet resultSet = getResultSet(statement, context)) {
           while (resultSet.next()) {
             String bibId = resultSet.getString(BIB_ID);
@@ -340,16 +350,14 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
               continue;
             }
 
-            ObjectNode compositePurchaseOrderLineObject = migrationService.objectMapper.createObjectNode();
-            ObjectNode costObject = migrationService.objectMapper.createObjectNode();
-            ObjectNode locationObject = migrationService.objectMapper.createObjectNode();
+            CompositePoLine compositePoLine = new CompositePoLine();
             String folioLocationId;
 
-            compositePurchaseOrderLineObject.put("id", UUID.randomUUID().toString());
-            compositePurchaseOrderLineObject.put("instanceId", instanceRL.get().getFolioReference());
-            compositePurchaseOrderLineObject.put("titleOrPackage", title);
-            compositePurchaseOrderLineObject.put("source", "User");
-            compositePurchaseOrderLineObject.put("acquisitionMethod", maps.getPoLineAcqMethods().get(poType));
+            compositePoLine.setId(UUID.randomUUID().toString());
+            compositePoLine.setInstanceId(instanceRL.get().getFolioReference());
+            compositePoLine.setTitleOrPackage(title);
+            compositePoLine.setSource(CompositePoLine.Source.USER);
+            compositePoLine.setAcquisitionMethod(CompositePoLine.AcquisitionMethod.fromValue(maps.getPoLineAcqMethods().get(poType)));
 
             if (StringUtils.isNotEmpty(locationId)) {
               if (locationsMap.containsKey(locationId)) {
@@ -367,35 +375,40 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
               continue;
             }
 
-            int cost = 0;
-            costObject.put("currency", "USD");
+            Location location = new Location();
+            Cost cost = new Cost();
+            cost.setCurrency("USD");
             if (StringUtils.isNotEmpty(locationCode) && !locationCode.startsWith("www")) {
-              compositePurchaseOrderLineObject.put("orderFormat", "Physical Resource");
-              compositePurchaseOrderLineObject.with("physical").put("createInventory", "None");
-              costObject.put("listUnitPrice", cost);
-              costObject.put("quantityPhysical", 1);
-              locationObject.put("locationId", folioLocationId);
-              locationObject.put("quantityPhysical", 1);
+              compositePoLine.setOrderFormat(CompositePoLine.OrderFormat.PHYSICAL_RESOURCE);
+              Physical physical = new Physical();
+              physical.setCreateInventory(Physical.CreateInventory.NONE);
+              compositePoLine.setPhysical(physical);
+              cost.setListUnitPrice(0.0);
+              cost.setQuantityPhysical(1);
+              location.setLocationId(folioLocationId);
+              location.setQuantityPhysical(1);
             } else {
-              ObjectNode eResourceObject = compositePurchaseOrderLineObject.with("eresource");
-              eResourceObject.put("createInventory", "None");
-              eResourceObject.put("accessProvider", vendorId);
-              compositePurchaseOrderLineObject.put("orderFormat", "Electronic Resource");
-              costObject.put("listUnitPriceElectronic", cost);
-              costObject.put("quantityElectronic", 1);
-              locationObject.put("locationId", folioLocationId);
-              locationObject.put("quantityElectronic", 1);
+              Eresource eresource = new Eresource();
+              eresource.setCreateInventory(Eresource.CreateInventory.NONE);
+              eresource.setAccessProvider(vendorId);
+              compositePoLine.setEresource(eresource);
+              compositePoLine.setOrderFormat(CompositePoLine.OrderFormat.ELECTRONIC_RESOURCE);
+              cost.setListUnitPriceElectronic(0.0);
+              cost.setQuantityElectronic(1);
+              location.setLocationId(folioLocationId);
+              location.setQuantityElectronic(1);
             }
 
-            compositePurchaseOrderLineObject.set("cost", costObject);
-            compositePurchaseOrderLineObject.withArray("locations")
-              .add(locationObject);
+            compositePoLine.setCost(cost);
+            List<Location> locations = new ArrayList<>();
+            locations.add(location);
+            compositePoLine.setLocations(locations);
 
             if (StringUtils.isNotEmpty(fundCode)) {
 
-              ObjectNode fundDistributionObject = migrationService.objectMapper.createObjectNode();
-              fundDistributionObject.put("distributionType", "percentage");
-              fundDistributionObject.put("value", 100);
+              FundDistribution fundDistribution = new FundDistribution();
+              fundDistribution.setDistributionType(FundDistribution.DistributionType.PERCENTAGE);
+              fundDistribution.setValue(100.0);
 
               // NOTE: conditioning on schema :(
               if (job.getSchema().equals("AMDB")) {
@@ -413,7 +426,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                   case "e-72997": fundCode = "barclay"; break;
                   case "chargeback":
                   case "access":
-                    fundDistributionObject.put("expenseClassId", expenseClasses.get(fundCode));
+                    fundDistribution.setExpenseClassId(expenseClasses.get(fundCode));
                     fundCode = "etxt";
                     break;
                   case "costshare":
@@ -424,7 +437,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                 }
 
                 if (fundsMap.containsKey(fundCode)) {
-                  fundDistributionObject.put("fundId", fundsMap.get(fundCode));
+                  fundDistribution.setFundId(fundsMap.get(fundCode));
                 } else {
                   log.error("{} fund code {} not found for po {}", job.getSchema(), fundCode, poId);
                 }
@@ -433,26 +446,26 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
                 String fundCodePrefix = fundCode.substring(0, 2);
                 if (fundCodes.containsKey(fundCodePrefix)) {
-                  String mappedFunCode = fundCodes.get(fundCodePrefix);
-                  if (fundsMap.containsKey(mappedFunCode)) {
-                    fundDistributionObject.put("fundId", fundsMap.get(mappedFunCode));
+                  String mappedFundCode = fundCodes.get(fundCodePrefix);
+                  if (fundsMap.containsKey(mappedFundCode)) {
+                    fundDistribution.setFundId(fundsMap.get(mappedFundCode));
                   } else {
-                    log.error("{} fund code {} not found for po {}", job.getSchema(), mappedFunCode, poId);
+                    log.error("{} fund code {} not found for po {}", job.getSchema(), mappedFundCode, poId);
                   }
                 } else {
                   log.error("{} fund code {} as {} not mapped", job.getSchema(), fundCode, fundCodePrefix);
                 }
 
                 if (expenseClasses.containsKey(fundCode)) {
-                  fundDistributionObject.put("expenseClassId", expenseClasses.get(fundCode));
+                  fundDistribution.setExpenseClassId(expenseClasses.get(fundCode));
                 } else {
                   log.error("{} expense class not mapped from {}", job.getSchema(), fundCode);
                 }
 
               }
 
-              compositePurchaseOrderLineObject.withArray("fundDistribution")
-                .add(fundDistributionObject);
+              List<FundDistribution> fundDistributions = new ArrayList<>();
+              compositePoLine.setFundDistribution(fundDistributions);
 
             } else {
               log.error("{} no fund code for po {}", job.getSchema(), poId);
@@ -460,21 +473,21 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
             // NOTE: conditioning on schema again :(
             if (job.getSchema().equals("AMDB")) {
-              ObjectNode vendorDetailsObject = migrationService.objectMapper.createObjectNode();
+              VendorDetail vendorDetail = new VendorDetail();
               if (StringUtils.isNotEmpty(accountName)) {
-                vendorDetailsObject.put("vendorAccount", accountName);
+                vendorDetail.setVendorAccount(accountName);
               }
-              vendorDetailsObject.put("instructions", StringUtils.SPACE);
+              vendorDetail.setInstructions(StringUtils.SPACE);
 
               if (StringUtils.isNotEmpty(vendorRefNumber)) {
-                vendorDetailsObject.put("refNumberType", maps.getVendorRefQual().get(vendorRefQual));
-                vendorDetailsObject.put("refNumber", vendorRefNumber);
+                vendorDetail.setRefNumberType(VendorDetail.RefNumberType.fromValue(maps.getVendorRefQual().get(vendorRefQual)));
+                vendorDetail.setRefNumber(vendorRefNumber);
               } else if (StringUtils.isNotEmpty(vendorTitleNumber)) {
-                vendorDetailsObject.put("refNumberType", maps.getVendorRefQual().get("VN"));
-                vendorDetailsObject.put("refNumber", vendorTitleNumber);
+                vendorDetail.setRefNumberType(VendorDetail.RefNumberType.fromValue(maps.getVendorRefQual().get("VN")));
+                vendorDetail.setRefNumber(vendorTitleNumber);
               }
 
-              compositePurchaseOrderLineObject.set("vendorDetail", vendorDetailsObject);
+              compositePoLine.setVendorDetail(vendorDetail);
             }
 
             // System.out.println(
@@ -495,6 +508,8 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
             //     note
             //   )
             // );
+
+            poLines.add(compositePoLine);
 
           }
         } catch (SQLException e) {
@@ -524,7 +539,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
         String id = rs.getString(LOCATION_ID);
         if (Objects.nonNull(id)) {
           String code = locConv.containsKey(id) ? locConv.get(id) : rs.getString(LOCATION_CODE);
-          Optional<Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
+          Optional<org.folio.rest.jaxrs.model.inventory.Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
           if (location.isPresent()) {
             idToUuid.put(id, location.get().getId());
           }

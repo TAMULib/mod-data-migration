@@ -22,6 +22,6 @@
 [submodule "mod-user-import"]
 	path = mod-user-import
 	url = https://github.com/folio-org/mod-user-import.git
-[submodule "mod-finance-storage"]
-	path = mod-finance-storage
-	url = git@github.com:folio-org/mod-finance-storage.git
+[submodule "mod-orders"]
+	path = mod-orders
+	url = git@github.com:folio-org/mod-orders.git
