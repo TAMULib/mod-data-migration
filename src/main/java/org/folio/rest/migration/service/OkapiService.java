@@ -35,6 +35,7 @@ import org.folio.rest.jaxrs.model.orders.acq_models.mod_finance.schemas.FundColl
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePurchaseOrder;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Title;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.TitleCollection;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecords;
 import org.folio.rest.jaxrs.model.inventory.Instance;
@@ -548,11 +549,11 @@ public class OkapiService {
     throw new RuntimeException("Failed to create composite purchase order: " + response.getStatusCodeValue());
   }
 
-  public Title fetchTitleByPurchaseOrderLineNumber(String tenant, String token, String poLineNumber) {
+  public TitleCollection fetchTitleByPurchaseOrderLineNumber(String tenant, String token, String poLineNumber) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/orders/titles?query=poLineNumber==" + poLineNumber;
-    ResponseEntity<Title> response = restTemplate.exchange(url, HttpMethod.GET, entity, Title.class);
+    ResponseEntity<TitleCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, TitleCollection.class);
     log.debug("fetch title: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();

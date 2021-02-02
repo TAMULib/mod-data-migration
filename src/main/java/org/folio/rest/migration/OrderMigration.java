@@ -19,24 +19,23 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
-import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.FundDistribution;
-
 import org.apache.commons.lang3.StringUtils;
+import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePoLine;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePoLine.ReceiptStatus;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePurchaseOrder;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Cost;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Details;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Eresource;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.FundDistribution;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Location;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Ongoing;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Physical;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.VendorDetail;
-import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePoLine.ReceiptStatus;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece;
-import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Title;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece.PieceFormat;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece.ReceivingStatus;
-import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Location;
-import org.folio.rest.jaxrs.model.inventory.Locations;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.TitleCollection;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.order.OrderContext;
 import org.folio.rest.migration.model.request.order.OrderDefaults;
@@ -308,15 +307,19 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
               .getCompositePoLines().forEach(cpol -> {
                 String poLineNumber = cpol.getPoLineNumber();
                 try {
-                  Title title = migrationService.okapiService.fetchTitleByPurchaseOrderLineNumber(tenant, token, poLineNumber);
-                  pieces.get(poLineNumber).forEach(piece -> {
-                    piece.setTitleId(title.getId());
-                    try {
-                      migrationService.okapiService.postPiece(tenant, token, piece);
-                    } catch (Exception e) {
-                      log.error("Failed to post piece {}\n{}", piece, e.getMessage());
-                    }
-                  });
+                  TitleCollection titles = migrationService.okapiService.fetchTitleByPurchaseOrderLineNumber(tenant, token, poLineNumber);
+                  if (titles.getTotalRecords() > 0) {
+                    pieces.get(poLineNumber).forEach(piece -> {
+                      piece.setTitleId(titles.getTitles().get(0).getId());
+                      try {
+                        migrationService.okapiService.postPiece(tenant, token, piece);
+                      } catch (Exception e) {
+                        log.error("Failed to post piece {}\n{}", piece, e.getMessage());
+                      }
+                    });
+                  } else {
+                    log.error("No title found by purchase order line number {}", poLineNumber);
+                  }
                 } catch (Exception e) {
                   log.error("Failed to fetch title by purchase order line number {}\n{}", poLineNumber, e.getMessage());
                 }
