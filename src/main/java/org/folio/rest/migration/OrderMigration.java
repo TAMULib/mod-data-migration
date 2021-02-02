@@ -32,6 +32,7 @@ import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Physical;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.VendorDetail;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePoLine.ReceiptStatus;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Title;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece.PieceFormat;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece.ReceivingStatus;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Location;
@@ -56,7 +57,8 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
   private static final String PO_ID = "PO_ID";
   private static final String PO_NUMBER = "PO_NUMBER";
-  private static final String PO_STATUS = "PO_STATUS";
+  // NOTE: ignored
+  // private static final String PO_STATUS = "PO_STATUS";
   private static final String VENDOR_ID = "VENDOR_ID";
   private static final String SHIPLOC = "SHIPLOC";
   private static final String BILLLOC = "BILLLOC";
@@ -101,8 +103,8 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
     Locations locations = migrationService.okapiService.fetchLocations(tenant, token);
 
-    Map<String, String> fundsMap = migrationService.okapiService.fetchFunds(tenant, token)
-      .getFunds().stream().collect(Collectors.toMap(fund -> fund.getCode(), fund -> fund.getId()));
+    Map<String, String> fundsMap = migrationService.okapiService.fetchFunds(tenant, token).getFunds().stream()
+      .collect(Collectors.toMap(fund -> fund.getCode().toLowerCase(), fund -> fund.getId()));
 
     Database voyagerSettings = context.getExtraction().getDatabase();
     Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
@@ -238,7 +240,8 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
           String poId = pageResultSet.getString(PO_ID);
           String poNumber = pageResultSet.getString(PO_NUMBER);
-          String poStatus = pageResultSet.getString(PO_STATUS);
+          // NOTE: ignored
+          // String poStatus = pageResultSet.getString(PO_STATUS);
           String vendorId = pageResultSet.getString(VENDOR_ID);
           String shipLoc = pageResultSet.getString(SHIPLOC);
           String billLoc = pageResultSet.getString(BILLLOC);
@@ -246,28 +249,26 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
           lineItemNoteContext.put(PO_ID, poId);
           poLinesContext.put(PO_ID, poId);
 
-          System.out.println(String.format("%s,%s,%s,%s,%s,%s,%s,%s", index, schema, poId, poNumber, poStatus, vendorId, shipLoc, billLoc));
+          final CompositePurchaseOrder compositePurchaseOrder = new CompositePurchaseOrder();
 
-          CompositePurchaseOrder po = new CompositePurchaseOrder();
+          compositePurchaseOrder.setId(UUID.randomUUID().toString());
 
-          po.setId(UUID.randomUUID().toString());
-
-          po.setApproved(false);
-          po.setWorkflowStatus(CompositePurchaseOrder.WorkflowStatus.PENDING);
-          po.setManualPo(false);
+          compositePurchaseOrder.setApproved(false);
+          compositePurchaseOrder.setWorkflowStatus(CompositePurchaseOrder.WorkflowStatus.PENDING);
+          compositePurchaseOrder.setManualPo(false);
 
           if (StringUtils.isNotEmpty(poNumber)) {
-            po.setPoNumber(StringUtils.deleteWhitespace(String.format("%s%s", job.getPoNumberPrefix(), poNumber)));
+            compositePurchaseOrder.setPoNumber(StringUtils.deleteWhitespace(String.format("%s%s", job.getPoNumberPrefix(), poNumber)));
           }
 
           if (job.getIncludeAddresses()) {
             String billToKey = StringUtils.isNotEmpty(billLoc) ? billLoc : defaults.getAqcAddressCode();
             String shipToKey = StringUtils.isNotEmpty(shipLoc) ? shipLoc : defaults.getAqcAddressCode();
-            po.setBillTo(maps.getAcqAddresses().get(billToKey));
-            po.setShipTo(maps.getAcqAddresses().get(shipToKey));
+            compositePurchaseOrder.setBillTo(maps.getAcqAddresses().get(billToKey));
+            compositePurchaseOrder.setShipTo(maps.getAcqAddresses().get(shipToKey));
           }
 
-          po.setOrderType(CompositePurchaseOrder.OrderType.ONGOING);
+          compositePurchaseOrder.setOrderType(CompositePurchaseOrder.OrderType.ONGOING);
 
           Optional<ReferenceLink> vendorRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(vendorRLTypeId, vendorId);
           if (!vendorRL.isPresent()) {
@@ -277,32 +278,52 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
           String vendorReferenceId = vendorRL.get().getFolioReference();
 
-          po.setVendor(vendorReferenceId);
+          compositePurchaseOrder.setVendor(vendorReferenceId);
 
           Ongoing ongoing = new Ongoing();
           ongoing.setInterval(365);
           ongoing.setIsSubscription(true);
           ongoing.setManualRenewal(true);
 
-          po.setOngoing(ongoing);
+          compositePurchaseOrder.setOngoing(ongoing);
 
-          List<Piece> pieces = new ArrayList<>();
+          Map<String, List<Piece>> pieces = new HashMap<>();
 
           CompletableFuture.allOf(
             getLineItemNotes(lineItemNoteStatement, lineItemNoteContext)
-              .thenAccept((notes) -> po.setNotes(notes)),
+              .thenAccept((notes) -> compositePurchaseOrder.setNotes(notes)),
             getPurchaseOrderLines(poLinesStatement, poLinesContext, piecesStatement, piecesContext, job, maps, defaults, locationsMap, fundsMap, vendorReferenceId)
               .thenAccept((poLines) -> {
                 List<CompositePoLine> cPoLines = new ArrayList<>();
                 poLines.stream().forEach(cpowp -> {
                   cPoLines.add(cpowp.getCompositePoLine());
-                  pieces.addAll(cpowp.getPieces());
+                  pieces.put(cpowp.getCompositePoLine().getPoLineNumber(), cpowp.getPieces());
                 });
-                po.setCompositePoLines(cPoLines);
+                compositePurchaseOrder.setCompositePoLines(cPoLines);
               })
           ).get();
 
-          System.out.println(po);
+          try {
+            migrationService.okapiService.postCompositePurchaseOrder(tenant, token, compositePurchaseOrder)
+              .getCompositePoLines().forEach(cpol -> {
+                String poLineNumber = cpol.getPoLineNumber();
+                try {
+                  Title title = migrationService.okapiService.fetchTitleByPurchaseOrderLineNumber(tenant, token, poLineNumber);
+                  pieces.get(poLineNumber).forEach(piece -> {
+                    piece.setTitleId(title.getId());
+                    try {
+                      migrationService.okapiService.postPiece(tenant, token, piece);
+                    } catch (Exception e) {
+                      log.error("Failed to post piece {}\n {}", piece, e.getMessage());
+                    }
+                  });
+                } catch (Exception e) {
+                  log.error("Failed to fetch title by purchase order line number {}\n{}", poLineNumber, e.getMessage());
+                }
+              });
+          } catch (Exception e) {
+            log.error("Failed to post composite purchase order {}\n {}", compositePurchaseOrder, e.getMessage());
+          }
 
         }
       } catch (SQLException | InterruptedException | ExecutionException e) {
@@ -371,23 +392,6 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
             // NOTE: ignored
             // String note = poLinesResultSet.getString(NOTE);
 
-            System.out.println(
-              String.format("\t%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
-                bibId,
-                lineItemId,
-                locationCode,
-                locationId,
-                title,
-                lineItemStatus,
-                requester,
-                vendorTitleNumber,
-                vendorRefQual,
-                vendorRefNumber,
-                accountName,
-                fundCode
-              )
-            );
-
             Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, bibId);
             if (!instanceRL.isPresent()) {
               log.error("{} no instance id found for bib id {}", job.getSchema(), bibId);
@@ -422,7 +426,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
             Location location = new Location();
             Cost cost = new Cost();
             cost.setCurrency("USD");
-            if (StringUtils.isNotEmpty(locationCode) && !locationCode.startsWith("www")) {
+            if (StringUtils.isNotEmpty(locationCode) && !locationCode.toLowerCase().startsWith("www")) {
               compositePoLine.setOrderFormat(CompositePoLine.OrderFormat.PHYSICAL_RESOURCE);
               Physical physical = new Physical();
               physical.setCreateInventory(Physical.CreateInventory.NONE);
@@ -449,6 +453,8 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
             compositePoLine.setLocations(locations);
 
             if (StringUtils.isNotEmpty(fundCode)) {
+
+              fundCode = fundCode.toLowerCase();
 
               FundDistribution fundDistribution = new FundDistribution();
               fundDistribution.setDistributionType(FundDistribution.DistributionType.PERCENTAGE);
@@ -573,14 +579,6 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                     .replaceAll("(.*?)(MFHD<.*?>)(.*)", "$1$3")
                     .replaceAll("(.*?)(LOC<.*?>)(.*)", "$1$3");
                 }
-
-                System.out.println(
-                  String.format("\t\t%s,%s,%s",
-                    note,
-                    enumchron,
-                    receivedDate
-                  )
-                );
 
               }
             } catch (SQLException e) {
