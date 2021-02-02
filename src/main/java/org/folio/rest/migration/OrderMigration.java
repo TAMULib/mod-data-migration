@@ -487,7 +487,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                     fundCode = "etxt";
                     break;
                   case "costshare":
-                   // delete po ref by po id
+                    // delete po ref by po id
                   break;
                   default:
                   break;
