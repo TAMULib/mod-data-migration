@@ -518,7 +518,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
               compositePoLine.setFundDistribution(fundDistributions);
 
             } else {
-              log.error("{} no fund code for po {}", job.getSchema(), poId);
+              log.debug("{} no fund code for po {}", job.getSchema(), poId);
             }
 
             // NOTE: conditioning on schema again :(
