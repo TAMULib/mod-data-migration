@@ -296,7 +296,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                 List<CompositePoLine> cPoLines = new ArrayList<>();
                 poLines.stream().forEach(cpowp -> {
                   cPoLines.add(cpowp.getCompositePoLine());
-                  pieces.put(cpowp.getCompositePoLine().getPoLineNumber(), cpowp.getPieces());
+                  pieces.put(cpowp.getCompositePoLine().getId(), cpowp.getPieces());
                 });
                 compositePurchaseOrder.setCompositePoLines(cPoLines);
               })
@@ -305,12 +305,12 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
           try {
             migrationService.okapiService.postCompositePurchaseOrder(tenant, token, compositePurchaseOrder)
               .getCompositePoLines().forEach(cpol -> {
-                String poLineNumber = cpol.getPoLineNumber();
+                String poLineId = cpol.getId();
                 try {
-                  if (pieces.containsKey(poLineNumber)) {
-                    TitleCollection titles = migrationService.okapiService.fetchTitleByPurchaseOrderLineNumber(tenant, token, poLineNumber);
+                  if (pieces.containsKey(poLineId)) {
+                    TitleCollection titles = migrationService.okapiService.fetchTitleByPurchaseOrderLineId(tenant, token, poLineId);
                     if (titles.getTotalRecords() > 0) {
-                      pieces.get(poLineNumber).forEach(piece -> {
+                      pieces.get(poLineId).forEach(piece -> {
                         piece.setTitleId(titles.getTitles().get(0).getId());
                         try {
                           migrationService.okapiService.postPiece(tenant, token, piece);
@@ -319,13 +319,13 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                         }
                       });
                     } else {
-                      log.error("No title found by purchase order line number {}", poLineNumber);
+                      log.error("No title found by purchase order line id {}", poLineId);
                     }
                   } else {
-                    log.error("No pieces found for purchase order line number {}", poLineNumber);
+                    log.error("No pieces found for purchase order line id {}", poLineId);
                   }
                 } catch (Exception e) {
-                  log.error("Failed to fetch title by purchase order line number {}\n{}", poLineNumber, e.getMessage());
+                  log.error("Failed to fetch title by purchase order line id {}\n{}", poLineId, e.getMessage());
                 }
               });
           } catch (Exception e) {
@@ -597,9 +597,9 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                 details.setReceivingNote(note);
                 compositePoLine.setDetails(details);
               }
-  
+
               compositePoLine.setCheckinItems(!pieces.isEmpty());
-  
+
               poLines.add(new CompositePoLineWithPieces(compositePoLine, pieces));
 
             }

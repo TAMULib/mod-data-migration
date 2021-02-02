@@ -549,10 +549,10 @@ public class OkapiService {
     throw new RuntimeException("Failed to create composite purchase order: " + response.getStatusCodeValue());
   }
 
-  public TitleCollection fetchTitleByPurchaseOrderLineNumber(String tenant, String token, String poLineNumber) {
+  public TitleCollection fetchTitleByPurchaseOrderLineId(String tenant, String token, String poLineId) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
-    String url = okapi.getUrl() + "/orders/titles?query=poLineNumber==" + poLineNumber;
+    String url = okapi.getUrl() + "/orders/titles?query=poLineId==" + poLineId;
     ResponseEntity<TitleCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, TitleCollection.class);
     log.debug("fetch title: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
