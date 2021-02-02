@@ -1559,6 +1559,246 @@ POST to http://localhost:9000/migrate/divitpatron
 }
 ```
 
+## Purchase Order Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/orders
+
+```
+{
+  "extraction": {
+    "countSql": "WITH orders AS (SELECT DISTINCT ${COLUMNS} FROM ${TABLES} WHERE ${CONDITIONS}) SELECT COUNT(*) AS total FROM orders",
+    "pageSql": "SELECT DISTINCT ${COLUMNS} FROM ${TABLES} WHERE ${CONDITIONS} ORDER BY po.po_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "lineItemNotesSql": "SELECT DISTINCT note FROM ${SCHEMA}.line_item_notes lin, ${SCHEMA}.line_item li WHERE li.line_item_id = lin.line_item_id AND li.po_id = ${PO_ID}",
+    "poLinesSql": "SELECT DISTINCT ${COLUMNS} FROM ${TABLES} WHERE ${CONDITIONS}",
+    "piecesSql": "SELECT component.predict AS predict, opac_suppressed, component.note AS receiving_note, enumchron, TO_CHAR(cast(ir.receipt_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS received_date FROM ${SCHEMA}.line_item_copy_status lics, ${SCHEMA}.issues_received ir, ${SCHEMA}.component, ${SCHEMA}.serial_issues si WHERE lics.line_item_id = ${LINE_ITEM_ID} AND ir.copy_id = lics.copy_id AND ir.component_id = component.component_id AND si.component_id = component.component_id AND si.issue_id = ir.issue_id AND component.predict = 'Y' AND opac_suppressed = 1 ORDER BY lics.line_item_id, ir.receipt_date desc",
+    "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": "oracle.jdbc.OracleDriver"
+    }
+  },
+  "preActions": [],
+  "postActions": [],
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 10,
+      "pageAdditionalContext": {
+        "COLUMNS": "po.po_id, po.po_number, po.po_status, po.vendor_id, shipto.location_code AS shiploc, billto.location_code AS billloc",
+        "TABLES": "AMDB.purchase_order po, AMDB.po_status stat, AMDB.location shipto, AMDB.location billto",
+        "CONDITIONS": "po.ship_location = shipto.location_id AND po.bill_location = billto.location_id AND po.po_status = stat.po_status AND shipto.location_code IN ('SR', 'SRDB', 'SRDBProcar', 'SRDIR', 'SRDIRM', 'SRDIRMP', 'SRDIRN', 'SRDIRO', 'SRDIRP', 'SRGFT', 'SRMSV', 'SRMSVM', 'SRMSVMO', 'SRMSVO', 'SRMSVP', 'SRMSVPM', 'SRMSVW', 'SRMSVWM', 'SRProcard', 'SRSOV', 'SRSOVM', 'SRVSVO', 'SRSUSPENDED')"
+      },
+      "poNumberPrefix": "evans",
+      "includeAddresses": true,
+      "references": {
+        "vendorTypeId": "08c7dd18-dbaf-11e9-8a34-2a2ae2dbcce4",
+        "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672"
+      },
+      "poLinesAdditionalContext": {
+        "COLUMNS": "li.bib_id AS bib_id, li.line_item_id AS line_item_id, po_type, li.line_price AS line_price, line_item_loc.location_code AS location_code, line_item_loc.location_id AS location_id, bt.title AS title, lics.line_item_status AS line_item_status, li.requestor AS requester, li.vendor_title_num AS vendor_title_num, li.vendor_ref_qual AS vendor_ref_qual, li.vendor_ref_num AS vendor_ref_num, va.account_name AS account_name, fund.fund_code AS fund_code, lin.note AS note",
+        "TABLES": "AMDB.purchase_order po, AMDB.line_item li, AMDB.line_item_copy_status lics, AMDB.location line_item_loc, AMDB.bib_text bt, AMDB.vendor_account va, AMDB.line_item_funds lif, AMDB.fund, AMDB.line_item_notes lin",
+        "CONDITIONS": "po.po_id = li.po_id AND li.bib_id = bt.bib_id AND li.line_item_id = lics.line_item_id(+) AND li.line_item_id = lin.line_item_id(+) AND lics.location_id = line_item_loc.location_id(+) AND po.account_id = va.account_id(+) AND lics.copy_id = lif.copy_id(+) AND lif.fund_id = fund.fund_id(+) AND lif.ledger_id = fund.ledger_id(+) AND po.po_id = ${PO_ID}"
+      },
+      "defaultLocationId": "480f367b-bf19-4266-b38f-4df0650c94ce"
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 2,
+      "pageAdditionalContext": {
+        "COLUMNS": "po.po_id, po.po_number, po.po_status, po.vendor_id, null as shiploc, null as billloc",
+        "TABLES": "MSDB.purchase_order po, MSDB.po_status stat, MSDB.po_type, MSDB.location shipto",
+        "CONDITIONS": "po.po_type = po_type.po_type AND po.ship_location = shipto.location_id AND shipto.location_code = 'AcqCleanUp' AND stat.po_status = po.po_status AND po_type_desc = 'Continuation' AND po_status_desc in ('Approved/Sent','Pending','Received Complete') AND po.po_number not in ('1AAA4132','1AAA4766','1AAA5586','1AAF8902')"
+      },
+      "poNumberPrefix": "msl",
+      "includeAddresses": false,
+      "references": {
+        "vendorTypeId": "b427aa0a-96f2-4338-8b3c-2ddcdca6cfe4",
+        "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8"
+      },
+      "poLinesAdditionalContext": {
+        "COLUMNS": "li.bib_id AS bib_id, li.line_item_id AS line_item_id, po_type, li.line_price AS line_price, mfhdloc.location_code AS location_code, mfhdloc.location_id AS location_id, bt.title_brief AS title, lics.line_item_status AS line_item_status, li.requestor AS requester, li.vendor_title_num AS vendor_title_num, li.vendor_ref_qual AS vendor_ref_qual, li.vendor_ref_num AS vendor_ref_num, va.account_name AS account_name, fund.fund_code AS fund_code, null AS note",
+        "TABLES": "MSDB.bib_mfhd bm, MSDB.purchase_order po, MSDB.line_item li, MSDB.line_item_copy_status lics, MSDB.location mfhdloc, MSDB.mfhd_master mm, MSDB.bib_text bt, MSDB.vendor_account va, MSDB.line_item_funds lif, MSDB.fund",
+        "CONDITIONS": "po.po_id = li.po_id AND li.bib_id = bt.bib_id AND li.line_item_id = lics.line_item_id(+) AND lics.mfhd_id = bm.mfhd_id(+) AND bm.mfhd_id = mm.mfhd_id(+) AND mm.location_id = mfhdloc.location_id(+) AND po.account_id = va.account_id(+) AND lics.copy_id = lif.copy_id(+) AND lif.fund_id = fund.fund_id(+) AND lif.ledger_id = fund.ledger_id(+) AND po.po_id = ${PO_ID}"
+      }
+    }
+  ],
+  "maps": {
+    "acqAddresses": {
+      "SerArea": "aac86edc-e379-45f9-98da-5885a11f3f72",
+      "AcqMoMO": "337e92c0-b1ae-40f4-8d59-3b2430437ea6",
+      "AcqMoNY": "d16248ac-2828-4da8-bf12-3d8e06288e8c",
+      "AcqMoPC": "24bfa0cc-c097-4000-b96a-24fa9385018a",
+      "AcqMoRU": "0dbf0624-f495-461e-a3f2-372fca09af24",
+      "AcqMoUR": "600775d6-9aea-427e-a75c-6b7a9342339e",
+      "AcqProcess": "3e7c5cc3-ac27-46e7-b81b-b838a38a3158",
+      "SR": "a84ab456-028b-4d8b-9e66-22f4591e7e4b",
+      "SRDB": "bf6934e7-40e6-4807-a262-31f84c110c64",
+      "SRDIR": "6d64426c-dff3-473a-b349-a34dda533433",
+      "SRDIRM": "f981f253-cdbf-4022-8b28-f9d00859552f",
+      "SRDIRMP": "5439ee2f-f903-437a-b49b-84c3b921c669",
+      "SRDIRN": "e4e13666-58cf-491f-8fbf-bd5aa20db019",
+      "SRDIRO": "e98b8612-80c5-482b-a680-9d05b762fbef",
+      "SRDIRP": "d247e071-a2c8-4d8e-8faa-1b59f0e1387d",
+      "SRGFT": "b4bc5bc4-f37b-4b75-a6a4-bfba38e1811d",
+      "SRMSV": "73e5ec11-eb68-480e-b66c-7384fd5feee2",
+      "SRMSVM": "ca394adf-d362-4cb7-8251-82c7a96df1ad",
+      "SRMSVMO": "0e81addc-a3ec-49d3-9973-108fc313db8b",
+      "SRMSVO": "fb5ad323-b9e1-487b-bfce-84171254b2e0",
+      "SRMSVP": "b34e29a2-bcfc-4388-baa1-36142731688b",
+      "SRMSVPM": "72d68939-4cff-4885-a623-c16aa352fa8e",
+      "SRMSVW": "8c8616c8-b45b-408d-932e-e98ab528d95e",
+      "SRMSVWM": "3e121647-2251-4286-bc25-4e6b40f911e6",
+      "SRSOV": "06e9d410-30ed-46ba-89f4-395fa519eb9c",
+      "SRSOVM": "b7bc7a7e-b026-485f-bdbf-705d70523291",
+      "SRVSVO": "5013287f-1e34-477e-bfe5-6e21298f455b",
+      "acq_admin": "68041a19-8c02-449f-ac54-7e8d35bd9575",
+      "acq_bind": "ba5359cf-bd9b-441f-b54a-46992dbcff06",
+      "west_res": "eb7252b6-b125-4ab8-9b1c-b73b15a32b25"
+    },
+    "poLineAcqMethods": {
+      "0": "Approval Plan",
+      "1": "Purchase",
+      "2": "Gift",
+      "3": "Exchange",
+      "4": "Depository",
+      "5": "Purchase"
+    },
+    "poLineReceiptStatus": {
+      "0": "Pending",
+      "1": "Fully Received",
+      "2": "Awaiting Receipt",
+      "3": "Cancelled",
+      "4": "Awaiting Receipt",
+      "5": "Pending",
+      "6": "Fully Paid",
+      "7": "Cancelled",
+      "8": "Awaiting Receipt",
+      "9": "Partially Received",
+      "10": "Fully Received"
+    },
+    "location": {
+      "AMDB": {
+        "36": "media",
+        "37": "media,res",
+        "47": "ils,borr",
+        "48": "ils,lend",
+        "132": "blcc,circ",
+        "133": "blcc,cpd",
+        "134": "blcc,stk",
+        "135": "blcc,ref",
+        "136": "blcc,res",
+        "137": "blcc,rndx",
+        "138": "www_evans",
+        "182": "media,arcv",
+        "185": "blcc,cd",
+        "188": "blcc,lan",
+        "201": "blcc,stand",
+        "210": "blcc,riMSL",
+        "217": "blcc,utc",
+        "225": "blcc,nbs",
+        "228": "blcc,audio",
+        "241": "blcc,udoc",
+        "244": "blcc,schk",
+        "264": "evans_pda",
+        "278": "learn_outreach",
+        "285": "blcc,ebc",
+        "288": "evans_withdrawn"
+      },
+      "MSDB": {
+        "5": "AbstractIndex",
+        "40": "www_msl",
+        "44": "msl_withdrawn",
+        "68": "Mobile",
+        "126": "rs,hdr",
+        "127": "rs,hdr",
+        "186": "msl_pda"
+      }
+    },
+    "expenseClasses": {
+      "AMDB": {
+        "access": "012ba30f-1d20-4afb-8029-2d64116e47f0",
+        "chargeback": "6dfe92d5-a325-482b-bc78-744bd87920b1"
+      },
+      "MSDB": {
+        "edbiores": "647c7986-a3ba-40c0-b063-adda5d3d5987",
+        "edmedcln": "be541231-61f8-49a0-bafd-8e85e7fe23d3",
+        "edmedhum": "be541231-61f8-49a0-bafd-8e85e7fe23d3",
+        "edcop": "68d3269f-0d7a-4d49-ae55-ef6381e64b16",
+        "edpharm": "68d3269f-0d7a-4d49-ae55-ef6381e64b16",
+        "edpubhlt": "8dd52aa3-2182-4fb5-80be-9328018ea6c3",
+        "edmedvet": "246f7cda-493e-46bb-83bb-1f411a921caa",
+        "ejag": "47551b78-9082-4827-93da-96e487776cf2",
+        "ejbiomed": "9507d669-99cb-4c30-b12f-73ddae3b6759",
+        "ejbiores": "9507d669-99cb-4c30-b12f-73ddae3b6759",
+        "ejmedcln": "f21e409d-03de-43c8-bb42-de42796035b1",
+        "ejmedhum": "f21e409d-03de-43c8-bb42-de42796035b1",
+        "ejmedimp": "f21e409d-03de-43c8-bb42-de42796035b1",
+        "ejmisc": "de02ccbb-afc9-4393-aa09-bbfcf531e3a4",
+        "ejnrs": "27ddca39-01d3-4cd7-91fa-4f1b034c9df3",
+        "ejnurse": "27ddca39-01d3-4cd7-91fa-4f1b034c9df3",
+        "ejpharm": "4e005163-6eb2-46a6-a7d4-b894f3d1b5ee",
+        "ejpubhlt": "2e3553cd-e7ab-4a69-8ffb-7ba564b9221c",
+        "ejmedvet": "96dc22d8-2870-464e-b059-c216eca711e1",
+        "ejvetcln": "96dc22d8-2870-464e-b059-c216eca711e1",
+        "ejvetimp": "96dc22d8-2870-464e-b059-c216eca711e1",
+        "ebbiores": "58462e8f-7391-4095-a182-840981763bd4",
+        "ebmedcln": "f1f1d1af-5078-4b90-8461-58b2a8200775",
+        "ebmedimp": "f1f1d1af-5078-4b90-8461-58b2a8200775",
+        "emmedhum": "f1f1d1af-5078-4b90-8461-58b2a8200775",
+        "ebmedhum": "f1f1d1af-5078-4b90-8461-58b2a8200775",
+        "ebnurse": "a67628e0-dd84-4fd8-9508-4041ed9e31e0",
+        "ebpharm": "aa6723ba-f4e7-436b-82da-7c12dcf5313d",
+        "ebmedvet": "c3798940-c25d-4713-a9ac-b55656924309",
+        "emmedvet": "c3798940-c25d-4713-a9ac-b55656924309",
+        "pjbiores": "85673c7d-d865-4a52-a6eb-5eea4c9ec9d0",
+        "pjmisc": "bf4299b5-ac72-4509-b921-822c3c74ce6c",
+        "pjpharm": "8d1d5118-e848-4fee-b254-676afc4d6504",
+        "pjpubhlt": "773e4920-f787-4132-a668-613de4ec764d",
+        "pjpubjlt": "773e4920-f787-4132-a668-613de4ec764d",
+        "pjmedvet": "b8fe686e-5b1d-4d45-a21a-34d9aea5e50c",
+        "pjvetcln": "b8fe686e-5b1d-4d45-a21a-34d9aea5e50c",
+        "pjvetimp": "b8fe686e-5b1d-4d45-a21a-34d9aea5e50c",
+        "pjvetmed": "b8fe686e-5b1d-4d45-a21a-34d9aea5e50c",
+        "pmbiores": "b9e6408f-5ec9-4d86-8f6a-734701bc735f",
+        "pmmedhum": "ee5ea835-8896-45f4-b4ef-c1e9812c2d24",
+        "pmpharm": "d20a2068-089f-42d0-9893-0afdcc56b27a",
+        "pmpubhlt": "788fd5a9-f4bc-4b65-813b-2eade0637f4d",
+        "pmvetimp": "59090265-788d-4e9d-919e-e5443658708c",
+        "pmmedvet": "59090265-788d-4e9d-919e-e5443658708c"
+      }
+    },
+    "fundCodes": {
+      "AMDB": {},
+      "MSDB": {
+        "ed": "msledata",
+        "eb": "mslemono",
+        "ej": "mslejournals",
+        "em": "mslemono",
+        "pj": "mslpjournals",
+        "pm": "mslpmono",
+        "ve": "mslvethist"
+      }
+    },
+    "vendorRefQual": {
+      "SNA": "Agent's unique subscription reference number",
+      "VN": "Internal vendor number",
+      "SCO": "Supplier's continuation order",
+      "SLI": "Supplier's unique order line reference number",
+      "SNP": "Library's continuation order number"
+    }
+  },
+  "defaults": {
+    "aqcAddressCode": "SR",
+    "vendorRefQual": "VN"
+  }
+}
+```
+
 ## Migration Notes
 
 The `parallelism` property designates the number of processes executed in parallel.
