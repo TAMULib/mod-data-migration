@@ -568,7 +568,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
                 if (StringUtils.isNotEmpty(receivingNote)) {
                   note = receivingNote
-                    .replaceAll("[\\n\\t ]", StringUtils.EMPTY)
+                    .replaceAll("[\\n]", StringUtils.EMPTY)
                     .replaceAll("\\s+", StringUtils.SPACE)
                     .replaceAll("(.*?)(MFHD<.*?>)(.*)", "$1$3")
                     .replaceAll("(.*?)(LOC<.*?>)(.*)", "$1$3");
@@ -576,7 +576,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
                 System.out.println(
                   String.format("\t\t%s,%s,%s",
-                    receivingNote,
+                    note,
                     enumchron,
                     receivedDate
                   )
