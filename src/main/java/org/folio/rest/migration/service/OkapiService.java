@@ -538,7 +538,7 @@ public class OkapiService {
   public CompositePurchaseOrder postCompositePurchaseOrder(String tenant, String token, CompositePurchaseOrder compositePurchaseOrder) {
     long startTime = System.nanoTime();
     HttpEntity<CompositePurchaseOrder> entity = new HttpEntity<>(compositePurchaseOrder, headers(tenant, token));
-    String url = okapi.getUrl() + "/instance-storage/instance-relationships";
+    String url = okapi.getUrl() + "/orders/composite-orders";
     ResponseEntity<CompositePurchaseOrder> response = restTemplate.exchange(url, HttpMethod.POST, entity, CompositePurchaseOrder.class);
     log.debug("create composite purchase order: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 201) {
