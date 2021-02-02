@@ -314,7 +314,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                     try {
                       migrationService.okapiService.postPiece(tenant, token, piece);
                     } catch (Exception e) {
-                      log.error("Failed to post piece {}\n {}", piece, e.getMessage());
+                      log.error("Failed to post piece {}\n{}", piece, e.getMessage());
                     }
                   });
                 } catch (Exception e) {
@@ -322,7 +322,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                 }
               });
           } catch (Exception e) {
-            log.error("Failed to post composite purchase order {}\n {}", compositePurchaseOrder, e.getMessage());
+            log.error("Failed to post composite purchase order {}\n{}", compositePurchaseOrder, e.getMessage());
           }
 
         }
