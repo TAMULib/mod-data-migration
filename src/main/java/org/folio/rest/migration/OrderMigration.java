@@ -567,7 +567,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                 pieces.add(piece);
 
                 if (StringUtils.isNotEmpty(receivingNote)) {
-                  note += receivingNote
+                  note = receivingNote
                     .replaceAll("[\\n\\t ]", StringUtils.EMPTY)
                     .replaceAll("\\s+", StringUtils.SPACE)
                     .replaceAll("(.*?)(MFHD<.*?>)(.*)", "$1$3")
