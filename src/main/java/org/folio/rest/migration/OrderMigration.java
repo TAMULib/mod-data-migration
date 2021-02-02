@@ -307,18 +307,22 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
               .getCompositePoLines().forEach(cpol -> {
                 String poLineNumber = cpol.getPoLineNumber();
                 try {
-                  TitleCollection titles = migrationService.okapiService.fetchTitleByPurchaseOrderLineNumber(tenant, token, poLineNumber);
-                  if (titles.getTotalRecords() > 0) {
-                    pieces.get(poLineNumber).forEach(piece -> {
-                      piece.setTitleId(titles.getTitles().get(0).getId());
-                      try {
-                        migrationService.okapiService.postPiece(tenant, token, piece);
-                      } catch (Exception e) {
-                        log.error("Failed to post piece {}\n{}", piece, e.getMessage());
-                      }
-                    });
+                  if (pieces.containsKey(poLineNumber)) {
+                    TitleCollection titles = migrationService.okapiService.fetchTitleByPurchaseOrderLineNumber(tenant, token, poLineNumber);
+                    if (titles.getTotalRecords() > 0) {
+                      pieces.get(poLineNumber).forEach(piece -> {
+                        piece.setTitleId(titles.getTitles().get(0).getId());
+                        try {
+                          migrationService.okapiService.postPiece(tenant, token, piece);
+                        } catch (Exception e) {
+                          log.error("Failed to post piece {}\n{}", piece, e.getMessage());
+                        }
+                      });
+                    } else {
+                      log.error("No title found by purchase order line number {}", poLineNumber);
+                    }
                   } else {
-                    log.error("No title found by purchase order line number {}", poLineNumber);
+                    log.error("No pieces found for purchase order line number {}", poLineNumber);
                   }
                 } catch (Exception e) {
                   log.error("Failed to fetch title by purchase order line number {}\n{}", poLineNumber, e.getMessage());
