@@ -16,6 +16,7 @@ COPY ./mod-circulation ./mod-circulation
 COPY ./mod-feesfines ./mod-feesfines
 COPY ./mod-notes ./mod-notes
 COPY ./mod-user-import ./mod-user-import
+COPY ./mod-orders ./mod-orders
 
 # build
 RUN mvn package
