@@ -4,6 +4,8 @@ public class OrderDefaults {
 
   private String aqcAddressCode;
 
+  private String vendorRefQual;
+
   public OrderDefaults() {
 
   }
@@ -14,6 +16,14 @@ public class OrderDefaults {
 
   public void setAqcAddressCode(String aqcAddressCode) {
     this.aqcAddressCode = aqcAddressCode;
+  }
+
+  public String getVendorRefQual() {
+    return vendorRefQual;
+  }
+
+  public void setVendorRefQual(String vendorRefQual) {
+    this.vendorRefQual = vendorRefQual;
   }
 
 }

@@ -527,7 +527,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                 vendorDetail.setRefNumberType(VendorDetail.RefNumberType.fromValue(maps.getVendorRefQual().get(vendorRefQual)));
                 vendorDetail.setRefNumber(vendorRefNumber);
               } else if (StringUtils.isNotEmpty(vendorTitleNumber)) {
-                vendorDetail.setRefNumberType(VendorDetail.RefNumberType.fromValue(maps.getVendorRefQual().get("VN")));
+                vendorDetail.setRefNumberType(VendorDetail.RefNumberType.fromValue(maps.getVendorRefQual().get(defaults.getVendorRefQual())));
                 vendorDetail.setRefNumber(vendorTitleNumber);
               }
 
