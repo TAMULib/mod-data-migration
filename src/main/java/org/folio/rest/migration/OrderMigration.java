@@ -548,11 +548,11 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
             try (ResultSet piecesResultSet = getResultSet(piecesStatement, piecesContext)) {
               while (piecesResultSet.next()) {
                 // NOTE: ignored
-                // String predict = poLinesResultSet.getString(PREDICT);
-                // String opacSuppressed = poLinesResultSet.getString(OPAC_SUPPRESSED);
-                String receivingNote = poLinesResultSet.getString(RECEIVING_NOTE);
-                String enumchron = poLinesResultSet.getString(ENUMCHRON);
-                String receivedDate = poLinesResultSet.getString(RECEIVED_DATE);
+                // String predict = piecesResultSet.getString(PREDICT);
+                // String opacSuppressed = piecesResultSet.getString(OPAC_SUPPRESSED);
+                String receivingNote = piecesResultSet.getString(RECEIVING_NOTE);
+                String enumchron = piecesResultSet.getString(ENUMCHRON);
+                String receivedDate = piecesResultSet.getString(RECEIVED_DATE);
 
                 Piece piece = new Piece();
 
