@@ -584,19 +584,18 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
             } catch (SQLException e) {
               e.printStackTrace();
             } finally {
-              future.complete(poLines);
+
+              if (StringUtils.isNotEmpty(note)) {
+                Details details = new Details();
+                details.setReceivingNote(note);
+                compositePoLine.setDetails(details);
+              }
+  
+              compositePoLine.setCheckinItems(!pieces.isEmpty());
+  
+              poLines.add(new CompositePoLineWithPieces(compositePoLine, pieces));
+
             }
-
-            if (StringUtils.isNotEmpty(note)) {
-              Details details = new Details();
-              details.setReceivingNote(note);
-              compositePoLine.setDetails(details);
-            }
-
-            compositePoLine.setCheckinItems(!pieces.isEmpty());
-
-            poLines.add(new CompositePoLineWithPieces(compositePoLine, pieces));
-
           }
         } catch (SQLException e) {
           e.printStackTrace();
