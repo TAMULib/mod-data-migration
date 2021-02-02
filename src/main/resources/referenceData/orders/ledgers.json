@@ -1,0 +1,92 @@
+{
+  "path": "/finance/ledgers",
+  "dependencies": [
+    "fiscalYears"
+  ],
+  "data": [
+    {
+      "name": "FY2021 - Evans",
+      "fiscalYearOneId": "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+      "ledgerStatus": "Active",
+      "code": "Evans",
+      "id": "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "restrictEncumbrance": true,
+      "description": "Evans FY2021",
+      "restrictExpenditures": true,
+      "acqUnitIds": [],
+      "netTransfers": 0
+    },
+    {
+      "restrictExpenditures": true,
+      "description": "MSL FY2021 Ledger",
+      "acqUnitIds": [],
+      "netTransfers": 0,
+      "id": "120e80d2-3f8f-45d9-bdd9-1533da93f607",
+      "restrictEncumbrance": true,
+      "code": "msl",
+      "name": "FY2021 - MSL",
+      "fiscalYearOneId": "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+      "ledgerStatus": "Active"
+    },
+    {
+      "fiscalYearOneId": "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+      "ledgerStatus": "Active",
+      "name": "FY2021 - One Time",
+      "code": "onetime",
+      "restrictEncumbrance": true,
+      "id": "a1c953e8-1b27-40f3-9e13-d769fa015b73",
+      "acqUnitIds": [],
+      "netTransfers": 0,
+      "description": "OneTime FY2021",
+      "restrictExpenditures": true
+    },
+    {
+      "id": "5c0137bf-0882-449d-a299-d145aaff3085",
+      "restrictEncumbrance": true,
+      "description": "Parent FY2021 Ledger",
+      "restrictExpenditures": true,
+      "netTransfers": 0,
+      "acqUnitIds": [],
+      "name": "FY2021 Parent",
+      "ledgerStatus": "Active",
+      "fiscalYearOneId": "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+      "code": "parent"
+    },
+    {
+      "name": "z21Cushing",
+      "fiscalYearOneId": "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
+      "ledgerStatus": "Inactive",
+      "code": "z21cushing",
+      "id": "421f8806-47f3-4418-a2a2-1d309733305e",
+      "restrictEncumbrance": true,
+      "restrictExpenditures": true,
+      "description": "zFY21 Cushing short yr ledger for testing Honeysuckle Folio",
+      "acqUnitIds": [],
+      "netTransfers": 0
+    },
+    {
+      "acqUnitIds": [],
+      "netTransfers": 0,
+      "restrictExpenditures": true,
+      "description": "zFY21 testing ledger for Monographic purchases",
+      "restrictEncumbrance": true,
+      "id": "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "code": "z21onetime",
+      "fiscalYearOneId": "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
+      "ledgerStatus": "Inactive",
+      "name": "z21OneTime"
+    },
+    {
+      "restrictExpenditures": true,
+      "description": "zRecurring FY21 ",
+      "acqUnitIds": [],
+      "netTransfers": 0,
+      "id": "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "restrictEncumbrance": true,
+      "code": "z21recurring",
+      "name": "z21Recurring",
+      "fiscalYearOneId": "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
+      "ledgerStatus": "Inactive"
+    }
+  ]
+}

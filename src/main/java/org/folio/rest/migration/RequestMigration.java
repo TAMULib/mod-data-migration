@@ -20,7 +20,6 @@ import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Servicepoint;
 import org.folio.rest.jaxrs.model.inventory.Servicepoints;
-import org.folio.rest.jaxrs.model.inventory.Status;
 import org.folio.rest.jaxrs.model.inventory.Status.Name;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.request.RequestContext;

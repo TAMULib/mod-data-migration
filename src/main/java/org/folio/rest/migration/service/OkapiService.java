@@ -31,6 +31,11 @@ import org.folio.rest.jaxrs.model.dataimport.dto.RawRecordsDto;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfile;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileCollection;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileUpdateDto;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_finance.schemas.FundCollection;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePurchaseOrder;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Title;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.TitleCollection;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecords;
 import org.folio.rest.jaxrs.model.inventory.Instance;
@@ -279,6 +284,19 @@ public class OkapiService {
     throw new RuntimeException("Failed to fetch material types: " + response.getStatusCodeValue());
   }
 
+  public FundCollection fetchFunds(String tenant, String token) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/finance/funds?limit=999";
+    ResponseEntity<FundCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, FundCollection.class);
+    log.debug("fetch funds: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    log.error("Failed to fetch funds: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch funds: " + response.getStatusCodeValue());
+  }
+
   public JobProfile getOrCreateJobProfile(String tenant, String token, JobProfile jobProfile) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
@@ -516,6 +534,45 @@ public class OkapiService {
     }
     log.error("Failed to import users: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to import users: " + response.getStatusCodeValue());
+  }
+
+  public CompositePurchaseOrder postCompositePurchaseOrder(String tenant, String token, CompositePurchaseOrder compositePurchaseOrder) {
+    long startTime = System.nanoTime();
+    HttpEntity<CompositePurchaseOrder> entity = new HttpEntity<>(compositePurchaseOrder, headers(tenant, token));
+    String url = okapi.getUrl() + "/orders/composite-orders";
+    ResponseEntity<CompositePurchaseOrder> response = restTemplate.exchange(url, HttpMethod.POST, entity, CompositePurchaseOrder.class);
+    log.debug("create composite purchase order: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 201) {
+      return response.getBody();
+    }
+    log.error("Failed to create composite purchase order: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create composite purchase order: " + response.getStatusCodeValue());
+  }
+
+  public TitleCollection fetchTitleByPurchaseOrderLineId(String tenant, String token, String poLineId) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/orders/titles?query=poLineId==" + poLineId;
+    ResponseEntity<TitleCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, TitleCollection.class);
+    log.debug("fetch title: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    log.error("Failed to fetch title: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch title: " + response.getStatusCodeValue());
+  }
+
+  public Piece postPiece(String tenant, String token, Piece piece) {
+    long startTime = System.nanoTime();
+    HttpEntity<Piece> entity = new HttpEntity<>(piece, headers(tenant, token));
+    String url = okapi.getUrl() + "/orders/pieces";
+    ResponseEntity<Piece> response = restTemplate.exchange(url, HttpMethod.POST, entity, Piece.class);
+    log.debug("create piece: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 201) {
+      return response.getBody();
+    }
+    log.error("Failed to create piece: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to create piece: " + response.getStatusCodeValue());
   }
 
   public MappingParameters getMappingParamaters(String tenant, String token) {

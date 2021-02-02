@@ -1,0 +1,221 @@
+{
+  "path": "/finance/groups",
+  "dependencies": [],
+  "data": [
+    {
+      "name": "Cushing Endowment",
+      "acqUnitIds": [],
+      "description": "For Cushing Endowment",
+      "id": "7e946263-5ab1-43a7-afc5-462976e134b5",
+      "code": "cushendowment",
+      "status": "Active"
+    },
+    {
+      "description": "For Cushing Allocated",
+      "code": "Cushing Allocated",
+      "id": "96d9827a-ca78-489b-b38f-968a394a76f9",
+      "status": "Active",
+      "name": "Cushing Allocated",
+      "acqUnitIds": []
+    },
+    {
+      "id": "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2",
+      "code": "cushing restricted",
+      "status": "Active",
+      "name": "Cushing Restricted",
+      "acqUnitIds": []
+    },
+    {
+      "status": "Active",
+      "id": "f36308fe-718c-4664-8792-1688a2188b1c",
+      "code": "ebook",
+      "description": "For Ebooks only",
+      "acqUnitIds": [],
+      "name": "zEbooks"
+    },
+    {
+      "acqUnitIds": [],
+      "name": "zLibrary Proposals",
+      "status": "Active",
+      "code": "libraryproposals",
+      "id": "54963b77-8cbb-4c82-a30c-01a86dd7898d",
+      "description": "For Library Proposals Purchases only"
+    },
+    {
+      "code": "monographs",
+      "id": "95406f00-ad4a-411c-9b52-ce179b742d31",
+      "status": "Active",
+      "name": "Monographs",
+      "acqUnitIds": []
+    },
+    {
+      "acqUnitIds": [],
+      "name": "Mono Restricted",
+      "status": "Active",
+      "id": "8cac000d-8364-44be-9e9b-3b1d137672c8",
+      "code": "monorest"
+    },
+    {
+      "name": "MSL Electronic Resources",
+      "acqUnitIds": [],
+      "id": "9602260b-1a96-444b-b694-d1fabec70ed6",
+      "code": "msler",
+      "status": "Active"
+    },
+    {
+      "code": "mslprint",
+      "id": "60531c4d-5f80-47e6-8d49-423124d9d19c",
+      "status": "Active",
+      "name": "MSL Print resources",
+      "acqUnitIds": []
+    },
+    {
+      "name": "One Time",
+      "acqUnitIds": [],
+      "description": "For Monographic one-time purchases",
+      "code": "onetime",
+      "id": "520b1673-a56c-41ec-8d19-70b724b1c556",
+      "status": "Active"
+    },
+    {
+      "name": "zPrint Books",
+      "acqUnitIds": [],
+      "id": "2b41de37-1b02-4673-8a9e-f2b538306122",
+      "code": "printbooks",
+      "description": "For Print Books only",
+      "status": "Active"
+    },
+    {
+      "status": "Active",
+      "id": "8d414b94-14e8-4323-bcdc-1ac6ace09404",
+      "code": "recurring",
+      "acqUnitIds": [],
+      "name": "Recurring Evans"
+    },
+    {
+      "acqUnitIds": [],
+      "name": "Recurring Etxt Others",
+      "status": "Active",
+      "description": "For Recurring Restricted & Other Etxt Fund Purchases",
+      "code": "reo",
+      "id": "9259b254-17dd-46cb-82c4-03aaf19d8972"
+    },
+    {
+      "name": "zReplacement",
+      "acqUnitIds": [],
+      "description": "For replacement purchases only",
+      "id": "42c6c713-ae77-464a-b6f5-7d3344511896",
+      "code": "replacement",
+      "status": "Active"
+    },
+    {
+      "name": "zRestricted Funds",
+      "acqUnitIds": [],
+      "description": "For Restricted Fund Purchases only",
+      "code": "restrictedfunds",
+      "id": "454250ae-6490-41a0-a12b-4311060e2fb0",
+      "status": "Active"
+    },
+    {
+      "status": "Active",
+      "description": "For Shipping charges only",
+      "code": "shiping",
+      "id": "551b6a50-be0d-4546-a09c-401698e27536",
+      "acqUnitIds": [],
+      "name": "zShipping"
+    },
+    {
+      "status": "Active",
+      "code": "streamingvideo",
+      "id": "396db855-12c8-478c-86a4-ce79eb677e57",
+      "description": "For Streaming Video Purchases",
+      "acqUnitIds": [],
+      "name": "zStreaming Video"
+    },
+    {
+      "acqUnitIds": [],
+      "name": "TAMU test",
+      "status": "Active",
+      "id": "69b7974e-d010-4623-b2ac-1be720efa692",
+      "code": "tamutest"
+    },
+    {
+      "acqUnitIds": [],
+      "name": "zUser Generated",
+      "status": "Active",
+      "description": "For User Generated Purchases",
+      "code": "usergenerated",
+      "id": "3aad39dd-a06a-4a0b-83ca-09239f15afbf"
+    },
+    {
+      "acqUnitIds": [],
+      "name": "zCushing",
+      "status": "Active",
+      "code": "zcushing",
+      "id": "02970c0f-d143-41de-8766-45c89089d690",
+      "description": "zFor Cushing Allocated Purchases"
+    },
+    {
+      "description": "zFor Cushing Restricted Funds.",
+      "code": "zcushrestricted",
+      "id": "03a1baaa-a656-4df8-a5e9-3025130ec76d",
+      "status": "Active",
+      "name": "zCushing Restricted",
+      "acqUnitIds": []
+    },
+    {
+      "description": "zFor Monographic Purchases",
+      "code": "zmonographic",
+      "id": "9123c165-b4f0-4c0b-bbf3-6d6ef1de1908",
+      "status": "Active",
+      "name": "zMonographic",
+      "acqUnitIds": []
+    },
+    {
+      "status": "Active",
+      "description": "zFor On-Going Purchases",
+      "id": "5ef9cc94-d332-4a4f-a51d-a85e53ed8529",
+      "code": "zrecurring",
+      "acqUnitIds": [],
+      "name": "zRecurring"
+    },
+    {
+      "id": "3e54df19-46ef-4455-8cab-e520c77795dc",
+      "code": "zrecurringrest",
+      "status": "Inactive",
+      "name": "zRecurring Restricted Etxt",
+      "acqUnitIds": []
+    },
+    {
+      "name": "zRecurring Restricted",
+      "acqUnitIds": [],
+      "code": "zrecurringrestricted",
+      "id": "307ef62f-df35-4a07-b4dd-12151b685d68",
+      "description": "zFor Recurring Restricted Funds",
+      "status": "Active"
+    },
+    {
+      "acqUnitIds": [],
+      "name": "zMonographic Restricted",
+      "status": "Active",
+      "code": "zrestricted mono",
+      "id": "e43412e0-92c3-41fd-b5bd-bd9f2b225ffa",
+      "description": "zFor Restricted Monographic Funds"
+    },
+    {
+      "description": "Testing",
+      "code": "zTest",
+      "id": "9bde5b17-d962-4726-9d0d-cb07c04f48e6",
+      "status": "Active",
+      "name": "zTest",
+      "acqUnitIds": []
+    },
+    {
+      "status": "Active",
+      "code": "zzrecurring",
+      "id": "a0b2bc88-dbbe-48d7-89da-d1df8057c0ba",
+      "acqUnitIds": [],
+      "name": "zRecurring - Evans"
+    }
+  ]
+}
