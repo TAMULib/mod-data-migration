@@ -62,13 +62,13 @@ select '/groups/' || id from diku_mod_users.groups;
 select '/addresstypes/' || id from diku_mod_users.addresstype;
 select '/owners/' || id from diku_mod_feesfines.owners;
 select '/configurations/entries/' || id from diku_mod_configuration.config_data;
+select '/finance-storage/expense-classes/' || id from diku_mod_finance_storage.expense_class;
 select '/finance/budgets/' || id from diku_mod_finance_storage.budget;
 select '/finance/funds/' || id from diku_mod_finance_storage.fund;
-select '/finance/groups/' || id from diku_mod_finance_storage.group;
+select '/finance/groups/' || id from diku_mod_finance_storage.groups;
 select '/finance/ledgers/' || id from diku_mod_finance_storage.ledger;
 select '/finance/fiscal-years/' || id from diku_mod_finance_storage.fiscal_year;
 select '/finance/fund-types/' || id from diku_mod_finance_storage.fund_type;
-select '/finance-storage/expense-classes/' || id from diku_mod_finance_storage.expense_class;
 EOM
 
 # iterate select statements
