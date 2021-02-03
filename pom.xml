@@ -212,7 +212,6 @@
         <excludes>
           <exclude>application.yml</exclude>
           <exclude>descriptors/**</exclude>
-          <exclude>descriptors/**</exclude>
         </excludes>
       </resource>
       <resource>
