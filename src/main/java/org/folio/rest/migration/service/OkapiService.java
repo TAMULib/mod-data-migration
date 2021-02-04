@@ -164,7 +164,7 @@ public class OkapiService {
     throw new RuntimeException("Failed to fetch service points: " + response.getStatusCodeValue());
   }
 
-  public Userdata lookupUser(String tenant, String token, String username) {
+  public Userdata lookupUserByUsername(String tenant, String token, String username) {
     long startTime = System.nanoTime();
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/users?query=username==" + username;
@@ -177,6 +177,19 @@ public class OkapiService {
       }
       log.error("User with username " + username + " not found");
       throw new RuntimeException("User with username " + username + " not found");
+    }
+    log.error("Failed to lookup user: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to lookup user: " + response.getStatusCodeValue());
+  }
+
+  public Userdata lookupUserById(String tenant, String token, String id) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/users/" + id;
+    ResponseEntity<Userdata> response = restTemplate.exchange(url, HttpMethod.GET, entity, Userdata.class);
+    log.debug("lookup user: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
     }
     log.error("Failed to lookup user: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to lookup user: " + response.getStatusCodeValue());

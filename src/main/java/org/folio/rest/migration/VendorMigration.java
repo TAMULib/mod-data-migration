@@ -147,7 +147,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
       log.info("{} count: {}", job.getSchema(), count);
 
-      Userdata user = migrationService.okapiService.lookupUser(tenant, token, job.getUser());
+      Userdata user = migrationService.okapiService.lookupUserByUsername(tenant, token, job.getUser());
 
       int partitions = job.getPartitions();
       int limit = (int) Math.ceil((double) count / (double) partitions);

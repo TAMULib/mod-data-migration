@@ -15,13 +15,13 @@ import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
 import org.folio.rest.jaxrs.model.circulation.Loan;
 import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Servicepoint;
 import org.folio.rest.jaxrs.model.inventory.Servicepoints;
+import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.loan.LoanContext;
 import org.folio.rest.migration.model.request.loan.LoanJob;
@@ -50,7 +50,6 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
   private static final String USER_REFERENCE_ID = "userTypeId";
   private static final String USER_TO_EXTERNAL_REFERENCE_ID = "userToExternalTypeId";
-  private static final String USER_TO_BARCODE_REFERENCE_ID = "userToBarcodeTypeId";
 
   private LoanMigration(LoanContext context, String tenant) {
     super(context, tenant);
@@ -157,7 +156,6 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
       String userRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
       String userToExternalRLTypeId = job.getReferences().get(USER_TO_EXTERNAL_REFERENCE_ID);
-      String userToBarcodeRLTypeId = job.getReferences().get(USER_TO_BARCODE_REFERENCE_ID);
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings);
 
@@ -215,38 +213,13 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
           String referenceId = userReferenceLinks.get(0).getFolioReference().toString();
 
-          String patronBarcode = null;
-
-          Optional<ReferenceLink> userToBarcodeRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(userToBarcodeRLTypeId, referenceId);
-
-          if (userToBarcodeRL.isPresent()) {
-            Optional<ReferenceLink> userBarcodeRL = migrationService.referenceLinkRepo.findById(userToBarcodeRL.get().getFolioReference());
-            if (userBarcodeRL.isPresent()) {
-              patronBarcode = userBarcodeRL.get().getExternalReference();
-            } else {
-              log.error("{} no patron to barcode found for patron id {} and folio reference {}", schema, patronId, userToBarcodeRL.get().getFolioReference());
-              continue;
-            }
-          } else {
-
-            if (externalSystemId.startsWith(job.getSchema())) {
-              for (Map.Entry<String, String> entry : job.getAlternativeExternalReferenceTypeIds().entrySet()) {
-                String altSchema = entry.getKey();
-                String altExternalReferenceTypeId = entry.getValue();
-                Optional<ReferenceLink> altExternalReferenceLink = migrationService.referenceLinkRepo.findAllByFolioReferenceAndTypeId(referenceId, altExternalReferenceTypeId);
-                if (altExternalReferenceLink.isPresent() && !altExternalReferenceLink.get().getExternalReference().startsWith(altSchema)) {
-                  patronBarcode = altExternalReferenceLink.get().getExternalReference();
-                  log.debug("{} patron with id {} using external system id {} from external reference {}", schema, patronId, patronBarcode, altExternalReferenceLink.get().getType().getName());
-                  break;
-                }
-              }
-            }
-
-            if (StringUtils.isEmpty(patronBarcode)) {
-              log.debug("{} patron with id {} does not have a barcode, using external system id {}", schema, patronId, externalSystemId);
-              patronBarcode = externalSystemId;
-            }
-
+          Userdata user;
+          try {
+            user = migrationService.okapiService.lookupUserById(tenant, token, referenceId);
+          } catch (Exception e) {
+            log.error("{} failed to find user with id {}", schema, referenceId);
+            log.error(e.getMessage());
+            continue;
           }
 
           String locationCode = locationsCodeMap.get(chargeLocation);
@@ -260,7 +233,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
           CheckOutByBarcodeRequest checkoutRequest = new CheckOutByBarcodeRequest();
           checkoutRequest.setItemBarcode(itemBarcode.toLowerCase());
-          checkoutRequest.setUserBarcode(patronBarcode.toLowerCase());
+          checkoutRequest.setUserBarcode(user.getBarcode());
           checkoutRequest.setServicePointId(servicePoint.get().getId());
 
           try {
@@ -279,7 +252,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
               log.error(e.getMessage());
             }
           } catch (Exception e) {
-            log.error("{} failed to checkout item with barcode {} to user with barcode {} at service point {}", schema, itemBarcode, patronBarcode, servicePoint.get().getName());
+            log.error("{} failed to checkout item with barcode {} to user with barcode {} at service point {}", schema, itemBarcode, user.getBarcode(), servicePoint.get().getName());
             log.error(e.getMessage());
           }
         }
