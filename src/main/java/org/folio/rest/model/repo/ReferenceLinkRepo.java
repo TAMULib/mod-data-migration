@@ -19,7 +19,7 @@ public interface ReferenceLinkRepo extends JpaRepository<ReferenceLink, String>,
   public Optional<ReferenceLink> findByTypeIdAndExternalReference(@Param("typeId") String typeId,
       @Param("externalReference") String externalReference);
 
-public List<ReferenceLink> findByTypeIdAndExternalReferenceIn(@Param("typeId") String typeId,
+  public List<ReferenceLink> findByTypeIdAndExternalReferenceIn(@Param("typeId") String typeId,
       @Param("externalReferences") List<String> externalReferences);
 
   public List<ReferenceLink> findAllByTypeNameAndExternalReferenceIn(@Param("typeName") String typeName,
@@ -27,11 +27,20 @@ public List<ReferenceLink> findByTypeIdAndExternalReferenceIn(@Param("typeId") S
 
   public Long countByExternalReference(@Param("externalReference") String externalReference);
 
+  public Long countByExternalReferenceAndTypeIdIn(@Param("externalReference") String externalReference,
+        @Param("typeIds") List<String> typeIds);
+
   public Page<ReferenceLink> findAllByTypeId(@Param("typeId") String typeId, Pageable page);
 
   public Page<ReferenceLink> findAllByTypeName(@Param("typeName") String typeName, Pageable page);
 
   public List<ReferenceLink> findAllByExternalReference(@Param("externalReference") String externalReference);
+
+  public List<ReferenceLink> findAllByExternalReferenceAndTypeId(@Param("externalReference") String externalReference,
+      @Param("typeId") String typeId);
+
+  public List<ReferenceLink> findAllByExternalReferenceAndTypeIdIn(@Param("externalReference") String externalReference,
+      @Param("typeIds") List<String> typeIds);
 
   public List<ReferenceLink> findAllByFolioReference(@Param("folioReference") String folioReference);
 
