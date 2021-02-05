@@ -519,6 +519,10 @@ POST to http://localhost:9000/migrate/users
       "noteWhereClause": "note IS NOT NULL",
       "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
       "skipDuplicates": false,
+      "userReferenceTypeIds": [
+        "fb86289b-001d-4a6f-8adf-5076b162a6c7",
+        "7a244692-dc96-48f1-9bf8-39578b8fee45"
+      ],
       "barcodeReferenceTypeIds": [
         "f2eca16b-a6bd-4688-8424-ef5d47e06750",
         "9c5efc8b-4e97-4631-ad6f-6a68d9eb48de"
@@ -536,6 +540,10 @@ POST to http://localhost:9000/migrate/users
       "noteWhereClause": "note IS NOT NULL AND lower(note) NOT LIKE '%patron has graduated%'",
       "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
       "skipDuplicates": true,
+      "userReferenceTypeIds": [
+        "fb86289b-001d-4a6f-8adf-5076b162a6c7",
+        "7a244692-dc96-48f1-9bf8-39578b8fee45"
+      ],
       "barcodeReferenceTypeIds": [
         "f2eca16b-a6bd-4688-8424-ef5d47e06750",
         "9c5efc8b-4e97-4631-ad6f-6a68d9eb48de"
@@ -1241,6 +1249,10 @@ POST to http://localhost:9000/migrate/loans
         "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
         "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
       },
+      "userReferenceTypeIds": [
+        "fb86289b-001d-4a6f-8adf-5076b162a6c7",
+        "7a244692-dc96-48f1-9bf8-39578b8fee45"
+      ],
       "alternativeExternalReferenceTypeIds": {
         "MSDB": "426ce32f-388c-4edf-9c79-d6b8348148a0"
       }
@@ -1252,6 +1264,10 @@ POST to http://localhost:9000/migrate/loans
         "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
         "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
       },
+      "userReferenceTypeIds": [
+        "fb86289b-001d-4a6f-8adf-5076b162a6c7",
+        "7a244692-dc96-48f1-9bf8-39578b8fee45"
+      ],
       "alternativeExternalReferenceTypeIds": {
         "AMDB": "0ed6f994-8dbd-4827-94c0-905504169c90"
       }
@@ -1349,7 +1365,11 @@ POST to http://localhost:9000/migrate/feesfines
         "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672",
         "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
         "itemTypeId": "53e72510-dc82-4caa-a272-1522cca70bc2"
-      }
+      },
+      "userReferenceTypeIds": [
+        "fb86289b-001d-4a6f-8adf-5076b162a6c7",
+        "7a244692-dc96-48f1-9bf8-39578b8fee45"
+      ]
     },
     {
       "schema": "MSDB",
@@ -1361,7 +1381,11 @@ POST to http://localhost:9000/migrate/feesfines
         "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8",
         "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
         "itemTypeId": "0014559d-39f6-45c7-9406-03643459aaf0"
-      }
+      },
+      "userReferenceTypeIds": [
+        "fb86289b-001d-4a6f-8adf-5076b162a6c7",
+        "7a244692-dc96-48f1-9bf8-39578b8fee45"
+      ]
     }
   ],
   "maps": {

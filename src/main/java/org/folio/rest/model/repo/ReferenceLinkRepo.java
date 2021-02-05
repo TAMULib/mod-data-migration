@@ -39,7 +39,7 @@ public interface ReferenceLinkRepo extends JpaRepository<ReferenceLink, String>,
   public List<ReferenceLink> findAllByExternalReferenceAndTypeId(@Param("externalReference") String externalReference,
       @Param("typeId") String typeId);
 
-  public List<ReferenceLink> findAllByExternalReferenceAndTypeIdIn(@Param("externalReference") String externalReference,
+  public List<ReferenceLink> findAllByExternalReferenceAndTypeIdInOrderByTypeName(@Param("externalReference") String externalReference,
       @Param("typeIds") List<String> typeIds);
 
   public List<ReferenceLink> findAllByFolioReference(@Param("folioReference") String folioReference);
@@ -47,7 +47,7 @@ public interface ReferenceLinkRepo extends JpaRepository<ReferenceLink, String>,
   public Optional<ReferenceLink> findAllByFolioReferenceAndTypeId(@Param("folioReference") String folioReference,
       @Param("typeId") String typeId);
 
-  public List<ReferenceLink> findAllByFolioReferenceAndTypeIdIn(@Param("folioReference") String folioReference,
+  public List<ReferenceLink> findAllByFolioReferenceAndTypeIdInOrderByTypeName(@Param("folioReference") String folioReference,
       @Param("typeIds") List<String> typeIds);
 
 }

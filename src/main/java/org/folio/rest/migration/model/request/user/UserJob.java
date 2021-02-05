@@ -29,12 +29,15 @@ public class UserJob extends AbstractJob {
   @NotNull
   private Boolean skipDuplicates;
 
+  private List<String> userReferenceTypeIds;
+
   private List<String> barcodeReferenceTypeIds;
 
   private Map<String, String> alternativeExternalReferenceTypeIds;
 
   public UserJob() {
     super();
+    this.userReferenceTypeIds = new ArrayList<>();
     this.barcodeReferenceTypeIds = new ArrayList<>();
     this.alternativeExternalReferenceTypeIds = new HashMap<>();
   }
@@ -85,6 +88,14 @@ public class UserJob extends AbstractJob {
 
   public void setSkipDuplicates(Boolean skipDuplicates) {
     this.skipDuplicates = skipDuplicates;
+  }
+
+  public List<String> getUserReferenceTypeIds() {
+    return userReferenceTypeIds;
+  }
+
+  public void setUserReferenceTypeIds(List<String> userReferenceTypeIds) {
+    this.userReferenceTypeIds = userReferenceTypeIds;
   }
 
   public List<String> getBarcodeReferenceTypeIds() {

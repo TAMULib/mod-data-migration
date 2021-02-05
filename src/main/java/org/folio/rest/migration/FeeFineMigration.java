@@ -276,7 +276,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
 
           String externalSystemId = userExternalRL.get().getExternalReference();
 
-          List<ReferenceLink> userReferenceLinks = migrationService.referenceLinkRepo.findAllByExternalReference(externalSystemId);
+          List<ReferenceLink> userReferenceLinks = migrationService.referenceLinkRepo.findAllByExternalReferenceAndTypeIdInOrderByTypeName(externalSystemId, job.getUserReferenceTypeIds());
 
           if (userReferenceLinks.isEmpty()) {
             log.error("{} no user id found for patron id {}", schema, patronId);

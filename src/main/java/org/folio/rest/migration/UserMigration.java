@@ -256,7 +256,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
           patronGroupContext.put(PATRON_ID, patronId);
           patronNoteContext.put(PATRON_ID, patronId);
 
-          List<ReferenceLink> userReferenceLinks = migrationService.referenceLinkRepo.findAllByExternalReference(externalSystemId);
+          List<ReferenceLink> userReferenceLinks = migrationService.referenceLinkRepo.findAllByExternalReferenceAndTypeIdInOrderByTypeName(externalSystemId, job.getUserReferenceTypeIds());
 
           if (userReferenceLinks.isEmpty()) {
             log.error("{} no user id found for patron id {} with external id {}", schema, patronId, externalSystemId);
@@ -313,7 +313,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
           }
 
           if (StringUtils.isEmpty(patronCodes.getBarcode())) {
-            List<ReferenceLink> barcodeReferenceLinks = migrationService.referenceLinkRepo.findAllByFolioReferenceAndTypeIdIn(referenceId, job.getBarcodeReferenceTypeIds());
+            List<ReferenceLink> barcodeReferenceLinks = migrationService.referenceLinkRepo.findAllByFolioReferenceAndTypeIdInOrderByTypeName(referenceId, job.getBarcodeReferenceTypeIds());
             if (barcodeReferenceLinks.size() > 0) {
               ReferenceLink barcodeReferenceLink = barcodeReferenceLinks.get(0);
               String barcode = barcodeReferenceLink.getExternalReference();
