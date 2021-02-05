@@ -1252,10 +1252,7 @@ POST to http://localhost:9000/migrate/loans
       "userExternalReferenceTypeIds": [
         "0ed6f994-8dbd-4827-94c0-905504169c90",
         "426ce32f-388c-4edf-9c79-d6b8348148a0"
-      ],
-      "alternativeExternalReferenceTypeIds": {
-        "MSDB": "426ce32f-388c-4edf-9c79-d6b8348148a0"
-      }
+      ]
     },
     {
       "schema": "MSDB",
@@ -1267,10 +1264,7 @@ POST to http://localhost:9000/migrate/loans
       "userExternalReferenceTypeIds": [
         "0ed6f994-8dbd-4827-94c0-905504169c90",
         "426ce32f-388c-4edf-9c79-d6b8348148a0"
-      ],
-      "alternativeExternalReferenceTypeIds": {
-        "AMDB": "0ed6f994-8dbd-4827-94c0-905504169c90"
-      }
+      ]
     }
   ],
   "maps": {
