@@ -496,7 +496,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                 if (fundsMap.containsKey(fundCode)) {
                   fundDistribution.setFundId(fundsMap.get(fundCode));
                 } else {
-                  log.error("{} fund code {} not found for po {}", job.getSchema(), fundCode, poId);
+                  log.warn("{} fund code {} not found for po {}", job.getSchema(), fundCode, poId);
                 }
 
               } else if (job.getSchema().equals("MSDB")) {
@@ -510,7 +510,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                     log.warn("{} fund code {} not found for po {}", job.getSchema(), mappedFundCode, poId);
                   }
                 } else {
-                  log.error("{} fund code {} as {} not mapped", job.getSchema(), fundCode, fundCodePrefix);
+                  log.warn("{} fund code {} as {} not mapped", job.getSchema(), fundCode, fundCodePrefix);
                 }
 
                 if (expenseClasses.containsKey(fundCode)) {
