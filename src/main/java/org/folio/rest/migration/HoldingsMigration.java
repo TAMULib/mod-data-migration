@@ -288,7 +288,7 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
 
           if (Objects.nonNull(field008) && field008.length() >= 7) {
             if (field008.length() >= 8) {
-              receiptStatus = holdingMaps.getAcqMethod().get(field008.substring(7, 8));
+              receiptStatus = holdingMaps.getReceiptStatus().get(field008.substring(7, 8));
             } else {
               receiptStatus = holdingDefaults.getReceiptStatus();
             }
