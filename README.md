@@ -982,7 +982,7 @@ POST to http://localhost:9000/migrate/items
       "CoPnocirc": "noncirc",
       "eReader": "reader",
       "HSCbook": "normal",
-      "HSCjournal": "journal",
+      "HSCjournal": "4_hour",
       "HSCmedia": "media",
       "HSCreserve": "reserve",
       "rare": "noncirc",
