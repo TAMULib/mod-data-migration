@@ -14,13 +14,13 @@ public class LoanJob extends AbstractJob {
   @NotNull
   private Map<String, String> references;
 
-  private List<String> userReferenceTypeIds;
+  private List<String> userExternalReferenceTypeIds;
 
   private Map<String, String> alternativeExternalReferenceTypeIds;
 
   public LoanJob() {
     this.references = new HashMap<>();
-    this.userReferenceTypeIds = new ArrayList<>();
+    this.userExternalReferenceTypeIds = new ArrayList<>();
     this.alternativeExternalReferenceTypeIds = new HashMap<>();
   }
 
@@ -32,12 +32,12 @@ public class LoanJob extends AbstractJob {
     this.references = references;
   }
 
-  public List<String> getUserReferenceTypeIds() {
-    return userReferenceTypeIds;
+  public List<String> getUserExternalReferenceTypeIds() {
+    return userExternalReferenceTypeIds;
   }
 
-  public void setUserReferenceTypeIds(List<String> userReferenceTypeIds) {
-    this.userReferenceTypeIds = userReferenceTypeIds;
+  public void setUserReferenceTypeIds(List<String> userExternalReferenceTypeIds) {
+    this.userExternalReferenceTypeIds = userExternalReferenceTypeIds;
   }
 
   public Map<String, String> getAlternativeExternalReferenceTypeIds() {

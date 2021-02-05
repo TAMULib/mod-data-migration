@@ -204,7 +204,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
           String externalSystemId = userExternalRL.get().getExternalReference();
 
-          List<ReferenceLink> userReferenceLinks = migrationService.referenceLinkRepo.findAllByExternalReferenceAndTypeIdInOrderByTypeName(externalSystemId, job.getUserReferenceTypeIds());
+          List<ReferenceLink> userReferenceLinks = migrationService.referenceLinkRepo.findAllByExternalReferenceAndTypeIdInOrderByTypeName(externalSystemId, job.getUserExternalReferenceTypeIds());
 
           if (userReferenceLinks.isEmpty()) {
             log.error("{} no user id found for patron id {}", schema, patronId);

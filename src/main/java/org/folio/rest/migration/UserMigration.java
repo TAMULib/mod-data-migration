@@ -256,7 +256,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
           patronGroupContext.put(PATRON_ID, patronId);
           patronNoteContext.put(PATRON_ID, patronId);
 
-          List<ReferenceLink> userReferenceLinks = migrationService.referenceLinkRepo.findAllByExternalReferenceAndTypeIdInOrderByTypeName(externalSystemId, job.getUserReferenceTypeIds());
+          List<ReferenceLink> userReferenceLinks = migrationService.referenceLinkRepo.findAllByExternalReferenceAndTypeIdInOrderByTypeName(externalSystemId, job.getUserExternalReferenceTypeIds());
 
           if (userReferenceLinks.isEmpty()) {
             log.error("{} no user id found for patron id {} with external id {}", schema, patronId, externalSystemId);
