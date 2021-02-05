@@ -62,7 +62,10 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
   private static final String CALL_NUMBER = "DISPLAY_CALL_NO";
   private static final String CALL_NUMBER_TYPE = "CALL_NO_TYPE";
   private static final String HOLDINGS_TYPE = "RECORD_TYPE";
-  private static final String FIELD_008 = "FIELD_008";
+
+  private static final String RECEIPT_STATUS = "RECEIPT_STATUS";
+  private static final String ACQ_METHOD = "ACQ_METHOD";
+  private static final String RETENTION = "RETENTION";
 
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
   private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
@@ -251,15 +254,24 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
 
           String callNumberType = pageResultSet.getString(CALL_NUMBER_TYPE);
           String holdingsType = pageResultSet.getString(HOLDINGS_TYPE);
-          String field008 = pageResultSet.getString(FIELD_008);
+
+          String receiptStatusCode = pageResultSet.getString(RECEIPT_STATUS);
+          String acqMethodCode = pageResultSet.getString(ACQ_METHOD);
+          String retentionCode = pageResultSet.getString(RETENTION);
 
           marcContext.put(MFHD_ID, mfhdId);
 
-          String locationId;
-          String receiptStatus;
-          String acquisitionMethod;
-          String retentionPolicy;
+          String receiptStatus = holdingMaps.getReceiptStatus().containsKey(receiptStatusCode)
+            ? holdingMaps.getReceiptStatus().get(receiptStatusCode)
+            : holdingDefaults.getReceiptStatus();
+          String acquisitionMethod = holdingMaps.getAcqMethod().containsKey(acqMethodCode)
+            ? holdingMaps.getAcqMethod().get(receiptStatusCode)
+            : holdingDefaults.getAcqMethod();
+          String retentionPolicy = holdingMaps.getRetentionPolicy().containsKey(retentionCode)
+            ? holdingMaps.getRetentionPolicy().get(receiptStatusCode)
+            : holdingDefaults.getRetentionPolicy();
 
+          String locationId;
           Boolean discoverySuppress;
 
           if (StringUtils.isNotEmpty(suppressInOpac)) {
@@ -284,30 +296,6 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
             holdingsType = holdingMaps.getHoldingsType().get(holdingsType);
           } else {
             holdingsType = holdingDefaults.getHoldingsTypeId();
-          }
-
-          if (Objects.nonNull(field008) && field008.length() >= 7) {
-            if (field008.length() >= 8) {
-              receiptStatus = holdingMaps.getReceiptStatus().get(field008.substring(7, 8));
-            } else {
-              receiptStatus = holdingDefaults.getReceiptStatus();
-            }
-
-            if (field008.length() >= 9) {
-              acquisitionMethod = holdingMaps.getAcqMethod().get(field008.substring(8, 9));
-            } else {
-              acquisitionMethod = holdingDefaults.getAcqMethod();
-            }
-
-            if (field008.length() >= 14) {
-              retentionPolicy = holdingMaps.getRetentionPolicy().get(field008.substring(13, 14));
-            } else {
-              retentionPolicy = holdingDefaults.getRetentionPolicy();
-            }
-          } else {
-            receiptStatus = holdingDefaults.getReceiptStatus();
-            acquisitionMethod = holdingDefaults.getAcqMethod();
-            retentionPolicy = holdingDefaults.getRetentionPolicy();
           }
 
           if (locationsMap.containsKey(permanentLocationId)) {

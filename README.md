@@ -702,7 +702,7 @@ POST to http://localhost:9000/migrate/holdings
 {
   "extraction": {
     "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.mfhd_master",
-    "pageSql": "WITH holdings AS ( SELECT mfhd_id, suppress_in_opac, location_id, display_call_no, call_no_type, record_type, field_008 FROM ${SCHEMA}.mfhd_master ORDER BY mfhd_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY ), operators AS ( SELECT mfhd_id, operator_id FROM ${SCHEMA}.mfhd_history WHERE action_type_id = 1 AND mfhd_id IN ( SELECT mfhd_id FROM holdings ) ) SELECT h.mfhd_id, h.suppress_in_opac, h.location_id, h.display_call_no, h.call_no_type, h.record_type, h.field_008, o.operator_id FROM holdings h LEFT JOIN operators o ON h.mfhd_id = o.mfhd_id",
+    "pageSql": "WITH holdings AS ( SELECT mfhd_id, suppress_in_opac, location_id, display_call_no, call_no_type, record_type, field_008 FROM ${SCHEMA}.mfhd_master ORDER BY mfhd_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY ), operators AS ( SELECT mfhd_id, operator_id FROM ${SCHEMA}.mfhd_history WHERE action_type_id = 1 AND mfhd_id IN ( SELECT mfhd_id FROM holdings ) ) SELECT h.mfhd_id, h.suppress_in_opac, h.location_id, h.display_call_no, h.call_no_type, h.record_type, substr(h.field_008,7,1) AS receipt_status, substr(h.field_008,8,1) AS acq_method, substr(h.field_008,13,1) AS retention, o.operator_id FROM holdings h LEFT JOIN operators o ON h.mfhd_id = o.mfhd_id",
     "marcSql": "SELECT mfhd_id, seqnum, record_segment FROM ${SCHEMA}.mfhd_data WHERE mfhd_id = ${MFHD_ID}",
     "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
     "database": {
