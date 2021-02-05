@@ -418,7 +418,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
               if (locationsMap.containsKey(locationId)) {
                 folioLocationId = locationsMap.get(locationId);
               } else {
-                log.error("{} mapped location id {} not found for po id {}", job.getSchema(), locationId, poId);
+                log.warn("{} mapped location id {} not found for po id {}", job.getSchema(), locationId, poId);
                 continue;
               }
             } else {
@@ -507,7 +507,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                   if (fundsMap.containsKey(mappedFundCode)) {
                     fundDistribution.setFundId(fundsMap.get(mappedFundCode));
                   } else {
-                    log.error("{} fund code {} not found for po {}", job.getSchema(), mappedFundCode, poId);
+                    log.warn("{} fund code {} not found for po {}", job.getSchema(), mappedFundCode, poId);
                   }
                 } else {
                   log.error("{} fund code {} as {} not mapped", job.getSchema(), fundCode, fundCodePrefix);
@@ -516,7 +516,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                 if (expenseClasses.containsKey(fundCode)) {
                   fundDistribution.setExpenseClassId(expenseClasses.get(fundCode));
                 } else {
-                  log.error("{} expense class not mapped from {}", job.getSchema(), fundCode);
+                  log.warn("{} expense class not mapped from {}", job.getSchema(), fundCode);
                 }
 
               }
