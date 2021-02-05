@@ -463,6 +463,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
               fundCode = fundCode.toLowerCase();
 
+              List<FundDistribution> fundDistributions = new ArrayList<>();
               FundDistribution fundDistribution = new FundDistribution();
               fundDistribution.setDistributionType(FundDistribution.DistributionType.PERCENTAGE);
               fundDistribution.setValue(100.0);
@@ -521,7 +522,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
               }
 
-              List<FundDistribution> fundDistributions = new ArrayList<>();
+              fundDistributions.add(fundDistribution);
               compositePoLine.setFundDistribution(fundDistributions);
 
             } else {
