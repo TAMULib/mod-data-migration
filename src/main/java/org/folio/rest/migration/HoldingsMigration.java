@@ -265,10 +265,10 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
             ? holdingMaps.getReceiptStatus().get(receiptStatusCode)
             : holdingDefaults.getReceiptStatus();
           String acquisitionMethod = holdingMaps.getAcqMethod().containsKey(acqMethodCode)
-            ? holdingMaps.getAcqMethod().get(receiptStatusCode)
+            ? holdingMaps.getAcqMethod().get(acqMethodCode)
             : holdingDefaults.getAcqMethod();
           String retentionPolicy = holdingMaps.getRetentionPolicy().containsKey(retentionCode)
-            ? holdingMaps.getRetentionPolicy().get(receiptStatusCode)
+            ? holdingMaps.getRetentionPolicy().get(retentionCode)
             : holdingDefaults.getRetentionPolicy();
 
           String locationId;
