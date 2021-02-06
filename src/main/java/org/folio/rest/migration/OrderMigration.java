@@ -498,6 +498,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                   fundDistribution.setFundId(fundsMap.get(fundCode));
                 } else {
                   log.warn("{} fund code {} not found for po {}", job.getSchema(), fundCode, poId);
+                  continue;
                 }
 
               } else if (job.getSchema().equals("MSDB")) {
