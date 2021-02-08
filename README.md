@@ -1738,7 +1738,8 @@ POST to http://localhost:9000/migrate/orders
     "expenseClasses": {
       "AMDB": {
         "access": "012ba30f-1d20-4afb-8029-2d64116e47f0",
-        "chargeback": "6dfe92d5-a325-482b-bc78-744bd87920b1"
+        "chargeback": "6dfe92d5-a325-482b-bc78-744bd87920b1",
+        "galveston": "2e158b89-4715-4028-8086-af85ca6da0c8"
       },
       "MSDB": {
         "edbiores": "647c7986-a3ba-40c0-b063-adda5d3d5987",
@@ -1770,6 +1771,7 @@ POST to http://localhost:9000/migrate/orders
         "ebnurse": "a67628e0-dd84-4fd8-9508-4041ed9e31e0",
         "ebpharm": "aa6723ba-f4e7-436b-82da-7c12dcf5313d",
         "ebmedvet": "c3798940-c25d-4713-a9ac-b55656924309",
+        "ednurse": "c2911bac-0765-4f7d-8316-28b9460eb5b5",
         "emmedvet": "c3798940-c25d-4713-a9ac-b55656924309",
         "pjbiores": "85673c7d-d865-4a52-a6eb-5eea4c9ec9d0",
         "pjmisc": "bf4299b5-ac72-4509-b921-822c3c74ce6c",
