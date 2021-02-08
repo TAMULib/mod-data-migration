@@ -31,6 +31,7 @@ import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.FundDistr
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Location;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Ongoing;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Physical;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.ProductIdentifier;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.VendorDetail;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece.PieceFormat;
@@ -72,6 +73,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
   private static final String LOCATION_CODE = "LOCATION_CODE";
   private static final String LOCATION_ID = "LOCATION_ID";
   private static final String TITLE = "TITLE";
+  private static final String ISSN = "ISSN";
   private static final String LINE_ITEM_STATUS = "LINE_ITEM_STATUS";
   private static final String REQUESTER = "REQUESTER";
   private static final String VENDOR_TITLE_NUM = "VENDOR_TITLE_NUM";
@@ -389,6 +391,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
             String locationCode = poLinesResultSet.getString(LOCATION_CODE);
             String locationId = poLinesResultSet.getString(LOCATION_ID);
             String title = poLinesResultSet.getString(TITLE);
+            String issn = poLinesResultSet.getString(ISSN);
             String lineItemStatus = poLinesResultSet.getString(LINE_ITEM_STATUS);
             String requester = poLinesResultSet.getString(REQUESTER);
             String vendorTitleNumber = poLinesResultSet.getString(VENDOR_TITLE_NUM);
@@ -482,6 +485,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                   case "btetext": fundCode = "etxt"; break;
                   case "btetxt": fundCode = "etxt"; break;
                   case "e-72997": fundCode = "barclay"; break;
+                  case "galveston":
                   case "chargeback":
                   case "access":
                     fundDistribution.setExpenseClassId(expenseClasses.get(fundCode));
@@ -593,12 +597,21 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
             } catch (SQLException e) {
               e.printStackTrace();
             } finally {
+              Details details = new Details();
 
               if (StringUtils.isNotEmpty(note)) {
-                Details details = new Details();
                 details.setReceivingNote(note);
-                compositePoLine.setDetails(details);
               }
+
+              if (StringUtils.isNotEmpty(issn)) {
+                List<ProductIdentifier> productIds = details.getProductIds();
+                ProductIdentifier productId = new ProductIdentifier();
+                productId.setProductId(issn);
+                productId.setProductIdType(job.getProductIdType());
+                productIds.add(productId);
+              }
+
+              compositePoLine.setDetails(details);
 
               compositePoLine.setCheckinItems(!pieces.isEmpty());
 

@@ -24,6 +24,9 @@ public class OrderJob extends AbstractJob {
   @NotNull
   private Map<String, String> poLinesAdditionalContext;
 
+  @NotNull
+  private String productIdType;
+
   private String defaultLocationId;
 
   public OrderJob() {
@@ -71,6 +74,14 @@ public class OrderJob extends AbstractJob {
 
   public void setPoLinesAdditionalContext(Map<String, String> poLinesAdditionalContext) {
     this.poLinesAdditionalContext = poLinesAdditionalContext;
+  }
+
+  public String getProductIdType() {
+    return productIdType;
+  }
+
+  public void setProductIdType(String productIdType) {
+    this.productIdType = productIdType;
   }
 
   public String getDefaultLocationId() {

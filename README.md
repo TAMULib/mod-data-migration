@@ -1616,10 +1616,11 @@ POST to http://localhost:9000/migrate/orders
         "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672"
       },
       "poLinesAdditionalContext": {
-        "COLUMNS": "li.bib_id AS bib_id, li.line_item_id AS line_item_id, po_type, li.line_price AS line_price, line_item_loc.location_code AS location_code, line_item_loc.location_id AS location_id, bt.title AS title, lics.line_item_status AS line_item_status, li.requestor AS requester, li.vendor_title_num AS vendor_title_num, li.vendor_ref_qual AS vendor_ref_qual, li.vendor_ref_num AS vendor_ref_num, va.account_name AS account_name, fund.fund_code AS fund_code, lin.note AS note",
+        "COLUMNS": "li.bib_id AS bib_id, li.line_item_id AS line_item_id, po_type, li.line_price AS line_price, line_item_loc.location_code AS location_code, line_item_loc.location_id AS location_id, bt.title AS title, trim(bt.issn) AS issn, lics.line_item_status AS line_item_status, li.requestor AS requester, li.vendor_title_num AS vendor_title_num, li.vendor_ref_qual AS vendor_ref_qual, li.vendor_ref_num AS vendor_ref_num, va.account_name AS account_name, fund.fund_code AS fund_code, lin.note AS note",
         "TABLES": "AMDB.purchase_order po, AMDB.line_item li, AMDB.line_item_copy_status lics, AMDB.location line_item_loc, AMDB.bib_text bt, AMDB.vendor_account va, AMDB.line_item_funds lif, AMDB.fund, AMDB.line_item_notes lin",
         "CONDITIONS": "po.po_id = li.po_id AND li.bib_id = bt.bib_id AND li.line_item_id = lics.line_item_id(+) AND li.line_item_id = lin.line_item_id(+) AND lics.location_id = line_item_loc.location_id(+) AND po.account_id = va.account_id(+) AND lics.copy_id = lif.copy_id(+) AND lif.fund_id = fund.fund_id(+) AND lif.ledger_id = fund.ledger_id(+) AND po.po_id = ${PO_ID}"
       },
+      "productIdType": "913300b2-03ed-469a-8179-c1092c991227",
       "defaultLocationId": "480f367b-bf19-4266-b38f-4df0650c94ce"
     },
     {
@@ -1637,10 +1638,11 @@ POST to http://localhost:9000/migrate/orders
         "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8"
       },
       "poLinesAdditionalContext": {
-        "COLUMNS": "li.bib_id AS bib_id, li.line_item_id AS line_item_id, po_type, li.line_price AS line_price, mfhdloc.location_code AS location_code, mfhdloc.location_id AS location_id, bt.title_brief AS title, lics.line_item_status AS line_item_status, li.requestor AS requester, li.vendor_title_num AS vendor_title_num, li.vendor_ref_qual AS vendor_ref_qual, li.vendor_ref_num AS vendor_ref_num, va.account_name AS account_name, fund.fund_code AS fund_code, null AS note",
+        "COLUMNS": "li.bib_id AS bib_id, li.line_item_id AS line_item_id, po_type, li.line_price AS line_price, mfhdloc.location_code AS location_code, mfhdloc.location_id AS location_id, bt.title_brief AS title, trim(bt.issn) AS issn, lics.line_item_status AS line_item_status, li.requestor AS requester, li.vendor_title_num AS vendor_title_num, li.vendor_ref_qual AS vendor_ref_qual, li.vendor_ref_num AS vendor_ref_num, va.account_name AS account_name, fund.fund_code AS fund_code, null AS note",
         "TABLES": "MSDB.bib_mfhd bm, MSDB.purchase_order po, MSDB.line_item li, MSDB.line_item_copy_status lics, MSDB.location mfhdloc, MSDB.mfhd_master mm, MSDB.bib_text bt, MSDB.vendor_account va, MSDB.line_item_funds lif, MSDB.fund",
         "CONDITIONS": "po.po_id = li.po_id AND li.bib_id = bt.bib_id AND li.line_item_id = lics.line_item_id(+) AND lics.mfhd_id = bm.mfhd_id(+) AND bm.mfhd_id = mm.mfhd_id(+) AND mm.location_id = mfhdloc.location_id(+) AND po.account_id = va.account_id(+) AND lics.copy_id = lif.copy_id(+) AND lif.fund_id = fund.fund_id(+) AND lif.ledger_id = fund.ledger_id(+) AND po.po_id = ${PO_ID}"
-      }
+      },
+      "productIdType": "913300b2-03ed-469a-8179-c1092c991227"
     }
   ],
   "maps": {

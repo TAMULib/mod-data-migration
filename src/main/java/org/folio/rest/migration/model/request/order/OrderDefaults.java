@@ -1,9 +1,13 @@
 package org.folio.rest.migration.model.request.order;
 
+import javax.validation.constraints.NotNull;
+
 public class OrderDefaults {
 
+  @NotNull
   private String aqcAddressCode;
 
+  @NotNull
   private String vendorRefQual;
 
   public OrderDefaults() {
