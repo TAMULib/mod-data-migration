@@ -479,15 +479,24 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                 }
 
                 switch (fundCode) {
-                  case "seri": fundCode = "serials"; break;
-                  case "serial": fundCode = "serials"; break;
-                  case "qatar": fundCode = "etxtqatar"; break;
-                  case "btetext": fundCode = "etxt"; break;
-                  case "btetxt": fundCode = "etxt"; break;
-                  case "e-72997": fundCode = "barclay"; break;
-                  case "galveston":
+                  case "seri":
+                  case "serial":
+                    fundCode = "serials";
+                    break;
+                  case "qatar":
+                    fundCode = "etxtqatar";
+                    break;
+                  case "btetext":
+                  case "btetxt":
+                    fundCode = "etxt";
+                    fundDistribution.setExpenseClassId(expenseClasses.get("etxtnorm"));
+                    break;
+                  case "e-72997":
+                    fundCode = "barclay";
+                    break;
                   case "chargeback":
                   case "access":
+                  case "galveston":
                     fundDistribution.setExpenseClassId(expenseClasses.get(fundCode));
                     fundCode = "etxt";
                     break;
