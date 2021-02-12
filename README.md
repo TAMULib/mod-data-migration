@@ -1741,7 +1741,8 @@ POST to http://localhost:9000/migrate/orders
       "AMDB": {
         "access": "012ba30f-1d20-4afb-8029-2d64116e47f0",
         "chargeback": "6dfe92d5-a325-482b-bc78-744bd87920b1",
-        "galveston": "2e158b89-4715-4028-8086-af85ca6da0c8"
+        "galveston": "2e158b89-4715-4028-8086-af85ca6da0c8",
+        "etxtnorm": "0d3c9098-e315-45aa-be46-cf9b642459c2"
       },
       "MSDB": {
         "edbiores": "647c7986-a3ba-40c0-b063-adda5d3d5987",
