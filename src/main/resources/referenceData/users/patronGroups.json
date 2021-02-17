@@ -3,14 +3,19 @@
   "dependencies": [],
   "data": [
     {
-      "group": "comm",
-      "desc": "Community User",
-      "id": "6585adb2-6ee7-4f95-b115-b5b0acf0f181"
+      "group": "admin",
+      "id": "2237b6b1-f882-4abe-8cf2-febdcbfa6805",
+      "desc": "System Administrators"
     },
     {
-      "group": "cour",
+      "id": "6585adb2-6ee7-4f95-b115-b5b0acf0f181",
+      "desc": "Community User",
+      "group": "comm"
+    },
+    {
+      "id": "aca51035-5570-4e61-9cb7-827e8fbd5a0d",
       "desc": "Courtesy User",
-      "id": "aca51035-5570-4e61-9cb7-827e8fbd5a0d"
+      "group": "cour"
     },
     {
       "group": "fasf",
@@ -23,9 +28,9 @@
       "id": "fc44aee5-c385-4847-aadd-c1bd181c8894"
     },
     {
-      "group": "grad",
       "desc": "Graduate Student",
-      "id": "6508e3bb-0225-4d1e-b609-a926dda4bccc"
+      "id": "6508e3bb-0225-4d1e-b609-a926dda4bccc",
+      "group": "grad"
     },
     {
       "group": "illend",
@@ -33,9 +38,9 @@
       "id": "978ce377-0234-44a2-be2f-d7115cfa3242"
     },
     {
-      "group": "libd",
       "desc": "Library Dept.",
-      "id": "329be9f5-6e44-448a-9ccd-5bdf90b1a14d"
+      "id": "329be9f5-6e44-448a-9ccd-5bdf90b1a14d",
+      "group": "libd"
     },
     {
       "group": "newbook",
@@ -43,9 +48,9 @@
       "id": "899cdaa9-eb48-4995-875c-7c8e9f4a4737"
     },
     {
-      "group": "nonr",
+      "id": "328e3247-cdc9-490b-be83-9a6a079eb9ad",
       "desc": "Non-registered student or staff",
-      "id": "328e3247-cdc9-490b-be83-9a6a079eb9ad"
+      "group": "nonr"
     },
     {
       "group": "prob",
@@ -64,8 +69,8 @@
     },
     {
       "group": "ungr",
-      "desc": "Undergrad Student",
-      "id": "666d2e72-2d05-4d6f-849d-d5234bf77686"
+      "id": "666d2e72-2d05-4d6f-849d-d5234bf77686",
+      "desc": "Undergrad Student"
     }
   ]
 }
