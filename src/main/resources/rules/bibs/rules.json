@@ -587,7 +587,7 @@
                 {
                   "type": "set_classification_type_id",
                   "parameter": {
-                    "name": "GDC"
+                    "name": "SUDOC"
                   }
                 }
               ]
