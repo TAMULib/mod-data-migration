@@ -3,26 +3,26 @@
   "dependencies": [],
   "data": [
     {
-      "code": "FY2021",
-      "series": "FY",
-      "id": "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-      "name": "FY2021",
       "currency": "USD",
+      "series": "FY",
       "periodStart": "2021-01-01T00:00:00.000+0000",
       "description": "Fiscal Year To Test HoneySuckle",
+      "periodEnd": "2021-12-31T00:00:00.000+0000",
+      "name": "FY2021",
       "acqUnitIds": [],
-      "periodEnd": "2021-12-31T00:00:00.000+0000"
+      "id": "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+      "code": "FY2021"
     },
     {
-      "name": "z2021",
       "id": "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
-      "series": "zFY",
       "code": "zFY2021",
-      "periodStart": "2021-01-01T00:00:00.000+0000",
-      "currency": "USD",
       "acqUnitIds": [],
+      "name": "z2021",
       "periodEnd": "2021-08-31T00:00:00.000+0000",
-      "description": "FY21 for Testing Honeysuckle"
+      "series": "zFY",
+      "description": "FY21 for Testing Honeysuckle",
+      "periodStart": "2021-01-01T00:00:00.000+0000",
+      "currency": "USD"
     }
   ]
 }

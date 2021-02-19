@@ -3,112 +3,108 @@
   "dependencies": [],
   "data": [
     {
-      "countClosed": false,
-      "maxOverdueFine": 35,
-      "gracePeriodRecall": true,
-      "maxOverdueRecallFine": 35,
       "id": "47dd0201-8f40-4b7f-9372-f8f3bfb33a05",
-      "name": "day_1_max_35",
       "overdueFine": {
-        "quantity": 1,
-        "intervalId": "day"
+        "intervalId": "day",
+        "quantity": 1
       },
+      "maxOverdueFine": 35,
       "forgiveOverdueFine": true,
       "overdueRecallFine": {
         "intervalId": "day",
         "quantity": 1
-      }
+      },
+      "gracePeriodRecall": true,
+      "name": "day_1_max_35",
+      "maxOverdueRecallFine": 35,
+      "countClosed": false
     },
     {
+      "countClosed": false,
+      "maxOverdueRecallFine": 150,
       "name": "day_25_max_150",
-      "id": "52d596ab-72a8-423d-b425-4dbb18c9c48c",
-      "overdueFine": {
-        "quantity": 25,
-        "intervalId": "day"
-      },
+      "gracePeriodRecall": true,
       "forgiveOverdueFine": true,
       "overdueRecallFine": {
-        "quantity": 25,
-        "intervalId": "day"
+        "intervalId": "day",
+        "quantity": 25
       },
-      "countClosed": false,
-      "gracePeriodRecall": true,
-      "maxOverdueFine": 150,
-      "maxOverdueRecallFine": 150
+      "id": "52d596ab-72a8-423d-b425-4dbb18c9c48c",
+      "overdueFine": {
+        "intervalId": "day",
+        "quantity": 25
+      },
+      "maxOverdueFine": 150
     },
     {
-      "countClosed": false,
-      "maxOverdueRecallFine": 35,
-      "maxOverdueFine": 35,
-      "gracePeriodRecall": true,
-      "id": "c37d9704-4e19-4910-88a6-19990d0e24d0",
-      "name": "day_5_max_35",
       "overdueRecallFine": {
         "quantity": 5,
         "intervalId": "day"
       },
+      "forgiveOverdueFine": true,
       "overdueFine": {
         "intervalId": "day",
         "quantity": 5
       },
-      "forgiveOverdueFine": true
+      "maxOverdueFine": 35,
+      "id": "c37d9704-4e19-4910-88a6-19990d0e24d0",
+      "gracePeriodRecall": true,
+      "name": "day_5_max_35",
+      "countClosed": false,
+      "maxOverdueRecallFine": 35
     },
     {
-      "countClosed": false,
       "maxOverdueFine": 150,
-      "gracePeriodRecall": true,
-      "maxOverdueRecallFine": 150,
-      "id": "4cfa17ca-d29c-4677-a2d7-27c4d521e052",
-      "name": "hour_3_max_150",
       "overdueFine": {
+        "intervalId": "hour",
+        "quantity": 3
+      },
+      "id": "4cfa17ca-d29c-4677-a2d7-27c4d521e052",
+      "overdueRecallFine": {
         "quantity": 3,
         "intervalId": "hour"
       },
       "forgiveOverdueFine": true,
-      "overdueRecallFine": {
-        "intervalId": "hour",
-        "quantity": 3
-      }
+      "gracePeriodRecall": true,
+      "name": "hour_3_max_150",
+      "maxOverdueRecallFine": 150,
+      "countClosed": false
     },
     {
-      "countClosed": false,
-      "maxOverdueRecallFine": 0,
       "gracePeriodRecall": true,
-      "maxOverdueFine": 150,
-      "name": "min_50_max_150",
       "id": "530a98b3-5cb2-43aa-b8d3-51e5b08f563d",
       "overdueFine": {
-        "intervalId": "minute",
-        "quantity": 0.5
+        "quantity": 0.5,
+        "intervalId": "minute"
       },
-      "forgiveOverdueFine": true
+      "maxOverdueFine": 150,
+      "forgiveOverdueFine": true,
+      "maxOverdueRecallFine": 0,
+      "countClosed": false,
+      "name": "min_50_max_150"
     },
     {
       "description": "Creates no overdue information. Used originally for migrated loans with past due dates.",
-      "countClosed": true,
-      "maxOverdueRecallFine": 0,
       "gracePeriodRecall": true,
       "maxOverdueFine": 0,
-      "name": "no_overdue",
       "id": "bbf8a2ba-0ae9-40fa-9fc6-5d26f7f01091",
-      "forgiveOverdueFine": true
+      "forgiveOverdueFine": true,
+      "maxOverdueRecallFine": 0,
+      "countClosed": true,
+      "name": "no_overdue"
     },
     {
-      "id": "d87dfe54-6282-4c4e-aaa4-34b6d2953887",
       "name": "overdue_basic",
-      "overdueFine": {
+      "countClosed": false,
+      "maxOverdueRecallFine": 35,
+      "forgiveOverdueFine": true,
+      "overdueRecallFine": {
         "quantity": 1,
         "intervalId": "day"
       },
-      "forgiveOverdueFine": true,
-      "overdueRecallFine": {
-        "intervalId": "day",
-        "quantity": 1
-      },
-      "countClosed": false,
-      "maxOverdueFine": 35,
-      "gracePeriodRecall": true,
-      "maxOverdueRecallFine": 35
+      "id": "d87dfe54-6282-4c4e-aaa4-34b6d2953887",
+      "maxOverdueFine": 0,
+      "gracePeriodRecall": true
     }
   ]
 }
