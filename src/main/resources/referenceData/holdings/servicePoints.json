@@ -7,8 +7,8 @@
   ],
   "data": [
     {
+      "name": "Business Library Circulation",
       "discoveryDisplayName": "Business Library Circulation",
-      "pickupLocation": true,
       "holdShelfExpiryPeriod": {
         "duration": 10,
         "intervalId": "Days"
@@ -27,46 +27,45 @@
           "printByDefault": false
         }
       ],
-      "code": "blcc,circ",
-      "name": "Business Library Circulation",
-      "id": "fc64d24e-5247-402a-ae19-21de454c025d"
+      "id": "fc64d24e-5247-402a-ae19-21de454c025d",
+      "pickupLocation": true,
+      "code": "blcc,circ"
     },
     {
-      "id": "3b80cfdf-438b-48c1-aadc-57965a0d7680",
-      "pickupLocation": true,
+      "name": "Ask Us Desk (Evans)",
       "holdShelfExpiryPeriod": {
         "duration": 10,
         "intervalId": "Days"
       },
+      "discoveryDisplayName": "Ask Us Desk (Evans Library, 1st floor)",
+      "pickupLocation": true,
       "staffSlips": [
         {
-          "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88",
-          "printByDefault": false
+          "printByDefault": false,
+          "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88"
         },
         {
-          "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b",
-          "printByDefault": false
+          "printByDefault": false,
+          "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b"
         },
         {
-          "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
-          "printByDefault": false
+          "printByDefault": false,
+          "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1"
         }
       ],
-      "name": "Ask Us Desk (Evans)",
-      "discoveryDisplayName": "Ask Us Desk (Evans Library, 1st floor)",
+      "id": "3b80cfdf-438b-48c1-aadc-57965a0d7680",
       "code": "circ"
     },
     {
-      "discoveryDisplayName": "MSL Client Services Desk",
       "pickupLocation": true,
-      "holdShelfExpiryPeriod": {
-        "duration": 10,
-        "intervalId": "Days"
-      },
       "staffSlips": [
         {
           "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88",
-          "printByDefault": false
+          "printByDefault": true
+        },
+        {
+          "printByDefault": false,
+          "id": "8812bae1-2738-442c-bc20-fe4bb38a11f8"
         },
         {
           "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b",
@@ -74,49 +73,50 @@
         },
         {
           "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
-          "printByDefault": false
+          "printByDefault": true
         }
       ],
       "id": "9311b907-0c9f-42d0-aea4-62d33a7ab7b7",
       "code": "CircDesk",
-      "name": "MSL AskUs"
+      "name": "MSL AskUs",
+      "discoveryDisplayName": "MSL Client Services Desk",
+      "holdShelfExpiryPeriod": {
+        "intervalId": "Days",
+        "duration": 10
+      }
     },
     {
+      "pickupLocation": true,
+      "staffSlips": [
+        {
+          "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88",
+          "printByDefault": false
+        },
+        {
+          "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b",
+          "printByDefault": false
+        },
+        {
+          "printByDefault": false,
+          "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1"
+        }
+      ],
+      "id": "7f719f23-7e2e-4a60-8e58-9e778ad6344f",
       "code": "CoPkingsvl",
-      "pickupLocation": true,
-      "holdShelfExpiryPeriod": {
-        "duration": 10,
-        "intervalId": "Days"
-      },
-      "staffSlips": [
-        {
-          "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88",
-          "printByDefault": false
-        },
-        {
-          "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b",
-          "printByDefault": false
-        },
-        {
-          "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
-          "printByDefault": false
-        }
-      ],
-      "discoveryDisplayName": "HSC College of Pharmacy (Kingsville, TX)",
       "name": "HSC College of Pharmacy (Kingsville, TX)",
-      "id": "7f719f23-7e2e-4a60-8e58-9e778ad6344f"
+      "discoveryDisplayName": "HSC College of Pharmacy (Kingsville, TX)",
+      "holdShelfExpiryPeriod": {
+        "intervalId": "Days",
+        "duration": 10
+      }
     },
     {
-      "code": "HSCBryDesk",
       "pickupLocation": true,
-      "holdShelfExpiryPeriod": {
-        "duration": 10,
-        "intervalId": "Days"
-      },
+      "id": "43f9092b-1e4d-4103-ae99-a93ba1d99bc7",
       "staffSlips": [
         {
-          "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88",
-          "printByDefault": false
+          "printByDefault": false,
+          "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88"
         },
         {
           "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b",
@@ -127,73 +127,79 @@
           "printByDefault": false
         }
       ],
-      "discoveryDisplayName": "HSC Bryan Campus Circ",
+      "code": "HSCBryDesk",
       "name": "HSC Bryan Campus Circ",
-      "id": "43f9092b-1e4d-4103-ae99-a93ba1d99bc7"
+      "holdShelfExpiryPeriod": {
+        "duration": 10,
+        "intervalId": "Days"
+      },
+      "discoveryDisplayName": "HSC Bryan Campus Circ"
     },
     {
       "code": "HSCDalDesk",
       "discoveryDisplayName": "HSCDalDesk",
-      "name": "HSCDalDesk",
-      "id": "564cec55-7add-4f6f-b43a-dd87431b8dfb"
+      "staffSlips": [],
+      "id": "564cec55-7add-4f6f-b43a-dd87431b8dfb",
+      "name": "HSCDalDesk"
     },
     {
-      "discoveryDisplayName": "HSC Round Rock Circ",
       "pickupLocation": true,
-      "holdShelfExpiryPeriod": {
-        "duration": 10,
-        "intervalId": "Days"
-      },
       "staffSlips": [
         {
           "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88",
           "printByDefault": false
         },
         {
-          "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b",
-          "printByDefault": false
+          "printByDefault": false,
+          "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b"
         },
         {
-          "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
-          "printByDefault": false
+          "printByDefault": false,
+          "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1"
         }
       ],
+      "id": "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e",
       "code": "HSCRRdesk",
       "name": "HSC Round Rock Circ",
-      "id": "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e"
+      "holdShelfExpiryPeriod": {
+        "intervalId": "Days",
+        "duration": 10
+      },
+      "discoveryDisplayName": "HSC Round Rock Circ"
     },
     {
       "discoveryDisplayName": "HSC Temple Circulation",
-      "pickupLocation": true,
       "holdShelfExpiryPeriod": {
-        "duration": 10,
-        "intervalId": "Days"
+        "intervalId": "Days",
+        "duration": 10
       },
-      "staffSlips": [
-        {
-          "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88",
-          "printByDefault": false
-        },
-        {
-          "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b",
-          "printByDefault": false
-        },
-        {
-          "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
-          "printByDefault": false
-        }
-      ],
       "name": "HSC Temple Circulation",
+      "code": "HSCTemCir",
       "id": "a2a3b682-35e9-4cc7-af63-1bdfe42e82dd",
-      "code": "HSCTemCir"
+      "staffSlips": [
+        {
+          "printByDefault": false,
+          "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88"
+        },
+        {
+          "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b",
+          "printByDefault": false
+        },
+        {
+          "printByDefault": false,
+          "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1"
+        }
+      ],
+      "pickupLocation": true
     },
     {
-      "id": "4aac1bd9-87ef-4247-a1ce-1506f304251a",
-      "pickupLocation": true,
+      "discoveryDisplayName": "InterLibrary Loan Dept. (Evans)",
       "holdShelfExpiryPeriod": {
-        "duration": 10,
-        "intervalId": "Days"
+        "intervalId": "Days",
+        "duration": 10
       },
+      "name": "InterLibrary Loan Dept. (Evans)",
+      "code": "ils",
       "staffSlips": [
         {
           "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88",
@@ -208,48 +214,51 @@
           "printByDefault": false
         }
       ],
-      "name": "InterLibrary Loan Dept. (Evans)",
-      "discoveryDisplayName": "InterLibrary Loan Dept. (Evans)",
-      "code": "ils"
+      "id": "4aac1bd9-87ef-4247-a1ce-1506f304251a",
+      "pickupLocation": true
     },
     {
-      "id": "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
       "code": "maps",
-      "name": "Maps & GIS",
-      "discoveryDisplayName": "Maps & GIS"
+      "discoveryDisplayName": "Maps & GIS",
+      "staffSlips": [],
+      "id": "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+      "name": "Maps & GIS"
     },
     {
-      "name": "Media and Reserves",
       "pickupLocation": true,
-      "holdShelfExpiryPeriod": {
-        "duration": 10,
-        "intervalId": "Days"
-      },
       "staffSlips": [
         {
-          "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88",
-          "printByDefault": false
+          "printByDefault": false,
+          "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88"
         },
         {
-          "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b",
-          "printByDefault": false
+          "printByDefault": false,
+          "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b"
         },
         {
-          "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
-          "printByDefault": false
+          "printByDefault": false,
+          "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1"
         }
       ],
       "id": "382bbd83-8f05-4063-8d08-adf1d3316e0a",
-      "discoveryDisplayName": "Media and Reserves (Annex, 1st floor)",
-      "code": "media"
+      "code": "media",
+      "name": "Media and Reserves",
+      "holdShelfExpiryPeriod": {
+        "duration": 10,
+        "intervalId": "Days"
+      },
+      "discoveryDisplayName": "Media and Reserves (Annex, 1st floor)"
     },
     {
+      "holdShelfExpiryPeriod": {
+        "intervalId": "Days",
+        "duration": 10
+      },
       "discoveryDisplayName": "PSEL Circulation Desk",
+      "name": "PSEL Circulation Desk",
+      "code": "psel,circ",
       "pickupLocation": true,
-      "holdShelfExpiryPeriod": {
-        "duration": 10,
-        "intervalId": "Days"
-      },
+      "id": "24f55faf-d42e-4fef-9ad3-43c34b75962f",
       "staffSlips": [
         {
           "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88",
@@ -260,44 +269,60 @@
           "printByDefault": false
         },
         {
-          "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
-          "printByDefault": false
+          "printByDefault": false,
+          "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1"
         }
-      ],
-      "id": "24f55faf-d42e-4fef-9ad3-43c34b75962f",
-      "code": "psel,circ",
-      "name": "PSEL Circulation Desk"
+      ]
     },
     {
-      "id": "ccfdc7f0-1aa5-482f-a689-1a2188756412",
-      "pickupLocation": true,
+      "name": "Qatar Libr (TAMUQ)",
+      "discoveryDisplayName": "Qatar Libr (TAMUQ)",
       "holdShelfExpiryPeriod": {
         "duration": 10,
         "intervalId": "Days"
       },
+      "id": "ccfdc7f0-1aa5-482f-a689-1a2188756412",
       "staffSlips": [
         {
           "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88",
           "printByDefault": false
         },
         {
-          "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b",
-          "printByDefault": false
+          "printByDefault": false,
+          "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b"
         },
         {
           "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
           "printByDefault": false
         }
       ],
-      "discoveryDisplayName": "Qatar Libr (TAMUQ)",
-      "name": "Qatar Libr (TAMUQ)",
+      "pickupLocation": true,
       "code": "qatar"
     },
     {
-      "code": "unassigned",
+      "pickupLocation": false,
+      "staffSlips": [
+        {
+          "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88",
+          "printByDefault": false
+        },
+        {
+          "printByDefault": false,
+          "id": "8812bae1-2738-442c-bc20-fe4bb38a11f8"
+        },
+        {
+          "printByDefault": false,
+          "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b"
+        },
+        {
+          "printByDefault": false,
+          "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1"
+        }
+      ],
+      "id": "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
       "name": "Unassigned",
-      "discoveryDisplayName": "Unassigned",
-      "id": "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
+      "code": "unassigned",
+      "discoveryDisplayName": "Unassigned"
     }
   ]
 }
