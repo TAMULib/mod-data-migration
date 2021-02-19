@@ -1,0 +1,46 @@
+{
+  "path": "/data-import-profiles/jobProfiles",
+  "dependencies": [],
+  "data": [
+    {
+      "profile": {
+        "deleted": false,
+        "metadata": {
+          "updatedByUserId": "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
+          "createdByUserId": "36fa2da2-8bb8-4018-93ba-6912ebf714ee",
+          "createdDate": "2021-02-04T00:30:33.907",
+          "updatedDate": "2021-02-04T22:09:52.183+0000"
+        },
+        "description": "",
+        "dataType": "MARC",
+        "name": "MARCIVE-Create New Instances and Holdings Records URL",
+        "userInfo": {
+          "userName": "tamu_admin",
+          "firstName": "tamu",
+          "lastName": "admin"
+        }
+      },
+      "id": "ab944e9c-c89d-42d6-a6bb-e0e58e34b2cf"
+    },
+    {
+      "profile": {
+        "userInfo": {
+          "lastName": "Burke",
+          "userName": "sburke",
+          "firstName": "Shannon"
+        },
+        "description": "Creates new instance, holdings, and item record",
+        "name": "Print Books - Create New Record",
+        "dataType": "MARC",
+        "metadata": {
+          "updatedByUserId": "13144ff8-ceb1-4db8-8af1-4b2fc784a6d2",
+          "createdByUserId": "13144ff8-ceb1-4db8-8af1-4b2fc784a6d2",
+          "createdDate": "2021-01-20T17:50:19.379",
+          "updatedDate": "2021-01-20T17:50:19.379+0000"
+        },
+        "deleted": false
+      },
+      "id": "27eb6c97-805b-4c4d-a8b2-ffb30711b7eb"
+    }
+  ]
+}
