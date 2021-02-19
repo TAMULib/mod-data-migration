@@ -505,8 +505,8 @@ POST to http://localhost:9000/migrate/users
   "preActions": [],
   "postActions": [
     "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\"",
-    "WITH temp AS (SELECT id AS userId, uuid_generate_v4() AS permId, to_char (now()::timestamp at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS createdDate, (SELECT id FROM ${TENANT}_mod_users.users WHERE jsonb->>'username' = '${TENANT}_admin') AS createdBy FROM ${TENANT}_mod_users.users WHERE jsonb->>'username' NOT IN ('${TENANT}_admin','pub-sub')) INSERT INTO ${TENANT}_mod_permissions.permissions_users (id,jsonb,creation_date,created_by) SELECT permId AS id, concat('{\"id\": \"', permId, '\", \"userId\": \"', userId, '\", \"metadata\": {\"createdDate\": \"', createdDate, '\", \"updatedDate\": \"', createdDate, '\", \"createdByUserId\": \"', createdBy, '\", \"updatedByUserId\": \"', createdBy, '\"}, \"permissions\": []}')::jsonb AS jsonb, now()::timestamp at time zone 'UTC' AS creation_date, createdBy AS created_by FROM temp",
-    "UPDATE ${TENANT}_mod_users.users SET jsonb = jsonb_set(jsonb, '{personal, email}', '\"folio_user@library.tamu.edu\"') WHERE jsonb->'personal'->>'email' != 'folio_user@library.tamu.edu'"
+    "WITH temp AS (SELECT id AS userId, uuid_generate_v4() AS permId, to_char (now()::timestamp at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS createdDate, (SELECT id FROM ${TENANT}_mod_users.users WHERE jsonb->>'username' = '${TENANT}_admin') AS createdBy FROM ${TENANT}_mod_users.users WHERE jsonb->>'username' NOT IN ('${TENANT}_admin','backup_admin','pub-sub','edgeuser')) INSERT INTO ${TENANT}_mod_permissions.permissions_users (id,jsonb,creation_date,created_by) SELECT permId AS id, concat('{\"id\": \"', permId, '\", \"userId\": \"', userId, '\", \"metadata\": {\"createdDate\": \"', createdDate, '\", \"updatedDate\": \"', createdDate, '\", \"createdByUserId\": \"', createdBy, '\", \"updatedByUserId\": \"', createdBy, '\"}, \"permissions\": []}')::jsonb AS jsonb, now()::timestamp at time zone 'UTC' AS creation_date, createdBy AS created_by FROM temp",
+    "UPDATE ${TENANT}_mod_users.users SET jsonb = jsonb_set(jsonb, '{personal, email}', '\"folio_user@library.tamu.edu\"') WHERE jsonb->'personal'->>'email' != 'folio_user@library.tamu.edu' AND jsonb->>'username' NOT IN ('${TENANT}_admin','backup_admin','pub-sub','edgeuser')"
   ],
   "parallelism": 12,
   "jobs": [
@@ -1555,7 +1555,7 @@ POST to http://localhost:9000/migrate/divitpatron
   },
   "preActions": [],
   "postActions": [
-    "UPDATE ${TENANT}_mod_users.users SET jsonb = jsonb_set(jsonb, '{personal, email}', '\"folio_user@library.tamu.edu\"') WHERE jsonb->'personal'->>'email' != 'folio_user@library.tamu.edu'"
+    "UPDATE ${TENANT}_mod_users.users SET jsonb = jsonb_set(jsonb, '{personal, email}', '\"folio_user@library.tamu.edu\"') WHERE jsonb->'personal'->>'email' != 'folio_user@library.tamu.edu' AND jsonb->>'username' NOT IN ('${TENANT}_admin','backup_admin','pub-sub','edgeuser')"
   ],
   "parallelism": 12,
   "jobs": [
