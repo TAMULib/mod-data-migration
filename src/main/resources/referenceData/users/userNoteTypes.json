@@ -3,24 +3,11 @@
   "dependencies": [],
   "data": [
     {
-      "name": "General note",
-      "usage": {
-        "noteTotal": 34
-      },
-      "id": "1c5354ef-b8fb-4012-b171-bad567abd524"
-    },
-    {
       "name": "User note",
-      "usage": {
-        "noteTotal": 28002
-      },
       "id": "659ee423-2b5c-4146-a45e-8c36ec3ad42c"
     },
     {
       "name": "zippy",
-      "usage": {
-        "noteTotal": 1
-      },
       "id": "3ae3d35a-1c37-4871-bf47-8d1ee8cc84cb"
     }
   ]
