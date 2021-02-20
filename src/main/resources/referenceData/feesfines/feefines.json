@@ -117,11 +117,6 @@
       "feeFineType": "Lost item processing (migrated-do not use)"
     },
     {
-      "automatic": true,
-      "id": "9523cb96-e752-40c2-89da-60f3961a488d",
-      "feeFineType": "Overdue fine"
-    },
-    {
       "actionNoticeId": "3d1534cb-8c98-466c-acd9-fd1448468d7f",
       "feeFineType": "Lost item processing (migrated-do not use)",
       "ownerId": "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
@@ -175,16 +170,6 @@
       "chargeNoticeId": "3fe59fee-0afa-4dd6-9fd2-655f4e6751fd"
     },
     {
-      "feeFineType": "Lost item processing fee",
-      "automatic": true,
-      "id": "c7dede15-aa48-45ed-860b-f996540180e0"
-    },
-    {
-      "automatic": true,
-      "id": "cf238f9f-7018-47b7-b815-bb2db798e19f",
-      "feeFineType": "Lost item fee"
-    },
-    {
       "ownerId": "014416f2-7609-4222-a812-1a3deb0591b8",
       "chargeNoticeId": "bd639688-ff1c-4092-ac94-65d7339910da",
       "actionNoticeId": "3d1534cb-8c98-466c-acd9-fd1448468d7f",
@@ -192,11 +177,6 @@
       "id": "cfb04480-b3d4-4e1e-ad6c-79e938fb7702",
       "defaultAmount": 2,
       "feeFineType": "Lost item processing"
-    },
-    {
-      "feeFineType": "Replacement processing fee",
-      "automatic": true,
-      "id": "d20df2fb-45fd-4184-b238-0d25747ffdd9"
     },
     {
       "actionNoticeId": "3d1534cb-8c98-466c-acd9-fd1448468d7f",
