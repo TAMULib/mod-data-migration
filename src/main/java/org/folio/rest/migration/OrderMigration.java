@@ -489,7 +489,6 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                   case "btetext":
                   case "btetxt":
                     fundCode = "etxt";
-                    fundDistribution.setExpenseClassId(expenseClasses.get("etxtnorm"));
                     break;
                   case "e-72997":
                     fundCode = "barclay";
@@ -505,6 +504,10 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
                   break;
                   default:
                   break;
+                }
+
+                if (fundCode.equals("etxt") && Objects.isNull(fundDistribution.getExpenseClassId())) {
+                  fundDistribution.setExpenseClassId(expenseClasses.get("etxtnorm"));
                 }
 
                 if (fundsMap.containsKey(fundCode)) {
