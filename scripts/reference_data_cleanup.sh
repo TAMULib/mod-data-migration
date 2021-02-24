@@ -69,7 +69,7 @@ select '/finance/groups/' || id from diku_mod_finance_storage.groups;
 select '/finance/ledgers/' || id from diku_mod_finance_storage.ledger;
 select '/finance/fiscal-years/' || id from diku_mod_finance_storage.fiscal_year;
 select '/finance/fund-types/' || id from diku_mod_finance_storage.fund_type;
-select '/staff-slips-storage/staff-slips' || id from diku_mod_circulation_storage.staff_slips;
+select '/staff-slips-storage/staff-slips/' || id from diku_mod_circulation_storage.staff_slips;
 EOM
 
 # iterate select statements
