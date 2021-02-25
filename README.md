@@ -775,6 +775,10 @@ POST to http://localhost:9000/migrate/holdings
         "68": "Mobile",
         "126": "rs,hdr",
         "127": "rs,hdr",
+        "135": "kingsvl",
+        "141": "kingsvlref",
+        "143": "kingsvlrestext",
+        "144": "kingsvljrnl",
         "186": "msl_pda"
       }
     },
@@ -954,6 +958,10 @@ POST to http://localhost:9000/migrate/items
         "68": "Mobile",
         "126": "rs,hdr",
         "127": "rs,hdr",
+        "135": "kingsvl",
+        "141": "kingsvlref",
+        "143": "kingsvlrestext",
+        "144": "kingsvljrnl",
         "186": "msl_pda"
       }
     },
@@ -1194,10 +1202,13 @@ POST to http://localhost:9000/migrate/requests
         "5": "AbstractIndex",
         "40": "www_msl",
         "44": "msl_withdrawn",
-        "67": "Mobile",
         "68": "Mobile",
         "126": "rs,hdr",
         "127": "rs,hdr",
+        "135": "kingsvl",
+        "141": "kingsvlref",
+        "143": "kingsvlrestext",
+        "144": "kingsvljrnl",
         "186": "msl_pda"
       }
     },
@@ -1300,10 +1311,13 @@ POST to http://localhost:9000/migrate/loans
         "5": "AbstractIndex",
         "40": "www_msl",
         "44": "msl_withdrawn",
-        "67": "Mobile",
         "68": "Mobile",
         "126": "rs,hdr",
         "127": "rs,hdr",
+        "135": "kingsvl",
+        "141": "kingsvlref",
+        "143": "kingsvlrestext",
+        "144": "kingsvljrnl",
         "186": "msl_pda"
       }
     },
@@ -1418,6 +1432,10 @@ POST to http://localhost:9000/migrate/feesfines
         "68": "Mobile",
         "126": "rs,hdr",
         "127": "rs,hdr",
+        "135": "kingsvl",
+        "141": "kingsvlref",
+        "143": "kingsvlrestext",
+        "144": "kingsvljrnl",
         "186": "msl_pda"
       }
     },
@@ -1734,6 +1752,10 @@ POST to http://localhost:9000/migrate/orders
         "68": "Mobile",
         "126": "rs,hdr",
         "127": "rs,hdr",
+        "135": "kingsvl",
+        "141": "kingsvlref",
+        "143": "kingsvlrestext",
+        "144": "kingsvljrnl",
         "186": "msl_pda"
       }
     },
