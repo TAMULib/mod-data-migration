@@ -227,7 +227,7 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
           Optional<Servicepoint> servicePoint = getServicePoint(locationCode, servicePoints);
 
           if (!servicePoint.isPresent()) {
-            log.info("{} could not find service point for item id {} with charge location {}", schema, itemId, chargeLocation);
+            log.info("{} could not find service point for item id {} with charge location {} and code {}", schema, itemId, chargeLocation, locationCode);
             continue;
           }
 
