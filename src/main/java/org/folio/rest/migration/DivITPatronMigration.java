@@ -178,6 +178,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
           personal.setMiddleName(personal_middleName);
           personal.setEmail(personal_email);
           personal.setPhone(FormatUtility.normalizePhoneNumber(personal_phone));
+          personal.setPreferredContactTypeId("002");
 
           if (StringUtils.isNotEmpty(addresses_permanent_addressLine1)) {
             Address permanentAddress = new Address();
@@ -189,6 +190,7 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
             permanentAddress.setCity(addresses_permanent_city);
             permanentAddress.setRegion(addresses_permanent_region);
             permanentAddress.setPostalCode(FormatUtility.normalizePostalCode(addresses_permanent_postalCode));
+            permanentAddress.setPrimaryAddress(true);
 
             personal.getAddresses().add(permanentAddress);
           }
