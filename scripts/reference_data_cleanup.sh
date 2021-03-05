@@ -58,7 +58,7 @@ select '/location-units/libraries/' || id from diku_mod_inventory_storage.loclib
 select '/location-units/campuses/' || id from diku_mod_inventory_storage.loccampus;
 select '/location-units/institutions/' || id from diku_mod_inventory_storage.locinstitution;
 select '/service-points/' || id from diku_mod_inventory_storage.service_point;
-select '/groups/' || id from diku_mod_users.groups;
+select '/groups/' || id from diku_mod_users.groups where jsonb->>'group' != 'admin';
 select '/addresstypes/' || id from diku_mod_users.addresstype;
 select '/owners/' || id from diku_mod_feesfines.owners;
 select '/configurations/entries/' || id from diku_mod_configuration.config_data;
