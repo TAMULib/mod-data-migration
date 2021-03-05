@@ -1,6 +1,5 @@
 package org.folio.rest.migration.controller;
 
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 import org.folio.rest.migration.BibMigration;
@@ -37,11 +36,12 @@ import org.folio.rest.migration.model.request.user.UserContext;
 import org.folio.rest.migration.model.request.user.UserReferenceLinkContext;
 import org.folio.rest.migration.model.request.vendor.VendorContext;
 import org.folio.rest.migration.model.request.vendor.VendorReferenceLinkContext;
+import org.folio.rest.migration.service.CalendarService;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.service.ReferenceDataService;
+import org.folio.rest.migration.service.RulesService;
 import org.folio.spring.tenant.annotation.TenantHeader;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,10 +58,30 @@ public class MigrationController {
   @Autowired
   private ReferenceDataService referenceDataService;
 
+  @Autowired
+  private CalendarService calendarService;
+
+  @Autowired
+  private RulesService rulesService;
+
   @PostMapping("/reference-data")
-  public ResponseEntity<Void> loadReferenceData(@TenantHeader String tenant) throws IOException {
-    referenceDataService.loadReferenceData("classpath:/referenceData/**/*.json", tenant);
-    return ResponseEntity.noContent().build();
+  public CompletableFuture<Void> loadReferenceData(@TenantHeader String tenant) {
+    return referenceDataService.loadReferenceDataAsync("classpath:/referenceData/**/*.json", tenant);
+  }
+
+  @PostMapping("/calendar-periods")
+  public CompletableFuture<Void> createCalendarPeriods(@TenantHeader String tenant) {
+    return calendarService.createCalendarPeriodsAsync("classpath:/calendar/*.json", tenant);
+  }
+
+  @PostMapping("/circ-rules")
+  public CompletableFuture<Void> updateCircRules(@TenantHeader String tenant) {
+    return rulesService.updateRulesAsync("classpath:/rules/loans/rules.json", "circulation-rules-storage", tenant);
+  }
+
+  @PostMapping("/bib-mapping-rules")
+  public CompletableFuture<Void> updateBibMappingRules(@TenantHeader String tenant) {
+    return rulesService.updateRulesAsync("classpath:/rules/bibs/rules.json", "mapping-rules", tenant);
   }
 
   @PostMapping("/user-reference-links")
@@ -120,7 +140,8 @@ public class MigrationController {
   public CompletableFuture<String> bibs(
       @RequestBody BibContext context,
       @TenantHeader String tenant,
-      @RequestParam(required = false, defaultValue = "false") boolean skipReferenceData
+      @RequestParam(required = false, defaultValue = "false") boolean skipReferenceData,
+      @RequestParam(required = false, defaultValue = "false") boolean skipRules
   ) {
     return migrationService.migrate(BibMigration.with(context, tenant));
   }
@@ -162,7 +183,9 @@ public class MigrationController {
   public CompletableFuture<String> loans(
       @RequestBody LoanContext context,
       @TenantHeader String tenant,
-      @RequestParam(required = false, defaultValue = "false") boolean skipReferenceData
+      @RequestParam(required = false, defaultValue = "false") boolean skipReferenceData,
+      @RequestParam(required = false, defaultValue = "false") boolean skipRules,
+      @RequestParam(required = false, defaultValue = "false") boolean skipCalendarPeriods
   ) {
     return migrationService.migrate(LoanMigration.with(context, tenant));
   }

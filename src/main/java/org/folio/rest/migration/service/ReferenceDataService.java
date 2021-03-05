@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -34,6 +35,20 @@ public class ReferenceDataService {
 
   @Autowired
   private ObjectMapper objectMapper;
+
+  public CompletableFuture<Void> loadReferenceDataAsync(String pattern, String tenant) {
+    return CompletableFuture.supplyAsync(() -> {
+      try {
+        loadReferenceData(pattern, tenant);
+      } catch (IOException e) {
+        e.printStackTrace();
+        return false;
+      }
+      return true;
+    }).thenAccept(c -> {
+      logger.info("finished creating reference data");
+    });
+  }
 
   public void loadReferenceData(String pattern, String tenant) throws IOException {
     String token = okapiService.getToken(tenant);
