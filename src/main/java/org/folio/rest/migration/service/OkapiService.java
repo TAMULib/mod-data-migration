@@ -34,7 +34,6 @@ import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.J
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_finance.schemas.FundCollection;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePurchaseOrder;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece;
-import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Title;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.TitleCollection;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecords;

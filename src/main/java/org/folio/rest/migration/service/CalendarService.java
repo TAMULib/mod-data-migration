@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.support.ResourcePatternUtils;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,6 +38,7 @@ public class CalendarService {
   @Autowired
   private ObjectMapper objectMapper;
 
+  @Async("asyncTaskExecutor")
   public CompletableFuture<Void> createCalendarPeriodsAsync(String pattern, String tenant) {
     return CompletableFuture.supplyAsync(() -> {
       try {

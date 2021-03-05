@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,6 +28,7 @@ public class RulesService {
   @Autowired
   private ObjectMapper objectMapper;
 
+  @Async("asyncTaskExecutor")
   public CompletableFuture<Void> updateRulesAsync(String file, String path, String tenant) {
     return CompletableFuture.supplyAsync(() -> {
       return updateRules(file, path, tenant);
