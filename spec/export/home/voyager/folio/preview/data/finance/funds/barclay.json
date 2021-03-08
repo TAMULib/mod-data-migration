@@ -1,0 +1,17 @@
+{
+   "groupIds" : [
+      "9259b254-17dd-46cb-82c4-03aaf19d8972"
+   ],
+   "fund" : {
+      "externalAccountNo" : "72997",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "allocatedToIds" : [],
+      "code" : "barclay",
+      "acqUnitIds" : [],
+      "fundStatus" : "Active",
+      "allocatedFromIds" : [],
+      "id" : "cd589e3e-aab3-48ad-a03a-09de41b2effd",
+      "name" : "Etxt Barclay"
+   }
+}
+

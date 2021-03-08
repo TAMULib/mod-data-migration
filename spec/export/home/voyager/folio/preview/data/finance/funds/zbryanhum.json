@@ -1,0 +1,16 @@
+{
+   "fund" : {
+      "allocatedFromIds" : [],
+      "fundStatus" : "Inactive",
+      "id" : "85f889f5-b0c0-4a96-a6cf-35066cb6c268",
+      "description" : "For Bryan Humanity Purchases only",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "name" : "zBryan Humanity",
+      "externalAccountNo" : "57076",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "code" : "zbryanhum",
+      "acqUnitIds" : [],
+      "allocatedToIds" : []
+   }
+}
+

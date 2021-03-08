@@ -1,0 +1,13 @@
+{
+   "forgiveOverdueFine" : true,
+   "gracePeriodRecall" : true,
+   "countClosed" : false,
+   "overdueFine" : {
+      "quantity" : 0.5,
+      "intervalId" : "minute"
+   },
+   "maxOverdueRecallFine" : 0,
+   "maxOverdueFine" : 150,
+   "name" : "min_50_max_150",
+   "id" : "530a98b3-5cb2-43aa-b8d3-51e5b08f563d"
+}

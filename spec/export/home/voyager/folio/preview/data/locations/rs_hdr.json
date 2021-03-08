@@ -1,0 +1,15 @@
+{
+   "servicePointIds" : [
+      "3b80cfdf-438b-48c1-aadc-57965a0d7680"
+   ],
+   "discoveryDisplayName" : "Remote Storage (Austin)",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "rs,hdr",
+   "name" : "HDR",
+   "id" : "9e7086ca-99e3-4928-830f-78a8b88687fc",
+   "primaryServicePoint" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+   "servicePoints" : [],
+   "isActive" : true,
+   "campusId" : "0c37bdb0-dbb4-452c-aba8-bd5e5985b3b0",
+   "libraryId" : "d5b4d60d-ce02-42c8-9d05-56b9e6b63c48"
+}

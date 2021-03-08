@@ -1,0 +1,35 @@
+{
+   "budgetStatus" : "Active",
+   "statusExpenseClasses" : [
+      {
+         "status" : "Active",
+         "expenseClassId" : "a914893c-513b-406e-b842-bf43a56c99c8"
+      },
+      {
+         "expenseClassId" : "575f5703-8e63-4d93-b473-faf29436b80d",
+         "status" : "Active"
+      },
+      {
+         "status" : "Active",
+         "expenseClassId" : "23f61163-756d-4a05-8b03-63c459eaadd7"
+      },
+      {
+         "expenseClassId" : "f36e0eaf-9fe6-4736-ba0b-261be1a05e68",
+         "status" : "Active"
+      },
+      {
+         "status" : "Active",
+         "expenseClassId" : "b9b1995b-f3fa-4b81-8cee-015b766bbb17"
+      },
+      {
+         "expenseClassId" : "6a7d9cb5-41c8-4ac0-b42f-d348fcdb8bd6",
+         "status" : "Active"
+      }
+   ],
+   "acqUnitIds" : [],
+   "name" : "usergen2-FY2021",
+   "id" : "c25628ec-6f47-4ed5-ac3e-0cf76ce9f897",
+   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+   "fundId" : "14b12443-9bed-4853-aaf9-c9f3e0106ce0"
+}
+

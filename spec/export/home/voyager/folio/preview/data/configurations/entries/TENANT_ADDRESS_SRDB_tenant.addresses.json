@@ -1,0 +1,15 @@
+{
+   "module" : "TENANT",
+   "configName" : "tenant.addresses",
+   "id" : "bf6934e7-40e6-4807-a262-31f84c110c64",
+   "metadata" : {
+      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
+      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
+      "updatedDate" : "2021-02-04T20:41:00.022+00:00",
+      "createdDate" : "2021-02-04T20:41:00.022"
+   },
+   "enabled" : true,
+   "value" : "{\"name\":\"SRDB\",\"address\":\"5000 TAMU\\nCollege Station, TX 77843-5000\"}",
+   "code" : "ADDRESS_SRDB"
+}
+

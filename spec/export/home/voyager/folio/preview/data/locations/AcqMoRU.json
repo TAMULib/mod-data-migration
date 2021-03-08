@@ -1,0 +1,15 @@
+{
+   "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "servicePoints" : [],
+   "isActive" : true,
+   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
+   "id" : "55183b04-e6b8-4e35-b511-f3d6aca0663c",
+   "code" : "AcqMoRU",
+   "name" : "Evans AcqMono RUSH",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "discoveryDisplayName" : "On order",
+   "servicePointIds" : [
+      "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
+   ]
+}

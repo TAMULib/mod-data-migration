@@ -1,0 +1,12 @@
+{
+   "mutable" : true,
+   "subPermissions" : [
+      "ui-orders.order-lines.view",
+      "ui-orders.order.view"
+   ],
+   "permissionName" : "3bc06f71-3a30-4d79-853f-ca6b6170b97b",
+   "displayName" : "Acquisitions_Orders_View",
+   "visible" : true,
+   "id" : "3bc06f71-3a30-4d79-853f-ca6b6170b97b"
+}
+

@@ -1,0 +1,17 @@
+{
+   "fund" : {
+      "allocatedFromIds" : [],
+      "fundStatus" : "Active",
+      "name" : "Maps",
+      "id" : "985af0e0-f081-4087-90d2-80b348e54242",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "externalAccountNo" : "242406",
+      "acqUnitIds" : [],
+      "code" : "maps",
+      "allocatedToIds" : []
+   },
+   "groupIds" : [
+      "96d9827a-ca78-489b-b38f-968a394a76f9"
+   ]
+}
+

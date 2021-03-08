@@ -1,0 +1,12 @@
+{
+   "subPermissions" : [
+      "ui-inventory.item.edit"
+   ],
+   "mutable" : true,
+   "description" : "Cataloging staff who only wish to view or edit item locations and status",
+   "visible" : true,
+   "displayName" : "Cat_Item",
+   "permissionName" : "df294639-9886-44ae-a215-257e3f0bdfd2",
+   "id" : "df294639-9886-44ae-a215-257e3f0bdfd2"
+}
+

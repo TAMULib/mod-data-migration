@@ -1,0 +1,17 @@
+{
+   "groupIds" : [
+      "8d414b94-14e8-4323-bcdc-1ac6ace09404"
+   ],
+   "fund" : {
+      "code" : "zzcont",
+      "acqUnitIds" : [],
+      "allocatedToIds" : [],
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "externalAccountNo" : "242406",
+      "id" : "f66f67f3-aaa7-4705-b4b9-3a98b261f68b",
+      "name" : "zzContinuation",
+      "allocatedFromIds" : [],
+      "fundStatus" : "Active"
+   }
+}
+

@@ -1,0 +1,15 @@
+{
+   "primaryServicePoint" : "fc64d24e-5247-402a-ae19-21de454c025d",
+   "isActive" : true,
+   "servicePoints" : [],
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "libraryId" : "3fb6a4cf-362a-4d59-8558-9bee67fd50eb",
+   "discoveryDisplayName" : "Business Library Reserves",
+   "servicePointIds" : [
+      "fc64d24e-5247-402a-ae19-21de454c025d"
+   ],
+   "id" : "6daff586-2421-47c0-9026-e0511347a752",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "blcc,res",
+   "name" : "Business Library Reserves"
+}

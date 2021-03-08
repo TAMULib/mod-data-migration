@@ -1,0 +1,25 @@
+{
+   "pickupLocation" : true,
+   "holdShelfExpiryPeriod" : {
+      "duration" : 10,
+      "intervalId" : "Days"
+   },
+   "staffSlips" : [
+      {
+         "id" : "6a6e72f0-69da-4b4c-8254-7154679e9d88",
+         "printByDefault" : false
+      },
+      {
+         "printByDefault" : false,
+         "id" : "1ed55c5c-64d9-40eb-8b80-7438a262288b"
+      },
+      {
+         "id" : "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
+         "printByDefault" : false
+      }
+   ],
+   "id" : "ccfdc7f0-1aa5-482f-a689-1a2188756412",
+   "code" : "qatar",
+   "name" : "Qatar Libr (TAMUQ)",
+   "discoveryDisplayName" : "Qatar Libr (TAMUQ)"
+}

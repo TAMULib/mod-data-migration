@@ -1,0 +1,15 @@
+{
+   "primaryServicePoint" : "7f719f23-7e2e-4a60-8e58-9e778ad6344f",
+   "isActive" : true,
+   "servicePoints" : [],
+   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+   "libraryId" : "34120ce8-40d9-461a-be56-680c8f2f66ae",
+   "servicePointIds" : [
+      "7f719f23-7e2e-4a60-8e58-9e778ad6344f"
+   ],
+   "discoveryDisplayName" : "HSC Kingsville Reference",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "name" : "HSC Kingsville Reference",
+   "code" : "kingsvlref",
+   "id" : "512b62e1-380c-4ea3-92b7-3430ffb604c7"
+}

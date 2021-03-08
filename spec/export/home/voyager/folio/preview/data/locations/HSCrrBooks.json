@@ -1,0 +1,15 @@
+{
+   "id" : "25c10d76-1ed4-4e52-8c92-07c094222a42",
+   "name" : "HSC Round Rock Books",
+   "code" : "HSCrrBooks",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "discoveryDisplayName" : "HSC Round Rock Campus Books",
+   "servicePointIds" : [
+      "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e"
+   ],
+   "libraryId" : "72960160-e347-48bf-9ab3-448dcae5da70",
+   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+   "servicePoints" : [],
+   "isActive" : true,
+   "primaryServicePoint" : "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e"
+}

@@ -1,0 +1,15 @@
+{
+   "id" : "86d8976b-25a3-4595-bcd2-b9dbfd6b6139",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "SCEthMed",
+   "name" : "MSL SC Ethnic Medicine",
+   "discoveryDisplayName" : "MSL Special Collections",
+   "servicePointIds" : [
+      "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
+   ],
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "libraryId" : "171494ea-b9e6-41ce-8c04-967de9a81b99",
+   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
+   "isActive" : true,
+   "servicePoints" : []
+}

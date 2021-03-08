@@ -1,0 +1,19 @@
+{
+   "fund" : {
+      "allocatedFromIds" : [],
+      "fundStatus" : "Inactive",
+      "name" : "zOatar Exp Return Etxt",
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "description" : "For Qatar Exp. Return Etxt",
+      "id" : "d30d2697-bcae-4d54-827b-22728c31b76b",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "externalAccountNo" : "203830",
+      "acqUnitIds" : [],
+      "code" : "zqatarex",
+      "allocatedToIds" : []
+   },
+   "groupIds" : [
+      "3e54df19-46ef-4455-8cab-e520c77795dc"
+   ]
+}
+

@@ -1,0 +1,18 @@
+{
+   "renewable" : false,
+   "loansPolicy" : {
+      "openingTimeOffset" : {
+         "intervalId" : "Hours",
+         "duration" : 4
+      },
+      "closedLibraryDueDateManagementId" : "BEGINNING_OF_THE_NEXT_OPEN_SERVICE_POINT_HOURS",
+      "profileId" : "Rolling",
+      "period" : {
+         "intervalId" : "Hours",
+         "duration" : 4
+      }
+   },
+   "loanable" : true,
+   "name" : "hour_4_renew_0_recall_n",
+   "id" : "6ef675b5-1bb0-46f2-938d-85c8a612b7c5"
+}

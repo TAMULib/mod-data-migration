@@ -1,0 +1,17 @@
+{
+   "countClosed" : false,
+   "overdueFine" : {
+      "intervalId" : "day",
+      "quantity" : 5
+   },
+   "overdueRecallFine" : {
+      "intervalId" : "day",
+      "quantity" : 5
+   },
+   "maxOverdueRecallFine" : 35,
+   "maxOverdueFine" : 35,
+   "name" : "day_5_max_35",
+   "id" : "c37d9704-4e19-4910-88a6-19990d0e24d0",
+   "forgiveOverdueFine" : true,
+   "gracePeriodRecall" : true
+}

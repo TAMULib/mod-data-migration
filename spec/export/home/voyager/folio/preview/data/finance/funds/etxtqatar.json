@@ -1,0 +1,17 @@
+{
+   "groupIds" : [
+      "9259b254-17dd-46cb-82c4-03aaf19d8972"
+   ],
+   "fund" : {
+      "acqUnitIds" : [],
+      "code" : "etxtqatar",
+      "allocatedToIds" : [],
+      "externalAccountNo" : "206913",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Etxt Qatar",
+      "id" : "82163603-687f-46e3-90c9-6b33f2909be8",
+      "allocatedFromIds" : [],
+      "fundStatus" : "Active"
+   }
+}
+

@@ -1,0 +1,24 @@
+{
+   "description" : "Used by Evans ILS for HDR materials.",
+   "id" : "4d12a86f-3ca2-4288-98b2-74f812d879ec",
+   "loansPolicy" : {
+      "period" : {
+         "intervalId" : "Days",
+         "duration" : 60
+      },
+      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
+      "profileId" : "Rolling"
+   },
+   "loanable" : true,
+   "name" : "day_60_renew_1_recall_n",
+   "renewalsPolicy" : {
+      "numberAllowed" : 1,
+      "renewFromId" : "CURRENT_DUE_DATE",
+      "period" : {
+         "duration" : 14,
+         "intervalId" : "Days"
+      },
+      "differentPeriod" : true
+   },
+   "renewable" : true
+}

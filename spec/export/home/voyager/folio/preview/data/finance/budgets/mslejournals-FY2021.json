@@ -1,0 +1,39 @@
+{
+   "statusExpenseClasses" : [
+      {
+         "expenseClassId" : "96dc22d8-2870-464e-b059-c216eca711e1",
+         "status" : "Active"
+      },
+      {
+         "expenseClassId" : "4e005163-6eb2-46a6-a7d4-b894f3d1b5ee",
+         "status" : "Active"
+      },
+      {
+         "status" : "Active",
+         "expenseClassId" : "27ddca39-01d3-4cd7-91fa-4f1b034c9df3"
+      },
+      {
+         "status" : "Active",
+         "expenseClassId" : "f21e409d-03de-43c8-bb42-de42796035b1"
+      },
+      {
+         "status" : "Active",
+         "expenseClassId" : "2e3553cd-e7ab-4a69-8ffb-7ba564b9221c"
+      },
+      {
+         "expenseClassId" : "9507d669-99cb-4c30-b12f-73ddae3b6759",
+         "status" : "Active"
+      },
+      {
+         "expenseClassId" : "de02ccbb-afc9-4393-aa09-bbfcf531e3a4",
+         "status" : "Active"
+      }
+   ],
+   "budgetStatus" : "Active",
+   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+   "id" : "7bc95ae6-23da-4adf-ad46-cb006ec9cc3e",
+   "fundId" : "8c02c28a-865d-4165-9e0f-769351ac8b11",
+   "acqUnitIds" : [],
+   "name" : "mslejournals-FY2021"
+}
+

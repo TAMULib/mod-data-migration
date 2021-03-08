@@ -1,0 +1,14 @@
+{
+   "id" : "49f5a06f-a114-4772-a7ef-8f5b2bc71067",
+   "permissionName" : "49f5a06f-a114-4772-a7ef-8f5b2bc71067",
+   "displayName" : "Acquisitions_Financial_View",
+   "visible" : true,
+   "mutable" : true,
+   "subPermissions" : [
+      "ui-finance.fiscal-year.view",
+      "ui-finance.fund-budget.view",
+      "ui-finance.group.view",
+      "ui-finance.ledger.view"
+   ]
+}
+

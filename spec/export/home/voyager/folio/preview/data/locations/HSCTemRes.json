@@ -1,0 +1,15 @@
+{
+   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+   "libraryId" : "1445df48-cede-4f8e-b559-43041bdb00ac",
+   "primaryServicePoint" : "a2a3b682-35e9-4cc7-af63-1bdfe42e82dd",
+   "isActive" : true,
+   "servicePoints" : [],
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "name" : "HSC Temple Reserve 14",
+   "code" : "HSCTemRes",
+   "id" : "bc6f8464-e92a-4dba-b197-cf2bb4a3375e",
+   "servicePointIds" : [
+      "a2a3b682-35e9-4cc7-af63-1bdfe42e82dd"
+   ],
+   "discoveryDisplayName" : "HSC Temple Campus Reserve -- 14 day circulation"
+}

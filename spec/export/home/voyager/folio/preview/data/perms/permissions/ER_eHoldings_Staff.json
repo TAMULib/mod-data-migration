@@ -1,0 +1,14 @@
+{
+   "id" : "55f0aae9-50bc-4041-88bd-1719a19ca167",
+   "displayName" : "ER_eHoldings_Staff",
+   "permissionName" : "55f0aae9-50bc-4041-88bd-1719a19ca167",
+   "visible" : true,
+   "mutable" : true,
+   "subPermissions" : [
+      "ui-eholdings.titles-packages.create-delete",
+      "ui-eholdings.records.edit",
+      "ui-eholdings.package-title.select-unselect",
+      "module.eholdings.enabled"
+   ]
+}
+

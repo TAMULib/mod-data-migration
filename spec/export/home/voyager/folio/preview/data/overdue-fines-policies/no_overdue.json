@@ -1,0 +1,10 @@
+{
+   "countClosed" : true,
+   "id" : "bbf8a2ba-0ae9-40fa-9fc6-5d26f7f01091",
+   "name" : "no_overdue",
+   "description" : "Creates no overdue information. Used originally for migrated loans with past due dates.",
+   "maxOverdueFine" : 0,
+   "maxOverdueRecallFine" : 0,
+   "forgiveOverdueFine" : true,
+   "gracePeriodRecall" : true
+}

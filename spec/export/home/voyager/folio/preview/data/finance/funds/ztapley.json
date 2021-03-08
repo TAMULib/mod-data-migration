@@ -1,0 +1,16 @@
+{
+   "fund" : {
+      "externalAccountNo" : "57674",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "allocatedToIds" : [],
+      "acqUnitIds" : [],
+      "code" : "ztapley",
+      "fundStatus" : "Inactive",
+      "allocatedFromIds" : [],
+      "name" : "zTapley",
+      "id" : "f77a815d-dfee-4fe2-a777-fe1e40f22ad4",
+      "description" : "Tapley Purchases",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48"
+   }
+}
+

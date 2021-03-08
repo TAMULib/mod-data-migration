@@ -1,0 +1,16 @@
+{
+   "fund" : {
+      "allocatedFromIds" : [],
+      "fundStatus" : "Inactive",
+      "name" : "zShipping",
+      "description" : "For Shipping Charges only",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "id" : "f5a025da-a1eb-4a12-a812-9f6f73ada150",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "externalAccountNo" : "242406",
+      "acqUnitIds" : [],
+      "code" : "zship",
+      "allocatedToIds" : []
+   }
+}
+

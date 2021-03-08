@@ -1,0 +1,17 @@
+{
+   "mutable" : true,
+   "subPermissions" : [
+      "ui-notes.item.assign-unassign",
+      "ui-notes.item.create",
+      "ui-notes.item.delete",
+      "ui-notes.item.edit",
+      "ui-notes.item.view",
+      "settings.notes.enabled",
+      "module.notes.enabled"
+   ],
+   "id" : "89a70435-d430-4945-a280-f2791d242526",
+   "permissionName" : "89a70435-d430-4945-a280-f2791d242526",
+   "displayName" : "Notes_Supervisor",
+   "visible" : true
+}
+

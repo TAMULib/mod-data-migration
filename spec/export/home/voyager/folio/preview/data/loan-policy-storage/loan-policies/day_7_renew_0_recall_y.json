@@ -1,0 +1,27 @@
+{
+   "renewable" : false,
+   "requestManagement" : {
+      "recalls" : {
+         "minimumGuaranteedLoanPeriod" : {
+            "duration" : 7,
+            "intervalId" : "Days"
+         },
+         "recallReturnInterval" : {
+            "duration" : 7,
+            "intervalId" : "Days"
+         }
+      }
+   },
+   "name" : "day_7_renew_0_recall_y",
+   "loanable" : true,
+   "loansPolicy" : {
+      "profileId" : "Rolling",
+      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
+      "period" : {
+         "intervalId" : "Days",
+         "duration" : 7
+      }
+   },
+   "id" : "c998a3ad-8b3b-43da-be34-a40a89165959",
+   "description" : "7 day loan, no renewals, can recall"
+}

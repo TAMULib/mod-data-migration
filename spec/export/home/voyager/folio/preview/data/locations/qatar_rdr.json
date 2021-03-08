@@ -1,0 +1,15 @@
+{
+   "name" : "qatar rdr",
+   "code" : "qatar,rdr",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "id" : "89584d43-b7e1-4e3d-90a9-8700681272f7",
+   "servicePointIds" : [
+      "ccfdc7f0-1aa5-482f-a689-1a2188756412"
+   ],
+   "discoveryDisplayName" : "Texas A&M University Qatar Library Foundation Readers",
+   "libraryId" : "5b775c0c-6107-4cca-9314-106e751ed94a",
+   "campusId" : "c1d51a99-428c-44ee-9df4-8dc259b3d7eb",
+   "isActive" : true,
+   "servicePoints" : [],
+   "primaryServicePoint" : "ccfdc7f0-1aa5-482f-a689-1a2188756412"
+}

@@ -1,0 +1,15 @@
+{
+   "servicePointIds" : [
+      "3b80cfdf-438b-48c1-aadc-57965a0d7680"
+   ],
+   "discoveryDisplayName" : "Available from Evans Ask Us Desk or Annex Service Desk",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "circ,lap",
+   "name" : "Evans circ lap",
+   "id" : "da245fa2-6aff-433a-b503-f78e31007a34",
+   "primaryServicePoint" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+   "isActive" : true,
+   "servicePoints" : [],
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74"
+}

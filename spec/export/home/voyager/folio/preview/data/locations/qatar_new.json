@@ -1,0 +1,15 @@
+{
+   "discoveryDisplayName" : "Texas A&M University Qatar Library New Titles",
+   "servicePointIds" : [
+      "ccfdc7f0-1aa5-482f-a689-1a2188756412"
+   ],
+   "id" : "a6bd7a3a-74f5-4afd-8bde-df0afcd40a39",
+   "name" : "qatar new",
+   "code" : "qatar,new",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "isActive" : true,
+   "servicePoints" : [],
+   "primaryServicePoint" : "ccfdc7f0-1aa5-482f-a689-1a2188756412",
+   "libraryId" : "5b775c0c-6107-4cca-9314-106e751ed94a",
+   "campusId" : "c1d51a99-428c-44ee-9df4-8dc259b3d7eb"
+}

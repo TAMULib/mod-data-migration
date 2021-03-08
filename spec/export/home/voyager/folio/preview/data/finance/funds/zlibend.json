@@ -1,0 +1,16 @@
+{
+   "fund" : {
+      "externalAccountNo" : "510466",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "acqUnitIds" : [],
+      "code" : "zlibend",
+      "allocatedToIds" : [],
+      "allocatedFromIds" : [],
+      "fundStatus" : "Inactive",
+      "name" : "zLibrary Endowment",
+      "description" : "For Library Endowment Purchases",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "id" : "142a9de0-4b74-4ab8-89a9-1762c3267e9f"
+   }
+}
+

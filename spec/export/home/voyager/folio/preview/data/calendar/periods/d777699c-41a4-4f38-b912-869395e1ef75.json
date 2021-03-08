@@ -1,0 +1,92 @@
+{
+  "id" : "d777699c-41a4-4f38-b912-869395e1ef75",
+  "servicePointId" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+  "name" : "Media and Reserves Calendar",
+  "startDate" : "1988-01-01T00:00:00.000+00:00",
+  "endDate" : "2024-12-31T00:00:00.000+00:00",
+  "openingDays" : [ {
+    "weekdays" : {
+      "day" : "SUNDAY"
+    },
+    "openingDay" : {
+      "openingHour" : [ {
+        "startTime" : "09:00",
+        "endTime" : "23:59"
+      } ],
+      "allDay" : false,
+      "open" : true
+    }
+  }, {
+    "weekdays" : {
+      "day" : "MONDAY"
+    },
+    "openingDay" : {
+      "openingHour" : [ {
+        "startTime" : "00:00",
+        "endTime" : "23:59"
+      } ],
+      "allDay" : false,
+      "open" : true
+    }
+  }, {
+    "weekdays" : {
+      "day" : "TUESDAY"
+    },
+    "openingDay" : {
+      "openingHour" : [ {
+        "startTime" : "00:00",
+        "endTime" : "23:59"
+      } ],
+      "allDay" : false,
+      "open" : true
+    }
+  }, {
+    "weekdays" : {
+      "day" : "WEDNESDAY"
+    },
+    "openingDay" : {
+      "openingHour" : [ {
+        "startTime" : "00:00",
+        "endTime" : "23:59"
+      } ],
+      "allDay" : false,
+      "open" : true
+    }
+  }, {
+    "weekdays" : {
+      "day" : "THURSDAY"
+    },
+    "openingDay" : {
+      "openingHour" : [ {
+        "startTime" : "00:00",
+        "endTime" : "23:59"
+      } ],
+      "allDay" : false,
+      "open" : true
+    }
+  }, {
+    "weekdays" : {
+      "day" : "FRIDAY"
+    },
+    "openingDay" : {
+      "openingHour" : [ {
+        "startTime" : "07:00",
+        "endTime" : "21:00"
+      } ],
+      "allDay" : false,
+      "open" : true
+    }
+  }, {
+    "weekdays" : {
+      "day" : "SATURDAY"
+    },
+    "openingDay" : {
+      "openingHour" : [ {
+        "startTime" : "09:00",
+        "endTime" : "21:00"
+      } ],
+      "allDay" : false,
+      "open" : true
+    }
+  } ]
+}

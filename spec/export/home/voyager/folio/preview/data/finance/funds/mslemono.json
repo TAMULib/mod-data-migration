@@ -1,0 +1,17 @@
+{
+   "fund" : {
+      "acqUnitIds" : [],
+      "code" : "mslemono",
+      "allocatedToIds" : [],
+      "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
+      "externalAccountNo" : "242406",
+      "name" : "MSL Ebooks",
+      "id" : "501682ed-ce9e-4ab9-95f5-61aac2200d6b",
+      "allocatedFromIds" : [],
+      "fundStatus" : "Active"
+   },
+   "groupIds" : [
+      "9602260b-1a96-444b-b694-d1fabec70ed6"
+   ]
+}
+

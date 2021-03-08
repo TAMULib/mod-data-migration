@@ -1,0 +1,23 @@
+{
+   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+   "id" : "c09cd1e5-6c17-487f-b080-3135e5549e23",
+   "fundId" : "1e410c13-699e-45a0-8389-1bdd5f29980d",
+   "acqUnitIds" : [],
+   "name" : "print-FY2021",
+   "statusExpenseClasses" : [
+      {
+         "expenseClassId" : "3a576abb-811e-4945-a651-42b9d517bb15",
+         "status" : "Active"
+      },
+      {
+         "expenseClassId" : "ff651515-9b20-4449-8dd3-500e7353ce11",
+         "status" : "Active"
+      },
+      {
+         "expenseClassId" : "82bc9d63-a3d0-4aed-872d-d4d2112b1668",
+         "status" : "Active"
+      }
+   ],
+   "budgetStatus" : "Active"
+}
+

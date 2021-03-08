@@ -1,0 +1,17 @@
+{
+   "groupIds" : [
+      "95406f00-ad4a-411c-9b52-ce179b742d31"
+   ],
+   "fund" : {
+      "allocatedToIds" : [],
+      "acqUnitIds" : [],
+      "code" : "print",
+      "externalAccountNo" : "242406",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Print Books",
+      "id" : "1e410c13-699e-45a0-8389-1bdd5f29980d",
+      "fundStatus" : "Active",
+      "allocatedFromIds" : []
+   }
+}
+

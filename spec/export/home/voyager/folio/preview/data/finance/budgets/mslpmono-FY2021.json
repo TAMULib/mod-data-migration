@@ -1,0 +1,47 @@
+{
+   "name" : "mslpmono-FY2021",
+   "acqUnitIds" : [],
+   "fundId" : "5cd9eff1-eb21-4cae-9b8b-79866f24d703",
+   "id" : "9c0eb523-9058-4e67-88b4-40cd22289fce",
+   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+   "budgetStatus" : "Active",
+   "statusExpenseClasses" : [
+      {
+         "status" : "Active",
+         "expenseClassId" : "ee5ea835-8896-45f4-b4ef-c1e9812c2d24"
+      },
+      {
+         "status" : "Active",
+         "expenseClassId" : "788fd5a9-f4bc-4b65-813b-2eade0637f4d"
+      },
+      {
+         "expenseClassId" : "1d287ea8-28df-4d3e-82a0-f9865cf759de",
+         "status" : "Active"
+      },
+      {
+         "status" : "Active",
+         "expenseClassId" : "d20a2068-089f-42d0-9893-0afdcc56b27a"
+      },
+      {
+         "status" : "Active",
+         "expenseClassId" : "b9e6408f-5ec9-4d86-8f6a-734701bc735f"
+      },
+      {
+         "expenseClassId" : "3d5cd0fc-5ceb-4505-91ce-b7f3c8f87e02",
+         "status" : "Active"
+      },
+      {
+         "expenseClassId" : "59090265-788d-4e9d-919e-e5443658708c",
+         "status" : "Active"
+      },
+      {
+         "status" : "Active",
+         "expenseClassId" : "4ceadf32-6197-4f92-ab18-847d627a04cd"
+      },
+      {
+         "expenseClassId" : "a5f3bdc9-a8a1-4027-bd2e-ad08050be710",
+         "status" : "Active"
+      }
+   ]
+}
+

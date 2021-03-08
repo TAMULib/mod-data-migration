@@ -1,0 +1,8 @@
+{
+   "requestTypes" : [
+      "Page"
+   ],
+   "id" : "a7f729b4-54e7-424a-9793-8f763f01085a",
+   "name" : "page_only",
+   "description" : "Only allow page requests"
+}

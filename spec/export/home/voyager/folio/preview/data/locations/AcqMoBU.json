@@ -1,0 +1,15 @@
+{
+   "discoveryDisplayName" : "On order",
+   "servicePointIds" : [
+      "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
+   ],
+   "id" : "a15727b2-e420-4d2c-bbbc-9a070433aa0e",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "name" : "Evans AcqMono Bulk Purchases",
+   "code" : "AcqMoBU",
+   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
+   "isActive" : true,
+   "servicePoints" : [],
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74"
+}

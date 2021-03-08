@@ -1,0 +1,15 @@
+{
+   "servicePointIds" : [
+      "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
+   ],
+   "discoveryDisplayName" : "Cushing/Texas A&M Pubs. (Remote Storage; 2-3 day retrieval)",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "cush,tpub",
+   "name" : "cush tpub",
+   "id" : "8a6aebd7-6414-4df1-abae-33469e758a98",
+   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
+   "servicePoints" : [],
+   "isActive" : true,
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "libraryId" : "ac026424-a09c-48eb-b668-624628ac43c1"
+}

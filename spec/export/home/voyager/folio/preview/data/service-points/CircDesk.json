@@ -1,0 +1,29 @@
+{
+   "pickupLocation" : true,
+   "holdShelfExpiryPeriod" : {
+      "duration" : 10,
+      "intervalId" : "Days"
+   },
+   "id" : "9311b907-0c9f-42d0-aea4-62d33a7ab7b7",
+   "staffSlips" : [
+      {
+         "id" : "6a6e72f0-69da-4b4c-8254-7154679e9d88",
+         "printByDefault" : true
+      },
+      {
+         "printByDefault" : false,
+         "id" : "8812bae1-2738-442c-bc20-fe4bb38a11f8"
+      },
+      {
+         "id" : "1ed55c5c-64d9-40eb-8b80-7438a262288b",
+         "printByDefault" : false
+      },
+      {
+         "id" : "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
+         "printByDefault" : true
+      }
+   ],
+   "code" : "CircDesk",
+   "name" : "MSL AskUs",
+   "discoveryDisplayName" : "MSL Client Services Desk"
+}

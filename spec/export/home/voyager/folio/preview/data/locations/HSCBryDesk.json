@@ -1,0 +1,15 @@
+{
+   "primaryServicePoint" : "43f9092b-1e4d-4103-ae99-a93ba1d99bc7",
+   "isActive" : true,
+   "servicePoints" : [],
+   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+   "libraryId" : "3e5308a1-430d-4a19-9dbf-fbcf2654e2cc",
+   "discoveryDisplayName" : "yyy_HSC Bryan Campus Circulation Desk",
+   "servicePointIds" : [
+      "43f9092b-1e4d-4103-ae99-a93ba1d99bc7"
+   ],
+   "id" : "0d3e67e1-642e-4065-99b8-f9c05e63bd09",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "HSCBryDesk",
+   "name" : "HSC BRYAN CAMPUS CIRC"
+}

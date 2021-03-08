@@ -1,0 +1,15 @@
+{
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
+   "servicePoints" : [],
+   "isActive" : true,
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "SRMSV",
+   "name" : "Evans SRMSV",
+   "id" : "06f0da53-559c-45dd-9aa2-b6b47830a3b0",
+   "servicePointIds" : [
+      "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
+   ],
+   "discoveryDisplayName" : "Acquisitions-Serials Records"
+}

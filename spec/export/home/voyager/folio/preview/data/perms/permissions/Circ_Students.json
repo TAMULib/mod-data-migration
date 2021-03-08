@@ -1,0 +1,21 @@
+{
+   "subPermissions" : [
+      "ui-checkin.all",
+      "ui-checkout.circulation",
+      "ui-inventory.instance.view",
+      "ui-notes.item.create",
+      "ui-circulation-log.log-event.all",
+      "ui-notes.item.view",
+      "ui-users.viewproxies",
+      "ui-users.view",
+      "ui-users.loans.renew",
+      "ui-users.loans.view",
+      "ui-users.requests.all"
+   ],
+   "mutable" : true,
+   "id" : "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
+   "visible" : true,
+   "permissionName" : "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
+   "displayName" : "Circ_Students"
+}
+

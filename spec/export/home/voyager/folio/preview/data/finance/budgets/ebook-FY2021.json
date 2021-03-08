@@ -1,0 +1,19 @@
+{
+   "acqUnitIds" : [],
+   "name" : "ebook-FY2021",
+   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+   "id" : "f370845b-9058-45f5-b304-92490e68d452",
+   "fundId" : "da701580-607d-44dd-8ab9-c8103fc1c0a0",
+   "statusExpenseClasses" : [
+      {
+         "status" : "Active",
+         "expenseClassId" : "bbef4f8c-1173-45da-be6a-47c3aacb531c"
+      },
+      {
+         "expenseClassId" : "8ff925ba-e022-4534-af9a-8e912c8963a9",
+         "status" : "Active"
+      }
+   ],
+   "budgetStatus" : "Active"
+}
+

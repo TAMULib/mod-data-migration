@@ -1,0 +1,17 @@
+{
+   "outputFormats" : [
+      "text/html"
+   ],
+   "name" : "available",
+   "templateResolver" : "mustache",
+   "localizedTemplates" : {
+      "en" : {
+         "header" : "Library item(s) now available",
+         "attachments" : [],
+         "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you have requested are available for pickup</strong>.</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Item can be picked up at: {{request.servicePointPickup}}</li><li>Item will be returned to the shelf on: {{request.holdShelfExpirationDateTime}}</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>"
+      }
+   },
+   "active" : true,
+   "category" : "Request",
+   "id" : "631ff684-e221-45d8-822d-bc3a444c489b"
+}

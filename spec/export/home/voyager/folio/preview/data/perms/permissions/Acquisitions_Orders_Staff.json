@@ -1,0 +1,23 @@
+{
+   "subPermissions" : [
+      "ui-orders.acq.unit.assignment.assign",
+      "ui-orders.order-lines.create",
+      "ui-orders.order.create",
+      "ui-orders.order-lines.delete",
+      "ui-orders.order-lines.edit",
+      "ui-orders.order.edit",
+      "ui-orders.acq.unit.assignment.manage",
+      "ui-orders.order.delete",
+      "ui-orders.order.reopen",
+      "ui-orders.order.unopen",
+      "ui-orders.order-lines.view",
+      "ui-orders.order.view",
+      "module.invoice.enabled"
+   ],
+   "mutable" : true,
+   "id" : "09f9b0a3-6be0-4fac-ac18-2f379337868b",
+   "visible" : true,
+   "permissionName" : "09f9b0a3-6be0-4fac-ac18-2f379337868b",
+   "displayName" : "Acquisitions_Orders_Staff"
+}
+

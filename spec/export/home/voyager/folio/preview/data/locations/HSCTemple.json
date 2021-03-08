@@ -1,0 +1,15 @@
+{
+   "primaryServicePoint" : "a2a3b682-35e9-4cc7-af63-1bdfe42e82dd",
+   "servicePoints" : [],
+   "isActive" : true,
+   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+   "libraryId" : "1445df48-cede-4f8e-b559-43041bdb00ac",
+   "discoveryDisplayName" : "HSC Temple Campus Books",
+   "servicePointIds" : [
+      "a2a3b682-35e9-4cc7-af63-1bdfe42e82dd"
+   ],
+   "id" : "60d2b4c2-f14a-4254-8bf9-679b472b8f7a",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "name" : "HSC Temple Books",
+   "code" : "HSCTemple"
+}

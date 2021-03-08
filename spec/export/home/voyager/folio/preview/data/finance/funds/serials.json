@@ -1,0 +1,17 @@
+{
+   "groupIds" : [
+      "8d414b94-14e8-4323-bcdc-1ac6ace09404"
+   ],
+   "fund" : {
+      "fundStatus" : "Active",
+      "allocatedFromIds" : [],
+      "name" : "Serials",
+      "id" : "f1b09c05-c854-4f4a-b413-bff94a99e207",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "externalAccountNo" : "242406",
+      "allocatedToIds" : [],
+      "acqUnitIds" : [],
+      "code" : "serials"
+   }
+}
+

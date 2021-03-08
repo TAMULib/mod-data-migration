@@ -1,0 +1,15 @@
+{
+   "metadata" : {
+      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
+      "updatedDate" : "2021-02-04T20:40:59.663+00:00",
+      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
+      "createdDate" : "2021-02-04T20:40:59.663"
+   },
+   "value" : "{\"name\":\"AcqMono Delayed\",\"address\":\"AcqMono Delayed\"}",
+   "enabled" : true,
+   "code" : "ADDRESS_AcqMoDE",
+   "module" : "TENANT",
+   "id" : "c3b706a1-9415-4ed5-bff4-0e421cd0df27",
+   "configName" : "tenant.addresses"
+}
+

@@ -1,0 +1,15 @@
+{
+   "renewable" : false,
+   "loansPolicy" : {
+      "period" : {
+         "intervalId" : "Days",
+         "duration" : 7
+      },
+      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
+      "profileId" : "Rolling"
+   },
+   "loanable" : true,
+   "name" : "day_7_renew_0_recall_n",
+   "id" : "8dcfa981-6876-4c91-bc71-7fdc423c49ca",
+   "description" : "7 day loan, no renewals, no recall"
+}

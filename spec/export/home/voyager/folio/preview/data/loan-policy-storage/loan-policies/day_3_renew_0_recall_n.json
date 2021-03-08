@@ -1,0 +1,14 @@
+{
+   "renewable" : false,
+   "loansPolicy" : {
+      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
+      "profileId" : "Rolling",
+      "period" : {
+         "duration" : 3,
+         "intervalId" : "Days"
+      }
+   },
+   "loanable" : true,
+   "id" : "18720906-f622-4259-8cdb-e7b2949b9c5a",
+   "name" : "day_3_renew_0_recall_n"
+}

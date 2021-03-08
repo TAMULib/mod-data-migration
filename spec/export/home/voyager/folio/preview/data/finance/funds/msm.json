@@ -1,0 +1,17 @@
+{
+   "fund" : {
+      "id" : "2cfb269e-ec9f-4f9c-9b75-1d95be521f61",
+      "name" : "Etxt Mat. Srv. Mgmt",
+      "fundStatus" : "Active",
+      "allocatedFromIds" : [],
+      "allocatedToIds" : [],
+      "code" : "msm",
+      "acqUnitIds" : [],
+      "externalAccountNo" : "211650",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346"
+   },
+   "groupIds" : [
+      "9259b254-17dd-46cb-82c4-03aaf19d8972"
+   ]
+}
+

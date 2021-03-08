@@ -1,0 +1,16 @@
+{
+   "fund" : {
+      "allocatedToIds" : [],
+      "acqUnitIds" : [],
+      "code" : "zmouse",
+      "externalAccountNo" : "57354",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "name" : "zMouse Text Book",
+      "description" : "For Purchasing Of Text Books",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "id" : "d44968f2-a02c-4537-89d7-9aa371a6a4f5",
+      "fundStatus" : "Inactive",
+      "allocatedFromIds" : []
+   }
+}
+

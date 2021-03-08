@@ -1,0 +1,14 @@
+{
+   "id" : "c0693d5c-f7a8-407d-a8de-e12d90bea207",
+   "configName" : "other_settings",
+   "module" : "CHECKOUT",
+   "value" : "{\"audioAlertsEnabled\":false,\"prefPatronIdentifier\":\"BARCODE,EXTERNAL,FOLIO,USER\",\"checkoutTimeout\":true,\"checkoutTimeoutDuration\":5}",
+   "enabled" : true,
+   "metadata" : {
+      "updatedDate" : "2021-02-04T20:11:34.580+00:00",
+      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
+      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
+      "createdDate" : "2020-12-22T14:38:15.478"
+   }
+}
+

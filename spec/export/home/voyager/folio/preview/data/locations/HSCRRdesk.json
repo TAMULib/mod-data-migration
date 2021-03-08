@@ -1,0 +1,15 @@
+{
+   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+   "libraryId" : "72960160-e347-48bf-9ab3-448dcae5da70",
+   "primaryServicePoint" : "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e",
+   "servicePoints" : [],
+   "isActive" : true,
+   "id" : "d8977d96-5687-41eb-bbf3-900970b0c69e",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "name" : "HSC ROUND ROCK CIRC",
+   "code" : "HSCRRdesk",
+   "discoveryDisplayName" : "yyy_HSC Round Rock Circulation Desk",
+   "servicePointIds" : [
+      "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e"
+   ]
+}

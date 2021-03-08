@@ -1,0 +1,12 @@
+{
+   "restrictEncumbrance" : true,
+   "name" : "z21Cushing",
+   "acqUnitIds" : [],
+   "netTransfers" : 0,
+   "ledgerStatus" : "Inactive",
+   "fiscalYearOneId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
+   "restrictExpenditures" : true,
+   "description" : "zFY21 Cushing short yr ledger for testing Honeysuckle Folio",
+   "id" : "421f8806-47f3-4418-a2a2-1d309733305e",
+   "code" : "z21cushing"
+}

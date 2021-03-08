@@ -1,0 +1,12 @@
+{
+   "restrictEncumbrance" : true,
+   "name" : "FY2021 Parent",
+   "netTransfers" : 0,
+   "ledgerStatus" : "Active",
+   "acqUnitIds" : [],
+   "fiscalYearOneId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+   "restrictExpenditures" : true,
+   "id" : "5c0137bf-0882-449d-a299-d145aaff3085",
+   "code" : "parent",
+   "description" : "Parent FY2021 Ledger"
+}

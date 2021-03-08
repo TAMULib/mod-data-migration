@@ -1,0 +1,15 @@
+{
+   "libraryId" : "ac026424-a09c-48eb-b668-624628ac43c1",
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "isActive" : true,
+   "servicePoints" : [],
+   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
+   "name" : "cush tdrm",
+   "code" : "cush,tdrm",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "id" : "1502f625-b90f-4c5b-8048-d7f937a6b653",
+   "servicePointIds" : [
+      "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
+   ],
+   "discoveryDisplayName" : "Cushing Library/Theses-Diss.Micro. (Does not check out)"
+}

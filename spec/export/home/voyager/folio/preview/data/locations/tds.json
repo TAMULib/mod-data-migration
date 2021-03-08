@@ -1,0 +1,15 @@
+{
+   "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "isActive" : true,
+   "servicePoints" : [],
+   "primaryServicePoint" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+   "id" : "a094ff2a-8692-473c-803f-676a9b7c12ce",
+   "name" : "Evans tds",
+   "code" : "tds",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "discoveryDisplayName" : "Training and Development Services",
+   "servicePointIds" : [
+      "3b80cfdf-438b-48c1-aadc-57965a0d7680"
+   ]
+}

@@ -1,0 +1,17 @@
+{
+   "mutable" : true,
+   "subPermissions" : [
+      "ui-inventory.items.mark-items-withdrawn",
+      "ui-inventory.instance.view-staff-suppressed-records",
+      "ui-inventory.instance.view",
+      "ui-inventory.holdings.delete",
+      "ui-inventory.item.delete",
+      "ui-inventory.item.markasmissing"
+   ],
+   "id" : "80a761b1-fdb8-4bfa-988e-65760ff72ec5",
+   "permissionName" : "80a761b1-fdb8-4bfa-988e-65760ff72ec5",
+   "displayName" : "Cat_Student",
+   "description" : "Student Workers doing maintenance operations ",
+   "visible" : true
+}
+

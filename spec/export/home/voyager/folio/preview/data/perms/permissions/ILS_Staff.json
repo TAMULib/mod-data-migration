@@ -1,0 +1,22 @@
+{
+   "visible" : true,
+   "description" : "Interlibrary Loan staff",
+   "permissionName" : "50a15dba-6ea2-426a-9118-369084f1247b",
+   "displayName" : "ILS_Staff",
+   "id" : "50a15dba-6ea2-426a-9118-369084f1247b",
+   "subPermissions" : [
+      "ui-checkin.all",
+      "ui-checkout.all",
+      "ui-circulation-log.log-event.all",
+      "ui-plugin-create-inventory-records.create",
+      "ui-notes.item.create",
+      "ui-notes.item.view",
+      "ui-requests.create",
+      "ui-requests.edit",
+      "ui-users.loans.renew",
+      "ui-users.loans.view",
+      "ui-users.requests.all"
+   ],
+   "mutable" : true
+}
+

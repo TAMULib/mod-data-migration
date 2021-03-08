@@ -1,0 +1,15 @@
+{
+   "module" : "TENANT",
+   "configName" : "tenant.addresses",
+   "id" : "8c8616c8-b45b-408d-932e-e98ab528d95e",
+   "metadata" : {
+      "createdDate" : "2021-02-04T20:41:00.555",
+      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
+      "updatedDate" : "2021-02-04T20:41:00.555+00:00",
+      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597"
+   },
+   "code" : "ADDRESS_SRMSVW",
+   "enabled" : true,
+   "value" : "{\"name\":\"SRMSVW\",\"address\":\"WEST CAMPUS LIBRARY\\nTEXAS A&M UNIVERSITY\\n5001 TAMU\\nCOLLEGE STATION, TX   77843-5001\"}"
+}
+

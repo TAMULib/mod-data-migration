@@ -1,0 +1,17 @@
+{
+   "groupIds" : [
+      "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2"
+   ],
+   "fund" : {
+      "allocatedToIds" : [],
+      "code" : "watson",
+      "acqUnitIds" : [],
+      "externalAccountNo" : "57043",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "id" : "c5d34282-b1f5-4def-9144-e7b13ff7ce75",
+      "name" : "GCWatson - 57043",
+      "fundStatus" : "Active",
+      "allocatedFromIds" : []
+   }
+}
+

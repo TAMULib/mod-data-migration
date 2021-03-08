@@ -1,0 +1,17 @@
+{
+   "groupIds" : [
+      "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2"
+   ],
+   "fund" : {
+      "id" : "1fc3f163-005c-445a-8857-57ee98050b92",
+      "name" : "GCBechert",
+      "fundStatus" : "Active",
+      "allocatedFromIds" : [],
+      "allocatedToIds" : [],
+      "code" : "bechert",
+      "acqUnitIds" : [],
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "externalAccountNo" : "510461"
+   }
+}
+

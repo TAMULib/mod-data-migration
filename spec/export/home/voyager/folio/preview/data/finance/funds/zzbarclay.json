@@ -1,0 +1,16 @@
+{
+   "fund" : {
+      "allocatedFromIds" : [],
+      "fundStatus" : "Inactive",
+      "name" : "zzBarclay Etxt",
+      "description" : "For Barclay Donation Purchases",
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "id" : "cd92a59f-4558-4867-a377-649d1e190213",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "externalAccountNo" : "72997",
+      "acqUnitIds" : [],
+      "code" : "zzbarclay",
+      "allocatedToIds" : []
+   }
+}
+

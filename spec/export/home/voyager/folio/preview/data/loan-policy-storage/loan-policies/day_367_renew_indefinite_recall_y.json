@@ -1,0 +1,30 @@
+{
+   "id" : "168d255c-7f8e-4b53-a775-ae344f8ae48e",
+   "loanable" : true,
+   "loansPolicy" : {
+      "profileId" : "Rolling",
+      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
+      "period" : {
+         "duration" : 367,
+         "intervalId" : "Days"
+      }
+   },
+   "requestManagement" : {
+      "recalls" : {
+         "minimumGuaranteedLoanPeriod" : {
+            "intervalId" : "Days",
+            "duration" : 14
+         },
+         "recallReturnInterval" : {
+            "intervalId" : "Days",
+            "duration" : 14
+         }
+      }
+   },
+   "name" : "day_367_renew_indefinite_recall_y",
+   "renewable" : true,
+   "renewalsPolicy" : {
+      "unlimited" : true,
+      "renewFromId" : "SYSTEM_DATE"
+   }
+}

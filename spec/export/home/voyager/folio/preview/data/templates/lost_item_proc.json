@@ -1,0 +1,18 @@
+{
+   "templateResolver" : "mustache",
+   "localizedTemplates" : {
+      "en" : {
+         "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>The followings items you had checked out are overdue and presumed lost</strong>. You are being billed for processing costs as listed.</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Processing cost: ${{feeCharge.amount}} has been charged by {{feeCharge.owner}}</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
+         "attachments" : [],
+         "header" : "Library fees for lost items"
+      }
+   },
+   "description" : "Lost item processing charge",
+   "active" : true,
+   "outputFormats" : [
+      "text/html"
+   ],
+   "name" : "lost_item_proc",
+   "category" : "FeeFineCharge",
+   "id" : "bd639688-ff1c-4092-ac94-65d7339910da"
+}

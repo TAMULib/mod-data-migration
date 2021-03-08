@@ -1,0 +1,30 @@
+{
+   "mutable" : true,
+   "subPermissions" : [
+      "ui-finance.allocations.create",
+      "ui-finance.transfers.create",
+      "ui-finance.acq.unit.assignment.manage",
+      "ui-finance.fiscal-year.view",
+      "ui-finance.fund-budget.view",
+      "ui-finance.group.view",
+      "ui-finance.ledger.view",
+      "ui-finance.fiscal-year.edit",
+      "ui-finance.fund-budget.edit",
+      "ui-finance.group.edit",
+      "ui-finance.ledger.edit",
+      "ui-finance.fiscal-year.create",
+      "ui-finance.fund-budget.create",
+      "ui-finance.group.create",
+      "ui-finance.ledger.create",
+      "ui-finance.fiscal-year.delete",
+      "ui-finance.fund-budget.delete",
+      "ui-finance.group.delete",
+      "ui-finance.ledger.delete",
+      "module.invoice.enabled"
+   ],
+   "id" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
+   "permissionName" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
+   "displayName" : "Acquisitions_Financial_Admin",
+   "visible" : true
+}
+

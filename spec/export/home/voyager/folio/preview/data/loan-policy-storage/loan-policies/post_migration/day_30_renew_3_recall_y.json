@@ -1,0 +1,33 @@
+{
+   "name" : "day_30_renew_3_recall_y",
+   "requestManagement" : {
+      "recalls" : {
+         "minimumGuaranteedLoanPeriod" : {
+            "duration" : 14,
+            "intervalId" : "Days"
+         }
+,
+"recallReturnInterval": {
+    "duration": 14,
+    "intervalId": "Days"
+}
+      }
+   },
+   "loansPolicy" : {
+      "itemLimit" : 100,
+      "profileId" : "Rolling",
+      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
+      "period" : {
+         "duration" : 30,
+         "intervalId" : "Days"
+      }
+   },
+   "loanable" : true,
+   "renewable" : true,
+   "id" : "bd1282ac-f760-4fb9-bf39-3b4cf088530b",
+   "renewalsPolicy" : {
+      "numberAllowed" : 3,
+      "renewFromId" : "SYSTEM_DATE",
+      "unlimited" : false
+   }
+}

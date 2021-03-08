@@ -1,0 +1,15 @@
+{
+   "configName" : "tenant.addresses",
+   "id" : "68041a19-8c02-449f-ac54-7e8d35bd9575",
+   "module" : "TENANT",
+   "code" : "ADDRESS_acq_admin",
+   "value" : "{\"name\":\"acq_admin\",\"address\":\"Acquisitions Staff Accountant\\nTexas A&M University Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}",
+   "enabled" : true,
+   "metadata" : {
+      "createdDate" : "2021-02-04T20:40:59.522",
+      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
+      "updatedDate" : "2021-02-04T20:40:59.522+00:00",
+      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597"
+   }
+}
+

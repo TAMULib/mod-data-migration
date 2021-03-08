@@ -1,0 +1,17 @@
+{
+   "fund" : {
+      "externalAccountNo" : "57354",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "acqUnitIds" : [],
+      "code" : "mousetext",
+      "allocatedToIds" : [],
+      "allocatedFromIds" : [],
+      "fundStatus" : "Active",
+      "name" : "Mouse Textbook",
+      "id" : "2329a667-7d86-40d2-b247-40fd77786f3d"
+   },
+   "groupIds" : [
+      "8cac000d-8364-44be-9e9b-3b1d137672c8"
+   ]
+}
+

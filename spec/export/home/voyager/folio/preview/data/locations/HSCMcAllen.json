@@ -1,0 +1,15 @@
+{
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "HSCMcAllen",
+   "name" : "HSC McAllen Books",
+   "id" : "173e7e58-46f0-40f7-a8d5-a98eef131006",
+   "servicePointIds" : [
+      "261f9e14-54b2-46aa-bfd9-23b1dc44e87e"
+   ],
+   "discoveryDisplayName" : "HSC McAllen Campus Books",
+   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+   "libraryId" : "2cc2abbb-7e66-4783-a9b5-38951e0aa010",
+   "primaryServicePoint" : "261f9e14-54b2-46aa-bfd9-23b1dc44e87e",
+   "servicePoints" : [],
+   "isActive" : true
+}

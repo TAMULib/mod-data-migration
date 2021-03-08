@@ -1,0 +1,15 @@
+{
+   "name" : "day_30_renew_0_recall_n",
+   "id" : "7cc84105-fa31-4562-b5e7-421dbe3a60b8",
+   "loansPolicy" : {
+      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
+      "itemLimit" : 100,
+      "profileId" : "Rolling",
+      "period" : {
+         "duration" : 30,
+         "intervalId" : "Days"
+      }
+   },
+   "loanable" : true,
+   "renewable" : false
+}

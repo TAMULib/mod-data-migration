@@ -1,0 +1,14 @@
+{
+   "configName" : "inventory-instanceTypeCode",
+   "id" : "673bffe8-898d-49b4-bcee-981002ac11f0",
+   "module" : "ORDERS",
+   "value" : "txt",
+   "enabled" : true,
+   "metadata" : {
+      "createdDate" : "2021-02-04T20:40:59.306",
+      "updatedDate" : "2021-02-04T20:40:59.306+00:00",
+      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
+      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597"
+   }
+}
+

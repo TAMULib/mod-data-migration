@@ -1,0 +1,15 @@
+{
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "name" : "qatar medi",
+   "code" : "qatar,medi",
+   "id" : "31f5eb72-f6a6-4ce1-b7e9-89f4441e6028",
+   "servicePointIds" : [
+      "ccfdc7f0-1aa5-482f-a689-1a2188756412"
+   ],
+   "discoveryDisplayName" : "Texas A&M University Qatar Library Media",
+   "campusId" : "c1d51a99-428c-44ee-9df4-8dc259b3d7eb",
+   "libraryId" : "5b775c0c-6107-4cca-9314-106e751ed94a",
+   "primaryServicePoint" : "ccfdc7f0-1aa5-482f-a689-1a2188756412",
+   "isActive" : true,
+   "servicePoints" : []
+}

@@ -1,0 +1,16 @@
+{
+   "permissionName" : "8e6f20f4-58ae-4051-b7e4-abb4b36966a1",
+   "displayName" : "Notes_Staff",
+   "visible" : true,
+   "id" : "8e6f20f4-58ae-4051-b7e4-abb4b36966a1",
+   "mutable" : true,
+   "subPermissions" : [
+      "ui-notes.item.assign-unassign",
+      "ui-notes.item.create",
+      "ui-notes.item.delete",
+      "ui-notes.item.edit",
+      "ui-notes.item.view",
+      "module.notes.enabled"
+   ]
+}
+

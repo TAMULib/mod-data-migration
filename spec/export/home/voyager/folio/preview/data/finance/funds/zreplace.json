@@ -1,0 +1,16 @@
+{
+   "fund" : {
+      "name" : "zReplacement",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "description" : "For Replacement Print Purchases & eRplace",
+      "id" : "ef843bd4-9aeb-4d47-8833-896a6b691165",
+      "fundStatus" : "Inactive",
+      "allocatedFromIds" : [],
+      "allocatedToIds" : [],
+      "acqUnitIds" : [],
+      "code" : "zreplace",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "externalAccountNo" : "242406"
+   }
+}
+
