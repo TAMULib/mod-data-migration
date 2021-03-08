@@ -596,7 +596,7 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
 
                   String HoldingsRecordId = holdingsRl.get().getFolioReference();
 
-                  Holdingsrecord holdingsRecord = migrationService.okapiService.fetchHoldingsRecordsById(tenant, token, HoldingsRecordId);
+                  Holdingsrecord holdingsRecord = migrationService.okapiService.fetchHoldingsRecordById(tenant, token, HoldingsRecordId);
 
                   ReceivingHistory receivingHistory = new ReceivingHistory();
                   receivingHistory.setEntries(recievingHistoryEntries);
