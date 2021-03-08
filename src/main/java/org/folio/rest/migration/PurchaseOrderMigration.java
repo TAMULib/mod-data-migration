@@ -224,9 +224,9 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
       poLinesContext.put(TABLES, job.getPoLinesAdditionalContext().get(TABLES));
       poLinesContext.put(CONDITIONS, job.getPoLinesAdditionalContext().get(CONDITIONS));
 
-      Map<String, Object> piecesContext = new HashMap<>();
-      piecesContext.put(SQL, context.getExtraction().getPiecesSql());
-      piecesContext.put(SCHEMA, schema);
+      Map<String, Object> receivingHistoryContext = new HashMap<>();
+      receivingHistoryContext.put(SQL, context.getExtraction().getReceivingHistorySql());
+      receivingHistoryContext.put(SCHEMA, schema);
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings);
 
@@ -236,7 +236,7 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement lineItemNoteStatement = threadConnections.getLineItemNoteConnection().createStatement();
         Statement poLinesStatement = threadConnections.getPurchaseOrderLinesConnection().createStatement();
-        Statement piecesStatement = threadConnections.getPiecesConnection().createStatement();
+        Statement receivingHistoryStatement = threadConnections.getReceivingHistoryConnection().createStatement();
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
       ) {
         while (pageResultSet.next()) {
@@ -293,7 +293,7 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
           CompletableFuture.allOf(
             getLineItemNotes(lineItemNoteStatement, lineItemNoteContext)
               .thenAccept((notes) -> compositePurchaseOrder.setNotes(notes)),
-            getPurchaseOrderLines(poLinesStatement, poLinesContext, piecesStatement, piecesContext, job, maps, defaults, locationsMap, fundsMap, vendorReferenceId, token)
+            getPurchaseOrderLines(poLinesStatement, poLinesContext, receivingHistoryStatement, receivingHistoryContext, job, maps, defaults, locationsMap, fundsMap, vendorReferenceId, token)
               .thenAccept((poLines) -> compositePurchaseOrder.setCompositePoLines(poLines))
           ).get();
 
@@ -339,7 +339,7 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
       return future;
     }
 
-    private CompletableFuture<List<CompositePoLine>> getPurchaseOrderLines(Statement poLinesStatement, Map<String, Object> poLinesContext, Statement piecesStatement, Map<String, Object> piecesContext, PurchaseOrderJob job, PurchaseOrderMaps maps, PurchaseOrderDefaults defaults, Map<String, String> locationsMap, Map<String, String> fundsMap, String vendorId, String token) {
+    private CompletableFuture<List<CompositePoLine>> getPurchaseOrderLines(Statement poLinesStatement, Map<String, Object> poLinesContext, Statement receivingHistoryStatement, Map<String, Object> receivingHistoryContext, PurchaseOrderJob job, PurchaseOrderMaps maps, PurchaseOrderDefaults defaults, Map<String, String> locationsMap, Map<String, String> fundsMap, String vendorId, String token) {
       CompletableFuture<List<CompositePoLine>> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
 
@@ -542,21 +542,21 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
               compositePoLine.setRequester(requester);
             }
 
-            piecesContext.put(LINE_ITEM_ID, lineItemId);
+            receivingHistoryContext.put(LINE_ITEM_ID, lineItemId);
 
             Pattern pattern = Pattern.compile("/(.*?)(\\(.*$)/");
             String mfhdId = null;
             String note = StringUtils.EMPTY;
             List<Entry> recievingHistoryEntries = new ArrayList<>();
-            try (ResultSet piecesResultSet = getResultSet(piecesStatement, piecesContext)) {
-              while (piecesResultSet.next()) {
+            try (ResultSet receivingHistoryResultSet = getResultSet(receivingHistoryStatement, receivingHistoryContext)) {
+              while (receivingHistoryResultSet.next()) {
                 // NOTE: ignored
-                // String predict = piecesResultSet.getString(PREDICT);
-                // String opacSuppressed = piecesResultSet.getString(OPAC_SUPPRESSED);
-                String receivingNote = piecesResultSet.getString(RECEIVING_NOTE);
-                String enumchron = piecesResultSet.getString(ENUMCHRON);
-                // String receivedDate = piecesResultSet.getString(RECEIVED_DATE);
-                mfhdId = piecesResultSet.getString(MFHD_ID);
+                // String predict = receivingHistoryResultSet.getString(PREDICT);
+                // String opacSuppressed = receivingHistoryResultSet.getString(OPAC_SUPPRESSED);
+                String receivingNote = receivingHistoryResultSet.getString(RECEIVING_NOTE);
+                String enumchron = receivingHistoryResultSet.getString(ENUMCHRON);
+                // String receivedDate = receivingHistoryResultSet.getString(RECEIVED_DATE);
+                mfhdId = receivingHistoryResultSet.getString(MFHD_ID);
 
                 Entry entry = new Entry();
 
@@ -695,7 +695,7 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     threadConnections.setLineItemNoteConnection(getConnection(voyagerSettings));
     threadConnections.setPurchaseOrderLinesConnection(getConnection(voyagerSettings));
-    threadConnections.setPiecesConnection(getConnection(voyagerSettings));
+    threadConnections.setReceivingHistoryConnection(getConnection(voyagerSettings));
     return threadConnections;
   }
 
@@ -707,7 +707,7 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
 
     private Connection purchaseOrderLinesConnection;
 
-    private Connection piecesConnection;
+    private Connection receivingHistoryConnection;
 
     public ThreadConnections() {
 
@@ -737,12 +737,12 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
       this.purchaseOrderLinesConnection = purchaseOrderLinesConnection;
     }
 
-    public Connection getPiecesConnection() {
-      return piecesConnection;
+    public Connection getReceivingHistoryConnection() {
+      return receivingHistoryConnection;
     }
 
-    public void setPiecesConnection(Connection piecesConnection) {
-      this.piecesConnection = piecesConnection;
+    public void setReceivingHistoryConnection(Connection receivingHistoryConnection) {
+      this.receivingHistoryConnection = receivingHistoryConnection;
     }
 
     public void closeAll() {
@@ -750,7 +750,7 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
         pageConnection.close();
         lineItemNoteConnection.close();
         purchaseOrderLinesConnection.close();
-        piecesConnection.close();
+        receivingHistoryConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
         throw new RuntimeException(e);

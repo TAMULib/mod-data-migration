@@ -16,7 +16,7 @@ public class PurchaseOrderExtraction extends AbstractExtraction {
   private String poLinesSql;
 
   @NotNull
-  private String piecesSql;
+  private String receivingHistorySql;
 
   public PurchaseOrderExtraction() {
     super();
@@ -46,12 +46,12 @@ public class PurchaseOrderExtraction extends AbstractExtraction {
     this.poLinesSql = poLinesSql;
   }
 
-  public String getPiecesSql() {
-    return piecesSql;
+  public String getReceivingHistorySql() {
+    return receivingHistorySql;
   }
 
-  public void setPiecesSql(String piecesSql) {
-    this.piecesSql = piecesSql;
+  public void setReceivingHistorySql(String receivingHistorySql) {
+    this.receivingHistorySql = receivingHistorySql;
   }
 
 }
