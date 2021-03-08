@@ -1,0 +1,1156 @@
+{
+  "path": "/coursereserves/departments",
+  "dependencies": [],
+  "data": [
+    {
+      "id": "70fec04f-94f5-4339-b91b-b7b7ed03ede5",
+      "name": "AALO",
+      "description": "Arabic & Asian Language"
+    },
+    {
+      "id": "77248117-9fa3-44c3-abfe-8c20b675d330",
+      "name": "ABCD",
+      "description": "New"
+    },
+    {
+      "id": "1bc42db7-bdeb-45d9-b239-2dcbf31c1c2e",
+      "name": "ACCT",
+      "description": "Accounting"
+    },
+    {
+      "description": "Aerospace Engineering",
+      "name": "AERO",
+      "id": "56bdba70-05d0-49e7-a5e9-7e17649a058e"
+    },
+    {
+      "id": "ac1b628a-6a0f-464c-893f-3a0fe45820fe",
+      "description": "Aerospace Studies",
+      "name": "AERS"
+    },
+    {
+      "id": "998e28f6-1a6c-4a09-bbcb-2af65511f80d",
+      "name": "AFST",
+      "description": "Africana Studies"
+    },
+    {
+      "description": "Agriculture Communication & Journalism",
+      "name": "AGCJ",
+      "id": "fe112700-a97e-48b8-b10a-1206b2526ffa"
+    },
+    {
+      "id": "4b2efecd-7264-49a5-babc-02303f48a0fb",
+      "description": "Agricultural Economics",
+      "name": "AGEC"
+    },
+    {
+      "description": "Biological & Agricultural Engineering (formerly BAEN)",
+      "name": "AGEN",
+      "id": "c6d639d9-9c8d-491f-ad84-78b7d89255a3"
+    },
+    {
+      "id": "431a094d-05a4-4441-b5dd-f1dd6525927e",
+      "name": "AGLS",
+      "description": "Ag & Life Sciences"
+    },
+    {
+      "id": "2ae4aba5-6ee5-4320-8ff8-54edb387f862",
+      "name": "AGSC",
+      "description": "Agricultural Science"
+    },
+    {
+      "id": "7009ed32-3db1-49b2-bf5c-ee98b30c716b",
+      "name": "AGSM",
+      "description": "Agricultural Systems Mgmt"
+    },
+    {
+      "name": "ALEC",
+      "description": "Ag Leadership, Ed & Communication",
+      "id": "fbbbe805-02f8-4fc0-acfc-7e0001c505cf"
+    },
+    {
+      "id": "55d1da96-b043-462f-bd97-d8d715411ab4",
+      "name": "ALED",
+      "description": "Ag Leadership & Development"
+    },
+    {
+      "name": "AMIN",
+      "description": "American Indian Literature",
+      "id": "75f6d00e-ff5a-40c5-98dd-9001ce3dcfc6"
+    },
+    {
+      "description": "Clinical Anesthesiology",
+      "name": "ANES",
+      "id": "cd6ae758-f832-4bbe-9244-6f7118696b02"
+    },
+    {
+      "id": "99275a51-c1a4-4051-a2a3-7ab08de3c2bd",
+      "description": "Animal Science",
+      "name": "ANSC"
+    },
+    {
+      "id": "db5711f5-4654-4ffe-8bb9-c80e73999697",
+      "description": "Anthropology",
+      "name": "ANTH"
+    },
+    {
+      "id": "fbbb1b1b-ae40-49a1-8f78-477c86d62a2a",
+      "description": "Arabic",
+      "name": "ARAB"
+    },
+    {
+      "id": "5887d4fb-0466-46b5-9d50-261847d9a0fd",
+      "name": "ARCH",
+      "description": "Architecture"
+    },
+    {
+      "name": "AREN",
+      "description": "Architectural Engr",
+      "id": "1b9173fb-8134-48e5-ba71-dbbc154eb4c2"
+    },
+    {
+      "id": "f67ebf8d-99f0-4e3e-b58b-eba0e07f869c",
+      "name": "ARTS",
+      "description": "Art"
+    },
+    {
+      "id": "fdc117b2-5209-430e-9948-14a7acaf72df",
+      "description": "Academic Success Center",
+      "name": "ASCC"
+    },
+    {
+      "description": "Asian Studies",
+      "name": "ASIA",
+      "id": "7b909b70-c902-43b7-af5f-3c16b4e41f0d"
+    },
+    {
+      "id": "c463f239-23d7-4eb4-a5c9-30e5edcbdcd6",
+      "description": "Astronomy",
+      "name": "ASTR"
+    },
+    {
+      "description": "Atmospheric Sciences",
+      "name": "ATMO",
+      "id": "93160735-047f-4637-a12d-12d68a501911"
+    },
+    {
+      "id": "1d9a1d77-9ba6-4ef7-982f-ec26ad1bca24",
+      "name": "ATTR",
+      "description": "Athletic Training"
+    },
+    {
+      "id": "4d0e661f-9014-461a-bf03-2f893e24d719",
+      "name": "BAEN",
+      "description": "Biological & Ag Engr"
+    },
+    {
+      "description": "Biochemistry and Biophysics",
+      "name": "BCBP",
+      "id": "a42ae89e-1d46-4f2d-aa45-41d0a901cb62"
+    },
+    {
+      "id": "bd078b66-2441-4a08-8721-a124babf427e",
+      "name": "BEFB",
+      "description": "Bilingual Ed Field Based"
+    },
+    {
+      "id": "3c6ebb34-e892-4055-b2a7-95e7196150f4",
+      "description": "Bioenvironmental Sciences",
+      "name": "BESC"
+    },
+    {
+      "id": "0b541405-a698-45ff-8cbe-748353fe437a",
+      "name": "BICH",
+      "description": "Biochemistry"
+    },
+    {
+      "id": "8c891d81-444f-47ba-b39b-d2c719dfb837",
+      "name": "BIMS",
+      "description": "Biomedical Sciences"
+    },
+    {
+      "id": "aff3de9b-1f7f-4a68-b787-457a4e6ebb20",
+      "description": "Biology",
+      "name": "BIOL"
+    },
+    {
+      "name": "BMED",
+      "description": "Biomedical Engineering",
+      "id": "c1ba8368-11d2-4a7e-969a-6a97ebc6a704"
+    },
+    {
+      "name": "BOTN",
+      "description": "Botany",
+      "id": "792b087c-3b84-4bac-9c8b-bdfb5d031cf1"
+    },
+    {
+      "description": "none",
+      "name": "BUGS",
+      "id": "b2bbc493-7608-4c0e-86fd-1af50423de07"
+    },
+    {
+      "id": "47332be1-5cc0-4def-a90c-48af93412635",
+      "description": "Bush School",
+      "name": "BUSH"
+    },
+    {
+      "name": "BUSN",
+      "description": "Business",
+      "id": "d71f9be6-ee2f-4904-a7e5-ba842b4f3565"
+    },
+    {
+      "description": "College of Architecture",
+      "name": "CARC",
+      "id": "c39b4edb-2b35-44c0-b2da-1dbafeac13b3"
+    },
+    {
+      "id": "70912f45-a7f9-403a-9bad-7b6559c5ae25",
+      "name": "CEHD",
+      "description": "College of Education and Human Dev"
+    },
+    {
+      "id": "e8b49f80-8ec7-4a54-a2c6-92ed89ba10c2",
+      "description": "Chemistry",
+      "name": "CHEM"
+    },
+    {
+      "description": "Chemical Engineering",
+      "name": "CHEN",
+      "id": "d0a1bd7c-d6f4-41d5-b2cb-246c01d1c115"
+    },
+    {
+      "name": "CHIN",
+      "description": "Chinese",
+      "id": "fe826929-f64e-4bc4-9ed0-4614f88880ab"
+    },
+    {
+      "id": "96394e34-43bc-4705-a677-07d24bf1c7f7",
+      "name": "CLAS",
+      "description": "Classics"
+    },
+    {
+      "id": "de7f2a24-2906-4790-83ab-2fccace796f7",
+      "description": "Communications",
+      "name": "COMM"
+    },
+    {
+      "id": "471d54c9-86f6-4d96-a29e-01f70b7c57cc",
+      "description": "Construction Science",
+      "name": "COSC"
+    },
+    {
+      "name": "CSCE",
+      "description": "Computer Science & Engineering",
+      "id": "fa3e39a6-4a49-483e-958f-c71dcb3aa646"
+    },
+    {
+      "id": "bc8ae36e-8e7f-4aaa-ae68-d386f8694d46",
+      "description": "Civil Engineering",
+      "name": "CVEN"
+    },
+    {
+      "description": "Cybersecurity",
+      "name": "CYBR",
+      "id": "6b4d2317-e688-4e2a-8eda-b777231cc490"
+    },
+    {
+      "id": "0d2d7572-9859-4330-8849-1ffff0885690",
+      "name": "DASC",
+      "description": "Dairy Science"
+    },
+    {
+      "id": "6a8f4e2f-fc4d-4606-a30a-97731ff37173",
+      "description": "Dance Education",
+      "name": "DCED"
+    },
+    {
+      "id": "00bf2871-ff83-4da7-88c3-9fe3dd247913",
+      "name": "DDHS",
+      "description": "Dental Hygiene"
+    },
+    {
+      "id": "eb48879b-3bd1-4068-8a21-c8c29a7b6470",
+      "name": "DIAS",
+      "description": "Dpt Diagnostic Services"
+    },
+    {
+      "id": "b957cf96-fbd3-4802-8eef-c7d5af4c5207",
+      "description": "Diving Tech and Methods",
+      "name": "DIVE"
+    },
+    {
+      "name": "DNHG",
+      "description": "Dental Hygiene",
+      "id": "7a705c82-ee26-449e-b5ff-10ac8415b2fc"
+    },
+    {
+      "name": "DPHS",
+      "description": "Dental Public Health",
+      "id": "bcaacd59-4851-4b88-b12c-2ca82e4a9bbe"
+    },
+    {
+      "id": "e9a88d83-6fcb-429c-8ebe-401bf6a67d2c",
+      "name": "EAHR",
+      "description": "Education Admin & Human Resrc Dev"
+    },
+    {
+      "id": "f63c8d5a-0c2d-499f-96d9-9533b731319e",
+      "name": "ECEN",
+      "description": "Electrical & Computer Engineering"
+    },
+    {
+      "description": "Early Childhood Ed Fld Based",
+      "name": "ECHE",
+      "id": "5b809041-a071-4599-9fc7-84f81a56ea34"
+    },
+    {
+      "description": "Econometrics",
+      "name": "ECMT",
+      "id": "3cce74fd-5acb-40ab-b30d-60af6f960868"
+    },
+    {
+      "description": "Economics",
+      "name": "ECON",
+      "id": "c73e7f8b-cd61-45e6-a9ae-bb36f565882d"
+    },
+    {
+      "name": "EDAD",
+      "description": "Educational Administration",
+      "id": "b5ea5282-8e2e-461b-ae4f-3018f92623d5"
+    },
+    {
+      "name": "EDCI",
+      "description": "Educational Curriculum & Instruction",
+      "id": "4c82a045-8c9c-4253-b83a-047f74aef27f"
+    },
+    {
+      "name": "EDTC",
+      "description": "Educational Technology",
+      "id": "083f28d9-acb1-42ca-85c9-f223c8865531"
+    },
+    {
+      "name": "EHRD",
+      "description": "Ed Human Res Development",
+      "id": "63f764f7-6bd4-4d6e-954e-833f02231c25"
+    },
+    {
+      "id": "1418289d-4b4e-43e2-8e3e-9c8ad4159f54",
+      "name": "EMED",
+      "description": "Emergency Medicine"
+    },
+    {
+      "id": "93c9d9f9-a229-4558-a97e-29b460958738",
+      "description": "Engr Design Graphics",
+      "name": "ENDG"
+    },
+    {
+      "id": "86982b2e-effa-48d7-9c26-5b2c45e5c985",
+      "description": "Endodontics",
+      "name": "ENDO"
+    },
+    {
+      "name": "ENDS",
+      "description": "Environmental Design",
+      "id": "d6f8dd7a-3fb2-40d2-97de-5de5e2eedc6c"
+    },
+    {
+      "name": "ENGL",
+      "description": "English",
+      "id": "d725b498-2507-4410-9551-b6d6ccb48261"
+    },
+    {
+      "id": "b225301f-d8fb-405e-b835-95c9dd932b2f",
+      "description": "Engineering",
+      "name": "ENGR"
+    },
+    {
+      "id": "3a7e5754-70f7-4f44-ae1b-36c557e06416",
+      "description": "Environmental Studies",
+      "name": "ENST"
+    },
+    {
+      "name": "ENTC",
+      "description": "Engineering Technology",
+      "id": "b69ee374-cfef-46c6-b2ae-44b5a4c7260f"
+    },
+    {
+      "id": "3600ba91-367b-4721-b221-aa3057be4787",
+      "description": "Entomology",
+      "name": "ENTO"
+    },
+    {
+      "name": "EPFB",
+      "description": "Educational Psychology Field Based",
+      "id": "64a48fc5-86cb-4e2a-8292-bb8c4db0d995"
+    },
+    {
+      "id": "b3b5697b-7c58-4e78-b898-7af193e7fea4",
+      "name": "EPSY",
+      "description": "Educational Psychology"
+    },
+    {
+      "description": "Electronic Sys Eng Tech",
+      "name": "ESET",
+      "id": "adb61f03-acf7-42dd-a313-4f8296e8b427"
+    },
+    {
+      "name": "ESSM",
+      "description": "Ecosystem Science & Mgmt",
+      "id": "27ac443e-ba33-411d-aa78-4fce10b44f5c"
+    },
+    {
+      "description": "European Studies",
+      "name": "EURO",
+      "id": "844cd45d-b55c-461f-b59a-4ed86ce1f110"
+    },
+    {
+      "name": "EVEN",
+      "description": "Environmental Engr",
+      "id": "932d5ef2-5b9b-4ca3-8d17-66a627ed2b1e"
+    },
+    {
+      "description": "Film Studies",
+      "name": "FILM",
+      "id": "54677640-61ba-479e-b49f-618a9a5812df"
+    },
+    {
+      "id": "3fa5fd07-bf40-4741-ac39-94df39d540cb",
+      "description": "Finance",
+      "name": "FINC"
+    },
+    {
+      "id": "bfb74ecd-523f-4b87-829c-c72f1dc20939",
+      "name": "FIVS",
+      "description": "Forensic & Investigative Sciences"
+    },
+    {
+      "name": "FREN",
+      "description": "French",
+      "id": "89eb979e-2a52-40d8-a0bb-239ec74cac2d"
+    },
+    {
+      "description": "Forest Science",
+      "name": "FRSC",
+      "id": "4ab8a20d-9c4a-484b-bd57-a03e9c3c6c03"
+    },
+    {
+      "id": "175f5742-8064-40f0-a83e-e4f9572af25b",
+      "name": "FSTC",
+      "description": "Food Science & Tech"
+    },
+    {
+      "name": "FYEX",
+      "description": "First Year Experience",
+      "id": "811d630a-1733-411e-bb2e-40dc678b7c78"
+    },
+    {
+      "description": "TAMUG Study Abroad",
+      "name": "GALV",
+      "id": "0dd6831f-de8a-44c0-aa96-4604cce99ad8"
+    },
+    {
+      "id": "b1f38955-2ff1-46c9-8d4b-b0183f6e8849",
+      "description": "Genetics",
+      "name": "GENE"
+    },
+    {
+      "name": "GEOG",
+      "description": "Geography",
+      "id": "19fda615-806b-4273-9440-2ed56ece2dc8"
+    },
+    {
+      "description": "Geology",
+      "name": "GEOL",
+      "id": "f3ee1f6e-c451-4685-8f7b-4d15476f7c5b"
+    },
+    {
+      "description": "Geophysics",
+      "name": "GEOP",
+      "id": "af17b763-e323-4d67-b815-8db1e420a87f"
+    },
+    {
+      "id": "ff7cc17f-3960-49cb-a460-bac3b7141e80",
+      "name": "GEOS",
+      "description": "Geosciences"
+    },
+    {
+      "id": "d84f1590-ef5f-4a37-8461-c1c52d1a38ba",
+      "name": "GERM",
+      "description": "German"
+    },
+    {
+      "name": "HBRW",
+      "description": "Hebrew",
+      "id": "714df59e-c191-4159-a7eb-4c0bc64d94c7"
+    },
+    {
+      "description": "Health Ed Field Based",
+      "name": "HEFB",
+      "id": "03dc9a11-6786-4661-8e5e-76c2df7da0e8"
+    },
+    {
+      "name": "HHUM",
+      "description": "Health Humanities",
+      "id": "bcb89131-1843-46b1-9095-4dd0c847b4fd"
+    },
+    {
+      "name": "HISP",
+      "description": "Hispanic Studies",
+      "id": "968d6ca6-cade-4f85-92ef-33bc49f213bc"
+    },
+    {
+      "id": "5f725ed0-6779-4ede-8a60-1d912c60a1fe",
+      "name": "HIST",
+      "description": "History"
+    },
+    {
+      "description": "Health and Kinesiology",
+      "name": "HLKN",
+      "id": "7046d03b-83f2-419a-ad34-c7ee85149243"
+    },
+    {
+      "id": "5386f8a2-7d12-4b03-b5be-dd5723b88718",
+      "name": "HLTH",
+      "description": "Health"
+    },
+    {
+      "id": "2e2eab6a-aaee-462e-85af-33da69e1b039",
+      "description": "Horticultural Sciences",
+      "name": "HORT"
+    },
+    {
+      "id": "e0a1071e-f205-424e-ab35-72486fed5f2b",
+      "description": "Health Prom & Community Hlth",
+      "name": "HPCH"
+    },
+    {
+      "description": "Dept of Horticultural Science",
+      "name": "HRSC",
+      "id": "3b51d6db-1aa8-44e1-abbf-2df2d4622e1e"
+    },
+    {
+      "id": "e36a5a7c-f3fb-473c-9f10-d539f55246da",
+      "name": "HUMA",
+      "description": "Humanities"
+    },
+    {
+      "description": "International Business",
+      "name": "IBUS",
+      "id": "c4f1d4b4-3681-4b95-8e34-639276d93a19"
+    },
+    {
+      "name": "IDIS",
+      "description": "Industrial Distribution",
+      "id": "a372532f-ac9a-486d-8079-921bee9847c9"
+    },
+    {
+      "id": "66dd68a9-7841-43c5-9af4-606a91f6f115",
+      "name": "IMED",
+      "description": "Internal Medicine"
+    },
+    {
+      "description": "Interdisciplinary Studies",
+      "name": "INST",
+      "id": "7ff4085b-1116-41e4-9ccf-f5453408c965"
+    },
+    {
+      "id": "fd25f7da-03c7-4ebb-8b9a-5eb9da0e5aad",
+      "description": "International Affairs",
+      "name": "INTA"
+    },
+    {
+      "description": "International Studies",
+      "name": "INTS",
+      "id": "5760180d-95af-46c7-9fec-c3682b9327a7"
+    },
+    {
+      "description": "Industrial & Systems Engineering",
+      "name": "ISEN",
+      "id": "3365fe5b-aa91-44fd-be66-f238095bdd7f"
+    },
+    {
+      "name": "ISTM",
+      "description": "Information Systems Management",
+      "id": "4e7538db-cc10-49c8-a779-eb3c7f267d0a"
+    },
+    {
+      "name": "ISYS",
+      "description": "Information and Operations Mgmt",
+      "id": "e706376f-f68c-43a1-aebc-7ef869a24133"
+    },
+    {
+      "id": "9b194961-fae8-4dd4-ae7b-0f63e9e8e3b7",
+      "name": "ITAL",
+      "description": "Italian"
+    },
+    {
+      "id": "1f24b231-ed7c-4da4-8e92-2126984bfedd",
+      "description": "Interdisciplinary Engr",
+      "name": "ITDE"
+    },
+    {
+      "id": "74621163-2d64-4ef2-af90-6c6930ee77ce",
+      "description": "Japanese",
+      "name": "JAPN"
+    },
+    {
+      "name": "JOUR",
+      "description": "Journalism",
+      "id": "ce02c51b-c99f-4bcd-b4e9-aa3c3c25f7b1"
+    },
+    {
+      "name": "KINE",
+      "description": "Kinesiology",
+      "id": "288cca7b-0c78-4381-88f5-cb29c452f653"
+    },
+    {
+      "id": "81f2b1a2-13e5-4d04-8002-08060dde7f52",
+      "description": "Kinesiology Field Based",
+      "name": "KNFB"
+    },
+    {
+      "id": "84da63f2-036e-4579-a83a-d139330e5bd0",
+      "description": "Landscape Architecture",
+      "name": "LAND"
+    },
+    {
+      "id": "6a08eccb-62c8-40e8-ae3f-2e10910be0cc",
+      "name": "LBAR",
+      "description": "College of Liberal Arts"
+    },
+    {
+      "id": "c3f40cc6-b058-4268-8b54-ebffd4303635",
+      "name": "LDEV",
+      "description": "Land Development"
+    },
+    {
+      "id": "0f6b515e-cd14-4d98-876b-77f4253e6401",
+      "description": "Linguistics",
+      "name": "LING"
+    },
+    {
+      "description": "Latino Mexican American Studies",
+      "name": "LMAS",
+      "id": "e525cd78-d7c8-4472-852e-6a84aae85410"
+    },
+    {
+      "id": "c73ab978-5bac-4999-8d69-e84d34b455ed",
+      "description": "Maritime Administration",
+      "name": "MARA"
+    },
+    {
+      "id": "9e00bfba-d8e5-4ace-accf-a994d9ac43a4",
+      "name": "MARB",
+      "description": "Marine Biology"
+    },
+    {
+      "name": "MARE",
+      "description": "Marine Engr Technology",
+      "id": "31f22b81-8d99-475e-970e-faa2fc8eb3c8"
+    },
+    {
+      "name": "MARR",
+      "description": "Marine Engr Technology ",
+      "id": "df65a35d-2fba-4512-a266-166b967a5069"
+    },
+    {
+      "name": "MARS",
+      "description": "Marine Science",
+      "id": "5f6ae391-24f5-42a2-ad71-59bd6c737f49"
+    },
+    {
+      "id": "0df6ddcc-bc39-419e-95fe-aaba11cf7f9a",
+      "name": "MART",
+      "description": "Marine Transportation"
+    },
+    {
+      "id": "a964cd59-a61f-4422-94a6-055d5b44cd65",
+      "name": "MASC",
+      "description": "Integrated Math & Science"
+    },
+    {
+      "id": "2959fbfe-dd6d-4522-807f-0b613ce73afc",
+      "name": "MASE",
+      "description": "Maritime Systems Engr"
+    },
+    {
+      "name": "MAST",
+      "description": "Maritime Studies",
+      "id": "8b235cba-4a9b-4549-badb-3429b4447dd6"
+    },
+    {
+      "name": "MATH",
+      "description": "Mathematics",
+      "id": "0dda7995-960f-4f6f-bf5e-7b911c84a457"
+    },
+    {
+      "description": "Mechanical Engineering",
+      "name": "MEEN",
+      "id": "33669d16-7961-4232-80ff-c32b76df391a"
+    },
+    {
+      "id": "8b9426f3-30c3-4654-9078-e0ee7e8bc2b5",
+      "description": "Mid Grds Ed Field Based",
+      "name": "MEFB"
+    },
+    {
+      "id": "b361a846-667f-4de2-be9c-a1c65979b5f5",
+      "description": "Molecular & Eny Plant Science",
+      "name": "MEPS"
+    },
+    {
+      "name": "METR",
+      "description": "Meteorology",
+      "id": "5a143de0-ae50-47e1-aca1-e913cb573ccf"
+    },
+    {
+      "id": "52ddaec9-e0a0-476a-a86d-001b078c3e00",
+      "name": "MFCM",
+      "description": "Family & Community Medicine"
+    },
+    {
+      "id": "0dfb4899-b006-44fd-9b66-cc85140b66d1",
+      "name": "MGMT",
+      "description": "Management"
+    },
+    {
+      "id": "539013c7-f713-4140-b641-a415c93b2af1",
+      "name": "MHUM",
+      "description": "Medical Humanities"
+    },
+    {
+      "description": "Microbiology",
+      "name": "MICR",
+      "id": "901e3674-f0c0-4ce8-8d9a-2d3bbc2e4d68"
+    },
+    {
+      "name": "MKTG",
+      "description": "Marketing",
+      "id": "88b8e8b2-0850-41ad-9d25-07656e96ae3a"
+    },
+    {
+      "id": "12f76c52-c5bd-47f8-8062-8d4b430c9b56",
+      "description": "Military Science",
+      "name": "MLSC"
+    },
+    {
+      "name": "MMET",
+      "description": "Manufacturing & Mechanical Engineering Technology",
+      "id": "bb236cd8-79d3-4599-ac21-1e85ae9002d7"
+    },
+    {
+      "description": "Modern Languages",
+      "name": "MODL",
+      "id": "2acd3ffc-6949-4af2-b9ec-22ae36e9836a"
+    },
+    {
+      "description": "Pediatric Medicine",
+      "name": "MPED",
+      "id": "4ad27b45-5f1f-4d2a-b21d-578b43bebe1a"
+    },
+    {
+      "id": "953184ae-1b48-4cb2-b5de-e2a04d3ce6a5",
+      "name": "MPHY",
+      "description": "Physiology"
+    },
+    {
+      "id": "f9db631e-a52f-4a0e-bcb3-c9b7c77a03f0",
+      "name": "MPSY",
+      "description": "Psychiatry"
+    },
+    {
+      "id": "79ada014-21db-4dd2-bc0a-317092d497db",
+      "name": "MRAD",
+      "description": "Radiology"
+    },
+    {
+      "id": "e9174810-304d-4514-8a3d-ab7c8afb3b08",
+      "name": "MSCI",
+      "description": "Medical Sciences"
+    },
+    {
+      "description": "Materials Science & Engineering",
+      "name": "MSEN",
+      "id": "ded7af7e-81dd-4590-b307-04c121a33e37"
+    },
+    {
+      "id": "fbdc418a-06aa-4f9c-bc16-bb4e6b5f912b",
+      "description": "Music",
+      "name": "MUSC"
+    },
+    {
+      "description": "Museum Studies",
+      "name": "MUST",
+      "id": "d0e8a593-a39d-4fd6-b048-a7fe98ca8ad4"
+    },
+    {
+      "name": "MXET",
+      "description": "Multidiscip Engr Tech",
+      "id": "9e5f72d0-8df7-4723-ad9f-57ea20caec49"
+    },
+    {
+      "description": "Nautical Science",
+      "name": "NAUT",
+      "id": "d4d08d09-0cea-4413-8410-9fff3f104b0f"
+    },
+    {
+      "id": "29c656f2-fd46-4a8b-89e0-766469f0a39d",
+      "name": "NEUN",
+      "description": "Nuclear Engineering"
+    },
+    {
+      "id": "04c238bd-74d2-40f7-93ff-0ce84a5e4d36",
+      "description": "Neurosci & Exp Therapeutics",
+      "name": "NEXT"
+    },
+    {
+      "name": "NFSC",
+      "description": "Nutrition and Food Sciences",
+      "id": "6594007c-fc81-4c27-80b7-e1b1fac5c244"
+    },
+    {
+      "description": "Neuroscience",
+      "name": "NRSC",
+      "id": "22abdec6-a8bd-4c72-8a9c-2a7e59bb2191"
+    },
+    {
+      "name": "NURS",
+      "description": "Nursing",
+      "id": "023c939e-17b5-40cf-99a4-e5e60f787b8a"
+    },
+    {
+      "name": "NUTR",
+      "description": "Nutrition and Food Science",
+      "id": "9304b1e9-a2c8-4226-9520-75f2e8eb0cdb"
+    },
+    {
+      "id": "cdf4dab9-0cde-4a16-a312-b07af4f5f0e0",
+      "description": "Naval Science",
+      "name": "NVSC"
+    },
+    {
+      "name": "OBGY",
+      "description": "Obstetrics & Gynecology",
+      "id": "5e6609aa-200c-49cb-af63-7d884c61b19f"
+    },
+    {
+      "description": "Ocean Engineering",
+      "name": "OCEN",
+      "id": "9bfeb208-76e1-4a6f-90d7-90977dacfa3b"
+    },
+    {
+      "description": "Oceanography",
+      "name": "OCNG",
+      "id": "99d2efbe-d98b-4701-a70a-e8222d90fc3a"
+    },
+    {
+      "name": "OCRE",
+      "description": "Ocean & Coastal Resources",
+      "id": "968eff45-28b3-4a63-8de7-ee0e27aeb322"
+    },
+    {
+      "id": "547b07e2-f63e-4049-936d-fe191307e85b",
+      "description": "Orgone Studies",
+      "name": "OGST"
+    },
+    {
+      "name": "OMSU",
+      "description": "Dpt Oral & Maxofac Surg",
+      "id": "e9869826-9c2e-4d2d-b870-6cbc37100d4e"
+    },
+    {
+      "id": "136d7f53-da75-4e22-a703-2a79c90e4ddc",
+      "description": "Orthodontics",
+      "name": "ORTH"
+    },
+    {
+      "name": "PEDD",
+      "description": "Pediatric Dentistry",
+      "id": "0a0eeae3-c3ea-4510-8984-03bd5125d5fb"
+    },
+    {
+      "id": "9b796438-bda0-4a53-a55e-3807b97b74d3",
+      "name": "PERF",
+      "description": "Performance Studies"
+    },
+    {
+      "id": "4da86836-d544-4739-8b82-6e9c6eb1c5e6",
+      "name": "PERI",
+      "description": "Periodontics"
+    },
+    {
+      "id": "6b3d5042-fdd7-4580-9a5b-fb6afed50afb",
+      "name": "PETE",
+      "description": "Petroleum Engineering"
+    },
+    {
+      "name": "PHAR",
+      "description": "Pharmacy",
+      "id": "7e88c988-88ae-48e5-aed2-96e9c52b09d4"
+    },
+    {
+      "id": "8dcfe618-087e-4df6-a017-4cfc19b8eb33",
+      "description": "Public Hlth Epidem & Biostats",
+      "name": "PHEB"
+    },
+    {
+      "id": "67707f13-75cc-4928-bc97-86b60041a2f6",
+      "description": "Pub Hlth Env & Occupational ",
+      "name": "PHEO"
+    },
+    {
+      "description": "Philosophy",
+      "name": "PHIL",
+      "id": "84b47378-8de0-4561-b954-c64f5c392657"
+    },
+    {
+      "id": "bea6ec9d-ad5e-4e10-95ed-b73746ac51e4",
+      "name": "PHLT",
+      "description": "Public Health"
+    },
+    {
+      "id": "0a758c9e-96e5-4827-890e-554d9f128b02",
+      "name": "PHPM",
+      "description": "Public Hlth Policy & Mgmt"
+    },
+    {
+      "id": "a58faa20-34b9-4b00-9008-d84af1983a37",
+      "description": "Pharmaceutical Sciences",
+      "name": "PHSC"
+    },
+    {
+      "name": "PHYS",
+      "description": "Physics",
+      "id": "12bdd58f-2112-45ee-b06d-daa90c0742c3"
+    },
+    {
+      "description": "Plant Pathology",
+      "name": "PLPA",
+      "id": "4454c559-0ab7-49b7-be3c-6cc58986bed2"
+    },
+    {
+      "name": "PLPM",
+      "description": "Plant Pathology and Microbiology",
+      "id": "d82f64f4-cff6-4462-9608-f363d2109b3a"
+    },
+    {
+      "description": "Political Science",
+      "name": "POLS",
+      "id": "2ca2f4ae-9d79-4912-b089-a29a76e8177a"
+    },
+    {
+      "id": "bd614295-163c-4104-b34f-7a3134e16149",
+      "name": "PORT",
+      "description": "Portuguese"
+    },
+    {
+      "name": "POSC",
+      "description": "Poultry Science",
+      "id": "a70a5803-07f9-4952-ba1e-927a22b8b8f9"
+    },
+    {
+      "id": "46bb429b-283f-46ed-ad0a-2b0214914a3b",
+      "description": "Public Service and Administration",
+      "name": "PSAA"
+    },
+    {
+      "id": "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+      "description": "Psychology",
+      "name": "PSYC"
+    },
+    {
+      "description": "Reading",
+      "name": "RDNG",
+      "id": "b3c847fa-3783-4523-9320-9f77c1b06150"
+    },
+    {
+      "description": "Religious Studies",
+      "name": "RELS",
+      "id": "4e6f9f68-c5db-4735-ba0b-c432db047b26"
+    },
+    {
+      "description": "Renewable Natural Resources",
+      "name": "RENR",
+      "id": "bd664c12-e783-4d45-b311-65480792ef59"
+    },
+    {
+      "name": "RLEM",
+      "description": "Rangeland Ecology & Mgmt",
+      "id": "80f253d8-3e1d-46f6-ba01-00855d105228"
+    },
+    {
+      "id": "27da09ae-180a-49c7-8a61-453ce0c660fc",
+      "name": "RPTS",
+      "description": "Recreation Parks & Tourism Sciences"
+    },
+    {
+      "name": "RUSS",
+      "description": "Russian",
+      "id": "6c51bf91-a00f-4acf-a5f6-9ea1991f3bc6"
+    },
+    {
+      "description": "Science",
+      "name": "SCEN",
+      "id": "dc7bdbff-d646-4c49-b25b-cba2852b2253"
+    },
+    {
+      "name": "SCMT",
+      "description": "Supply Chain Management",
+      "id": "a9bf21ab-0a69-4e58-bb9a-252ba5d5c86e"
+    },
+    {
+      "id": "d82ff4ca-7e7e-4e10-888a-6eb149ac686b",
+      "name": "SCSC",
+      "description": "Soil and Crop Sciences"
+    },
+    {
+      "id": "e487bf0a-5137-451c-8cf8-a4b769fbad52",
+      "description": "Special Ed Field Based",
+      "name": "SEFB"
+    },
+    {
+      "description": "Safety Engineering",
+      "name": "SENG",
+      "id": "f7f65aba-4853-404b-974e-5965655f194e"
+    },
+    {
+      "id": "60e05e6b-6f64-41a6-bba4-e2fd629e2c4b",
+      "name": "SOCI",
+      "description": "Sociology"
+    },
+    {
+      "name": "SOMS",
+      "description": "School of Military Sciences",
+      "id": "01518200-9116-4b41-a147-050f8a2ebd66"
+    },
+    {
+      "id": "03e26b2a-9f8e-4a47-ad8a-1585baec5826",
+      "name": "SPAN",
+      "description": "Spanish"
+    },
+    {
+      "description": "Special Education",
+      "name": "SPED",
+      "id": "4fe629dc-20c1-4895-8b30-10b9af89e29a"
+    },
+    {
+      "description": "Sports Management",
+      "name": "SPMT",
+      "id": "2bb70f77-b11e-4ec9-af48-d0c1f7c2e9e7"
+    },
+    {
+      "name": "SPSC",
+      "description": "Spatial Sciences",
+      "id": "edbac64b-8754-4848-961b-a3c0f2adc3ec"
+    },
+    {
+      "id": "4ff80419-b4a7-4fe5-98c1-0a9e0f0c6aee",
+      "name": "SRPH",
+      "description": "School of Rural Public Health"
+    },
+    {
+      "id": "3685ccb9-fa98-4a33-8b14-744fdac79de6",
+      "description": "Statistics",
+      "name": "STAT"
+    },
+    {
+      "description": "Surgery",
+      "name": "SURG",
+      "id": "81225b50-dbe8-4870-97f8-d3f3a1f8bd05"
+    },
+    {
+      "id": "958f0b29-939f-4bd0-b268-bd1f24abf5d2",
+      "description": "Technology Management",
+      "name": "TCMG"
+    },
+    {
+      "id": "8af2d0ac-2c6f-4c45-bdbb-1b3ca415f13e",
+      "description": "Teacher Education",
+      "name": "TEED"
+    },
+    {
+      "description": "Teacher Ed Field Based",
+      "name": "TEFB",
+      "id": "81367982-542f-4bbb-8ea7-d0ff15b40556"
+    },
+    {
+      "id": "ee5ddb33-86f9-4afc-8592-e40ae783be6e",
+      "name": "TEST",
+      "description": "Test course"
+    },
+    {
+      "description": "Theater Arts",
+      "name": "THAR",
+      "id": "5701b21b-3c43-49d3-8455-6174453a7ff7"
+    },
+    {
+      "description": "Teaching Learning and Culture",
+      "name": "TLAC",
+      "id": "b7d4ee15-ad35-4746-bbbb-7d1fb0ce0f68"
+    },
+    {
+      "description": "Undergraduate Studies",
+      "name": "UGST",
+      "id": "3a24f209-a5d8-4a47-a9ad-eb92e13328d6"
+    },
+    {
+      "description": "Urban & Regional Planning",
+      "name": "URPN",
+      "id": "9372ce39-b2bc-49fc-a3d0-aa172c8ba87d"
+    },
+    {
+      "description": "Veterinary Integrative Biosciences",
+      "name": "VIBS",
+      "id": "f856a1c9-514c-4013-b112-a320dfe86939"
+    },
+    {
+      "id": "cd748a98-df0d-455c-87e6-8eb5ed24444d",
+      "description": "Visualization",
+      "name": "VIST"
+    },
+    {
+      "description": "Veterinary Large Animal Clin Sc",
+      "name": "VLCS",
+      "id": "d6165232-209b-4128-8dab-31b2beb9eeac"
+    },
+    {
+      "name": "VMID",
+      "description": "Veterinary",
+      "id": "d566aa29-0c9d-4f3b-a032-83bbedb7b282"
+    },
+    {
+      "id": "030a157c-5dcc-4711-94cd-e8f85428e60a",
+      "description": "Veterinary Path",
+      "name": "VPAT"
+    },
+    {
+      "id": "f55b4aa5-5d6c-486c-81ed-b1cbb3f3d4bd",
+      "description": "Veterinary Small Animal Clin Sc",
+      "name": "VSCS"
+    },
+    {
+      "id": "eef1e086-3d5e-4f18-8e28-33547940615d",
+      "description": "Veterinary Pathobiology",
+      "name": "VTPB"
+    },
+    {
+      "name": "VTPP",
+      "description": "Veterinary Physiology and Pharm",
+      "id": "c6ba02fc-87cc-4350-9a19-9258c00f21a7"
+    },
+    {
+      "id": "3d29d4fb-ae7e-4fc2-9319-133d083e8aae",
+      "description": "Wildlife & Fisheries Sciences",
+      "name": "WFSC"
+    },
+    {
+      "id": "52bc4b6b-8f3a-4354-9f0f-6153066240b0",
+      "name": "WGST",
+      "description": "Woman & Gender Studies"
+    },
+    {
+      "description": "Zoology",
+      "name": "ZOOL",
+      "id": "dbd3fc50-13cf-4a38-9d6f-021e3f7737dd"
+    }
+  ]
+}

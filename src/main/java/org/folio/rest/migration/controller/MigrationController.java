@@ -2,6 +2,8 @@ package org.folio.rest.migration.controller;
 
 import java.util.concurrent.CompletableFuture;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import org.folio.rest.migration.BibMigration;
 import org.folio.rest.migration.BoundWithMigration;
 import org.folio.rest.migration.DivITPatronMigration;
@@ -235,6 +237,16 @@ public class MigrationController {
       @RequestParam(required = false, defaultValue = "false") boolean skipReferenceData
   ) {
     return migrationService.migrate(OrderMigration.with(context, tenant));
+  }
+
+  @PostMapping("/coursereserves")
+  @CreateReferenceData(pattern = "classpath:/referenceData/coursereserves/*.json")
+  public String coursereserves(
+      @RequestBody JsonNode context,
+      @TenantHeader String tenant,
+      @RequestParam(required = false, defaultValue = "false") boolean skipReferenceData
+  ) {
+    return "Migration not yet implemented";
   }
 
 }

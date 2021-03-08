@@ -1,0 +1,31 @@
+{
+  "path": "/coursereserves/processingstatuses",
+  "dependencies": [],
+  "data": [
+    {
+      "id": "932bbe9e-9318-4d29-a3d4-fc80a33713c6",
+      "description": "Awaiting Purchase",
+      "name": "Awaiting Purchase"
+    },
+    {
+      "name": "Cancelled",
+      "description": "Cancelled",
+      "id": "350e990c-d24a-4344-9d95-0ce0cd2e3b84"
+    },
+    {
+      "description": "In Process",
+      "name": "In Process",
+      "id": "bba5a14f-275d-45c4-986d-cd1d5b3f7a88"
+    },
+    {
+      "description": "On Reserve -- Complete",
+      "name": "On Reserve",
+      "id": "b17dd175-1e66-490c-ac93-e8f5f65f3918"
+    },
+    {
+      "description": "Awaiting Supply by Instructor",
+      "name": "Supply by Instructor",
+      "id": "6a637f0d-3aa3-49a3-8793-d56f2afa422e"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "path": "/coursereserves/terms",
+  "dependencies": [],
+  "data": [
+    {
+      "name": "2021 Fall",
+      "startDate": "2021-07-30T05:00:00.000Z",
+      "endDate": "2021-12-25T06:00:00.000Z",
+      "id": "952ca6be-90f1-40c8-8739-b6ca23e1ee9f"
+    },
+    {
+      "name": "2021 Spring",
+      "endDate": "2021-05-17T05:00:00.000Z",
+      "startDate": "2020-12-26T06:00:00.000Z",
+      "id": "efbc2067-e6db-4ab5-9242-161c4f866a9d"
+    },
+    {
+      "id": "eca0adf4-f3ba-4a8a-be37-7d77305bdb8c",
+      "name": "2021 Summer",
+      "endDate": "2021-08-21T05:00:00.000Z",
+      "startDate": "2021-05-01T05:00:00.000Z"
+    },
+    {
+      "id": "8bada70d-fa5b-4a07-9fa9-ea062adb9f74",
+      "name": "2022 Fall",
+      "endDate": "2022-12-25T06:00:00.000Z",
+      "startDate": "2022-07-31T05:00:00.000Z"
+    },
+    {
+      "id": "31695a1c-4982-4697-8f32-1cde3347a2e8",
+      "name": "2022 Spring",
+      "startDate": "2021-12-25T06:00:00.000Z",
+      "endDate": "2022-05-20T05:00:00.000Z"
+    },
+    {
+      "id": "b0fefa21-2af5-47f2-b700-efd344cdddab",
+      "name": "2022 Summer",
+      "endDate": "2022-06-30T05:00:00.000Z",
+      "startDate": "2022-06-01T05:00:00.000Z"
+    }
+  ]
+}
