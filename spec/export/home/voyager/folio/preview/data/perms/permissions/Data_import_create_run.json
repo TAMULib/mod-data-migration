@@ -3,11 +3,11 @@
       "settings.data-import.enabled",
       "module.data-import.enabled"
    ],
-   "mutable" : true,
-   "id" : "9ccfdbfe-ad7e-4103-9906-b06a47940eca",
-   "visible" : true,
-   "description" : "Allows user to create data import profiles and run data import jobs",
    "displayName" : "Data_import_create_run",
-   "permissionName" : "9ccfdbfe-ad7e-4103-9906-b06a47940eca"
+   "description" : "Allows user to create data import profiles and run data import jobs",
+   "id" : "9ccfdbfe-ad7e-4103-9906-b06a47940eca",
+   "permissionName" : "9ccfdbfe-ad7e-4103-9906-b06a47940eca",
+   "visible" : true,
+   "mutable" : true
 }
 

@@ -1,9 +1,9 @@
 {
+   "name" : "watson-FY2021",
+   "acqUnitIds" : [],
+   "id" : "d8f74d84-d01e-4e4c-bc16-8ae7551a54ac",
    "budgetStatus" : "Active",
    "fundId" : "c5d34282-b1f5-4def-9144-e7b13ff7ce75",
-   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-   "id" : "d8f74d84-d01e-4e4c-bc16-8ae7551a54ac",
-   "name" : "watson-FY2021",
-   "acqUnitIds" : []
+   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d"
 }
 

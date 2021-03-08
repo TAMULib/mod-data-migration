@@ -1,15 +1,15 @@
 {
+   "code" : "cush,shel",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
+   "servicePoints" : [],
+   "id" : "cc2b46ce-3488-4082-9ca5-fc47ab837d93",
    "servicePointIds" : [
       "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
    ],
-   "discoveryDisplayName" : "Cushing Library/Lit./Shelley (Does not check out)",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "name" : "cush shel",
-   "code" : "cush,shel",
-   "id" : "cc2b46ce-3488-4082-9ca5-fc47ab837d93",
-   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
    "isActive" : true,
-   "servicePoints" : [],
+   "libraryId" : "ac026424-a09c-48eb-b668-624628ac43c1",
+   "discoveryDisplayName" : "Cushing Library/Lit./Shelley (Does not check out)",
    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-   "libraryId" : "ac026424-a09c-48eb-b668-624628ac43c1"
+   "name" : "cush shel"
 }

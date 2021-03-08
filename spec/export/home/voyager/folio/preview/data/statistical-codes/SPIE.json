@@ -1,7 +1,7 @@
 {
-   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
    "name" : "SPIE",
    "source" : "voyager",
-   "id" : "8a55aa46-5a8e-4911-a12f-86f5940be30b",
-   "code" : "SPIE"
+   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+   "code" : "SPIE",
+   "id" : "8a55aa46-5a8e-4911-a12f-86f5940be30b"
 }

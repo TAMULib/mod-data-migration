@@ -1,15 +1,15 @@
 {
-   "discoveryDisplayName" : "Cushing/Kincaid/Misc. Remote Storage (2-3 day retrieval)",
+   "isActive" : true,
    "servicePointIds" : [
       "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
    ],
-   "id" : "4bb1a069-fe9c-4f31-9d0f-e1d70967de29",
-   "name" : "cush kaid",
-   "code" : "cush,kaid",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "isActive" : true,
-   "servicePoints" : [],
    "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
-   "libraryId" : "ac026424-a09c-48eb-b668-624628ac43c1",
-   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347"
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "cush,kaid",
+   "id" : "4bb1a069-fe9c-4f31-9d0f-e1d70967de29",
+   "servicePoints" : [],
+   "name" : "cush kaid",
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "discoveryDisplayName" : "Cushing/Kincaid/Misc. Remote Storage (2-3 day retrieval)",
+   "libraryId" : "ac026424-a09c-48eb-b668-624628ac43c1"
 }

@@ -1,16 +1,16 @@
 {
    "fund" : {
-      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
       "externalAccountNo" : "511139",
-      "code" : "zcoke",
-      "acqUnitIds" : [],
       "allocatedToIds" : [],
-      "allocatedFromIds" : [],
-      "fundStatus" : "Inactive",
       "description" : "For Serial Coke Etxt",
-      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "code" : "zcoke",
       "id" : "6ef4eeb4-bf3f-48ec-b1bc-81fd491f1c67",
-      "name" : "zSerial Coke Etxt"
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "acqUnitIds" : [],
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "name" : "zSerial Coke Etxt",
+      "allocatedFromIds" : [],
+      "fundStatus" : "Inactive"
    },
    "groupIds" : [
       "3e54df19-46ef-4455-8cab-e520c77795dc"

@@ -1,15 +1,15 @@
 {
-   "metadata" : {
-      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "updatedDate" : "2021-02-04T20:41:00.446+00:00",
-      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "createdDate" : "2021-02-04T20:41:00.446"
-   },
    "value" : "{\"name\":\"SRMSVO\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+   "metadata" : {
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:16.834+00:00",
+      "createdDate" : "2021-02-26T15:23:16.834",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+   },
    "enabled" : true,
-   "code" : "ADDRESS_SRMSVO",
    "module" : "TENANT",
-   "id" : "fb5ad323-b9e1-487b-bfce-84171254b2e0",
-   "configName" : "tenant.addresses"
+   "code" : "ADDRESS_SRMSVO",
+   "configName" : "tenant.addresses",
+   "id" : "fb5ad323-b9e1-487b-bfce-84171254b2e0"
 }
 

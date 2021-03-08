@@ -1,8 +1,8 @@
 {
-   "id" : "05e05c02-f870-4602-9e1b-1451cf4ec9b1",
    "visible" : true,
-   "description" : "Shelving Department employees performing Circ functions",
    "permissionName" : "05e05c02-f870-4602-9e1b-1451cf4ec9b1",
+   "id" : "05e05c02-f870-4602-9e1b-1451cf4ec9b1",
+   "mutable" : true,
    "displayName" : "Shelving_Staff",
    "subPermissions" : [
       "ui-checkin.all",
@@ -12,6 +12,6 @@
       "ui-users.loans.view",
       "ui-users.requests.all"
    ],
-   "mutable" : true
+   "description" : "Shelving Department employees performing Circ functions"
 }
 

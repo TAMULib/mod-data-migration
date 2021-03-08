@@ -1,7 +1,7 @@
 {
    "statisticalCodeTypeId" : "e7dff618-aad7-4af9-8d8d-a5a945b12431",
-   "code" : "in_transit_on_hold",
-   "id" : "af4ddf3a-405a-4b42-887d-53119dca26c9",
    "source" : "local",
-   "name" : "In Transit On Hold"
+   "name" : "In Transit On Hold",
+   "code" : "in_transit_on_hold",
+   "id" : "af4ddf3a-405a-4b42-887d-53119dca26c9"
 }

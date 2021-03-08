@@ -1,0 +1,20 @@
+{
+   "permissionName" : "fd81b059-b046-414e-9da5-46a420c4a180",
+   "visible" : true,
+   "id" : "fd81b059-b046-414e-9da5-46a420c4a180",
+   "mutable" : true,
+   "subPermissions" : [
+      "circulation.requests.item.get",
+      "gobi.all",
+      "inventory-storage.items.collection.get",
+      "ncip.all",
+      "oai-pmh.all",
+      "patron.all",
+      "rtac.all",
+      "ui-circulation.settings.lost-item-fees-policies",
+      "ui-circulation.settings.overdue-fines-policies",
+      "users.collection.get"
+   ],
+   "displayName" : "Edge_user"
+}
+

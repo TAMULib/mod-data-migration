@@ -1,13 +1,13 @@
 {
+   "permissionName" : "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
+   "id" : "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
+   "visible" : true,
+   "mutable" : true,
    "subPermissions" : [
       "ui-users.settings.permsets",
       "ui-users.settings.profilePictures"
    ],
-   "mutable" : true,
-   "visible" : true,
-   "description" : "Ability to create permission sets",
    "displayName" : "Permission_sets_create_edit",
-   "permissionName" : "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
-   "id" : "5b92a0a0-25a2-42a4-95e1-775f118d3ef2"
+   "description" : "Ability to create permission sets"
 }
 

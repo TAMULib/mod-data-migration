@@ -1,15 +1,15 @@
 {
+   "id" : "14a41db6-b94d-4dfb-a0c5-602be498d5a8",
+   "servicePoints" : [],
+   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "AcqMoMO",
+   "isActive" : true,
    "servicePointIds" : [
       "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
    ],
-   "discoveryDisplayName" : "On order",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "code" : "AcqMoMO",
+   "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
    "name" : "Evans AcqMono Conventional",
-   "id" : "14a41db6-b94d-4dfb-a0c5-602be498d5a8",
-   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
-   "servicePoints" : [],
-   "isActive" : true,
-   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-   "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74"
+   "discoveryDisplayName" : "On order",
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347"
 }

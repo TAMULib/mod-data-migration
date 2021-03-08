@@ -1,8 +1,8 @@
 {
-   "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
-   "id" : "43585a75-e91c-4550-a129-ddebac773edd",
+   "feeFineType" : "Lost item replacement",
    "automatic" : false,
+   "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
    "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
    "chargeNoticeId" : "3fe59fee-0afa-4dd6-9fd2-655f4e6751fd",
-   "feeFineType" : "Lost item replacement"
+   "id" : "43585a75-e91c-4550-a129-ddebac773edd"
 }

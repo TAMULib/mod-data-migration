@@ -1,15 +1,15 @@
 {
    "isActive" : true,
-   "servicePoints" : [],
-   "primaryServicePoint" : "fc64d24e-5247-402a-ae19-21de454c025d",
-   "libraryId" : "3fb6a4cf-362a-4d59-8558-9bee67fd50eb",
-   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
    "servicePointIds" : [
       "fc64d24e-5247-402a-ae19-21de454c025d"
    ],
-   "discoveryDisplayName" : "Accessible only at the Business Library",
-   "name" : "blcc stand",
-   "code" : "blcc,stand",
+   "primaryServicePoint" : "fc64d24e-5247-402a-ae19-21de454c025d",
    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "id" : "f57bb781-a8ec-4b00-8c00-855070ae1538"
+   "code" : "blcc,stand",
+   "id" : "f57bb781-a8ec-4b00-8c00-855070ae1538",
+   "servicePoints" : [],
+   "name" : "blcc stand",
+   "discoveryDisplayName" : "Accessible only at the Business Library",
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "libraryId" : "3fb6a4cf-362a-4d59-8558-9bee67fd50eb"
 }

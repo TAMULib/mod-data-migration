@@ -1,14 +1,14 @@
 {
-   "enabled" : true,
-   "value" : "normal",
-   "metadata" : {
-      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "updatedDate" : "2021-02-04T20:40:59.345+00:00",
-      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "createdDate" : "2021-02-04T20:40:59.345"
-   },
-   "configName" : "inventory-loanTypeName",
    "id" : "c116ac8c-a51e-4f30-a30f-77c073386e83",
-   "module" : "ORDERS"
+   "configName" : "inventory-loanTypeName",
+   "module" : "ORDERS",
+   "enabled" : true,
+   "metadata" : {
+      "updatedDate" : "2021-02-26T15:23:16.443+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "createdDate" : "2021-02-26T15:23:16.443"
+   },
+   "value" : "normal"
 }
 

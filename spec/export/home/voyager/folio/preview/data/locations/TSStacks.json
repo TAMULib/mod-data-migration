@@ -1,15 +1,15 @@
 {
-   "id" : "f9a714d0-996a-4255-b781-e85faed65183",
+   "libraryId" : "171494ea-b9e6-41ce-8c04-967de9a81b99",
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "discoveryDisplayName" : "MSL Technical Services Stacks",
    "name" : "MSL Tech Services Stacks",
+   "servicePoints" : [],
+   "id" : "f9a714d0-996a-4255-b781-e85faed65183",
    "code" : "TSStacks",
    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "discoveryDisplayName" : "MSL Technical Services Stacks",
+   "primaryServicePoint" : "9311b907-0c9f-42d0-aea4-62d33a7ab7b7",
    "servicePointIds" : [
       "9311b907-0c9f-42d0-aea4-62d33a7ab7b7"
    ],
-   "libraryId" : "171494ea-b9e6-41ce-8c04-967de9a81b99",
-   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-   "servicePoints" : [],
-   "isActive" : true,
-   "primaryServicePoint" : "9311b907-0c9f-42d0-aea4-62d33a7ab7b7"
+   "isActive" : true
 }

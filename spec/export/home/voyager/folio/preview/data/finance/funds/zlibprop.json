@@ -1,16 +1,16 @@
 {
    "fund" : {
-      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
-      "description" : "For Library Print Proposal Purchases and NewPropElect",
-      "id" : "6a0312b2-eb6c-4286-9c31-0c0f095853c2",
-      "name" : "zLibrary Proposals",
-      "fundStatus" : "Inactive",
-      "allocatedFromIds" : [],
-      "allocatedToIds" : [],
       "code" : "zlibprop",
-      "acqUnitIds" : [],
+      "allocatedToIds" : [],
       "externalAccountNo" : "242406",
-      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553"
+      "description" : "For Library Print Proposal Purchases and NewPropElect",
+      "fundStatus" : "Inactive",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "id" : "6a0312b2-eb6c-4286-9c31-0c0f095853c2",
+      "allocatedFromIds" : [],
+      "name" : "zLibrary Proposals",
+      "acqUnitIds" : [],
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48"
    }
 }
 

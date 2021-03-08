@@ -1,7 +1,7 @@
 {
+   "description" : "Hold slip for items on hold or recall that are available for pickup",
    "active" : true,
-   "template" : "<div><strong>{{staffSlip.Name}}</strong> slip</div><div><br></div><div><strong>Name of requester</strong></div><div>{{requester.lastName}}, {{requester.firstName}}</div><div><br></div><div><strong>Library: </strong>{{item.effectiveLocationLibrary}}</div><div><strong>Title: </strong>{{item.title}}</div><div><strong>Barcode: </strong>{{item.barcode}}</div><div><strong>Call number: </strong>{{item.callNumber}} {{item.enumeration}} {{item.chronology}}</div><div><strong>Item can be picked up at: </strong>{{request.servicePointPickup}}</div><div><strong>Item will be returned to the shelf on: </strong>{{request.holdShelfExpirationDate}}</div>",
-   "name" : "Hold",
    "id" : "6a6e72f0-69da-4b4c-8254-7154679e9d88",
-   "description" : "Hold slip for items on hold or recall that are available for pickup"
+   "template" : "<div><strong>{{staffSlip.Name}}</strong> slip</div><div><br></div><div><strong>Name of requester</strong></div><div>{{requester.lastName}}, {{requester.firstName}}</div><div><br></div><div><strong>Library: </strong>{{item.effectiveLocationLibrary}}</div><div><strong>Title: </strong>{{item.title}}</div><div><strong>Barcode: </strong>{{item.barcode}}</div><div><strong>Call number: </strong>{{item.callNumber}} {{item.enumeration}} {{item.chronology}}</div><div><strong>Item can be picked up at: </strong>{{request.servicePointPickup}}</div><div><strong>Item will be returned to the shelf on: </strong>{{request.holdShelfExpirationDate}}</div>",
+   "name" : "Hold"
 }

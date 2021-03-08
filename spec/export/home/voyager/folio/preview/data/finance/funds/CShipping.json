@@ -1,14 +1,17 @@
 {
    "fund" : {
-      "name" : "Cushing Shipping",
       "id" : "6d392544-a226-46af-8bb9-29779f25f3b8",
-      "allocatedFromIds" : [],
-      "fundStatus" : "Active",
-      "acqUnitIds" : [],
-      "code" : "CShipping",
-      "allocatedToIds" : [],
       "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "externalAccountNo" : "242406"
-   }
+      "allocatedFromIds" : [],
+      "acqUnitIds" : [],
+      "name" : "Cushing Shipping",
+      "fundStatus" : "Active",
+      "allocatedToIds" : [],
+      "externalAccountNo" : "242406",
+      "code" : "CShipping"
+   },
+   "groupIds" : [
+      "96d9827a-ca78-489b-b38f-968a394a76f9"
+   ]
 }
 

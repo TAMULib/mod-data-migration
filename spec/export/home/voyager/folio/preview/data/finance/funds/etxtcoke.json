@@ -1,17 +1,18 @@
 {
-   "groupIds" : [
-      "9259b254-17dd-46cb-82c4-03aaf19d8972"
-   ],
    "fund" : {
-      "acqUnitIds" : [],
-      "code" : "etxtcoke",
-      "allocatedToIds" : [],
-      "externalAccountNo" : "511139",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "fundStatus" : "Active",
       "name" : "Etxt Coke",
-      "id" : "4df44280-fd1d-4df2-a436-8c7785afa676",
+      "acqUnitIds" : [],
       "allocatedFromIds" : [],
-      "fundStatus" : "Active"
-   }
+      "id" : "4df44280-fd1d-4df2-a436-8c7785afa676",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "code" : "etxtcoke",
+      "externalAccountNo" : "511139",
+      "allocatedToIds" : []
+   },
+   "groupIds" : [
+      "9259b254-17dd-46cb-82c4-03aaf19d8972",
+      "87c48892-bf45-4e1b-8d4b-c1dd6b721139"
+   ]
 }
 

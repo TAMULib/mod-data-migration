@@ -1,7 +1,7 @@
 {
-   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-   "source" : "voyager",
    "id" : "2e662e01-0474-434b-821b-b7daba729677",
    "code" : "elserefrex",
-   "name" : "elserefrex"
+   "name" : "elserefrex",
+   "source" : "voyager",
+   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8"
 }

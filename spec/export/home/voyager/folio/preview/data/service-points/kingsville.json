@@ -1,8 +1,11 @@
 {
+   "name" : "HSC Kingsville",
+   "discoveryDisplayName" : "HSC Kingsville",
+   "id" : "7f719f23-7e2e-4a60-8e58-9e778ad6344f",
    "pickupLocation" : true,
    "holdShelfExpiryPeriod" : {
-      "intervalId" : "Days",
-      "duration" : 10
+      "duration" : 10,
+      "intervalId" : "Days"
    },
    "staffSlips" : [
       {
@@ -14,12 +17,9 @@
          "id" : "1ed55c5c-64d9-40eb-8b80-7438a262288b"
       },
       {
-         "printByDefault" : false,
-         "id" : "f838cdaf-555a-473f-abf1-f35ef6ab8ae1"
+         "id" : "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
+         "printByDefault" : false
       }
    ],
-   "id" : "7f719f23-7e2e-4a60-8e58-9e778ad6344f",
-   "code" : "kingsville",
-   "name" : "HSC Kingsville",
-   "discoveryDisplayName" : "HSC Kingsville"
+   "code" : "kingsville"
 }

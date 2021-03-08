@@ -1,7 +1,7 @@
 {
-   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-   "id" : "9e740074-b427-47a3-9539-c13190c07c17",
-   "code" : "CWLD",
+   "name" : "CWLD",
    "source" : "voyager",
-   "name" : "CWLD"
+   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+   "code" : "CWLD",
+   "id" : "9e740074-b427-47a3-9539-c13190c07c17"
 }

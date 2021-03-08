@@ -1,15 +1,15 @@
 {
    "fund" : {
-      "name" : "zMother's Club",
-      "description" : "Aggie Mother's Club donation for purchasing text books.",
-      "id" : "af441078-b5c3-48b7-ab68-ab5f13db44f0",
-      "fundStatus" : "Inactive",
-      "allocatedFromIds" : [],
+      "externalAccountNo" : "57152",
       "allocatedToIds" : [],
-      "acqUnitIds" : [],
+      "description" : "Aggie Mother's Club donation for purchasing text books.",
       "code" : "zmomclub",
+      "id" : "af441078-b5c3-48b7-ab68-ab5f13db44f0",
       "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-      "externalAccountNo" : "57152"
+      "allocatedFromIds" : [],
+      "acqUnitIds" : [],
+      "name" : "zMother's Club",
+      "fundStatus" : "Inactive"
    }
 }
 

@@ -1,16 +1,16 @@
 {
    "fund" : {
-      "description" : "For Streaming Videos from both AlexanderStreet & Kanopy",
-      "id" : "b6cece59-82fb-4137-ac95-889868317d89",
-      "fundTypeId" : "d87b3e95-be8a-4800-9733-3fa16f0c4266",
-      "name" : "zStreaming Video",
-      "allocatedFromIds" : [],
       "fundStatus" : "Inactive",
-      "code" : "zstream",
-      "acqUnitIds" : [],
-      "allocatedToIds" : [],
+      "id" : "b6cece59-82fb-4137-ac95-889868317d89",
       "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-      "externalAccountNo" : "242406"
+      "allocatedFromIds" : [],
+      "name" : "zStreaming Video",
+      "acqUnitIds" : [],
+      "fundTypeId" : "d87b3e95-be8a-4800-9733-3fa16f0c4266",
+      "code" : "zstream",
+      "allocatedToIds" : [],
+      "externalAccountNo" : "242406",
+      "description" : "For Streaming Videos from both AlexanderStreet & Kanopy"
    }
 }
 

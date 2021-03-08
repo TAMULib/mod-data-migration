@@ -1,7 +1,7 @@
 {
-   "name" : "proser2",
-   "id" : "3162224a-0d5f-4517-827a-f7a5cb21478e",
-   "code" : "proser2",
    "source" : "voyager",
-   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8"
+   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+   "name" : "proser2",
+   "code" : "proser2",
+   "id" : "3162224a-0d5f-4517-827a-f7a5cb21478e"
 }

@@ -1,5 +1,4 @@
 {
-   "id" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
    "owner" : "AskUs Services",
    "servicePointOwner" : [
       {
@@ -15,12 +14,9 @@
          "value" : "382bbd83-8f05-4063-8d08-adf1d3316e0a"
       },
       {
-         "value" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
-         "label" : "Unassigned"
-      },
-      {
-         "value" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
-         "label" : "Maps & GIS"
+         "label" : "Unassigned",
+         "value" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
       }
-   ]
+   ],
+   "id" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0"
 }

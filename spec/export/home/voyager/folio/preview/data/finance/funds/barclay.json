@@ -1,17 +1,18 @@
 {
-   "groupIds" : [
-      "9259b254-17dd-46cb-82c4-03aaf19d8972"
-   ],
    "fund" : {
-      "externalAccountNo" : "72997",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
       "allocatedToIds" : [],
+      "externalAccountNo" : "72997",
       "code" : "barclay",
-      "acqUnitIds" : [],
-      "fundStatus" : "Active",
-      "allocatedFromIds" : [],
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
       "id" : "cd589e3e-aab3-48ad-a03a-09de41b2effd",
-      "name" : "Etxt Barclay"
-   }
+      "allocatedFromIds" : [],
+      "acqUnitIds" : [],
+      "name" : "Etxt Barclay",
+      "fundStatus" : "Active"
+   },
+   "groupIds" : [
+      "9259b254-17dd-46cb-82c4-03aaf19d8972",
+      "87c48892-bf45-4e1b-8d4b-c1dd6b721139"
+   ]
 }
 

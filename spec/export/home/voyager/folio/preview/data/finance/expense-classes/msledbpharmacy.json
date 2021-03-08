@@ -1,6 +1,6 @@
 {
-   "externalAccountNumberExt" : "242405-22300",
    "name" : "MSL EDb Pharmacy",
    "code" : "msledbpharmacy",
-   "id" : "68d3269f-0d7a-4d49-ae55-ef6381e64b16"
+   "id" : "68d3269f-0d7a-4d49-ae55-ef6381e64b16",
+   "externalAccountNumberExt" : "242405-22300"
 }

@@ -1,7 +1,7 @@
 {
    "name" : "sabin",
-   "code" : "sabin",
-   "id" : "5cd49ec1-b1e2-45fc-ad47-54f88c5221f2",
+   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
    "source" : "voyager",
-   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8"
+   "id" : "5cd49ec1-b1e2-45fc-ad47-54f88c5221f2",
+   "code" : "sabin"
 }

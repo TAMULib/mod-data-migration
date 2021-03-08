@@ -1,31 +1,31 @@
 {
-   "id" : "851a879e-f5bc-44a4-a32b-b95bb5b3edad",
+   "loanable" : true,
+   "renewalsPolicy" : {
+      "renewFromId" : "SYSTEM_DATE",
+      "numberAllowed" : 1,
+      "differentPeriod" : false
+   },
    "loansPolicy" : {
-      "profileId" : "Rolling",
-      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
       "period" : {
          "duration" : 14,
          "intervalId" : "Days"
-      }
+      },
+      "profileId" : "Rolling",
+      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY"
    },
-   "loanable" : true,
+   "id" : "851a879e-f5bc-44a4-a32b-b95bb5b3edad",
    "requestManagement" : {
       "recalls" : {
-         "recallReturnInterval" : {
-            "duration" : 14,
-            "intervalId" : "Days"
-         },
          "minimumGuaranteedLoanPeriod" : {
             "duration" : 14,
             "intervalId" : "Days"
+         },
+         "recallReturnInterval" : {
+            "intervalId" : "Days",
+            "duration" : 14
          }
       }
    },
    "name" : "day_14_renew_1_recall_y",
-   "renewalsPolicy" : {
-      "differentPeriod" : false,
-      "numberAllowed" : 1,
-      "renewFromId" : "SYSTEM_DATE"
-   },
    "renewable" : true
 }

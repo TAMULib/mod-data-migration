@@ -1,6 +1,6 @@
 {
+   "allowedRefundMethod" : true,
    "id" : "f6949f49-10ef-4b16-9534-f667c279bcf2",
    "nameMethod" : "Interdepartmental transfer",
-   "allowedRefundMethod" : true,
    "ownerId" : "014416f2-7609-4222-a812-1a3deb0591b8"
 }

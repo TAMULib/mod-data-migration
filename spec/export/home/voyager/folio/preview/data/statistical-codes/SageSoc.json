@@ -1,7 +1,7 @@
 {
-   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+   "code" : "SageSoc",
+   "id" : "b4a7c802-213b-4764-865c-bd21cabbceba",
    "name" : "SageSoc",
    "source" : "voyager",
-   "id" : "b4a7c802-213b-4764-865c-bd21cabbceba",
-   "code" : "SageSoc"
+   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8"
 }

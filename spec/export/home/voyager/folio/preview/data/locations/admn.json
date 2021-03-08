@@ -1,15 +1,15 @@
 {
-   "code" : "admn",
-   "name" : "Evans admn",
+   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "admn",
    "id" : "25c3c8bf-4c8f-49ac-9ea2-b26094946e80",
+   "servicePoints" : [],
+   "isActive" : true,
    "servicePointIds" : [
       "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
    ],
-   "discoveryDisplayName" : "Evans Library Administrative Office",
    "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
-   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-   "servicePoints" : [],
-   "isActive" : true,
-   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
+   "name" : "Evans admn",
+   "discoveryDisplayName" : "Evans Library Administrative Office",
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347"
 }

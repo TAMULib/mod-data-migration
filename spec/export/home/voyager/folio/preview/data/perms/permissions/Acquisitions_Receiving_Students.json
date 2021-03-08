@@ -1,11 +1,11 @@
 {
-   "visible" : true,
-   "displayName" : "Acquisitions_Receiving_Students",
-   "permissionName" : "d2f1856c-d6f9-450f-b6be-a3d455282abe",
-   "id" : "d2f1856c-d6f9-450f-b6be-a3d455282abe",
    "subPermissions" : [
       "ui-receiving.create"
    ],
-   "mutable" : true
+   "displayName" : "Acquisitions_Receiving_Students",
+   "mutable" : true,
+   "visible" : true,
+   "permissionName" : "d2f1856c-d6f9-450f-b6be-a3d455282abe",
+   "id" : "d2f1856c-d6f9-450f-b6be-a3d455282abe"
 }
 

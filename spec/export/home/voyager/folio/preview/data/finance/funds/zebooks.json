@@ -1,16 +1,16 @@
 {
    "fund" : {
-      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
       "externalAccountNo" : "242406",
-      "code" : "zebooks",
-      "acqUnitIds" : [],
       "allocatedToIds" : [],
-      "allocatedFromIds" : [],
-      "fundStatus" : "Inactive",
       "description" : "For Ebooks",
-      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "code" : "zebooks",
       "id" : "f120f11d-b752-4dcb-ba63-ba240e1785e9",
-      "name" : "zEbooks"
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "acqUnitIds" : [],
+      "name" : "zEbooks",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "allocatedFromIds" : [],
+      "fundStatus" : "Inactive"
    }
 }
 

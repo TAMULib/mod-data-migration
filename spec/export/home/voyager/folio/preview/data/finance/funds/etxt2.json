@@ -1,0 +1,18 @@
+{
+   "fund" : {
+      "fundStatus" : "Active",
+      "acqUnitIds" : [],
+      "name" : "Etxt Main",
+      "allocatedFromIds" : [],
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "id" : "692bc717-e37a-4525-95e3-fa25f58ecbef",
+      "code" : "etxt2",
+      "externalAccountNo" : "242406",
+      "allocatedToIds" : []
+   },
+   "groupIds" : [
+      "8d414b94-14e8-4323-bcdc-1ac6ace09404",
+      "87c48892-bf45-4e1b-8d4b-c1dd6b721139"
+   ]
+}
+

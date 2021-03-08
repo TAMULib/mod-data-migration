@@ -1,7 +1,7 @@
 {
-   "feeFineType" : "Lost item replacement (migrated-do not use)",
-   "automatic" : false,
    "id" : "09e14083-c85b-4f41-86ac-b24c47a81b7b",
+   "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
+   "automatic" : false,
    "ownerId" : "014416f2-7609-4222-a812-1a3deb0591b8",
-   "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f"
+   "feeFineType" : "Lost item replacement (migrated-do not use)"
 }

@@ -3,14 +3,14 @@
       "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2"
    ],
    "fund" : {
-      "allocatedFromIds" : [],
       "fundStatus" : "Active",
       "id" : "d9b62c5b-4f02-437c-8734-cb160e7bd5c6",
-      "name" : "GCFBenson",
       "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "externalAccountNo" : "53070",
-      "code" : "fbenson",
+      "allocatedFromIds" : [],
+      "name" : "GCFBenson",
       "acqUnitIds" : [],
+      "code" : "fbenson",
+      "externalAccountNo" : "53070",
       "allocatedToIds" : []
    }
 }

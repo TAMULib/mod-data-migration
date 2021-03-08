@@ -1,17 +1,18 @@
 {
+   "groupIds" : [
+      "9259b254-17dd-46cb-82c4-03aaf19d8972",
+      "87c48892-bf45-4e1b-8d4b-c1dd6b721139"
+   ],
    "fund" : {
-      "id" : "2cfb269e-ec9f-4f9c-9b75-1d95be521f61",
-      "name" : "Etxt Mat. Srv. Mgmt",
+      "code" : "msm",
+      "allocatedToIds" : [],
+      "externalAccountNo" : "211650",
       "fundStatus" : "Active",
       "allocatedFromIds" : [],
-      "allocatedToIds" : [],
-      "code" : "msm",
+      "name" : "Etxt Mat. Srv. Mgmt",
       "acqUnitIds" : [],
-      "externalAccountNo" : "211650",
+      "id" : "2cfb269e-ec9f-4f9c-9b75-1d95be521f61",
       "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346"
-   },
-   "groupIds" : [
-      "9259b254-17dd-46cb-82c4-03aaf19d8972"
-   ]
+   }
 }
 

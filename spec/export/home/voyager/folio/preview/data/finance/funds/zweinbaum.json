@@ -1,16 +1,16 @@
 {
    "fund" : {
       "description" : "For Poetry Books",
+      "allocatedToIds" : [],
+      "externalAccountNo" : "511603",
+      "code" : "zweinbaum",
+      "allocatedFromIds" : [],
+      "name" : "zWeinbaum",
+      "acqUnitIds" : [],
       "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
       "id" : "b4912480-9087-4f46-bca5-d4f0c5d85d9c",
-      "name" : "zWeinbaum",
-      "fundStatus" : "Inactive",
-      "allocatedFromIds" : [],
-      "allocatedToIds" : [],
-      "code" : "zweinbaum",
-      "acqUnitIds" : [],
-      "externalAccountNo" : "511603",
-      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553"
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "fundStatus" : "Inactive"
    }
 }
 

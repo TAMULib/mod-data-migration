@@ -1,13 +1,13 @@
 {
-   "id" : "8641feeb-07f3-495e-86cb-93df4eb85068",
    "displayName" : "Cat_View",
-   "permissionName" : "8641feeb-07f3-495e-86cb-93df4eb85068",
-   "description" : "Permits non-catalogers to view Inventory, FOLIO Holdings, and Items",
-   "visible" : true,
-   "mutable" : true,
    "subPermissions" : [
       "ui-inventory.instance.view-staff-suppressed-records",
       "ui-inventory.instance.view"
-   ]
+   ],
+   "description" : "Permits non-catalogers to view Inventory, FOLIO Holdings, and Items",
+   "visible" : true,
+   "permissionName" : "8641feeb-07f3-495e-86cb-93df4eb85068",
+   "id" : "8641feeb-07f3-495e-86cb-93df4eb85068",
+   "mutable" : true
 }
 

@@ -1,15 +1,15 @@
 {
+   "name" : "day_7_renew_0_recall_n",
    "renewable" : false,
+   "description" : "7 day loan, no renewals, no recall",
+   "id" : "8dcfa981-6876-4c91-bc71-7fdc423c49ca",
    "loansPolicy" : {
+      "profileId" : "Rolling",
       "period" : {
          "intervalId" : "Days",
          "duration" : 7
       },
-      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
-      "profileId" : "Rolling"
+      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY"
    },
-   "loanable" : true,
-   "name" : "day_7_renew_0_recall_n",
-   "id" : "8dcfa981-6876-4c91-bc71-7fdc423c49ca",
-   "description" : "7 day loan, no renewals, no recall"
+   "loanable" : true
 }

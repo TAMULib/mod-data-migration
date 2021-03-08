@@ -1,14 +1,14 @@
 {
    "fund" : {
       "externalAccountNo" : "242406",
-      "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
-      "code" : "mslpmono",
-      "acqUnitIds" : [],
       "allocatedToIds" : [],
+      "code" : "mslpmono",
       "allocatedFromIds" : [],
-      "fundStatus" : "Active",
+      "acqUnitIds" : [],
+      "name" : "MSL Monographs",
+      "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
       "id" : "5cd9eff1-eb21-4cae-9b8b-79866f24d703",
-      "name" : "MSL Monographs"
+      "fundStatus" : "Active"
    },
    "groupIds" : [
       "60531c4d-5f80-47e6-8d49-423124d9d19c"

@@ -1,15 +1,15 @@
 {
-   "id" : "83a90b7a-3cc7-4cc4-8d9b-39dfb16e3915",
    "description" : "Used for ILS Lending",
-   "name" : "day_125_renew_n_recall_n",
-   "renewable" : false,
-   "loanable" : true,
+   "id" : "83a90b7a-3cc7-4cc4-8d9b-39dfb16e3915",
    "loansPolicy" : {
+      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
+      "profileId" : "Rolling",
       "period" : {
          "duration" : 125,
          "intervalId" : "Days"
-      },
-      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
-      "profileId" : "Rolling"
-   }
+      }
+   },
+   "loanable" : true,
+   "name" : "day_125_renew_n_recall_n",
+   "renewable" : false
 }

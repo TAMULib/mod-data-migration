@@ -1,9 +1,5 @@
 {
-   "permissionName" : "7301b3b0-7075-4e66-8c43-12ed005e6c6b",
    "displayName" : "ER_ERM_Staff",
-   "visible" : true,
-   "id" : "7301b3b0-7075-4e66-8c43-12ed005e6c6b",
-   "mutable" : true,
    "subPermissions" : [
       "ui-agreements.agreements.delete",
       "ui-agreements.agreements.edit",
@@ -15,6 +11,10 @@
       "ui-licenses.licenses.delete",
       "ui-licenses.licenses.edit",
       "ui-licenses.licenses.view"
-   ]
+   ],
+   "permissionName" : "7301b3b0-7075-4e66-8c43-12ed005e6c6b",
+   "visible" : true,
+   "id" : "7301b3b0-7075-4e66-8c43-12ed005e6c6b",
+   "mutable" : true
 }
 

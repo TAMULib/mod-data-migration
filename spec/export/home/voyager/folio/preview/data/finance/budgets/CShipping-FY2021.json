@@ -1,9 +1,9 @@
 {
-   "fundId" : "6d392544-a226-46af-8bb9-29779f25f3b8",
-   "id" : "7abe86eb-ffe6-44c8-8635-c432e0d86b7f",
-   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
    "name" : "CShipping-FY2021",
    "acqUnitIds" : [],
-   "budgetStatus" : "Active"
+   "budgetStatus" : "Active",
+   "fundId" : "6d392544-a226-46af-8bb9-29779f25f3b8",
+   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+   "id" : "7abe86eb-ffe6-44c8-8635-c432e0d86b7f"
 }
 

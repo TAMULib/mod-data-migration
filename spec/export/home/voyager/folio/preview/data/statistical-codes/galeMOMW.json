@@ -1,7 +1,7 @@
 {
-   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
    "code" : "galeMOMW",
    "id" : "16f2d2c4-8d84-43d7-96ef-18add1a9c028",
-   "source" : "voyager",
-   "name" : "galeMOMW"
+   "name" : "galeMOMW",
+   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+   "source" : "voyager"
 }

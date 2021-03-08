@@ -1,7 +1,7 @@
 {
+   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+   "source" : "voyager",
    "name" : "SagePsych",
    "id" : "8c4e2c6e-ef41-4155-b31e-c1964171872f",
-   "code" : "SagePsych",
-   "source" : "voyager",
-   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8"
+   "code" : "SagePsych"
 }

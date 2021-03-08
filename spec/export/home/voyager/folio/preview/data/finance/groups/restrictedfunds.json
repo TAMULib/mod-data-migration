@@ -1,8 +1,8 @@
 {
-   "description" : "For Restricted Fund Purchases only",
-   "code" : "restrictedfunds",
    "acqUnitIds" : [],
-   "name" : "zRestricted Funds",
+   "status" : "Active",
    "id" : "454250ae-6490-41a0-a12b-4311060e2fb0",
-   "status" : "Active"
+   "name" : "zRestricted Funds",
+   "description" : "For Restricted Fund Purchases only",
+   "code" : "restrictedfunds"
 }

@@ -1,19 +1,19 @@
 {
-   "acqUnitIds" : [],
    "name" : "replacement-FY2021",
-   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-   "id" : "464a22dd-67e7-400a-9853-e4860bb0c508",
-   "fundId" : "41c4fe20-9108-466f-803e-bf665efd20ed",
    "statusExpenseClasses" : [
       {
-         "status" : "Active",
-         "expenseClassId" : "c9282d86-4120-4f5a-be3e-657067784124"
+         "expenseClassId" : "c9282d86-4120-4f5a-be3e-657067784124",
+         "status" : "Active"
       },
       {
          "status" : "Active",
          "expenseClassId" : "487e4cd5-7c9f-4674-a594-6c41c6e5b689"
       }
    ],
-   "budgetStatus" : "Active"
+   "acqUnitIds" : [],
+   "id" : "464a22dd-67e7-400a-9853-e4860bb0c508",
+   "budgetStatus" : "Active",
+   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+   "fundId" : "41c4fe20-9108-466f-803e-bf665efd20ed"
 }
 

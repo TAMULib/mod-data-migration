@@ -1,9 +1,8 @@
 {
-   "displayName" : "Acquisitions_Invoicing_Staff",
+   "mutable" : true,
    "permissionName" : "2347a558-b532-4b28-971f-3dd05420375a",
    "visible" : true,
    "id" : "2347a558-b532-4b28-971f-3dd05420375a",
-   "mutable" : true,
    "subPermissions" : [
       "ui-invoice.all",
       "ui-invoice.approve",
@@ -12,6 +11,7 @@
       "ui-invoice.acq.unit.assignment.manage",
       "ui-invoice.pay",
       "module.invoice.enabled"
-   ]
+   ],
+   "displayName" : "Acquisitions_Invoicing_Staff"
 }
 

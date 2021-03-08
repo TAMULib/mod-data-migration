@@ -1,14 +1,14 @@
 {
-   "name" : "day_14_renew_0_recall_n",
-   "id" : "a88dca8b-c56c-4758-9b64-974c3e89e40c",
    "loanable" : true,
    "loansPolicy" : {
+      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
       "period" : {
          "intervalId" : "Days",
          "duration" : 14
       },
-      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
       "profileId" : "Rolling"
    },
-   "renewable" : false
+   "id" : "a88dca8b-c56c-4758-9b64-974c3e89e40c",
+   "renewable" : false,
+   "name" : "day_14_renew_0_recall_n"
 }

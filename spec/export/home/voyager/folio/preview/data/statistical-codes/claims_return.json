@@ -1,7 +1,7 @@
 {
-   "id" : "6b95543b-14e4-43ac-8861-860e9f9aa149",
    "code" : "claims_return",
-   "source" : "local",
+   "id" : "6b95543b-14e4-43ac-8861-860e9f9aa149",
    "name" : "Claims Returned",
+   "source" : "local",
    "statisticalCodeTypeId" : "e7dff618-aad7-4af9-8d8d-a5a945b12431"
 }

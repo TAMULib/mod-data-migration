@@ -1,5 +1,9 @@
 {
    "mutable" : true,
+   "id" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
+   "permissionName" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
+   "visible" : true,
+   "displayName" : "Acquisitions_Financial_Admin",
    "subPermissions" : [
       "ui-finance.allocations.create",
       "ui-finance.transfers.create",
@@ -21,10 +25,6 @@
       "ui-finance.group.delete",
       "ui-finance.ledger.delete",
       "module.invoice.enabled"
-   ],
-   "id" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
-   "permissionName" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
-   "displayName" : "Acquisitions_Financial_Admin",
-   "visible" : true
+   ]
 }
 

@@ -1,7 +1,8 @@
 {
-   "id" : "bd76b150-f075-4bdc-a93a-e6f7a563067e",
    "visible" : true,
    "permissionName" : "bd76b150-f075-4bdc-a93a-e6f7a563067e",
+   "id" : "bd76b150-f075-4bdc-a93a-e6f7a563067e",
+   "mutable" : true,
    "displayName" : "Circ_Supervisors",
    "subPermissions" : [
       "ui-checkin.all",
@@ -43,7 +44,6 @@
       "ui-users.loans.view",
       "ui-users.loans.all",
       "ui-users.requests.all"
-   ],
-   "mutable" : true
+   ]
 }
 

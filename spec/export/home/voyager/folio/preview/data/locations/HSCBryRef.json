@@ -1,15 +1,15 @@
 {
    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
-   "libraryId" : "3e5308a1-430d-4a19-9dbf-fbcf2654e2cc",
-   "primaryServicePoint" : "43f9092b-1e4d-4103-ae99-a93ba1d99bc7",
-   "servicePoints" : [],
-   "isActive" : true,
-   "id" : "81cda62a-3f63-4537-97e9-252b2c9d510d",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "name" : "HSC Bryan TextRes",
-   "code" : "HSCBryRef",
    "discoveryDisplayName" : "HSC Bryan Campus Textbook Reserve -- Does not circulate",
+   "name" : "HSC Bryan TextRes",
+   "libraryId" : "3e5308a1-430d-4a19-9dbf-fbcf2654e2cc",
    "servicePointIds" : [
       "43f9092b-1e4d-4103-ae99-a93ba1d99bc7"
-   ]
+   ],
+   "isActive" : true,
+   "code" : "HSCBryRef",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "primaryServicePoint" : "43f9092b-1e4d-4103-ae99-a93ba1d99bc7",
+   "servicePoints" : [],
+   "id" : "81cda62a-3f63-4537-97e9-252b2c9d510d"
 }

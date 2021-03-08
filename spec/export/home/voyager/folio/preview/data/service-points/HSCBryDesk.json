@@ -1,21 +1,21 @@
 {
-   "pickupLocation" : true,
-   "name" : "HSC Bryan Campus Circ",
-   "discoveryDisplayName" : "HSC Bryan Campus Circ",
-   "code" : "HSCBryDesk",
    "id" : "43f9092b-1e4d-4103-ae99-a93ba1d99bc7",
+   "discoveryDisplayName" : "HSC Bryan Campus Circ",
+   "name" : "HSC Bryan Campus Circ",
+   "code" : "HSCBryDesk",
+   "pickupLocation" : true,
    "staffSlips" : [
       {
-         "printByDefault" : false,
-         "id" : "6a6e72f0-69da-4b4c-8254-7154679e9d88"
-      },
-      {
-         "printByDefault" : false,
-         "id" : "1ed55c5c-64d9-40eb-8b80-7438a262288b"
-      },
-      {
-         "id" : "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
+         "id" : "6a6e72f0-69da-4b4c-8254-7154679e9d88",
          "printByDefault" : false
+      },
+      {
+         "id" : "1ed55c5c-64d9-40eb-8b80-7438a262288b",
+         "printByDefault" : false
+      },
+      {
+         "printByDefault" : false,
+         "id" : "f838cdaf-555a-473f-abf1-f35ef6ab8ae1"
       }
    ],
    "holdShelfExpiryPeriod" : {

@@ -1,15 +1,15 @@
 {
-   "libraryId" : "035d6391-b350-42cf-b04e-92cf0c4163af",
-   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
-   "isActive" : true,
-   "servicePoints" : [],
-   "primaryServicePoint" : "564cec55-7add-4f6f-b43a-dd87431b8dfb",
-   "name" : "HSC Dallas Campus Books",
-   "code" : "HSCDallas",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "id" : "fbb0107b-31ff-4fe6-9ca7-595208287226",
    "servicePointIds" : [
       "564cec55-7add-4f6f-b43a-dd87431b8dfb"
    ],
-   "discoveryDisplayName" : "HSC Dallas Campus - Baylor Health Sciences Library"
+   "isActive" : true,
+   "servicePoints" : [],
+   "id" : "fbb0107b-31ff-4fe6-9ca7-595208287226",
+   "code" : "HSCDallas",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "primaryServicePoint" : "564cec55-7add-4f6f-b43a-dd87431b8dfb",
+   "discoveryDisplayName" : "HSC Dallas Campus - Baylor Health Sciences Library",
+   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+   "name" : "HSC Dallas Campus Books",
+   "libraryId" : "035d6391-b350-42cf-b04e-92cf0c4163af"
 }

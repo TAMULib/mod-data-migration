@@ -1,14 +1,14 @@
 {
    "fund" : {
-      "id" : "9dfaa0f3-023a-4281-a551-d77ca60cf768",
-      "name" : "GCBenson",
-      "allocatedFromIds" : [],
       "fundStatus" : "Active",
-      "code" : "cbenson",
+      "allocatedFromIds" : [],
+      "name" : "GCBenson",
       "acqUnitIds" : [],
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "id" : "9dfaa0f3-023a-4281-a551-d77ca60cf768",
+      "code" : "cbenson",
       "allocatedToIds" : [],
-      "externalAccountNo" : "53096",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346"
+      "externalAccountNo" : "53096"
    },
    "groupIds" : [
       "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2"

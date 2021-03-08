@@ -1,10 +1,10 @@
 {
-   "description" : "Allow all request types",
-   "name" : "recall_hold_page",
    "id" : "2e888dcb-f7a1-4096-be5c-b417ea38e73b",
+   "name" : "recall_hold_page",
    "requestTypes" : [
       "Hold",
       "Page",
       "Recall"
-   ]
+   ],
+   "description" : "Allow all request types"
 }

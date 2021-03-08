@@ -1,9 +1,9 @@
 {
-   "fundId" : "f23b4c26-9618-4f38-b5fd-48d83333fc64",
    "id" : "c8cefcd1-a57c-4d5a-81e9-f74c6551c5cd",
+   "budgetStatus" : "Active",
    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+   "fundId" : "f23b4c26-9618-4f38-b5fd-48d83333fc64",
    "name" : "colmex-FY2021",
-   "acqUnitIds" : [],
-   "budgetStatus" : "Active"
+   "acqUnitIds" : []
 }
 

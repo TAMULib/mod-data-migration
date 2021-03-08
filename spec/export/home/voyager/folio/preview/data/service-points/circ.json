@@ -1,5 +1,8 @@
 {
-   "pickupLocation" : true,
+   "id" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+   "name" : "Ask Us Desk (Evans)",
+   "discoveryDisplayName" : "Ask Us Desk (Evans Library, 1st floor)",
+   "code" : "circ",
    "holdShelfExpiryPeriod" : {
       "duration" : 10,
       "intervalId" : "Days"
@@ -14,12 +17,9 @@
          "printByDefault" : false
       },
       {
-         "printByDefault" : false,
-         "id" : "f838cdaf-555a-473f-abf1-f35ef6ab8ae1"
+         "id" : "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
+         "printByDefault" : false
       }
    ],
-   "id" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
-   "code" : "circ",
-   "discoveryDisplayName" : "Ask Us Desk (Evans Library, 1st floor)",
-   "name" : "Ask Us Desk (Evans)"
+   "pickupLocation" : true
 }

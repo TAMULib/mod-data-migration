@@ -3,15 +3,15 @@
       "60531c4d-5f80-47e6-8d49-423124d9d19c"
    ],
    "fund" : {
-      "fundStatus" : "Active",
-      "allocatedFromIds" : [],
-      "name" : "MSL Vet Historical",
+      "allocatedToIds" : [],
+      "externalAccountNo" : "242406",
+      "code" : "mslvethist",
       "id" : "0609a9ae-78a8-4fd2-80b1-e29d1a9e5770",
       "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
-      "externalAccountNo" : "242406",
-      "allocatedToIds" : [],
       "acqUnitIds" : [],
-      "code" : "mslvethist"
+      "name" : "MSL Vet Historical",
+      "allocatedFromIds" : [],
+      "fundStatus" : "Active"
    }
 }
 

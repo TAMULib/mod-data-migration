@@ -1,7 +1,7 @@
 {
-   "name" : "Recall Request",
-   "id" : "f347bcf1-9e09-4202-9971-4449253e9672",
    "code" : "recall",
+   "id" : "f347bcf1-9e09-4202-9971-4449253e9672",
+   "name" : "Recall Request",
    "source" : "local",
    "statisticalCodeTypeId" : "e7dff618-aad7-4af9-8d8d-a5a945b12431"
 }

@@ -1,7 +1,7 @@
 {
    "name" : "Not Charged",
+   "statisticalCodeTypeId" : "e7dff618-aad7-4af9-8d8d-a5a945b12431",
    "source" : "local",
    "code" : "not_charged",
-   "id" : "71b2451d-408f-4ac7-ad28-e5e774efd06a",
-   "statisticalCodeTypeId" : "e7dff618-aad7-4af9-8d8d-a5a945b12431"
+   "id" : "71b2451d-408f-4ac7-ad28-e5e774efd06a"
 }

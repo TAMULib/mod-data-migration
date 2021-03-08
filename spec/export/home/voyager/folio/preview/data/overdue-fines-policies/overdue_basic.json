@@ -1,13 +1,13 @@
 {
-   "gracePeriodRecall" : true,
-   "forgiveOverdueFine" : true,
-   "id" : "d87dfe54-6282-4c4e-aaa4-34b6d2953887",
    "name" : "overdue_basic",
+   "countClosed" : false,
+   "gracePeriodRecall" : true,
    "maxOverdueFine" : 0,
    "overdueRecallFine" : {
       "intervalId" : "day",
       "quantity" : 1
    },
    "maxOverdueRecallFine" : 35,
-   "countClosed" : false
+   "forgiveOverdueFine" : true,
+   "id" : "d87dfe54-6282-4c4e-aaa4-34b6d2953887"
 }

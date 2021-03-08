@@ -3,15 +3,15 @@
       "95406f00-ad4a-411c-9b52-ce179b742d31"
    ],
    "fund" : {
-      "allocatedFromIds" : [],
       "fundStatus" : "Active",
-      "id" : "4c6d9a98-aa6f-4bfa-9087-6517dbb9a225",
+      "acqUnitIds" : [],
       "name" : "Evans Shipping",
-      "externalAccountNo" : "242406",
+      "allocatedFromIds" : [],
+      "id" : "4c6d9a98-aa6f-4bfa-9087-6517dbb9a225",
       "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
       "code" : "evansshipe",
-      "acqUnitIds" : [],
-      "allocatedToIds" : []
+      "allocatedToIds" : [],
+      "externalAccountNo" : "242406"
    }
 }
 

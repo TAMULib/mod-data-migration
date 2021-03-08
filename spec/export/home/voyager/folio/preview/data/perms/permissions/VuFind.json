@@ -1,0 +1,22 @@
+{
+   "subPermissions" : [
+      "circulation.requests.item.get",
+      "gobi.all",
+      "inventory-storage.items.collection.get",
+      "ncip.all",
+      "oai-pmh.all",
+      "patron.all",
+      "rtac.all",
+      "users.collection.get",
+      "rtac.holdings.item.get",
+      "rtac.batch.post",
+      "SYS#mod-rtac-2.0.1#/rtac-batch#[POST]",
+      "SYS#mod-rtac-2.0.1#/rtac/{id}#[GET]"
+   ],
+   "displayName" : "VuFind",
+   "mutable" : true,
+   "id" : "62852d44-d07d-470b-a7f9-0d68e2f365c4",
+   "permissionName" : "62852d44-d07d-470b-a7f9-0d68e2f365c4",
+   "visible" : true
+}
+

@@ -1,15 +1,15 @@
 {
-   "servicePointIds" : [
-      "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
-   ],
-   "discoveryDisplayName" : "Evans Systems Office",
-   "code" : "sysm",
+   "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
    "name" : "Evans sysm",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "discoveryDisplayName" : "Evans Systems Office",
    "id" : "614f969f-f1dc-4cda-8fee-83f9f5948ea3",
-   "isActive" : true,
    "servicePoints" : [],
    "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
-   "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
-   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347"
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "sysm",
+   "isActive" : true,
+   "servicePointIds" : [
+      "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
+   ]
 }

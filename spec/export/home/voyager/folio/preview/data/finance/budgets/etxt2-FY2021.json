@@ -1,27 +1,27 @@
 {
+   "id" : "9937b9d8-9bb2-4a96-aea3-3862e7738b12",
    "fundId" : "692bc717-e37a-4525-95e3-fa25f58ecbef",
    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-   "id" : "9937b9d8-9bb2-4a96-aea3-3862e7738b12",
-   "name" : "etxt2-FY2021",
+   "budgetStatus" : "Active",
    "acqUnitIds" : [],
    "statusExpenseClasses" : [
-      {
-         "expenseClassId" : "2e158b89-4715-4028-8086-af85ca6da0c8",
-         "status" : "Active"
-      },
-      {
-         "status" : "Active",
-         "expenseClassId" : "0d3c9098-e315-45aa-be46-cf9b642459c2"
-      },
       {
          "expenseClassId" : "012ba30f-1d20-4afb-8029-2d64116e47f0",
          "status" : "Active"
       },
       {
+         "expenseClassId" : "6dfe92d5-a325-482b-bc78-744bd87920b1",
+         "status" : "Active"
+      },
+      {
          "status" : "Active",
-         "expenseClassId" : "6dfe92d5-a325-482b-bc78-744bd87920b1"
+         "expenseClassId" : "2e158b89-4715-4028-8086-af85ca6da0c8"
+      },
+      {
+         "status" : "Active",
+         "expenseClassId" : "0d3c9098-e315-45aa-be46-cf9b642459c2"
       }
    ],
-   "budgetStatus" : "Active"
+   "name" : "etxt2-FY2021"
 }
 

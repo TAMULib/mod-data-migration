@@ -1,7 +1,7 @@
 {
+   "name" : "EBSCOPDAT",
+   "source" : "voyager",
    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
    "id" : "99ae18d8-932a-4ce9-bb32-0f3e08191595",
-   "code" : "EBSCOPDAT",
-   "source" : "voyager",
-   "name" : "EBSCOPDAT"
+   "code" : "EBSCOPDAT"
 }

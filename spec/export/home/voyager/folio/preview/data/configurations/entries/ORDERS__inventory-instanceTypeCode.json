@@ -1,14 +1,14 @@
 {
-   "configName" : "inventory-instanceTypeCode",
    "id" : "673bffe8-898d-49b4-bcee-981002ac11f0",
-   "module" : "ORDERS",
-   "value" : "txt",
-   "enabled" : true,
+   "configName" : "inventory-instanceTypeCode",
    "metadata" : {
-      "createdDate" : "2021-02-04T20:40:59.306",
-      "updatedDate" : "2021-02-04T20:40:59.306+00:00",
-      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597"
-   }
+      "createdDate" : "2021-02-26T15:23:16.424",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:16.424+00:00"
+   },
+   "value" : "txt",
+   "module" : "ORDERS",
+   "enabled" : true
 }
 

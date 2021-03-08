@@ -1,15 +1,15 @@
 {
-   "isActive" : true,
+   "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+   "name" : "Evans SRMSVW",
+   "discoveryDisplayName" : "Acquisitions-Serials Records",
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "id" : "a52be5c8-4cf8-42d3-b882-5a987a188236",
    "servicePoints" : [],
    "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
-   "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
-   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-   "discoveryDisplayName" : "Acquisitions-Serials Records",
+   "code" : "SRMSVW",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "isActive" : true,
    "servicePointIds" : [
       "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
-   ],
-   "id" : "a52be5c8-4cf8-42d3-b882-5a987a188236",
-   "code" : "SRMSVW",
-   "name" : "Evans SRMSVW",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac"
+   ]
 }

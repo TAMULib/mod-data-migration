@@ -3,15 +3,15 @@
       "7e946263-5ab1-43a7-afc5-462976e134b5"
    ],
    "fund" : {
-      "externalAccountNo" : "53124",
       "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "allocatedToIds" : [],
-      "acqUnitIds" : [],
-      "code" : "aviles",
-      "fundStatus" : "Active",
+      "id" : "81348bdf-785c-4f69-8d2a-4579df2fe1d3",
       "allocatedFromIds" : [],
       "name" : "Aviles",
-      "id" : "81348bdf-785c-4f69-8d2a-4579df2fe1d3"
+      "acqUnitIds" : [],
+      "fundStatus" : "Active",
+      "externalAccountNo" : "53124",
+      "allocatedToIds" : [],
+      "code" : "aviles"
    }
 }
 

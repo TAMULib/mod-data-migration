@@ -1,16 +1,16 @@
 {
    "fund" : {
-      "name" : "zContinuation",
-      "description" : "For Continuation",
-      "fundTypeId" : "d28c844a-bead-489e-a889-e3951b884f3f",
-      "id" : "21c78510-79b7-49fa-abaf-dc1174e26990",
-      "allocatedFromIds" : [],
-      "fundStatus" : "Inactive",
-      "acqUnitIds" : [],
       "code" : "zcont",
       "allocatedToIds" : [],
+      "externalAccountNo" : "242406",
+      "description" : "For Continuation",
+      "fundStatus" : "Inactive",
+      "id" : "21c78510-79b7-49fa-abaf-dc1174e26990",
       "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-      "externalAccountNo" : "242406"
+      "name" : "zContinuation",
+      "fundTypeId" : "d28c844a-bead-489e-a889-e3951b884f3f",
+      "acqUnitIds" : [],
+      "allocatedFromIds" : []
    }
 }
 

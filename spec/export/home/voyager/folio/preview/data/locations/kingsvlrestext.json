@@ -1,15 +1,15 @@
 {
-   "code" : "kingsvlrestext",
+   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+   "discoveryDisplayName" : "HSC Kingsville Textbook Reserve",
    "name" : "HSC Kingsville Textbook Reserve",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "id" : "8b922665-09c4-4f47-a216-92bb0956da0e",
+   "libraryId" : "34120ce8-40d9-461a-be56-680c8f2f66ae",
    "servicePointIds" : [
       "7f719f23-7e2e-4a60-8e58-9e778ad6344f"
    ],
-   "discoveryDisplayName" : "HSC Kingsville Textbook Reserve",
-   "libraryId" : "34120ce8-40d9-461a-be56-680c8f2f66ae",
-   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
    "isActive" : true,
    "servicePoints" : [],
+   "id" : "8b922665-09c4-4f47-a216-92bb0956da0e",
+   "code" : "kingsvlrestext",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
    "primaryServicePoint" : "7f719f23-7e2e-4a60-8e58-9e778ad6344f"
 }

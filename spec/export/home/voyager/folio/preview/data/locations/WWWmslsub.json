@@ -1,15 +1,15 @@
 {
+   "servicePoints" : [],
+   "id" : "65c45208-bff7-4ec6-8c94-659d7289a3e2",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "WWWmslsub",
+   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
    "servicePointIds" : [
       "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
    ],
-   "discoveryDisplayName" : "Available online",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "code" : "WWWmslsub",
-   "name" : "WWW MSL Subscription",
-   "id" : "65c45208-bff7-4ec6-8c94-659d7289a3e2",
-   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
-   "servicePoints" : [],
    "isActive" : true,
+   "libraryId" : "efeb9b55-9f64-423e-aa88-6c12208288fc",
+   "discoveryDisplayName" : "Available online",
    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-   "libraryId" : "efeb9b55-9f64-423e-aa88-6c12208288fc"
+   "name" : "WWW MSL Subscription"
 }

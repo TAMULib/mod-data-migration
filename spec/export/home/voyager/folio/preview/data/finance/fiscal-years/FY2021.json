@@ -1,11 +1,11 @@
 {
-   "series" : "FY",
-   "code" : "FY2021",
-   "acqUnitIds" : [],
-   "id" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-   "name" : "FY2021",
    "description" : "Fiscal Year To Test HoneySuckle",
    "periodEnd" : "2021-12-31T00:00:00.000+0000",
+   "name" : "FY2021",
+   "series" : "FY",
    "periodStart" : "2021-01-01T00:00:00.000+0000",
+   "code" : "FY2021",
+   "id" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+   "acqUnitIds" : [],
    "currency" : "USD"
 }

@@ -1,6 +1,6 @@
 {
-   "ownerId" : "7e6832e2-b047-471e-9194-7e4106e0af1e",
    "allowedRefundMethod" : true,
-   "nameMethod" : "Check",
-   "id" : "dc3c7e7c-ea34-4ea8-9425-d2af29c1e1bc"
+   "id" : "dc3c7e7c-ea34-4ea8-9425-d2af29c1e1bc",
+   "ownerId" : "7e6832e2-b047-471e-9194-7e4106e0af1e",
+   "nameMethod" : "Check"
 }

@@ -1,9 +1,9 @@
 {
    "id" : "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3",
-   "displayName" : "Acquisitions_Organizations_Staff",
    "permissionName" : "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3",
    "visible" : true,
    "mutable" : true,
+   "displayName" : "Acquisitions_Organizations_Staff",
    "subPermissions" : [
       "ui-organizations.acqUnits.assign",
       "ui-organizations.creds.view",

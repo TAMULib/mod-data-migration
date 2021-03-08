@@ -3,15 +3,15 @@
       "96d9827a-ca78-489b-b38f-968a394a76f9"
    ],
    "fund" : {
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "externalAccountNo" : "242406",
-      "code" : "rebecca",
-      "acqUnitIds" : [],
-      "allocatedToIds" : [],
-      "allocatedFromIds" : [],
       "fundStatus" : "Active",
+      "acqUnitIds" : [],
+      "name" : "Rebecca",
+      "allocatedFromIds" : [],
       "id" : "2a7a2d7b-701a-42b1-b8ff-48e54351ad80",
-      "name" : "Rebecca"
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "code" : "rebecca",
+      "externalAccountNo" : "242406",
+      "allocatedToIds" : []
    }
 }
 

@@ -1,7 +1,7 @@
 {
-   "name" : "ebrarypur",
-   "id" : "6fb66017-7ca2-43f7-9cf0-3038db975478",
    "code" : "ebrarypur",
+   "id" : "6fb66017-7ca2-43f7-9cf0-3038db975478",
+   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
    "source" : "voyager",
-   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8"
+   "name" : "ebrarypur"
 }

@@ -1,7 +1,7 @@
 {
-   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
    "name" : "slavery",
+   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+   "source" : "voyager",
    "code" : "slavery",
-   "id" : "37a74b2a-9ca8-4ce6-8e79-5b18f27598b9",
-   "source" : "voyager"
+   "id" : "37a74b2a-9ca8-4ce6-8e79-5b18f27598b9"
 }

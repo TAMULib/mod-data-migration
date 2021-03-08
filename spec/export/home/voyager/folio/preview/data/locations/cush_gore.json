@@ -1,15 +1,15 @@
 {
-   "id" : "86e702e6-a453-4ad0-9d59-061d1b4dce83",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "code" : "cush,gore",
-   "name" : "cush gore",
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
    "discoveryDisplayName" : "Cushing Library/Lit./Gorey (Does not check out)",
+   "name" : "cush gore",
+   "libraryId" : "ac026424-a09c-48eb-b668-624628ac43c1",
    "servicePointIds" : [
       "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
    ],
-   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-   "libraryId" : "ac026424-a09c-48eb-b668-624628ac43c1",
-   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
    "isActive" : true,
-   "servicePoints" : []
+   "servicePoints" : [],
+   "id" : "86e702e6-a453-4ad0-9d59-061d1b4dce83",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "cush,gore",
+   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
 }

@@ -1,9 +1,9 @@
 {
-   "fundId" : "9dfaa0f3-023a-4281-a551-d77ca60cf768",
-   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
    "id" : "dd065084-6eb4-419c-a07b-8409ab82c49b",
+   "budgetStatus" : "Active",
+   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+   "fundId" : "9dfaa0f3-023a-4281-a551-d77ca60cf768",
    "name" : "cbenson-FY2021",
-   "acqUnitIds" : [],
-   "budgetStatus" : "Active"
+   "acqUnitIds" : []
 }
 

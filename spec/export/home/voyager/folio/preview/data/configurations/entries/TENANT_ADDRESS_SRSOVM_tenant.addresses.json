@@ -1,15 +1,15 @@
 {
-   "module" : "TENANT",
-   "configName" : "tenant.addresses",
-   "id" : "b7bc7a7e-b026-485f-bdbf-705d70523291",
    "metadata" : {
-      "createdDate" : "2021-02-04T20:41:00.67",
-      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "updatedDate" : "2021-02-04T20:41:00.670+00:00",
-      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597"
+      "createdDate" : "2021-02-26T15:23:16.909",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:16.909+00:00"
    },
-   "code" : "ADDRESS_SRSOVM",
+   "value" : "{\"name\":\"SRSOVM\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+   "module" : "TENANT",
    "enabled" : true,
-   "value" : "{\"name\":\"SRSOVM\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
+   "code" : "ADDRESS_SRSOVM",
+   "id" : "b7bc7a7e-b026-485f-bdbf-705d70523291",
+   "configName" : "tenant.addresses"
 }
 

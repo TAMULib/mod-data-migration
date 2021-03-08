@@ -1,14 +1,14 @@
 {
    "fund" : {
+      "code" : "cmouse",
+      "externalAccountNo" : "57354",
+      "allocatedToIds" : [],
       "fundStatus" : "Active",
       "allocatedFromIds" : [],
+      "acqUnitIds" : [],
       "name" : "GCMouse",
       "id" : "4732e332-e9b0-4d59-b9c6-4dcd781edda1",
-      "externalAccountNo" : "57354",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "allocatedToIds" : [],
-      "acqUnitIds" : [],
-      "code" : "cmouse"
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346"
    },
    "groupIds" : [
       "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2"

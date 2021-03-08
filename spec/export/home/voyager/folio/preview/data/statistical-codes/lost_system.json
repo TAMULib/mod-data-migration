@@ -1,7 +1,7 @@
 {
-   "name" : "Lost--System Applied",
    "id" : "37e178fa-dd83-441d-bb2f-77de049cfba1",
    "code" : "lost_system",
+   "statisticalCodeTypeId" : "e7dff618-aad7-4af9-8d8d-a5a945b12431",
    "source" : "local",
-   "statisticalCodeTypeId" : "e7dff618-aad7-4af9-8d8d-a5a945b12431"
+   "name" : "Lost--System Applied"
 }

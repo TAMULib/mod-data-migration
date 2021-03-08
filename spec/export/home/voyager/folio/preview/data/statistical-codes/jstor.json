@@ -1,7 +1,7 @@
 {
    "source" : "voyager",
-   "code" : "jstor",
-   "id" : "6d0fb589-9cb0-46b5-8979-b52d2a12e047",
+   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
    "name" : "jstor",
-   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8"
+   "code" : "jstor",
+   "id" : "6d0fb589-9cb0-46b5-8979-b52d2a12e047"
 }

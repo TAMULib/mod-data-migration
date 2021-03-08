@@ -1,9 +1,9 @@
 {
-   "subPermissions" : [],
    "mutable" : true,
-   "id" : "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1",
+   "permissionName" : "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1",
    "visible" : true,
-   "displayName" : "ER_Financial_Staff",
-   "permissionName" : "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1"
+   "id" : "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1",
+   "subPermissions" : [],
+   "displayName" : "ER_Financial_Staff"
 }
 

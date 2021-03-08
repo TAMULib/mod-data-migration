@@ -1,12 +1,12 @@
 {
+   "value" : "{\"isOpenOrderEnabled\":true}",
    "metadata" : {
-      "createdDate" : "2021-02-04T20:40:59.389",
-      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "updatedDate" : "2021-02-04T20:40:59.389+00:00",
-      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597"
+      "createdDate" : "2021-02-26T15:23:16.455",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:16.455+00:00"
    },
    "enabled" : true,
-   "value" : "{\"isOpenOrderEnabled\":true}",
    "module" : "ORDERS",
    "configName" : "openOrder",
    "id" : "b1964566-9595-4ae5-8524-4b4ab0703396"

@@ -1,15 +1,15 @@
 {
+   "name" : "HSC Round Rock Reference",
    "discoveryDisplayName" : "HSC Round Rock Reference",
+   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+   "libraryId" : "72960160-e347-48bf-9ab3-448dcae5da70",
+   "isActive" : true,
    "servicePointIds" : [
       "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e"
    ],
-   "id" : "fe2d7449-d527-4fac-9f56-8221c431a4c5",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "name" : "HSC Round Rock Reference",
-   "code" : "HSCrrRef",
    "primaryServicePoint" : "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e",
-   "servicePoints" : [],
-   "isActive" : true,
-   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
-   "libraryId" : "72960160-e347-48bf-9ab3-448dcae5da70"
+   "code" : "HSCrrRef",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "id" : "fe2d7449-d527-4fac-9f56-8221c431a4c5",
+   "servicePoints" : []
 }

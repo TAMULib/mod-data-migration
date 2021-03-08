@@ -1,18 +1,18 @@
 {
-   "fund" : {
-      "acqUnitIds" : [],
-      "code" : "ztest",
-      "allocatedToIds" : [],
-      "ledgerId" : "421f8806-47f3-4418-a2a2-1d309733305e",
-      "externalAccountNo" : "000000",
-      "name" : "zTest fund",
-      "id" : "db0f5c9a-f483-4ef2-a034-a8418d202816",
-      "description" : "testing ",
-      "allocatedFromIds" : [],
-      "fundStatus" : "Inactive"
-   },
    "groupIds" : [
       "9bde5b17-d962-4726-9d0d-cb07c04f48e6"
-   ]
+   ],
+   "fund" : {
+      "externalAccountNo" : "000000",
+      "allocatedToIds" : [],
+      "description" : "testing ",
+      "code" : "ztest",
+      "id" : "db0f5c9a-f483-4ef2-a034-a8418d202816",
+      "ledgerId" : "421f8806-47f3-4418-a2a2-1d309733305e",
+      "allocatedFromIds" : [],
+      "name" : "zTest fund",
+      "acqUnitIds" : [],
+      "fundStatus" : "Inactive"
+   }
 }
 

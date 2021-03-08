@@ -1,15 +1,15 @@
 {
-   "metadata" : {
-      "updatedDate" : "2021-02-04T20:41:00.139+00:00",
-      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "createdDate" : "2021-02-04T20:41:00.139"
-   },
    "code" : "ADDRESS_SRDIRMP",
-   "value" : "{\"name\":\"SRDIRMP\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-   "enabled" : true,
-   "module" : "TENANT",
+   "id" : "5439ee2f-f903-437a-b49b-84c3b921c669",
    "configName" : "tenant.addresses",
-   "id" : "5439ee2f-f903-437a-b49b-84c3b921c669"
+   "metadata" : {
+      "createdDate" : "2021-02-26T15:23:16.727",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:16.727+00:00"
+   },
+   "value" : "{\"name\":\"SRDIRMP\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
+   "module" : "TENANT",
+   "enabled" : true
 }
 

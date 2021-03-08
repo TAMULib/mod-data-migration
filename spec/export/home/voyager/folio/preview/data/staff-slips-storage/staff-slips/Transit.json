@@ -1,7 +1,7 @@
 {
-   "id" : "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
+   "active" : true,
    "description" : "In transit slip to be put into books",
    "name" : "Transit",
    "template" : "<div><strong>{{staffSlip.Name}}</strong> slip</div><div><br></div><div><strong>To service point</strong>: {{item.toServicePoint}}</div><div><strong>From service point</strong>: {{item.fromServicePoint}}</div><div><strong>Call number:</strong> {{item.callNumber}}{{item.enumeration}}{{item.chronology}}</div><div><strong>Title: </strong>{{item.title}}</div><div><strong>Current location</strong>:{{item.effectiveLocationLibrary}}</div><div><strong>Last discharged:</strong> {{item.lastCheckedInDateTime}}</div><div><strong>Requester name</strong>: {{requester.lastName}}, {{requester.firstName}}</div><div><strong>Requester barcode</strong>: {{requester.barcode}}</div><div><br></div>",
-   "active" : true
+   "id" : "f838cdaf-555a-473f-abf1-f35ef6ab8ae1"
 }

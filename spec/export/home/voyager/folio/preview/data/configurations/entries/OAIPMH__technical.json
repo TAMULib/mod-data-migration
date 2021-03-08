@@ -1,13 +1,14 @@
 {
-   "id" : "22900afd-2c77-40c2-8070-c1fc29b3805a",
    "configName" : "technical",
-   "module" : "OAIPMH",
+   "id" : "22900afd-2c77-40c2-8070-c1fc29b3805a",
    "value" : "{\"enableValidation\":\"false\",\"formattedOutput\":\"false\",\"maxRecordsPerResponse\":\"500\"}",
-   "enabled" : true,
    "metadata" : {
-      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "updatedDate" : "2021-01-07T19:59:44.510+00:00",
-      "createdDate" : "2020-12-11T05:08:39.275"
-   }
+      "createdDate" : "2021-02-26T15:23:16.273",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedByUserId" : "1423f9b4-6ba8-4eee-b6a3-fa61e77c0be4",
+      "updatedDate" : "2021-03-08T19:45:41.530+00:00"
+   },
+   "enabled" : true,
+   "module" : "OAIPMH"
 }
 

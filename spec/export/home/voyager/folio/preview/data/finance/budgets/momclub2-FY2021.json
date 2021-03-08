@@ -1,9 +1,9 @@
 {
-   "fundId" : "b6e36a14-8d4c-472a-b0af-b5d881ba9d7f",
    "id" : "13e1fb37-4e33-4f87-8130-fde0e67fea98",
+   "budgetStatus" : "Active",
    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+   "fundId" : "b6e36a14-8d4c-472a-b0af-b5d881ba9d7f",
    "name" : "momclub2-FY2021",
-   "acqUnitIds" : [],
-   "budgetStatus" : "Active"
+   "acqUnitIds" : []
 }
 

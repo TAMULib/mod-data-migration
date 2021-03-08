@@ -1,9 +1,9 @@
 {
-   "budgetStatus" : "Active",
-   "fundId" : "572bb92b-b2fd-4b6c-a54e-be7e270c9219",
-   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
    "id" : "c45f5c82-eb83-4938-bdce-2c39052260bf",
-   "name" : "hinton-FY2021",
-   "acqUnitIds" : []
+   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+   "fundId" : "572bb92b-b2fd-4b6c-a54e-be7e270c9219",
+   "budgetStatus" : "Active",
+   "acqUnitIds" : [],
+   "name" : "hinton-FY2021"
 }
 

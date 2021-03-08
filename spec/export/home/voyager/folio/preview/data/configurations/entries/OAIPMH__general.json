@@ -1,13 +1,14 @@
 {
    "metadata" : {
-      "updatedDate" : "2021-02-11T18:36:42.570+00:00",
-      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "createdDate" : "2020-12-11T05:08:39.278"
+      "updatedDate" : "2021-02-26T15:23:16.260+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "createdDate" : "2021-02-26T15:23:16.26"
    },
    "value" : "{\"administratorEmail\":\"oai-pmh@folio.org\",\"repositoryName\":\"FOLIO_OAI_Repository\",\"enableOaiService\":\"true\",\"timeGranularity\":\"YYYY-MM-DDThh:mm:ssZ\",\"baseUrl\":\"https://folio-edge.library.tamu.edu/oai\"}",
-   "enabled" : true,
    "module" : "OAIPMH",
-   "id" : "b3aaa4b3-d82f-4294-8109-456eab8d9d93",
-   "configName" : "general"
+   "enabled" : true,
+   "configName" : "general",
+   "id" : "b3aaa4b3-d82f-4294-8109-456eab8d9d93"
 }
 

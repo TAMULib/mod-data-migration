@@ -1,4 +1,5 @@
 {
+   "displayName" : "Circ_Staff",
    "subPermissions" : [
       "ui-checkin.all",
       "ui-checkout.all",
@@ -35,8 +36,7 @@
    ],
    "mutable" : true,
    "id" : "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
-   "visible" : true,
-   "displayName" : "Circ_Staff",
-   "permissionName" : "60564d19-d5b9-4ed4-b4df-06b79b5efc5f"
+   "permissionName" : "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
+   "visible" : true
 }
 

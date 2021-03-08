@@ -1,19 +1,19 @@
 {
-   "groupIds" : [
-      "a0b2bc88-dbbe-48d7-89da-d1df8057c0ba"
-   ],
    "fund" : {
-      "name" : "zSerial",
-      "fundTypeId" : "4fdf4bf7-0508-4159-89f4-0d64b2d7e0e4",
-      "description" : "For Serial Purchases",
-      "id" : "bac2e4fd-63e9-494b-881d-bad3328bc9c6",
       "fundStatus" : "Inactive",
       "allocatedFromIds" : [],
-      "allocatedToIds" : [],
+      "fundTypeId" : "4fdf4bf7-0508-4159-89f4-0d64b2d7e0e4",
       "acqUnitIds" : [],
-      "code" : "zserial",
+      "name" : "zSerial",
       "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "id" : "bac2e4fd-63e9-494b-881d-bad3328bc9c6",
+      "code" : "zserial",
+      "description" : "For Serial Purchases",
+      "allocatedToIds" : [],
       "externalAccountNo" : "242406"
-   }
+   },
+   "groupIds" : [
+      "a0b2bc88-dbbe-48d7-89da-d1df8057c0ba"
+   ]
 }
 

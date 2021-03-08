@@ -1,7 +1,7 @@
 {
-   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-   "name" : "ASPress",
-   "id" : "82ee41b4-8aab-4bda-8603-53a3314a3d2a",
    "code" : "ASPress",
-   "source" : "voyager"
+   "id" : "82ee41b4-8aab-4bda-8603-53a3314a3d2a",
+   "name" : "ASPress",
+   "source" : "voyager",
+   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8"
 }

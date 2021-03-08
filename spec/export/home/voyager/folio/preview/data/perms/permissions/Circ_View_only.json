@@ -1,5 +1,9 @@
 {
+   "visible" : true,
+   "permissionName" : "dfe8fa76-9e3f-420e-bada-10d077ddf1ae",
+   "id" : "dfe8fa76-9e3f-420e-bada-10d077ddf1ae",
    "mutable" : true,
+   "displayName" : "Circ_View_only",
    "subPermissions" : [
       "ui-circulation-log.log-event.all",
       "ui-notes.item.view",
@@ -7,10 +11,6 @@
       "ui-users.loans.view",
       "ui-users.requests.all"
    ],
-   "id" : "dfe8fa76-9e3f-420e-bada-10d077ddf1ae",
-   "displayName" : "Circ_View_only",
-   "permissionName" : "dfe8fa76-9e3f-420e-bada-10d077ddf1ae",
-   "description" : "Staff needing to view Circ records",
-   "visible" : true
+   "description" : "Staff needing to view Circ records"
 }
 

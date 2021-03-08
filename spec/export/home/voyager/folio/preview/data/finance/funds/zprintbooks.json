@@ -1,16 +1,16 @@
 {
    "fund" : {
-      "acqUnitIds" : [],
       "code" : "zprintbooks",
       "allocatedToIds" : [],
-      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
       "externalAccountNo" : "242406",
-      "name" : "zPrint Books",
-      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
       "description" : "For pAppoval, PintPDA & TechPro",
+      "fundStatus" : "Inactive",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
       "id" : "e5fafe9a-2430-4b1a-8245-f5a8f152aab7",
       "allocatedFromIds" : [],
-      "fundStatus" : "Inactive"
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "acqUnitIds" : [],
+      "name" : "zPrint Books"
    }
 }
 

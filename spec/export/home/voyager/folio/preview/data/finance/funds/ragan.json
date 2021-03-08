@@ -3,15 +3,15 @@
       "96d9827a-ca78-489b-b38f-968a394a76f9"
    ],
    "fund" : {
-      "allocatedToIds" : [],
-      "code" : "ragan",
-      "acqUnitIds" : [],
-      "externalAccountNo" : "242406",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "id" : "a109d620-3fdd-4979-89d1-ab6d96629c4b",
+      "allocatedFromIds" : [],
       "name" : "Ragan Military",
+      "acqUnitIds" : [],
+      "id" : "a109d620-3fdd-4979-89d1-ab6d96629c4b",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
       "fundStatus" : "Active",
-      "allocatedFromIds" : []
+      "externalAccountNo" : "242406",
+      "allocatedToIds" : [],
+      "code" : "ragan"
    }
 }
 

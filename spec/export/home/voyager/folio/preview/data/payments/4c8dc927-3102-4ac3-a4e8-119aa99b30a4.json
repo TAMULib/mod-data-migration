@@ -1,6 +1,6 @@
 {
-   "nameMethod" : "Food for Fines",
-   "id" : "4c8dc927-3102-4ac3-a4e8-119aa99b30a4",
    "allowedRefundMethod" : false,
+   "id" : "4c8dc927-3102-4ac3-a4e8-119aa99b30a4",
+   "nameMethod" : "Food for Fines",
    "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0"
 }

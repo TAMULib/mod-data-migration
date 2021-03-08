@@ -1,9 +1,9 @@
 {
+   "budgetStatus" : "Inactive",
    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
-   "id" : "abbf7b8e-587f-425d-bc9c-4e366c6ace50",
    "fundId" : "f77a815d-dfee-4fe2-a777-fe1e40f22ad4",
-   "acqUnitIds" : [],
+   "id" : "abbf7b8e-587f-425d-bc9c-4e366c6ace50",
    "name" : "tapley-FY2021",
-   "budgetStatus" : "Inactive"
+   "acqUnitIds" : []
 }
 

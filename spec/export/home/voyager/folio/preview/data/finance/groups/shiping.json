@@ -1,8 +1,8 @@
 {
-   "id" : "551b6a50-be0d-4546-a09c-401698e27536",
-   "status" : "Active",
-   "description" : "For Shipping charges only",
-   "code" : "shiping",
    "acqUnitIds" : [],
-   "name" : "zShipping"
+   "status" : "Active",
+   "id" : "551b6a50-be0d-4546-a09c-401698e27536",
+   "name" : "zShipping",
+   "description" : "For Shipping charges only",
+   "code" : "shiping"
 }

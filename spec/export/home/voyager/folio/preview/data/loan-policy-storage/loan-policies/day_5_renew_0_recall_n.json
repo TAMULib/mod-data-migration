@@ -1,14 +1,14 @@
 {
-   "name" : "day_5_renew_0_recall_n",
    "id" : "db329829-84a3-4bec-93dd-9c040c2fdb9e",
+   "loanable" : true,
    "loansPolicy" : {
-      "profileId" : "Rolling",
       "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
       "period" : {
-         "duration" : 5,
-         "intervalId" : "Days"
-      }
+         "intervalId" : "Days",
+         "duration" : 5
+      },
+      "profileId" : "Rolling"
    },
-   "loanable" : true,
+   "name" : "day_5_renew_0_recall_n",
    "renewable" : false
 }

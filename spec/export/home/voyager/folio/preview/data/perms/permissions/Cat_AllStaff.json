@@ -1,5 +1,9 @@
 {
    "mutable" : true,
+   "id" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
+   "permissionName" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
+   "visible" : true,
+   "description" : "Set of permissions for Staff and Professionals",
    "subPermissions" : [
       "ui-inventory.all-permissions.TEMPORARY",
       "ui-inventory.items.mark-items-withdrawn",
@@ -7,10 +11,6 @@
       "ui-orders.order.view",
       "ui-quick-marc.quick-marc-editor.all"
    ],
-   "permissionName" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
-   "displayName" : "Cat_AllStaff",
-   "description" : "Set of permissions for Staff and Professionals",
-   "visible" : true,
-   "id" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86"
+   "displayName" : "Cat_AllStaff"
 }
 

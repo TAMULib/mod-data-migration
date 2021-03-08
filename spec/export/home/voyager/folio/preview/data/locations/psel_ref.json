@@ -1,15 +1,15 @@
 {
-   "servicePoints" : [],
-   "isActive" : true,
-   "primaryServicePoint" : "24f55faf-d42e-4fef-9ad3-43c34b75962f",
    "libraryId" : "9858a6b1-4600-493b-843e-7bddbd9b3bcf",
+   "name" : "psel ref",
    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
    "discoveryDisplayName" : "Policy Sciences & Economics Library Reference",
+   "id" : "c2d7b6b5-9847-46ab-9e5c-d85c74dada25",
+   "servicePoints" : [],
+   "primaryServicePoint" : "24f55faf-d42e-4fef-9ad3-43c34b75962f",
+   "code" : "psel,ref",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "isActive" : true,
    "servicePointIds" : [
       "24f55faf-d42e-4fef-9ad3-43c34b75962f"
-   ],
-   "id" : "c2d7b6b5-9847-46ab-9e5c-d85c74dada25",
-   "name" : "psel ref",
-   "code" : "psel,ref",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac"
+   ]
 }

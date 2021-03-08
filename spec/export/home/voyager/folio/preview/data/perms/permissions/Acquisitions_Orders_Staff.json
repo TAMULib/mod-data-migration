@@ -1,4 +1,9 @@
 {
+   "mutable" : true,
+   "visible" : true,
+   "permissionName" : "09f9b0a3-6be0-4fac-ac18-2f379337868b",
+   "id" : "09f9b0a3-6be0-4fac-ac18-2f379337868b",
+   "displayName" : "Acquisitions_Orders_Staff",
    "subPermissions" : [
       "ui-orders.acq.unit.assignment.assign",
       "ui-orders.order-lines.create",
@@ -13,11 +18,6 @@
       "ui-orders.order-lines.view",
       "ui-orders.order.view",
       "module.invoice.enabled"
-   ],
-   "mutable" : true,
-   "id" : "09f9b0a3-6be0-4fac-ac18-2f379337868b",
-   "visible" : true,
-   "permissionName" : "09f9b0a3-6be0-4fac-ac18-2f379337868b",
-   "displayName" : "Acquisitions_Orders_Staff"
+   ]
 }
 

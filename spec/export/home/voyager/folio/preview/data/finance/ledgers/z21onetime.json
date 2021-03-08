@@ -1,12 +1,12 @@
 {
-   "netTransfers" : 0,
+   "id" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+   "fiscalYearOneId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
    "ledgerStatus" : "Inactive",
+   "description" : "zFY21 testing ledger for Monographic purchases",
+   "code" : "z21onetime",
+   "netTransfers" : 0,
    "acqUnitIds" : [],
    "name" : "z21OneTime",
    "restrictEncumbrance" : true,
-   "id" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-   "code" : "z21onetime",
-   "description" : "zFY21 testing ledger for Monographic purchases",
-   "fiscalYearOneId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
    "restrictExpenditures" : true
 }

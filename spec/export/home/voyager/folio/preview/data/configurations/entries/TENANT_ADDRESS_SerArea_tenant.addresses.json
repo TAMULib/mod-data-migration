@@ -1,15 +1,15 @@
 {
    "id" : "aac86edc-e379-45f9-98da-5885a11f3f72",
    "configName" : "tenant.addresses",
-   "module" : "TENANT",
    "code" : "ADDRESS_SerArea",
-   "value" : "{\"name\":\"SerArea\",\"address\":\"TEXAS A&M UNIVERSITY\\nMedical Sciences Library\\nSerials Section\\n4462 TAMU\\nCOLLEGE STATION, TX   77843-4462\"}",
+   "module" : "TENANT",
    "enabled" : true,
    "metadata" : {
-      "updatedDate" : "2021-02-04T20:40:59.951+00:00",
-      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "createdDate" : "2021-02-04T20:40:59.951"
-   }
+      "updatedDate" : "2021-02-26T15:23:16.665+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "createdDate" : "2021-02-26T15:23:16.665"
+   },
+   "value" : "{\"name\":\"SerArea\",\"address\":\"TEXAS A&M UNIVERSITY\\nMedical Sciences Library\\nSerials Section\\n4462 TAMU\\nCOLLEGE STATION, TX   77843-4462\"}"
 }
 

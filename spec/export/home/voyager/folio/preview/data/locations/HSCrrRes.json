@@ -1,15 +1,15 @@
 {
-   "id" : "10610587-79bb-4bca-b576-be5fde1952a2",
+   "libraryId" : "72960160-e347-48bf-9ab3-448dcae5da70",
+   "discoveryDisplayName" : "HSC Round Rock Reserve -- 14 day circulation",
+   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+   "name" : "HSC Round Rock Reserve 14",
    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
    "code" : "HSCrrRes",
-   "name" : "HSC Round Rock Reserve 14",
-   "discoveryDisplayName" : "HSC Round Rock Reserve -- 14 day circulation",
+   "primaryServicePoint" : "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e",
+   "servicePoints" : [],
+   "id" : "10610587-79bb-4bca-b576-be5fde1952a2",
    "servicePointIds" : [
       "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e"
    ],
-   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
-   "libraryId" : "72960160-e347-48bf-9ab3-448dcae5da70",
-   "primaryServicePoint" : "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e",
-   "isActive" : true,
-   "servicePoints" : []
+   "isActive" : true
 }

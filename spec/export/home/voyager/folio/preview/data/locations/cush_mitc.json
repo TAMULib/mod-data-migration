@@ -1,15 +1,15 @@
 {
    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-   "libraryId" : "ac026424-a09c-48eb-b668-624628ac43c1",
-   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
-   "servicePoints" : [],
-   "isActive" : true,
-   "id" : "a7820f7c-f78c-4fb8-b240-ba7336353d7e",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "name" : "cush mitc",
-   "code" : "cush,mitc",
    "discoveryDisplayName" : "Cushing Library/Lit./Mitchell (Does not check out)",
+   "name" : "cush mitc",
+   "libraryId" : "ac026424-a09c-48eb-b668-624628ac43c1",
    "servicePointIds" : [
       "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
-   ]
+   ],
+   "isActive" : true,
+   "servicePoints" : [],
+   "id" : "a7820f7c-f78c-4fb8-b240-ba7336353d7e",
+   "code" : "cush,mitc",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
 }

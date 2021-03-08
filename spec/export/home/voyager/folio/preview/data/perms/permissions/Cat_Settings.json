@@ -1,9 +1,5 @@
 {
    "description" : "All settings related to the inventory application. May need to add more later.",
-   "visible" : true,
-   "displayName" : "Cat_Settings",
-   "permissionName" : "945ff52a-7e81-4374-a8be-41cb481db236",
-   "id" : "945ff52a-7e81-4374-a8be-41cb481db236",
    "subPermissions" : [
       "ui-inventory.settings.alternative-title-types",
       "ui-inventory.settings.call-number-types",
@@ -30,6 +26,10 @@
       "ui-inventory.settings.fast-add",
       "ui-tenant-settings.settings.location"
    ],
-   "mutable" : true
+   "displayName" : "Cat_Settings",
+   "mutable" : true,
+   "id" : "945ff52a-7e81-4374-a8be-41cb481db236",
+   "permissionName" : "945ff52a-7e81-4374-a8be-41cb481db236",
+   "visible" : true
 }
 

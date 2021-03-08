@@ -1,5 +1,5 @@
 {
-   "group" : "cour",
    "desc" : "Courtesy User",
-   "id" : "aca51035-5570-4e61-9cb7-827e8fbd5a0d"
+   "id" : "aca51035-5570-4e61-9cb7-827e8fbd5a0d",
+   "group" : "cour"
 }

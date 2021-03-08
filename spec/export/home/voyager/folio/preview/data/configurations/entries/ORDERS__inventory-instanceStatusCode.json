@@ -1,14 +1,14 @@
 {
-   "metadata" : {
-      "createdDate" : "2021-02-04T20:40:59.224",
-      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "updatedDate" : "2021-02-04T20:40:59.224+00:00",
-      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597"
-   },
-   "enabled" : true,
-   "value" : "temp",
-   "module" : "ORDERS",
    "id" : "2a7e7b7d-342a-4d04-aef9-2beeb07a5b94",
-   "configName" : "inventory-instanceStatusCode"
+   "configName" : "inventory-instanceStatusCode",
+   "module" : "ORDERS",
+   "enabled" : true,
+   "metadata" : {
+      "updatedDate" : "2021-02-26T15:23:16.337+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "createdDate" : "2021-02-26T15:23:16.337"
+   },
+   "value" : "temp"
 }
 

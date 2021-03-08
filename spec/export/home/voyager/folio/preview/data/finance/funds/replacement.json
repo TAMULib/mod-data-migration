@@ -1,17 +1,17 @@
 {
-   "fund" : {
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "externalAccountNo" : "242406",
-      "allocatedToIds" : [],
-      "acqUnitIds" : [],
-      "code" : "replacement",
-      "fundStatus" : "Active",
-      "allocatedFromIds" : [],
-      "name" : "Replacement",
-      "id" : "41c4fe20-9108-466f-803e-bf665efd20ed"
-   },
    "groupIds" : [
       "95406f00-ad4a-411c-9b52-ce179b742d31"
-   ]
+   ],
+   "fund" : {
+      "code" : "replacement",
+      "allocatedToIds" : [],
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "id" : "41c4fe20-9108-466f-803e-bf665efd20ed",
+      "acqUnitIds" : [],
+      "name" : "Replacement",
+      "allocatedFromIds" : []
+   }
 }
 

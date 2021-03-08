@@ -1,4 +1,5 @@
 {
+   "displayName" : "Acquisitions_Admin_Staff",
    "subPermissions" : [
       "ui-finance.acq.unit.assignment.assign",
       "ui-finance.allocations.create",
@@ -59,9 +60,8 @@
       "module.invoice.enabled"
    ],
    "mutable" : true,
-   "id" : "7fd42e23-08bf-4bf3-ad66-f6e27c446649",
+   "permissionName" : "7fd42e23-08bf-4bf3-ad66-f6e27c446649",
    "visible" : true,
-   "displayName" : "Acquisitions_Admin_Staff",
-   "permissionName" : "7fd42e23-08bf-4bf3-ad66-f6e27c446649"
+   "id" : "7fd42e23-08bf-4bf3-ad66-f6e27c446649"
 }
 

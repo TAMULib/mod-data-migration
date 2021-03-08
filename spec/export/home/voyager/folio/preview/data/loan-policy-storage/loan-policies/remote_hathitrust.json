@@ -1,18 +1,18 @@
 {
+   "renewalsPolicy" : {
+      "renewFromId" : "SYSTEM_DATE",
+      "unlimited" : true
+   },
+   "renewable" : true,
    "name" : "remote_hathitrust",
-   "id" : "3f92e92c-2781-40a1-b53f-596d271d616d",
-   "loanable" : true,
    "loansPolicy" : {
       "period" : {
-         "duration" : 48,
-         "intervalId" : "Months"
+         "intervalId" : "Months",
+         "duration" : 48
       },
-      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
-      "profileId" : "Rolling"
+      "profileId" : "Rolling",
+      "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY"
    },
-   "renewalsPolicy" : {
-      "unlimited" : true,
-      "renewFromId" : "SYSTEM_DATE"
-   },
-   "renewable" : true
+   "loanable" : true,
+   "id" : "3f92e92c-2781-40a1-b53f-596d271d616d"
 }

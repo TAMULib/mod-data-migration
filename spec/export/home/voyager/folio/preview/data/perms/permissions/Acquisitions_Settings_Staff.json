@@ -1,6 +1,5 @@
 {
    "permissionName" : "560116fb-772e-4a00-90a2-fdc2b748ea2b",
-   "displayName" : "Acquisitions_Settings_Staff",
    "visible" : true,
    "id" : "560116fb-772e-4a00-90a2-fdc2b748ea2b",
    "mutable" : true,
@@ -8,6 +7,7 @@
       "ui-finance.settings.all",
       "settings.invoice.enabled",
       "settings.orders.enabled"
-   ]
+   ],
+   "displayName" : "Acquisitions_Settings_Staff"
 }
 

@@ -1,17 +1,17 @@
 {
-   "fund" : {
-      "id" : "81b89e93-3703-4430-ae06-42aae1917849",
-      "name" : "Library Proposals",
-      "fundStatus" : "Active",
-      "allocatedFromIds" : [],
-      "allocatedToIds" : [],
-      "code" : "libprop2",
-      "acqUnitIds" : [],
-      "externalAccountNo" : "242406",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346"
-   },
    "groupIds" : [
       "95406f00-ad4a-411c-9b52-ce179b742d31"
-   ]
+   ],
+   "fund" : {
+      "externalAccountNo" : "242406",
+      "allocatedToIds" : [],
+      "code" : "libprop2",
+      "allocatedFromIds" : [],
+      "acqUnitIds" : [],
+      "name" : "Library Proposals",
+      "id" : "81b89e93-3703-4430-ae06-42aae1917849",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "fundStatus" : "Active"
+   }
 }
 

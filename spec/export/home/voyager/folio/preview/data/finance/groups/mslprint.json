@@ -1,7 +1,7 @@
 {
-   "name" : "MSL Print resources",
    "code" : "mslprint",
-   "acqUnitIds" : [],
    "status" : "Active",
-   "id" : "60531c4d-5f80-47e6-8d49-423124d9d19c"
+   "acqUnitIds" : [],
+   "id" : "60531c4d-5f80-47e6-8d49-423124d9d19c",
+   "name" : "MSL Print resources"
 }

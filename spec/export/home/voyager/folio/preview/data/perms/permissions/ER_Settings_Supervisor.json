@@ -1,8 +1,8 @@
 {
-   "visible" : true,
-   "displayName" : "ER_Settings_Supervisor",
+   "mutable" : true,
    "permissionName" : "ee7c2fab-0080-4c11-80ce-94c6c51f27f9",
    "id" : "ee7c2fab-0080-4c11-80ce-94c6c51f27f9",
+   "visible" : true,
    "subPermissions" : [
       "ui-agreements.generalSettings.manage",
       "ui-agreements.supplementaryProperties.manage",
@@ -20,6 +20,6 @@
       "ui-licenses.terms.manage",
       "ui-licenses.picklists.manage"
    ],
-   "mutable" : true
+   "displayName" : "ER_Settings_Supervisor"
 }
 

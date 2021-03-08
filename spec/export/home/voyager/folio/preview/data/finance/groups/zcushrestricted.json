@@ -1,8 +1,8 @@
 {
+   "id" : "03a1baaa-a656-4df8-a5e9-3025130ec76d",
    "name" : "zCushing Restricted",
+   "status" : "Active",
    "acqUnitIds" : [],
    "description" : "zFor Cushing Restricted Funds.",
-   "code" : "zcushrestricted",
-   "status" : "Active",
-   "id" : "03a1baaa-a656-4df8-a5e9-3025130ec76d"
+   "code" : "zcushrestricted"
 }

@@ -1,9 +1,9 @@
 {
-   "budgetStatus" : "Inactive",
    "acqUnitIds" : [],
    "name" : "momclub-FY2021",
    "id" : "bbe4eae7-fb89-4c4e-be3d-1f06d9279f0a",
    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
-   "fundId" : "af441078-b5c3-48b7-ab68-ab5f13db44f0"
+   "fundId" : "af441078-b5c3-48b7-ab68-ab5f13db44f0",
+   "budgetStatus" : "Inactive"
 }
 

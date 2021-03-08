@@ -1,15 +1,15 @@
 {
+   "servicePoints" : [],
    "id" : "ed545644-8234-411b-982e-298a22c4e600",
    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
    "code" : "blcc,circ",
-   "name" : "Business Library Circ",
-   "discoveryDisplayName" : "Business Library Circulation Desk",
+   "primaryServicePoint" : "fc64d24e-5247-402a-ae19-21de454c025d",
    "servicePointIds" : [
       "fc64d24e-5247-402a-ae19-21de454c025d"
    ],
-   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "isActive" : true,
    "libraryId" : "3fb6a4cf-362a-4d59-8558-9bee67fd50eb",
-   "primaryServicePoint" : "fc64d24e-5247-402a-ae19-21de454c025d",
-   "servicePoints" : [],
-   "isActive" : true
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "discoveryDisplayName" : "Business Library Circulation Desk",
+   "name" : "Business Library Circ"
 }

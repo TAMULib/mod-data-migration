@@ -1,9 +1,9 @@
 {
-   "budgetStatus" : "Active",
    "acqUnitIds" : [],
    "name" : "maritime-FY2021",
-   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
    "id" : "1247a63f-d319-448c-ae36-0870b2ac6c96",
-   "fundId" : "3652900b-b5aa-4525-adf5-b46114cc3cb8"
+   "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+   "fundId" : "3652900b-b5aa-4525-adf5-b46114cc3cb8",
+   "budgetStatus" : "Active"
 }
 

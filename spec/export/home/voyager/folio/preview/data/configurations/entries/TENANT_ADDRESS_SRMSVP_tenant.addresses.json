@@ -1,15 +1,15 @@
 {
+   "module" : "TENANT",
+   "enabled" : true,
    "metadata" : {
-      "createdDate" : "2021-02-04T20:41:00.482",
-      "updatedDate" : "2021-02-04T20:41:00.482+00:00",
-      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597"
+      "createdDate" : "2021-02-26T15:23:16.846",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:16.846+00:00"
    },
    "value" : "{\"name\":\"SRMSVP\",\"address\":\"POLICY SCIENCES & ECONOMICS LIBRARY\\nTEXAS A&M UNIVERSITY\\n5002 TAMU\\nCOLLEGE STATION, TX   77843-5002\"}",
-   "enabled" : true,
-   "code" : "ADDRESS_SRMSVP",
-   "module" : "TENANT",
    "configName" : "tenant.addresses",
-   "id" : "b34e29a2-bcfc-4388-baa1-36142731688b"
+   "id" : "b34e29a2-bcfc-4388-baa1-36142731688b",
+   "code" : "ADDRESS_SRMSVP"
 }
 

@@ -1,7 +1,7 @@
 {
-   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-   "id" : "1ea91e85-ce1d-4dc4-ba6f-f535ab1cdff0",
    "code" : "elsemethod",
+   "id" : "1ea91e85-ce1d-4dc4-ba6f-f535ab1cdff0",
    "source" : "voyager",
+   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
    "name" : "elsemethod"
 }

@@ -1,15 +1,15 @@
 {
+   "id" : "0ff6678f-53cd-4a32-9937-504c28f14077",
+   "templateResolver" : "mustache",
+   "description" : "Template for password changed email",
    "outputFormats" : [
       "text/plain"
    ],
-   "templateResolver" : "mustache",
-   "description" : "Template for password changed email",
    "localizedTemplates" : {
       "en" : {
          "attachments" : [],
          "header" : "Your Folio password changed",
          "body" : "Dear {{user.personal.firstName}},\n\nYour password has been changed.\nThis is a confirmation that your password was changed on {{dateTime}}.\n\nDid not change your password? Contact your Folio System Administrator to help secure your account.\n\t\nRegards,\n\nFolio Support"
       }
-   },
-   "id" : "0ff6678f-53cd-4a32-9937-504c28f14077"
+   }
 }

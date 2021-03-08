@@ -1,15 +1,15 @@
 {
    "module" : "TENANT",
-   "id" : "ba5359cf-bd9b-441f-b54a-46992dbcff06",
-   "configName" : "tenant.addresses",
+   "enabled" : true,
    "metadata" : {
-      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "createdByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "updatedDate" : "2021-02-04T20:40:59.557+00:00",
-      "createdDate" : "2021-02-04T20:40:59.557"
+      "createdDate" : "2021-02-26T15:23:16.524",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:16.524+00:00"
    },
    "value" : "{\"name\":\"acq_bind\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-BINDING DEPT\\n5000 TAMUS\\nCOLLEGE STATION, TX   77843-5000\"}",
-   "enabled" : true,
+   "id" : "ba5359cf-bd9b-441f-b54a-46992dbcff06",
+   "configName" : "tenant.addresses",
    "code" : "ADDRESS_acq_bind"
 }
 

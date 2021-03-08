@@ -1,13 +1,13 @@
 {
    "fund" : {
-      "allocatedFromIds" : [],
       "fundStatus" : "Active",
-      "id" : "28c60645-252b-4095-bc8d-74e528d3e678",
-      "name" : "Kevin",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "externalAccountNo" : "242406",
-      "code" : "kevin",
+      "allocatedFromIds" : [],
       "acqUnitIds" : [],
+      "name" : "Kevin",
+      "id" : "28c60645-252b-4095-bc8d-74e528d3e678",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "code" : "kevin",
+      "externalAccountNo" : "242406",
       "allocatedToIds" : []
    },
    "groupIds" : [

@@ -1,10 +1,6 @@
 {
-   "displayName" : "Circ_Settings",
-   "permissionName" : "82b9ae05-d805-4ae8-9553-5ff9113091f7",
-   "visible" : true,
    "description" : "All settings that are related to circulation: circ, users, requests, feesfines",
-   "id" : "82b9ae05-d805-4ae8-9553-5ff9113091f7",
-   "mutable" : true,
+   "displayName" : "Circ_Settings",
    "subPermissions" : [
       "ui-circulation.settings.cancellation-reasons",
       "ui-circulation.settings.circulation-rules",
@@ -18,6 +14,7 @@
       "ui-circulation.settings.request-policies",
       "ui-circulation.settings.staff-slips",
       "ui-circulation.settings.loan-history",
+      "course-reserves.maintain-settings",
       "ui-tenant-settings.settings.servicepoints",
       "ui-users.settings.addresstypes",
       "ui-users.settings.feefines.all",
@@ -38,6 +35,10 @@
       "ui-users.settings.departments.create.edit.view",
       "ui-users.settings.departments.all",
       "ui-users.settings.departments.view"
-   ]
+   ],
+   "mutable" : true,
+   "permissionName" : "82b9ae05-d805-4ae8-9553-5ff9113091f7",
+   "visible" : true,
+   "id" : "82b9ae05-d805-4ae8-9553-5ff9113091f7"
 }
 

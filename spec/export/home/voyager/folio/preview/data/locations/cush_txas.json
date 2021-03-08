@@ -1,15 +1,15 @@
 {
+   "name" : "cush txas",
    "discoveryDisplayName" : "Cushing Library/Chapman Texas Collection (Does not check out",
+   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+   "libraryId" : "ac026424-a09c-48eb-b668-624628ac43c1",
+   "isActive" : true,
    "servicePointIds" : [
       "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b"
    ],
    "id" : "fa8427a0-1b0d-499f-8549-746c1f08ffcd",
-   "code" : "cush,txas",
-   "name" : "cush txas",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "isActive" : true,
    "servicePoints" : [],
    "primaryServicePoint" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
-   "libraryId" : "ac026424-a09c-48eb-b668-624628ac43c1",
-   "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347"
+   "code" : "cush,txas",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac"
 }

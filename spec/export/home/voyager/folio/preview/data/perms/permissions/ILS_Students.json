@@ -1,9 +1,9 @@
 {
    "displayName" : "ILS_Students",
-   "permissionName" : "3c62be56-0b25-43bb-a2b3-05e8891369b0",
-   "visible" : true,
-   "id" : "3c62be56-0b25-43bb-a2b3-05e8891369b0",
+   "subPermissions" : [],
    "mutable" : true,
-   "subPermissions" : []
+   "permissionName" : "3c62be56-0b25-43bb-a2b3-05e8891369b0",
+   "id" : "3c62be56-0b25-43bb-a2b3-05e8891369b0",
+   "visible" : true
 }
 

@@ -3,11 +3,12 @@
    "id" : "43bdbfcc-2062-491d-8602-47a22b80f9d3",
    "module" : "OAIPMH",
    "enabled" : true,
-   "value" : "{\"suppressedRecordsProcessing\":\"false\",\"deletedRecordsSupport\":\"persistent\",\"errorsProcessing\":\"200\"}",
    "metadata" : {
-      "updatedByUserId" : "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-      "updatedDate" : "2021-02-11T18:37:41.089+00:00",
-      "createdDate" : "2020-12-11T05:08:39.228"
-   }
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:16.247+00:00",
+      "createdDate" : "2021-02-26T15:23:16.247",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+   },
+   "value" : "{\"suppressedRecordsProcessing\":\"false\",\"deletedRecordsSupport\":\"persistent\",\"errorsProcessing\":\"200\"}"
 }
 

@@ -1,7 +1,4 @@
 {
-   "id" : "7cc84105-fa31-4562-b5e7-421dbe3a60b8",
-   "name" : "day_30_renew_0_recall_n",
-   "loanable" : true,
    "loansPolicy" : {
       "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY",
       "profileId" : "Rolling",
@@ -10,5 +7,8 @@
          "duration" : 30
       }
    },
-   "renewable" : false
+   "loanable" : true,
+   "id" : "7cc84105-fa31-4562-b5e7-421dbe3a60b8",
+   "renewable" : false,
+   "name" : "day_30_renew_0_recall_n"
 }

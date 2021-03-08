@@ -1,17 +1,17 @@
 {
+   "fund" : {
+      "fundStatus" : "Active",
+      "name" : "Streaming Video",
+      "acqUnitIds" : [],
+      "allocatedFromIds" : [],
+      "id" : "fed55d65-8834-4054-9dbc-fe669309c352",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "code" : "streaming",
+      "externalAccountNo" : "242406",
+      "allocatedToIds" : []
+   },
    "groupIds" : [
       "95406f00-ad4a-411c-9b52-ce179b742d31"
-   ],
-   "fund" : {
-      "code" : "streaming",
-      "acqUnitIds" : [],
-      "allocatedToIds" : [],
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "externalAccountNo" : "242406",
-      "id" : "fed55d65-8834-4054-9dbc-fe669309c352",
-      "name" : "Streaming Video",
-      "allocatedFromIds" : [],
-      "fundStatus" : "Active"
-   }
+   ]
 }
 

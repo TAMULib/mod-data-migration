@@ -3,17 +3,17 @@
       "a0b2bc88-dbbe-48d7-89da-d1df8057c0ba"
    ],
    "fund" : {
-      "allocatedFromIds" : [],
-      "fundStatus" : "Inactive",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "id" : "f524ba4f-c897-44b3-858e-c0bbd809fd5c",
       "name" : "zPre Paid Etxt + Credit",
       "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
-      "description" : "For Recording Previous Year Advanced Payment",
-      "id" : "f524ba4f-c897-44b3-858e-c0bbd809fd5c",
-      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-      "externalAccountNo" : "242406",
       "acqUnitIds" : [],
-      "code" : "zpp",
-      "allocatedToIds" : []
+      "allocatedFromIds" : [],
+      "fundStatus" : "Inactive",
+      "allocatedToIds" : [],
+      "externalAccountNo" : "242406",
+      "description" : "For Recording Previous Year Advanced Payment",
+      "code" : "zpp"
    }
 }
 

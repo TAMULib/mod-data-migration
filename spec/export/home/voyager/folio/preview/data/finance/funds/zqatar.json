@@ -1,19 +1,19 @@
 {
-   "fund" : {
-      "fundStatus" : "Inactive",
-      "allocatedFromIds" : [],
-      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
-      "description" : "For Qatar Etxt Purchases",
-      "id" : "b0bbb670-7ed1-4392-9c7e-1c4647722493",
-      "name" : "zQatar Etxt",
-      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-      "externalAccountNo" : "206913",
-      "allocatedToIds" : [],
-      "code" : "zqatar",
-      "acqUnitIds" : []
-   },
    "groupIds" : [
       "3e54df19-46ef-4455-8cab-e520c77795dc"
-   ]
+   ],
+   "fund" : {
+      "fundStatus" : "Inactive",
+      "id" : "b0bbb670-7ed1-4392-9c7e-1c4647722493",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "allocatedFromIds" : [],
+      "acqUnitIds" : [],
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "name" : "zQatar Etxt",
+      "code" : "zqatar",
+      "allocatedToIds" : [],
+      "externalAccountNo" : "206913",
+      "description" : "For Qatar Etxt Purchases"
+   }
 }
 

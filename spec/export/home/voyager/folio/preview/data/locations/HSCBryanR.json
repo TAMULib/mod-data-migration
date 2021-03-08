@@ -1,15 +1,15 @@
 {
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "name" : "HSC Bryan Reserve 14",
-   "code" : "HSCBryanR",
-   "id" : "bcd2347b-1b3d-42bf-9095-3ec601118169",
    "servicePointIds" : [
       "43f9092b-1e4d-4103-ae99-a93ba1d99bc7"
    ],
-   "discoveryDisplayName" : "HSC Bryan Campus Reserve -- 14 day circulation",
-   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
-   "libraryId" : "3e5308a1-430d-4a19-9dbf-fbcf2654e2cc",
+   "isActive" : true,
+   "code" : "HSCBryanR",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
    "primaryServicePoint" : "43f9092b-1e4d-4103-ae99-a93ba1d99bc7",
    "servicePoints" : [],
-   "isActive" : true
+   "id" : "bcd2347b-1b3d-42bf-9095-3ec601118169",
+   "discoveryDisplayName" : "HSC Bryan Campus Reserve -- 14 day circulation",
+   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+   "name" : "HSC Bryan Reserve 14",
+   "libraryId" : "3e5308a1-430d-4a19-9dbf-fbcf2654e2cc"
 }

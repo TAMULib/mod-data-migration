@@ -1,11 +1,6 @@
 {
    "code" : "HSCTemCir",
-   "name" : "HSC Temple Circulation",
-   "discoveryDisplayName" : "HSC Temple Circulation",
-   "holdShelfExpiryPeriod" : {
-      "intervalId" : "Days",
-      "duration" : 10
-   },
+   "pickupLocation" : true,
    "staffSlips" : [
       {
          "printByDefault" : false,
@@ -20,6 +15,11 @@
          "printByDefault" : false
       }
    ],
+   "holdShelfExpiryPeriod" : {
+      "intervalId" : "Days",
+      "duration" : 10
+   },
    "id" : "a2a3b682-35e9-4cc7-af63-1bdfe42e82dd",
-   "pickupLocation" : true
+   "discoveryDisplayName" : "HSC Temple Circulation",
+   "name" : "HSC Temple Circulation"
 }

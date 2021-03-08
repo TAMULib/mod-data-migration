@@ -12,10 +12,10 @@
       "ui-users.loans.view",
       "ui-users.requests.all"
    ],
+   "displayName" : "Circ_Students",
    "mutable" : true,
-   "id" : "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
    "visible" : true,
    "permissionName" : "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
-   "displayName" : "Circ_Students"
+   "id" : "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0"
 }
 

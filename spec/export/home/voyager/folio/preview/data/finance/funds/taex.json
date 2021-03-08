@@ -1,14 +1,14 @@
 {
    "fund" : {
-      "id" : "1d96b965-3aea-4b22-8b4f-18ec4e86a333",
-      "name" : "GCTAEX",
-      "fundStatus" : "Active",
-      "allocatedFromIds" : [],
+      "externalAccountNo" : "57107",
       "allocatedToIds" : [],
       "code" : "taex",
       "acqUnitIds" : [],
-      "externalAccountNo" : "57107",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346"
+      "name" : "GCTAEX",
+      "allocatedFromIds" : [],
+      "id" : "1d96b965-3aea-4b22-8b4f-18ec4e86a333",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "fundStatus" : "Active"
    },
    "groupIds" : [
       "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2"

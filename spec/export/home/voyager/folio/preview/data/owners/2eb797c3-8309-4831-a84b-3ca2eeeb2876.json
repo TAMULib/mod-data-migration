@@ -1,30 +1,30 @@
 {
+   "owner" : "Medical Sciences Library",
+   "id" : "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
    "servicePointOwner" : [
       {
          "value" : "9311b907-0c9f-42d0-aea4-62d33a7ab7b7",
          "label" : "MSL AskUs"
       },
       {
-         "value" : "7f719f23-7e2e-4a60-8e58-9e778ad6344f",
-         "label" : "HSC College of Pharmacy (Kingsville, TX)"
+         "label" : "HSC College of Pharmacy (Kingsville, TX)",
+         "value" : "7f719f23-7e2e-4a60-8e58-9e778ad6344f"
       },
       {
-         "label" : "HSC Bryan Campus Circ",
-         "value" : "43f9092b-1e4d-4103-ae99-a93ba1d99bc7"
+         "value" : "43f9092b-1e4d-4103-ae99-a93ba1d99bc7",
+         "label" : "HSC Bryan Campus Circ"
       },
       {
          "label" : "HSCDalDesk",
          "value" : "564cec55-7add-4f6f-b43a-dd87431b8dfb"
       },
       {
-         "label" : "HSC Round Rock Circ",
-         "value" : "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e"
+         "value" : "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e",
+         "label" : "HSC Round Rock Circ"
       },
       {
-         "label" : "HSC Temple Circulation",
-         "value" : "a2a3b682-35e9-4cc7-af63-1bdfe42e82dd"
+         "value" : "a2a3b682-35e9-4cc7-af63-1bdfe42e82dd",
+         "label" : "HSC Temple Circulation"
       }
-   ],
-   "id" : "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
-   "owner" : "Medical Sciences Library"
+   ]
 }

@@ -1,15 +1,15 @@
 {
-   "libraryId" : "5b775c0c-6107-4cca-9314-106e751ed94a",
    "campusId" : "c1d51a99-428c-44ee-9df4-8dc259b3d7eb",
-   "isActive" : true,
-   "servicePoints" : [],
-   "primaryServicePoint" : "ccfdc7f0-1aa5-482f-a689-1a2188756412",
-   "id" : "d1e21f75-70f7-46eb-880f-137f95620ad5",
-   "code" : "qatar,ser",
-   "name" : "qatar ser",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
    "discoveryDisplayName" : "Texas A&M University Qatar Library Magazines",
+   "name" : "qatar ser",
+   "libraryId" : "5b775c0c-6107-4cca-9314-106e751ed94a",
    "servicePointIds" : [
       "ccfdc7f0-1aa5-482f-a689-1a2188756412"
-   ]
+   ],
+   "isActive" : true,
+   "code" : "qatar,ser",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "primaryServicePoint" : "ccfdc7f0-1aa5-482f-a689-1a2188756412",
+   "servicePoints" : [],
+   "id" : "d1e21f75-70f7-46eb-880f-137f95620ad5"
 }

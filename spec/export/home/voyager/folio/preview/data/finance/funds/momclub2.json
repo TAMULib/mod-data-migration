@@ -1,17 +1,17 @@
 {
-   "fund" : {
-      "name" : "Mom's Club",
-      "id" : "b6e36a14-8d4c-472a-b0af-b5d881ba9d7f",
-      "fundStatus" : "Active",
-      "allocatedFromIds" : [],
-      "allocatedToIds" : [],
-      "acqUnitIds" : [],
-      "code" : "momclub2",
-      "externalAccountNo" : "57152",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346"
-   },
    "groupIds" : [
       "8cac000d-8364-44be-9e9b-3b1d137672c8"
-   ]
+   ],
+   "fund" : {
+      "code" : "momclub2",
+      "externalAccountNo" : "57152",
+      "allocatedToIds" : [],
+      "fundStatus" : "Active",
+      "name" : "Mom's Club",
+      "acqUnitIds" : [],
+      "allocatedFromIds" : [],
+      "id" : "b6e36a14-8d4c-472a-b0af-b5d881ba9d7f",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346"
+   }
 }
 

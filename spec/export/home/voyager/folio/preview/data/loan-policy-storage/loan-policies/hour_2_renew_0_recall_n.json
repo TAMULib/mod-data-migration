@@ -1,18 +1,18 @@
 {
+   "name" : "hour_2_renew_0_recall_n",
+   "renewable" : false,
    "loansPolicy" : {
       "period" : {
          "duration" : 1,
          "intervalId" : "Hours"
       },
-      "openingTimeOffset" : {
-         "duration" : 2,
-         "intervalId" : "Hours"
-      },
       "profileId" : "Rolling",
-      "closedLibraryDueDateManagementId" : "BEGINNING_OF_THE_NEXT_OPEN_SERVICE_POINT_HOURS"
+      "closedLibraryDueDateManagementId" : "BEGINNING_OF_THE_NEXT_OPEN_SERVICE_POINT_HOURS",
+      "openingTimeOffset" : {
+         "intervalId" : "Hours",
+         "duration" : 2
+      }
    },
    "loanable" : true,
-   "renewable" : false,
-   "name" : "hour_2_renew_0_recall_n",
    "id" : "a7d0c3ec-503f-44d0-ab72-2de61abc3031"
 }

@@ -1,7 +1,7 @@
 {
-   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+   "name" : "mmf",
    "source" : "voyager",
+   "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
    "id" : "dd3e4363-fb80-4318-84ca-a5cafa89ebc5",
-   "code" : "mmf",
-   "name" : "mmf"
+   "code" : "mmf"
 }

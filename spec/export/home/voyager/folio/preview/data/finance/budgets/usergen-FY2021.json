@@ -2,8 +2,8 @@
    "acqUnitIds" : [],
    "name" : "usergen-FY2021",
    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
-   "id" : "26676337-fac6-4d68-8517-9606e0582d19",
    "fundId" : "d5966ae3-4967-4205-b13f-a2f76a1f0bab",
-   "budgetStatus" : "Inactive"
+   "budgetStatus" : "Inactive",
+   "id" : "26676337-fac6-4d68-8517-9606e0582d19"
 }
 

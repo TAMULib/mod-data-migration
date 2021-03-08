@@ -1,7 +1,7 @@
 {
+   "source" : "local",
+   "statisticalCodeTypeId" : "e7dff618-aad7-4af9-8d8d-a5a945b12431",
    "name" : "On Hold",
    "code" : "on_hold",
-   "id" : "0b40ba6b-b169-4e44-a7a5-5cbbe3f120f4",
-   "source" : "local",
-   "statisticalCodeTypeId" : "e7dff618-aad7-4af9-8d8d-a5a945b12431"
+   "id" : "0b40ba6b-b169-4e44-a7a5-5cbbe3f120f4"
 }

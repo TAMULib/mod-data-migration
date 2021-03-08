@@ -1,0 +1,18 @@
+{
+   "groupIds" : [
+      "8d414b94-14e8-4323-bcdc-1ac6ace09404",
+      "87c48892-bf45-4e1b-8d4b-c1dd6b721139"
+   ],
+   "fund" : {
+      "id" : "6db022b1-f872-4c4f-8cba-27630b404e52",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "allocatedFromIds" : [],
+      "acqUnitIds" : [],
+      "name" : "Continuation",
+      "fundStatus" : "Active",
+      "allocatedToIds" : [],
+      "externalAccountNo" : "242406",
+      "code" : "cont2"
+   }
+}
+

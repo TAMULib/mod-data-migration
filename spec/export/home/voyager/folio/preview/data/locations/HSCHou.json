@@ -1,15 +1,15 @@
 {
-   "discoveryDisplayName" : "HSC Houston Campus Books",
+   "servicePoints" : [],
+   "id" : "6f013c3d-66cb-4cc1-b98f-b66aa269ad87",
+   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+   "code" : "HSCHou",
+   "primaryServicePoint" : "3c3e6453-209c-4069-be0e-16ef5aeed262",
    "servicePointIds" : [
       "3c3e6453-209c-4069-be0e-16ef5aeed262"
    ],
-   "id" : "6f013c3d-66cb-4cc1-b98f-b66aa269ad87",
-   "name" : "HSC Houston Campus",
-   "code" : "HSCHou",
-   "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-   "servicePoints" : [],
    "isActive" : true,
-   "primaryServicePoint" : "3c3e6453-209c-4069-be0e-16ef5aeed262",
    "libraryId" : "a00dd4e8-37ea-4cdd-bf8b-ab73b9117fce",
-   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43"
+   "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
+   "discoveryDisplayName" : "HSC Houston Campus Books",
+   "name" : "HSC Houston Campus"
 }

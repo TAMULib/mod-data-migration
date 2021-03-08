@@ -1,7 +1,7 @@
 {
-   "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
-   "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
    "automatic" : false,
-   "id" : "f55678e3-b8a2-43a5-a8ca-8d89c99df283",
-   "feeFineType" : "Overdue (migrated-do not use)"
+   "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
+   "feeFineType" : "Overdue (migrated-do not use)",
+   "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
+   "id" : "f55678e3-b8a2-43a5-a8ca-8d89c99df283"
 }

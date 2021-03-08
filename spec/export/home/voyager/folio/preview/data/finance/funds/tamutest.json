@@ -1,0 +1,17 @@
+{
+   "groupIds" : [
+      "69b7974e-d010-4623-b2ac-1be720efa692"
+   ],
+   "fund" : {
+      "fundStatus" : "Active",
+      "id" : "8c11f6ae-68ec-4ddd-a837-f87fc9599edd",
+      "ledgerId" : "8a479153-d433-420d-95a1-fa835d36542d",
+      "allocatedFromIds" : [],
+      "acqUnitIds" : [],
+      "name" : "TAMU test",
+      "code" : "tamutest",
+      "externalAccountNo" : "111222333",
+      "allocatedToIds" : []
+   }
+}
+

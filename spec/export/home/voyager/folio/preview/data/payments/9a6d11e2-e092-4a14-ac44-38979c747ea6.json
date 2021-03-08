@@ -1,6 +1,6 @@
 {
+   "id" : "9a6d11e2-e092-4a14-ac44-38979c747ea6",
    "allowedRefundMethod" : true,
-   "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
    "nameMethod" : "Credit Card",
-   "id" : "9a6d11e2-e092-4a14-ac44-38979c747ea6"
+   "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0"
 }

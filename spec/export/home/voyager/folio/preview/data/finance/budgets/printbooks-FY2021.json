@@ -1,9 +1,9 @@
 {
-   "budgetStatus" : "Inactive",
    "acqUnitIds" : [],
    "name" : "printbooks-FY2021",
-   "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
    "id" : "df92beb2-63ce-42b1-99b9-6550895e91d0",
-   "fundId" : "e5fafe9a-2430-4b1a-8245-f5a8f152aab7"
+   "fundId" : "e5fafe9a-2430-4b1a-8245-f5a8f152aab7",
+   "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
+   "budgetStatus" : "Inactive"
 }
 

@@ -1,17 +1,17 @@
 {
-   "fund" : {
-      "externalAccountNo" : "242406",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "acqUnitIds" : [],
-      "code" : "childrens",
-      "allocatedToIds" : [],
-      "allocatedFromIds" : [],
-      "fundStatus" : "Active",
-      "name" : "Childrens",
-      "id" : "9203b370-d4c6-48d9-a15c-f4bf5ad1ec57"
-   },
    "groupIds" : [
       "96d9827a-ca78-489b-b38f-968a394a76f9"
-   ]
+   ],
+   "fund" : {
+      "fundStatus" : "Active",
+      "name" : "Childrens",
+      "acqUnitIds" : [],
+      "allocatedFromIds" : [],
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "id" : "9203b370-d4c6-48d9-a15c-f4bf5ad1ec57",
+      "code" : "childrens",
+      "externalAccountNo" : "242406",
+      "allocatedToIds" : []
+   }
 }
 

@@ -1,7 +1,7 @@
 {
-   "refunded" : true,
    "transferredManually" : false,
-   "paid" : true,
    "waived" : true,
-   "id" : "988d14c4-52a3-4393-b9a9-9d1139d49c43"
+   "id" : "988d14c4-52a3-4393-b9a9-9d1139d49c43",
+   "paid" : true,
+   "refunded" : true
 }

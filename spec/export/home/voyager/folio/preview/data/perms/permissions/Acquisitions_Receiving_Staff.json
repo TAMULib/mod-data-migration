@@ -1,12 +1,12 @@
 {
-   "displayName" : "Acquisitions_Receiving_Staff",
-   "permissionName" : "cc4a6624-190c-4872-95dd-be090a74b61f",
-   "visible" : true,
-   "id" : "cc4a6624-190c-4872-95dd-be090a74b61f",
-   "mutable" : true,
    "subPermissions" : [
       "ui-receiving.create",
       "ui-receiving.delete"
-   ]
+   ],
+   "displayName" : "Acquisitions_Receiving_Staff",
+   "mutable" : true,
+   "visible" : true,
+   "permissionName" : "cc4a6624-190c-4872-95dd-be090a74b61f",
+   "id" : "cc4a6624-190c-4872-95dd-be090a74b61f"
 }
 

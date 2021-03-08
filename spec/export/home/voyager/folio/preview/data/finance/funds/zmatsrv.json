@@ -1,19 +1,19 @@
 {
+   "fund" : {
+      "fundStatus" : "Inactive",
+      "acqUnitIds" : [],
+      "name" : "zMaterial Srv. Mgmt Etxt",
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "allocatedFromIds" : [],
+      "id" : "272e0eed-04b8-4065-8c0f-caa47eaf1d12",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "code" : "zmatsrv",
+      "description" : "For Material Srv. Mgmt Etxt ",
+      "externalAccountNo" : "211650",
+      "allocatedToIds" : []
+   },
    "groupIds" : [
       "3e54df19-46ef-4455-8cab-e520c77795dc"
-   ],
-   "fund" : {
-      "allocatedToIds" : [],
-      "acqUnitIds" : [],
-      "code" : "zmatsrv",
-      "externalAccountNo" : "211650",
-      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-      "name" : "zMaterial Srv. Mgmt Etxt",
-      "description" : "For Material Srv. Mgmt Etxt ",
-      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
-      "id" : "272e0eed-04b8-4065-8c0f-caa47eaf1d12",
-      "fundStatus" : "Inactive",
-      "allocatedFromIds" : []
-   }
+   ]
 }
 
