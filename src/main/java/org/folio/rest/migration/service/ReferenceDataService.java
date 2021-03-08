@@ -142,17 +142,19 @@ public class ReferenceDataService {
 
         Iterator<Entry<String, JsonNode>> nodes = response.fields();
 
+        logger.info("harvested reference data {} {}", datum.getPath(), response);
+
         while (nodes.hasNext()) {
           Map.Entry<String, JsonNode> entry = (Map.Entry<String, JsonNode>) nodes.next();
-          if (!entry.getKey().equals("totalRecords")) {
+          if (!entry.getKey().equals("totalRecords") && !entry.getKey().equals("resultInfo")) {
             datum.setData(objectMapper.convertValue(entry.getValue(), new TypeReference<ArrayList<JsonNode>>() { }));
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(datum.getFilePath()), datum);
+            String filePath = datum.getFilePath().replace("target\\classes", "src\\main\\resources");
+            logger.info("writing reference data {}", filePath);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), datum);
           }
         }
-
-        logger.info("harvested reference data {} {}", datum.getPath(), response);
       } catch (Exception e) {
-        logger.warn("failed harvesting reference data {}: {}", datum.getPath(), e.getMessage());
+        logger.warn("failed harvesting reference data {}: {} - {}", datum.getPath(), e.getMessage());
       }
     });
   }
