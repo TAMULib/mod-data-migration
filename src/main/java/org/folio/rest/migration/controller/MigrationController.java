@@ -230,7 +230,7 @@ public class MigrationController {
   }
 
   @PostMapping("/purchaseorders")
-  @CreateReferenceData(pattern = "classpath:/referenceData/orders/*.json")
+  @CreateReferenceData(pattern = "classpath:/referenceData/purchaseorders/*.json")
   public CompletableFuture<String> purchaseorders(
       @RequestBody PurchaseOrderContext context,
       @TenantHeader String tenant,
