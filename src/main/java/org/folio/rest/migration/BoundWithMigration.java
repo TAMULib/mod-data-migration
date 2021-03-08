@@ -144,7 +144,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
           Optional<ReferenceLink> holdingsRl = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
           if (!holdingsRl.isPresent()) {
-            log.error("{} no holdings record id found for bib id {}", schema, mfhdId);
+            log.error("{} no holdings record id found for mfhd id {}", schema, mfhdId);
             continue;
           }
 

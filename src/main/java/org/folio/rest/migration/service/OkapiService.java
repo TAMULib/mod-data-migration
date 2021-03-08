@@ -33,8 +33,6 @@ import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.J
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileUpdateDto;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_finance.schemas.FundCollection;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePurchaseOrder;
-import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece;
-import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.TitleCollection;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecords;
 import org.folio.rest.jaxrs.model.inventory.Instance;
@@ -436,7 +434,7 @@ public class OkapiService {
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/holdings-storage/holdings?query=(id==" + id + " AND instanceId==" + instanceId + ")";
     ResponseEntity<Holdingsrecords> response = restTemplate.exchange(url, HttpMethod.GET, entity, Holdingsrecords.class);
-    log.debug("fetch item records: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    log.debug("fetch holdings records: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
     if (response.getStatusCodeValue() == 200) {
       return response.getBody();
     }
@@ -522,6 +520,19 @@ public class OkapiService {
     throw new RuntimeException("Failed to create holdings record: " + response.getStatusCodeValue());
   }
 
+  public Holdingsrecord putHoldingsrecord(String tenant, String token, Holdingsrecord holdingsrecord) {
+    long startTime = System.nanoTime();
+    HttpEntity<Holdingsrecord> entity = new HttpEntity<>(holdingsrecord, headers(tenant, token));
+    String url = okapi.getUrl() + "/holdings-storage/holdings/" + holdingsrecord.getId();
+    ResponseEntity<Holdingsrecord> response = restTemplate.exchange(url, HttpMethod.PUT, entity, Holdingsrecord.class);
+    log.debug("update holdings record: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 204) {
+      return response.getBody();
+    }
+    log.error("Failed to update holdings record: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to update holdings record: " + response.getStatusCodeValue());
+  }
+
   public void putItem(String tenant, String token, Item item) {
     long startTime = System.nanoTime();
     HttpEntity<Item> entity = new HttpEntity<>(item, headers(tenant, token));
@@ -559,32 +570,6 @@ public class OkapiService {
     }
     log.error("Failed to create composite purchase order: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to create composite purchase order: " + response.getStatusCodeValue());
-  }
-
-  public TitleCollection fetchTitleByPurchaseOrderLineId(String tenant, String token, String poLineId) {
-    long startTime = System.nanoTime();
-    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
-    String url = okapi.getUrl() + "/orders/titles?query=poLineId==" + poLineId;
-    ResponseEntity<TitleCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, TitleCollection.class);
-    log.debug("fetch title: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
-    if (response.getStatusCodeValue() == 200) {
-      return response.getBody();
-    }
-    log.error("Failed to fetch title: " + response.getStatusCodeValue());
-    throw new RuntimeException("Failed to fetch title: " + response.getStatusCodeValue());
-  }
-
-  public Piece postPiece(String tenant, String token, Piece piece) {
-    long startTime = System.nanoTime();
-    HttpEntity<Piece> entity = new HttpEntity<>(piece, headers(tenant, token));
-    String url = okapi.getUrl() + "/orders/pieces";
-    ResponseEntity<Piece> response = restTemplate.exchange(url, HttpMethod.POST, entity, Piece.class);
-    log.debug("create piece: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
-    if (response.getStatusCodeValue() == 201) {
-      return response.getBody();
-    }
-    log.error("Failed to create piece: " + response.getStatusCodeValue());
-    throw new RuntimeException("Failed to create piece: " + response.getStatusCodeValue());
   }
 
   public MappingParameters getMappingParamaters(String tenant, String token) {
