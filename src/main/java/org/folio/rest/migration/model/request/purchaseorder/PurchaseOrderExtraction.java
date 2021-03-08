@@ -1,10 +1,10 @@
-package org.folio.rest.migration.model.request.order;
+package org.folio.rest.migration.model.request.purchaseorder;
 
 import javax.validation.constraints.NotNull;
 
 import org.folio.rest.migration.model.request.AbstractExtraction;
 
-public class OrderExtraction extends AbstractExtraction {
+public class PurchaseOrderExtraction extends AbstractExtraction {
 
   @NotNull
   private String locationSql;
@@ -18,7 +18,7 @@ public class OrderExtraction extends AbstractExtraction {
   @NotNull
   private String piecesSql;
 
-  public OrderExtraction() {
+  public PurchaseOrderExtraction() {
     super();
   }
 

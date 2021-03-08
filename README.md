@@ -1599,7 +1599,7 @@ POST to http://localhost:9000/migrate/divitpatron
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
 
-POST to http://localhost:9000/migrate/orders
+POST to http://localhost:9000/migrate/purchaseorders
 
 ```
 {
@@ -1842,6 +1842,16 @@ POST to http://localhost:9000/migrate/orders
     "vendorRefQual": "VN"
   }
 }
+```
+
+## Course Reserve Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/coursereserves
+
+```
+{}
 ```
 
 ## Migration Notes

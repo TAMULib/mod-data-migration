@@ -1,4 +1,4 @@
-package org.folio.rest.migration.model.request.order;
+package org.folio.rest.migration.model.request.purchaseorder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import org.folio.rest.migration.model.request.AbstractJob;
 
-public class OrderJob extends AbstractJob {
+public class PurchaseOrderJob extends AbstractJob {
 
   @NotNull
   private Map<String, String> pageAdditionalContext;
@@ -29,7 +29,7 @@ public class OrderJob extends AbstractJob {
 
   private String defaultLocationId;
 
-  public OrderJob() {
+  public PurchaseOrderJob() {
     super();
     pageAdditionalContext = new HashMap<>();
     references = new HashMap<>();

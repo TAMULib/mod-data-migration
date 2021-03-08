@@ -38,15 +38,15 @@ import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.P
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece.ReceivingStatus;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.TitleCollection;
 import org.folio.rest.migration.config.model.Database;
-import org.folio.rest.migration.model.request.order.OrderContext;
-import org.folio.rest.migration.model.request.order.OrderDefaults;
-import org.folio.rest.migration.model.request.order.OrderJob;
-import org.folio.rest.migration.model.request.order.OrderMaps;
+import org.folio.rest.migration.model.request.purchaseorder.PurchaseOrderContext;
+import org.folio.rest.migration.model.request.purchaseorder.PurchaseOrderDefaults;
+import org.folio.rest.migration.model.request.purchaseorder.PurchaseOrderJob;
+import org.folio.rest.migration.model.request.purchaseorder.PurchaseOrderMaps;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
 
-public class OrderMigration extends AbstractMigration<OrderContext> {
+public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderContext> {
 
   private static final String COLUMNS = "COLUMNS";
   private static final String TABLES = "TABLES";
@@ -92,7 +92,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
   private static final String VENDOR_REFERENCE_ID = "vendorTypeId";
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
 
-  private OrderMigration(OrderContext context, String tenant) {
+  private PurchaseOrderMigration(PurchaseOrderContext context, String tenant) {
     super(context, tenant);
   }
 
@@ -112,7 +112,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
     preActions(folioSettings, context.getPreActions());
 
-    taskQueue = new PartitionTaskQueue<OrderContext>(context, new TaskCallback() {
+    taskQueue = new PartitionTaskQueue<PurchaseOrderContext>(context, new TaskCallback() {
 
       @Override
       public void complete() {
@@ -127,7 +127,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
 
     int index = 0;
 
-    for (OrderJob job : context.getJobs()) {
+    for (PurchaseOrderJob job : context.getJobs()) {
 
       countContext.put(SCHEMA, job.getSchema());
       countContext.put(COLUMNS, job.getPageAdditionalContext().get(COLUMNS));
@@ -169,11 +169,11 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
     return CompletableFuture.completedFuture(IN_PROGRESS_RESPONSE_MESSAGE);
   }
 
-  public static OrderMigration with(OrderContext context, String tenant) {
-    return new OrderMigration(context, tenant);
+  public static PurchaseOrderMigration with(PurchaseOrderContext context, String tenant) {
+    return new PurchaseOrderMigration(context, tenant);
   }
 
-  public class OrderPartitionTask implements PartitionTask<OrderContext> {
+  public class OrderPartitionTask implements PartitionTask<PurchaseOrderContext> {
 
     private final MigrationService migrationService;
 
@@ -191,16 +191,16 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
       return (int) partitionContext.get(INDEX);
     }
 
-    public OrderPartitionTask execute(OrderContext context) {
+    public OrderPartitionTask execute(PurchaseOrderContext context) {
       long startTime = System.nanoTime();
 
       String token = (String) partitionContext.get(TOKEN);
 
-      OrderJob job = (OrderJob) partitionContext.get(JOB);
+      PurchaseOrderJob job = (PurchaseOrderJob) partitionContext.get(JOB);
 
-      OrderMaps maps = (OrderMaps) partitionContext.get(MAPS);
+      PurchaseOrderMaps maps = (PurchaseOrderMaps) partitionContext.get(MAPS);
 
-      OrderDefaults defaults = (OrderDefaults) partitionContext.get(DEFAULTS);
+      PurchaseOrderDefaults defaults = (PurchaseOrderDefaults) partitionContext.get(DEFAULTS);
 
       Map<String, String> locationsMap = (Map<String, String>) partitionContext.get(LOCATIONS_MAP);
       Map<String, String> fundsMap = (Map<String, String>) partitionContext.get(FUNDS_MAP);
@@ -370,7 +370,7 @@ public class OrderMigration extends AbstractMigration<OrderContext> {
       return future;
     }
 
-    private CompletableFuture<List<CompositePoLineWithPieces>> getPurchaseOrderLines(Statement poLinesStatement, Map<String, Object> poLinesContext, Statement piecesStatement, Map<String, Object> piecesContext, OrderJob job, OrderMaps maps, OrderDefaults defaults, Map<String, String> locationsMap, Map<String, String> fundsMap, String vendorId) {
+    private CompletableFuture<List<CompositePoLineWithPieces>> getPurchaseOrderLines(Statement poLinesStatement, Map<String, Object> poLinesContext, Statement piecesStatement, Map<String, Object> piecesContext, PurchaseOrderJob job, PurchaseOrderMaps maps, PurchaseOrderDefaults defaults, Map<String, String> locationsMap, Map<String, String> fundsMap, String vendorId) {
       CompletableFuture<List<CompositePoLineWithPieces>> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
 

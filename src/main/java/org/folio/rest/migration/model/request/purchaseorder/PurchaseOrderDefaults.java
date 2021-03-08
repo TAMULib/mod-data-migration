@@ -1,8 +1,8 @@
-package org.folio.rest.migration.model.request.order;
+package org.folio.rest.migration.model.request.purchaseorder;
 
 import javax.validation.constraints.NotNull;
 
-public class OrderDefaults {
+public class PurchaseOrderDefaults {
 
   @NotNull
   private String aqcAddressCode;
@@ -10,7 +10,7 @@ public class OrderDefaults {
   @NotNull
   private String vendorRefQual;
 
-  public OrderDefaults() {
+  public PurchaseOrderDefaults() {
 
   }
 

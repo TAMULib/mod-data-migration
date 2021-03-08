@@ -1,11 +1,11 @@
-package org.folio.rest.migration.model.request.order;
+package org.folio.rest.migration.model.request.purchaseorder;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
-public class OrderMaps {
+public class PurchaseOrderMaps {
 
   @NotNull
   private Map<String, String> acqAddresses;
@@ -28,7 +28,7 @@ public class OrderMaps {
   @NotNull
   private Map<String, String> vendorRefQual;
 
-  public OrderMaps() {
+  public PurchaseOrderMaps() {
     super();
     acqAddresses = new HashMap<>();
     poLineAcqMethods = new HashMap<>();
