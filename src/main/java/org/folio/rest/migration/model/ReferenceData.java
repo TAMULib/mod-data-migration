@@ -14,6 +14,10 @@ public class ReferenceData {
   @JsonIgnore
   private String name;
 
+  // will be populated during processing
+  @JsonIgnore
+  private String filePath;
+
   // will be populated from request
   @JsonIgnore
   private String tenant;
@@ -45,6 +49,14 @@ public class ReferenceData {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String getFilePath() {
+    return filePath;
+  }
+
+  public void setFilePath(String filePath) {
+    this.filePath = filePath;
   }
 
   public String getTenant() {
@@ -86,6 +98,11 @@ public class ReferenceData {
 
   public ReferenceData withName(String name) {
     this.name = name;
+    return this;
+  }
+
+  public ReferenceData withFilePath(String filePath) {
+    this.filePath = filePath;
     return this;
   }
 

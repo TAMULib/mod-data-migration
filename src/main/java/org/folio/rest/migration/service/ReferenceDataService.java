@@ -1,19 +1,25 @@
 package org.folio.rest.migration.service;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.apache.commons.io.FilenameUtils;
 import org.folio.rest.migration.model.ReferenceData;
 import org.folio.rest.migration.model.ReferenceDatum;
+import org.folio.rest.migration.model.request.ExternalOkapi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +63,9 @@ public class ReferenceDataService {
     List<ReferenceData> referenceData = loadResources(pattern).stream().map(rdr -> {
       Optional<ReferenceData> ord = Optional.empty();
       try {
-        ord = Optional.of(objectMapper.readValue(rdr.getInputStream(), ReferenceData.class).withName(FilenameUtils.getBaseName(rdr.getFilename())));
+        ord = Optional.of(objectMapper.readValue(rdr.getInputStream(), ReferenceData.class)
+          .withName(FilenameUtils.getBaseName(rdr.getFilename()))
+          .withFilePath(rdr.getFile().getAbsolutePath()));
       } catch (IOException e) {
         logger.debug("failed reading reference data {}: {}", rdr.getFilename(), e.getMessage());
       }
@@ -67,6 +75,26 @@ public class ReferenceDataService {
       .collect(Collectors.toList());
     logger.info("creating reference data");
     createReferenceData(referenceData);
+  }
+
+  public List<ReferenceData> harvestReferenceData(String pattern, ExternalOkapi okapi) throws IOException {
+    String token = okapiService.getToken(okapi);
+    List<ReferenceData> referenceData = loadResources(pattern).stream().map(rdr -> {
+      Optional<ReferenceData> ord = Optional.empty();
+      try {
+        ord = Optional.of(objectMapper.readValue(rdr.getInputStream(), ReferenceData.class)
+          .withName(FilenameUtils.getBaseName(rdr.getFilename()))
+          .withFilePath(rdr.getFile().getAbsolutePath()));
+      } catch (IOException e) {
+        logger.debug("failed reading reference data {}: {}", rdr.getFilename(), e.getMessage());
+      }
+      return ord;
+    }).filter(ord -> ord.isPresent())
+      .map(ord -> ord.get().withTenant(okapi.getTenant()).withToken(token))
+      .collect(Collectors.toList());
+    logger.info("harvesting reference data");
+    harvestReferenceData(referenceData, okapi);
+    return referenceData;
   }
 
   private List<Resource> loadResources(String pattern) throws IOException {
@@ -106,5 +134,27 @@ public class ReferenceDataService {
       }
     }
   }
-  
+
+  private void harvestReferenceData(List<ReferenceData> referenceData, ExternalOkapi okapi) {
+    referenceData.forEach(datum -> {
+      try {
+        JsonNode response = okapiService.fetchReferenceData(okapi, datum);
+
+        Iterator<Entry<String, JsonNode>> nodes = response.fields();
+
+        while (nodes.hasNext()) {
+          Map.Entry<String, JsonNode> entry = (Map.Entry<String, JsonNode>) nodes.next();
+          if (!entry.getKey().equals("totalRecords")) {
+            datum.setData(objectMapper.convertValue(entry.getValue(), new TypeReference<ArrayList<JsonNode>>() { }));
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(datum.getFilePath()), datum);
+          }
+        }
+
+        logger.info("harvested reference data {} {}", datum.getPath(), response);
+      } catch (Exception e) {
+        logger.warn("failed harvesting reference data {}: {}", datum.getPath(), e.getMessage());
+      }
+    });
+  }
+
 }

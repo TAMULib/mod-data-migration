@@ -31,8 +31,6 @@ import org.folio.rest.jaxrs.model.dataimport.dto.RawRecordsDto;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfile;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileCollection;
 import org.folio.rest.jaxrs.model.dataimport.mod_data_import_converter_storage.JobProfileUpdateDto;
-import org.folio.rest.jaxrs.model.orders.acq_models.mod_finance.schemas.FundCollection;
-import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePurchaseOrder;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecords;
 import org.folio.rest.jaxrs.model.inventory.Instance;
@@ -44,6 +42,8 @@ import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.inventory.Servicepoints;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_finance.schemas.FundCollection;
+import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePurchaseOrder;
 import org.folio.rest.jaxrs.model.userimport.schemas.ImportResponse;
 import org.folio.rest.jaxrs.model.userimport.schemas.UserdataimportCollection;
 import org.folio.rest.jaxrs.model.users.AddresstypeCollection;
@@ -52,7 +52,9 @@ import org.folio.rest.jaxrs.model.users.UserdataCollection;
 import org.folio.rest.jaxrs.model.users.Usergroups;
 import org.folio.rest.migration.config.model.Credentials;
 import org.folio.rest.migration.config.model.Okapi;
+import org.folio.rest.migration.model.ReferenceData;
 import org.folio.rest.migration.model.ReferenceDatum;
+import org.folio.rest.migration.model.request.ExternalOkapi;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -95,6 +97,56 @@ public class OkapiService {
     }
     log.error("Failed to login: " + response.getStatusCodeValue());
     throw new RuntimeException("Failed to login: " + response.getStatusCodeValue());
+  }
+
+  public String getToken(ExternalOkapi okapi) {
+    long startTime = System.nanoTime();
+    String url = okapi.getUrl() + "/authn/login";
+    HttpEntity<Credentials> entity = new HttpEntity<>(okapi.getCredentials(), headers(okapi.getTenant()));
+    ResponseEntity<Credentials> response = restTemplate.exchange(url, HttpMethod.POST, entity, Credentials.class);
+    log.debug("get token: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 201) {
+      return response.getHeaders().getFirst("X-Okapi-Token");
+    }
+    log.error("Failed to login: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to login: " + response.getStatusCodeValue());
+  }
+
+  public Servicepoints fetchServicepoints(ExternalOkapi okapi, String token) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(okapi.getTenant(), token));
+    String url = okapi.getUrl() + "/service-points?limit=9999";
+    ResponseEntity<Servicepoints> response = restTemplate.exchange(url, HttpMethod.GET, entity, Servicepoints.class);
+    log.debug("fetch service points: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to fetch service points: " + response.getStatusCodeValue());
+  }
+
+  public JsonNode fetchCalendarPeriodsForServicepoint(ExternalOkapi okapi, String token, String servicePointId) {
+    long startTime = System.nanoTime();
+    HttpEntity<?> entity = new HttpEntity<>(headers(okapi.getTenant(), token));
+    String url = okapi.getUrl() + "/calendar/periods/" + servicePointId + "/period?withOpeningDays=true&showPast=true";
+    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonNode.class);
+    log.debug("fetch calendar periods for service point: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    throw new RuntimeException("Failed to fetch calendar persiods service point: " + response.getStatusCodeValue());
+  }
+
+  public JsonNode fetchReferenceData(ExternalOkapi okapi, ReferenceData datum) {
+    long startTime = System.nanoTime();
+    String url = okapi.getUrl() + datum.getPath()+ "?limit=9999";
+    HttpEntity<JsonNode> entity = new HttpEntity<>(headers(datum.getTenant(), datum.getToken()));
+    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonNode.class);
+    log.debug("fetch reference data: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    log.error("Failed to fetch reference data: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch reference data: " + response.getStatusCodeValue());
   }
 
   public JsonNode createReferenceData(ReferenceDatum referenceDatum) {
