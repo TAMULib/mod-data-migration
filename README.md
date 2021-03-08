@@ -1608,7 +1608,7 @@ POST to http://localhost:9000/migrate/purchaseorders
     "pageSql": "SELECT DISTINCT ${COLUMNS} FROM ${TABLES} WHERE ${CONDITIONS} ORDER BY po.po_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "lineItemNotesSql": "SELECT DISTINCT note FROM ${SCHEMA}.line_item_notes lin, ${SCHEMA}.line_item li WHERE li.line_item_id = lin.line_item_id AND li.po_id = ${PO_ID}",
     "poLinesSql": "SELECT DISTINCT ${COLUMNS} FROM ${TABLES} WHERE ${CONDITIONS}",
-    "piecesSql": "SELECT component.predict AS predict, opac_suppressed, component.note AS receiving_note, enumchron, TO_CHAR(cast(ir.receipt_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS received_date FROM ${SCHEMA}.line_item_copy_status lics, ${SCHEMA}.issues_received ir, ${SCHEMA}.component, ${SCHEMA}.serial_issues si WHERE lics.line_item_id = ${LINE_ITEM_ID} AND ir.copy_id = lics.copy_id AND ir.component_id = component.component_id AND si.component_id = component.component_id AND si.issue_id = ir.issue_id AND component.predict = 'Y' AND opac_suppressed = 1 ORDER BY lics.line_item_id, ir.receipt_date desc",
+    "piecesSql": "SELECT component.predict AS predict, opac_suppressed, component.note AS receiving_note, enumchron, TO_CHAR(cast(ir.receipt_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS received_date, lics.mfhd_id AS mfhd_id FROM ${SCHEMA}.line_item_copy_status lics, ${SCHEMA}.issues_received ir, ${SCHEMA}.component, ${SCHEMA}.serial_issues si WHERE lics.line_item_id = ${LINE_ITEM_ID} AND ir.copy_id = lics.copy_id AND ir.component_id = component.component_id AND si.component_id = component.component_id AND si.issue_id = ir.issue_id AND component.predict = 'Y' AND opac_suppressed = 1 ORDER BY lics.line_item_id, ir.receipt_date desc",
     "locationSql": "SELECT location_id, location_code FROM ${SCHEMA}.location",
     "database": {
       "url": "",
@@ -1641,6 +1641,7 @@ POST to http://localhost:9000/migrate/purchaseorders
         "CONDITIONS": "po.po_id = li.po_id AND li.bib_id = bt.bib_id AND li.line_item_id = lics.line_item_id(+) AND li.line_item_id = lin.line_item_id(+) AND lics.location_id = line_item_loc.location_id(+) AND po.account_id = va.account_id(+) AND lics.copy_id = lif.copy_id(+) AND lif.fund_id = fund.fund_id(+) AND lif.ledger_id = fund.ledger_id(+) AND po.po_id = ${PO_ID}"
       },
       "productIdType": "913300b2-03ed-469a-8179-c1092c991227",
+      "holdingsNoteTypeId": "0fe80632-2616-4626-a316-c3bba0e3eeb9",
       "defaultLocationId": "480f367b-bf19-4266-b38f-4df0650c94ce"
     },
     {
@@ -1662,7 +1663,14 @@ POST to http://localhost:9000/migrate/purchaseorders
         "TABLES": "MSDB.bib_mfhd bm, MSDB.purchase_order po, MSDB.line_item li, MSDB.line_item_copy_status lics, MSDB.location mfhdloc, MSDB.mfhd_master mm, MSDB.bib_text bt, MSDB.vendor_account va, MSDB.line_item_funds lif, MSDB.fund",
         "CONDITIONS": "po.po_id = li.po_id AND li.bib_id = bt.bib_id AND li.line_item_id = lics.line_item_id(+) AND lics.mfhd_id = bm.mfhd_id(+) AND bm.mfhd_id = mm.mfhd_id(+) AND mm.location_id = mfhdloc.location_id(+) AND po.account_id = va.account_id(+) AND lics.copy_id = lif.copy_id(+) AND lif.fund_id = fund.fund_id(+) AND lif.ledger_id = fund.ledger_id(+) AND po.po_id = ${PO_ID}"
       },
-      "productIdType": "913300b2-03ed-469a-8179-c1092c991227"
+      "productIdType": "913300b2-03ed-469a-8179-c1092c991227",
+      "holdingsNoteTypeId": "0fe80632-2616-4626-a316-c3bba0e3eeb9",
+      "holdingsNoteToElide": "current issues shelved in current journals section",
+      "additionalHoldingsNotes": [{
+          "id": "7ca7dc63-c053-4aec-8272-c03aeda4840c",
+          "note": "Ask the MSL AskUs Desk about latest journal issues",
+          "staffOnly": false
+      }]
     }
   ],
   "maps": {

@@ -4,9 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,10 +15,16 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.folio.rest.jaxrs.model.inventory.Entry;
+import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Locations;
+import org.folio.rest.jaxrs.model.inventory.Note;
+import org.folio.rest.jaxrs.model.inventory.ReceivingHistory;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePoLine;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePoLine.ReceiptStatus;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePurchaseOrder;
@@ -33,10 +37,6 @@ import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Ongoing;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.Physical;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.ProductIdentifier;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.VendorDetail;
-import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece;
-import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece.PieceFormat;
-import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.Piece.ReceivingStatus;
-import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders_storage.schemas.TitleCollection;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.purchaseorder.PurchaseOrderContext;
 import org.folio.rest.migration.model.request.purchaseorder.PurchaseOrderDefaults;
@@ -87,10 +87,12 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
   // private static final String OPAC_SUPPRESSED = "OPAC_SUPPRESSED";
   private static final String RECEIVING_NOTE = "RECEIVING_NOTE";
   private static final String ENUMCHRON = "ENUMCHRON";
-  private static final String RECEIVED_DATE = "RECEIVED_DATE";
+  // private static final String RECEIVED_DATE = "RECEIVED_DATE";
+  private static final String MFHD_ID = "MFHD_ID";
 
   private static final String VENDOR_REFERENCE_ID = "vendorTypeId";
   private static final String INSTANCE_REFERENCE_ID = "instanceTypeId";
+  private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
 
   private PurchaseOrderMigration(PurchaseOrderContext context, String tenant) {
     super(context, tenant);
@@ -288,48 +290,15 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
 
           compositePurchaseOrder.setOngoing(ongoing);
 
-          Map<String, List<Piece>> pieces = new HashMap<>();
-
           CompletableFuture.allOf(
             getLineItemNotes(lineItemNoteStatement, lineItemNoteContext)
               .thenAccept((notes) -> compositePurchaseOrder.setNotes(notes)),
-            getPurchaseOrderLines(poLinesStatement, poLinesContext, piecesStatement, piecesContext, job, maps, defaults, locationsMap, fundsMap, vendorReferenceId)
-              .thenAccept((poLines) -> {
-                List<CompositePoLine> cPoLines = new ArrayList<>();
-                poLines.stream().forEach(cpowp -> {
-                  cPoLines.add(cpowp.getCompositePoLine());
-                  pieces.put(cpowp.getCompositePoLine().getId(), cpowp.getPieces());
-                });
-                compositePurchaseOrder.setCompositePoLines(cPoLines);
-              })
+            getPurchaseOrderLines(poLinesStatement, poLinesContext, piecesStatement, piecesContext, job, maps, defaults, locationsMap, fundsMap, vendorReferenceId, token)
+              .thenAccept((poLines) -> compositePurchaseOrder.setCompositePoLines(poLines))
           ).get();
 
           try {
-            migrationService.okapiService.postCompositePurchaseOrder(tenant, token, compositePurchaseOrder)
-              .getCompositePoLines().forEach(cpol -> {
-                String poLineId = cpol.getId();
-                try {
-                  if (pieces.containsKey(poLineId)) {
-                    TitleCollection titles = migrationService.okapiService.fetchTitleByPurchaseOrderLineId(tenant, token, poLineId);
-                    if (titles.getTotalRecords() > 0) {
-                      pieces.get(poLineId).forEach(piece -> {
-                        piece.setTitleId(titles.getTitles().get(0).getId());
-                        try {
-                          migrationService.okapiService.postPiece(tenant, token, piece);
-                        } catch (Exception e) {
-                          log.error("Failed to post piece {}\n{}", piece, e.getMessage());
-                        }
-                      });
-                    } else {
-                      log.error("No title found by purchase order line id {}", poLineId);
-                    }
-                  } else {
-                    log.error("No pieces found for purchase order line id {}", poLineId);
-                  }
-                } catch (Exception e) {
-                  log.error("Failed to fetch title by purchase order line id {}\n{}", poLineId, e.getMessage());
-                }
-              });
+            migrationService.okapiService.postCompositePurchaseOrder(tenant, token, compositePurchaseOrder);
           } catch (Exception e) {
             log.error("Failed to post composite purchase order {}\n{}", compositePurchaseOrder, e.getMessage());
           }
@@ -370,17 +339,18 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
       return future;
     }
 
-    private CompletableFuture<List<CompositePoLineWithPieces>> getPurchaseOrderLines(Statement poLinesStatement, Map<String, Object> poLinesContext, Statement piecesStatement, Map<String, Object> piecesContext, PurchaseOrderJob job, PurchaseOrderMaps maps, PurchaseOrderDefaults defaults, Map<String, String> locationsMap, Map<String, String> fundsMap, String vendorId) {
-      CompletableFuture<List<CompositePoLineWithPieces>> future = new CompletableFuture<>();
+    private CompletableFuture<List<CompositePoLine>> getPurchaseOrderLines(Statement poLinesStatement, Map<String, Object> poLinesContext, Statement piecesStatement, Map<String, Object> piecesContext, PurchaseOrderJob job, PurchaseOrderMaps maps, PurchaseOrderDefaults defaults, Map<String, String> locationsMap, Map<String, String> fundsMap, String vendorId, String token) {
+      CompletableFuture<List<CompositePoLine>> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
 
         String poId = (String) poLinesContext.get(PO_ID);
         String instanceRLTypeId = job.getReferences().get(INSTANCE_REFERENCE_ID);
+        String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
 
         Map<String, String> expenseClasses = maps.getExpenseClasses().get(job.getSchema());
         Map<String, String> fundCodes = maps.getFundCodes().get(job.getSchema());
 
-        List<CompositePoLineWithPieces> poLines = new ArrayList<>();
+        List<CompositePoLine> poLines = new ArrayList<>();
         try (ResultSet poLinesResultSet = getResultSet(poLinesStatement, poLinesContext)) {
           while (poLinesResultSet.next()) {
             String bibId = poLinesResultSet.getString(BIB_ID);
@@ -574,8 +544,10 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
 
             piecesContext.put(LINE_ITEM_ID, lineItemId);
 
+            Pattern pattern = Pattern.compile("/(.*?)(\\(.*$)/");
+            String mfhdId = null;
             String note = StringUtils.EMPTY;
-            List<Piece> pieces = new ArrayList<>();
+            List<Entry> recievingHistoryEntries = new ArrayList<>();
             try (ResultSet piecesResultSet = getResultSet(piecesStatement, piecesContext)) {
               while (piecesResultSet.next()) {
                 // NOTE: ignored
@@ -583,37 +555,87 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
                 // String opacSuppressed = piecesResultSet.getString(OPAC_SUPPRESSED);
                 String receivingNote = piecesResultSet.getString(RECEIVING_NOTE);
                 String enumchron = piecesResultSet.getString(ENUMCHRON);
-                String receivedDate = piecesResultSet.getString(RECEIVED_DATE);
+                // String receivedDate = piecesResultSet.getString(RECEIVED_DATE);
+                mfhdId = piecesResultSet.getString(MFHD_ID);
 
-                Piece piece = new Piece();
+                Entry entry = new Entry();
 
-                piece.setId(UUID.randomUUID().toString());
-                piece.setPoLineId(compositePoLine.getId());
-                piece.setLocationId(compositePoLine.getLocations().get(0).getLocationId());
-                piece.setCaption(enumchron);
-                piece.setFormat(PieceFormat.PHYSICAL);
-                piece.setReceivingStatus(ReceivingStatus.RECEIVED);
-                piece.setReceivedDate(Date.from(Instant.parse(receivedDate)));
+                entry.setPublicDisplay(true);
 
-                pieces.add(piece);
+                Matcher matcher = pattern.matcher(enumchron);
+
+                if (matcher.matches()) {
+                  if (matcher.groupCount() > 0) {
+                    entry.setEnumeration(matcher.group(0));
+                  }
+                  if (matcher.groupCount() > 1) {
+                    entry.setChronology(matcher.group(1));
+                  }
+                }
+
+                recievingHistoryEntries.add(entry);
 
                 if (StringUtils.isNotEmpty(receivingNote)) {
                   note = receivingNote
                     .replaceAll("[\\n]", StringUtils.EMPTY)
                     .replaceAll("\\s+", StringUtils.SPACE)
-                    .replaceAll("(.*?)(MFHD<.*?>)(.*)", "$1$3")
-                    .replaceAll("(.*?)(LOC<.*?>)(.*)", "$1$3");
+                    .replaceAll("(.*?)(MFHD<.*?>)(.*)", "$1$3");
                 }
 
               }
             } catch (SQLException e) {
               e.printStackTrace();
             } finally {
-              Details details = new Details();
 
-              if (StringUtils.isNotEmpty(note)) {
-                details.setReceivingNote(note);
+              if (!recievingHistoryEntries.isEmpty() && Objects.nonNull(mfhdId)) {
+
+                compositePoLine.setCheckinItems(true);
+
+                Optional<ReferenceLink> holdingsRl = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingRLTypeId, mfhdId);
+                if (holdingsRl.isPresent()) {
+
+                  String HoldingsRecordId = holdingsRl.get().getFolioReference();
+
+                  Holdingsrecord holdingsRecord = migrationService.okapiService.fetchHoldingsRecordsById(tenant, token, HoldingsRecordId);
+
+                  ReceivingHistory receivingHistory = new ReceivingHistory();
+                  receivingHistory.setEntries(recievingHistoryEntries);
+
+                  List<Note> holdingsRecordNotes = holdingsRecord.getNotes();
+
+                  if (StringUtils.isNotEmpty(job.getHoldingsNoteToElide())) {
+                    holdingsRecordNotes = holdingsRecordNotes.stream().filter(hn -> {
+                      return !hn.getNote().toLowerCase().contains(job.getHoldingsNoteToElide());
+                    }).collect(Collectors.toList());
+                  }
+
+                  for (Note an : job.getAdditionalHoldingsNotes()) {
+                    Note holdingsNote = new Note();
+                    holdingsNote.setStaffOnly(an.getStaffOnly());
+                    holdingsNote.setNote(an.getNote());
+                    holdingsNote.setHoldingsNoteTypeId(an.getHoldingsNoteTypeId());
+                    holdingsRecordNotes.add(holdingsNote);
+                  }
+
+                  if (StringUtils.isNotEmpty(note)) {
+                    Note holdingsNote = new Note();
+                    holdingsNote.setStaffOnly(true);
+                    holdingsNote.setNote(note);
+                    holdingsNote.setHoldingsNoteTypeId(job.getHoldingsNoteTypeId());
+                    holdingsRecordNotes.add(holdingsNote);
+                  }
+
+                  holdingsRecord.setNotes(holdingsRecordNotes);
+
+                  migrationService.okapiService.putHoldingsrecord(tenant, token, holdingsRecord);
+
+                } else {
+                  log.error("{} no holdings record id found for mfhd id {}", job.getSchema(), mfhdId);
+                }
+
               }
+
+              Details details = new Details();
 
               if (StringUtils.isNotEmpty(issn)) {
                 List<ProductIdentifier> productIds = details.getProductIds();
@@ -621,14 +643,12 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
                 productId.setProductId(issn);
                 productId.setProductIdType(job.getProductIdType());
                 productIds.add(productId);
+                details.setProductIds(productIds);
               }
 
               compositePoLine.setDetails(details);
 
-              compositePoLine.setCheckinItems(!pieces.isEmpty());
-
-              poLines.add(new CompositePoLineWithPieces(compositePoLine, pieces));
-
+              poLines.add(compositePoLine);
             }
           }
         } catch (SQLException e) {
@@ -638,27 +658,6 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
         }
       });
       return future;
-    }
-
-  }
-
-  private class CompositePoLineWithPieces {
-
-    private final CompositePoLine compositePoLine;
-
-    private final List<Piece> pieces;
-
-    public CompositePoLineWithPieces(CompositePoLine compositePoLine, List<Piece> pieces) {
-      this.compositePoLine = compositePoLine;
-      this.pieces = pieces;
-    }
-
-    public CompositePoLine getCompositePoLine() {
-      return compositePoLine;
-    }
-
-    public List<Piece> getPieces() {
-      return pieces;
     }
 
   }
