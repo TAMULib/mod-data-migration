@@ -1,32 +1,51 @@
 {
-  "path": "/staff-slips-storage/staff-slips",
-  "dependencies": [],
-  "data": [
-    {
-      "id": "6a6e72f0-69da-4b4c-8254-7154679e9d88",
-      "template": "<div><strong>{{staffSlip.Name}}</strong> slip</div><div><br></div><div><strong>Name of requester</strong></div><div>{{requester.lastName}}, {{requester.firstName}}</div><div><br></div><div><strong>Library: </strong>{{item.effectiveLocationLibrary}}</div><div><strong>Title: </strong>{{item.title}}</div><div><strong>Barcode: </strong>{{item.barcode}}</div><div><strong>Call number: </strong>{{item.callNumber}} {{item.enumeration}} {{item.chronology}}</div><div><strong>Item can be picked up at: </strong>{{request.servicePointPickup}}</div><div><strong>Item will be returned to the shelf on: </strong>{{request.holdShelfExpirationDate}}</div>",
-      "description": "Hold slip for items on hold or recall that are available for pickup",
-      "active": true,
-      "name": "Hold"
-    },
-    {
-      "name": "Pick slip",
-      "active": true,
-      "template": "<p></p>",
-      "id": "8812bae1-2738-442c-bc20-fe4bb38a11f8"
-    },
-    {
-      "active": true,
-      "name": "Request delivery",
-      "id": "1ed55c5c-64d9-40eb-8b80-7438a262288b",
-      "template": "<p></p>"
-    },
-    {
-      "name": "Transit",
-      "active": true,
-      "id": "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
-      "template": "<div><strong>{{staffSlip.Name}}</strong> slip</div><div><br></div><div><strong>To service point</strong>: {{item.toServicePoint}}</div><div><strong>From service point</strong>: {{item.fromServicePoint}}</div><div><strong>Call number:</strong> {{item.callNumber}}{{item.enumeration}}{{item.chronology}}</div><div><strong>Title: </strong>{{item.title}}</div><div><strong>Current location</strong>:{{item.effectiveLocationLibrary}}</div><div><strong>Last discharged:</strong> {{item.lastCheckedInDateTime}}</div><div><strong>Requester name</strong>: {{requester.lastName}}, {{requester.firstName}}</div><div><strong>Requester barcode</strong>: {{requester.barcode}}</div><div><br></div>",
-      "description": "In transit slip to be put into books"
+  "path" : "/staff-slips-storage/staff-slips",
+  "dependencies" : [ ],
+  "data" : [ {
+    "id" : "6a6e72f0-69da-4b4c-8254-7154679e9d88",
+    "name" : "Hold",
+    "description" : "Hold slip for items on hold or recall that are available for pickup",
+    "active" : true,
+    "template" : "<div><strong>{{staffSlip.Name}}</strong> slip</div><div><br></div><div><strong>Name of requester</strong></div><div>{{requester.lastName}}, {{requester.firstName}}</div><div><br></div><div><strong>Library: </strong>{{item.effectiveLocationLibrary}}</div><div><strong>Title: </strong>{{item.title}}</div><div><strong>Barcode: </strong>{{item.barcode}}</div><div><strong>Call number: </strong>{{item.callNumber}} {{item.enumeration}} {{item.chronology}}</div><div><strong>Item can be picked up at: </strong>{{request.servicePointPickup}}</div><div><strong>Item will be returned to the shelf on: </strong>{{request.holdShelfExpirationDate}}</div>",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:28.453+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:28.453+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
-  ]
+  }, {
+    "id" : "8812bae1-2738-442c-bc20-fe4bb38a11f8",
+    "name" : "Pick slip",
+    "active" : true,
+    "template" : "<p></p>",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:28.488+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:28.488+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "1ed55c5c-64d9-40eb-8b80-7438a262288b",
+    "name" : "Request delivery",
+    "active" : true,
+    "template" : "<p></p>",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:28.510+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:28.510+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
+    "name" : "Transit",
+    "description" : "In transit slip to be put into books",
+    "active" : true,
+    "template" : "<div><strong>{{staffSlip.Name}}</strong> slip</div><div><br></div><div><strong>To service point</strong>: {{item.toServicePoint}}</div><div><strong>From service point</strong>: {{item.fromServicePoint}}</div><div><strong>Call number:</strong> {{item.callNumber}}{{item.enumeration}}{{item.chronology}}</div><div><strong>Title: </strong>{{item.title}}</div><div><strong>Current location</strong>:{{item.effectiveLocationLibrary}}</div><div><strong>Last discharged:</strong> {{item.lastCheckedInDateTime}}</div><div><strong>Requester name</strong>: {{requester.lastName}}, {{requester.firstName}}</div><div><strong>Requester barcode</strong>: {{requester.barcode}}</div><div><br></div>",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:28.522+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:28.522+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  } ]
 }

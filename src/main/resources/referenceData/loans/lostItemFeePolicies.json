@@ -1,39 +1,43 @@
 {
-  "path": "/lost-item-fees-policies",
-  "dependencies": [],
-  "data": [
-    {
-      "feesFinesShallRefunded": {
-        "duration": 365,
-        "intervalId": "Days"
-      },
-      "itemAgedLostOverdue": {
-        "intervalId": "Days",
-        "duration": 30
-      },
-      "returnedLostItemProcessingFee": true,
-      "replacedLostItemProcessingFee": false,
-      "lostItemReturned": "Remove",
-      "lostItemChargeFeeFine": {
-        "duration": 2,
-        "intervalId": "Days"
-      },
-      "chargeAmountItem": {
-        "chargeType": "anotherCost",
-        "amount": 0
-      },
-      "chargeAmountItemSystem": true,
-      "description": "Lost item fee policy",
-      "chargeAmountItemPatron": true,
-      "patronBilledAfterAgedLost": {
-        "intervalId": "Days",
-        "duration": 1
-      },
-      "id": "ac5ec0dc-9de1-48e1-80ad-53f581857c9d",
-      "lostItemProcessingFee": 2,
-      "replacementProcessingFee": 0,
-      "name": "lost_item_fee_policy",
-      "replacementAllowed": true
-    }
-  ]
+  "path" : "/lost-item-fees-policies",
+  "dependencies" : [ ],
+  "data" : [ {
+    "name" : "lost_item_fee_policy",
+    "description" : "Lost item fee policy",
+    "itemAgedLostOverdue" : {
+      "duration" : 30,
+      "intervalId" : "Days"
+    },
+    "patronBilledAfterAgedLost" : {
+      "duration" : 1,
+      "intervalId" : "Days"
+    },
+    "chargeAmountItem" : {
+      "chargeType" : "anotherCost",
+      "amount" : 0.0
+    },
+    "lostItemProcessingFee" : 2.0,
+    "chargeAmountItemPatron" : true,
+    "chargeAmountItemSystem" : true,
+    "lostItemChargeFeeFine" : {
+      "duration" : 2,
+      "intervalId" : "Days"
+    },
+    "returnedLostItemProcessingFee" : true,
+    "replacedLostItemProcessingFee" : false,
+    "replacementProcessingFee" : 0.0,
+    "replacementAllowed" : true,
+    "lostItemReturned" : "Remove",
+    "feesFinesShallRefunded" : {
+      "duration" : 365,
+      "intervalId" : "Days"
+    },
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:32.963+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:32.963+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "id" : "ac5ec0dc-9de1-48e1-80ad-53f581857c9d"
+  } ]
 }

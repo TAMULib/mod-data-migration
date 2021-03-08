@@ -1,134 +1,125 @@
 {
-  "path": "/data-import-profiles/actionProfiles",
-  "dependencies": [
-    "jobProfiles"
-  ],
-  "data": [
-    {
-      "profile": {
-        "metadata": {
-          "createdDate": "2021-02-04T21:46:29.207",
-          "updatedByUserId": "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-          "createdByUserId": "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-          "updatedDate": "2021-02-04T21:46:29.207+0000"
-        },
-        "deleted": false,
-        "action": "MODIFY",
-        "folioRecord": "MARC_BIBLIOGRAPHIC",
-        "name": "MARC delete 922 field",
-        "description": "",
-        "userInfo": {
-          "firstName": "tamu",
-          "userName": "tamu_admin",
-          "lastName": "admin"
-        }
-      },
-      "id": "2c801063-3ae4-41bd-83bd-c7173aab6923"
+  "path" : "/data-import-profiles/actionProfiles",
+  "dependencies" : [ "jobProfiles" ],
+  "data" : [ {
+    "id" : "d7391f03-a3aa-4652-8bf8-2a60b80c096a",
+    "name" : "MARC delete 922 field",
+    "description" : "",
+    "action" : "MODIFY",
+    "folioRecord" : "MARC_BIBLIOGRAPHIC",
+    "deleted" : false,
+    "userInfo" : {
+      "firstName" : "tamu",
+      "lastName" : "admin",
+      "userName" : "tamu_admin"
     },
-    {
-      "profile": {
-        "deleted": false,
-        "metadata": {
-          "createdDate": "2021-02-04T00:26:31.427",
-          "updatedByUserId": "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-          "createdByUserId": "36fa2da2-8bb8-4018-93ba-6912ebf714ee",
-          "updatedDate": "2021-02-04T21:11:30.124+0000"
-        },
-        "folioRecord": "HOLDINGS",
-        "action": "CREATE",
-        "name": "MARCIVE-Create New Holdings Record URL",
-        "userInfo": {
-          "userName": "tamu_admin",
-          "lastName": "admin",
-          "firstName": "tamu"
-        },
-        "description": ""
-      },
-      "id": "2c33638b-5612-47e8-abba-c1a5ff96dca3"
-    },
-    {
-      "profile": {
-        "name": "MARCIVE-Create New Instance Record URL",
-        "description": "",
-        "userInfo": {
-          "firstName": "tamu",
-          "lastName": "admin",
-          "userName": "tamu_admin"
-        },
-        "deleted": false,
-        "metadata": {
-          "updatedDate": "2021-02-04T21:11:10.546+0000",
-          "updatedByUserId": "1a01e79b-0e8c-4a0c-87ff-7bd35beb8597",
-          "createdByUserId": "36fa2da2-8bb8-4018-93ba-6912ebf714ee",
-          "createdDate": "2021-02-03T23:32:11.464"
-        },
-        "folioRecord": "INSTANCE",
-        "action": "CREATE"
-      },
-      "id": "7cf5ac50-981f-4ec9-81e4-a9ae31a3085a"
-    },
-    {
-      "profile": {
-        "folioRecord": "HOLDINGS",
-        "action": "CREATE",
-        "deleted": false,
-        "metadata": {
-          "updatedDate": "2021-01-20T17:10:38.005+0000",
-          "createdByUserId": "13144ff8-ceb1-4db8-8af1-4b2fc784a6d2",
-          "updatedByUserId": "13144ff8-ceb1-4db8-8af1-4b2fc784a6d2",
-          "createdDate": "2021-01-20T17:10:38.005"
-        },
-        "userInfo": {
-          "lastName": "Burke",
-          "userName": "sburke",
-          "firstName": "Shannon"
-        },
-        "description": "",
-        "name": "Print Books - Creat Holdings Record"
-      },
-      "id": "10373b02-8ec3-45ab-96dc-579022c7dcb8"
-    },
-    {
-      "profile": {
-        "metadata": {
-          "createdDate": "2021-01-20T16:53:32.446",
-          "updatedDate": "2021-01-20T17:18:01.336+0000",
-          "createdByUserId": "13144ff8-ceb1-4db8-8af1-4b2fc784a6d2",
-          "updatedByUserId": "13144ff8-ceb1-4db8-8af1-4b2fc784a6d2"
-        },
-        "deleted": false,
-        "action": "CREATE",
-        "folioRecord": "INSTANCE",
-        "name": "Print Books - Create Instance Record",
-        "description": "",
-        "userInfo": {
-          "lastName": "Burke",
-          "userName": "sburke",
-          "firstName": "Shannon"
-        }
-      },
-      "id": "ffe788ee-da16-402a-b37f-23b671fb4e33"
-    },
-    {
-      "id": "32655fad-972f-4cf7-b4ad-ef353900bf2c",
-      "profile": {
-        "description": "",
-        "userInfo": {
-          "lastName": "Burke",
-          "userName": "sburke",
-          "firstName": "Shannon"
-        },
-        "name": "Print Books - Create Item Record",
-        "action": "CREATE",
-        "folioRecord": "ITEM",
-        "metadata": {
-          "createdDate": "2021-01-20T17:29:11.426",
-          "createdByUserId": "13144ff8-ceb1-4db8-8af1-4b2fc784a6d2",
-          "updatedByUserId": "13144ff8-ceb1-4db8-8af1-4b2fc784a6d2",
-          "updatedDate": "2021-01-20T17:29:11.426+0000"
-        },
-        "deleted": false
-      }
+    "parentProfiles" : [ ],
+    "childProfiles" : [ ],
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:15.253+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:15.253+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
-  ]
+  }, {
+    "id" : "d187708f-3502-4f3a-ae96-05e5a00db4a7",
+    "name" : "MARCIVE-Create New Holdings Record URL",
+    "description" : "",
+    "action" : "CREATE",
+    "folioRecord" : "HOLDINGS",
+    "deleted" : false,
+    "userInfo" : {
+      "firstName" : "tamu",
+      "lastName" : "admin",
+      "userName" : "tamu_admin"
+    },
+    "parentProfiles" : [ ],
+    "childProfiles" : [ ],
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:15.556+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:15.556+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "bed64a5a-6678-433c-a8a2-842eae8fbe97",
+    "name" : "MARCIVE-Create New Instance Record URL",
+    "description" : "",
+    "action" : "CREATE",
+    "folioRecord" : "INSTANCE",
+    "deleted" : false,
+    "userInfo" : {
+      "firstName" : "tamu",
+      "lastName" : "admin",
+      "userName" : "tamu_admin"
+    },
+    "parentProfiles" : [ ],
+    "childProfiles" : [ ],
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:15.630+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:15.630+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "48e017ca-3a46-4f7b-a4cf-a2d535eee9a2",
+    "name" : "Print Books - Creat Holdings Record",
+    "description" : "",
+    "action" : "CREATE",
+    "folioRecord" : "HOLDINGS",
+    "deleted" : false,
+    "userInfo" : {
+      "firstName" : "tamu",
+      "lastName" : "admin",
+      "userName" : "tamu_admin"
+    },
+    "parentProfiles" : [ ],
+    "childProfiles" : [ ],
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:16.281+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:16.281+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "11f7929e-df1b-4ee8-b118-40d80f563592",
+    "name" : "Print Books - Create Instance Record",
+    "description" : "",
+    "action" : "CREATE",
+    "folioRecord" : "INSTANCE",
+    "deleted" : false,
+    "userInfo" : {
+      "firstName" : "tamu",
+      "lastName" : "admin",
+      "userName" : "tamu_admin"
+    },
+    "parentProfiles" : [ ],
+    "childProfiles" : [ ],
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:16.903+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:16.903+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "c14234c6-7834-4ec4-9f16-dd3c5ccb6470",
+    "name" : "Print Books - Create Item Record",
+    "description" : "",
+    "action" : "CREATE",
+    "folioRecord" : "ITEM",
+    "deleted" : false,
+    "userInfo" : {
+      "firstName" : "tamu",
+      "lastName" : "admin",
+      "userName" : "tamu_admin"
+    },
+    "parentProfiles" : [ ],
+    "childProfiles" : [ ],
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:16.991+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:16.991+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  } ]
 }

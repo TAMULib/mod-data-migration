@@ -1,163 +1,248 @@
 {
-  "path": "/templates",
-  "dependencies": [],
-  "data": [
-    {
-      "category": "FeeFineAction",
-      "id": "3d1534cb-8c98-466c-acd9-fd1448468d7f",
-      "outputFormats": [
-        "text/html"
-      ],
-      "name": "action_notice",
-      "templateResolver": "mustache",
-      "active": true,
-      "description": "notifies patron of action that has been taken against a fee/fine",
-      "localizedTemplates": {
-        "en": {
-          "header": "Action has been taken on a fee or fine charged to your library account",
-          "attachments": [],
-          "body": "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>An action has been taken on a fee or fine charged to your library account</strong>.</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>A {{feeAction.type}} transaction has been applied to your account for ${{feeAction.amount}} on {{feeAction.actionDateTime}}, leaving ${{feeAction.remainingAmount}} remaining on the charge.</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>"
-        }
+  "path" : "/templates",
+  "dependencies" : [ ],
+  "data" : [ {
+    "id" : "263d4e33-db8d-4e07-9060-11f442320c05",
+    "description" : "Account activation email",
+    "outputFormats" : [ "text/html" ],
+    "templateResolver" : "mustache",
+    "localizedTemplates" : {
+      "en" : {
+        "header" : "Complete activation of your FOLIO account",
+        "body" : "<p>{{user.personal.firstName}}</p><p>Your FOLIO account has been activated.</p><p>Your username is {{user.username}}.</p><p>To complete activation of your account, please use the following link to create a password for your FOLIO account: <a href={{link}}>visit this link</a></p><p>If you do not create a password within 24 hours of the delivery of this email, then contact your FOLIO Administrator to receive a new create password link.</p><p>Regards,</p><p>{{institution.name}} FOLIO Administration</p>",
+        "attachments" : [ ]
       }
-    },
-    {
-      "outputFormats": [
-        "text/html"
-      ],
-      "name": "available",
-      "templateResolver": "mustache",
-      "localizedTemplates": {
-        "en": {
-          "header": "Library item(s) now available",
-          "attachments": [],
-          "body": "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you have requested are available for pickup</strong>.</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Item can be picked up at: {{request.servicePointPickup}}</li><li>Item will be returned to the shelf on: {{request.holdShelfExpirationDateTime}}</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>"
-        }
-      },
-      "active": true,
-      "category": "Request",
-      "id": "631ff684-e221-45d8-822d-bc3a444c489b"
-    },
-    {
-      "category": "Loan",
-      "id": "2c8b5912-99f1-4b6b-87eb-fc8acaf7a3a8",
-      "outputFormats": [
-        "text/html"
-      ],
-      "name": "courtesy",
-      "templateResolver": "mustache",
-      "active": true,
-      "localizedTemplates": {
-        "en": {
-          "header": "Library items checked out coming due",
-          "attachments": [],
-          "body": "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you have checked out will be due soon</strong>.</div><div>{{#loans}}</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Due date: {{loan.dueDateTime}}</li></ul><div>{{/loans}}</div><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>"
-        }
-      }
-    },
-    {
-      "templateResolver": "mustache",
-      "localizedTemplates": {
-        "en": {
-          "body": "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>The followings items you had checked out are overdue and presumed lost</strong>. You are being billed for processing costs as listed.</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Processing cost: ${{feeCharge.amount}} has been charged by {{feeCharge.owner}}</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
-          "attachments": [],
-          "header": "Library fees for lost items"
-        }
-      },
-      "description": "Lost item processing charge",
-      "active": true,
-      "outputFormats": [
-        "text/html"
-      ],
-      "name": "lost_item_proc",
-      "category": "FeeFineCharge",
-      "id": "bd639688-ff1c-4092-ac94-65d7339910da"
-    },
-    {
-      "templateResolver": "mustache",
-      "localizedTemplates": {
-        "en": {
-          "header": "Library fees for lost items",
-          "attachments": [],
-          "body": "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>The followings items you had checked out are overdue and presumed lost</strong>. You are being billed for replacement costs as listed.</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Replacement cost: ${{feeCharge.amount}} has been charged by {{feeCharge.owner}}</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>"
-        }
-      },
-      "description": "Lost item replacement charge",
-      "active": true,
-      "outputFormats": [
-        "text/html"
-      ],
-      "name": "lost_item_repl",
-      "category": "FeeFineCharge",
-      "id": "3fe59fee-0afa-4dd6-9fd2-655f4e6751fd"
-    },
-    {
-      "templateResolver": "mustache",
-      "localizedTemplates": {
-        "en": {
-          "body": "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you checked out are now overdue and should be returned to the library or renewed, if eligible</strong>. If the items are not renewed or returned as stated by library policy, the items will be considered lost and you will be billed for them.</div><div><br></div><div>{{#loans}}</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Due date: {{loan.dueDateTime}}</li></ul><div>{{/loans}}</div><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
-          "attachments": [],
-          "header": "Library items checked out are overdue"
-        }
-      },
-      "active": true,
-      "outputFormats": [
-        "text/html"
-      ],
-      "name": "overdue",
-      "category": "Loan",
-      "id": "03697536-6b0e-49ff-a545-d1b3de691b4a"
-    },
-    {
-      "id": "05c5f6dd-d989-497b-af20-2586a6960f22",
-      "category": "AutomatedFeeFine",
-      "name": "overdue_fine",
-      "outputFormats": [
-        "text/html"
-      ],
-      "localizedTemplates": {
-        "en": {
-          "body": "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you had checked out were overdue when returned and have incurred overdue fines.</strong></div><div><br></div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Due date: {{loan.dueDateTime}}</li><li>A fine in the amount of ${{feeCharge.amount}} for {{feeCharge.type}} has been charged by {{feeCharge.owner}}.</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
-          "attachments": [],
-          "header": "Fines are owed for overdue item(s) "
-        }
-      },
-      "active": true,
-      "templateResolver": "mustache"
-    },
-    {
-      "active": true,
-      "description": "Overdue fine manually created",
-      "localizedTemplates": {
-        "en": {
-          "body": "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you have checked out are overdue and have incurred overdue fines.</strong></div><div><br></div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Due date: {{loan.dueDateTime}}</li><li>A fine in the amount of ${{feeCharge.amount}} for {{feeCharge.type}} has been charged by {{feeCharge.owner}}.</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
-          "header": "Fines are owed for overdue item(s) ",
-          "attachments": []
-        }
-      },
-      "templateResolver": "mustache",
-      "name": "overdue_fine_manual",
-      "outputFormats": [
-        "text/html"
-      ],
-      "id": "3a335d9d-89a0-4cde-8338-b0d298039aa6",
-      "category": "FeeFineCharge"
-    },
-    {
-      "name": "recall",
-      "outputFormats": [
-        "text/html"
-      ],
-      "localizedTemplates": {
-        "en": {
-          "body": "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you have checked out have been recalled and must be returned by the due date listed. </strong>If the items are not returned on time, you may owe a substantial fine.</div><div><br></div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Due date: {{loan.dueDate}}</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
-          "attachments": [],
-          "header": "Library item(s) have been recalled"
-        }
-      },
-      "active": true,
-      "templateResolver": "mustache",
-      "id": "a68995b4-d64e-401e-ad1b-4970929fc698",
-      "category": "Loan"
     }
-  ]
+  }, {
+    "id" : "ed8c1c67-897b-4a23-a702-c36e280c6a93",
+    "description" : "Reset password email",
+    "outputFormats" : [ "text/html" ],
+    "templateResolver" : "mustache",
+    "localizedTemplates" : {
+      "en" : {
+        "header" : "Reset your Folio account",
+        "body" : "<p>{{user.personal.firstName}}</p><p>Your request to reset your password has been received.</p> <p>To reset your password, please <a href={{link}}>visit this link</a>.</p><p>NOTE: If you do not reset your password within {{expirationTime}} {{expirationUnitOfTime}} of the delivery of this email, the link will no longer operate. Please contact your FOLIO system administrator if you are unable to reset your password.</p><p>Regards,</p><p>{{institution.name}} FOLIO Administration</p>",
+        "attachments" : [ ]
+      }
+    }
+  }, {
+    "id" : "ce9e3e2c-669a-4491-a12f-e0fdad066191",
+    "description" : "Password is successfully created email template",
+    "outputFormats" : [ "text/plain" ],
+    "templateResolver" : "mustache",
+    "localizedTemplates" : {
+      "en" : {
+        "header" : "Folio account successfully created",
+        "body" : "{{user.personal.firstName}}\n\nYour Folio account has been successfully created. You should now have access to Folio. \n\nShould you have any questions or you have received this email in error, please contact your Folio Administrator. \n\nRegards, \n\n{{institution.name}} Folio Administration",
+        "attachments" : [ ]
+      }
+    }
+  }, {
+    "id" : "d0ee371a-f3f7-407a-b6f3-714362db6240",
+    "description" : "Username located email template",
+    "outputFormats" : [ "text/plain" ],
+    "templateResolver" : "mustache",
+    "localizedTemplates" : {
+      "en" : {
+        "header" : "Folio account located",
+        "body" : "{{user.personal.firstName}}\n\nYour Folio username is {{user.username}}.\n\nPlease contact your Folio Administrator if you have any questions.\n\nRegards,\n\n{{institution.name}} Folio Administration",
+        "attachments" : [ ]
+      }
+    }
+  }, {
+    "id" : "0ff6678f-53cd-4a32-9937-504c28f14077",
+    "description" : "Template for password changed email",
+    "outputFormats" : [ "text/plain" ],
+    "templateResolver" : "mustache",
+    "localizedTemplates" : {
+      "en" : {
+        "header" : "Your Folio password changed",
+        "body" : "Dear {{user.personal.firstName}},\n\nYour password has been changed.\nThis is a confirmation that your password was changed on {{dateTime}}.\n\nDid not change your password? Contact your Folio System Administrator to help secure your account.\n\t\nRegards,\n\nFolio Support",
+        "attachments" : [ ]
+      }
+    }
+  }, {
+    "id" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
+    "description" : "notifies patron of action that has been taken against a fee/fine",
+    "outputFormats" : [ "text/html" ],
+    "templateResolver" : "mustache",
+    "localizedTemplates" : {
+      "en" : {
+        "header" : "Action has been taken on a fee or fine charged to your library account",
+        "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>An action has been taken on a fee or fine charged to your library account</strong>.</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>A {{feeAction.type}} transaction has been applied to your account for ${{feeAction.amount}} on {{feeAction.actionDateTime}}, leaving ${{feeAction.remainingAmount}} remaining on the charge.</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
+        "attachments" : [ ]
+      }
+    },
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:34.191+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:34.191+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "name" : "action_notice",
+    "active" : true,
+    "category" : "FeeFineAction"
+  }, {
+    "id" : "631ff684-e221-45d8-822d-bc3a444c489b",
+    "outputFormats" : [ "text/html" ],
+    "templateResolver" : "mustache",
+    "localizedTemplates" : {
+      "en" : {
+        "header" : "Library item(s) now available",
+        "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you have requested are available for pickup</strong>.</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Item can be picked up at: {{request.servicePointPickup}}</li><li>Item will be returned to the shelf on: {{request.holdShelfExpirationDateTime}}</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
+        "attachments" : [ ]
+      }
+    },
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:34.689+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:34.689+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "name" : "available",
+    "active" : true,
+    "category" : "Request"
+  }, {
+    "id" : "05c5f6dd-d989-497b-af20-2586a6960f22",
+    "outputFormats" : [ "text/html" ],
+    "templateResolver" : "mustache",
+    "localizedTemplates" : {
+      "en" : {
+        "header" : "Fines are owed for overdue item(s) ",
+        "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you had checked out were overdue when returned and have incurred overdue fines.</strong></div><div><br></div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Due date: {{loan.dueDateTime}}</li><li>A fine in the amount of ${{feeCharge.amount}} for {{feeCharge.type}} has been charged by {{feeCharge.owner}}.</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
+        "attachments" : [ ]
+      }
+    },
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:36.890+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:36.890+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "name" : "overdue_fine",
+    "active" : true,
+    "category" : "AutomatedFeeFine"
+  }, {
+    "id" : "a68995b4-d64e-401e-ad1b-4970929fc698",
+    "outputFormats" : [ "text/html" ],
+    "templateResolver" : "mustache",
+    "localizedTemplates" : {
+      "en" : {
+        "header" : "Library item(s) have been recalled",
+        "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you have checked out have been recalled and must be returned by the due date listed. </strong>If the items are not returned on time, you may owe a substantial fine.</div><div><br></div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Due date: {{loan.dueDate}}</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
+        "attachments" : [ ]
+      }
+    },
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:36.933+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:36.933+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "name" : "recall",
+    "active" : true,
+    "category" : "Loan"
+  }, {
+    "id" : "3a335d9d-89a0-4cde-8338-b0d298039aa6",
+    "outputFormats" : [ "text/html" ],
+    "templateResolver" : "mustache",
+    "localizedTemplates" : {
+      "en" : {
+        "header" : "Fines are owed for overdue item(s) ",
+        "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you have checked out are overdue and have incurred overdue fines.</strong></div><div><br></div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Due date: {{loan.dueDateTime}}</li><li>A fine in the amount of ${{feeCharge.amount}} for {{feeCharge.type}} has been charged by {{feeCharge.owner}}.</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
+        "attachments" : [ ]
+      }
+    },
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:36.914+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:36.914+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "name" : "overdue_fine_manual",
+    "active" : true,
+    "category" : "FeeFineCharge"
+  }, {
+    "id" : "03697536-6b0e-49ff-a545-d1b3de691b4a",
+    "outputFormats" : [ "text/html" ],
+    "templateResolver" : "mustache",
+    "localizedTemplates" : {
+      "en" : {
+        "header" : "Library items checked out are overdue",
+        "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you checked out are now overdue and should be returned to the library or renewed, if eligible</strong>. If the items are not renewed or returned as stated by library policy, the items will be considered lost and you will be billed for them.</div><div><br></div><div>{{#loans}}</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Due date: {{loan.dueDateTime}}</li></ul><div>{{/loans}}</div><div><br></div>",
+        "attachments" : [ ]
+      }
+    },
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:36.870+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-03-08T15:39:16.399+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "name" : "overdue",
+    "active" : true,
+    "category" : "Loan"
+  }, {
+    "id" : "2c8b5912-99f1-4b6b-87eb-fc8acaf7a3a8",
+    "outputFormats" : [ "text/html" ],
+    "templateResolver" : "mustache",
+    "localizedTemplates" : {
+      "en" : {
+        "header" : "Library items checked out coming due",
+        "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you have checked out will be due soon</strong>.</div><div>{{#loans}}</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Due date: {{loan.dueDateTime}}</li></ul><div>{{/loans}}</div><div><br></div>",
+        "attachments" : [ ]
+      }
+    },
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:36.226+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-03-08T15:38:53.181+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "name" : "courtesy",
+    "active" : true,
+    "category" : "Loan"
+  }, {
+    "id" : "bd639688-ff1c-4092-ac94-65d7339910da",
+    "description" : "Lost item processing charge",
+    "outputFormats" : [ "text/html" ],
+    "templateResolver" : "mustache",
+    "localizedTemplates" : {
+      "en" : {
+        "header" : "Library fees for lost items",
+        "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>The followings items you had checked out are overdue and presumed lost</strong>. You are being billed for processing costs as listed.</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Processing cost: ${{feeCharge.amount}} has been charged by {{feeCharge.owner}}</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
+        "attachments" : [ ]
+      }
+    },
+    "metadata" : {
+      "createdDate" : "2021-03-08T15:41:24.522+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-03-08T15:41:24.522+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "name" : "lost_item_proc",
+    "active" : true,
+    "category" : "FeeFineCharge"
+  }, {
+    "id" : "3fe59fee-0afa-4dd6-9fd2-655f4e6751fd",
+    "description" : "Lost item replacement charge",
+    "outputFormats" : [ "text/html" ],
+    "templateResolver" : "mustache",
+    "localizedTemplates" : {
+      "en" : {
+        "header" : "Library fees for lost items",
+        "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>The followings items you had checked out are overdue and presumed lost</strong>. You are being billed for replacement costs as listed.</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Replacement cost: ${{feeCharge.amount}} has been charged by {{feeCharge.owner}}</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
+        "attachments" : [ ]
+      }
+    },
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:36.837+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-03-08T15:42:14.897+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "name" : "lost_item_repl",
+    "active" : true,
+    "category" : "FeeFineCharge"
+  } ]
 }

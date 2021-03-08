@@ -1,11 +1,15 @@
 {
-  "path": "/location-units/institutions",
-  "dependencies": [],
-  "data": [
-    {
-      "code": "am",
-      "id": "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-      "name": "Texas A&M University"
+  "path" : "/location-units/institutions",
+  "dependencies" : [ ],
+  "data" : [ {
+    "id" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+    "name" : "Texas A&M University",
+    "code" : "am",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:19.346+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:19.346+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
-  ]
+  } ]
 }

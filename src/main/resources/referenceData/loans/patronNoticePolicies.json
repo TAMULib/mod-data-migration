@@ -1,83 +1,84 @@
 {
-  "path": "/patron-notice-policy-storage/patron-notice-policies",
-  "dependencies": [],
-  "data": [
-    {
-      "requestNotices": [
-        {
-          "sendOptions": {
-            "sendWhen": "Available"
-          },
-          "templateId": "631ff684-e221-45d8-822d-bc3a444c489b",
-          "realTime": false,
-          "format": "Email"
-        }
-      ],
-      "loanNotices": [
-        {
-          "sendOptions": {
-            "sendBy": {
-              "intervalId": "Days",
-              "duration": 3
-            },
-            "sendHow": "Before",
-            "sendWhen": "Due date"
-          },
-          "frequency": "One time",
-          "format": "Email",
-          "templateId": "2c8b5912-99f1-4b6b-87eb-fc8acaf7a3a8",
-          "realTime": false
-        },
-        {
-          "frequency": "Recurring",
-          "sendOptions": {
-            "sendWhen": "Due date",
-            "sendEvery": {
-              "intervalId": "Days",
-              "duration": 7
-            },
-            "sendHow": "After",
-            "sendBy": {
-              "duration": 1,
-              "intervalId": "Days"
-            }
-          },
-          "format": "Email",
-          "templateId": "03697536-6b0e-49ff-a545-d1b3de691b4a",
-          "realTime": false
-        },
-        {
-          "realTime": false,
-          "templateId": "a68995b4-d64e-401e-ad1b-4970929fc698",
-          "format": "Email",
-          "sendOptions": {
-            "sendWhen": "Item recalled"
-          }
-        }
-      ],
-      "active": true,
-      "name": "notices_basic",
-      "id": "a570df1b-763e-4622-828b-fc9b546efc8b",
-      "feeFineNotices": [
-        {
-          "realTime": true,
-          "templateId": "05c5f6dd-d989-497b-af20-2586a6960f22",
-          "format": "Email",
-          "sendOptions": {
-            "sendHow": "Upon At",
-            "sendWhen": "Overdue fine returned"
-          }
-        }
-      ]
+  "path" : "/patron-notice-policy-storage/patron-notice-policies",
+  "dependencies" : [ ],
+  "data" : [ {
+    "id" : "a570df1b-763e-4622-828b-fc9b546efc8b",
+    "name" : "notices_basic",
+    "active" : true,
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:28.003+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:28.003+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     },
-    {
-      "loanNotices": [],
-      "id": "2894f5eb-4e6b-40d5-a8c2-e3466fb11f2f",
-      "feeFineNotices": [],
-      "name": "send_no_notices",
-      "active": true,
-      "description": "A basic notice policy that does not define any notices",
-      "requestNotices": []
-    }
-  ]
+    "loanNotices" : [ {
+      "templateId" : "2c8b5912-99f1-4b6b-87eb-fc8acaf7a3a8",
+      "format" : "Email",
+      "frequency" : "One time",
+      "realTime" : false,
+      "sendOptions" : {
+        "sendHow" : "Before",
+        "sendWhen" : "Due date",
+        "sendBy" : {
+          "duration" : 3,
+          "intervalId" : "Days"
+        }
+      }
+    }, {
+      "templateId" : "03697536-6b0e-49ff-a545-d1b3de691b4a",
+      "format" : "Email",
+      "frequency" : "Recurring",
+      "realTime" : false,
+      "sendOptions" : {
+        "sendHow" : "After",
+        "sendWhen" : "Due date",
+        "sendBy" : {
+          "duration" : 1,
+          "intervalId" : "Days"
+        },
+        "sendEvery" : {
+          "duration" : 7,
+          "intervalId" : "Days"
+        }
+      }
+    }, {
+      "templateId" : "a68995b4-d64e-401e-ad1b-4970929fc698",
+      "format" : "Email",
+      "realTime" : false,
+      "sendOptions" : {
+        "sendWhen" : "Item recalled"
+      }
+    } ],
+    "feeFineNotices" : [ {
+      "templateId" : "05c5f6dd-d989-497b-af20-2586a6960f22",
+      "format" : "Email",
+      "realTime" : true,
+      "sendOptions" : {
+        "sendHow" : "Upon At",
+        "sendWhen" : "Overdue fine returned"
+      }
+    } ],
+    "requestNotices" : [ {
+      "templateId" : "631ff684-e221-45d8-822d-bc3a444c489b",
+      "format" : "Email",
+      "realTime" : false,
+      "sendOptions" : {
+        "sendWhen" : "Available"
+      }
+    } ]
+  }, {
+    "id" : "2894f5eb-4e6b-40d5-a8c2-e3466fb11f2f",
+    "name" : "send_no_notices",
+    "description" : "A basic notice policy that does not define any notices",
+    "active" : true,
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:28.402+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:28.402+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "loanNotices" : [ ],
+    "feeFineNotices" : [ ],
+    "requestNotices" : [ ]
+  } ]
 }

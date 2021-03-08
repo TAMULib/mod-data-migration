@@ -1,110 +1,144 @@
 {
-  "path": "/overdue-fines-policies",
-  "dependencies": [],
-  "data": [
-    {
-      "id": "47dd0201-8f40-4b7f-9372-f8f3bfb33a05",
-      "overdueFine": {
-        "intervalId": "day",
-        "quantity": 1
-      },
-      "maxOverdueFine": 35,
-      "forgiveOverdueFine": true,
-      "overdueRecallFine": {
-        "intervalId": "day",
-        "quantity": 1
-      },
-      "gracePeriodRecall": true,
-      "name": "day_1_max_35",
-      "maxOverdueRecallFine": 35,
-      "countClosed": false
+  "path" : "/overdue-fines-policies",
+  "dependencies" : [ ],
+  "data" : [ {
+    "name" : "day_1_max_35",
+    "overdueFine" : {
+      "quantity" : 1.0,
+      "intervalId" : "day"
     },
-    {
-      "countClosed": false,
-      "maxOverdueRecallFine": 150,
-      "name": "day_25_max_150",
-      "gracePeriodRecall": true,
-      "forgiveOverdueFine": true,
-      "overdueRecallFine": {
-        "intervalId": "day",
-        "quantity": 25
-      },
-      "id": "52d596ab-72a8-423d-b425-4dbb18c9c48c",
-      "overdueFine": {
-        "intervalId": "day",
-        "quantity": 25
-      },
-      "maxOverdueFine": 150
+    "countClosed" : false,
+    "maxOverdueFine" : 35.0,
+    "forgiveOverdueFine" : true,
+    "overdueRecallFine" : {
+      "quantity" : 1.0,
+      "intervalId" : "day"
     },
-    {
-      "overdueRecallFine": {
-        "quantity": 5,
-        "intervalId": "day"
-      },
-      "forgiveOverdueFine": true,
-      "overdueFine": {
-        "intervalId": "day",
-        "quantity": 5
-      },
-      "maxOverdueFine": 35,
-      "id": "c37d9704-4e19-4910-88a6-19990d0e24d0",
-      "gracePeriodRecall": true,
-      "name": "day_5_max_35",
-      "countClosed": false,
-      "maxOverdueRecallFine": 35
+    "gracePeriodRecall" : true,
+    "maxOverdueRecallFine" : 35.0,
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:29.125+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:29.125+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     },
-    {
-      "maxOverdueFine": 150,
-      "overdueFine": {
-        "intervalId": "hour",
-        "quantity": 3
-      },
-      "id": "4cfa17ca-d29c-4677-a2d7-27c4d521e052",
-      "overdueRecallFine": {
-        "quantity": 3,
-        "intervalId": "hour"
-      },
-      "forgiveOverdueFine": true,
-      "gracePeriodRecall": true,
-      "name": "hour_3_max_150",
-      "maxOverdueRecallFine": 150,
-      "countClosed": false
+    "id" : "47dd0201-8f40-4b7f-9372-f8f3bfb33a05"
+  }, {
+    "name" : "day_25_max_150",
+    "overdueFine" : {
+      "quantity" : 25.0,
+      "intervalId" : "day"
     },
-    {
-      "gracePeriodRecall": true,
-      "id": "530a98b3-5cb2-43aa-b8d3-51e5b08f563d",
-      "overdueFine": {
-        "quantity": 0.5,
-        "intervalId": "minute"
-      },
-      "maxOverdueFine": 150,
-      "forgiveOverdueFine": true,
-      "maxOverdueRecallFine": 0,
-      "countClosed": false,
-      "name": "min_50_max_150"
+    "countClosed" : false,
+    "maxOverdueFine" : 150.0,
+    "forgiveOverdueFine" : true,
+    "overdueRecallFine" : {
+      "quantity" : 25.0,
+      "intervalId" : "day"
     },
-    {
-      "description": "Creates no overdue information. Used originally for migrated loans with past due dates.",
-      "gracePeriodRecall": true,
-      "maxOverdueFine": 0,
-      "id": "bbf8a2ba-0ae9-40fa-9fc6-5d26f7f01091",
-      "forgiveOverdueFine": true,
-      "maxOverdueRecallFine": 0,
-      "countClosed": true,
-      "name": "no_overdue"
+    "gracePeriodRecall" : true,
+    "maxOverdueRecallFine" : 150.0,
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:29.796+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:29.796+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     },
-    {
-      "name": "overdue_basic",
-      "countClosed": false,
-      "maxOverdueRecallFine": 35,
-      "forgiveOverdueFine": true,
-      "overdueRecallFine": {
-        "quantity": 1,
-        "intervalId": "day"
-      },
-      "id": "d87dfe54-6282-4c4e-aaa4-34b6d2953887",
-      "maxOverdueFine": 0,
-      "gracePeriodRecall": true
-    }
-  ]
+    "id" : "52d596ab-72a8-423d-b425-4dbb18c9c48c"
+  }, {
+    "name" : "day_5_max_35",
+    "overdueFine" : {
+      "quantity" : 5.0,
+      "intervalId" : "day"
+    },
+    "countClosed" : false,
+    "maxOverdueFine" : 35.0,
+    "forgiveOverdueFine" : true,
+    "overdueRecallFine" : {
+      "quantity" : 5.0,
+      "intervalId" : "day"
+    },
+    "gracePeriodRecall" : true,
+    "maxOverdueRecallFine" : 35.0,
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:30.481+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:30.481+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "id" : "c37d9704-4e19-4910-88a6-19990d0e24d0"
+  }, {
+    "name" : "hour_3_max_150",
+    "overdueFine" : {
+      "quantity" : 3.0,
+      "intervalId" : "hour"
+    },
+    "countClosed" : false,
+    "maxOverdueFine" : 150.0,
+    "forgiveOverdueFine" : true,
+    "overdueRecallFine" : {
+      "quantity" : 3.0,
+      "intervalId" : "hour"
+    },
+    "gracePeriodRecall" : true,
+    "maxOverdueRecallFine" : 150.0,
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:30.956+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:30.956+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "id" : "4cfa17ca-d29c-4677-a2d7-27c4d521e052"
+  }, {
+    "name" : "min_50_max_150",
+    "overdueFine" : {
+      "quantity" : 0.5,
+      "intervalId" : "minute"
+    },
+    "countClosed" : false,
+    "maxOverdueFine" : 150.0,
+    "forgiveOverdueFine" : true,
+    "gracePeriodRecall" : true,
+    "maxOverdueRecallFine" : 0.0,
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:30.971+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:30.971+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "id" : "530a98b3-5cb2-43aa-b8d3-51e5b08f563d"
+  }, {
+    "name" : "no_overdue",
+    "description" : "Creates no overdue information. Used originally for migrated loans with past due dates.",
+    "countClosed" : true,
+    "maxOverdueFine" : 0.0,
+    "forgiveOverdueFine" : true,
+    "gracePeriodRecall" : true,
+    "maxOverdueRecallFine" : 0.0,
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:31.003+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:31.003+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "id" : "bbf8a2ba-0ae9-40fa-9fc6-5d26f7f01091"
+  }, {
+    "name" : "overdue_basic",
+    "countClosed" : false,
+    "maxOverdueFine" : 0.0,
+    "forgiveOverdueFine" : true,
+    "overdueRecallFine" : {
+      "quantity" : 1.0,
+      "intervalId" : "day"
+    },
+    "gracePeriodRecall" : true,
+    "maxOverdueRecallFine" : 35.0,
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:31.376+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:31.376+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    },
+    "id" : "d87dfe54-6282-4c4e-aaa4-34b6d2953887"
+  } ]
 }

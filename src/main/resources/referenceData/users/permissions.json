@@ -1,664 +1,127 @@
 {
-  "path": "/perms/permissions",
-  "dependencies": [],
-  "data": [
-    {
-      "id": "7fd42e23-08bf-4bf3-ad66-f6e27c446649",
-      "subPermissions": [
-        "ui-finance.acq.unit.assignment.assign",
-        "ui-finance.allocations.create",
-        "ui-finance.transfers.create",
-        "ui-finance.acq.unit.assignment.manage",
-        "ui-finance.fiscal-year.view",
-        "ui-finance.fund-budget.view",
-        "ui-finance.group.view",
-        "ui-finance.ledger.view",
-        "ui-finance.fiscal-year.edit",
-        "ui-finance.fund-budget.edit",
-        "ui-finance.group.edit",
-        "ui-finance.ledger.edit",
-        "ui-finance.fiscal-year.create",
-        "ui-finance.fund-budget.create",
-        "ui-finance.group.create",
-        "ui-finance.ledger.create",
-        "ui-finance.fiscal-year.delete",
-        "ui-finance.fund-budget.delete",
-        "ui-finance.group.delete",
-        "ui-finance.ledger.delete",
-        "ui-invoice.all",
-        "ui-invoice.approve",
-        "ui-invoice.acq.unit.assignment.assign",
-        "ui-invoice.acq.unit.assignment.manage",
-        "ui-invoice.pay",
-        "ui-orders.acq.unit.assignment.assign",
-        "ui-orders.order-lines.create",
-        "ui-orders.order.create",
-        "ui-orders.order-lines.delete",
-        "ui-orders.order-lines.edit",
-        "ui-orders.order.edit",
-        "ui-orders.acq.unit.assignment.manage",
-        "ui-orders.order.delete",
-        "ui-orders.order.reopen",
-        "ui-orders.order.unopen",
-        "ui-orders.order-lines.view",
-        "ui-orders.order.view",
-        "ui-organizations.acqUnits.assign",
-        "ui-organizations.creds.view",
-        "ui-organizations.creds.manage",
-        "ui-organizations.acqUnits.manage",
-        "ui-organizations.view",
-        "ui-organizations.edit",
-        "ui-organizations.create",
-        "ui-organizations.delete",
-        "ui-receiving.view",
-        "ui-receiving.edit",
-        "ui-receiving.create",
-        "ui-receiving.delete",
-        "settings.acquisition-units.enabled",
-        "settings.data-import.enabled",
-        "settings.invoice.enabled",
-        "settings.orders.enabled",
-        "ui-organizations.settings",
-        "ui-receiving.settings",
-        "settings.tags.enabled",
-        "module.invoice.enabled"
-      ],
-      "permissionName": "7fd42e23-08bf-4bf3-ad66-f6e27c446649",
-      "displayName": "Acquisitions_Admin_Staff",
-      "mutable": true,
-      "visible": true
-    },
-    {
-      "visible": true,
-      "displayName": "Acquisitions_Financial_Admin",
-      "permissionName": "bbc81742-5f20-4517-9e38-a1ed0631d874",
-      "subPermissions": [
-        "ui-finance.allocations.create",
-        "ui-finance.transfers.create",
-        "ui-finance.acq.unit.assignment.manage",
-        "ui-finance.fiscal-year.view",
-        "ui-finance.fund-budget.view",
-        "ui-finance.group.view",
-        "ui-finance.ledger.view",
-        "ui-finance.fiscal-year.edit",
-        "ui-finance.fund-budget.edit",
-        "ui-finance.group.edit",
-        "ui-finance.ledger.edit",
-        "ui-finance.fiscal-year.create",
-        "ui-finance.fund-budget.create",
-        "ui-finance.group.create",
-        "ui-finance.ledger.create",
-        "ui-finance.fiscal-year.delete",
-        "ui-finance.fund-budget.delete",
-        "ui-finance.group.delete",
-        "ui-finance.ledger.delete",
-        "module.invoice.enabled"
-      ],
-      "id": "bbc81742-5f20-4517-9e38-a1ed0631d874",
-      "mutable": true
-    },
-    {
-      "visible": true,
-      "permissionName": "49f5a06f-a114-4772-a7ef-8f5b2bc71067",
-      "subPermissions": [
-        "ui-finance.fiscal-year.view",
-        "ui-finance.fund-budget.view",
-        "ui-finance.group.view",
-        "ui-finance.ledger.view"
-      ],
-      "id": "49f5a06f-a114-4772-a7ef-8f5b2bc71067",
-      "displayName": "Acquisitions_Financial_View",
-      "mutable": true
-    },
-    {
-      "displayName": "Acquisitions_Invoicing_Staff",
-      "permissionName": "2347a558-b532-4b28-971f-3dd05420375a",
-      "subPermissions": [
-        "ui-invoice.all",
-        "ui-invoice.approve",
-        "ui-invoice.acq.unit.assignment.assign",
-        "ui-invoice.batchVoucher.download",
-        "ui-invoice.acq.unit.assignment.manage",
-        "ui-invoice.pay",
-        "module.invoice.enabled"
-      ],
-      "id": "2347a558-b532-4b28-971f-3dd05420375a",
-      "mutable": true,
-      "visible": true
-    },
-    {
-      "visible": true,
-      "mutable": true,
-      "displayName": "Acquisitions_Orders_Staff",
-      "subPermissions": [
-        "ui-orders.acq.unit.assignment.assign",
-        "ui-orders.order-lines.create",
-        "ui-orders.order.create",
-        "ui-orders.order-lines.delete",
-        "ui-orders.order-lines.edit",
-        "ui-orders.order.edit",
-        "ui-orders.acq.unit.assignment.manage",
-        "ui-orders.order.delete",
-        "ui-orders.order.reopen",
-        "ui-orders.order.unopen",
-        "ui-orders.order-lines.view",
-        "ui-orders.order.view",
-        "module.invoice.enabled"
-      ],
-      "permissionName": "09f9b0a3-6be0-4fac-ac18-2f379337868b",
-      "id": "09f9b0a3-6be0-4fac-ac18-2f379337868b"
-    },
-    {
-      "visible": true,
-      "mutable": true,
-      "id": "3bc06f71-3a30-4d79-853f-ca6b6170b97b",
-      "permissionName": "3bc06f71-3a30-4d79-853f-ca6b6170b97b",
-      "subPermissions": [
-        "ui-orders.order-lines.view",
-        "ui-orders.order.view"
-      ],
-      "displayName": "Acquisitions_Orders_View"
-    },
-    {
-      "mutable": true,
-      "subPermissions": [
-        "ui-organizations.acqUnits.assign",
-        "ui-organizations.creds.view",
-        "ui-organizations.creds.manage",
-        "ui-organizations.acqUnits.manage",
-        "ui-organizations.view",
-        "ui-organizations.edit",
-        "ui-organizations.create",
-        "ui-organizations.delete"
-      ],
-      "permissionName": "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3",
-      "id": "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3",
-      "displayName": "Acquisitions_Organizations_Staff",
-      "visible": true
-    },
-    {
-      "visible": true,
-      "mutable": true,
-      "displayName": "Acquisitions_Receiving_Staff",
-      "permissionName": "cc4a6624-190c-4872-95dd-be090a74b61f",
-      "subPermissions": [
-        "ui-receiving.create",
-        "ui-receiving.delete"
-      ],
-      "id": "cc4a6624-190c-4872-95dd-be090a74b61f"
-    },
-    {
-      "visible": true,
-      "mutable": true,
-      "displayName": "Acquisitions_Receiving_Students",
-      "permissionName": "d2f1856c-d6f9-450f-b6be-a3d455282abe",
-      "subPermissions": [
-        "ui-receiving.create"
-      ],
-      "id": "d2f1856c-d6f9-450f-b6be-a3d455282abe"
-    },
-    {
-      "visible": true,
-      "mutable": true,
-      "displayName": "Acquisitions_Settings_Staff",
-      "permissionName": "560116fb-772e-4a00-90a2-fdc2b748ea2b",
-      "subPermissions": [
-        "ui-finance.settings.all",
-        "settings.invoice.enabled",
-        "settings.orders.enabled"
-      ],
-      "id": "560116fb-772e-4a00-90a2-fdc2b748ea2b"
-    },
-    {
-      "mutable": true,
-      "description": "Set of permissions for Staff and Professionals",
-      "displayName": "Cat_AllStaff",
-      "subPermissions": [
-        "ui-inventory.all-permissions.TEMPORARY",
-        "ui-inventory.items.mark-items-withdrawn",
-        "ui-orders.order-lines.view",
-        "ui-orders.order.view",
-        "ui-quick-marc.quick-marc-editor.all"
-      ],
-      "permissionName": "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
-      "id": "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
-      "visible": true
-    },
-    {
-      "visible": true,
-      "displayName": "Cat_Item",
-      "description": "Cataloging staff who only wish to view or edit item locations and status",
-      "id": "df294639-9886-44ae-a215-257e3f0bdfd2",
-      "subPermissions": [
-        "ui-inventory.item.edit"
-      ],
-      "permissionName": "df294639-9886-44ae-a215-257e3f0bdfd2",
-      "mutable": true
-    },
-    {
-      "visible": true,
-      "mutable": true,
-      "subPermissions": [
-        "ui-inventory.settings.alternative-title-types",
-        "ui-inventory.settings.call-number-types",
-        "ui-inventory.settings.classification-types",
-        "ui-inventory.settings.contributor-types",
-        "ui-inventory.settings.instance-formats",
-        "ui-inventory.settings.holdings-note-types",
-        "ui-inventory.settings.holdings-sources",
-        "ui-inventory.settings.holdings-types",
-        "ui-inventory.settings.ill-policies",
-        "ui-inventory.settings.instance-note-types",
-        "ui-inventory.settings.instance-statuses",
-        "ui-inventory.settings.item-note-types",
-        "ui-inventory.settings.loantypes",
-        "ui-inventory.settings.modes-of-issuance",
-        "ui-inventory.settings.instance-types",
-        "ui-inventory.settings.materialtypes",
-        "ui-inventory.settings.nature-of-content-terms",
-        "ui-inventory.settings.identifier-types",
-        "ui-inventory.settings.statistical-code-types",
-        "ui-inventory.settings.statistical-codes",
-        "ui-inventory.settings.electronic-access-relationships",
-        "ui-inventory.settings.list.view",
-        "ui-inventory.settings.fast-add",
-        "ui-tenant-settings.settings.location"
-      ],
-      "permissionName": "945ff52a-7e81-4374-a8be-41cb481db236",
-      "id": "945ff52a-7e81-4374-a8be-41cb481db236",
-      "description": "All settings related to the inventory application. May need to add more later.",
-      "displayName": "Cat_Settings"
-    },
-    {
-      "displayName": "Cat_Student",
-      "description": "Student Workers doing maintenance operations ",
-      "id": "80a761b1-fdb8-4bfa-988e-65760ff72ec5",
-      "subPermissions": [
-        "ui-inventory.items.mark-items-withdrawn",
-        "ui-inventory.instance.view-staff-suppressed-records",
-        "ui-inventory.instance.view",
-        "ui-inventory.holdings.delete",
-        "ui-inventory.item.delete",
-        "ui-inventory.item.markasmissing"
-      ],
-      "permissionName": "80a761b1-fdb8-4bfa-988e-65760ff72ec5",
-      "mutable": true,
-      "visible": true
-    },
-    {
-      "visible": true,
-      "mutable": true,
-      "id": "8641feeb-07f3-495e-86cb-93df4eb85068",
-      "subPermissions": [
-        "ui-inventory.instance.view-staff-suppressed-records",
-        "ui-inventory.instance.view"
-      ],
-      "permissionName": "8641feeb-07f3-495e-86cb-93df4eb85068",
-      "displayName": "Cat_View",
-      "description": "Permits non-catalogers to view Inventory, FOLIO Holdings, and Items"
-    },
-    {
-      "visible": true,
-      "displayName": "Circ_On_the_Fly",
-      "description": "For Circ staff having to create Circ on the Fly records",
-      "id": "f10e7d66-e6c5-4db9-a6e1-42fc2d568aa5",
-      "permissionName": "f10e7d66-e6c5-4db9-a6e1-42fc2d568aa5",
-      "subPermissions": [
-        "ui-plugin-create-inventory-records.create"
-      ],
-      "mutable": true
-    },
-    {
-      "description": "All settings that are related to circulation: circ, users, requests, feesfines",
-      "displayName": "Circ_Settings",
-      "permissionName": "82b9ae05-d805-4ae8-9553-5ff9113091f7",
-      "subPermissions": [
-        "ui-circulation.settings.cancellation-reasons",
-        "ui-circulation.settings.circulation-rules",
-        "ui-circulation.settings.fixed-due-date-schedules",
-        "ui-circulation.settings.loan-policies",
-        "ui-circulation.settings.lost-item-fees-policies",
-        "ui-circulation.settings.notice-policies",
-        "ui-circulation.settings.other-settings",
-        "ui-circulation.settings.overdue-fines-policies",
-        "ui-circulation.settings.notice-templates",
-        "ui-circulation.settings.request-policies",
-        "ui-circulation.settings.staff-slips",
-        "ui-circulation.settings.loan-history",
-        "ui-tenant-settings.settings.servicepoints",
-        "ui-users.settings.addresstypes",
-        "ui-users.settings.feefines.all",
-        "ui-users.settings.comments",
-        "ui-users.settings.feefines",
-        "ui-users.settings.owners",
-        "ui-users.settings.conditions",
-        "ui-users.settings.limits",
-        "ui-users.settings.usergroups",
-        "ui-users.settings.payments",
-        "ui-users.settings.refunds",
-        "ui-users.settings.transfers",
-        "ui-users.settings.transfertypes",
-        "ui-users.settings.waives",
-        "ui-users.settings.customfields.edit",
-        "ui-users.settings.customfields.all",
-        "ui-users.settings.customfields.view",
-        "ui-users.settings.departments.create.edit.view",
-        "ui-users.settings.departments.all",
-        "ui-users.settings.departments.view"
-      ],
-      "id": "82b9ae05-d805-4ae8-9553-5ff9113091f7",
-      "mutable": true,
-      "visible": true
-    },
-    {
-      "id": "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
-      "permissionName": "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
-      "subPermissions": [
-        "ui-checkin.all",
-        "ui-checkout.all",
-        "ui-checkout.circulation",
-        "ui-circulation-log.log-event.all",
-        "course-reserves.read-add-edit",
-        "ui-plugin-create-inventory-records.create",
-        "ui-users.feefineactions",
-        "ui-users.accounts",
-        "ui-users.manual_charge",
-        "ui-users.manual_pay",
-        "ui-inventory.items.mark-items-withdrawn",
-        "ui-inventory.item.markasmissing",
-        "ui-notes.item.create",
-        "ui-notes.item.delete",
-        "ui-notes.item.edit",
-        "ui-notes.item.view",
-        "ui-requests.create",
-        "ui-requests.edit",
-        "ui-users.create",
-        "ui-users.patron_blocks",
-        "ui-users.editproxies",
-        "ui-users.edit",
-        "ui-users.viewproxies",
-        "ui-users.viewuserservicepoints",
-        "ui-users.view",
-        "ui-users.loans.edit",
-        "ui-users.loans.claim-item-returned",
-        "ui-users.loans.declare-item-lost",
-        "ui-users.loans.declare-claimed-returned-item-as-missing",
-        "ui-users.loans.renew-override",
-        "ui-users.loans.all",
-        "ui-users.requests.all"
-      ],
-      "displayName": "Circ_Staff",
-      "mutable": true,
-      "visible": true
-    },
-    {
-      "visible": true,
-      "id": "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
-      "subPermissions": [
-        "ui-checkin.all",
-        "ui-checkout.circulation",
-        "ui-inventory.instance.view",
-        "ui-notes.item.create",
-        "ui-circulation-log.log-event.all",
-        "ui-notes.item.view",
-        "ui-users.viewproxies",
-        "ui-users.view",
-        "ui-users.loans.renew",
-        "ui-users.loans.view",
-        "ui-users.requests.all"
-      ],
-      "permissionName": "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
-      "displayName": "Circ_Students",
-      "mutable": true
-    },
-    {
-      "visible": true,
-      "mutable": true,
-      "displayName": "Circ_Supervisors",
-      "subPermissions": [
-        "ui-checkin.all",
-        "ui-checkout.all",
-        "ui-checkout.circulation",
-        "ui-circulation-log.log-event.all",
-        "course-reserves.maintain-items",
-        "course-reserves.read-all",
-        "course-reserves.read-add-edit",
-        "ui-plugin-create-inventory-records.create",
-        "ui-users.feefineactions",
-        "ui-users.accounts",
-        "ui-users.manual_charge",
-        "ui-users.manual_pay",
-        "ui-users.manual_waive",
-        "ui-inventory.items.mark-items-withdrawn",
-        "ui-inventory.item.markasmissing",
-        "ui-notes.item.create",
-        "ui-notes.item.delete",
-        "ui-notes.item.edit",
-        "ui-notes.item.view",
-        "ui-requests.all",
-        "ui-users.edituserservicepoints",
-        "ui-users.create",
-        "ui-users.feesfines.actions.all",
-        "ui-users.patron_blocks",
-        "ui-users.editproxies",
-        "ui-users.edit",
-        "ui-users.viewperms",
-        "ui-users.viewproxies",
-        "ui-users.viewuserservicepoints",
-        "ui-users.view",
-        "ui-users.loans.edit",
-        "ui-users.loans.claim-item-returned",
-        "ui-users.loans.declare-item-lost",
-        "ui-users.loans.declare-claimed-returned-item-as-missing",
-        "ui-users.loans.renew",
-        "ui-users.loans.renew-override",
-        "ui-users.loans.view",
-        "ui-users.loans.all",
-        "ui-users.requests.all"
-      ],
-      "permissionName": "bd76b150-f075-4bdc-a93a-e6f7a563067e",
-      "id": "bd76b150-f075-4bdc-a93a-e6f7a563067e"
-    },
-    {
-      "visible": true,
-      "description": "Staff needing to view Circ records",
-      "displayName": "Circ_View_only",
-      "subPermissions": [
-        "ui-circulation-log.log-event.all",
-        "ui-notes.item.view",
-        "ui-requests.view",
-        "ui-users.loans.view",
-        "ui-users.requests.all"
-      ],
-      "permissionName": "dfe8fa76-9e3f-420e-bada-10d077ddf1ae",
-      "id": "dfe8fa76-9e3f-420e-bada-10d077ddf1ae",
-      "mutable": true
-    },
-    {
-      "permissionName": "9ccfdbfe-ad7e-4103-9906-b06a47940eca",
-      "subPermissions": [
-        "settings.data-import.enabled",
-        "module.data-import.enabled"
-      ],
-      "id": "9ccfdbfe-ad7e-4103-9906-b06a47940eca",
-      "description": "Allows user to create data import profiles and run data import jobs",
-      "displayName": "Data_import_create_run",
-      "mutable": true,
-      "visible": true
-    },
-    {
-      "mutable": true,
-      "subPermissions": [
-        "ui-eholdings.titles-packages.create-delete",
-        "ui-eholdings.records.edit",
-        "ui-eholdings.package-title.select-unselect",
-        "module.eholdings.enabled"
-      ],
-      "permissionName": "55f0aae9-50bc-4041-88bd-1719a19ca167",
-      "id": "55f0aae9-50bc-4041-88bd-1719a19ca167",
-      "displayName": "ER_eHoldings_Staff",
-      "visible": true
-    },
-    {
-      "visible": true,
-      "displayName": "ER_ERM_Staff",
-      "subPermissions": [
-        "ui-agreements.agreements.delete",
-        "ui-agreements.agreements.edit",
-        "ui-agreements.resources.edit",
-        "ui-agreements.agreements.view",
-        "ui-agreements.resources.view",
-        "ui-plugin-find-agreement.search",
-        "ui-plugin-find-license.search",
-        "ui-licenses.licenses.delete",
-        "ui-licenses.licenses.edit",
-        "ui-licenses.licenses.view"
-      ],
-      "permissionName": "7301b3b0-7075-4e66-8c43-12ed005e6c6b",
-      "id": "7301b3b0-7075-4e66-8c43-12ed005e6c6b",
-      "mutable": true
-    },
-    {
-      "visible": true,
-      "id": "61978e3d-e0aa-4329-a2c0-36c6191aa09b",
-      "subPermissions": [
-        "ui-erm-usage.all",
-        "module.erm-usage.enabled"
-      ],
-      "permissionName": "61978e3d-e0aa-4329-a2c0-36c6191aa09b",
-      "displayName": "ER_eUsage_Staff",
-      "mutable": true
-    },
-    {
-      "visible": true,
-      "mutable": true,
-      "subPermissions": [],
-      "permissionName": "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1",
-      "id": "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1",
-      "displayName": "ER_Financial_Staff"
-    },
-    {
-      "id": "ee7c2fab-0080-4c11-80ce-94c6c51f27f9",
-      "permissionName": "ee7c2fab-0080-4c11-80ce-94c6c51f27f9",
-      "subPermissions": [
-        "ui-agreements.generalSettings.manage",
-        "ui-agreements.supplementaryProperties.manage",
-        "ui-agreements.picklists.manage",
-        "ui-eholdings.settings.access-types.create-edit",
-        "ui-eholdings.settings.kb",
-        "ui-eholdings.settings.access-types.all",
-        "ui-eholdings.settings.custom-labels.all",
-        "ui-eholdings.settings.kb.delete",
-        "ui-eholdings.settings.access-types.view",
-        "ui-eholdings.settings.custom-labels.view",
-        "ui-eholdings.settings.root-proxy",
-        "ui-eholdings.settings.enabled",
-        "ui-erm-usage.generalSettings.manage",
-        "ui-licenses.terms.manage",
-        "ui-licenses.picklists.manage"
-      ],
-      "displayName": "ER_Settings_Supervisor",
-      "mutable": true,
-      "visible": true
-    },
-    {
-      "visible": true,
-      "mutable": true,
-      "permissionName": "50a15dba-6ea2-426a-9118-369084f1247b",
-      "subPermissions": [
-        "ui-checkin.all",
-        "ui-checkout.all",
-        "ui-circulation-log.log-event.all",
-        "ui-plugin-create-inventory-records.create",
-        "ui-notes.item.create",
-        "ui-notes.item.view",
-        "ui-requests.create",
-        "ui-requests.edit",
-        "ui-users.loans.renew",
-        "ui-users.loans.view",
-        "ui-users.requests.all"
-      ],
-      "id": "50a15dba-6ea2-426a-9118-369084f1247b",
-      "description": "Interlibrary Loan staff",
-      "displayName": "ILS_Staff"
-    },
-    {
-      "id": "3c62be56-0b25-43bb-a2b3-05e8891369b0",
-      "subPermissions": [],
-      "permissionName": "3c62be56-0b25-43bb-a2b3-05e8891369b0",
-      "displayName": "ILS_Students",
-      "mutable": true,
-      "visible": true
-    },
-    {
-      "displayName": "Notes_Staff",
-      "subPermissions": [
-        "ui-notes.item.assign-unassign",
-        "ui-notes.item.create",
-        "ui-notes.item.delete",
-        "ui-notes.item.edit",
-        "ui-notes.item.view",
-        "module.notes.enabled"
-      ],
-      "permissionName": "8e6f20f4-58ae-4051-b7e4-abb4b36966a1",
-      "id": "8e6f20f4-58ae-4051-b7e4-abb4b36966a1",
-      "mutable": true,
-      "visible": true
-    },
-    {
-      "displayName": "Notes_Supervisor",
-      "subPermissions": [
-        "ui-notes.item.assign-unassign",
-        "ui-notes.item.create",
-        "ui-notes.item.delete",
-        "ui-notes.item.edit",
-        "ui-notes.item.view",
-        "settings.notes.enabled",
-        "module.notes.enabled"
-      ],
-      "permissionName": "89a70435-d430-4945-a280-f2791d242526",
-      "id": "89a70435-d430-4945-a280-f2791d242526",
-      "mutable": true,
-      "visible": true
-    },
-    {
-      "id": "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
-      "subPermissions": [
-        "ui-users.editperms"
-      ],
-      "permissionName": "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
-      "displayName": "Permission_sets_assign",
-      "description": "Can assign permission sets to users",
-      "mutable": true,
-      "visible": true
-    },
-    {
-      "visible": true,
-      "mutable": true,
-      "id": "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
-      "permissionName": "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
-      "subPermissions": [
-        "ui-users.settings.permsets",
-        "ui-users.settings.profilePictures"
-      ],
-      "displayName": "Permission_sets_create_edit",
-      "description": "Ability to create permission sets"
-    },
-    {
-      "visible": true,
-      "mutable": true,
-      "id": "05e05c02-f870-4602-9e1b-1451cf4ec9b1",
-      "subPermissions": [
-        "ui-checkin.all",
-        "ui-circulation-log.log-event.all",
-        "ui-notes.item.view",
-        "ui-requests.view",
-        "ui-users.loans.view",
-        "ui-users.requests.all"
-      ],
-      "permissionName": "05e05c02-f870-4602-9e1b-1451cf4ec9b1",
-      "displayName": "Shelving_Staff",
-      "description": "Shelving Department employees performing Circ functions"
+  "path" : "/perms/permissions",
+  "dependencies" : [ ],
+  "data" : [ {
+    "permissionName" : "audit.collection.get",
+    "displayName" : "Audit - get audit records",
+    "id" : "46b901be-cf37-4b20-a128-f5c289449334",
+    "description" : "Get audit records",
+    "tags" : [ ],
+    "subPermissions" : [ ],
+    "childOf" : [ "audit.all", "d7f5629f-6020-4e2b-94ca-65f33a9e840f" ],
+    "grantedTo" : [ ],
+    "mutable" : false,
+    "visible" : false,
+    "dummy" : false
+  }, {
+    "permissionName" : "configuration.audit.collection.get",
+    "displayName" : "configuration - get configuration audit entries collection",
+    "id" : "e5ca964d-b7a6-48ee-b468-5cdb3aab92e0",
+    "description" : "get configuration audit entries from storage",
+    "tags" : [ ],
+    "subPermissions" : [ ],
+    "childOf" : [ "configuration.all", "d7f5629f-6020-4e2b-94ca-65f33a9e840f" ],
+    "grantedTo" : [ ],
+    "mutable" : false,
+    "visible" : false,
+    "dummy" : false
+  }, {
+    "permissionName" : "configuration.entries.item.delete",
+    "displayName" : "configuration - delete configuration entry",
+    "id" : "337ff084-f40a-4ab5-8981-cb4d98825d3c",
+    "description" : "delete individual configuration entry in storage",
+    "tags" : [ ],
+    "subPermissions" : [ ],
+    "childOf" : [ "configuration.all", "d7f5629f-6020-4e2b-94ca-65f33a9e840f" ],
+    "grantedTo" : [ ],
+    "mutable" : false,
+    "visible" : false,
+    "dummy" : false
+  }, {
+    "permissionName" : "module.checkin.enabled",
+    "displayName" : "UI: Check in module is enabled",
+    "id" : "2e00b1d9-9b11-4515-9274-598ddfc81136",
+    "tags" : [ ],
+    "subPermissions" : [ ],
+    "childOf" : [ "ui-checkin.all", "d7f5629f-6020-4e2b-94ca-65f33a9e840f" ],
+    "grantedTo" : [ ],
+    "mutable" : false,
+    "visible" : false,
+    "dummy" : false
+  }, {
+    "permissionName" : "finance.module.all",
+    "displayName" : "All finance-module perms",
+    "id" : "3e2d91f9-4f0c-4d12-ab3a-93e80011fe87",
+    "description" : "All permissions for the finance module",
+    "tags" : [ ],
+    "subPermissions" : [ "finance-storage.budgets.all", "finance-storage.expense-classes.all", "finance-storage.budget-expense-classes.all", "finance-storage.fiscal-years.all", "finance-storage.funds.all", "finance-storage.groups.all", "finance-storage.ledgers.all", "finance-storage.transactions.all", "finance-storage.fund-types.all", "finance-storage.order-transaction-summaries.all", "finance-storage.invoice-transaction-summaries.all" ],
+    "childOf" : [ "d7f5629f-6020-4e2b-94ca-65f33a9e840f" ],
+    "grantedTo" : [ ],
+    "mutable" : false,
+    "visible" : false,
+    "dummy" : false
+  }, {
+    "permissionName" : "records-editor.all",
+    "displayName" : "All records-editor permissions",
+    "id" : "2fc39bfe-f97c-4c28-89b1-9125a1ef4d31",
+    "description" : "All permissions for the records-editor",
+    "tags" : [ ],
+    "subPermissions" : [ "records-editor.records.item.get", "records-editor.records.item.put" ],
+    "childOf" : [ "d7f5629f-6020-4e2b-94ca-65f33a9e840f" ],
+    "grantedTo" : [ ],
+    "mutable" : false,
+    "visible" : false,
+    "dummy" : false
+  }, {
+    "permissionName" : "ui-agreements.agreements.edit",
+    "displayName" : "Agreements: Edit agreements",
+    "id" : "88dd5ab5-e831-4606-8137-ad9b8a825d43",
+    "tags" : [ ],
+    "subPermissions" : [ "ui-agreements.agreements.view", "erm.agreements.edit", "erm.entitlements.edit", "erm.files.edit", "tags.item.post" ],
+    "childOf" : [ "d7f5629f-6020-4e2b-94ca-65f33a9e840f", "7301b3b0-7075-4e66-8c43-12ed005e6c6b" ],
+    "grantedTo" : [ "db571644-12c3-45df-bb4d-78004d40d41c" ],
+    "mutable" : false,
+    "visible" : true,
+    "dummy" : false
+  }, {
+    "permissionName" : "ui-agreements.resources.edit",
+    "displayName" : "Agreements: Edit e-resources",
+    "id" : "33a8df52-5bfe-4c21-85fd-cdd41a0a3e78",
+    "tags" : [ ],
+    "subPermissions" : [ "erm.pci.edit", "erm.pti.edit", "erm.titles.edit", "ui-agreements.resources.view" ],
+    "childOf" : [ "d7f5629f-6020-4e2b-94ca-65f33a9e840f", "7301b3b0-7075-4e66-8c43-12ed005e6c6b" ],
+    "grantedTo" : [ "db571644-12c3-45df-bb4d-78004d40d41c" ],
+    "mutable" : false,
+    "visible" : true,
+    "dummy" : false
+  }, {
+    "permissionName" : "62852d44-d07d-470b-a7f9-0d68e2f365c4",
+    "displayName" : "VuFind",
+    "id" : "62852d44-d07d-470b-a7f9-0d68e2f365c4",
+    "tags" : [ ],
+    "subPermissions" : [ "circulation.requests.item.get", "gobi.all", "inventory-storage.items.collection.get", "ncip.all", "oai-pmh.all", "patron.all", "rtac.all", "users.collection.get", "rtac.holdings.item.get", "rtac.batch.post", "SYS#mod-rtac-2.0.1#/rtac-batch#[POST]", "SYS#mod-rtac-2.0.1#/rtac/{id}#[GET]" ],
+    "childOf" : [ ],
+    "grantedTo" : [ "db571644-12c3-45df-bb4d-78004d40d41c", "7ae009b8-50c3-45fa-afe6-b863572a7f09" ],
+    "mutable" : true,
+    "visible" : true,
+    "dummy" : false,
+    "metadata" : {
+      "createdDate" : "2021-03-02T20:19:31.613+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-03-08T20:04:25.238+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
-  ]
+  }, {
+    "permissionName" : "SYS#mod-circulation-99.1.1#/circulation/requests-reports/hold-shelf-clearance/{id}#[GET]",
+    "displayName" : "System generated: SYS#mod-circulation-99.1.1#/circulation/requests-reports/hold-shelf-clearance/{id}#[GET]",
+    "id" : "34c44dca-19c2-4720-b7b8-09aba63fc68a",
+    "description" : "System generated permission set",
+    "tags" : [ ],
+    "subPermissions" : [ "modperms.circulation.requests.hold-shelf-clearance-report.get" ],
+    "childOf" : [ ],
+    "grantedTo" : [ ],
+    "mutable" : false,
+    "visible" : false,
+    "dummy" : false
+  } ]
 }

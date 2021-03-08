@@ -1,11 +1,39 @@
 {
-  "path": "/holdings-types",
-  "dependencies": [],
-  "data": [
-    {
-      "name": "Unknown",
-      "source": "marc",
-      "id": "61155a36-148b-4664-bb7f-64ad708e0b32"
+  "path" : "/holdings-types",
+  "dependencies" : [ ],
+  "data" : [ {
+    "id" : "03c9c400-b9e3-4a07-ac0e-05ab470233ed",
+    "name" : "Monograph",
+    "source" : "folio",
+    "metadata" : {
+      "createdDate" : "2021-02-24T17:13:35.753+00:00",
+      "updatedDate" : "2021-02-24T17:13:35.753+00:00"
     }
-  ]
+  }, {
+    "id" : "e6da6c98-6dd0-41bc-8b4b-cfd4bbd9c3ae",
+    "name" : "Serial",
+    "source" : "folio",
+    "metadata" : {
+      "createdDate" : "2021-02-24T17:13:35.757+00:00",
+      "updatedDate" : "2021-02-24T17:13:35.757+00:00"
+    }
+  }, {
+    "id" : "dc35d0ae-e877-488b-8e97-6e41444e6d0a",
+    "name" : "Multi-part monograph",
+    "source" : "folio",
+    "metadata" : {
+      "createdDate" : "2021-02-24T17:13:35.764+00:00",
+      "updatedDate" : "2021-02-24T17:13:35.764+00:00"
+    }
+  }, {
+    "id" : "61155a36-148b-4664-bb7f-64ad708e0b32",
+    "name" : "Unknown",
+    "source" : "marc",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:22:19.424+00:00",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:22:19.424+00:00",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  } ]
 }

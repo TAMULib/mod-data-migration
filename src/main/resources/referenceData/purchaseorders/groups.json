@@ -1,221 +1,373 @@
 {
-  "path": "/finance/groups",
-  "dependencies": [],
-  "data": [
-    {
-      "status": "Active",
-      "name": "Cushing Endowment",
-      "acqUnitIds": [],
-      "id": "7e946263-5ab1-43a7-afc5-462976e134b5",
-      "code": "cushendowment",
-      "description": "For Cushing Endowment"
-    },
-    {
-      "code": "Cushing Allocated",
-      "id": "96d9827a-ca78-489b-b38f-968a394a76f9",
-      "description": "For Cushing Allocated",
-      "status": "Active",
-      "name": "Cushing Allocated",
-      "acqUnitIds": []
-    },
-    {
-      "code": "cushing restricted",
-      "id": "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2",
-      "status": "Active",
-      "name": "Cushing Restricted",
-      "acqUnitIds": []
-    },
-    {
-      "code": "ebook",
-      "id": "f36308fe-718c-4664-8792-1688a2188b1c",
-      "description": "For Ebooks only",
-      "status": "Active",
-      "name": "zEbooks",
-      "acqUnitIds": []
-    },
-    {
-      "code": "libraryproposals",
-      "id": "54963b77-8cbb-4c82-a30c-01a86dd7898d",
-      "description": "For Library Proposals Purchases only",
-      "status": "Active",
-      "acqUnitIds": [],
-      "name": "zLibrary Proposals"
-    },
-    {
-      "id": "95406f00-ad4a-411c-9b52-ce179b742d31",
-      "code": "monographs",
-      "name": "Monographs",
-      "acqUnitIds": [],
-      "status": "Active"
-    },
-    {
-      "status": "Active",
-      "acqUnitIds": [],
-      "name": "Mono Restricted",
-      "code": "monorest",
-      "id": "8cac000d-8364-44be-9e9b-3b1d137672c8"
-    },
-    {
-      "code": "msler",
-      "id": "9602260b-1a96-444b-b694-d1fabec70ed6",
-      "name": "MSL Electronic Resources",
-      "acqUnitIds": [],
-      "status": "Active"
-    },
-    {
-      "status": "Active",
-      "name": "MSL Print resources",
-      "acqUnitIds": [],
-      "code": "mslprint",
-      "id": "60531c4d-5f80-47e6-8d49-423124d9d19c"
-    },
-    {
-      "acqUnitIds": [],
-      "name": "One Time",
-      "status": "Active",
-      "description": "For Monographic one-time purchases",
-      "code": "onetime",
-      "id": "520b1673-a56c-41ec-8d19-70b724b1c556"
-    },
-    {
-      "id": "2b41de37-1b02-4673-8a9e-f2b538306122",
-      "code": "printbooks",
-      "description": "For Print Books only",
-      "status": "Active",
-      "name": "zPrint Books",
-      "acqUnitIds": []
-    },
-    {
-      "name": "Recurring Evans",
-      "acqUnitIds": [],
-      "status": "Active",
-      "code": "recurring",
-      "id": "8d414b94-14e8-4323-bcdc-1ac6ace09404"
-    },
-    {
-      "status": "Active",
-      "name": "Recurring Etxt Others",
-      "acqUnitIds": [],
-      "code": "reo",
-      "id": "9259b254-17dd-46cb-82c4-03aaf19d8972",
-      "description": "For Recurring Restricted & Other Etxt Fund Purchases"
-    },
-    {
-      "name": "zReplacement",
-      "acqUnitIds": [],
-      "status": "Active",
-      "description": "For replacement purchases only",
-      "code": "replacement",
-      "id": "42c6c713-ae77-464a-b6f5-7d3344511896"
-    },
-    {
-      "description": "For Restricted Fund Purchases only",
-      "code": "restrictedfunds",
-      "id": "454250ae-6490-41a0-a12b-4311060e2fb0",
-      "name": "zRestricted Funds",
-      "acqUnitIds": [],
-      "status": "Active"
-    },
-    {
-      "id": "551b6a50-be0d-4546-a09c-401698e27536",
-      "code": "shiping",
-      "description": "For Shipping charges only",
-      "status": "Active",
-      "name": "zShipping",
-      "acqUnitIds": []
-    },
-    {
-      "name": "zStreaming Video",
-      "acqUnitIds": [],
-      "status": "Active",
-      "description": "For Streaming Video Purchases",
-      "code": "streamingvideo",
-      "id": "396db855-12c8-478c-86a4-ce79eb677e57"
-    },
-    {
-      "code": "tamutest",
-      "id": "69b7974e-d010-4623-b2ac-1be720efa692",
-      "acqUnitIds": [],
-      "name": "TAMU test",
-      "status": "Active"
-    },
-    {
-      "status": "Active",
-      "acqUnitIds": [],
-      "name": "zUser Generated",
-      "code": "usergenerated",
-      "id": "3aad39dd-a06a-4a0b-83ca-09239f15afbf",
-      "description": "For User Generated Purchases"
-    },
-    {
-      "name": "zCushing",
-      "acqUnitIds": [],
-      "status": "Active",
-      "description": "zFor Cushing Allocated Purchases",
-      "code": "zcushing",
-      "id": "02970c0f-d143-41de-8766-45c89089d690"
-    },
-    {
-      "code": "zcushrestricted",
-      "id": "03a1baaa-a656-4df8-a5e9-3025130ec76d",
-      "description": "zFor Cushing Restricted Funds.",
-      "status": "Active",
-      "acqUnitIds": [],
-      "name": "zCushing Restricted"
-    },
-    {
-      "description": "zFor Monographic Purchases",
-      "id": "9123c165-b4f0-4c0b-bbf3-6d6ef1de1908",
-      "code": "zmonographic",
-      "name": "zMonographic",
-      "acqUnitIds": [],
-      "status": "Active"
-    },
-    {
-      "name": "zRecurring",
-      "acqUnitIds": [],
-      "status": "Active",
-      "description": "zFor On-Going Purchases",
-      "code": "zrecurring",
-      "id": "5ef9cc94-d332-4a4f-a51d-a85e53ed8529"
-    },
-    {
-      "code": "zrecurringrest",
-      "id": "3e54df19-46ef-4455-8cab-e520c77795dc",
-      "name": "zRecurring Restricted Etxt",
-      "acqUnitIds": [],
-      "status": "Inactive"
-    },
-    {
-      "description": "zFor Recurring Restricted Funds",
-      "id": "307ef62f-df35-4a07-b4dd-12151b685d68",
-      "code": "zrecurringrestricted",
-      "name": "zRecurring Restricted",
-      "acqUnitIds": [],
-      "status": "Active"
-    },
-    {
-      "status": "Active",
-      "name": "zMonographic Restricted",
-      "acqUnitIds": [],
-      "code": "zrestricted mono",
-      "id": "e43412e0-92c3-41fd-b5bd-bd9f2b225ffa",
-      "description": "zFor Restricted Monographic Funds"
-    },
-    {
-      "code": "zTest",
-      "id": "9bde5b17-d962-4726-9d0d-cb07c04f48e6",
-      "description": "Testing",
-      "status": "Active",
-      "acqUnitIds": [],
-      "name": "zTest"
-    },
-    {
-      "code": "zzrecurring",
-      "id": "a0b2bc88-dbbe-48d7-89da-d1df8057c0ba",
-      "acqUnitIds": [],
-      "name": "zRecurring - Evans",
-      "status": "Active"
+  "path" : "/finance/groups",
+  "dependencies" : [ ],
+  "data" : [ {
+    "id" : "7e946263-5ab1-43a7-afc5-462976e134b5",
+    "acqUnitIds" : [ ],
+    "code" : "cushendowment",
+    "description" : "For Cushing Endowment",
+    "name" : "Cushing Endowment",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:24.495+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:24.495+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
-  ]
+  }, {
+    "id" : "96d9827a-ca78-489b-b38f-968a394a76f9",
+    "acqUnitIds" : [ ],
+    "code" : "Cushing Allocated",
+    "description" : "For Cushing Allocated",
+    "name" : "Cushing Allocated",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:25.189+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:25.189+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2",
+    "acqUnitIds" : [ ],
+    "code" : "cushing restricted",
+    "name" : "Cushing Restricted",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:25.720+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:25.720+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "f36308fe-718c-4664-8792-1688a2188b1c",
+    "acqUnitIds" : [ ],
+    "code" : "ebook",
+    "description" : "For Ebooks only",
+    "name" : "zEbooks",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:25.948+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:25.948+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "54963b77-8cbb-4c82-a30c-01a86dd7898d",
+    "acqUnitIds" : [ ],
+    "code" : "libraryproposals",
+    "description" : "For Library Proposals Purchases only",
+    "name" : "zLibrary Proposals",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.015+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.015+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "95406f00-ad4a-411c-9b52-ce179b742d31",
+    "acqUnitIds" : [ ],
+    "code" : "monographs",
+    "name" : "Monographs",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.039+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.039+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "8cac000d-8364-44be-9e9b-3b1d137672c8",
+    "acqUnitIds" : [ ],
+    "code" : "monorest",
+    "name" : "Mono Restricted",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.064+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.064+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "9602260b-1a96-444b-b694-d1fabec70ed6",
+    "acqUnitIds" : [ ],
+    "code" : "msler",
+    "name" : "MSL Electronic Resources",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.091+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.091+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "60531c4d-5f80-47e6-8d49-423124d9d19c",
+    "acqUnitIds" : [ ],
+    "code" : "mslprint",
+    "name" : "MSL Print resources",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.154+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.154+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "520b1673-a56c-41ec-8d19-70b724b1c556",
+    "acqUnitIds" : [ ],
+    "code" : "onetime",
+    "description" : "For Monographic one-time purchases",
+    "name" : "One Time",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.181+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.181+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "2b41de37-1b02-4673-8a9e-f2b538306122",
+    "acqUnitIds" : [ ],
+    "code" : "printbooks",
+    "description" : "For Print Books only",
+    "name" : "zPrint Books",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.203+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.203+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "8d414b94-14e8-4323-bcdc-1ac6ace09404",
+    "acqUnitIds" : [ ],
+    "code" : "recurring",
+    "name" : "Recurring Evans",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.229+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.229+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "9259b254-17dd-46cb-82c4-03aaf19d8972",
+    "acqUnitIds" : [ ],
+    "code" : "reo",
+    "description" : "For Recurring Restricted & Other Etxt Fund Purchases",
+    "name" : "Recurring Etxt Others",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.272+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.272+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "42c6c713-ae77-464a-b6f5-7d3344511896",
+    "acqUnitIds" : [ ],
+    "code" : "replacement",
+    "description" : "For replacement purchases only",
+    "name" : "zReplacement",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.339+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.339+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "454250ae-6490-41a0-a12b-4311060e2fb0",
+    "acqUnitIds" : [ ],
+    "code" : "restrictedfunds",
+    "description" : "For Restricted Fund Purchases only",
+    "name" : "zRestricted Funds",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.401+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.401+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "551b6a50-be0d-4546-a09c-401698e27536",
+    "acqUnitIds" : [ ],
+    "code" : "shiping",
+    "description" : "For Shipping charges only",
+    "name" : "zShipping",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.436+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.436+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "396db855-12c8-478c-86a4-ce79eb677e57",
+    "acqUnitIds" : [ ],
+    "code" : "streamingvideo",
+    "description" : "For Streaming Video Purchases",
+    "name" : "zStreaming Video",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.497+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.497+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "9123c165-b4f0-4c0b-bbf3-6d6ef1de1908",
+    "acqUnitIds" : [ ],
+    "code" : "zmonographic",
+    "description" : "zFor Monographic Purchases",
+    "name" : "zMonographic",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.721+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.721+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "5ef9cc94-d332-4a4f-a51d-a85e53ed8529",
+    "acqUnitIds" : [ ],
+    "code" : "zrecurring",
+    "description" : "zFor On-Going Purchases",
+    "name" : "zRecurring",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.747+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.747+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "69b7974e-d010-4623-b2ac-1be720efa692",
+    "acqUnitIds" : [ ],
+    "code" : "tamutest",
+    "name" : "TAMU test",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.530+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.530+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "3aad39dd-a06a-4a0b-83ca-09239f15afbf",
+    "acqUnitIds" : [ ],
+    "code" : "usergenerated",
+    "description" : "For User Generated Purchases",
+    "name" : "zUser Generated",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.608+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.608+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "02970c0f-d143-41de-8766-45c89089d690",
+    "acqUnitIds" : [ ],
+    "code" : "zcushing",
+    "description" : "zFor Cushing Allocated Purchases",
+    "name" : "zCushing",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.635+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.635+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "03a1baaa-a656-4df8-a5e9-3025130ec76d",
+    "acqUnitIds" : [ ],
+    "code" : "zcushrestricted",
+    "description" : "zFor Cushing Restricted Funds.",
+    "name" : "zCushing Restricted",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.698+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.698+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "3e54df19-46ef-4455-8cab-e520c77795dc",
+    "acqUnitIds" : [ ],
+    "code" : "zrecurringrest",
+    "name" : "zRecurring Restricted Etxt",
+    "status" : "Inactive",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.800+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.800+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "307ef62f-df35-4a07-b4dd-12151b685d68",
+    "acqUnitIds" : [ ],
+    "code" : "zrecurringrestricted",
+    "description" : "zFor Recurring Restricted Funds",
+    "name" : "zRecurring Restricted",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.825+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.825+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "e43412e0-92c3-41fd-b5bd-bd9f2b225ffa",
+    "acqUnitIds" : [ ],
+    "code" : "zrestricted mono",
+    "description" : "zFor Restricted Monographic Funds",
+    "name" : "zMonographic Restricted",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.912+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.912+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "9bde5b17-d962-4726-9d0d-cb07c04f48e6",
+    "acqUnitIds" : [ ],
+    "code" : "zTest",
+    "description" : "Testing",
+    "name" : "zTest",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:26.999+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:26.999+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "a0b2bc88-dbbe-48d7-89da-d1df8057c0ba",
+    "acqUnitIds" : [ ],
+    "code" : "zzrecurring",
+    "name" : "zRecurring - Evans",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-02-26T15:23:27.021+0000",
+      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+      "updatedDate" : "2021-02-26T15:23:27.021+0000",
+      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
+    }
+  }, {
+    "id" : "87c48892-bf45-4e1b-8d4b-c1dd6b721139",
+    "acqUnitIds" : [ ],
+    "code" : "era",
+    "description" : "Includes all etxt, Continuations & Serials",
+    "name" : "Evans Recurring All",
+    "status" : "Active",
+    "metadata" : {
+      "createdDate" : "2021-03-04T20:41:02.648+0000",
+      "createdByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218",
+      "updatedDate" : "2021-03-04T20:42:11.601+0000",
+      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
+    }
+  } ]
 }
