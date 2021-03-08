@@ -1,9 +1,0 @@
-{
-   "ownerId" : "7e6832e2-b047-471e-9194-7e4106e0af1e",
-   "defaultAmount" : 2,
-   "automatic" : false,
-   "feeFineType" : "Lost item processing",
-   "id" : "3c3497de-a248-4cc9-b75d-02a5a74059c2",
-   "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
-   "chargeNoticeId" : "bd639688-ff1c-4092-ac94-65d7339910da"
-}

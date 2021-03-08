@@ -1,9 +1,0 @@
-{
-   "active" : true,
-   "name" : "send_no_notices",
-   "description" : "A basic notice policy that does not define any notices",
-   "id" : "2894f5eb-4e6b-40d5-a8c2-e3466fb11f2f",
-   "feeFineNotices" : [],
-   "loanNotices" : [],
-   "requestNotices" : []
-}
