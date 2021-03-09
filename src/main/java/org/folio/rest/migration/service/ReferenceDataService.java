@@ -2,6 +2,7 @@ package org.folio.rest.migration.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -62,41 +63,39 @@ public class ReferenceDataService {
 
   public void loadReferenceData(String pattern, String tenant) throws IOException {
     String token = okapiService.getToken(tenant);
-    List<ReferenceData> referenceData = loadResources(pattern).stream().map(rdr -> {
-      Optional<ReferenceData> ord = Optional.empty();
-      try {
-        ord = Optional.of(objectMapper.readValue(rdr.getInputStream(), ReferenceData.class)
-          .withName(FilenameUtils.getBaseName(rdr.getFilename()))
-          .withFilePath(rdr.getFile().getAbsolutePath()));
-      } catch (IOException e) {
-        logger.debug("failed reading reference data {}: {}", rdr.getFilename(), e.getMessage());
-      }
-      return ord;
-    }).filter(ord -> ord.isPresent())
-      .map(ord -> ord.get().withTenant(tenant).withToken(token))
-      .collect(Collectors.toList());
-    logger.info("creating reference data");
+    List<ReferenceData> referenceData = readReferenceData(pattern, tenant, token);
+    logger.info("creating reference data; tenant: {}, pattern: {}, quantity: {}", tenant, pattern, referenceData.size());
     createReferenceData(referenceData);
   }
 
   public List<ReferenceData> harvestReferenceData(String pattern, ExternalOkapi okapi) throws IOException {
     String token = okapiService.getToken(okapi);
-    List<ReferenceData> referenceData = loadResources(pattern).stream().map(rdr -> {
+    List<ReferenceData> referenceData = readReferenceData(pattern, okapi.getTenant(), token);
+    logger.info("harvesting reference data; tenant: {}, pattern: {}, quantity: {}", okapi.getTenant(), pattern, referenceData.size());
+    harvestReferenceData(referenceData, okapi);
+    return referenceData;
+  }
+
+  private List<ReferenceData> readReferenceData(String pattern, String tenant, String token) throws IOException {
+    return loadResources(pattern).stream().map(rdr -> {
       Optional<ReferenceData> ord = Optional.empty();
+      String filePath = null;
+      try {
+        filePath = Paths.get(rdr.getURI()).toAbsolutePath().toString();
+      } catch (Exception e) {
+        logger.debug("failed reading reference data; file: {}, error: {}", rdr.getFilename(), e.getMessage());
+      }
       try {
         ord = Optional.of(objectMapper.readValue(rdr.getInputStream(), ReferenceData.class)
           .withName(FilenameUtils.getBaseName(rdr.getFilename()))
-          .withFilePath(rdr.getFile().getAbsolutePath()));
+          .withFilePath(filePath));
       } catch (IOException e) {
-        logger.debug("failed reading reference data {}: {}", rdr.getFilename(), e.getMessage());
+        logger.error("failed reading reference data; file: {}, error: {}", rdr.getFilename(), e.getMessage());
       }
       return ord;
     }).filter(ord -> ord.isPresent())
-      .map(ord -> ord.get().withTenant(okapi.getTenant()).withToken(token))
+      .map(ord -> ord.get().withTenant(tenant).withToken(token))
       .collect(Collectors.toList());
-    logger.info("harvesting reference data");
-    harvestReferenceData(referenceData, okapi);
-    return referenceData;
   }
 
   private List<Resource> loadResources(String pattern) throws IOException {

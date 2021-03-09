@@ -31,7 +31,7 @@
     "replacedLostItemProcessingFee" : false,
     "replacementProcessingFee" : 0.0,
     "replacementAllowed" : true,
-    "lostItemReturned" : "Remove",
+    "lostItemReturned" : "Charge",
     "feesFinesShallRefunded" : {
       "duration" : 365,
       "intervalId" : "Days"
