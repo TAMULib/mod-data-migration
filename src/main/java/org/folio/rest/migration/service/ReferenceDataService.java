@@ -152,6 +152,24 @@ public class ReferenceDataService {
                 String id = node.get("id").asText();
                 node = okapiService.fetchReferenceDataById(okapi, datum, id);
               }
+              if (!datum.getTransform().isEmpty()) {
+                ObjectNode transformed = objectMapper.createObjectNode();
+                for (Map.Entry<String, String> te : datum.getTransform().entrySet()) {
+                  String key = te.getKey();
+                  String value = te.getValue();
+                  if (value.equals(".")) {
+                    transformed.set(key, node);
+                  } else {
+                    String property = value;
+                    int lastIndexOf = property.lastIndexOf(".");
+                    if (lastIndexOf >= 0) {
+                      property = property.substring(lastIndexOf + 1);
+                    }
+                    transformed.set(key, getNode(node, value).get(property));
+                  }
+                }
+                node = transformed;
+              }
               for (String exclude : datum.getExcludedProperties()) {
                 String property = exclude;
                 int lastIndexOf = property.lastIndexOf(".");

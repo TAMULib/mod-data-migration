@@ -3,26 +3,36 @@
   "query" : "limit=9999&query=(name<>TAMU * Bibligraphic Migration) AND (name<>Create MARC Bibs)",
   "reify" : false,
   "dependencies" : [ ],
-  "excludedProperties" : [ "metadata", "id", "parentProfiles", "childProfiles" ],
+  "transform" : {
+    "profile" : ".",
+    "id" : "id"
+  },
+  "excludedProperties" : [ "profile.metadata", "profile.id", "profile.parentProfiles", "profile.childProfiles" ],
   "data" : [ {
-    "name" : "MARCIVE-Create New Instances and Holdings Records URL",
-    "description" : "",
-    "dataType" : "MARC",
-    "deleted" : false,
-    "userInfo" : {
-      "firstName" : "tamu",
-      "lastName" : "admin",
-      "userName" : "tamu_admin"
-    }
+    "profile" : {
+      "name" : "MARCIVE-Create New Instances and Holdings Records URL",
+      "description" : "",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "aba437b8-4bad-42ed-81a6-b2a6c90b61a3"
   }, {
-    "name" : "Print Books - Create New Record",
-    "description" : "Creates new instance, holdings, and item record",
-    "dataType" : "MARC",
-    "deleted" : false,
-    "userInfo" : {
-      "firstName" : "tamu",
-      "lastName" : "admin",
-      "userName" : "tamu_admin"
-    }
+    "profile" : {
+      "name" : "Print Books - Create New Record",
+      "description" : "Creates new instance, holdings, and item record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "d1ad0fc7-1eb4-412e-b16a-fb9e0d7a2512"
   } ]
 }

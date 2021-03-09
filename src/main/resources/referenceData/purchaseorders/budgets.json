@@ -3,6 +3,7 @@
   "query" : "limit=9999",
   "reify" : true,
   "dependencies" : [ "fiscalYears", "funds" ],
+  "tranform" : { },
   "excludedProperties" : [ "metadata", "unavailable", "available", "allowableExpenditure", "awaitingPayment", "netTransfers", "overEncumbrance", "allocated", "allowableEncumbrance", "expenditures", "encumbered", "overExpended" ],
   "data" : [ {
     "statusExpenseClasses" : [ ],

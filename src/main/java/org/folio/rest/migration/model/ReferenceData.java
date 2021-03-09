@@ -1,7 +1,9 @@
 package org.folio.rest.migration.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -32,6 +34,8 @@ public class ReferenceData {
 
   private List<String> dependencies;
 
+  private Map<String, String> transform;
+
   private List<String> excludedProperties;
 
   private List<JsonNode> data;
@@ -39,6 +43,7 @@ public class ReferenceData {
   public ReferenceData() {
     reify = false;
     dependencies = new ArrayList<>();
+    transform = new HashMap<>();
     excludedProperties = new ArrayList<>();
     data = new ArrayList<>();
   }
@@ -107,6 +112,14 @@ public class ReferenceData {
     this.reify = reify;
   }
 
+  public Map<String, String> getTransform() {
+    return transform;
+  }
+
+  public void setTransform(Map<String, String> transform) {
+    this.transform = transform;
+  }
+
   public List<String> getExcludedProperties() {
     return excludedProperties;
   }
@@ -148,7 +161,4 @@ public class ReferenceData {
     return this;
   }
 
-  
-
-  
 }

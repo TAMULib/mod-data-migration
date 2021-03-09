@@ -3,72 +3,94 @@
   "query" : "limit=9999",
   "reify" : false,
   "dependencies" : [ "jobProfiles" ],
-  "excludedProperties" : [ "metadata", "id", "parentProfiles", "childProfiles" ],
+  "transform" : {
+    "profile" : ".",
+    "id" : "id"
+  },
+  "excludedProperties" : [ "profile.metadata", "profile.id", "profile.parentProfiles", "profile.childProfiles" ],
   "data" : [ {
-    "name" : "MARC delete 922 field",
-    "description" : "",
-    "action" : "MODIFY",
-    "folioRecord" : "MARC_BIBLIOGRAPHIC",
-    "deleted" : false,
-    "userInfo" : {
-      "firstName" : "tamu",
-      "lastName" : "admin",
-      "userName" : "tamu_admin"
-    }
+    "profile" : {
+      "name" : "MARC delete 922 field",
+      "description" : "",
+      "action" : "MODIFY",
+      "folioRecord" : "MARC_BIBLIOGRAPHIC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "d7391f03-a3aa-4652-8bf8-2a60b80c096a"
   }, {
-    "name" : "MARCIVE-Create New Holdings Record URL",
-    "description" : "",
-    "action" : "CREATE",
-    "folioRecord" : "HOLDINGS",
-    "deleted" : false,
-    "userInfo" : {
-      "firstName" : "tamu",
-      "lastName" : "admin",
-      "userName" : "tamu_admin"
-    }
+    "profile" : {
+      "name" : "MARCIVE-Create New Holdings Record URL",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "HOLDINGS",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "d187708f-3502-4f3a-ae96-05e5a00db4a7"
   }, {
-    "name" : "MARCIVE-Create New Instance Record URL",
-    "description" : "",
-    "action" : "CREATE",
-    "folioRecord" : "INSTANCE",
-    "deleted" : false,
-    "userInfo" : {
-      "firstName" : "tamu",
-      "lastName" : "admin",
-      "userName" : "tamu_admin"
-    }
+    "profile" : {
+      "name" : "MARCIVE-Create New Instance Record URL",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "bed64a5a-6678-433c-a8a2-842eae8fbe97"
   }, {
-    "name" : "Print Books - Creat Holdings Record",
-    "description" : "",
-    "action" : "CREATE",
-    "folioRecord" : "HOLDINGS",
-    "deleted" : false,
-    "userInfo" : {
-      "firstName" : "tamu",
-      "lastName" : "admin",
-      "userName" : "tamu_admin"
-    }
+    "profile" : {
+      "name" : "Print Books - Creat Holdings Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "HOLDINGS",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "48e017ca-3a46-4f7b-a4cf-a2d535eee9a2"
   }, {
-    "name" : "Print Books - Create Instance Record",
-    "description" : "",
-    "action" : "CREATE",
-    "folioRecord" : "INSTANCE",
-    "deleted" : false,
-    "userInfo" : {
-      "firstName" : "tamu",
-      "lastName" : "admin",
-      "userName" : "tamu_admin"
-    }
+    "profile" : {
+      "name" : "Print Books - Create Instance Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "11f7929e-df1b-4ee8-b118-40d80f563592"
   }, {
-    "name" : "Print Books - Create Item Record",
-    "description" : "",
-    "action" : "CREATE",
-    "folioRecord" : "ITEM",
-    "deleted" : false,
-    "userInfo" : {
-      "firstName" : "tamu",
-      "lastName" : "admin",
-      "userName" : "tamu_admin"
-    }
+    "profile" : {
+      "name" : "Print Books - Create Item Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "ITEM",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "c14234c6-7834-4ec4-9f16-dd3c5ccb6470"
   } ]
 }
