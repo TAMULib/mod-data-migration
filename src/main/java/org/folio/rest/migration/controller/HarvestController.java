@@ -55,7 +55,10 @@ public class HarvestController {
   }
 
   @PostMapping("/reference-data")
-  public JsonNode harvestReferenceData(@RequestBody ExternalOkapi okapi, @RequestParam(required = false, defaultValue = "classpath:/referenceData/**/*.json") String pattern) throws IOException {
+  public JsonNode harvestReferenceData(
+      @RequestBody ExternalOkapi okapi,
+      @RequestParam(required = false, defaultValue = "classpath:/referenceData/**/*.json") String pattern
+  ) throws IOException {
     ObjectNode response = objectMapper.createObjectNode();
     response.put("okapi", okapi.getUrl());
     response.put("tenant", okapi.getTenant());

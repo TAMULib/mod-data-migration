@@ -67,8 +67,11 @@ public class MigrationController {
   private RulesService rulesService;
 
   @PostMapping("/reference-data")
-  public CompletableFuture<Void> loadReferenceData(@TenantHeader String tenant) {
-    return referenceDataService.loadReferenceDataAsync("classpath:/referenceData/**/*.json", tenant);
+  public CompletableFuture<Void> loadReferenceData(
+      @TenantHeader String tenant,
+      @RequestParam(required = false, defaultValue = "classpath:/referenceData/**/*.json") String pattern
+  ) {
+    return referenceDataService.loadReferenceDataAsync(pattern, tenant);
   }
 
   @PostMapping("/calendar-periods")
