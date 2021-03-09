@@ -28,6 +28,8 @@ public class ReferenceData {
   @JsonIgnore
   private String token;
 
+  private Boolean reify;
+
   private List<String> dependencies;
 
   private List<String> excludedProperties;
@@ -35,6 +37,7 @@ public class ReferenceData {
   private List<JsonNode> data;
 
   public ReferenceData() {
+    reify = false;
     dependencies = new ArrayList<>();
     excludedProperties = new ArrayList<>();
     data = new ArrayList<>();
@@ -96,6 +99,14 @@ public class ReferenceData {
     this.dependencies = dependencies;
   }
 
+  public Boolean getReify() {
+    return reify;
+  }
+
+  public void setReify(Boolean reify) {
+    this.reify = reify;
+  }
+
   public List<String> getExcludedProperties() {
     return excludedProperties;
   }
@@ -137,4 +148,7 @@ public class ReferenceData {
     return this;
   }
 
+  
+
+  
 }

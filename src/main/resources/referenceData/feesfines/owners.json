@@ -1,6 +1,7 @@
 {
   "path" : "/owners",
   "query" : "limit=9999",
+  "reify" : false,
   "dependencies" : [ ],
   "excludedProperties" : [ "metadata" ],
   "data" : [ {

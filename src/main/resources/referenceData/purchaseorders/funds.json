@@ -1,867 +1,1111 @@
 {
   "path" : "/finance/funds",
   "query" : "limit=9999",
+  "reify" : true,
   "dependencies" : [ "fundTypes", "ledgers" ],
-  "excludedProperties" : [ "metadata" ],
+  "excludedProperties" : [ "fund.metadata" ],
   "data" : [ {
-    "id" : "81348bdf-785c-4f69-8d2a-4579df2fe1d3",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "aviles",
-    "externalAccountNo" : "53124",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Aviles",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "1fc3f163-005c-445a-8857-57ee98050b92",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "bechert",
-    "externalAccountNo" : "510461",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "GCBechert",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "78079626-2087-4c29-b5a3-657d934625ca",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "bryanhumanity",
-    "externalAccountNo" : "57076",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Bryan Humanity ",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "9dfaa0f3-023a-4281-a551-d77ca60cf768",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "cbenson",
-    "externalAccountNo" : "53096",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "GCBenson",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "4732e332-e9b0-4d59-b9c6-4dcd781edda1",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "cmouse",
-    "externalAccountNo" : "57354",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "GCMouse",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "da701580-607d-44dd-8ab9-c8103fc1c0a0",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "ebook",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Ebook",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "572bb92b-b2fd-4b6c-a54e-be7e270c9219",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "hinton",
-    "externalAccountNo" : "57271",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "GCHinton",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "448e6a06-f034-40de-a3f6-4a327ef95f66",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "libraryendow",
-    "externalAccountNo" : "510466",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Library Endow",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "b6e36a14-8d4c-472a-b0af-b5d881ba9d7f",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "momclub2",
-    "externalAccountNo" : "57152",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Mom's Club",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "2329a667-7d86-40d2-b247-40fd77786f3d",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "mousetext",
-    "externalAccountNo" : "57354",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Mouse Textbook",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "5cd9eff1-eb21-4cae-9b8b-79866f24d703",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "mslpmono",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
-    "name" : "MSL Monographs",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "0609a9ae-78a8-4fd2-80b1-e29d1a9e5770",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "mslvethist",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
-    "name" : "MSL Vet Historical",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "fed55d65-8834-4054-9dbc-fe669309c352",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "streaming",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Streaming Video",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "8c11f6ae-68ec-4ddd-a837-f87fc9599edd",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "tamutest",
-    "externalAccountNo" : "111222333",
-    "fundStatus" : "Active",
-    "ledgerId" : "8a479153-d433-420d-95a1-fa835d36542d",
-    "name" : "TAMU test",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "4c6d9a98-aa6f-4bfa-9087-6517dbb9a225",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "evansshipe",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Evans Shipping",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "d9b62c5b-4f02-437c-8734-cb160e7bd5c6",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "fbenson",
-    "externalAccountNo" : "53070",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "GCFBenson",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "28c60645-252b-4095-bc8d-74e528d3e678",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "kevin",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Kevin",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "81b89e93-3703-4430-ae06-42aae1917849",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "libprop2",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Library Proposals",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "985af0e0-f081-4087-90d2-80b348e54242",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "maps",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Maps",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "3652900b-b5aa-4525-adf5-b46114cc3cb8",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "maritime",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Maritime",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "e2f1ee85-7b9a-462a-b0cd-19a852feb3cc",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "mbenson",
-    "externalAccountNo" : "57019",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "GCMBenson",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "9759fff9-bfc2-4b39-ad1f-08a17c77eb8e",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "msledata",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
-    "name" : "MSL Databases",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "8c02c28a-865d-4165-9e0f-769351ac8b11",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "mslejournals",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
-    "name" : "MSL Ejournals",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "501682ed-ce9e-4ab9-95f5-61aac2200d6b",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "mslemono",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
-    "name" : "MSL Ebooks",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "55f3641d-021a-4024-a5a2-1cf1acc87675",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "mslpjournals",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
-    "name" : "MSL Print Journals",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "b947b703-cae9-4a65-ac53-53fa5270b3e9",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "okaytest2",
-    "externalAccountNo" : "11111",
-    "fundStatus" : "Active",
-    "ledgerId" : "421f8806-47f3-4418-a2a2-1d309733305e",
-    "name" : "zOkayTest2",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "1e410c13-699e-45a0-8389-1bdd5f29980d",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "print",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Print Books",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "a109d620-3fdd-4979-89d1-ab6d96629c4b",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "ragan",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Ragan Military",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "2a7a2d7b-701a-42b1-b8ff-48e54351ad80",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "rebecca",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Rebecca",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "41c4fe20-9108-466f-803e-bf665efd20ed",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "replacement",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Replacement",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "5536d254-e8ae-4ecb-b1f3-352f67bbc925",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "scifi",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Science Fiction",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "1d96b965-3aea-4b22-8b4f-18ec4e86a333",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "taex",
-    "externalAccountNo" : "57107",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "GCTAEX",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "cae6e17f-1d0a-487a-9166-79c5debab45d",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "tapley2",
-    "externalAccountNo" : "57674",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Tapley",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "5400ea2b-d665-4ccd-8568-6debb4dc587e",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "weinbaum2",
-    "externalAccountNo" : "511603",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Weinbaum",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "a90b2b82-aae5-4591-b771-287d5903ab82",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zbryanhum2",
-    "externalAccountNo" : "57076",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "zBryan Humanity2",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "c5d34282-b1f5-4def-9144-e7b13ff7ce75",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "watson",
-    "externalAccountNo" : "57043",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "GCWatson",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "f17df6d0-28e9-4736-b68d-0383033a3d3a",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "texas",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Texas",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "14b12443-9bed-4853-aaf9-c9f3e0106ce0",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "usergen2",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "User Generated",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "a37baab3-0d1f-4dec-bbd4-b00fcf458ac9",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zaccess",
-    "description" : "For Etxt Access Charges only",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
-    "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-    "name" : "zRecurring Etxt Access",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "85f889f5-b0c0-4a96-a6cf-35066cb6c268",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zbryanhum",
-    "description" : "For Bryan Humanity Purchases only",
-    "externalAccountNo" : "57076",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
-    "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-    "name" : "zBryan Humanity",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "6ef4eeb4-bf3f-48ec-b1bc-81fd491f1c67",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zcoke",
-    "description" : "For Serial Coke Etxt",
-    "externalAccountNo" : "511139",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
-    "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-    "name" : "zSerial Coke Etxt",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "21c78510-79b7-49fa-abaf-dc1174e26990",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zcont",
-    "description" : "For Continuation",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "d28c844a-bead-489e-a889-e3951b884f3f",
-    "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-    "name" : "zContinuation",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "afa59f42-2073-4fb4-8241-bb94ffb13e78",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zetxt",
-    "description" : "For Student Services  Etxt",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
-    "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-    "name" : "zStudent Services Etxt",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "a7ec3444-583d-40d5-9462-68e499833b1f",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zkyle",
-    "description" : "For Kyle Etxt",
-    "externalAccountNo" : "511105",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
-    "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-    "name" : "zKyle Etxt",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "272e0eed-04b8-4065-8c0f-caa47eaf1d12",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zmatsrv",
-    "description" : "For Material Srv. Mgmt Etxt ",
-    "externalAccountNo" : "211650",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
-    "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-    "name" : "zMaterial Srv. Mgmt Etxt",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "d44968f2-a02c-4537-89d7-9aa371a6a4f5",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zmouse",
-    "description" : "For Purchasing Of Text Books",
-    "externalAccountNo" : "57354",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
-    "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-    "name" : "zMouse Text Book",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "f120f11d-b752-4dcb-ba63-ba240e1785e9",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zebooks",
-    "description" : "For Ebooks",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
-    "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-    "name" : "zEbooks",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "a98c8c2b-fe55-4e25-a591-559ee6431e94",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zgilbert",
-    "externalAccountNo" : "217430",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
-    "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-    "name" : "zGilbert Etxt",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "142a9de0-4b74-4ab8-89a9-1762c3267e9f",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zlibend",
-    "description" : "For Library Endowment Purchases",
-    "externalAccountNo" : "510466",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
-    "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-    "name" : "zLibrary Endowment",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "6a0312b2-eb6c-4286-9c31-0c0f095853c2",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zlibprop",
-    "description" : "For Library Print Proposal Purchases and NewPropElect",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
-    "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-    "name" : "zLibrary Proposals",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "af441078-b5c3-48b7-ab68-ab5f13db44f0",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zmomclub",
-    "description" : "Aggie Mother's Club donation for purchasing text books.",
-    "externalAccountNo" : "57152",
-    "fundStatus" : "Inactive",
-    "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-    "name" : "zMother's Club",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "f524ba4f-c897-44b3-858e-c0bbd809fd5c",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zpp",
-    "description" : "For Recording Previous Year Advanced Payment",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
-    "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-    "name" : "zPre Paid Etxt + Credit",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "e5fafe9a-2430-4b1a-8245-f5a8f152aab7",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zprintbooks",
-    "description" : "For pAppoval, PintPDA & TechPro",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
-    "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-    "name" : "zPrint Books",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "b0bbb670-7ed1-4392-9c7e-1c4647722493",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zqatar",
-    "description" : "For Qatar Etxt Purchases",
-    "externalAccountNo" : "206913",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
-    "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-    "name" : "zQatar Etxt",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "d30d2697-bcae-4d54-827b-22728c31b76b",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zqatarex",
-    "description" : "For Qatar Exp. Return Etxt",
-    "externalAccountNo" : "203830",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
-    "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-    "name" : "zOatar Exp Return Etxt",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "ef843bd4-9aeb-4d47-8833-896a6b691165",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zreplace",
-    "description" : "For Replacement Print Purchases & eRplace",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
-    "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-    "name" : "zReplacement",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "bac2e4fd-63e9-494b-881d-bad3328bc9c6",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zserial",
-    "description" : "For Serial Purchases",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "4fdf4bf7-0508-4159-89f4-0d64b2d7e0e4",
-    "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-    "name" : "zSerial",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "f5a025da-a1eb-4a12-a812-9f6f73ada150",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zship",
-    "description" : "For Shipping Charges only",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
-    "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-    "name" : "zShipping",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "f77a815d-dfee-4fe2-a777-fe1e40f22ad4",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "ztapley",
-    "description" : "Tapley Purchases",
-    "externalAccountNo" : "57674",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
-    "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-    "name" : "zTapley",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "db0f5c9a-f483-4ef2-a034-a8418d202816",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "ztest",
-    "description" : "testing ",
-    "externalAccountNo" : "000000",
-    "fundStatus" : "Inactive",
-    "ledgerId" : "421f8806-47f3-4418-a2a2-1d309733305e",
-    "name" : "zTest fund",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "80885d10-1abe-4d97-ab3d-1f7dda1c1b82",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "buffer",
-    "description" : "Buffer",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Buffer",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "9203b370-d4c6-48d9-a15c-f4bf5ad1ec57",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "childrens",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Childrens",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "6d392544-a226-46af-8bb9-29779f25f3b8",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "CShipping",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Cushing Shipping",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "b16a58af-e4de-4c3e-a70c-be51727b716c",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zzlibend",
-    "externalAccountNo" : "510466",
-    "fundStatus" : "Inactive",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "zLibrary Endowment",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "b6cece59-82fb-4137-ac95-889868317d89",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zstream",
-    "description" : "For Streaming Videos from both AlexanderStreet & Kanopy",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "d87b3e95-be8a-4800-9733-3fa16f0c4266",
-    "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-    "name" : "zStreaming Video",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "d5966ae3-4967-4205-b13f-a2f76a1f0bab",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zusergen",
-    "description" : "For User Generated Purchases - Faculty, Grad, Selectors, Staff & Undergrad",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "ace38b12-e6fc-49f2-bbd4-f3e2960d9b3d",
-    "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-    "name" : "zUser Generated",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "b4912480-9087-4f46-bca5-d4f0c5d85d9c",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zweinbaum",
-    "description" : "For Poetry Books",
-    "externalAccountNo" : "511603",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
-    "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-    "name" : "zWeinbaum",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "cd92a59f-4558-4867-a377-649d1e190213",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zzbarclay",
-    "description" : "For Barclay Donation Purchases",
-    "externalAccountNo" : "72997",
-    "fundStatus" : "Inactive",
-    "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
-    "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-    "name" : "zzBarclay Etxt",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "f66f67f3-aaa7-4705-b4b9-3a98b261f68b",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "zzcont",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "zzContinuation",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "f23b4c26-9618-4f38-b5fd-48d83333fc64",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "colmex",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Colonial Mexicana",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "2d74ba9a-e966-4c0f-b493-6f4f02dc4a7a",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "etxtaccess",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Etxt Access",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "6db022b1-f872-4c4f-8cba-27630b404e52",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "cont2",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Continuation",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "cd589e3e-aab3-48ad-a03a-09de41b2effd",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "barclay",
-    "externalAccountNo" : "72997",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Etxt Barclay",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "4df44280-fd1d-4df2-a436-8c7785afa676",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "etxtcoke",
-    "externalAccountNo" : "511139",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Etxt Coke",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "9d8c2014-1ab3-443b-9e83-b016142c52d5",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "etxt gilbert",
-    "externalAccountNo" : "217430",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Etxt Gilbert",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "dbcc81b7-1aa6-4557-a612-f889670a36f3",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "etxtkyle",
-    "externalAccountNo" : "511105",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Etxt Kyle",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "692bc717-e37a-4525-95e3-fa25f58ecbef",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "etxt2",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Etxt Main",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "2cfb269e-ec9f-4f9c-9b75-1d95be521f61",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "msm",
-    "externalAccountNo" : "211650",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Etxt Mat. Srv. Mgmt",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "82163603-687f-46e3-90c9-6b33f2909be8",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "etxtqatar",
-    "externalAccountNo" : "206913",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Etxt Qatar",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "080d3d3c-fb4d-4a44-9fe7-3f587da8ea28",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "qer",
-    "externalAccountNo" : "203830",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Etxt Qatar Exp. Return",
-    "acqUnitIds" : [ ]
-  }, {
-    "id" : "f1b09c05-c854-4f4a-b413-bff94a99e207",
-    "allocatedFromIds" : [ ],
-    "allocatedToIds" : [ ],
-    "code" : "serials",
-    "externalAccountNo" : "242406",
-    "fundStatus" : "Active",
-    "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-    "name" : "Serials",
-    "acqUnitIds" : [ ]
+    "fund" : {
+      "id" : "81348bdf-785c-4f69-8d2a-4579df2fe1d3",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "aviles",
+      "externalAccountNo" : "53124",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Aviles",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "7e946263-5ab1-43a7-afc5-462976e134b5" ]
+  }, {
+    "fund" : {
+      "id" : "1fc3f163-005c-445a-8857-57ee98050b92",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "bechert",
+      "externalAccountNo" : "510461",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "GCBechert",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2" ]
+  }, {
+    "fund" : {
+      "id" : "78079626-2087-4c29-b5a3-657d934625ca",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "bryanhumanity",
+      "externalAccountNo" : "57076",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Bryan Humanity ",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "8cac000d-8364-44be-9e9b-3b1d137672c8" ]
+  }, {
+    "fund" : {
+      "id" : "9dfaa0f3-023a-4281-a551-d77ca60cf768",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "cbenson",
+      "externalAccountNo" : "53096",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "GCBenson",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2" ]
+  }, {
+    "fund" : {
+      "id" : "4732e332-e9b0-4d59-b9c6-4dcd781edda1",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "cmouse",
+      "externalAccountNo" : "57354",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "GCMouse",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2" ]
+  }, {
+    "fund" : {
+      "id" : "da701580-607d-44dd-8ab9-c8103fc1c0a0",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "ebook",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Ebook",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "95406f00-ad4a-411c-9b52-ce179b742d31" ]
+  }, {
+    "fund" : {
+      "id" : "572bb92b-b2fd-4b6c-a54e-be7e270c9219",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "hinton",
+      "externalAccountNo" : "57271",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "GCHinton",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2" ]
+  }, {
+    "fund" : {
+      "id" : "448e6a06-f034-40de-a3f6-4a327ef95f66",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "libraryendow",
+      "externalAccountNo" : "510466",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Library Endow",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "8cac000d-8364-44be-9e9b-3b1d137672c8" ]
+  }, {
+    "fund" : {
+      "id" : "b6e36a14-8d4c-472a-b0af-b5d881ba9d7f",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "momclub2",
+      "externalAccountNo" : "57152",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Mom's Club",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "8cac000d-8364-44be-9e9b-3b1d137672c8" ]
+  }, {
+    "fund" : {
+      "id" : "2329a667-7d86-40d2-b247-40fd77786f3d",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "mousetext",
+      "externalAccountNo" : "57354",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Mouse Textbook",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "8cac000d-8364-44be-9e9b-3b1d137672c8" ]
+  }, {
+    "fund" : {
+      "id" : "5cd9eff1-eb21-4cae-9b8b-79866f24d703",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "mslpmono",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
+      "name" : "MSL Monographs",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "60531c4d-5f80-47e6-8d49-423124d9d19c" ]
+  }, {
+    "fund" : {
+      "id" : "0609a9ae-78a8-4fd2-80b1-e29d1a9e5770",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "mslvethist",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
+      "name" : "MSL Vet Historical",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "60531c4d-5f80-47e6-8d49-423124d9d19c" ]
+  }, {
+    "fund" : {
+      "id" : "fed55d65-8834-4054-9dbc-fe669309c352",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "streaming",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Streaming Video",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "95406f00-ad4a-411c-9b52-ce179b742d31" ]
+  }, {
+    "fund" : {
+      "id" : "8c11f6ae-68ec-4ddd-a837-f87fc9599edd",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "tamutest",
+      "externalAccountNo" : "111222333",
+      "fundStatus" : "Active",
+      "ledgerId" : "8a479153-d433-420d-95a1-fa835d36542d",
+      "name" : "TAMU test",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "69b7974e-d010-4623-b2ac-1be720efa692" ]
+  }, {
+    "fund" : {
+      "id" : "4c6d9a98-aa6f-4bfa-9087-6517dbb9a225",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "evansshipe",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Evans Shipping",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "95406f00-ad4a-411c-9b52-ce179b742d31" ]
+  }, {
+    "fund" : {
+      "id" : "d9b62c5b-4f02-437c-8734-cb160e7bd5c6",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "fbenson",
+      "externalAccountNo" : "53070",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "GCFBenson",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2" ]
+  }, {
+    "fund" : {
+      "id" : "28c60645-252b-4095-bc8d-74e528d3e678",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "kevin",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Kevin",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "96d9827a-ca78-489b-b38f-968a394a76f9" ]
+  }, {
+    "fund" : {
+      "id" : "81b89e93-3703-4430-ae06-42aae1917849",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "libprop2",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Library Proposals",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "95406f00-ad4a-411c-9b52-ce179b742d31" ]
+  }, {
+    "fund" : {
+      "id" : "985af0e0-f081-4087-90d2-80b348e54242",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "maps",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Maps",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "96d9827a-ca78-489b-b38f-968a394a76f9" ]
+  }, {
+    "fund" : {
+      "id" : "3652900b-b5aa-4525-adf5-b46114cc3cb8",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "maritime",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Maritime",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "96d9827a-ca78-489b-b38f-968a394a76f9" ]
+  }, {
+    "fund" : {
+      "id" : "e2f1ee85-7b9a-462a-b0cd-19a852feb3cc",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "mbenson",
+      "externalAccountNo" : "57019",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "GCMBenson",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2" ]
+  }, {
+    "fund" : {
+      "id" : "9759fff9-bfc2-4b39-ad1f-08a17c77eb8e",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "msledata",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
+      "name" : "MSL Databases",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "9602260b-1a96-444b-b694-d1fabec70ed6" ]
+  }, {
+    "fund" : {
+      "id" : "8c02c28a-865d-4165-9e0f-769351ac8b11",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "mslejournals",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
+      "name" : "MSL Ejournals",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "9602260b-1a96-444b-b694-d1fabec70ed6" ]
+  }, {
+    "fund" : {
+      "id" : "501682ed-ce9e-4ab9-95f5-61aac2200d6b",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "mslemono",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
+      "name" : "MSL Ebooks",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "9602260b-1a96-444b-b694-d1fabec70ed6" ]
+  }, {
+    "fund" : {
+      "id" : "55f3641d-021a-4024-a5a2-1cf1acc87675",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "mslpjournals",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
+      "name" : "MSL Print Journals",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "60531c4d-5f80-47e6-8d49-423124d9d19c" ]
+  }, {
+    "fund" : {
+      "id" : "b947b703-cae9-4a65-ac53-53fa5270b3e9",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "okaytest2",
+      "externalAccountNo" : "11111",
+      "fundStatus" : "Active",
+      "ledgerId" : "421f8806-47f3-4418-a2a2-1d309733305e",
+      "name" : "zOkayTest2",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "1e410c13-699e-45a0-8389-1bdd5f29980d",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "print",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Print Books",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "95406f00-ad4a-411c-9b52-ce179b742d31" ]
+  }, {
+    "fund" : {
+      "id" : "a109d620-3fdd-4979-89d1-ab6d96629c4b",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "ragan",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Ragan Military",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "96d9827a-ca78-489b-b38f-968a394a76f9" ]
+  }, {
+    "fund" : {
+      "id" : "2a7a2d7b-701a-42b1-b8ff-48e54351ad80",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "rebecca",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Rebecca",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "96d9827a-ca78-489b-b38f-968a394a76f9" ]
+  }, {
+    "fund" : {
+      "id" : "41c4fe20-9108-466f-803e-bf665efd20ed",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "replacement",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Replacement",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "95406f00-ad4a-411c-9b52-ce179b742d31" ]
+  }, {
+    "fund" : {
+      "id" : "5536d254-e8ae-4ecb-b1f3-352f67bbc925",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "scifi",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Science Fiction",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "96d9827a-ca78-489b-b38f-968a394a76f9" ]
+  }, {
+    "fund" : {
+      "id" : "1d96b965-3aea-4b22-8b4f-18ec4e86a333",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "taex",
+      "externalAccountNo" : "57107",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "GCTAEX",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2" ]
+  }, {
+    "fund" : {
+      "id" : "cae6e17f-1d0a-487a-9166-79c5debab45d",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "tapley2",
+      "externalAccountNo" : "57674",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Tapley",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "8cac000d-8364-44be-9e9b-3b1d137672c8" ]
+  }, {
+    "fund" : {
+      "id" : "5400ea2b-d665-4ccd-8568-6debb4dc587e",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "weinbaum2",
+      "externalAccountNo" : "511603",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Weinbaum",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "8cac000d-8364-44be-9e9b-3b1d137672c8" ]
+  }, {
+    "fund" : {
+      "id" : "a90b2b82-aae5-4591-b771-287d5903ab82",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zbryanhum2",
+      "externalAccountNo" : "57076",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "zBryan Humanity2",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "c5d34282-b1f5-4def-9144-e7b13ff7ce75",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "watson",
+      "externalAccountNo" : "57043",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "GCWatson",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2" ]
+  }, {
+    "fund" : {
+      "id" : "f17df6d0-28e9-4736-b68d-0383033a3d3a",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "texas",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Texas",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "96d9827a-ca78-489b-b38f-968a394a76f9" ]
+  }, {
+    "fund" : {
+      "id" : "14b12443-9bed-4853-aaf9-c9f3e0106ce0",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "usergen2",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "User Generated",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "95406f00-ad4a-411c-9b52-ce179b742d31" ]
+  }, {
+    "fund" : {
+      "id" : "a37baab3-0d1f-4dec-bbd4-b00fcf458ac9",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zaccess",
+      "description" : "For Etxt Access Charges only",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "name" : "zRecurring Etxt Access",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "a0b2bc88-dbbe-48d7-89da-d1df8057c0ba" ]
+  }, {
+    "fund" : {
+      "id" : "85f889f5-b0c0-4a96-a6cf-35066cb6c268",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zbryanhum",
+      "description" : "For Bryan Humanity Purchases only",
+      "externalAccountNo" : "57076",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "name" : "zBryan Humanity",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "6ef4eeb4-bf3f-48ec-b1bc-81fd491f1c67",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zcoke",
+      "description" : "For Serial Coke Etxt",
+      "externalAccountNo" : "511139",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "name" : "zSerial Coke Etxt",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "3e54df19-46ef-4455-8cab-e520c77795dc" ]
+  }, {
+    "fund" : {
+      "id" : "21c78510-79b7-49fa-abaf-dc1174e26990",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zcont",
+      "description" : "For Continuation",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "d28c844a-bead-489e-a889-e3951b884f3f",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "name" : "zContinuation",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "afa59f42-2073-4fb4-8241-bb94ffb13e78",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zetxt",
+      "description" : "For Student Services  Etxt",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "name" : "zStudent Services Etxt",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "a0b2bc88-dbbe-48d7-89da-d1df8057c0ba" ]
+  }, {
+    "fund" : {
+      "id" : "a7ec3444-583d-40d5-9462-68e499833b1f",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zkyle",
+      "description" : "For Kyle Etxt",
+      "externalAccountNo" : "511105",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "name" : "zKyle Etxt",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "272e0eed-04b8-4065-8c0f-caa47eaf1d12",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zmatsrv",
+      "description" : "For Material Srv. Mgmt Etxt ",
+      "externalAccountNo" : "211650",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "name" : "zMaterial Srv. Mgmt Etxt",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "3e54df19-46ef-4455-8cab-e520c77795dc" ]
+  }, {
+    "fund" : {
+      "id" : "d44968f2-a02c-4537-89d7-9aa371a6a4f5",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zmouse",
+      "description" : "For Purchasing Of Text Books",
+      "externalAccountNo" : "57354",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "name" : "zMouse Text Book",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "f120f11d-b752-4dcb-ba63-ba240e1785e9",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zebooks",
+      "description" : "For Ebooks",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "name" : "zEbooks",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "a98c8c2b-fe55-4e25-a591-559ee6431e94",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zgilbert",
+      "externalAccountNo" : "217430",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "name" : "zGilbert Etxt",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "142a9de0-4b74-4ab8-89a9-1762c3267e9f",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zlibend",
+      "description" : "For Library Endowment Purchases",
+      "externalAccountNo" : "510466",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "name" : "zLibrary Endowment",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "6a0312b2-eb6c-4286-9c31-0c0f095853c2",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zlibprop",
+      "description" : "For Library Print Proposal Purchases and NewPropElect",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "name" : "zLibrary Proposals",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "af441078-b5c3-48b7-ab68-ab5f13db44f0",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zmomclub",
+      "description" : "Aggie Mother's Club donation for purchasing text books.",
+      "externalAccountNo" : "57152",
+      "fundStatus" : "Inactive",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "name" : "zMother's Club",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "f524ba4f-c897-44b3-858e-c0bbd809fd5c",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zpp",
+      "description" : "For Recording Previous Year Advanced Payment",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "name" : "zPre Paid Etxt + Credit",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "a0b2bc88-dbbe-48d7-89da-d1df8057c0ba" ]
+  }, {
+    "fund" : {
+      "id" : "e5fafe9a-2430-4b1a-8245-f5a8f152aab7",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zprintbooks",
+      "description" : "For pAppoval, PintPDA & TechPro",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "name" : "zPrint Books",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "b0bbb670-7ed1-4392-9c7e-1c4647722493",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zqatar",
+      "description" : "For Qatar Etxt Purchases",
+      "externalAccountNo" : "206913",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "name" : "zQatar Etxt",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "3e54df19-46ef-4455-8cab-e520c77795dc" ]
+  }, {
+    "fund" : {
+      "id" : "d30d2697-bcae-4d54-827b-22728c31b76b",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zqatarex",
+      "description" : "For Qatar Exp. Return Etxt",
+      "externalAccountNo" : "203830",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "name" : "zOatar Exp Return Etxt",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "3e54df19-46ef-4455-8cab-e520c77795dc" ]
+  }, {
+    "fund" : {
+      "id" : "ef843bd4-9aeb-4d47-8833-896a6b691165",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zreplace",
+      "description" : "For Replacement Print Purchases & eRplace",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "name" : "zReplacement",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "bac2e4fd-63e9-494b-881d-bad3328bc9c6",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zserial",
+      "description" : "For Serial Purchases",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "4fdf4bf7-0508-4159-89f4-0d64b2d7e0e4",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "name" : "zSerial",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "a0b2bc88-dbbe-48d7-89da-d1df8057c0ba" ]
+  }, {
+    "fund" : {
+      "id" : "f5a025da-a1eb-4a12-a812-9f6f73ada150",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zship",
+      "description" : "For Shipping Charges only",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "name" : "zShipping",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "f77a815d-dfee-4fe2-a777-fe1e40f22ad4",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "ztapley",
+      "description" : "Tapley Purchases",
+      "externalAccountNo" : "57674",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "name" : "zTapley",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "db0f5c9a-f483-4ef2-a034-a8418d202816",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "ztest",
+      "description" : "testing ",
+      "externalAccountNo" : "000000",
+      "fundStatus" : "Inactive",
+      "ledgerId" : "421f8806-47f3-4418-a2a2-1d309733305e",
+      "name" : "zTest fund",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "9bde5b17-d962-4726-9d0d-cb07c04f48e6" ]
+  }, {
+    "fund" : {
+      "id" : "80885d10-1abe-4d97-ab3d-1f7dda1c1b82",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "buffer",
+      "description" : "Buffer",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Buffer",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "96d9827a-ca78-489b-b38f-968a394a76f9" ]
+  }, {
+    "fund" : {
+      "id" : "9203b370-d4c6-48d9-a15c-f4bf5ad1ec57",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "childrens",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Childrens",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "96d9827a-ca78-489b-b38f-968a394a76f9" ]
+  }, {
+    "fund" : {
+      "id" : "6d392544-a226-46af-8bb9-29779f25f3b8",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "CShipping",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Cushing Shipping",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "96d9827a-ca78-489b-b38f-968a394a76f9" ]
+  }, {
+    "fund" : {
+      "id" : "b16a58af-e4de-4c3e-a70c-be51727b716c",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zzlibend",
+      "externalAccountNo" : "510466",
+      "fundStatus" : "Inactive",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "zLibrary Endowment",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "b6cece59-82fb-4137-ac95-889868317d89",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zstream",
+      "description" : "For Streaming Videos from both AlexanderStreet & Kanopy",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "d87b3e95-be8a-4800-9733-3fa16f0c4266",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "name" : "zStreaming Video",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "d5966ae3-4967-4205-b13f-a2f76a1f0bab",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zusergen",
+      "description" : "For User Generated Purchases - Faculty, Grad, Selectors, Staff & Undergrad",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "ace38b12-e6fc-49f2-bbd4-f3e2960d9b3d",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "name" : "zUser Generated",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "b4912480-9087-4f46-bca5-d4f0c5d85d9c",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zweinbaum",
+      "description" : "For Poetry Books",
+      "externalAccountNo" : "511603",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
+      "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
+      "name" : "zWeinbaum",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "cd92a59f-4558-4867-a377-649d1e190213",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zzbarclay",
+      "description" : "For Barclay Donation Purchases",
+      "externalAccountNo" : "72997",
+      "fundStatus" : "Inactive",
+      "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
+      "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
+      "name" : "zzBarclay Etxt",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "f66f67f3-aaa7-4705-b4b9-3a98b261f68b",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "zzcont",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "zzContinuation",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
+  }, {
+    "fund" : {
+      "id" : "f23b4c26-9618-4f38-b5fd-48d83333fc64",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "colmex",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Colonial Mexicana",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "96d9827a-ca78-489b-b38f-968a394a76f9" ]
+  }, {
+    "fund" : {
+      "id" : "2d74ba9a-e966-4c0f-b493-6f4f02dc4a7a",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "etxtaccess",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Etxt Access",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "9259b254-17dd-46cb-82c4-03aaf19d8972" ]
+  }, {
+    "fund" : {
+      "id" : "6db022b1-f872-4c4f-8cba-27630b404e52",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "cont2",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Continuation",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "8d414b94-14e8-4323-bcdc-1ac6ace09404" ]
+  }, {
+    "fund" : {
+      "id" : "cd589e3e-aab3-48ad-a03a-09de41b2effd",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "barclay",
+      "externalAccountNo" : "72997",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Etxt Barclay",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "9259b254-17dd-46cb-82c4-03aaf19d8972" ]
+  }, {
+    "fund" : {
+      "id" : "4df44280-fd1d-4df2-a436-8c7785afa676",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "etxtcoke",
+      "externalAccountNo" : "511139",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Etxt Coke",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "9259b254-17dd-46cb-82c4-03aaf19d8972" ]
+  }, {
+    "fund" : {
+      "id" : "9d8c2014-1ab3-443b-9e83-b016142c52d5",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "etxt gilbert",
+      "externalAccountNo" : "217430",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Etxt Gilbert",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "9259b254-17dd-46cb-82c4-03aaf19d8972" ]
+  }, {
+    "fund" : {
+      "id" : "dbcc81b7-1aa6-4557-a612-f889670a36f3",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "etxtkyle",
+      "externalAccountNo" : "511105",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Etxt Kyle",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "9259b254-17dd-46cb-82c4-03aaf19d8972" ]
+  }, {
+    "fund" : {
+      "id" : "692bc717-e37a-4525-95e3-fa25f58ecbef",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "etxt2",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Etxt Main",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "8d414b94-14e8-4323-bcdc-1ac6ace09404" ]
+  }, {
+    "fund" : {
+      "id" : "2cfb269e-ec9f-4f9c-9b75-1d95be521f61",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "msm",
+      "externalAccountNo" : "211650",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Etxt Mat. Srv. Mgmt",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "9259b254-17dd-46cb-82c4-03aaf19d8972" ]
+  }, {
+    "fund" : {
+      "id" : "82163603-687f-46e3-90c9-6b33f2909be8",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "etxtqatar",
+      "externalAccountNo" : "206913",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Etxt Qatar",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "9259b254-17dd-46cb-82c4-03aaf19d8972" ]
+  }, {
+    "fund" : {
+      "id" : "080d3d3c-fb4d-4a44-9fe7-3f587da8ea28",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "qer",
+      "externalAccountNo" : "203830",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Etxt Qatar Exp. Return",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "9259b254-17dd-46cb-82c4-03aaf19d8972" ]
+  }, {
+    "fund" : {
+      "id" : "f1b09c05-c854-4f4a-b413-bff94a99e207",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "serials",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Serials",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "8d414b94-14e8-4323-bcdc-1ac6ace09404" ]
   } ]
 }

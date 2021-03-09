@@ -1,6 +1,7 @@
 {
   "path" : "/finance/ledgers",
   "query" : "limit=9999",
+  "reify" : false,
   "dependencies" : [ "fiscalYears" ],
   "excludedProperties" : [ "metadata" ],
   "data" : [ {

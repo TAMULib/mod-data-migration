@@ -1,6 +1,7 @@
 {
   "path" : "/perms/permissions",
   "query" : "length=9999&query=(mutable==true AND displayName<>all*permission*)",
+  "reify" : false,
   "dependencies" : [ ],
   "excludedProperties" : [ "childOf", "dummy", "grantedTo", "metadata", "tags" ],
   "data" : [ {

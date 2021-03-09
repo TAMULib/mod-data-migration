@@ -1,9 +1,11 @@
 {
   "path" : "/finance/budgets",
   "query" : "limit=9999",
+  "reify" : true,
   "dependencies" : [ "fiscalYears", "funds" ],
   "excludedProperties" : [ "metadata" ],
   "data" : [ {
+    "statusExpenseClasses" : [ ],
     "id" : "8401cc0b-d497-46cc-8d8e-b568841806f1",
     "name" : "access-FY2021",
     "budgetStatus" : "Inactive",
@@ -20,6 +22,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "9d67f28a-12e7-4183-83d0-9809773b1f80",
     "name" : "aviles-FY2021",
     "budgetStatus" : "Active",
@@ -36,6 +39,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "4284cef5-1aef-46ce-9d1e-2f8a30886c2d",
     "name" : "barclay-FY2021",
     "budgetStatus" : "Inactive",
@@ -52,6 +56,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "9d09f3c3-1ba7-4872-b128-3b1b0eec94fe",
     "name" : "bryanhum2-FY2021",
     "budgetStatus" : "Active",
@@ -68,6 +73,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "a81f0a33-dfcb-4b04-9105-b2216e9c91df",
     "name" : "bryanhum-FY2021",
     "budgetStatus" : "Inactive",
@@ -84,6 +90,10 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "c9282d86-4120-4f5a-be3e-657067784124",
+      "status" : "Active"
+    } ],
     "id" : "c0416aea-5d77-449c-af88-20b8c22b2074",
     "name" : "cont-FY2021",
     "budgetStatus" : "Inactive",
@@ -100,6 +110,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "2c4aaded-1857-448f-ae94-2d3ecb058ee8",
     "name" : "ebooks-FY2021",
     "budgetStatus" : "Inactive",
@@ -116,6 +127,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "2535edb3-ce84-4cb3-9232-32c3f1df08aa",
     "name" : "libprop-FY2021",
     "budgetStatus" : "Inactive",
@@ -132,6 +144,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "11087ca8-0510-40fb-bcee-9996e4171016",
     "name" : "coke-FY2021",
     "budgetStatus" : "Inactive",
@@ -148,6 +161,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "279d1116-d2b4-4ab1-897e-742fbb8c3326",
     "name" : "etxt-FY2021",
     "budgetStatus" : "Inactive",
@@ -164,6 +178,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "8d4045f6-e18f-47a3-85b7-72bf3545c89f",
     "name" : "gilbert-FY2021",
     "budgetStatus" : "Inactive",
@@ -180,6 +195,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "df92beb2-63ce-42b1-99b9-6550895e91d0",
     "name" : "printbooks-FY2021",
     "budgetStatus" : "Inactive",
@@ -196,6 +212,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "b4079a60-dbbb-4ea9-9d71-3403eae544ae",
     "name" : "stream-FY2021",
     "budgetStatus" : "Inactive",
@@ -212,6 +229,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "e42aa23f-7be3-4d6d-8d09-7bb8d8c77f64",
     "name" : "tamutest-FY2021",
     "budgetStatus" : "Active",
@@ -228,6 +246,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "ff6bc40d-eaec-4553-92bb-bf6162e0dda4",
     "name" : "kyle-FY2021",
     "budgetStatus" : "Inactive",
@@ -244,6 +263,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "f3ae377e-0362-4aa3-a96e-481d0ca90543",
     "name" : "libend-FY2021",
     "budgetStatus" : "Inactive",
@@ -260,6 +280,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "7d84ea4f-2053-4cc9-a183-0ea3bfb28a38",
     "name" : "replace-FY2021",
     "budgetStatus" : "Inactive",
@@ -276,6 +297,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "1f675747-1228-4a39-b2f9-646c17243853",
     "name" : "matsrv-FY2021",
     "budgetStatus" : "Inactive",
@@ -292,6 +314,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "bbe4eae7-fb89-4c4e-be3d-1f06d9279f0a",
     "name" : "momclub-FY2021",
     "budgetStatus" : "Inactive",
@@ -308,6 +331,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "151fdac0-19ce-43c2-9722-593e74c3ff0f",
     "name" : "mouse-FY2021",
     "budgetStatus" : "Inactive",
@@ -324,6 +348,10 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "012ba30f-1d20-4afb-8029-2d64116e47f0",
+      "status" : "Active"
+    } ],
     "id" : "cb3e603c-ada4-4744-89cb-d3090cd78260",
     "name" : "mslvethist-FY2021",
     "budgetStatus" : "Active",
@@ -340,6 +368,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "8881ba85-a89a-4761-9848-26ee4f49e578",
     "name" : "qatarex-FY2021",
     "budgetStatus" : "Inactive",
@@ -356,6 +385,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "42b2df20-7f43-4f93-b897-cd12dbe206a3",
     "name" : "serial-FY2021",
     "budgetStatus" : "Inactive",
@@ -372,6 +402,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "d8262c43-62e7-4df6-943c-1cacdbbfcc31",
     "name" : "weinbaum-FY2021",
     "budgetStatus" : "Inactive",
@@ -388,6 +419,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "ad0878e9-ba9b-47b7-8b9f-81019da74457",
     "name" : "buffer-FY2021",
     "budgetStatus" : "Active",
@@ -404,6 +436,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "7abe86eb-ffe6-44c8-8635-c432e0d86b7f",
     "name" : "CShipping-FY2021",
     "budgetStatus" : "Active",
@@ -420,6 +453,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "53f8a6dc-e636-4fa4-b269-85a27629b0e2",
     "name" : "mbenson-FY2021",
     "budgetStatus" : "Active",
@@ -436,6 +470,13 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "8dd5588a-de13-45bc-8040-1ee5005160d8",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "9859d59b-1043-4f3d-bc83-d207d4c2c3f4",
+      "status" : "Active"
+    } ],
     "id" : "a70468d7-eed0-4eae-9c7e-47b68e8ee827",
     "name" : "streaming-FY2021",
     "budgetStatus" : "Active",
@@ -452,6 +493,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "d5676896-9d18-495b-89aa-1f8d2c551aff",
     "name" : "libraryendow-FY2021",
     "budgetStatus" : "Active",
@@ -468,6 +510,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "c1119efa-f723-4c2a-a35b-595f40d2e462",
     "name" : "pp-FY2021",
     "budgetStatus" : "Inactive",
@@ -484,6 +527,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "f75979a7-00fe-4ec1-b2c2-05d713ea55b3",
     "name" : "qatar-FY2021",
     "budgetStatus" : "Inactive",
@@ -500,6 +544,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "996ea62e-2f05-48c4-8de2-0e71d0710ea5",
     "name" : "ship-FY2021",
     "budgetStatus" : "Inactive",
@@ -516,6 +561,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "abbf7b8e-587f-425d-bc9c-4e366c6ace50",
     "name" : "tapley-FY2021",
     "budgetStatus" : "Inactive",
@@ -532,6 +578,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "43709318-a676-4ece-8e7d-543b3c5cf1b0",
     "name" : "childrens-FY2021",
     "budgetStatus" : "Active",
@@ -548,6 +595,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "0a3b779c-8dae-448e-973e-59a7022088c7",
     "name" : "ragan-FY2021",
     "budgetStatus" : "Active",
@@ -564,6 +612,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "352b7d7a-a2df-4a26-8916-705159efed32",
     "name" : "scifi-FY2021",
     "budgetStatus" : "Active",
@@ -580,6 +629,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "dd065084-6eb4-419c-a07b-8409ab82c49b",
     "name" : "cbenson-FY2021",
     "budgetStatus" : "Active",
@@ -596,6 +646,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "358a8ad9-5685-48ad-afca-2110185e0170",
     "name" : "cmouse-FY2021",
     "budgetStatus" : "Active",
@@ -612,6 +663,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "c8cefcd1-a57c-4d5a-81e9-f74c6551c5cd",
     "name" : "colmex-FY2021",
     "budgetStatus" : "Active",
@@ -628,6 +680,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "561820e3-e0f4-4b80-9f00-2821ff53a02a",
     "name" : "maps-FY2021",
     "budgetStatus" : "Active",
@@ -644,6 +697,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "1247a63f-d319-448c-ae36-0870b2ac6c96",
     "name" : "maritime-FY2021",
     "budgetStatus" : "Active",
@@ -660,6 +714,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "31b19278-0f49-4e76-a1a1-0cc3926fcaa7",
     "name" : "bechert-FY2021",
     "budgetStatus" : "Active",
@@ -676,6 +731,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "6f0f3b90-fbee-4efa-94ae-76afcd5705d4",
     "name" : "fbenson-FY2021",
     "budgetStatus" : "Active",
@@ -692,6 +748,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "d8f74d84-d01e-4e4c-bc16-8ae7551a54ac",
     "name" : "watson-FY2021",
     "budgetStatus" : "Active",
@@ -708,6 +765,13 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "bbef4f8c-1173-45da-be6a-47c3aacb531c",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "8ff925ba-e022-4534-af9a-8e912c8963a9",
+      "status" : "Active"
+    } ],
     "id" : "f370845b-9058-45f5-b304-92490e68d452",
     "name" : "ebook-FY2021",
     "budgetStatus" : "Active",
@@ -724,6 +788,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "acfbcd72-7b36-4a5d-b481-5ea178cf356c",
     "name" : "kevin-FY2021",
     "budgetStatus" : "Active",
@@ -740,6 +805,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "01923613-a41e-490e-adee-fd4f9e57bc1d",
     "name" : "texas-FY2021",
     "budgetStatus" : "Active",
@@ -756,6 +822,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "2328ba87-2979-45e8-9b38-034a2390f566",
     "name" : "taex-FY2021",
     "budgetStatus" : "Active",
@@ -772,6 +839,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "ef69d901-5a1c-471b-a4bc-d20a1c57a955",
     "name" : "libprop2-FY2021",
     "budgetStatus" : "Active",
@@ -788,6 +856,13 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "c9282d86-4120-4f5a-be3e-657067784124",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "487e4cd5-7c9f-4674-a594-6c41c6e5b689",
+      "status" : "Active"
+    } ],
     "id" : "464a22dd-67e7-400a-9853-e4860bb0c508",
     "name" : "replacement-FY2021",
     "budgetStatus" : "Active",
@@ -804,6 +879,25 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "b9b1995b-f3fa-4b81-8cee-015b766bbb17",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "f36e0eaf-9fe6-4736-ba0b-261be1a05e68",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "a914893c-513b-406e-b842-bf43a56c99c8",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "23f61163-756d-4a05-8b03-63c459eaadd7",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "575f5703-8e63-4d93-b473-faf29436b80d",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "6a7d9cb5-41c8-4ac0-b42f-d348fcdb8bd6",
+      "status" : "Active"
+    } ],
     "id" : "c25628ec-6f47-4ed5-ac3e-0cf76ce9f897",
     "name" : "usergen2-FY2021",
     "budgetStatus" : "Active",
@@ -820,6 +914,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "26676337-fac6-4d68-8517-9606e0582d19",
     "name" : "usergen-FY2021",
     "budgetStatus" : "Inactive",
@@ -836,6 +931,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "9b70846b-84d3-4876-a298-1a6ca516b98b",
     "name" : "ztest-zFY2021",
     "budgetStatus" : "Active",
@@ -852,6 +948,7 @@
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "64e4675b-c457-4bb5-98da-004c44b14a97",
     "name" : "rebecca-FY2021",
     "budgetStatus" : "Active",
@@ -868,6 +965,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "c45f5c82-eb83-4938-bdce-2c39052260bf",
     "name" : "hinton-FY2021",
     "budgetStatus" : "Active",
@@ -884,6 +982,16 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "82bc9d63-a3d0-4aed-872d-d4d2112b1668",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "ff651515-9b20-4449-8dd3-500e7353ce11",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "3a576abb-811e-4945-a651-42b9d517bb15",
+      "status" : "Active"
+    } ],
     "id" : "c09cd1e5-6c17-487f-b080-3135e5549e23",
     "name" : "print-FY2021",
     "budgetStatus" : "Active",
@@ -900,6 +1008,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "c687ecb9-44e7-445c-b55c-ec0eafbbce74",
     "name" : "shipping-FY2021",
     "budgetStatus" : "Active",
@@ -916,6 +1025,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "04574c61-3639-4434-9451-d7e965ba7455",
     "name" : "bryanhumanity-FY2021",
     "budgetStatus" : "Active",
@@ -932,6 +1042,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "13e1fb37-4e33-4f87-8130-fde0e67fea98",
     "name" : "momclub2-FY2021",
     "budgetStatus" : "Active",
@@ -948,6 +1059,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "acbdd496-a078-4c2f-b46e-426e5370fdb8",
     "name" : "mousetext-FY2021",
     "budgetStatus" : "Active",
@@ -964,6 +1076,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "05de5bf3-9fd3-4e08-b599-7811947a6845",
     "name" : "tapley2-FY2021",
     "budgetStatus" : "Active",
@@ -980,6 +1093,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "2ddc72d1-2114-4b72-b0df-71797b99ef77",
     "name" : "etxtqatar-FY2021",
     "budgetStatus" : "Active",
@@ -996,6 +1110,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "52395391-657c-4c98-82c4-0f1ac2159275",
     "name" : "weinbaum2-FY2021",
     "budgetStatus" : "Active",
@@ -1012,6 +1127,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "29816080-82eb-4cd1-b6cb-177861dd53c3",
     "name" : "etxtaccess-FY2021",
     "budgetStatus" : "Active",
@@ -1028,6 +1144,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "d6304f99-7434-471b-b6c0-dcbfd8387a11",
     "name" : "etxtcoke-FY2021",
     "budgetStatus" : "Active",
@@ -1044,6 +1161,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "6bf64692-7c1a-49fc-8e5f-5344a631ae38",
     "name" : "etxt gilbert-FY2021",
     "budgetStatus" : "Active",
@@ -1060,6 +1178,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "824bf78c-a515-45b7-9415-f8a7863d692d",
     "name" : "etxtkyle-FY2021",
     "budgetStatus" : "Active",
@@ -1076,6 +1195,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "eb848b57-4ac6-4511-a556-eca1e2af598f",
     "name" : "msm-FY2021",
     "budgetStatus" : "Active",
@@ -1092,6 +1212,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "130af9cf-1f51-4e95-9311-0fa314ce85cd",
     "name" : "barclay2-FY2021",
     "budgetStatus" : "Active",
@@ -1108,6 +1229,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "c19d1e5e-415a-4e9f-82e5-9f75f23d910d",
     "name" : "qer-FY2021",
     "budgetStatus" : "Active",
@@ -1124,6 +1246,19 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "012ba30f-1d20-4afb-8029-2d64116e47f0",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "6dfe92d5-a325-482b-bc78-744bd87920b1",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "2e158b89-4715-4028-8086-af85ca6da0c8",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "0d3c9098-e315-45aa-be46-cf9b642459c2",
+      "status" : "Active"
+    } ],
     "id" : "9937b9d8-9bb2-4a96-aea3-3862e7738b12",
     "name" : "etxt2-FY2021",
     "budgetStatus" : "Active",
@@ -1140,6 +1275,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "e8807585-d35e-4f79-a1da-453a96fe5657",
     "name" : "serials-FY2021",
     "budgetStatus" : "Active",
@@ -1156,6 +1292,28 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "27ddca39-01d3-4cd7-91fa-4f1b034c9df3",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "96dc22d8-2870-464e-b059-c216eca711e1",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "2e3553cd-e7ab-4a69-8ffb-7ba564b9221c",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "4e005163-6eb2-46a6-a7d4-b894f3d1b5ee",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "9507d669-99cb-4c30-b12f-73ddae3b6759",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "de02ccbb-afc9-4393-aa09-bbfcf531e3a4",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "f21e409d-03de-43c8-bb42-de42796035b1",
+      "status" : "Active"
+    } ],
     "id" : "7bc95ae6-23da-4adf-ad46-cb006ec9cc3e",
     "name" : "mslejournals-FY2021",
     "budgetStatus" : "Active",
@@ -1172,6 +1330,28 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "c2911bac-0765-4f7d-8316-28b9460eb5b5",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "4dc2c928-ddeb-45c3-ac2d-0d46456b955b",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "be541231-61f8-49a0-bafd-8e85e7fe23d3",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "647c7986-a3ba-40c0-b063-adda5d3d5987",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "246f7cda-493e-46bb-83bb-1f411a921caa",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "68d3269f-0d7a-4d49-ae55-ef6381e64b16",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "8dd52aa3-2182-4fb5-80be-9328018ea6c3",
+      "status" : "Active"
+    } ],
     "id" : "93fe48dc-344d-45d0-be60-720207a21e13",
     "name" : "msldata-FY2021",
     "budgetStatus" : "Active",
@@ -1188,6 +1368,7 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ ],
     "id" : "0443bfa4-a501-49ce-99b5-bfe09f32696d",
     "name" : "cont2-FY2021",
     "budgetStatus" : "Active",
@@ -1204,6 +1385,31 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "905c5782-1d8a-4fc2-8a8b-7c9c274eac60",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "c3798940-c25d-4713-a9ac-b55656924309",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "a67628e0-dd84-4fd8-9508-4041ed9e31e0",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "f1f1d1af-5078-4b90-8461-58b2a8200775",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "34a6d786-e95b-41ae-a392-a2b935a445bf",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "aa6723ba-f4e7-436b-82da-7c12dcf5313d",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "4d66214f-c976-4c8b-b6b6-931bb3a405b0",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "58462e8f-7391-4095-a182-840981763bd4",
+      "status" : "Active"
+    } ],
     "id" : "9a50d60c-116f-4af5-816f-8bd78fb309d0",
     "name" : "mslemono-FY2021",
     "budgetStatus" : "Active",
@@ -1220,6 +1426,25 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "8d1d5118-e848-4fee-b254-676afc4d6504",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "85673c7d-d865-4a52-a6eb-5eea4c9ec9d0",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "773e4920-f787-4132-a668-613de4ec764d",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "12b86b7f-bdf8-4cbd-b009-7587626b304d",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "37ebcaec-92f3-4cfc-8ed3-98dc98fe3c32",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "bf4299b5-ac72-4509-b921-822c3c74ce6c",
+      "status" : "Active"
+    } ],
     "id" : "e87aef5d-c87e-4846-a794-d5ea0cfdeaef",
     "name" : "mslpjournals-FY2021",
     "budgetStatus" : "Active",
@@ -1236,6 +1461,34 @@
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ]
   }, {
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "d20a2068-089f-42d0-9893-0afdcc56b27a",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "b9e6408f-5ec9-4d86-8f6a-734701bc735f",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "ee5ea835-8896-45f4-b4ef-c1e9812c2d24",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "59090265-788d-4e9d-919e-e5443658708c",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "3d5cd0fc-5ceb-4505-91ce-b7f3c8f87e02",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "a5f3bdc9-a8a1-4027-bd2e-ad08050be710",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "788fd5a9-f4bc-4b65-813b-2eade0637f4d",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "4ceadf32-6197-4f92-ab18-847d627a04cd",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "1d287ea8-28df-4d3e-82a0-f9865cf759de",
+      "status" : "Active"
+    } ],
     "id" : "9c0eb523-9058-4e67-88b4-40cd22289fce",
     "name" : "mslpmono-FY2021",
     "budgetStatus" : "Active",

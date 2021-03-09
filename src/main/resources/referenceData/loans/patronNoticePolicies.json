@@ -1,6 +1,7 @@
 {
   "path" : "/patron-notice-policy-storage/patron-notice-policies",
   "query" : "limit=9999",
+  "reify" : false,
   "dependencies" : [ ],
   "excludedProperties" : [ "metadata" ],
   "data" : [ {

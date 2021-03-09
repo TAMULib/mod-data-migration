@@ -1,6 +1,7 @@
 {
   "path" : "/data-import-profiles/matchProfiles",
   "query" : "limit=9999",
+  "reify" : false,
   "dependencies" : [ "actionProfiles", "jobProfiles" ],
   "excludedProperties" : [ "metadata" ],
   "data" : [ {

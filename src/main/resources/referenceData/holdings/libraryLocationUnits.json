@@ -1,6 +1,7 @@
 {
   "path" : "/location-units/libraries",
   "query" : "limit=9999",
+  "reify" : false,
   "dependencies" : [ "institutionLocationUnits", "campusLocationUnits" ],
   "excludedProperties" : [ "metadata" ],
   "data" : [ {

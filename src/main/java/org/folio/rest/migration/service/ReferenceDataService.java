@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -140,17 +141,27 @@ public class ReferenceDataService {
     referenceData.forEach(datum -> {
       try {
         JsonNode response = okapiService.fetchReferenceData(okapi, datum);
-
         Iterator<Entry<String, JsonNode>> nodes = response.fields();
-
         logger.info("harvested reference data {} {}", datum.getPath(), response);
-
         while (nodes.hasNext()) {
           Map.Entry<String, JsonNode> entry = (Map.Entry<String, JsonNode>) nodes.next();
           if (!entry.getKey().equals("totalRecords") && !entry.getKey().equals("resultInfo")) {
             List<JsonNode> data = objectMapper.convertValue(entry.getValue(), new TypeReference<ArrayList<JsonNode>>() { });
-            data.forEach(node -> ((ObjectNode) node).remove(datum.getExcludedProperties()));
-            datum.setData(data);
+            datum.setData(data.stream().map(node -> {
+              if (datum.getReify()) {
+                String id = node.get("id").asText();
+                node = okapiService.fetchReferenceDataById(okapi, datum, id);
+              }
+              for (String exclude : datum.getExcludedProperties()) {
+                String property = exclude;
+                int lastIndexOf = property.lastIndexOf(".");
+                if (lastIndexOf >= 0) {
+                  property = property.substring(lastIndexOf + 1);
+                }
+                getNode(node, exclude).remove(property);
+              }
+              return node;
+            }).collect(Collectors.toList()));
             String filePath = datum.getFilePath().replace("target\\classes", "src\\main\\resources");
             logger.info("writing reference data {}", filePath);
             objectMapper.writerWithDefaultPrettyPrinter()
@@ -158,9 +169,21 @@ public class ReferenceDataService {
           }
         }
       } catch (Exception e) {
-        logger.warn("failed harvesting reference data {}: {} - {}", datum.getPath(), e.getMessage());
+        logger.warn("failed harvesting reference data {}: {}", datum.getPath(), e.getMessage());
       }
     });
+  }
+
+  private ObjectNode getNode(JsonNode input, String path) {
+    String[] paths = path.split(Pattern.quote("."));
+    if (paths.length == 1) {
+      return (ObjectNode) input;
+    }
+    ObjectNode current = (ObjectNode) input.get(paths[0]);
+    if (paths.length == 2) {
+      return current;
+    }
+    return getNode(current, path.substring(path.indexOf(".") + 1));
   }
 
 }

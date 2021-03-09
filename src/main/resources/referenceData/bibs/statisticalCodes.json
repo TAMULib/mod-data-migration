@@ -1,6 +1,7 @@
 {
   "path" : "/statistical-codes",
   "query" : "limit=9999",
+  "reify" : false,
   "dependencies" : [ "statisticalCodeTypes" ],
   "excludedProperties" : [ "metadata" ],
   "data" : [ {

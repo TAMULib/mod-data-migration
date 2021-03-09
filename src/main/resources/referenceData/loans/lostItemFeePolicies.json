@@ -1,6 +1,7 @@
 {
   "path" : "/lost-item-fees-policies",
   "query" : "limit=9999",
+  "reify" : false,
   "dependencies" : [ ],
   "excludedProperties" : [ "metadata" ],
   "data" : [ {

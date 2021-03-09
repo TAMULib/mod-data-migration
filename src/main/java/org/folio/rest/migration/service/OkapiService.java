@@ -149,6 +149,19 @@ public class OkapiService {
     throw new RuntimeException("Failed to fetch reference data: " + response.getStatusCodeValue());
   }
 
+  public JsonNode fetchReferenceDataById(ExternalOkapi okapi, ReferenceData datum, String id) {
+    long startTime = System.nanoTime();
+    String url = okapi.getUrl() + datum.getPath() + "/" + id;
+    HttpEntity<JsonNode> entity = new HttpEntity<>(headers(datum.getTenant(), datum.getToken()));
+    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonNode.class);
+    log.debug("fetch reference data: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    if (response.getStatusCodeValue() == 200) {
+      return response.getBody();
+    }
+    log.error("Failed to fetch reference data: " + response.getStatusCodeValue());
+    throw new RuntimeException("Failed to fetch reference data: " + response.getStatusCodeValue());
+  }
+
   public JsonNode createReferenceData(ReferenceDatum referenceDatum) {
     long startTime = System.nanoTime();
     String url = okapi.getUrl() + referenceDatum.getPath();

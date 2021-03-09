@@ -1,6 +1,7 @@
 {
   "path" : "/data-import-profiles/actionProfiles",
   "query" : "limit=9999",
+  "reify" : false,
   "dependencies" : [ "jobProfiles" ],
   "excludedProperties" : [ "metadata" ],
   "data" : [ {
