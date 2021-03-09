@@ -2,7 +2,7 @@
   "path" : "/perms/permissions",
   "query" : "length=9999&query=mutable==true",
   "dependencies" : [ ],
-  "excludedProperties" : [ "childOf", "dummy", "grantedTo", "metadata" ],
+  "excludedProperties" : [ "childOf", "dummy", "grantedTo", "metadata", "tags" ],
   "data" : [ {
     "permissionName" : "62852d44-d07d-470b-a7f9-0d68e2f365c4",
     "displayName" : "VuFind",
