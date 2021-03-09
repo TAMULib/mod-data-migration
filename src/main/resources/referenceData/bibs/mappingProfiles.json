@@ -3,9 +3,8 @@
   "query" : "limit=9999",
   "reify" : false,
   "dependencies" : [ "matchProfiles", "actionProfiles", "jobProfiles" ],
-  "excludedProperties" : [ "metadata" ],
+  "excludedProperties" : [ "metadata", "id", "parentProfiles", "childProfiles" ],
   "data" : [ {
-    "id" : "570d1ae4-b572-400e-ac5c-e75418446db0",
     "name" : "MARC delete 922 field",
     "description" : "",
     "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
@@ -17,8 +16,6 @@
       "userName" : "tamu_admin"
     },
     "marcFieldProtectionSettings" : [ ],
-    "parentProfiles" : [ ],
-    "childProfiles" : [ ],
     "mappingDetails" : {
       "name" : "marcBib",
       "recordType" : "MARC_BIBLIOGRAPHIC",
@@ -38,7 +35,6 @@
       "marcMappingOption" : "MODIFY"
     }
   }, {
-    "id" : "84da407c-b9c3-4275-b9d0-536099798f23",
     "name" : "MARCIVE-Create New Holdings Record URL",
     "description" : "",
     "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
@@ -50,8 +46,6 @@
       "userName" : "tamu_admin"
     },
     "marcFieldProtectionSettings" : [ ],
-    "parentProfiles" : [ ],
-    "childProfiles" : [ ],
     "mappingDetails" : {
       "name" : "holdings",
       "recordType" : "HOLDINGS",
@@ -1026,7 +1020,6 @@
       "marcMappingDetails" : [ ]
     }
   }, {
-    "id" : "e4c89af7-6dca-45f1-90dc-1e16d6128cf8",
     "name" : "MARCIVE-Create New instance Record URL",
     "description" : "",
     "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
@@ -1038,8 +1031,6 @@
       "userName" : "tamu_admin"
     },
     "marcFieldProtectionSettings" : [ ],
-    "parentProfiles" : [ ],
-    "childProfiles" : [ ],
     "mappingDetails" : {
       "name" : "instance",
       "recordType" : "INSTANCE",
@@ -1433,7 +1424,6 @@
       "marcMappingDetails" : [ ]
     }
   }, {
-    "id" : "02220d8e-9309-4d42-8d5c-3aa9684113de",
     "name" : "Print Books - Create New Holdings Record",
     "description" : "",
     "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
@@ -1445,8 +1435,6 @@
       "userName" : "tamu_admin"
     },
     "marcFieldProtectionSettings" : [ ],
-    "parentProfiles" : [ ],
-    "childProfiles" : [ ],
     "mappingDetails" : {
       "name" : "holdings",
       "recordType" : "HOLDINGS",
@@ -2274,7 +2262,6 @@
       "marcMappingDetails" : [ ]
     }
   }, {
-    "id" : "d628f44b-d89b-44f5-9113-6e30f2e68a9b",
     "name" : "Print Books - Create New Instance Record",
     "description" : "",
     "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
@@ -2286,8 +2273,6 @@
       "userName" : "tamu_admin"
     },
     "marcFieldProtectionSettings" : [ ],
-    "parentProfiles" : [ ],
-    "childProfiles" : [ ],
     "mappingDetails" : {
       "name" : "instance",
       "recordType" : "INSTANCE",
@@ -2496,7 +2481,6 @@
       "marcMappingDetails" : [ ]
     }
   }, {
-    "id" : "4d7b05e8-a7e1-410e-bce6-10d078cb334c",
     "name" : "Print Books - Create New Item Record",
     "description" : "DO NOT FILL OUT CALL NUMBER OR LOCATION FIELDS IN THIS PROFILE. Call number and location values will default from the holdings record",
     "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
@@ -2508,8 +2492,6 @@
       "userName" : "tamu_admin"
     },
     "marcFieldProtectionSettings" : [ ],
-    "parentProfiles" : [ ],
-    "childProfiles" : [ ],
     "mappingDetails" : {
       "name" : "item",
       "recordType" : "ITEM",

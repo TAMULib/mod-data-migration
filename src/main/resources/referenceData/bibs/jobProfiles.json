@@ -1,11 +1,10 @@
 {
   "path" : "/data-import-profiles/jobProfiles",
-  "query" : "limit=9999",
+  "query" : "limit=9999&query=(name<>TAMU * Bibligraphic Migration) AND (name<>Create MARC Bibs)",
   "reify" : false,
   "dependencies" : [ ],
-  "excludedProperties" : [ "metadata" ],
+  "excludedProperties" : [ "metadata", "id", "parentProfiles", "childProfiles" ],
   "data" : [ {
-    "id" : "aba437b8-4bad-42ed-81a6-b2a6c90b61a3",
     "name" : "MARCIVE-Create New Instances and Holdings Records URL",
     "description" : "",
     "dataType" : "MARC",
@@ -14,11 +13,8 @@
       "firstName" : "tamu",
       "lastName" : "admin",
       "userName" : "tamu_admin"
-    },
-    "parentProfiles" : [ ],
-    "childProfiles" : [ ]
+    }
   }, {
-    "id" : "d1ad0fc7-1eb4-412e-b16a-fb9e0d7a2512",
     "name" : "Print Books - Create New Record",
     "description" : "Creates new instance, holdings, and item record",
     "dataType" : "MARC",
@@ -27,34 +23,6 @@
       "firstName" : "tamu",
       "lastName" : "admin",
       "userName" : "tamu_admin"
-    },
-    "parentProfiles" : [ ],
-    "childProfiles" : [ ]
-  }, {
-    "id" : "034218bf-8a51-44af-8e88-fedc0c21b216",
-    "name" : "TAMU AMDB Bibligraphic Migration",
-    "description" : "Voyager migration profile",
-    "dataType" : "MARC",
-    "deleted" : false,
-    "userInfo" : {
-      "firstName" : "tamu",
-      "lastName" : "admin",
-      "userName" : "tamu_admin"
-    },
-    "parentProfiles" : [ ],
-    "childProfiles" : [ ]
-  }, {
-    "id" : "3c7b7295-6523-4089-a1d9-f37079d4912c",
-    "name" : "TAMU MSDB Bibligraphic Migration",
-    "description" : "Voyager migration profile",
-    "dataType" : "MARC",
-    "deleted" : false,
-    "userInfo" : {
-      "firstName" : "tamu",
-      "lastName" : "admin",
-      "userName" : "tamu_admin"
-    },
-    "parentProfiles" : [ ],
-    "childProfiles" : [ ]
+    }
   } ]
 }

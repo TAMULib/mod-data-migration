@@ -3,9 +3,8 @@
   "query" : "limit=9999",
   "reify" : false,
   "dependencies" : [ "actionProfiles", "jobProfiles" ],
-  "excludedProperties" : [ "metadata" ],
+  "excludedProperties" : [ "metadata", "id", "parentProfiles", "childProfiles" ],
   "data" : [ {
-    "id" : "04bc7178-7af9-4a9e-9a42-cf4c1961e647",
     "name" : "MATCH-MARCIVE Instances",
     "description" : "",
     "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
@@ -50,8 +49,6 @@
       "firstName" : "tamu",
       "lastName" : "admin",
       "userName" : "tamu_admin"
-    },
-    "parentProfiles" : [ ],
-    "childProfiles" : [ ]
+    }
   } ]
 }
