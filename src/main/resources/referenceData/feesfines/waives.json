@@ -2,24 +2,12 @@
   "path" : "/waives",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "nameReason" : "Error",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:11.007+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:11.007+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "82eeeeb6-1d01-4c8b-bfac-05f92a3498d8"
   }, {
     "nameReason" : "Forgive",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:11.210+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:11.210+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "eb2ae647-038b-4ea5-bc8c-280b4a923f79"
   } ]
 }

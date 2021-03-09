@@ -2,7 +2,7 @@
   "path" : "/configurations/entries",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "b8b609be-abcb-4d2c-8e23-45fed107a930",
     "module" : "SMTP_SERVER",
@@ -11,13 +11,7 @@
     "description" : "smtp from",
     "default" : true,
     "enabled" : true,
-    "value" : "folio_admin@library.tamu.edu",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:58:10.662+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:58:10.662+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "folio_admin@library.tamu.edu"
   }, {
     "id" : "160e2e04-ca1c-4fb6-8961-a338e3d46938",
     "module" : "SMTP_SERVER",
@@ -26,13 +20,7 @@
     "description" : "smtp port",
     "default" : true,
     "enabled" : true,
-    "value" : "25",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:58:10.772+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:58:10.772+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "25"
   }, {
     "id" : "64b3f80a-f12c-40fb-8e74-dd366c9bed9f",
     "module" : "SMTP_SERVER",
@@ -41,13 +29,7 @@
     "description" : "login mode for the connection",
     "default" : true,
     "enabled" : true,
-    "value" : "DISABLED",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:58:10.808+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:58:10.808+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "DISABLED"
   }, {
     "id" : "467fad23-fc0b-4e51-aefa-78f9f6875bc9",
     "module" : "SMTP_SERVER",
@@ -56,13 +38,7 @@
     "description" : "sslOnConnect for the connection",
     "default" : true,
     "enabled" : true,
-    "value" : "false",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:58:10.836+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:58:10.836+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "false"
   }, {
     "id" : "67e90b5e-e2e5-417c-95c4-71a8bfac91ce",
     "module" : "USERSBL",
@@ -71,128 +47,68 @@
     "description" : "Folio UI application host",
     "default" : true,
     "enabled" : true,
-    "value" : "https://folio-testing.library.tamu.edu",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:58:10.866+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:58:10.866+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "https://folio-testing.library.tamu.edu"
   }, {
     "id" : "35d3fb8a-9f00-4459-baad-88ffd5010b1a",
     "module" : "edge-sip2",
     "configName" : "selfCheckoutConfig.3b80cfdf-438b-48c1-aadc-57965a0d7680",
     "enabled" : true,
-    "value" : "{\"timeoutPeriod\": 5,\"retriesAllowed\": 3,\"terminalDelimeter\" : \"\\r\",\"fieldDelimeter\" : \"|\",\"errorDetectionEnabled\" : true,\"charset\" : \"UTF8\",\"SCtimeZone\" : \"EDT\",\"checkinOk\": true,\"checkoutOk\": true,\"acsRenewalPolicy\": false,\"maxPrintWidth\" : 200,\"libraryName\": \"evans\",\"terminalLocation\": \"3b80cfdf-438b-48c1-aadc-57965a0d7680\"}",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:58:10.882+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:58:10.882+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"timeoutPeriod\": 5,\"retriesAllowed\": 3,\"terminalDelimeter\" : \"\\r\",\"fieldDelimeter\" : \"|\",\"errorDetectionEnabled\" : true,\"charset\" : \"UTF8\",\"SCtimeZone\" : \"EDT\",\"checkinOk\": true,\"checkoutOk\": true,\"acsRenewalPolicy\": false,\"maxPrintWidth\" : 200,\"libraryName\": \"evans\",\"terminalLocation\": \"3b80cfdf-438b-48c1-aadc-57965a0d7680\"}"
   }, {
     "id" : "9233fff8-fa39-4a73-a121-e5fc816dec98",
     "module" : "LOGIN-SAML",
     "configName" : "saml",
     "code" : "okapi.url",
     "enabled" : true,
-    "value" : "https://folio-okapi-q3.library.tamu.edu",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:59:19.238+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:59:19.238+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "https://folio-okapi-q3.library.tamu.edu"
   }, {
     "id" : "07ce8f16-286e-4daf-9dac-2990575e692b",
     "module" : "LOGIN-SAML",
     "configName" : "saml",
     "code" : "saml.binding",
     "enabled" : true,
-    "value" : "POST",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:59:19.271+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:59:19.271+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "POST"
   }, {
     "id" : "309aa788-6eda-45d0-ac3a-f72b2da485bc",
     "module" : "LOGIN-SAML",
     "configName" : "saml",
     "code" : "idp.url",
     "enabled" : true,
-    "value" : "https://idp.tamu.edu/tamufed-metadata-signed.xml",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:59:20.180+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:59:20.180+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "https://idp.tamu.edu/tamufed-metadata-signed.xml"
   }, {
     "id" : "cc22c28d-173c-49ce-bd31-22d0be4f9b7b",
     "module" : "LOGIN-SAML",
     "configName" : "saml",
     "code" : "keystore.password",
     "enabled" : true,
-    "value" : "i3sS03EoGGdh",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:59:28.526+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:59:28.526+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "i3sS03EoGGdh"
   }, {
     "id" : "95f404ce-fe4c-4dc8-82d7-1805732ba4d8",
     "module" : "LOGIN-SAML",
     "configName" : "saml",
     "code" : "keystore.privatekey.password",
     "enabled" : true,
-    "value" : "i3sS03EoGGdh",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:59:28.527+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:59:28.527+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "i3sS03EoGGdh"
   }, {
     "id" : "287f7217-e27f-4d77-b7a3-a5767991ecea",
     "module" : "LOGIN-SAML",
     "configName" : "saml",
     "code" : "keystore.file",
     "enabled" : true,
-    "value" : "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",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:59:28.524+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:59:28.524+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "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"
   }, {
     "id" : "d51f6b1c-9422-46b0-9853-a401d1b9fb0c",
     "module" : "LOGIN-SAML",
     "configName" : "saml",
     "code" : "metadata.invalidated",
     "enabled" : true,
-    "value" : "true",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:59:19.446+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:59:28.536+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "true"
   }, {
     "id" : "be52ecbf-d21c-4911-a5f5-e9bee7cca91a",
     "module" : "ORG",
     "configName" : "localeSettings",
     "enabled" : true,
-    "value" : "{\"locale\":\"en-US\",\"timezone\":\"America/Chicago\",\"currency\":\"USD\"}",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:26:29.522+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:30.621+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "{\"locale\":\"en-US\",\"timezone\":\"America/Chicago\",\"currency\":\"USD\"}"
   }, {
     "id" : "d5e5409c-a38b-43d8-ab1b-5c4d07a5c2f5",
     "module" : "SMTP_SERVER",
@@ -201,497 +117,263 @@
     "description" : "smtp password",
     "default" : true,
     "enabled" : true,
-    "value" : "password",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:58:10.732+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:58:10.732+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "password"
   }, {
     "id" : "c0693d5c-f7a8-407d-a8de-e12d90bea207",
     "module" : "CHECKOUT",
     "configName" : "other_settings",
     "enabled" : true,
-    "value" : "{\"audioAlertsEnabled\":false,\"prefPatronIdentifier\":\"BARCODE,EXTERNAL,FOLIO,USER\",\"checkoutTimeout\":true,\"checkoutTimeoutDuration\":5}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.098+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.098+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"audioAlertsEnabled\":false,\"prefPatronIdentifier\":\"BARCODE,EXTERNAL,FOLIO,USER\",\"checkoutTimeout\":true,\"checkoutTimeoutDuration\":5}"
   }, {
     "id" : "6060b98d-87d3-47c7-b944-996a8ca8f07b",
     "module" : "LOAN_HISTORY",
     "configName" : "loan_history",
     "enabled" : true,
-    "value" : "{\"closingType\":{\"loan\":\"immediately\",\"feeFine\":null,\"loanExceptions\":[]},\"loan\":{},\"feeFine\":{},\"loanExceptions\":[],\"treatEnabled\":false}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.195+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.195+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"closingType\":{\"loan\":\"immediately\",\"feeFine\":null,\"loanExceptions\":[]},\"loan\":{},\"feeFine\":{},\"loanExceptions\":[],\"treatEnabled\":false}"
   }, {
     "id" : "43bdbfcc-2062-491d-8602-47a22b80f9d3",
     "module" : "OAIPMH",
     "configName" : "behavior",
     "enabled" : true,
-    "value" : "{\"suppressedRecordsProcessing\":\"false\",\"deletedRecordsSupport\":\"persistent\",\"errorsProcessing\":\"200\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.247+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.247+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"suppressedRecordsProcessing\":\"false\",\"deletedRecordsSupport\":\"persistent\",\"errorsProcessing\":\"200\"}"
   }, {
     "id" : "b3aaa4b3-d82f-4294-8109-456eab8d9d93",
     "module" : "OAIPMH",
     "configName" : "general",
     "enabled" : true,
-    "value" : "{\"administratorEmail\":\"oai-pmh@folio.org\",\"repositoryName\":\"FOLIO_OAI_Repository\",\"enableOaiService\":\"true\",\"timeGranularity\":\"YYYY-MM-DDThh:mm:ssZ\",\"baseUrl\":\"https://folio-edge.library.tamu.edu/oai\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.260+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.260+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"administratorEmail\":\"oai-pmh@folio.org\",\"repositoryName\":\"FOLIO_OAI_Repository\",\"enableOaiService\":\"true\",\"timeGranularity\":\"YYYY-MM-DDThh:mm:ssZ\",\"baseUrl\":\"https://folio-edge.library.tamu.edu/oai\"}"
   }, {
     "id" : "2a7e7b7d-342a-4d04-aef9-2beeb07a5b94",
     "module" : "ORDERS",
     "configName" : "inventory-instanceStatusCode",
     "enabled" : true,
-    "value" : "temp",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.337+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.337+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "temp"
   }, {
     "id" : "673bffe8-898d-49b4-bcee-981002ac11f0",
     "module" : "ORDERS",
     "configName" : "inventory-instanceTypeCode",
     "enabled" : true,
-    "value" : "txt",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.424+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.424+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "txt"
   }, {
     "id" : "c116ac8c-a51e-4f30-a30f-77c073386e83",
     "module" : "ORDERS",
     "configName" : "inventory-loanTypeName",
     "enabled" : true,
-    "value" : "normal",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.443+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.443+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "normal"
   }, {
     "id" : "b1964566-9595-4ae5-8524-4b4ab0703396",
     "module" : "ORDERS",
     "configName" : "openOrder",
     "enabled" : true,
-    "value" : "{\"isOpenOrderEnabled\":true}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.455+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.455+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"isOpenOrderEnabled\":true}"
   }, {
     "id" : "cd57ef8b-1c7f-4105-b115-c2500b3a6eb3",
     "module" : "ORDERS",
     "configName" : "orderNumber",
     "enabled" : true,
-    "value" : "{\"canUserEditOrderNumber\":true}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.485+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.485+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"canUserEditOrderNumber\":true}"
   }, {
     "id" : "0d3655eb-12be-4be0-9a76-24a5c8127d56",
     "module" : "ORDERS",
     "configName" : "poLines-limit",
     "enabled" : true,
-    "value" : "300",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.499+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.499+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "300"
   }, {
     "id" : "68041a19-8c02-449f-ac54-7e8d35bd9575",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_acq_admin",
     "enabled" : true,
-    "value" : "{\"name\":\"acq_admin\",\"address\":\"Acquisitions Staff Accountant\\nTexas A&M University Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.513+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.513+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"acq_admin\",\"address\":\"Acquisitions Staff Accountant\\nTexas A&M University Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}"
   }, {
     "id" : "ba5359cf-bd9b-441f-b54a-46992dbcff06",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_acq_bind",
     "enabled" : true,
-    "value" : "{\"name\":\"acq_bind\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-BINDING DEPT\\n5000 TAMUS\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.524+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.524+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"acq_bind\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-BINDING DEPT\\n5000 TAMUS\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "43fe1d19-7f2d-4f9a-9480-b49ec520555f",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_AcqMoBO",
     "enabled" : true,
-    "value" : "{\"name\":\"AcqMono BO\",\"address\":\"AcqMono BO\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.536+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.536+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"AcqMono BO\",\"address\":\"AcqMono BO\"}"
   }, {
     "id" : "e2173f5f-a128-4b23-bc60-a394366edc3b",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_AcqMoBU",
     "enabled" : true,
-    "value" : "{\"name\":\"AcqMono Bulk Purchases\",\"address\":\"AcqMono Bulk Purchases\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.547+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.547+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"AcqMono Bulk Purchases\",\"address\":\"AcqMono Bulk Purchases\"}"
   }, {
     "id" : "e05b9761-3262-4b34-8a3c-82898947d642",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_AcqMoMO",
     "enabled" : true,
-    "value" : "{\"name\":\"AcqMono Conventional\",\"address\":\"CONVENTIONAL ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.576+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.576+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"AcqMono Conventional\",\"address\":\"CONVENTIONAL ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}"
   }, {
     "id" : "035a6a12-65dd-4706-8458-c163638b49c8",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_AcqMoNY",
     "enabled" : true,
-    "value" : "{\"name\":\"AcqMono NYP\",\"address\":\"CONVENTIONAL ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.590+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.590+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"AcqMono NYP\",\"address\":\"CONVENTIONAL ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}"
   }, {
     "id" : "ec44a3da-7e62-4cce-8c00-001e4bc98e4d",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_AcqMoPC",
     "enabled" : true,
-    "value" : "{\"name\":\"AcqMono ProCard\",\"address\":\"PROCARD ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.603+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.603+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"AcqMono ProCard\",\"address\":\"PROCARD ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}"
   }, {
     "id" : "57fb44bd-0143-4790-9672-da39ad64c785",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_AcqMoPP",
     "enabled" : true,
-    "value" : "{\"name\":\"AcqMono Prepay\",\"address\":\"AcqMono Prepay\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.615+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.615+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"AcqMono Prepay\",\"address\":\"AcqMono Prepay\"}"
   }, {
     "id" : "3e7c5cc3-ac27-46e7-b81b-b838a38a3158",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_AcqProcess",
     "enabled" : true,
-    "value" : "{\"name\":\"AcqProcess\",\"address\":\"Acquisitions\\nMedical Sciences Library\\nTexas A&M University\\nCollege Station, TX   77843-4462\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.654+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.654+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"AcqProcess\",\"address\":\"Acquisitions\\nMedical Sciences Library\\nTexas A&M University\\nCollege Station, TX   77843-4462\"}"
   }, {
     "id" : "aac86edc-e379-45f9-98da-5885a11f3f72",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SerArea",
     "enabled" : true,
-    "value" : "{\"name\":\"SerArea\",\"address\":\"TEXAS A&M UNIVERSITY\\nMedical Sciences Library\\nSerials Section\\n4462 TAMU\\nCOLLEGE STATION, TX   77843-4462\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.665+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.665+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SerArea\",\"address\":\"TEXAS A&M UNIVERSITY\\nMedical Sciences Library\\nSerials Section\\n4462 TAMU\\nCOLLEGE STATION, TX   77843-4462\"}"
   }, {
     "id" : "a84ab456-028b-4d8b-9e66-22f4591e7e4b",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SR",
     "enabled" : true,
-    "value" : "{\"name\":\"SR\",\"address\":\"EVANS LIBRARY-SERIALS RECORD\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.676+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.676+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SR\",\"address\":\"EVANS LIBRARY-SERIALS RECORD\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "bf6934e7-40e6-4807-a262-31f84c110c64",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRDB",
     "enabled" : true,
-    "value" : "{\"name\":\"SRDB\",\"address\":\"5000 TAMU\\nCollege Station, TX 77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.688+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.688+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRDB\",\"address\":\"5000 TAMU\\nCollege Station, TX 77843-5000\"}"
   }, {
     "id" : "f981f253-cdbf-4022-8b28-f9d00859552f",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRDIRM",
     "enabled" : true,
-    "value" : "{\"name\":\"SRDIRM\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.715+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.715+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRDIRM\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "5439ee2f-f903-437a-b49b-84c3b921c669",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRDIRMP",
     "enabled" : true,
-    "value" : "{\"name\":\"SRDIRMP\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.727+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.727+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRDIRMP\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "e4e13666-58cf-491f-8fbf-bd5aa20db019",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRDIRN",
     "enabled" : true,
-    "value" : "{\"name\":\"SRDIRN\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.739+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.739+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRDIRN\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "d247e071-a2c8-4d8e-8faa-1b59f0e1387d",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRDIRP",
     "enabled" : true,
-    "value" : "{\"name\":\"SRDIRP\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.765+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.765+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRDIRP\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "c3b706a1-9415-4ed5-bff4-0e421cd0df27",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_AcqMoDE",
     "enabled" : true,
-    "value" : "{\"name\":\"AcqMono Delayed\",\"address\":\"AcqMono Delayed\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.564+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.564+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"AcqMono Delayed\",\"address\":\"AcqMono Delayed\"}"
   }, {
     "id" : "71728fdf-d133-4902-b64d-251456587603",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_AcqMoRU",
     "enabled" : true,
-    "value" : "{\"name\":\"AcqMono RUSH\",\"address\":\"RUSH ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.628+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.628+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"AcqMono RUSH\",\"address\":\"RUSH ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}"
   }, {
     "id" : "f328a5d3-4f05-4d55-934f-3859e027ae2f",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_AcqMoUR",
     "enabled" : true,
-    "value" : "{\"name\":\"AcqMono URGENT\",\"address\":\"URGENT ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.642+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.642+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"AcqMono URGENT\",\"address\":\"URGENT ORDERS\\nMonographic Acquisitions Division\\nTexas A&M University General Libraries\\n5000 TAMU\\nCollege Station, TX   77843-5000\"}"
   }, {
     "id" : "6d64426c-dff3-473a-b349-a34dda533433",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRDIR",
     "enabled" : true,
-    "value" : "{\"name\":\"SRDIR\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.701+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.701+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRDIR\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "e98b8612-80c5-482b-a680-9d05b762fbef",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRDIRO",
     "enabled" : true,
-    "value" : "{\"name\":\"SRDIRO\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.751+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.751+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRDIRO\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "b4bc5bc4-f37b-4b75-a6a4-bfba38e1811d",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRGFT",
     "enabled" : true,
-    "value" : "{\"name\":\"SRGFT\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.776+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.776+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRGFT\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "ca394adf-d362-4cb7-8251-82c7a96df1ad",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRMSVM",
     "enabled" : true,
-    "value" : "{\"name\":\"SRMSVM\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.801+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.801+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRMSVM\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "0e81addc-a3ec-49d3-9973-108fc313db8b",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRMSVMO",
     "enabled" : true,
-    "value" : "{\"name\":\"SRMSVMO\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.821+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.821+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRMSVMO\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "b34e29a2-bcfc-4388-baa1-36142731688b",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRMSVP",
     "enabled" : true,
-    "value" : "{\"name\":\"SRMSVP\",\"address\":\"POLICY SCIENCES & ECONOMICS LIBRARY\\nTEXAS A&M UNIVERSITY\\n5002 TAMU\\nCOLLEGE STATION, TX   77843-5002\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.846+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.846+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRMSVP\",\"address\":\"POLICY SCIENCES & ECONOMICS LIBRARY\\nTEXAS A&M UNIVERSITY\\n5002 TAMU\\nCOLLEGE STATION, TX   77843-5002\"}"
   }, {
     "id" : "8c8616c8-b45b-408d-932e-e98ab528d95e",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRMSVW",
     "enabled" : true,
-    "value" : "{\"name\":\"SRMSVW\",\"address\":\"WEST CAMPUS LIBRARY\\nTEXAS A&M UNIVERSITY\\n5001 TAMU\\nCOLLEGE STATION, TX   77843-5001\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.870+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.870+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRMSVW\",\"address\":\"WEST CAMPUS LIBRARY\\nTEXAS A&M UNIVERSITY\\n5001 TAMU\\nCOLLEGE STATION, TX   77843-5001\"}"
   }, {
     "id" : "06e9d410-30ed-46ba-89f4-395fa519eb9c",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRSOV",
     "enabled" : true,
-    "value" : "{\"name\":\"SRSOV\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-SERIALS RECORDS\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.895+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.895+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRSOV\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-SERIALS RECORDS\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "eb7252b6-b125-4ab8-9b1c-b73b15a32b25",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_west_res",
     "enabled" : true,
-    "value" : "{\"name\":\"west_res\",\"address\":\"West Campus Library\\nTexas A&M University\\nCollege Station, TX   77843-5001\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.932+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.932+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"west_res\",\"address\":\"West Campus Library\\nTexas A&M University\\nCollege Station, TX   77843-5001\"}"
   }, {
     "id" : "c4a090f2-51e4-488e-847e-2dc49d746e6f",
     "module" : "SMTP_SERVER",
@@ -700,91 +382,49 @@
     "description" : "email smtp host",
     "default" : true,
     "enabled" : true,
-    "value" : "relay.tamu.edu",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:58:10.758+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:58:10.758+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "relay.tamu.edu"
   }, {
     "id" : "73e5ec11-eb68-480e-b66c-7384fd5feee2",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRMSV",
     "enabled" : true,
-    "value" : "{\"name\":\"SRMSV\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.789+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.789+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRMSV\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "fb5ad323-b9e1-487b-bfce-84171254b2e0",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRMSVO",
     "enabled" : true,
-    "value" : "{\"name\":\"SRMSVO\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.834+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.834+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRMSVO\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "72d68939-4cff-4885-a623-c16aa352fa8e",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRMSVPM",
     "enabled" : true,
-    "value" : "{\"name\":\"SRMSVPM\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-SERIALS RECORDS\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.859+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.859+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRMSVPM\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-SERIALS RECORDS\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "3e121647-2251-4286-bc25-4e6b40f911e6",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRMSVWM",
     "enabled" : true,
-    "value" : "{\"name\":\"SRMSVWM\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-SERIALS RECORDS\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.883+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.883+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRMSVWM\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-SERIALS RECORDS\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "b7bc7a7e-b026-485f-bdbf-705d70523291",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRSOVM",
     "enabled" : true,
-    "value" : "{\"name\":\"SRSOVM\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.909+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.909+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRSOVM\",\"address\":\"EVANS LIBRARY-SERIALS RECORDS\\nTEXAS A&M UNIVERSITY\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "5013287f-1e34-477e-bfe5-6e21298f455b",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
     "code" : "ADDRESS_SRVSVO",
     "enabled" : true,
-    "value" : "{\"name\":\"SRVSVO\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-SERIALS RECORDS\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.920+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:16.920+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"name\":\"SRVSVO\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-SERIALS RECORDS\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
   }, {
     "id" : "c4a21a73-a04f-4764-97f0-765b56310a87",
     "module" : "SMTP_SERVER",
@@ -793,13 +433,7 @@
     "description" : "smtp username",
     "default" : true,
     "enabled" : true,
-    "value" : "login",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:58:10.783+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:58:10.783+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "login"
   }, {
     "id" : "c03c5f88-42d4-4d6a-b42e-b6661cce6905",
     "module" : "SMTP_SERVER",
@@ -808,13 +442,7 @@
     "description" : "trust all certificates on ssl connect",
     "default" : true,
     "enabled" : true,
-    "value" : "true",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:58:10.825+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:58:10.825+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "true"
   }, {
     "id" : "1a412f2d-62fc-4509-89ba-dfffadbeeacd",
     "module" : "SMTP_SERVER",
@@ -823,230 +451,116 @@
     "description" : "TLS security for the connection",
     "default" : true,
     "enabled" : true,
-    "value" : "OPTIONAL",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:58:10.848+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:58:10.848+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "OPTIONAL"
   }, {
     "id" : "301d5929-9b50-41ee-8866-3c68a5e6bb7c",
     "module" : "edge-sip2",
     "configName" : "acsTenantConfig",
     "enabled" : true,
-    "value" : "{\"supportedMessages\": [{\"messageName\": \"REQUEST_SC_ACS_RESEND\",\"isSupported\": \"Y\"},{\"messageName\": \"PATRON_STATUS_REQUEST\",\"isSupported\": \"N\"},{\"messageName\": \"CHECKOUT\",\"isSupported\": \"Y\"},{\"messageName\": \"CHECKIN\",\"isSupported\": \"Y\"},{\"messageName\": \"BLOCK_PATRON\",\"isSupported\": \"N\"},{\"messageName\": \"SC_ACS_STATUS\",\"isSupported\": \"Y\"},{\"messageName\": \"LOGIN\",\"isSupported\": \"Y\"},{\"messageName\": \"PATRON_INFORMATION\",\"isSupported\": \"Y\"},{\"messageName\": \"END_PATRON_SESSION\",\"isSupported\": \"Y\"},{\"messageName\": \"FEE_PAID\",\"isSupported\": \"N\"},{\"messageName\": \"ITEM_INFORMATION\",\"isSupported\": \"N\"},{\"messageName\": \"ITEM_STATUS_UPDATE\",\"isSupported\": \"N\"},{\"messageName\": \"PATRON_ENABLE\",\"isSupported\": \"N\"},{\"messageName\": \"HOLD\",\"isSupported\": \"N\"},{\"messageName\": \"RENEW\",\"isSupported\": \"N\"},{\"messageName\": \"RENEW_ALL\",\"isSupported\": \"N\"}],\"statusUpdateOk\": false,\"offlineOk\": false,\"currencyType\" : \"USD\",\"language\" : \"en\",\"patronPasswordVerificationRequired\" : false}",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:58:10.895+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:58:10.895+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "{\"supportedMessages\": [{\"messageName\": \"REQUEST_SC_ACS_RESEND\",\"isSupported\": \"Y\"},{\"messageName\": \"PATRON_STATUS_REQUEST\",\"isSupported\": \"N\"},{\"messageName\": \"CHECKOUT\",\"isSupported\": \"Y\"},{\"messageName\": \"CHECKIN\",\"isSupported\": \"Y\"},{\"messageName\": \"BLOCK_PATRON\",\"isSupported\": \"N\"},{\"messageName\": \"SC_ACS_STATUS\",\"isSupported\": \"Y\"},{\"messageName\": \"LOGIN\",\"isSupported\": \"Y\"},{\"messageName\": \"PATRON_INFORMATION\",\"isSupported\": \"Y\"},{\"messageName\": \"END_PATRON_SESSION\",\"isSupported\": \"Y\"},{\"messageName\": \"FEE_PAID\",\"isSupported\": \"N\"},{\"messageName\": \"ITEM_INFORMATION\",\"isSupported\": \"N\"},{\"messageName\": \"ITEM_STATUS_UPDATE\",\"isSupported\": \"N\"},{\"messageName\": \"PATRON_ENABLE\",\"isSupported\": \"N\"},{\"messageName\": \"HOLD\",\"isSupported\": \"N\"},{\"messageName\": \"RENEW\",\"isSupported\": \"N\"},{\"messageName\": \"RENEW_ALL\",\"isSupported\": \"N\"}],\"statusUpdateOk\": false,\"offlineOk\": false,\"currencyType\" : \"USD\",\"language\" : \"en\",\"patronPasswordVerificationRequired\" : false}"
   }, {
     "id" : "c55f5904-db69-407d-83c4-6f8f7be7dae1",
     "module" : "LOGIN-SAML",
     "configName" : "saml",
     "code" : "saml.attribute",
     "enabled" : true,
-    "value" : "urn:oid:1.3.6.1.4.1.4391.0.13",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:59:19.253+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:59:19.253+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "urn:oid:1.3.6.1.4.1.4391.0.13"
   }, {
     "id" : "7d233f22-7935-42de-8df7-fb1e17906c77",
     "module" : "LOGIN-SAML",
     "configName" : "saml",
     "code" : "user.property",
     "enabled" : true,
-    "value" : "username",
-    "metadata" : {
-      "createdDate" : "2021-03-01T16:59:19.262+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-01T16:59:19.262+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "username"
   }, {
     "id" : "2419df9e-2d5b-4eec-b1c6-780b4bd77319",
     "module" : "PLUGINS",
     "configName" : "find-contact",
     "enabled" : true,
-    "value" : "@folio/plugin-find-contact",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:27:14.083+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:14.865+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "@folio/plugin-find-contact"
   }, {
     "id" : "d29dcc11-3800-4534-8fa0-4a5b4724651b",
     "module" : "PLUGINS",
     "configName" : "quick-marc",
     "enabled" : true,
-    "value" : "@folio/quick-marc",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:27:14.323+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:14.917+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "@folio/quick-marc"
   }, {
     "id" : "6c9ba644-2ead-472c-9bdf-9333e11f7c4e",
     "module" : "PLUGINS",
     "configName" : "find-instance",
     "enabled" : true,
-    "value" : "@folio/plugin-find-instance",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:27:14.088+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:14.959+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "@folio/plugin-find-instance"
   }, {
     "id" : "e5e9a778-f4d7-4ac6-af17-212a2a31b6e4",
     "module" : "PLUGINS",
     "configName" : "find-agreement",
     "enabled" : true,
-    "value" : "@folio/plugin-find-agreement",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:27:14.099+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:14.860+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "@folio/plugin-find-agreement"
   }, {
     "id" : "6ee87e0b-5d5c-44da-a256-e8bec164450b",
     "module" : "PLUGINS",
     "configName" : "find-import-profile",
     "enabled" : true,
-    "value" : "@folio/plugin-find-import-profile",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:27:16.135+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:14.869+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "@folio/plugin-find-import-profile"
   }, {
     "id" : "267928b4-445c-4a40-ab18-e29359fe2511",
     "module" : "PLUGINS",
     "configName" : "find-interface",
     "enabled" : true,
-    "value" : "@folio/plugin-find-interface",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:27:14.217+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:14.873+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "@folio/plugin-find-interface"
   }, {
     "id" : "85d1320f-3538-48c0-8c1c-9f7edabf4be0",
     "module" : "PLUGINS",
     "configName" : "find-package-title",
     "enabled" : true,
-    "value" : "@folio/plugin-find-package-title",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:27:14.272+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:14.923+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "@folio/plugin-find-package-title"
   }, {
     "id" : "7d6d6a04-036c-4db5-9097-1e0f9acdf1bf",
     "module" : "PLUGINS",
     "configName" : "find-erm-usage-data-provider",
     "enabled" : true,
-    "value" : "@folio/plugin-find-erm-usage-data-provider",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:27:14.140+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:14.869+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "@folio/plugin-find-erm-usage-data-provider"
   }, {
     "id" : "04af0240-5c1f-466a-aa3b-d15d77f60b47",
     "module" : "PLUGINS",
     "configName" : "find-license",
     "enabled" : true,
-    "value" : "@folio/plugin-find-license",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:27:14.222+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:14.870+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "@folio/plugin-find-license"
   }, {
     "id" : "f7d58d95-7ebd-469a-878f-bc99c3911923",
     "module" : "PLUGINS",
     "configName" : "find-po-line",
     "enabled" : true,
-    "value" : "@folio/plugin-find-po-line",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:27:14.274+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:14.931+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "@folio/plugin-find-po-line"
   }, {
     "id" : "9ff2211f-abf1-43c4-b06f-4b491a3ca340",
     "module" : "PLUGINS",
     "configName" : "create-inventory-records",
     "enabled" : true,
-    "value" : "@folio/plugin-create-inventory-records",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:27:14.018+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:14.952+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "@folio/plugin-create-inventory-records"
   }, {
     "id" : "5899bed8-3e10-4c9c-95c3-8c20dc54bcac",
     "module" : "PLUGINS",
     "configName" : "find-eresource",
     "enabled" : true,
-    "value" : "@folio/plugin-find-eresource",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:27:14.149+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:14.868+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "@folio/plugin-find-eresource"
   }, {
     "id" : "d816134b-0abd-4598-b835-95ea12d16a1a",
     "module" : "PLUGINS",
     "configName" : "find-organization",
     "enabled" : true,
-    "value" : "@folio/plugin-find-organization",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:27:14.269+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:14.920+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "@folio/plugin-find-organization"
   }, {
     "id" : "204f966b-5d1d-4d16-b8d3-9459c09ea47b",
     "module" : "PLUGINS",
     "configName" : "find-user",
     "enabled" : true,
-    "value" : "@folio/plugin-find-user",
-    "metadata" : {
-      "createdDate" : "2021-03-01T17:27:14.280+00:00",
-      "createdByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-      "updatedDate" : "2021-03-02T16:55:14.927+00:00",
-      "updatedByUserId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f"
-    }
+    "value" : "@folio/plugin-find-user"
   }, {
     "id" : "22900afd-2c77-40c2-8070-c1fc29b3805a",
     "module" : "OAIPMH",
     "configName" : "technical",
     "enabled" : true,
-    "value" : "{\"enableValidation\":\"false\",\"formattedOutput\":\"false\",\"maxRecordsPerResponse\":\"500\"}",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:16.273+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-08T19:45:41.530+00:00",
-      "updatedByUserId" : "1423f9b4-6ba8-4eee-b6a3-fa61e77c0be4"
-    }
+    "value" : "{\"enableValidation\":\"false\",\"formattedOutput\":\"false\",\"maxRecordsPerResponse\":\"500\"}"
   } ]
 }

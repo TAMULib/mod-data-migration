@@ -2,7 +2,7 @@
   "path" : "/finance/funds",
   "query" : "limit=9999",
   "dependencies" : [ "fundTypes", "ledgers" ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "81348bdf-785c-4f69-8d2a-4579df2fe1d3",
     "allocatedFromIds" : [ ],
@@ -12,13 +12,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Aviles",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:30.903+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:30.903+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "1fc3f163-005c-445a-8857-57ee98050b92",
     "allocatedFromIds" : [ ],
@@ -28,13 +22,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "GCBechert",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:32.947+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:32.947+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "78079626-2087-4c29-b5a3-657d934625ca",
     "allocatedFromIds" : [ ],
@@ -44,13 +32,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Bryan Humanity ",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:33.223+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:33.223+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "9dfaa0f3-023a-4281-a551-d77ca60cf768",
     "allocatedFromIds" : [ ],
@@ -60,13 +42,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "GCBenson",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:33.603+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:33.603+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "4732e332-e9b0-4d59-b9c6-4dcd781edda1",
     "allocatedFromIds" : [ ],
@@ -76,13 +52,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "GCMouse",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:33.923+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:33.923+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "da701580-607d-44dd-8ab9-c8103fc1c0a0",
     "allocatedFromIds" : [ ],
@@ -92,13 +62,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Ebook",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:34.363+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:34.363+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "572bb92b-b2fd-4b6c-a54e-be7e270c9219",
     "allocatedFromIds" : [ ],
@@ -108,13 +72,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "GCHinton",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:35.240+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:35.240+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "448e6a06-f034-40de-a3f6-4a327ef95f66",
     "allocatedFromIds" : [ ],
@@ -124,13 +82,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Library Endow",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:35.589+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:35.589+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "b6e36a14-8d4c-472a-b0af-b5d881ba9d7f",
     "allocatedFromIds" : [ ],
@@ -140,13 +92,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Mom's Club",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:35.921+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:35.921+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "2329a667-7d86-40d2-b247-40fd77786f3d",
     "allocatedFromIds" : [ ],
@@ -156,13 +102,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Mouse Textbook",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:36.032+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:36.032+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "5cd9eff1-eb21-4cae-9b8b-79866f24d703",
     "allocatedFromIds" : [ ],
@@ -172,13 +112,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
     "name" : "MSL Monographs",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:36.543+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:36.543+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "0609a9ae-78a8-4fd2-80b1-e29d1a9e5770",
     "allocatedFromIds" : [ ],
@@ -188,13 +122,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
     "name" : "MSL Vet Historical",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:36.603+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:36.603+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "fed55d65-8834-4054-9dbc-fe669309c352",
     "allocatedFromIds" : [ ],
@@ -204,13 +132,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Streaming Video",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.257+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:37.257+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "8c11f6ae-68ec-4ddd-a837-f87fc9599edd",
     "allocatedFromIds" : [ ],
@@ -220,13 +142,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "8a479153-d433-420d-95a1-fa835d36542d",
     "name" : "TAMU test",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.392+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:37.392+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "4c6d9a98-aa6f-4bfa-9087-6517dbb9a225",
     "allocatedFromIds" : [ ],
@@ -236,13 +152,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Evans Shipping",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:35.084+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:35.084+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "d9b62c5b-4f02-437c-8734-cb160e7bd5c6",
     "allocatedFromIds" : [ ],
@@ -252,13 +162,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "GCFBenson",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:35.159+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:35.159+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "28c60645-252b-4095-bc8d-74e528d3e678",
     "allocatedFromIds" : [ ],
@@ -268,13 +172,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Kevin",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:35.359+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:35.359+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "81b89e93-3703-4430-ae06-42aae1917849",
     "allocatedFromIds" : [ ],
@@ -284,13 +182,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Library Proposals",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:35.510+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:35.510+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "985af0e0-f081-4087-90d2-80b348e54242",
     "allocatedFromIds" : [ ],
@@ -300,13 +192,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Maps",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:35.712+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:35.712+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "3652900b-b5aa-4525-adf5-b46114cc3cb8",
     "allocatedFromIds" : [ ],
@@ -316,13 +202,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Maritime",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:35.779+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:35.779+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "e2f1ee85-7b9a-462a-b0cd-19a852feb3cc",
     "allocatedFromIds" : [ ],
@@ -332,13 +212,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "GCMBenson",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:35.848+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:35.848+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "9759fff9-bfc2-4b39-ad1f-08a17c77eb8e",
     "allocatedFromIds" : [ ],
@@ -348,13 +222,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
     "name" : "MSL Databases",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:36.141+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:36.141+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "8c02c28a-865d-4165-9e0f-769351ac8b11",
     "allocatedFromIds" : [ ],
@@ -364,13 +232,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
     "name" : "MSL Ejournals",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:36.315+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:36.315+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "501682ed-ce9e-4ab9-95f5-61aac2200d6b",
     "allocatedFromIds" : [ ],
@@ -380,13 +242,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
     "name" : "MSL Ebooks",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:36.402+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:36.402+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "55f3641d-021a-4024-a5a2-1cf1acc87675",
     "allocatedFromIds" : [ ],
@@ -396,13 +252,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
     "name" : "MSL Print Journals",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:36.483+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:36.483+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "b947b703-cae9-4a65-ac53-53fa5270b3e9",
     "allocatedFromIds" : [ ],
@@ -412,13 +262,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "421f8806-47f3-4418-a2a2-1d309733305e",
     "name" : "zOkayTest2",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:36.704+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:36.704+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "1e410c13-699e-45a0-8389-1bdd5f29980d",
     "allocatedFromIds" : [ ],
@@ -428,13 +272,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Print Books",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:36.755+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:36.755+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "a109d620-3fdd-4979-89d1-ab6d96629c4b",
     "allocatedFromIds" : [ ],
@@ -444,13 +282,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Ragan Military",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:36.896+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:36.896+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "2a7a2d7b-701a-42b1-b8ff-48e54351ad80",
     "allocatedFromIds" : [ ],
@@ -460,13 +292,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Rebecca",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:36.957+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:36.957+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "41c4fe20-9108-466f-803e-bf665efd20ed",
     "allocatedFromIds" : [ ],
@@ -476,13 +302,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Replacement",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.031+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:37.031+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "5536d254-e8ae-4ecb-b1f3-352f67bbc925",
     "allocatedFromIds" : [ ],
@@ -492,13 +312,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Science Fiction",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.115+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:37.115+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "1d96b965-3aea-4b22-8b4f-18ec4e86a333",
     "allocatedFromIds" : [ ],
@@ -508,13 +322,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "GCTAEX",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.324+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:37.324+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "cae6e17f-1d0a-487a-9166-79c5debab45d",
     "allocatedFromIds" : [ ],
@@ -524,13 +332,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Tapley",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.467+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:37.467+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "5400ea2b-d665-4ccd-8568-6debb4dc587e",
     "allocatedFromIds" : [ ],
@@ -540,13 +342,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Weinbaum",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.809+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:37.809+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "a90b2b82-aae5-4591-b771-287d5903ab82",
     "allocatedFromIds" : [ ],
@@ -556,13 +352,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "zBryan Humanity2",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.934+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:37.934+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "c5d34282-b1f5-4def-9144-e7b13ff7ce75",
     "allocatedFromIds" : [ ],
@@ -572,13 +362,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "GCWatson",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.734+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T19:33:39.532+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "f17df6d0-28e9-4736-b68d-0383033a3d3a",
     "allocatedFromIds" : [ ],
@@ -588,13 +372,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Texas",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.589+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:37.589+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "14b12443-9bed-4853-aaf9-c9f3e0106ce0",
     "allocatedFromIds" : [ ],
@@ -604,13 +382,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "User Generated",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.669+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:37.669+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "a37baab3-0d1f-4dec-bbd4-b00fcf458ac9",
     "allocatedFromIds" : [ ],
@@ -622,13 +394,7 @@
     "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
     "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
     "name" : "zRecurring Etxt Access",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.872+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:37.872+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "85f889f5-b0c0-4a96-a6cf-35066cb6c268",
     "allocatedFromIds" : [ ],
@@ -640,13 +406,7 @@
     "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
     "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
     "name" : "zBryan Humanity",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.910+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:37.910+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "6ef4eeb4-bf3f-48ec-b1bc-81fd491f1c67",
     "allocatedFromIds" : [ ],
@@ -658,13 +418,7 @@
     "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
     "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
     "name" : "zSerial Coke Etxt",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.989+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:37.989+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "21c78510-79b7-49fa-abaf-dc1174e26990",
     "allocatedFromIds" : [ ],
@@ -676,13 +430,7 @@
     "fundTypeId" : "d28c844a-bead-489e-a889-e3951b884f3f",
     "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
     "name" : "zContinuation",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.021+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.021+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "afa59f42-2073-4fb4-8241-bb94ffb13e78",
     "allocatedFromIds" : [ ],
@@ -694,13 +442,7 @@
     "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
     "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
     "name" : "zStudent Services Etxt",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.124+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.124+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "a7ec3444-583d-40d5-9462-68e499833b1f",
     "allocatedFromIds" : [ ],
@@ -712,13 +454,7 @@
     "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
     "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
     "name" : "zKyle Etxt",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.199+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.199+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "272e0eed-04b8-4065-8c0f-caa47eaf1d12",
     "allocatedFromIds" : [ ],
@@ -730,13 +466,7 @@
     "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
     "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
     "name" : "zMaterial Srv. Mgmt Etxt",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.364+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.364+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "d44968f2-a02c-4537-89d7-9aa371a6a4f5",
     "allocatedFromIds" : [ ],
@@ -748,13 +478,7 @@
     "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
     "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
     "name" : "zMouse Text Book",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.425+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.425+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "f120f11d-b752-4dcb-ba63-ba240e1785e9",
     "allocatedFromIds" : [ ],
@@ -766,13 +490,7 @@
     "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
     "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
     "name" : "zEbooks",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.061+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.061+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "a98c8c2b-fe55-4e25-a591-559ee6431e94",
     "allocatedFromIds" : [ ],
@@ -783,13 +501,7 @@
     "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
     "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
     "name" : "zGilbert Etxt",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.164+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.164+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "142a9de0-4b74-4ab8-89a9-1762c3267e9f",
     "allocatedFromIds" : [ ],
@@ -801,13 +513,7 @@
     "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
     "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
     "name" : "zLibrary Endowment",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.260+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.260+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "6a0312b2-eb6c-4286-9c31-0c0f095853c2",
     "allocatedFromIds" : [ ],
@@ -819,13 +525,7 @@
     "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
     "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
     "name" : "zLibrary Proposals",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.299+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.299+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "af441078-b5c3-48b7-ab68-ab5f13db44f0",
     "allocatedFromIds" : [ ],
@@ -836,13 +536,7 @@
     "fundStatus" : "Inactive",
     "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
     "name" : "zMother's Club",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.405+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.405+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "f524ba4f-c897-44b3-858e-c0bbd809fd5c",
     "allocatedFromIds" : [ ],
@@ -854,13 +548,7 @@
     "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
     "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
     "name" : "zPre Paid Etxt + Credit",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.531+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.531+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "e5fafe9a-2430-4b1a-8245-f5a8f152aab7",
     "allocatedFromIds" : [ ],
@@ -872,13 +560,7 @@
     "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
     "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
     "name" : "zPrint Books",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.610+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.610+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "b0bbb670-7ed1-4392-9c7e-1c4647722493",
     "allocatedFromIds" : [ ],
@@ -890,13 +572,7 @@
     "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
     "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
     "name" : "zQatar Etxt",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.666+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.666+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "d30d2697-bcae-4d54-827b-22728c31b76b",
     "allocatedFromIds" : [ ],
@@ -908,13 +584,7 @@
     "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
     "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
     "name" : "zOatar Exp Return Etxt",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.749+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.749+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "ef843bd4-9aeb-4d47-8833-896a6b691165",
     "allocatedFromIds" : [ ],
@@ -926,13 +596,7 @@
     "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
     "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
     "name" : "zReplacement",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.782+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.782+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "bac2e4fd-63e9-494b-881d-bad3328bc9c6",
     "allocatedFromIds" : [ ],
@@ -944,13 +608,7 @@
     "fundTypeId" : "4fdf4bf7-0508-4159-89f4-0d64b2d7e0e4",
     "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
     "name" : "zSerial",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.838+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.838+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "f5a025da-a1eb-4a12-a812-9f6f73ada150",
     "allocatedFromIds" : [ ],
@@ -962,13 +620,7 @@
     "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
     "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
     "name" : "zShipping",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.869+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.869+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "f77a815d-dfee-4fe2-a777-fe1e40f22ad4",
     "allocatedFromIds" : [ ],
@@ -980,13 +632,7 @@
     "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
     "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
     "name" : "zTapley",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.911+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.911+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "db0f5c9a-f483-4ef2-a034-a8418d202816",
     "allocatedFromIds" : [ ],
@@ -997,13 +643,7 @@
     "fundStatus" : "Inactive",
     "ledgerId" : "421f8806-47f3-4418-a2a2-1d309733305e",
     "name" : "zTest fund",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.963+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.963+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "80885d10-1abe-4d97-ab3d-1f7dda1c1b82",
     "allocatedFromIds" : [ ],
@@ -1014,13 +654,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Buffer",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:33.339+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T19:02:28.638+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "9203b370-d4c6-48d9-a15c-f4bf5ad1ec57",
     "allocatedFromIds" : [ ],
@@ -1030,13 +664,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Childrens",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:33.739+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T19:04:29.585+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "6d392544-a226-46af-8bb9-29779f25f3b8",
     "allocatedFromIds" : [ ],
@@ -1046,13 +674,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Cushing Shipping",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:34.280+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T19:22:27.900+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "b16a58af-e4de-4c3e-a70c-be51727b716c",
     "allocatedFromIds" : [ ],
@@ -1062,13 +684,7 @@
     "fundStatus" : "Inactive",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "zLibrary Endowment",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:35.436+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T19:58:30.315+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "b6cece59-82fb-4137-ac95-889868317d89",
     "allocatedFromIds" : [ ],
@@ -1080,13 +696,7 @@
     "fundTypeId" : "d87b3e95-be8a-4800-9733-3fa16f0c4266",
     "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
     "name" : "zStreaming Video",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:38.892+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:38.892+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "d5966ae3-4967-4205-b13f-a2f76a1f0bab",
     "allocatedFromIds" : [ ],
@@ -1098,13 +708,7 @@
     "fundTypeId" : "ace38b12-e6fc-49f2-bbd4-f3e2960d9b3d",
     "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
     "name" : "zUser Generated",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:39.004+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:39.004+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "b4912480-9087-4f46-bca5-d4f0c5d85d9c",
     "allocatedFromIds" : [ ],
@@ -1116,13 +720,7 @@
     "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
     "ledgerId" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
     "name" : "zWeinbaum",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:39.026+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:39.026+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "cd92a59f-4558-4867-a377-649d1e190213",
     "allocatedFromIds" : [ ],
@@ -1134,13 +732,7 @@
     "fundTypeId" : "45dce82a-68fa-4ab8-aa50-f51ba6ecb613",
     "ledgerId" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
     "name" : "zzBarclay Etxt",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:39.049+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:39.049+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "f66f67f3-aaa7-4705-b4b9-3a98b261f68b",
     "allocatedFromIds" : [ ],
@@ -1150,13 +742,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "zzContinuation",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:39.109+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:39.109+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "f23b4c26-9618-4f38-b5fd-48d83333fc64",
     "allocatedFromIds" : [ ],
@@ -1166,13 +752,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Colonial Mexicana",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:34.037+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T19:07:18.071+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "2d74ba9a-e966-4c0f-b493-6f4f02dc4a7a",
     "allocatedFromIds" : [ ],
@@ -1182,13 +762,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Etxt Access",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:34.785+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T20:43:35.924+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "6db022b1-f872-4c4f-8cba-27630b404e52",
     "allocatedFromIds" : [ ],
@@ -1198,13 +772,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Continuation",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:34.185+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T20:44:05.826+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "cd589e3e-aab3-48ad-a03a-09de41b2effd",
     "allocatedFromIds" : [ ],
@@ -1214,13 +782,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Etxt Barclay",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:32.114+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T20:44:43.114+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "4df44280-fd1d-4df2-a436-8c7785afa676",
     "allocatedFromIds" : [ ],
@@ -1230,13 +792,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Etxt Coke",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:34.859+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T20:45:07.954+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "9d8c2014-1ab3-443b-9e83-b016142c52d5",
     "allocatedFromIds" : [ ],
@@ -1246,13 +802,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Etxt Gilbert",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:34.525+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T20:45:38.089+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "dbcc81b7-1aa6-4557-a612-f889670a36f3",
     "allocatedFromIds" : [ ],
@@ -1262,13 +812,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Etxt Kyle",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:34.939+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T20:46:07.937+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "692bc717-e37a-4525-95e3-fa25f58ecbef",
     "allocatedFromIds" : [ ],
@@ -1278,13 +822,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Etxt Main",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:34.715+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T20:46:29.968+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "2cfb269e-ec9f-4f9c-9b75-1d95be521f61",
     "allocatedFromIds" : [ ],
@@ -1294,13 +832,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Etxt Mat. Srv. Mgmt",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:36.664+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T20:46:56.268+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "82163603-687f-46e3-90c9-6b33f2909be8",
     "allocatedFromIds" : [ ],
@@ -1310,13 +842,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Etxt Qatar",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:35.012+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T20:47:24.018+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "080d3d3c-fb4d-4a44-9fe7-3f587da8ea28",
     "allocatedFromIds" : [ ],
@@ -1326,13 +852,7 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Etxt Qatar Exp. Return",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:36.830+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T20:47:52.610+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   }, {
     "id" : "f1b09c05-c854-4f4a-b413-bff94a99e207",
     "allocatedFromIds" : [ ],
@@ -1342,12 +862,6 @@
     "fundStatus" : "Active",
     "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "Serials",
-    "acqUnitIds" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:37.188+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T20:48:57.403+0000",
-      "updatedByUserId" : "a149f555-094b-3932-9a8f-8c3e611b8218"
-    }
+    "acqUnitIds" : [ ]
   } ]
 }

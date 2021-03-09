@@ -2,61 +2,31 @@
   "path" : "/location-units/campuses",
   "query" : "limit=9999",
   "dependencies" : [ "institutionLocationUnits" ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "addb918a-5b84-48a2-81d2-0a086948c347",
     "name" : "College Station",
     "code" : "cs",
-    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.509+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:19.509+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac"
   }, {
     "id" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
     "name" : "Texas A&M University Health Science Center",
     "code" : "hsc",
-    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.549+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:19.549+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac"
   }, {
     "id" : "0c37bdb0-dbb4-452c-aba8-bd5e5985b3b0",
     "name" : "J.J. Pickle Campus",
     "code" : "pickle",
-    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.578+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:19.578+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac"
   }, {
     "id" : "c1d51a99-428c-44ee-9df4-8dc259b3d7eb",
     "name" : "Qatar Campus",
     "code" : "qatar",
-    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.743+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:19.743+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac"
   }, {
     "id" : "92cd6156-44eb-482c-9852-99e25d4ede4a",
     "name" : "Rellis Campus",
     "code" : "rellis",
-    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.764+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:19.764+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac"
   } ]
 }

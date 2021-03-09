@@ -2,56 +2,26 @@
   "path" : "/coursereserves/coursetypes",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "89194295-65f9-48af-a75c-395fa421b1e2",
     "name" : "Distance",
-    "description" : "Distance",
-    "metadata" : {
-      "createdDate" : "2021-03-05T18:45:20.880+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-05T18:45:20.880+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "description" : "Distance"
   }, {
     "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
     "name" : "Face to face",
-    "description" : "Face to face",
-    "metadata" : {
-      "createdDate" : "2021-03-05T18:45:21.087+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-05T18:45:21.087+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "description" : "Face to face"
   }, {
     "id" : "11168498-5a28-4ea4-9cf1-dab80aaf5794",
     "name" : "Hybrid",
-    "description" : "Hybrid",
-    "metadata" : {
-      "createdDate" : "2021-03-05T18:45:21.129+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-05T18:45:21.129+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "description" : "Hybrid"
   }, {
     "id" : "c2d53185-19b8-4c1a-ae49-737d4fa13a89",
     "name" : "Online",
-    "description" : "Online",
-    "metadata" : {
-      "createdDate" : "2021-03-05T18:45:21.169+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-05T18:45:21.169+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "description" : "Online"
   }, {
     "id" : "2b890bb5-07f9-4ee2-9055-04e44bd95794",
     "name" : "Online only",
-    "description" : "Online only",
-    "metadata" : {
-      "createdDate" : "2021-03-05T18:45:21.431+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-05T18:45:21.431+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "description" : "Online only"
   } ]
 }

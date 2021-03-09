@@ -2,17 +2,11 @@
   "path" : "/patron-notice-policy-storage/patron-notice-policies",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "a570df1b-763e-4622-828b-fc9b546efc8b",
     "name" : "notices_basic",
     "active" : true,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:28.003+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:28.003+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "loanNotices" : [ {
       "templateId" : "2c8b5912-99f1-4b6b-87eb-fc8acaf7a3a8",
       "format" : "Email",
@@ -73,12 +67,6 @@
     "name" : "send_no_notices",
     "description" : "A basic notice policy that does not define any notices",
     "active" : true,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:28.402+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:28.402+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "loanNotices" : [ ],
     "feeFineNotices" : [ ],
     "requestNotices" : [ ]

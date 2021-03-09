@@ -2,19 +2,13 @@
   "path" : "/owners",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "owner" : "Business Library & Collaboration Commons",
     "servicePointOwner" : [ {
       "value" : "fc64d24e-5247-402a-ae19-21de454c025d",
       "label" : "Business Library Circulation"
     } ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:09.392+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:09.392+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "014416f2-7609-4222-a812-1a3deb0591b8"
   }, {
     "owner" : "Qatar LIbrary (TAMUQ)",
@@ -22,12 +16,6 @@
       "value" : "ccfdc7f0-1aa5-482f-a689-1a2188756412",
       "label" : "Qatar Libr (TAMUQ)"
     } ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:09.781+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:09.781+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "26c4ddaf-95ad-44d6-bd93-8492e278a41e"
   }, {
     "owner" : "Medical Sciences Library",
@@ -50,12 +38,6 @@
       "value" : "a2a3b682-35e9-4cc7-af63-1bdfe42e82dd",
       "label" : "HSC Temple Circulation"
     } ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:10.478+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:10.478+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "2eb797c3-8309-4831-a84b-3ca2eeeb2876"
   }, {
     "owner" : "Policy Sciences & Economics Library",
@@ -63,12 +45,6 @@
       "value" : "24f55faf-d42e-4fef-9ad3-43c34b75962f",
       "label" : "PSEL Circulation Desk"
     } ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:10.677+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:10.677+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "7e6832e2-b047-471e-9194-7e4106e0af1e"
   }, {
     "owner" : "AskUs Services",
@@ -85,12 +61,6 @@
       "value" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
       "label" : "Unassigned"
     } ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:10.742+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-04T18:06:56.535+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0"
   } ]
 }

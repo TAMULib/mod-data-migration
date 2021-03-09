@@ -2,7 +2,7 @@
   "path" : "/templates",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "263d4e33-db8d-4e07-9060-11f442320c05",
     "description" : "Account activation email",
@@ -75,12 +75,6 @@
         "attachments" : [ ]
       }
     },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:34.191+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:34.191+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "name" : "action_notice",
     "active" : true,
     "category" : "FeeFineAction"
@@ -94,12 +88,6 @@
         "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you have requested are available for pickup</strong>.</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Item can be picked up at: {{request.servicePointPickup}}</li><li>Item will be returned to the shelf on: {{request.holdShelfExpirationDateTime}}</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
         "attachments" : [ ]
       }
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:34.689+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:34.689+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     },
     "name" : "available",
     "active" : true,
@@ -115,12 +103,6 @@
         "attachments" : [ ]
       }
     },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:36.890+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:36.890+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "name" : "overdue_fine",
     "active" : true,
     "category" : "AutomatedFeeFine"
@@ -134,12 +116,6 @@
         "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you have checked out have been recalled and must be returned by the due date listed. </strong>If the items are not returned on time, you may owe a substantial fine.</div><div><br></div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Due date: {{loan.dueDate}}</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
         "attachments" : [ ]
       }
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:36.933+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:36.933+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     },
     "name" : "recall",
     "active" : true,
@@ -155,12 +131,6 @@
         "attachments" : [ ]
       }
     },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:36.914+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:36.914+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "name" : "overdue_fine_manual",
     "active" : true,
     "category" : "FeeFineCharge"
@@ -175,12 +145,6 @@
         "attachments" : [ ]
       }
     },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:36.870+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-08T15:39:16.399+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "name" : "overdue",
     "active" : true,
     "category" : "Loan"
@@ -194,12 +158,6 @@
         "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>These items that you have checked out will be due soon</strong>.</div><div>{{#loans}}</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Due date: {{loan.dueDateTime}}</li></ul><div>{{/loans}}</div><div><br></div>",
         "attachments" : [ ]
       }
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:36.226+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-08T15:38:53.181+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     },
     "name" : "courtesy",
     "active" : true,
@@ -216,12 +174,6 @@
         "attachments" : [ ]
       }
     },
-    "metadata" : {
-      "createdDate" : "2021-03-08T15:41:24.522+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-08T15:41:24.522+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "name" : "lost_item_proc",
     "active" : true,
     "category" : "FeeFineCharge"
@@ -236,12 +188,6 @@
         "body" : "<div>{{user.firstName}} {{user.lastName}}</div><div><br></div><div><strong>The followings items you had checked out are overdue and presumed lost</strong>. You are being billed for replacement costs as listed.</div><ul><li><strong>Library: {{item.effectiveLocationLibrary}}</strong></li><li>Title: {{item.title}}</li><li>Barcode: {{item.barcode}}</li><li>Call number: {{item.callNumber}} {{item.enumeration}} {{item.chronology}}</li><li>Replacement cost: ${{feeCharge.amount}} has been charged by {{feeCharge.owner}}</li></ul><div><br></div><div><strong>Library policies and procedures</strong>:</div><ul><li>More information is available at: <a href=\"https://library.tamu.edu/about/loan_evans.html\" rel=\"noopener noreferrer\" target=\"_blank\">Checkout privileges &amp; loan periods</a>.</li><li>Books can be returned to any library or library book&nbsp;drop.</li><li>Equipment, reserve, and audiovisual items must be returned to the library they were checked out from.</li><li>Fines/Fees may be paid&nbsp;<a href=\"https://library.tamu.edu/paymentinfo/\" rel=\"noopener noreferrer\" target=\"_blank\">online</a>.</li><li>To appeal library fines/fees complete this&nbsp;<a href=\"https://library.tamu.edu/services/service_request_forms/appeal_library_charges\" rel=\"noopener noreferrer\" target=\"_blank\">form</a>.</li></ul>",
         "attachments" : [ ]
       }
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:36.837+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-08T15:42:14.897+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     },
     "name" : "lost_item_repl",
     "active" : true,

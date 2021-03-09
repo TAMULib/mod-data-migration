@@ -2,88 +2,46 @@
   "path" : "/call-number-types",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "95467209-6d7b-468b-94df-0f5d7ad2747d",
     "name" : "Library of Congress classification",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:35.774+00:00",
-      "updatedDate" : "2021-02-24T17:13:35.774+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "054d460d-d6b9-4469-9e37-7a78a2266655",
     "name" : "National Library of Medicine classification",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:35.782+00:00",
-      "updatedDate" : "2021-02-24T17:13:35.782+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "03dd64d0-5626-4ecd-8ece-4531e0069f35",
     "name" : "Dewey Decimal classification",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:35.786+00:00",
-      "updatedDate" : "2021-02-24T17:13:35.786+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "827a2b64-cbf5-4296-8545-130876e4dfc0",
     "name" : "Source specified in subfield $2",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:35.789+00:00",
-      "updatedDate" : "2021-02-24T17:13:35.789+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "5ba6b62e-6858-490a-8102-5b1369873835",
     "name" : "Title",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:35.793+00:00",
-      "updatedDate" : "2021-02-24T17:13:35.793+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "28927d76-e097-4f63-8510-e56f2b7a3ad0",
     "name" : "Shelving control number",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:35.796+00:00",
-      "updatedDate" : "2021-02-24T17:13:35.796+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "cd70562c-dd0b-42f6-aa80-ce803d24d4a1",
     "name" : "Shelved separately",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:35.800+00:00",
-      "updatedDate" : "2021-02-24T17:13:35.800+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "6caca63e-5651-4db6-9247-3205156e9699",
     "name" : "Other scheme",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:35.849+00:00",
-      "updatedDate" : "2021-02-24T17:13:35.849+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "fc388041-6cd0-4806-8a74-ebe3b9ab4c6e",
     "name" : "Superintendent of Documents classification",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:35.853+00:00",
-      "updatedDate" : "2021-02-24T17:13:35.853+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "24badefa-4456-40c5-845c-3f45ffbc4c03",
     "name" : "No information provided",
-    "source" : "marc",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.381+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:19.381+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "source" : "marc"
   } ]
 }

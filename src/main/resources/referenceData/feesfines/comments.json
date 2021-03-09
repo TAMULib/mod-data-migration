@@ -2,18 +2,12 @@
   "path" : "/comments",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "paid" : true,
     "waived" : true,
     "refunded" : true,
     "transferredManually" : false,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:13.160+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:13.160+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "988d14c4-52a3-4393-b9a9-9d1139d49c43"
   } ]
 }

@@ -2,51 +2,21 @@
   "path" : "/organizations-storage/categories",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "9491fdad-b97b-45df-9783-337d86abc80f",
-    "value" : "claim",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:07.974+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:07.974+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "claim"
   }, {
     "id" : "549d6d85-a51a-4cfc-8cfa-e4d46fb33823",
-    "value" : "order",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:08.899+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:08.899+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "order"
   }, {
     "id" : "71a3e461-1777-4a6f-b1cc-d4a856d141ec",
-    "value" : "other",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:09.172+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:09.172+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "other"
   }, {
     "id" : "62042758-5266-472a-a3e9-ea1ca0ccf056",
-    "value" : "payment",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:09.388+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:09.388+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "payment"
   }, {
     "id" : "3c31275e-7ed8-4ec0-9b18-31243461f6ea",
-    "value" : "return",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:09.471+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:09.471+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "value" : "return"
   } ]
 }

@@ -2,7 +2,7 @@
   "path" : "/data-import-profiles/actionProfiles",
   "query" : "limit=9999",
   "dependencies" : [ "jobProfiles" ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "d7391f03-a3aa-4652-8bf8-2a60b80c096a",
     "name" : "MARC delete 922 field",
@@ -16,13 +16,7 @@
       "userName" : "tamu_admin"
     },
     "parentProfiles" : [ ],
-    "childProfiles" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:15.253+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:15.253+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "childProfiles" : [ ]
   }, {
     "id" : "d187708f-3502-4f3a-ae96-05e5a00db4a7",
     "name" : "MARCIVE-Create New Holdings Record URL",
@@ -36,13 +30,7 @@
       "userName" : "tamu_admin"
     },
     "parentProfiles" : [ ],
-    "childProfiles" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:15.556+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:15.556+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "childProfiles" : [ ]
   }, {
     "id" : "bed64a5a-6678-433c-a8a2-842eae8fbe97",
     "name" : "MARCIVE-Create New Instance Record URL",
@@ -56,13 +44,7 @@
       "userName" : "tamu_admin"
     },
     "parentProfiles" : [ ],
-    "childProfiles" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:15.630+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:15.630+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "childProfiles" : [ ]
   }, {
     "id" : "48e017ca-3a46-4f7b-a4cf-a2d535eee9a2",
     "name" : "Print Books - Creat Holdings Record",
@@ -76,13 +58,7 @@
       "userName" : "tamu_admin"
     },
     "parentProfiles" : [ ],
-    "childProfiles" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:16.281+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:16.281+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "childProfiles" : [ ]
   }, {
     "id" : "11f7929e-df1b-4ee8-b118-40d80f563592",
     "name" : "Print Books - Create Instance Record",
@@ -96,13 +72,7 @@
       "userName" : "tamu_admin"
     },
     "parentProfiles" : [ ],
-    "childProfiles" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:16.903+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:16.903+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "childProfiles" : [ ]
   }, {
     "id" : "c14234c6-7834-4ec4-9f16-dd3c5ccb6470",
     "name" : "Print Books - Create Item Record",
@@ -116,12 +86,6 @@
       "userName" : "tamu_admin"
     },
     "parentProfiles" : [ ],
-    "childProfiles" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:16.991+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:16.991+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "childProfiles" : [ ]
   } ]
 }

@@ -2,146 +2,62 @@
   "path" : "/groups",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "group" : "admin",
     "desc" : "System Admins",
-    "id" : "d2dcb4dd-0540-46c6-87a5-067af91f9b84",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:30:41.106+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-24T17:30:41.106+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "d2dcb4dd-0540-46c6-87a5-067af91f9b84"
   }, {
     "group" : "comm",
     "desc" : "Community User",
-    "id" : "6585adb2-6ee7-4f95-b115-b5b0acf0f181",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:00.791+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:00.791+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "6585adb2-6ee7-4f95-b115-b5b0acf0f181"
   }, {
     "group" : "cour",
     "desc" : "Courtesy User",
-    "id" : "aca51035-5570-4e61-9cb7-827e8fbd5a0d",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:01.174+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:01.174+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "aca51035-5570-4e61-9cb7-827e8fbd5a0d"
   }, {
     "group" : "fasf",
     "desc" : "Faculty/Staff Family members",
-    "id" : "56272c94-68f5-4a0c-99c1-d06283364cde",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:01.307+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:01.307+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "56272c94-68f5-4a0c-99c1-d06283364cde"
   }, {
     "group" : "fast",
     "desc" : "Faculty/Staff",
-    "id" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:01.359+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:01.359+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "fc44aee5-c385-4847-aadd-c1bd181c8894"
   }, {
     "group" : "grad",
     "desc" : "Graduate Student",
-    "id" : "6508e3bb-0225-4d1e-b609-a926dda4bccc",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:01.414+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:01.414+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "6508e3bb-0225-4d1e-b609-a926dda4bccc"
   }, {
     "group" : "illend",
     "desc" : "InterLibrary Loan Services Lending",
-    "id" : "978ce377-0234-44a2-be2f-d7115cfa3242",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:01.429+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:01.429+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "978ce377-0234-44a2-be2f-d7115cfa3242"
   }, {
     "group" : "libd",
     "desc" : "Library Dept.",
-    "id" : "329be9f5-6e44-448a-9ccd-5bdf90b1a14d",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:01.445+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:01.445+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "329be9f5-6e44-448a-9ccd-5bdf90b1a14d"
   }, {
     "group" : "newbook",
     "desc" : "New Book Shelf patrons",
-    "id" : "899cdaa9-eb48-4995-875c-7c8e9f4a4737",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:01.461+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:01.461+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "899cdaa9-eb48-4995-875c-7c8e9f4a4737"
   }, {
     "group" : "nonr",
     "desc" : "Non-registered student or staff",
-    "id" : "328e3247-cdc9-490b-be83-9a6a079eb9ad",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:01.473+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:01.473+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "328e3247-cdc9-490b-be83-9a6a079eb9ad"
   }, {
     "group" : "prob",
     "desc" : "Problem record from patron update",
-    "id" : "eab7ce7c-b304-473a-a10b-b0079bff0eb6",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:01.491+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:01.491+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "eab7ce7c-b304-473a-a10b-b0079bff0eb6"
   }, {
     "group" : "remhathi",
     "desc" : "Remote Access HathiTrust",
-    "id" : "273b924c-ca9a-43b6-af47-1541196f3d5d",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:01.516+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:01.516+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "273b924c-ca9a-43b6-af47-1541196f3d5d"
   }, {
     "group" : "texs",
     "desc" : "TexShare",
-    "id" : "1d235322-75a3-4386-9876-c3cdf9c95495",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:01.533+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:01.533+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "1d235322-75a3-4386-9876-c3cdf9c95495"
   }, {
     "group" : "ungr",
     "desc" : "Undergrad Student",
-    "id" : "666d2e72-2d05-4d6f-849d-d5234bf77686",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:01.549+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:01.549+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "666d2e72-2d05-4d6f-849d-d5234bf77686"
   } ]
 }

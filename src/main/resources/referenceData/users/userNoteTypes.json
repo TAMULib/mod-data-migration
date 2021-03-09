@@ -2,29 +2,18 @@
   "path" : "/note-types",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
     "name" : "User note",
     "usage" : {
       "noteTotal" : 24910
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:21:55.768+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "createdByUsername" : "tamu_admin",
-      "updatedDate" : "2021-02-26T15:21:55.768+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "f7903b07-1a1b-4b91-8970-5688446ab0f2",
     "name" : "General note",
     "usage" : {
       "noteTotal" : 0
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:14:04.636+00:00",
-      "updatedDate" : "2021-02-24T17:14:04.636+00:00"
     }
   } ]
 }

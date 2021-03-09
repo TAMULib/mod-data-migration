@@ -2,56 +2,26 @@
   "path" : "/coursereserves/processingstatuses",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "932bbe9e-9318-4d29-a3d4-fc80a33713c6",
     "name" : "Awaiting Purchase",
-    "description" : "Awaiting Purchase",
-    "metadata" : {
-      "createdDate" : "2021-03-05T18:46:04.306+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-05T18:46:04.306+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "description" : "Awaiting Purchase"
   }, {
     "id" : "350e990c-d24a-4344-9d95-0ce0cd2e3b84",
     "name" : "Cancelled",
-    "description" : "Cancelled",
-    "metadata" : {
-      "createdDate" : "2021-03-05T18:46:04.355+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-05T18:46:04.355+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "description" : "Cancelled"
   }, {
     "id" : "bba5a14f-275d-45c4-986d-cd1d5b3f7a88",
     "name" : "In Process",
-    "description" : "In Process",
-    "metadata" : {
-      "createdDate" : "2021-03-05T18:46:04.406+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-05T18:46:04.406+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "description" : "In Process"
   }, {
     "id" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
     "name" : "On Reserve",
-    "description" : "On Reserve -- Complete",
-    "metadata" : {
-      "createdDate" : "2021-03-05T18:46:04.456+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-05T18:46:04.456+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "description" : "On Reserve -- Complete"
   }, {
     "id" : "6a637f0d-3aa3-49a3-8793-d56f2afa422e",
     "name" : "Supply by Instructor",
-    "description" : "Awaiting Supply by Instructor",
-    "metadata" : {
-      "createdDate" : "2021-03-05T18:46:04.497+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-05T18:46:04.497+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "description" : "Awaiting Supply by Instructor"
   } ]
 }

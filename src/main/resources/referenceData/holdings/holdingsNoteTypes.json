@@ -2,82 +2,42 @@
   "path" : "/holdings-note-types",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "88914775-f677-4759-b57b-1a33b90b24e0",
     "name" : "Electronic bookplate",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:36.179+00:00",
-      "updatedDate" : "2021-02-24T17:13:36.179+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "c4407cc7-d79f-4609-95bd-1cefb2e2b5c5",
     "name" : "Copy note",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:36.184+00:00",
-      "updatedDate" : "2021-02-24T17:13:36.184+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "d6510242-5ec3-42ed-b593-3585d2e48fd6",
     "name" : "Action note",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:36.188+00:00",
-      "updatedDate" : "2021-02-24T17:13:36.188+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "e19eabab-a85c-4aef-a7b2-33bd9acef24e",
     "name" : "Binding",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:36.191+00:00",
-      "updatedDate" : "2021-02-24T17:13:36.191+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "db9b4787-95f0-4e78-becf-26748ce6bdeb",
     "name" : "Provenance",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:36.195+00:00",
-      "updatedDate" : "2021-02-24T17:13:36.195+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "6a41b714-8574-4084-8d64-a9373c3fbb59",
     "name" : "Reproduction",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:36.199+00:00",
-      "updatedDate" : "2021-02-24T17:13:36.199+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "b160f13a-ddba-4053-b9c4-60ec5ea45d56",
     "name" : "Note",
-    "source" : "folio",
-    "metadata" : {
-      "createdDate" : "2021-02-24T17:13:36.202+00:00",
-      "updatedDate" : "2021-02-24T17:13:36.202+00:00"
-    }
+    "source" : "folio"
   }, {
     "id" : "f453de0f-8b54-4e99-9180-52932529e3a6",
     "name" : "Access restrictions",
-    "source" : "local",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.142+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:19.142+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "source" : "local"
   }, {
     "id" : "7ca7dc63-c053-4aec-8272-c03aeda4840c",
     "name" : "latest_in",
-    "source" : "local",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.166+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:19.166+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "source" : "local"
   } ]
 }

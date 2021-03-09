@@ -2,7 +2,7 @@
   "path" : "/data-import-profiles/jobProfiles",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "aba437b8-4bad-42ed-81a6-b2a6c90b61a3",
     "name" : "MARCIVE-Create New Instances and Holdings Records URL",
@@ -15,13 +15,7 @@
       "userName" : "tamu_admin"
     },
     "parentProfiles" : [ ],
-    "childProfiles" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:11.835+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:11.835+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "childProfiles" : [ ]
   }, {
     "id" : "d1ad0fc7-1eb4-412e-b16a-fb9e0d7a2512",
     "name" : "Print Books - Create New Record",
@@ -34,13 +28,7 @@
       "userName" : "tamu_admin"
     },
     "parentProfiles" : [ ],
-    "childProfiles" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:12.555+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:12.555+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "childProfiles" : [ ]
   }, {
     "id" : "034218bf-8a51-44af-8e88-fedc0c21b216",
     "name" : "TAMU AMDB Bibligraphic Migration",
@@ -53,13 +41,7 @@
       "userName" : "tamu_admin"
     },
     "parentProfiles" : [ ],
-    "childProfiles" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:30:47.321+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:30:47.321+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "childProfiles" : [ ]
   }, {
     "id" : "3c7b7295-6523-4089-a1d9-f37079d4912c",
     "name" : "TAMU MSDB Bibligraphic Migration",
@@ -72,12 +54,6 @@
       "userName" : "tamu_admin"
     },
     "parentProfiles" : [ ],
-    "childProfiles" : [ ],
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:30:58.972+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:30:58.972+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "childProfiles" : [ ]
   } ]
 }

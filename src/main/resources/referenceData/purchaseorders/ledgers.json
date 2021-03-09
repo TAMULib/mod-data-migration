@@ -2,7 +2,7 @@
   "path" : "/finance/ledgers",
   "query" : "limit=9999",
   "dependencies" : [ "fiscalYears" ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "FY2021 - Evans",
@@ -13,13 +13,7 @@
     "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
-    "restrictExpenditures" : true,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:28.626+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:28.626+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "restrictExpenditures" : true
   }, {
     "id" : "120e80d2-3f8f-45d9-bdd9-1533da93f607",
     "name" : "FY2021 - MSL",
@@ -30,13 +24,7 @@
     "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
-    "restrictExpenditures" : true,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:29.014+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:29.014+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "restrictExpenditures" : true
   }, {
     "id" : "a1c953e8-1b27-40f3-9e13-d769fa015b73",
     "name" : "FY2021 - One Time",
@@ -47,13 +35,7 @@
     "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
-    "restrictExpenditures" : true,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:29.391+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:29.391+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "restrictExpenditures" : true
   }, {
     "id" : "5c0137bf-0882-449d-a299-d145aaff3085",
     "name" : "FY2021 Parent",
@@ -64,13 +46,7 @@
     "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
-    "restrictExpenditures" : true,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:29.490+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:29.490+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "restrictExpenditures" : true
   }, {
     "id" : "8a479153-d433-420d-95a1-fa835d36542d",
     "name" : "TAMU test",
@@ -80,13 +56,7 @@
     "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
-    "restrictExpenditures" : true,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:29.532+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:29.532+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "restrictExpenditures" : true
   }, {
     "id" : "421f8806-47f3-4418-a2a2-1d309733305e",
     "name" : "z21Cushing",
@@ -97,13 +67,7 @@
     "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
-    "restrictExpenditures" : true,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:29.564+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:29.564+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "restrictExpenditures" : true
   }, {
     "id" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
     "name" : "z21OneTime",
@@ -114,13 +78,7 @@
     "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
-    "restrictExpenditures" : true,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:29.679+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:29.679+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "restrictExpenditures" : true
   }, {
     "id" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
     "name" : "z21Recurring",
@@ -131,12 +89,6 @@
     "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
-    "restrictExpenditures" : true,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:29.711+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:29.711+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "restrictExpenditures" : true
   } ]
 }

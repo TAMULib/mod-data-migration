@@ -2,7 +2,7 @@
   "path" : "/loan-policy-storage/loan-policies",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "36e97605-0d8a-4f96-86ca-7ed1bbc7876a",
     "name" : "day_1_renew_0_recall_n",
@@ -15,13 +15,7 @@
       },
       "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY"
     },
-    "renewable" : false,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:36.980+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:36.980+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "renewable" : false
   }, {
     "id" : "034a3207-0cdd-4378-8684-c4b04ec0e91d",
     "name" : "day_125_renew_indefinite_recall_y",
@@ -50,12 +44,6 @@
           "intervalId" : "Days"
         }
       }
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:37.362+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:37.362+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "83a90b7a-3cc7-4cc4-8d9b-39dfb16e3915",
@@ -70,13 +58,7 @@
       },
       "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY"
     },
-    "renewable" : false,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:37.567+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:37.567+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "renewable" : false
   }, {
     "id" : "a88dca8b-c56c-4758-9b64-974c3e89e40c",
     "name" : "day_14_renew_0_recall_n",
@@ -89,13 +71,7 @@
       },
       "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY"
     },
-    "renewable" : false,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:37.701+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:37.701+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "renewable" : false
   }, {
     "id" : "851a879e-f5bc-44a4-a32b-b95bb5b3edad",
     "name" : "day_14_renew_1_recall_y",
@@ -125,12 +101,6 @@
           "intervalId" : "Days"
         }
       }
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:37.824+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:37.824+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "18720906-f622-4259-8cdb-e7b2949b9c5a",
@@ -144,13 +114,7 @@
       },
       "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY"
     },
-    "renewable" : false,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:37.841+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:37.841+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "renewable" : false
   }, {
     "id" : "7cc84105-fa31-4562-b5e7-421dbe3a60b8",
     "name" : "day_30_renew_0_recall_n",
@@ -163,13 +127,7 @@
       },
       "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY"
     },
-    "renewable" : false,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:37.933+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:37.933+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "renewable" : false
   }, {
     "id" : "c8bfa248-3430-417e-9740-46db8b4307dd",
     "name" : "day_30_renew_1_recall_y",
@@ -198,12 +156,6 @@
           "intervalId" : "Days"
         }
       }
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:38.022+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:38.022+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "db329829-84a3-4bec-93dd-9c040c2fdb9e",
@@ -217,13 +169,7 @@
       },
       "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY"
     },
-    "renewable" : false,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:38.229+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:38.229+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "renewable" : false
   }, {
     "id" : "bd1282ac-f760-4fb9-bf39-3b4cf088530b",
     "name" : "day_30_renew_3_recall_y",
@@ -253,12 +199,6 @@
           "intervalId" : "Days"
         }
       }
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:38.120+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:38.120+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "4d12a86f-3ca2-4288-98b2-74f812d879ec",
@@ -282,12 +222,6 @@
         "duration" : 14,
         "intervalId" : "Days"
       }
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:38.245+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:38.245+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "168d255c-7f8e-4b53-a775-ae344f8ae48e",
@@ -317,12 +251,6 @@
           "intervalId" : "Days"
         }
       }
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:38.212+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:38.212+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "8dcfa981-6876-4c91-bc71-7fdc423c49ca",
@@ -337,25 +265,13 @@
       },
       "closedLibraryDueDateManagementId" : "END_OF_THE_NEXT_OPEN_DAY"
     },
-    "renewable" : false,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:38.270+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:38.270+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "renewable" : false
   }, {
     "id" : "b1c3d40f-f3e5-4b37-ab08-babf061db2da",
     "name" : "noncirc",
     "description" : "Non-circulating policy",
     "loanable" : false,
-    "renewable" : false,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:38.394+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:38.394+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "renewable" : false
   }, {
     "id" : "c998a3ad-8b3b-43da-be34-a40a89165959",
     "name" : "day_7_renew_0_recall_y",
@@ -381,12 +297,6 @@
           "intervalId" : "Days"
         }
       }
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:38.283+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:38.283+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "c8bfa248-3490-417e-9740-46db8b4907dd",
@@ -417,12 +327,6 @@
           "intervalId" : "Days"
         }
       }
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:38.298+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:38.298+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "3f92e92c-2781-40a1-b53f-596d271d616d",
@@ -440,12 +344,6 @@
     "renewalsPolicy" : {
       "unlimited" : true,
       "renewFromId" : "SYSTEM_DATE"
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:38.420+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:38.420+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "a7d0c3ec-503f-44d0-ab72-2de61abc3031",
@@ -463,13 +361,7 @@
         "intervalId" : "Hours"
       }
     },
-    "renewable" : false,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:38.316+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:38.316+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "renewable" : false
   }, {
     "id" : "6ef675b5-1bb0-46f2-938d-85c8a612b7c5",
     "name" : "hour_4_renew_0_recall_n",
@@ -486,13 +378,7 @@
         "intervalId" : "Hours"
       }
     },
-    "renewable" : false,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:38.335+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:38.335+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "renewable" : false
   }, {
     "id" : "75a81283-6571-4c66-9f52-a4cc59ff766a",
     "name" : "hour_4_renew_1_recall_y",
@@ -525,12 +411,6 @@
           "intervalId" : "Hours"
         }
       }
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:38.380+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:38.380+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   } ]
 }

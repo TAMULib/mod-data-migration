@@ -2,7 +2,7 @@
   "path" : "/data-import-profiles/mappingProfiles",
   "query" : "limit=9999",
   "dependencies" : [ "matchProfiles", "actionProfiles", "jobProfiles" ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "570d1ae4-b572-400e-ac5c-e75418446db0",
     "name" : "MARC delete 922 field",
@@ -35,12 +35,6 @@
         }
       } ],
       "marcMappingOption" : "MODIFY"
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:17.235+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:17.235+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "84da407c-b9c3-4275-b9d0-536099798f23",
@@ -1029,12 +1023,6 @@
         "subfields" : [ ]
       } ],
       "marcMappingDetails" : [ ]
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:17.340+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:17.340+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "e4c89af7-6dca-45f1-90dc-1e16d6128cf8",
@@ -1442,12 +1430,6 @@
         "subfields" : [ ]
       } ],
       "marcMappingDetails" : [ ]
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:17.555+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:17.555+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "02220d8e-9309-4d42-8d5c-3aa9684113de",
@@ -2289,12 +2271,6 @@
         "subfields" : [ ]
       } ],
       "marcMappingDetails" : [ ]
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:17.708+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:17.708+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "d628f44b-d89b-44f5-9113-6e30f2e68a9b",
@@ -2517,12 +2493,6 @@
         "subfields" : [ ]
       } ],
       "marcMappingDetails" : [ ]
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:17.797+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:17.797+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   }, {
     "id" : "4d7b05e8-a7e1-410e-bce6-10d078cb334c",
@@ -3532,12 +3502,6 @@
         "subfields" : [ ]
       } ],
       "marcMappingDetails" : [ ]
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:17.832+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:17.832+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     }
   } ]
 }

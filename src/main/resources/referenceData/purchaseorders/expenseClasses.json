@@ -2,655 +2,301 @@
   "path" : "/finance/expense-classes",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "012ba30f-1d20-4afb-8029-2d64116e47f0",
     "code" : "access",
     "externalAccountNumberExt" : "242406",
-    "name" : "access",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:18.328+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:18.328+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "access"
   }, {
     "id" : "8dd5588a-de13-45bc-8040-1ee5005160d8",
     "code" : "asp",
     "externalAccountNumberExt" : "242406",
-    "name" : "Alexander Street Press",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:18.583+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:18.583+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "Alexander Street Press"
   }, {
     "id" : "6dfe92d5-a325-482b-bc78-744bd87920b1",
     "code" : "chargeback",
     "externalAccountNumberExt" : "242406",
-    "name" : "chargeback",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:19.478+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:19.478+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "chargeback"
   }, {
     "id" : "bbef4f8c-1173-45da-be6a-47c3aacb531c",
     "code" : "eapp",
     "externalAccountNumberExt" : "242406",
-    "name" : "E-approvals",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:19.901+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:19.901+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "E-approvals"
   }, {
     "id" : "2a6a9776-c7c4-479b-8110-82ca0be240b8",
     "code" : "ereplace",
     "externalAccountNumberExt" : "242406",
-    "name" : "e-replacement",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.037+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.037+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "e-replacement"
   }, {
     "id" : "c9282d86-4120-4f5a-be3e-657067784124",
     "code" : "ereplacement",
     "externalAccountNumberExt" : "242406",
-    "name" : "Electronic Replacement",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.065+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.065+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "Electronic Replacement"
   }, {
     "id" : "6a7d9cb5-41c8-4ac0-b42f-d348fcdb8bd6",
     "code" : "eselect",
     "externalAccountNumberExt" : "242406",
-    "name" : "e-selectors",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.132+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.132+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "e-selectors"
   }, {
     "id" : "0d3c9098-e315-45aa-be46-cf9b642459c2",
     "code" : "etxtnorm",
     "externalAccountNumberExt" : "242406",
-    "name" : "etxt normal",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.196+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.196+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "etxt normal"
   }, {
     "id" : "575f5703-8e63-4d93-b473-faf29436b80d",
     "code" : "fac24",
     "externalAccountNumberExt" : "242406",
-    "name" : "Faculty",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.265+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.265+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "Faculty"
   }, {
     "id" : "2e158b89-4715-4028-8086-af85ca6da0c8",
     "code" : "galveston",
     "externalAccountNumberExt" : "242406",
-    "name" : "Galveston",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.318+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.318+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "Galveston"
   }, {
     "id" : "23f61163-756d-4a05-8b03-63c459eaadd7",
     "code" : "grad24",
     "externalAccountNumberExt" : "242406",
-    "name" : "grad",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.345+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.345+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "grad"
   }, {
     "id" : "9859d59b-1043-4f3d-bc83-d207d4c2c3f4",
     "code" : "kanopy",
     "externalAccountNumberExt" : "242406",
-    "name" : "Kanopy",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.372+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.372+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "Kanopy"
   }, {
     "id" : "4dc2c928-ddeb-45c3-ac2d-0d46456b955b",
     "code" : "msledbag",
     "externalAccountNumberExt" : "242405-22300",
-    "name" : "MSL EDb Agriculture",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.413+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.413+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EDb Agriculture"
   }, {
     "id" : "647c7986-a3ba-40c0-b063-adda5d3d5987",
     "code" : "msledbbioresearch",
     "externalAccountNumberExt" : "242405-22300",
-    "name" : "MSL EDb Biomedical Research",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.436+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.436+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EDb Biomedical Research"
   }, {
     "id" : "be541231-61f8-49a0-bafd-8e85e7fe23d3",
     "code" : "msledbhumanmed",
     "externalAccountNumberExt" : "242405-22300",
-    "name" : "MSL EDb Human Medicine",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.466+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.466+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EDb Human Medicine"
   }, {
     "id" : "c2911bac-0765-4f7d-8316-28b9460eb5b5",
     "code" : "msledbnursing",
     "externalAccountNumberExt" : "242405-22300",
-    "name" : "MSL EDb Nursing",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.496+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.496+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EDb Nursing"
   }, {
     "id" : "68d3269f-0d7a-4d49-ae55-ef6381e64b16",
     "code" : "msledbpharmacy",
     "externalAccountNumberExt" : "242405-22300",
-    "name" : "MSL EDb Pharmacy",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.523+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.523+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EDb Pharmacy"
   }, {
     "id" : "8dd52aa3-2182-4fb5-80be-9328018ea6c3",
     "code" : "msledbpubhealth",
     "externalAccountNumberExt" : "242405-22300",
-    "name" : "MSL EDb Public Health",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.616+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.616+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EDb Public Health"
   }, {
     "id" : "9507d669-99cb-4c30-b12f-73ddae3b6759",
     "code" : "mslejbioresearch",
     "externalAccountNumberExt" : "242405-22999",
-    "name" : "MSL EJ Biomedical Research",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.803+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.803+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EJ Biomedical Research"
   }, {
     "id" : "de02ccbb-afc9-4393-aa09-bbfcf531e3a4",
     "code" : "mslejmisc",
     "externalAccountNumberExt" : "242405-22999",
-    "name" : "MSL EJ Miscellaneous",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.860+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.860+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EJ Miscellaneous"
   }, {
     "id" : "4e005163-6eb2-46a6-a7d4-b894f3d1b5ee",
     "code" : "mslejpharmacy",
     "externalAccountNumberExt" : "242405-22999",
-    "name" : "MSL EJ College of Pharmacy",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.930+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.930+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EJ College of Pharmacy"
   }, {
     "id" : "2e3553cd-e7ab-4a69-8ffb-7ba564b9221c",
     "code" : "mslejpubhealth",
     "externalAccountNumberExt" : "242405-22999",
-    "name" : "MSL EJ Public Health",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.999+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.999+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EJ Public Health"
   }, {
     "id" : "96dc22d8-2870-464e-b059-c216eca711e1",
     "code" : "mslejvetmed",
     "externalAccountNumberExt" : "242405-22999",
-    "name" : "MSL EJ Veterinary Medicine",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.038+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.038+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EJ Veterinary Medicine"
   }, {
     "id" : "58462e8f-7391-4095-a182-840981763bd4",
     "code" : "mslemonobioresearch",
     "externalAccountNumberExt" : "242405-22400",
-    "name" : "MSL EMono Biomedical Research",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.126+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.126+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EMono Biomedical Research"
   }, {
     "id" : "f1f1d1af-5078-4b90-8461-58b2a8200775",
     "code" : "mslemonohumanmed",
     "externalAccountNumberExt" : "242405-22400",
-    "name" : "MSL EMono Human Medicine",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.201+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.201+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EMono Human Medicine"
   }, {
     "id" : "a67628e0-dd84-4fd8-9508-4041ed9e31e0",
     "code" : "mslemononursing",
     "externalAccountNumberExt" : "242405-22400",
-    "name" : "MSL EMono Nursing",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.271+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.271+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EMono Nursing"
   }, {
     "id" : "aa6723ba-f4e7-436b-82da-7c12dcf5313d",
     "code" : "mslemonopharmacy",
     "externalAccountNumberExt" : "242405-22400",
-    "name" : "MSL EMono Pharmacy",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.373+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.373+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EMono Pharmacy"
   }, {
     "id" : "4d66214f-c976-4c8b-b6b6-931bb3a405b0",
     "code" : "mslemonopubhealth",
     "externalAccountNumberExt" : "242405-22400",
-    "name" : "MSL EMono Public Health",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.439+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.439+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EMono Public Health"
   }, {
     "id" : "c3798940-c25d-4713-a9ac-b55656924309",
     "code" : "mslemonovetmed",
     "externalAccountNumberExt" : "242405-22400",
-    "name" : "MSL EMono Veterinary Medicine",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.461+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.461+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EMono Veterinary Medicine"
   }, {
     "id" : "37ebcaec-92f3-4cfc-8ed3-98dc98fe3c32",
     "code" : "mslpjhumanmed",
     "externalAccountNumberExt" : "242405-21999",
-    "name" : "MSL PJ Human Medicine",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.515+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.515+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PJ Human Medicine"
   }, {
     "id" : "bf4299b5-ac72-4509-b921-822c3c74ce6c",
     "code" : "mslpjmisc",
     "externalAccountNumberExt" : "242405-21999",
-    "name" : "MSL PJ Miscellaneous",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.538+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.538+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PJ Miscellaneous"
   }, {
     "id" : "12b86b7f-bdf8-4cbd-b009-7587626b304d",
     "code" : "mslpjnursing",
     "externalAccountNumberExt" : "242405-21999",
-    "name" : "MSL PJ Nursing",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.561+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.561+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PJ Nursing"
   }, {
     "id" : "8d1d5118-e848-4fee-b254-676afc4d6504",
     "code" : "mslpjpharmacy",
     "externalAccountNumberExt" : "242405-21999",
-    "name" : "MSL PJ Pharmacy",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.638+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.638+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PJ Pharmacy"
   }, {
     "id" : "3d5cd0fc-5ceb-4505-91ce-b7f3c8f87e02",
     "code" : "mslpmonoag",
     "externalAccountNumberExt" : "242405-21400",
-    "name" : "MSL PMono Agriculture",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.750+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.750+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PMono Agriculture"
   }, {
     "id" : "b9e6408f-5ec9-4d86-8f6a-734701bc735f",
     "code" : "mslpmonobioresearch",
     "externalAccountNumberExt" : "242405-21400",
-    "name" : "MSL PMono Biomedical Research",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.804+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.804+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PMono Biomedical Research"
   }, {
     "id" : "246f7cda-493e-46bb-83bb-1f411a921caa",
     "code" : "msledbvetmed",
     "externalAccountNumberExt" : "242405-22300",
-    "name" : "MSL EDb Veterinary Medicine",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.698+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.698+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EDb Veterinary Medicine"
   }, {
     "id" : "47551b78-9082-4827-93da-96e487776cf2",
     "code" : "mslejag",
     "externalAccountNumberExt" : "242405-22999",
-    "name" : "MSL EJ Agriculture",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.724+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.724+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EJ Agriculture"
   }, {
     "id" : "f21e409d-03de-43c8-bb42-de42796035b1",
     "code" : "mslejhumanmed",
     "externalAccountNumberExt" : "242405-22999",
-    "name" : "MSL EJ Human Medicine",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.825+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.825+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EJ Human Medicine"
   }, {
     "id" : "27ddca39-01d3-4cd7-91fa-4f1b034c9df3",
     "code" : "mslejnursing",
     "externalAccountNumberExt" : "242405-22999",
-    "name" : "MSL EJ Nursing",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:20.902+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:20.902+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EJ Nursing"
   }, {
     "id" : "905c5782-1d8a-4fc2-8a8b-7c9c274eac60",
     "code" : "mslemonoag",
     "externalAccountNumberExt" : "242405-22400",
-    "name" : "MSL EMono Agriculture",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.098+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.098+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EMono Agriculture"
   }, {
     "id" : "34a6d786-e95b-41ae-a392-a2b935a445bf",
     "code" : "mslemonomisc",
     "externalAccountNumberExt" : "242405-22400",
-    "name" : "MSL EMono Miscellaneous",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.237+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.237+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL EMono Miscellaneous"
   }, {
     "id" : "85673c7d-d865-4a52-a6eb-5eea4c9ec9d0",
     "code" : "mslpjbioresearch",
     "externalAccountNumberExt" : "242405-21999",
-    "name" : "MSL PJ Biomedical Research",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.480+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.480+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PJ Biomedical Research"
   }, {
     "id" : "773e4920-f787-4132-a668-613de4ec764d",
     "code" : "mslpjpubhealth",
     "externalAccountNumberExt" : "242405-21999",
-    "name" : "MSL PJ Public Health",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.690+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.690+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PJ Public Health"
   }, {
     "id" : "b8fe686e-5b1d-4d45-a21a-34d9aea5e50c",
     "code" : "mslpjvetmed",
     "externalAccountNumberExt" : "242405-21999",
-    "name" : "MSL PJ Veterinary Medicine",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.716+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.716+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PJ Veterinary Medicine"
   }, {
     "id" : "d20a2068-089f-42d0-9893-0afdcc56b27a",
     "code" : "mslpmonopharmacy",
     "externalAccountNumberExt" : "242405-21400",
-    "name" : "MSL PMono Pharmacy",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:22.056+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:22.056+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PMono Pharmacy"
   }, {
     "id" : "1d287ea8-28df-4d3e-82a0-f9865cf759de",
     "code" : "mslpmonovethist",
     "externalAccountNumberExt" : "242405-21400",
-    "name" : "MSL PMono Veterinary Historical",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:22.122+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:22.122+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PMono Veterinary Historical"
   }, {
     "id" : "59090265-788d-4e9d-919e-e5443658708c",
     "code" : "mslpmonovetmed",
     "externalAccountNumberExt" : "242405-21400",
-    "name" : "MSL PMono Veterinary Medicine",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:22.196+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:22.196+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PMono Veterinary Medicine"
   }, {
     "id" : "ff651515-9b20-4449-8dd3-500e7353ce11",
     "code" : "PPDA",
     "externalAccountNumberExt" : "242406",
-    "name" : "Print Purchase on Demand",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:22.320+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:22.320+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "Print Purchase on Demand"
   }, {
     "id" : "487e4cd5-7c9f-4674-a594-6c41c6e5b689",
     "code" : "preplacement",
     "externalAccountNumberExt" : "242406",
-    "name" : "Print Replacement",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:22.401+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:22.401+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "Print Replacement"
   }, {
     "id" : "3a576abb-811e-4945-a651-42b9d517bb15",
     "code" : "techpro",
     "externalAccountNumberExt" : "242406",
-    "name" : "TechPro",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:22.589+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:22.589+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "TechPro"
   }, {
     "id" : "ee5ea835-8896-45f4-b4ef-c1e9812c2d24",
     "code" : "mslpmonohumanmed",
     "externalAccountNumberExt" : "242405-21400",
-    "name" : "MSL PMono Human Medicine",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.833+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.833+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PMono Human Medicine"
   }, {
     "id" : "4ceadf32-6197-4f92-ab18-847d627a04cd",
     "code" : "mslpmonomisc",
     "externalAccountNumberExt" : "242405-21400",
-    "name" : "MSL PMono Miscellaneous",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.898+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.898+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PMono Miscellaneous"
   }, {
     "id" : "a5f3bdc9-a8a1-4027-bd2e-ad08050be710",
     "code" : "mslpmononursing",
     "externalAccountNumberExt" : "242405-21400",
-    "name" : "MSL PMono Nursing",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:21.959+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:21.959+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PMono Nursing"
   }, {
     "id" : "788fd5a9-f4bc-4b65-813b-2eade0637f4d",
     "code" : "mslpmonopubhealth",
     "externalAccountNumberExt" : "242405-21400",
-    "name" : "MSL PMono Public Health",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:22.102+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:22.102+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "MSL PMono Public Health"
   }, {
     "id" : "82bc9d63-a3d0-4aed-872d-d4d2112b1668",
     "code" : "papp",
     "externalAccountNumberExt" : "242406",
-    "name" : "Print approval",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:22.226+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:22.226+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "Print approval"
   }, {
     "id" : "8ff925ba-e022-4534-af9a-8e912c8963a9",
     "code" : "pda",
     "externalAccountNumberExt" : "242406",
-    "name" : "PDA",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:22.299+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:22.299+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "PDA"
   }, {
     "id" : "f36e0eaf-9fe6-4736-ba0b-261be1a05e68",
     "code" : "sel24",
     "externalAccountNumberExt" : "242406",
-    "name" : "Selectors",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:22.460+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:22.460+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "Selectors"
   }, {
     "id" : "a914893c-513b-406e-b842-bf43a56c99c8",
     "code" : "staff24",
     "externalAccountNumberExt" : "242406",
-    "name" : "Staff",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:22.482+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:22.482+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "Staff"
   }, {
     "id" : "b9b1995b-f3fa-4b81-8cee-015b766bbb17",
     "code" : "ungrad24",
     "externalAccountNumberExt" : "242406",
-    "name" : "Undergrad",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:22.662+0000",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:22.662+0000",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "name" : "Undergrad"
   } ]
 }

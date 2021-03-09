@@ -2,7 +2,7 @@
   "path" : "/lost-item-fees-policies",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "name" : "lost_item_fee_policy",
     "description" : "Lost item fee policy",
@@ -33,12 +33,6 @@
     "feesFinesShallRefunded" : {
       "duration" : 365,
       "intervalId" : "Days"
-    },
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:32.963+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:32.963+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
     },
     "id" : "ac5ec0dc-9de1-48e1-80ad-53f581857c9d"
   } ]

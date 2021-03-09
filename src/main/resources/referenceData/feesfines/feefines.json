@@ -2,7 +2,7 @@
   "path" : "/feefines",
   "query" : "limit=9999",
   "dependencies" : [ "owners" ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "automatic" : true,
     "feeFineType" : "Overdue fine",
@@ -24,48 +24,24 @@
     "feeFineType" : "Lost item replacement (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "014416f2-7609-4222-a812-1a3deb0591b8",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:13.616+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:13.616+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "09e14083-c85b-4f41-86ac-b24c47a81b7b"
   }, {
     "automatic" : false,
     "feeFineType" : "Lost item replacement (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:13.874+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:13.874+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "11a3e001-9762-41a2-9aa0-8f373f0270ca"
   }, {
     "automatic" : false,
     "feeFineType" : "Lost item processing (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.040+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.040+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "3761b4f5-c1a9-46b9-b12f-6a1c76fb5eb1"
   }, {
     "automatic" : false,
     "feeFineType" : "Overdue (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "014416f2-7609-4222-a812-1a3deb0591b8",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.060+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.060+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "3b188387-dbd4-4fb3-9a9b-847f72cab0d7"
   }, {
     "automatic" : false,
@@ -74,12 +50,6 @@
     "chargeNoticeId" : "bd639688-ff1c-4092-ac94-65d7339910da",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "7e6832e2-b047-471e-9194-7e4106e0af1e",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.079+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.079+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "3c3497de-a248-4cc9-b75d-02a5a74059c2"
   }, {
     "automatic" : false,
@@ -87,12 +57,6 @@
     "chargeNoticeId" : "3fe59fee-0afa-4dd6-9fd2-655f4e6751fd",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.095+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.095+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "43585a75-e91c-4550-a129-ddebac773edd"
   }, {
     "automatic" : false,
@@ -100,36 +64,18 @@
     "chargeNoticeId" : "3fe59fee-0afa-4dd6-9fd2-655f4e6751fd",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.113+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.113+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "43ac584c-974e-451d-81a2-4509a772267e"
   }, {
     "automatic" : false,
     "feeFineType" : "Lost item processing (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "014416f2-7609-4222-a812-1a3deb0591b8",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.126+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.126+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "672fd96c-e175-4a4f-82e8-8d5362da34f7"
   }, {
     "automatic" : false,
     "feeFineType" : "Overdue (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.138+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.138+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "69482cfd-efce-4a32-a001-a6d9bdd217ec"
   }, {
     "automatic" : false,
@@ -138,24 +84,12 @@
     "chargeNoticeId" : "bd639688-ff1c-4092-ac94-65d7339910da",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.150+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.150+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "731af59a-1e73-4eda-a32f-c490753badd0"
   }, {
     "automatic" : false,
     "feeFineType" : "Lost item replacement (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "7e6832e2-b047-471e-9194-7e4106e0af1e",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.167+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.167+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "75426640-40d2-460a-86d5-7691bf1c6d2a"
   }, {
     "automatic" : false,
@@ -163,60 +97,30 @@
     "chargeNoticeId" : "3a335d9d-89a0-4cde-8338-b0d298039aa6",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "014416f2-7609-4222-a812-1a3deb0591b8",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.475+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.475+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "81a5f2bf-824a-40dd-a237-28a998b774dd"
   }, {
     "automatic" : false,
     "feeFineType" : "Lost item processing (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.498+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.498+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "869ae91d-1960-4746-a561-f63e2b429f97"
   }, {
     "automatic" : false,
     "feeFineType" : "Overdue (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "7e6832e2-b047-471e-9194-7e4106e0af1e",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.512+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.512+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "8d252cda-dda5-4b5c-9d59-be06e47066fb"
   }, {
     "automatic" : false,
     "feeFineType" : "Lost item processing (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "7e6832e2-b047-471e-9194-7e4106e0af1e",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.712+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.712+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "8e0913e4-4569-4250-9d34-5139c5705884"
   }, {
     "automatic" : false,
     "feeFineType" : "Lost item processing (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.857+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.857+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "a4b170b9-f572-4bc0-b39a-9426093dc280"
   }, {
     "automatic" : false,
@@ -224,12 +128,6 @@
     "chargeNoticeId" : "3a335d9d-89a0-4cde-8338-b0d298039aa6",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.881+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.881+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "a7bf1767-c815-44f1-993b-9227e5407f8f"
   }, {
     "automatic" : false,
@@ -237,36 +135,18 @@
     "chargeNoticeId" : "3fe59fee-0afa-4dd6-9fd2-655f4e6751fd",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "7e6832e2-b047-471e-9194-7e4106e0af1e",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.894+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.894+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "aa7dd558-0d32-4991-894b-effa71920395"
   }, {
     "automatic" : false,
     "feeFineType" : "Lost item replacement (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.907+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.907+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "aa9183b3-ed54-4c09-a5d6-0d8e574dcc43"
   }, {
     "automatic" : false,
     "feeFineType" : "Overdue (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.918+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.918+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "bdef6fb7-9380-40a2-9c5b-4ab4e3cbe7ff"
   }, {
     "automatic" : false,
@@ -274,12 +154,6 @@
     "chargeNoticeId" : "3a335d9d-89a0-4cde-8338-b0d298039aa6",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "7e6832e2-b047-471e-9194-7e4106e0af1e",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.930+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.930+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "be6988c7-c0e6-4b8d-9719-180d9152fb1e"
   }, {
     "automatic" : false,
@@ -287,12 +161,6 @@
     "chargeNoticeId" : "3fe59fee-0afa-4dd6-9fd2-655f4e6751fd",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "014416f2-7609-4222-a812-1a3deb0591b8",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.944+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.944+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "c54855bb-bda0-47bd-a079-86efbf6ddfe3"
   }, {
     "automatic" : false,
@@ -301,24 +169,12 @@
     "chargeNoticeId" : "bd639688-ff1c-4092-ac94-65d7339910da",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "014416f2-7609-4222-a812-1a3deb0591b8",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.957+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.957+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "cfb04480-b3d4-4e1e-ad6c-79e938fb7702"
   }, {
     "automatic" : false,
     "feeFineType" : "Overdue (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.984+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.984+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "f55678e3-b8a2-43a5-a8ca-8d89c99df283"
   }, {
     "automatic" : false,
@@ -327,24 +183,12 @@
     "chargeNoticeId" : "bd639688-ff1c-4092-ac94-65d7339910da",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "2eb797c3-8309-4831-a84b-3ca2eeeb2876",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.998+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.998+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "ffc41ba8-d5e4-4461-b8a3-8e869c87eec5"
   }, {
     "automatic" : false,
     "feeFineType" : "Lost item replacement (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:14.974+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:14.974+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "eead2e33-4784-4b50-9e86-4101c16e8b25"
   } ]
 }

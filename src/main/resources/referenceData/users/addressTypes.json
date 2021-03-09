@@ -2,36 +2,18 @@
   "path" : "/addresstypes",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "addressType" : "Other",
     "desc" : "Other",
-    "id" : "3f354e8d-aa1e-4784-8166-8cb4425b77aa",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:21:54.461+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:21:54.461+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "3f354e8d-aa1e-4784-8166-8cb4425b77aa"
   }, {
     "addressType" : "Permanent",
     "desc" : "Permanent",
-    "id" : "59e73913-9a4c-4440-a724-de7a598be72d",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:21:54.557+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:21:54.557+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "59e73913-9a4c-4440-a724-de7a598be72d"
   }, {
     "addressType" : "Temporary",
     "desc" : "Temporary",
-    "id" : "0a9acd33-ce98-4f39-9e1b-a693b6d1adef",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:21:54.715+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:21:54.715+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "id" : "0a9acd33-ce98-4f39-9e1b-a693b6d1adef"
   } ]
 }

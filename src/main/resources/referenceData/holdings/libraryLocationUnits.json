@@ -2,193 +2,91 @@
   "path" : "/location-units/libraries",
   "query" : "limit=9999",
   "dependencies" : [ "institutionLocationUnits", "campusLocationUnits" ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "3fb6a4cf-362a-4d59-8558-9bee67fd50eb",
     "name" : "Business Library and Collaboration Commons",
     "code" : "blcc",
-    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.798+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:14.118+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347"
   }, {
     "id" : "9858a6b1-4600-493b-843e-7bddbd9b3bcf",
     "name" : "Policy Sciences and Economics",
     "code" : "psel",
-    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:20.081+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:15.628+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347"
   }, {
     "id" : "5b775c0c-6107-4cca-9314-106e751ed94a",
     "name" : "Texas A&M University Qatar",
     "code" : "qatar",
-    "campusId" : "c1d51a99-428c-44ee-9df4-8dc259b3d7eb",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:20.098+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:15.666+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "c1d51a99-428c-44ee-9df4-8dc259b3d7eb"
   }, {
     "id" : "72960160-e347-48bf-9ab3-448dcae5da70",
     "name" : "Round Rock Campus",
     "code" : "rr",
-    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:20.126+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:15.535+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43"
   }, {
     "id" : "3e5308a1-430d-4a19-9dbf-fbcf2654e2cc",
     "name" : "Bryan Campus",
     "code" : "bryan",
-    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.830+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:14.169+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43"
   }, {
     "id" : "ac026424-a09c-48eb-b668-624628ac43c1",
     "name" : "Cushing Memorial Library & Archives",
     "code" : "cushing",
-    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.857+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:14.204+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347"
   }, {
     "id" : "035d6391-b350-42cf-b04e-92cf0c4163af",
     "name" : "Dallas Campus",
     "code" : "dallas",
-    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.882+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:14.090+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43"
   }, {
     "id" : "efeb9b55-9f64-423e-aa88-6c12208288fc",
     "name" : "Electronic Resources",
     "code" : "electronic",
-    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.897+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:14.290+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347"
   }, {
     "id" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
     "name" : "Sterling C. Evans",
     "code" : "evans",
-    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.910+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:14.327+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347"
   }, {
     "id" : "c4d5fc95-d496-4e13-a9dc-4a42fcbb8306",
     "name" : "Brazos Family Medicine Residency",
     "code" : "family",
-    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.922+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:14.359+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43"
   }, {
     "id" : "d5b4d60d-ce02-42c8-9d05-56b9e6b63c48",
     "name" : "High Density Repository",
     "code" : "hdr",
-    "campusId" : "0c37bdb0-dbb4-452c-aba8-bd5e5985b3b0",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.934+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:15.238+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "0c37bdb0-dbb4-452c-aba8-bd5e5985b3b0"
   }, {
     "id" : "a00dd4e8-37ea-4cdd-bf8b-ab73b9117fce",
     "name" : "Houston Campus",
     "code" : "houston",
-    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:20.001+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:15.445+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43"
   }, {
     "id" : "a9e9a2da-741c-468f-9a83-efb23a46917b",
     "name" : "Joint Library Facility",
     "code" : "jlf",
-    "campusId" : "92cd6156-44eb-482c-9852-99e25d4ede4a",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:20.017+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:15.324+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "92cd6156-44eb-482c-9852-99e25d4ede4a"
   }, {
     "id" : "34120ce8-40d9-461a-be56-680c8f2f66ae",
     "name" : "HSC Kingsville",
     "code" : "kingsville",
-    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:19.845+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:15.523+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43"
   }, {
     "id" : "2cc2abbb-7e66-4783-a9b5-38951e0aa010",
     "name" : "McAllen Campus",
     "code" : "mcallen",
-    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:20.031+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:15.559+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43"
   }, {
     "id" : "171494ea-b9e6-41ce-8c04-967de9a81b99",
     "name" : "Medical Sciences Library",
     "code" : "msl",
-    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:20.060+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:15.424+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347"
   }, {
     "id" : "1445df48-cede-4f8e-b559-43041bdb00ac",
     "name" : "Temple Campus",
     "code" : "temple",
-    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:20.140+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-03-02T19:29:15.736+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    }
+    "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43"
   } ]
 }

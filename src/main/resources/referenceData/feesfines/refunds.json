@@ -2,24 +2,12 @@
   "path" : "/refunds",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "nameReason" : "Lost item renewed",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:08.618+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:08.618+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "aa8a4a2b-924f-4c36-b12e-c1b29ab3b789"
   }, {
     "nameReason" : "Lost item return",
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:23:08.847+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:23:08.847+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "d6bbdc26-3cde-44f0-80bc-59f935792e7c"
   } ]
 }

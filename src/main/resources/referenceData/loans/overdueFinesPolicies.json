@@ -2,7 +2,7 @@
   "path" : "/overdue-fines-policies",
   "query" : "limit=9999",
   "dependencies" : [ ],
-  "excludedProperties" : [ ],
+  "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "name" : "day_1_max_35",
     "overdueFine" : {
@@ -18,12 +18,6 @@
     },
     "gracePeriodRecall" : true,
     "maxOverdueRecallFine" : 35.0,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:29.125+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:29.125+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "47dd0201-8f40-4b7f-9372-f8f3bfb33a05"
   }, {
     "name" : "day_25_max_150",
@@ -40,12 +34,6 @@
     },
     "gracePeriodRecall" : true,
     "maxOverdueRecallFine" : 150.0,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:29.796+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:29.796+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "52d596ab-72a8-423d-b425-4dbb18c9c48c"
   }, {
     "name" : "day_5_max_35",
@@ -62,12 +50,6 @@
     },
     "gracePeriodRecall" : true,
     "maxOverdueRecallFine" : 35.0,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:30.481+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:30.481+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "c37d9704-4e19-4910-88a6-19990d0e24d0"
   }, {
     "name" : "hour_3_max_150",
@@ -84,12 +66,6 @@
     },
     "gracePeriodRecall" : true,
     "maxOverdueRecallFine" : 150.0,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:30.956+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:30.956+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "4cfa17ca-d29c-4677-a2d7-27c4d521e052"
   }, {
     "name" : "min_50_max_150",
@@ -102,12 +78,6 @@
     "forgiveOverdueFine" : true,
     "gracePeriodRecall" : true,
     "maxOverdueRecallFine" : 0.0,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:30.971+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:30.971+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "530a98b3-5cb2-43aa-b8d3-51e5b08f563d"
   }, {
     "name" : "no_overdue",
@@ -117,12 +87,6 @@
     "forgiveOverdueFine" : true,
     "gracePeriodRecall" : true,
     "maxOverdueRecallFine" : 0.0,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:31.003+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:31.003+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "bbf8a2ba-0ae9-40fa-9fc6-5d26f7f01091"
   }, {
     "name" : "overdue_basic",
@@ -135,12 +99,6 @@
     },
     "gracePeriodRecall" : true,
     "maxOverdueRecallFine" : 35.0,
-    "metadata" : {
-      "createdDate" : "2021-02-26T15:22:31.376+00:00",
-      "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
-      "updatedDate" : "2021-02-26T15:22:31.376+00:00",
-      "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
-    },
     "id" : "d87dfe54-6282-4c4e-aaa4-34b6d2953887"
   } ]
 }
