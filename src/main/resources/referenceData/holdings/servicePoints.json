@@ -1,6 +1,8 @@
 {
   "path" : "/service-points",
+  "query" : "limit=9999",
   "dependencies" : [ "institutionLocationUnits", "campusLocationUnits", "libraryLocationUnits" ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "fc64d24e-5247-402a-ae19-21de454c025d",
     "name" : "Business Library Circulation",

@@ -1,6 +1,8 @@
 {
   "path" : "/lost-item-fees-policies",
+  "query" : "limit=9999",
   "dependencies" : [ ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "name" : "lost_item_fee_policy",
     "description" : "Lost item fee policy",

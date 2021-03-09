@@ -1,6 +1,8 @@
 {
   "path" : "/loan-policy-storage/loan-policies",
+  "query" : "limit=9999",
   "dependencies" : [ ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "36e97605-0d8a-4f96-86ca-7ed1bbc7876a",
     "name" : "day_1_renew_0_recall_n",

@@ -1,6 +1,8 @@
 {
   "path" : "/request-policy-storage/request-policies",
+  "query" : "limit=9999",
   "dependencies" : [ ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "d3171262-dec3-4963-9382-50b171a2d9e5",
     "name" : "no_request",

@@ -1,6 +1,8 @@
 {
   "path" : "/finance/budgets",
+  "query" : "limit=9999",
   "dependencies" : [ "fiscalYears", "funds" ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "8401cc0b-d497-46cc-8d8e-b568841806f1",
     "name" : "access-FY2021",

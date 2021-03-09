@@ -1,6 +1,8 @@
 {
   "path" : "/loan-types",
+  "query" : "limit=9999",
   "dependencies" : [ ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "42865fba-5fd1-4275-85ff-7c5865c6990a",
     "name" : "1_day",

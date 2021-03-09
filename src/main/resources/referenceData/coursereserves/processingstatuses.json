@@ -1,6 +1,8 @@
 {
   "path" : "/coursereserves/processingstatuses",
+  "query" : "limit=9999",
   "dependencies" : [ ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "932bbe9e-9318-4d29-a3d4-fc80a33713c6",
     "name" : "Awaiting Purchase",

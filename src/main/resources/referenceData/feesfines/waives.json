@@ -1,6 +1,8 @@
 {
   "path" : "/waives",
+  "query" : "limit=9999",
   "dependencies" : [ ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "nameReason" : "Error",
     "metadata" : {

@@ -138,7 +138,7 @@ public class OkapiService {
 
   public JsonNode fetchReferenceData(ExternalOkapi okapi, ReferenceData datum) {
     long startTime = System.nanoTime();
-    String url = okapi.getUrl() + datum.getPath()+ "?limit=9999";
+    String url = okapi.getUrl() + datum.getPath() + "?" + datum.getQuery();
     HttpEntity<JsonNode> entity = new HttpEntity<>(headers(datum.getTenant(), datum.getToken()));
     ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.GET, entity, JsonNode.class);
     log.debug("fetch reference data: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));

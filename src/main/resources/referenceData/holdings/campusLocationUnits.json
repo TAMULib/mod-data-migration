@@ -1,6 +1,8 @@
 {
   "path" : "/location-units/campuses",
+  "query" : "limit=9999",
   "dependencies" : [ "institutionLocationUnits" ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "addb918a-5b84-48a2-81d2-0a086948c347",
     "name" : "College Station",

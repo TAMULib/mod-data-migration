@@ -1,6 +1,8 @@
 {
   "path" : "/patron-notice-policy-storage/patron-notice-policies",
+  "query" : "limit=9999",
   "dependencies" : [ ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "a570df1b-763e-4622-828b-fc9b546efc8b",
     "name" : "notices_basic",

@@ -1,6 +1,8 @@
 {
   "path" : "/organizations-storage/categories",
+  "query" : "limit=9999",
   "dependencies" : [ ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "9491fdad-b97b-45df-9783-337d86abc80f",
     "value" : "claim",

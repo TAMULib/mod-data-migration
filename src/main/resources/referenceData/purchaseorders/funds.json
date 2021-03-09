@@ -1,6 +1,8 @@
 {
   "path" : "/finance/funds",
+  "query" : "limit=9999",
   "dependencies" : [ "fundTypes", "ledgers" ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "81348bdf-785c-4f69-8d2a-4579df2fe1d3",
     "allocatedFromIds" : [ ],

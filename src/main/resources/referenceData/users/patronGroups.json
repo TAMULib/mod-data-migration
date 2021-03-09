@@ -1,6 +1,8 @@
 {
   "path" : "/groups",
+  "query" : "limit=9999",
   "dependencies" : [ ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "group" : "admin",
     "desc" : "System Admins",

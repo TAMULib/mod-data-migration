@@ -1,6 +1,8 @@
 {
   "path" : "/templates",
+  "query" : "limit=9999",
   "dependencies" : [ ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "263d4e33-db8d-4e07-9060-11f442320c05",
     "description" : "Account activation email",

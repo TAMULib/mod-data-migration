@@ -1,6 +1,8 @@
 {
   "path" : "/coursereserves/coursetypes",
+  "query" : "limit=9999",
   "dependencies" : [ ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "89194295-65f9-48af-a75c-395fa421b1e2",
     "name" : "Distance",

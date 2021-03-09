@@ -1,6 +1,8 @@
 {
   "path" : "/holdings-note-types",
+  "query" : "limit=9999",
   "dependencies" : [ ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "88914775-f677-4759-b57b-1a33b90b24e0",
     "name" : "Electronic bookplate",

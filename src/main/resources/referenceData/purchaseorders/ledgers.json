@@ -1,6 +1,8 @@
 {
   "path" : "/finance/ledgers",
+  "query" : "limit=9999",
   "dependencies" : [ "fiscalYears" ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
     "name" : "FY2021 - Evans",

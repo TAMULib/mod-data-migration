@@ -10,6 +10,8 @@ public class ReferenceData {
 
   private String path;
 
+  private String query;
+
   // will be populated during processing
   @JsonIgnore
   private String name;
@@ -28,10 +30,13 @@ public class ReferenceData {
 
   private List<String> dependencies;
 
+  private List<String> excludedProperties;
+
   private List<JsonNode> data;
 
   public ReferenceData() {
     dependencies = new ArrayList<>();
+    excludedProperties = new ArrayList<>();
     data = new ArrayList<>();
   }
 
@@ -41,6 +46,14 @@ public class ReferenceData {
 
   public void setPath(String path) {
     this.path = path;
+  }
+
+  public String getQuery() {
+    return query;
+  }
+
+  public void setQuery(String query) {
+    this.query = query;
   }
 
   public String getName() {
@@ -81,6 +94,14 @@ public class ReferenceData {
 
   public void setDependencies(List<String> dependencies) {
     this.dependencies = dependencies;
+  }
+
+  public List<String> getExcludedProperties() {
+    return excludedProperties;
+  }
+
+  public void setExcludedProperties(List<String> excludedProperties) {
+    this.excludedProperties = excludedProperties;
   }
 
   public List<JsonNode> getData() {

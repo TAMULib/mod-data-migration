@@ -1,6 +1,8 @@
 {
   "path" : "/refunds",
+  "query" : "limit=9999",
   "dependencies" : [ ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "nameReason" : "Lost item renewed",
     "metadata" : {

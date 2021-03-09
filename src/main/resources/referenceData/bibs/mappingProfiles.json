@@ -1,6 +1,8 @@
 {
   "path" : "/data-import-profiles/mappingProfiles",
+  "query" : "limit=9999",
   "dependencies" : [ "matchProfiles", "actionProfiles", "jobProfiles" ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "570d1ae4-b572-400e-ac5c-e75418446db0",
     "name" : "MARC delete 922 field",

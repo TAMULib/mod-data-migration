@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import org.apache.commons.io.FilenameUtils;
 import org.folio.rest.migration.model.ReferenceData;
@@ -147,10 +148,13 @@ public class ReferenceDataService {
         while (nodes.hasNext()) {
           Map.Entry<String, JsonNode> entry = (Map.Entry<String, JsonNode>) nodes.next();
           if (!entry.getKey().equals("totalRecords") && !entry.getKey().equals("resultInfo")) {
-            datum.setData(objectMapper.convertValue(entry.getValue(), new TypeReference<ArrayList<JsonNode>>() { }));
+            List<JsonNode> data = objectMapper.convertValue(entry.getValue(), new TypeReference<ArrayList<JsonNode>>() { });
+            data.forEach(node -> ((ObjectNode) node).remove(datum.getExcludedProperties()));
+            datum.setData(data);
             String filePath = datum.getFilePath().replace("target\\classes", "src\\main\\resources");
             logger.info("writing reference data {}", filePath);
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), datum);
+            objectMapper.writerWithDefaultPrettyPrinter()
+              .writeValue(new File(filePath), datum);
           }
         }
       } catch (Exception e) {

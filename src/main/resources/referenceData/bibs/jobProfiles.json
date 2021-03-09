@@ -1,6 +1,8 @@
 {
   "path" : "/data-import-profiles/jobProfiles",
+  "query" : "limit=9999",
   "dependencies" : [ ],
+  "excludedProperties" : [ ],
   "data" : [ {
     "id" : "aba437b8-4bad-42ed-81a6-b2a6c90b61a3",
     "name" : "MARCIVE-Create New Instances and Holdings Records URL",
