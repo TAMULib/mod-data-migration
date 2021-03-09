@@ -3,7 +3,7 @@
   "query" : "limit=9999",
   "reify" : false,
   "dependencies" : [ ],
-  "tranform" : { },
+  "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "name" : "lost_item_fee_policy",

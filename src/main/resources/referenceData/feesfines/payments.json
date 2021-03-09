@@ -3,7 +3,7 @@
   "query" : "limit=9999",
   "reify" : false,
   "dependencies" : [ ],
-  "tranform" : { },
+  "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "nameMethod" : "Interdepartmental transfer",

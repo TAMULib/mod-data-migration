@@ -3,7 +3,7 @@
   "query" : "limit=9999",
   "reify" : false,
   "dependencies" : [ ],
-  "tranform" : { },
+  "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "88914775-f677-4759-b57b-1a33b90b24e0",

@@ -3,7 +3,7 @@
   "query" : "limit=9999",
   "reify" : false,
   "dependencies" : [ "institutionLocationUnits", "campusLocationUnits", "libraryLocationUnits" ],
-  "tranform" : { },
+  "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "fc64d24e-5247-402a-ae19-21de454c025d",

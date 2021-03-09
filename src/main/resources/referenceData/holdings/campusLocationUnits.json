@@ -3,7 +3,7 @@
   "query" : "limit=9999",
   "reify" : false,
   "dependencies" : [ "institutionLocationUnits" ],
-  "tranform" : { },
+  "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "data" : [ {
     "id" : "addb918a-5b84-48a2-81d2-0a086948c347",
