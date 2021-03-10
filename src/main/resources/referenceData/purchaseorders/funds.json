@@ -1045,19 +1045,6 @@
     "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "9259b254-17dd-46cb-82c4-03aaf19d8972" ]
   }, {
     "fund" : {
-      "id" : "692bc717-e37a-4525-95e3-fa25f58ecbef",
-      "allocatedFromIds" : [ ],
-      "allocatedToIds" : [ ],
-      "code" : "etxt2",
-      "externalAccountNo" : "242406",
-      "fundStatus" : "Active",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "name" : "Etxt Main",
-      "acqUnitIds" : [ ]
-    },
-    "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "8d414b94-14e8-4323-bcdc-1ac6ace09404" ]
-  }, {
-    "fund" : {
       "id" : "2cfb269e-ec9f-4f9c-9b75-1d95be521f61",
       "allocatedFromIds" : [ ],
       "allocatedToIds" : [ ],
@@ -1069,6 +1056,19 @@
       "acqUnitIds" : [ ]
     },
     "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "9259b254-17dd-46cb-82c4-03aaf19d8972" ]
+  }, {
+    "fund" : {
+      "id" : "692bc717-e37a-4525-95e3-fa25f58ecbef",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "etxt",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Etxt Main",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "8d414b94-14e8-4323-bcdc-1ac6ace09404" ]
   }, {
     "fund" : {
       "id" : "82163603-687f-46e3-90c9-6b33f2909be8",
