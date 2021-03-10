@@ -1,39 +1,11 @@
 {
   "path" : "/holdings-note-types",
-  "query" : "limit=9999",
+  "query" : "limit=9999&query=id==(f453de0f-8b54-4e99-9180-52932529e3a6 or 7ca7dc63-c053-4aec-8272-c03aeda4840c or 0fe80632-2616-4626-a316-c3bba0e3eeb9)",
   "reify" : false,
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "data" : [ {
-    "id" : "88914775-f677-4759-b57b-1a33b90b24e0",
-    "name" : "Electronic bookplate",
-    "source" : "folio"
-  }, {
-    "id" : "c4407cc7-d79f-4609-95bd-1cefb2e2b5c5",
-    "name" : "Copy note",
-    "source" : "folio"
-  }, {
-    "id" : "d6510242-5ec3-42ed-b593-3585d2e48fd6",
-    "name" : "Action note",
-    "source" : "folio"
-  }, {
-    "id" : "e19eabab-a85c-4aef-a7b2-33bd9acef24e",
-    "name" : "Binding",
-    "source" : "folio"
-  }, {
-    "id" : "db9b4787-95f0-4e78-becf-26748ce6bdeb",
-    "name" : "Provenance",
-    "source" : "folio"
-  }, {
-    "id" : "6a41b714-8574-4084-8d64-a9373c3fbb59",
-    "name" : "Reproduction",
-    "source" : "folio"
-  }, {
-    "id" : "b160f13a-ddba-4053-b9c4-60ec5ea45d56",
-    "name" : "Note",
-    "source" : "folio"
-  }, {
     "id" : "f453de0f-8b54-4e99-9180-52932529e3a6",
     "name" : "Access restrictions",
     "source" : "local"

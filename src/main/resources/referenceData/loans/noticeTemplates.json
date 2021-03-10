@@ -1,71 +1,11 @@
 {
   "path" : "/templates",
-  "query" : "limit=9999",
+  "query" : "limit=9999&query=id==(03697536-6b0e-49ff-a545-d1b3de691b4a or 05c5f6dd-d989-497b-af20-2586a6960f22 or 2c8b5912-99f1-4b6b-87eb-fc8acaf7a3a8 or 3a335d9d-89a0-4cde-8338-b0d298039aa6 or 3d1534cb-8c98-466c-acd9-fd1448468d7f or 3fe59fee-0afa-4dd6-9fd2-655f4e6751fd or 631ff684-e221-45d8-822d-bc3a444c489b or a68995b4-d64e-401e-ad1b-4970929fc698 or bd639688-ff1c-4092-ac94-65d7339910da)",
   "reify" : false,
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "data" : [ {
-    "id" : "263d4e33-db8d-4e07-9060-11f442320c05",
-    "description" : "Account activation email",
-    "outputFormats" : [ "text/html" ],
-    "templateResolver" : "mustache",
-    "localizedTemplates" : {
-      "en" : {
-        "header" : "Complete activation of your FOLIO account",
-        "body" : "<p>{{user.personal.firstName}}</p><p>Your FOLIO account has been activated.</p><p>Your username is {{user.username}}.</p><p>To complete activation of your account, please use the following link to create a password for your FOLIO account: <a href={{link}}>visit this link</a></p><p>If you do not create a password within 24 hours of the delivery of this email, then contact your FOLIO Administrator to receive a new create password link.</p><p>Regards,</p><p>{{institution.name}} FOLIO Administration</p>",
-        "attachments" : [ ]
-      }
-    }
-  }, {
-    "id" : "ed8c1c67-897b-4a23-a702-c36e280c6a93",
-    "description" : "Reset password email",
-    "outputFormats" : [ "text/html" ],
-    "templateResolver" : "mustache",
-    "localizedTemplates" : {
-      "en" : {
-        "header" : "Reset your Folio account",
-        "body" : "<p>{{user.personal.firstName}}</p><p>Your request to reset your password has been received.</p> <p>To reset your password, please <a href={{link}}>visit this link</a>.</p><p>NOTE: If you do not reset your password within {{expirationTime}} {{expirationUnitOfTime}} of the delivery of this email, the link will no longer operate. Please contact your FOLIO system administrator if you are unable to reset your password.</p><p>Regards,</p><p>{{institution.name}} FOLIO Administration</p>",
-        "attachments" : [ ]
-      }
-    }
-  }, {
-    "id" : "ce9e3e2c-669a-4491-a12f-e0fdad066191",
-    "description" : "Password is successfully created email template",
-    "outputFormats" : [ "text/plain" ],
-    "templateResolver" : "mustache",
-    "localizedTemplates" : {
-      "en" : {
-        "header" : "Folio account successfully created",
-        "body" : "{{user.personal.firstName}}\n\nYour Folio account has been successfully created. You should now have access to Folio. \n\nShould you have any questions or you have received this email in error, please contact your Folio Administrator. \n\nRegards, \n\n{{institution.name}} Folio Administration",
-        "attachments" : [ ]
-      }
-    }
-  }, {
-    "id" : "d0ee371a-f3f7-407a-b6f3-714362db6240",
-    "description" : "Username located email template",
-    "outputFormats" : [ "text/plain" ],
-    "templateResolver" : "mustache",
-    "localizedTemplates" : {
-      "en" : {
-        "header" : "Folio account located",
-        "body" : "{{user.personal.firstName}}\n\nYour Folio username is {{user.username}}.\n\nPlease contact your Folio Administrator if you have any questions.\n\nRegards,\n\n{{institution.name}} Folio Administration",
-        "attachments" : [ ]
-      }
-    }
-  }, {
-    "id" : "0ff6678f-53cd-4a32-9937-504c28f14077",
-    "description" : "Template for password changed email",
-    "outputFormats" : [ "text/plain" ],
-    "templateResolver" : "mustache",
-    "localizedTemplates" : {
-      "en" : {
-        "header" : "Your Folio password changed",
-        "body" : "Dear {{user.personal.firstName}},\n\nYour password has been changed.\nThis is a confirmation that your password was changed on {{dateTime}}.\n\nDid not change your password? Contact your Folio System Administrator to help secure your account.\n\t\nRegards,\n\nFolio Support",
-        "attachments" : [ ]
-      }
-    }
-  }, {
     "id" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "description" : "notifies patron of action that has been taken against a fee/fine",
     "outputFormats" : [ "text/html" ],

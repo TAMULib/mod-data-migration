@@ -1,15 +1,11 @@
 {
   "path" : "/groups",
-  "query" : "limit=9999",
+  "query" : "limit=9999&query=group<>admin",
   "reify" : false,
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "data" : [ {
-    "group" : "admin",
-    "desc" : "System Admins",
-    "id" : "d2dcb4dd-0540-46c6-87a5-067af91f9b84"
-  }, {
     "group" : "comm",
     "desc" : "Community User",
     "id" : "6585adb2-6ee7-4f95-b115-b5b0acf0f181"

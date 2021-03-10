@@ -1,23 +1,11 @@
 {
   "path" : "/holdings-types",
-  "query" : "limit=9999",
+  "query" : "limit=9999&query=id==61155a36-148b-4664-bb7f-64ad708e0b32",
   "reify" : false,
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "data" : [ {
-    "id" : "03c9c400-b9e3-4a07-ac0e-05ab470233ed",
-    "name" : "Monograph",
-    "source" : "folio"
-  }, {
-    "id" : "e6da6c98-6dd0-41bc-8b4b-cfd4bbd9c3ae",
-    "name" : "Serial",
-    "source" : "folio"
-  }, {
-    "id" : "dc35d0ae-e877-488b-8e97-6e41444e6d0a",
-    "name" : "Multi-part monograph",
-    "source" : "folio"
-  }, {
     "id" : "61155a36-148b-4664-bb7f-64ad708e0b32",
     "name" : "Unknown",
     "source" : "marc"
