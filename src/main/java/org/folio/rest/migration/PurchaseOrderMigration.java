@@ -627,7 +627,11 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
 
                   holdingsRecord.setNotes(holdingsRecordNotes);
 
-                  migrationService.okapiService.putHoldingsrecord(tenant, token, holdingsRecord);
+                  try {
+                    migrationService.okapiService.putHoldingsrecord(tenant, token, holdingsRecord);
+                  } catch (Exception e) {
+                    log.error("{} failed to update holdings record for mfhd id {}", job.getSchema(), mfhdId);
+                  }
 
                 } else {
                   log.error("{} no holdings record id found for mfhd id {}", job.getSchema(), mfhdId);
