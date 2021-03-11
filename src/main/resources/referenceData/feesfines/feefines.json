@@ -1,27 +1,11 @@
 {
   "path" : "/feefines",
-  "query" : "limit=9999",
+  "query" : "limit=9999&query=automatic<>true",
   "reify" : false,
   "dependencies" : [ "owners" ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "data" : [ {
-    "automatic" : true,
-    "feeFineType" : "Overdue fine",
-    "id" : "9523cb96-e752-40c2-89da-60f3961a488d"
-  }, {
-    "automatic" : true,
-    "feeFineType" : "Replacement processing fee",
-    "id" : "d20df2fb-45fd-4184-b238-0d25747ffdd9"
-  }, {
-    "automatic" : true,
-    "feeFineType" : "Lost item fee",
-    "id" : "cf238f9f-7018-47b7-b815-bb2db798e19f"
-  }, {
-    "automatic" : true,
-    "feeFineType" : "Lost item processing fee",
-    "id" : "c7dede15-aa48-45ed-860b-f996540180e0"
-  }, {
     "automatic" : false,
     "feeFineType" : "Lost item replacement (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
