@@ -17,7 +17,7 @@
     "displayName" : "Cat_View",
     "id" : "8641feeb-07f3-495e-86cb-93df4eb85068",
     "description" : "Permits non-catalogers to view Inventory, FOLIO Holdings, and Items",
-    "subPermissions" : [ "ui-inventory.instance.view-staff-suppressed-records", "ui-inventory.instance.view" ],
+    "subPermissions" : [ "ui-inventory.instance.view-staff-suppressed-records", "ui-inventory.instance.view", "ui-tags.view" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -25,14 +25,14 @@
     "displayName" : "Cat_AllStaff",
     "id" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
     "description" : "Set of permissions for Staff and Professionals",
-    "subPermissions" : [ "ui-inventory.all-permissions.TEMPORARY", "ui-inventory.items.mark-items-withdrawn", "ui-orders.order-lines.view", "ui-orders.order.view", "ui-quick-marc.quick-marc-editor.all" ],
+    "subPermissions" : [ "ui-inventory.all-permissions.TEMPORARY", "ui-inventory.items.mark-items-withdrawn", "ui-orders.order-lines.view", "ui-orders.order.view", "ui-quick-marc.quick-marc-editor.all", "ui-tags.view" ],
     "mutable" : true,
     "visible" : true
   }, {
     "permissionName" : "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
     "displayName" : "Circ_Staff",
     "id" : "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
-    "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "course-reserves.read-add-edit", "ui-plugin-create-inventory-records.create", "ui-users.feefineactions", "ui-users.accounts", "ui-users.manual_charge", "ui-users.manual_pay", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.item.markasmissing", "ui-notes.item.create", "ui-notes.item.delete", "ui-notes.item.edit", "ui-notes.item.view", "ui-requests.create", "ui-requests.edit", "ui-users.create", "ui-users.patron_blocks", "ui-users.editproxies", "ui-users.edit", "ui-users.viewproxies", "ui-users.viewuserservicepoints", "ui-users.view", "ui-users.loans.edit", "ui-users.loans.claim-item-returned", "ui-users.loans.declare-item-lost", "ui-users.loans.declare-claimed-returned-item-as-missing", "ui-users.loans.renew-override", "ui-users.loans.all", "ui-users.requests.all" ],
+    "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "course-reserves.read-add-edit", "ui-plugin-create-inventory-records.create", "ui-users.feefineactions", "ui-users.accounts", "ui-users.manual_charge", "ui-users.manual_pay", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.item.markasmissing", "ui-notes.item.create", "ui-notes.item.delete", "ui-notes.item.edit", "ui-notes.item.view", "ui-requests.create", "ui-requests.edit", "ui-tags.view", "ui-users.create", "ui-users.patron_blocks", "ui-users.editproxies", "ui-users.edit", "ui-users.viewproxies", "ui-users.viewuserservicepoints", "ui-users.view", "ui-users.loans.edit", "ui-users.loans.claim-item-returned", "ui-users.loans.declare-item-lost", "ui-users.loans.declare-claimed-returned-item-as-missing", "ui-users.loans.renew-override", "ui-users.loans.all", "ui-users.requests.all" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -48,14 +48,14 @@
     "displayName" : "Cat_Student",
     "id" : "80a761b1-fdb8-4bfa-988e-65760ff72ec5",
     "description" : "Student Workers doing maintenance operations ",
-    "subPermissions" : [ "ui-inventory.items.mark-items-withdrawn", "ui-inventory.instance.view-staff-suppressed-records", "ui-inventory.instance.view", "ui-inventory.holdings.delete", "ui-inventory.item.delete", "ui-inventory.item.markasmissing" ],
+    "subPermissions" : [ "ui-inventory.items.mark-items-withdrawn", "ui-inventory.instance.view-staff-suppressed-records", "ui-inventory.instance.view", "ui-inventory.holdings.delete", "ui-inventory.item.delete", "ui-inventory.item.markasmissing", "ui-tags.view" ],
     "mutable" : true,
     "visible" : true
   }, {
     "permissionName" : "bd76b150-f075-4bdc-a93a-e6f7a563067e",
     "displayName" : "Circ_Supervisors",
     "id" : "bd76b150-f075-4bdc-a93a-e6f7a563067e",
-    "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "course-reserves.maintain-items", "course-reserves.read-all", "course-reserves.read-add-edit", "ui-plugin-create-inventory-records.create", "ui-users.feefineactions", "ui-users.accounts", "ui-users.manual_charge", "ui-users.manual_pay", "ui-users.manual_waive", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.item.markasmissing", "ui-notes.item.create", "ui-notes.item.delete", "ui-notes.item.edit", "ui-notes.item.view", "ui-requests.all", "ui-users.edituserservicepoints", "ui-users.create", "ui-users.feesfines.actions.all", "ui-users.patron_blocks", "ui-users.editproxies", "ui-users.edit", "ui-users.viewperms", "ui-users.viewproxies", "ui-users.viewuserservicepoints", "ui-users.view", "ui-users.loans.edit", "ui-users.loans.claim-item-returned", "ui-users.loans.declare-item-lost", "ui-users.loans.declare-claimed-returned-item-as-missing", "ui-users.loans.renew", "ui-users.loans.renew-override", "ui-users.loans.view", "ui-users.loans.all", "ui-users.requests.all" ],
+    "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "course-reserves.maintain-items", "course-reserves.read-all", "course-reserves.read-add-edit", "ui-plugin-create-inventory-records.create", "ui-users.feefineactions", "ui-users.accounts", "ui-users.manual_charge", "ui-users.manual_pay", "ui-users.manual_waive", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.item.markasmissing", "ui-notes.item.create", "ui-notes.item.delete", "ui-notes.item.edit", "ui-notes.item.view", "ui-requests.all", "ui-tags.view", "ui-users.edituserservicepoints", "ui-users.create", "ui-users.feesfines.actions.all", "ui-users.patron_blocks", "ui-users.editproxies", "ui-users.edit", "ui-users.viewperms", "ui-users.viewproxies", "ui-users.viewuserservicepoints", "ui-users.view", "ui-users.loans.edit", "ui-users.loans.claim-item-returned", "ui-users.loans.declare-item-lost", "ui-users.loans.declare-claimed-returned-item-as-missing", "ui-users.loans.renew", "ui-users.loans.renew-override", "ui-users.loans.view", "ui-users.loans.all", "ui-users.requests.all" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -77,7 +77,7 @@
     "permissionName" : "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
     "displayName" : "Circ_Students",
     "id" : "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
-    "subPermissions" : [ "ui-checkin.all", "ui-checkout.circulation", "ui-inventory.instance.view", "ui-notes.item.create", "ui-circulation-log.log-event.all", "ui-notes.item.view", "ui-users.viewproxies", "ui-users.view", "ui-users.loans.renew", "ui-users.loans.view", "ui-users.requests.all" ],
+    "subPermissions" : [ "ui-checkin.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "ui-inventory.instance.view", "ui-notes.item.create", "ui-notes.item.view", "ui-tags.view", "ui-users.viewproxies", "ui-users.view", "ui-users.loans.renew", "ui-users.loans.view", "ui-users.requests.all" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -106,7 +106,7 @@
     "displayName" : "Circ_On_the_Fly",
     "id" : "f10e7d66-e6c5-4db9-a6e1-42fc2d568aa5",
     "description" : "For Circ staff having to create Circ on the Fly records",
-    "subPermissions" : [ "ui-plugin-create-inventory-records.create" ],
+    "subPermissions" : [ "ui-agreements.agreements.view", "ui-plugin-create-inventory-records.create", "ui-tags.view" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -128,7 +128,7 @@
     "displayName" : "ILS_Staff",
     "id" : "50a15dba-6ea2-426a-9118-369084f1247b",
     "description" : "Interlibrary Loan staff",
-    "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-circulation-log.log-event.all", "ui-plugin-create-inventory-records.create", "ui-notes.item.create", "ui-notes.item.view", "ui-requests.create", "ui-requests.edit", "ui-users.loans.renew", "ui-users.loans.view", "ui-users.requests.all" ],
+    "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-circulation-log.log-event.all", "ui-plugin-create-inventory-records.create", "ui-notes.item.create", "ui-notes.item.view", "ui-requests.create", "ui-requests.edit", "ui-tags.view", "ui-users.loans.renew", "ui-users.loans.view", "ui-users.requests.all" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -157,7 +157,7 @@
     "displayName" : "Cat_Item",
     "id" : "df294639-9886-44ae-a215-257e3f0bdfd2",
     "description" : "Cataloging staff who only wish to view or edit item locations and status",
-    "subPermissions" : [ "ui-inventory.item.edit" ],
+    "subPermissions" : [ "ui-inventory.item.edit", "ui-tags.view" ],
     "mutable" : true,
     "visible" : true
   }, {
