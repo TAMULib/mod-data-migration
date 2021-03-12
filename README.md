@@ -1633,7 +1633,8 @@ POST to http://localhost:9000/migrate/purchaseorders
       "includeAddresses": true,
       "references": {
         "vendorTypeId": "08c7dd18-dbaf-11e9-8a34-2a2ae2dbcce4",
-        "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672"
+        "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672",
+        "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5"
       },
       "poLinesAdditionalContext": {
         "COLUMNS": "li.bib_id AS bib_id, li.line_item_id AS line_item_id, po_type, li.line_price AS line_price, line_item_loc.location_code AS location_code, line_item_loc.location_id AS location_id, bt.title AS title, trim(bt.issn) AS issn, lics.line_item_status AS line_item_status, li.requestor AS requester, li.vendor_title_num AS vendor_title_num, li.vendor_ref_qual AS vendor_ref_qual, li.vendor_ref_num AS vendor_ref_num, va.account_name AS account_name, fund.fund_code AS fund_code, lin.note AS note",
@@ -1656,7 +1657,8 @@ POST to http://localhost:9000/migrate/purchaseorders
       "includeAddresses": false,
       "references": {
         "vendorTypeId": "b427aa0a-96f2-4338-8b3c-2ddcdca6cfe4",
-        "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8"
+        "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8",
+        "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12"
       },
       "poLinesAdditionalContext": {
         "COLUMNS": "li.bib_id AS bib_id, li.line_item_id AS line_item_id, po_type, li.line_price AS line_price, mfhdloc.location_code AS location_code, mfhdloc.location_id AS location_id, bt.title_brief AS title, trim(bt.issn) AS issn, lics.line_item_status AS line_item_status, li.requestor AS requester, li.vendor_title_num AS vendor_title_num, li.vendor_ref_qual AS vendor_ref_qual, li.vendor_ref_num AS vendor_ref_num, va.account_name AS account_name, fund.fund_code AS fund_code, null AS note",
