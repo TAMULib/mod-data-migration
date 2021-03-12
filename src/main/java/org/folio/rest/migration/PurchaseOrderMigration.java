@@ -544,7 +544,7 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
 
             receivingHistoryContext.put(LINE_ITEM_ID, lineItemId);
 
-            Pattern pattern = Pattern.compile("/(.*?)(\\(.*$)/");
+            Pattern pattern = Pattern.compile("^(.*?)(\\(.*)$");
             String mfhdId = null;
             String note = StringUtils.EMPTY;
             List<Entry> recievingHistoryEntries = new ArrayList<>();
@@ -566,10 +566,10 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
 
                 if (matcher.matches()) {
                   if (matcher.groupCount() > 0) {
-                    entry.setEnumeration(matcher.group(0));
+                    entry.setEnumeration(matcher.group(1));
                   }
                   if (matcher.groupCount() > 1) {
-                    entry.setChronology(matcher.group(1));
+                    entry.setChronology(matcher.group(2));
                   }
                 }
 
