@@ -601,6 +601,8 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
                   ReceivingHistory receivingHistory = new ReceivingHistory();
                   receivingHistory.setEntries(recievingHistoryEntries);
 
+                  holdingsRecord.setReceivingHistory(receivingHistory);
+
                   List<Note> holdingsRecordNotes = holdingsRecord.getNotes();
 
                   if (StringUtils.isNotEmpty(job.getHoldingsNoteToElide())) {
