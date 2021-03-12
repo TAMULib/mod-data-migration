@@ -13,5 +13,9 @@
     "id" : "7ca7dc63-c053-4aec-8272-c03aeda4840c",
     "name" : "latest_in",
     "source" : "local"
+  }, {
+    "id" : "0fe80632-2616-4626-a316-c3bba0e3eeb9",
+    "name" : "receiving_note",
+    "source" : "local"
   } ]
 }
