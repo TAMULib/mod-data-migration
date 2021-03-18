@@ -42,7 +42,6 @@ Vagrant.configure(2) do |config|
   # https://app.vagrantup.com/folio/boxes/release
   config.vm.define "release", autostart: false do |release|
     release.vm.box = "folio/release"
-    release.vm.box_version = "1.0.0-20201216.5501"
   end
 
 end
