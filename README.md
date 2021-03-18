@@ -1840,11 +1840,11 @@ POST to http://localhost:9000/migrate/purchaseorders
       }
     },
     "vendorRefQual": {
-      "SNA": "Agent's unique subscription reference number",
-      "VN": "Internal vendor number",
-      "SCO": "Supplier's continuation order",
-      "SLI": "Supplier's unique order line reference number",
-      "SNP": "Library's continuation order number"
+      "SNA": "Vendor subscription reference number",
+      "VN": "Vendor internal number",
+      "SCO": "Vendor title number",
+      "SLI": "Vendor order reference number",
+      "SNP": "Vendor continuation reference number"
     }
   },
   "defaults": {
