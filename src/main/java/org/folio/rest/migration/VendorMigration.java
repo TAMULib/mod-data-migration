@@ -1,11 +1,9 @@
 package org.folio.rest.migration;
 
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,9 +17,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.io.JsonStringEncoder;
 
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Address;
@@ -43,8 +38,6 @@ import org.folio.rest.migration.model.request.vendor.VendorMaps;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
-import org.postgresql.copy.PGCopyOutputStream;
-import org.postgresql.core.BaseConnection;
 
 public class VendorMigration extends AbstractMigration<VendorContext> {
 
@@ -98,12 +91,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
   private static final String VENDOR_REFERENCE_ID = "vendorTypeId";
 
   private static final Set<String> CODES = new HashSet<>();
-
-  // (id,jsonb,creation_date,created_by)
-  private static final String CONTACTS_RECORDS_COPY_SQL = "COPY %s_mod_organizations_storage.contacts (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
-
-  //(id,jsonb,creation_date,created_by)
-  private static final String ORGANIZATIONS_RECORDS_COPY_SQL = "COPY %s_mod_organizations_storage.organizations (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
 
   private VendorMigration(VendorContext context, String tenant) {
     super(context, tenant);
@@ -205,6 +192,8 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       VendorMaps maps = context.getMaps();
       VendorDefaults defaults = context.getDefaults();
 
+      String token = (String) partitionContext.get(TOKEN);
+
       String userId = (String) partitionContext.get(USER_ID);
 
       String schema = job.getSchema();
@@ -212,7 +201,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       int index = this.getIndex();
 
       Database voyagerSettings = context.getExtraction().getDatabase();
-      Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
       Map<String, Object> vendorAccountsContext = new HashMap<>();
       vendorAccountsContext.put(SQL, context.getExtraction().getAccountSql());
@@ -234,15 +222,11 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       vendorAddressPhoneNumbersContext.put(SQL, context.getExtraction().getPhoneSql());
       vendorAddressPhoneNumbersContext.put(SCHEMA, job.getSchema());
 
-      JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
-
       String vendorRLTypeId = job.getReferences().get(VENDOR_REFERENCE_ID);
 
-      ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
+      ThreadConnections threadConnections = getThreadConnections(voyagerSettings);
 
       try (
-        PrintWriter contactWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getContactsRecordConnection(), String.format(CONTACTS_RECORDS_COPY_SQL, tenant)), true);
-        PrintWriter organizationWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getOrganizationRecordConnection(), String.format(ORGANIZATIONS_RECORDS_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement accountStatement = threadConnections.getAccountConnection().createStatement();
         Statement addressStatement = threadConnections.getAddressConnection().createStatement();
@@ -281,85 +265,82 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
           VendorRecord vendorRecord = new VendorRecord(referenceId, vendorId, vendorCode, vendorType, vendorName, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
 
-          try {
-            CompletableFuture.allOf(
-              getVendorAccounts(accountStatement, vendorAccountsContext)
-                .thenAccept((vendorAccountRecords) -> vendorRecord.setVendorAccountRecords(vendorAccountRecords)),
-              getVendorAddresses(addressStatement, vendorAddressesContext)
-                .thenAccept((vendorAddresses) -> vendorRecord.setVendorAddresses(vendorAddresses)),
-              getVendorAliases(aliasStatement, vendorAliasesContext)
-                .thenAccept((vendorAliases) -> vendorRecord.setVendorAliases(vendorAliases))
-              // getVendorNotes(noteStatement, vendorNotesContext)
-              //   .thenAccept((vendorNotes) -> vendorRecord.setVendorNotes(vendorNotes))
-            ).get();
+          CompletableFuture.allOf(
+            getVendorAccounts(accountStatement, vendorAccountsContext)
+              .thenAccept((vendorAccountRecords) -> vendorRecord.setVendorAccountRecords(vendorAccountRecords)),
+            getVendorAddresses(addressStatement, vendorAddressesContext)
+              .thenAccept((vendorAddresses) -> vendorRecord.setVendorAddresses(vendorAddresses)),
+            getVendorAliases(aliasStatement, vendorAliasesContext)
+              .thenAccept((vendorAliases) -> vendorRecord.setVendorAliases(vendorAliases))
+            // getVendorNotes(noteStatement, vendorNotesContext)
+            //   .thenAccept((vendorNotes) -> vendorRecord.setVendorNotes(vendorNotes))
+          ).get();
 
-            List<VendorPhoneRecord> vendorPhoneNumbers = new ArrayList<>();
+          List<VendorPhoneRecord> vendorPhoneNumbers = new ArrayList<>();
 
-            List<Address> addresses = new ArrayList<>();
-            List<String> contacts = new ArrayList<>();
-            List<Email> emails = new ArrayList<>();
-            List<Url> urls = new ArrayList<>();
+          List<Address> addresses = new ArrayList<>();
+          List<String> contacts = new ArrayList<>();
+          List<Email> emails = new ArrayList<>();
+          List<Url> urls = new ArrayList<>();
 
-            Date createdDate = new Date();
-            String createdByUserId = userId;
-            String createdAt = DATE_TIME_FOMATTER.format(new Date().toInstant().atOffset(ZoneOffset.UTC));
+          Date createdDate = new Date();
+          String createdByUserId = userId;
 
-            for (VendorAddressRecord vendorAddress : vendorRecord.getVendorAddresses()) {
-              vendorAddress.setVendorId(vendorId);
-              vendorAddress.setCreatedDate(createdDate);
-              vendorAddress.setCreatedByUserId(createdByUserId);
+          for (VendorAddressRecord vendorAddress : vendorRecord.getVendorAddresses()) {
+            vendorAddress.setVendorId(vendorId);
+            vendorAddress.setCreatedDate(createdDate);
+            vendorAddress.setCreatedByUserId(createdByUserId);
 
-              List<String> categories = vendorAddress.getCategories(maps);
+            List<String> categories = vendorAddress.getCategories(maps);
 
-              if (vendorAddress.isAddress()) {
-                addresses.add(vendorAddress.toAddress(categories, defaults, maps));
-              } else if (vendorAddress.isContact()) {
-                Contact contact = vendorAddress.toContact(categories, defaults, maps);
+            if (vendorAddress.isAddress()) {
+              addresses.add(vendorAddress.toAddress(categories, defaults, maps));
+            } else if (vendorAddress.isContact()) {
+              Contact contact = vendorAddress.toContact(categories, defaults, maps);
 
-                String contactUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(contact)));
-
-                contactWriter.println(String.join("\t", contact.getId(), contactUtf8Json, createdAt, createdByUserId));
+              try {
+                contact = migrationService.okapiService.createContact(contact, tenant, token);
 
                 contacts.add(contact.getId());
-              } else if (vendorAddress.isEmail()) {
-                emails.add(vendorAddress.toEmail(categories));
-              } else if (vendorAddress.isUrl()) {
-                urls.add(vendorAddress.toUrl(categories));
+              } catch (Exception e) {
+                log.error("{} error creating contact {}\n{}", schema, contact, e.getMessage());
               }
-              vendorAddressPhoneNumbersContext.put(ADDRESS_ID, vendorAddress.getAddressId());
-              vendorAddressPhoneNumbersContext.put(CATEGORIES, categories);
-              vendorPhoneNumbers.addAll(getVendorAddressPhoneNumbers(phoneStatement, vendorAddressPhoneNumbersContext));
 
-              vendorPhoneNumbers.forEach(vendorPhoneNumber -> {
-                vendorPhoneNumber.setCreatedDate(createdDate);
-                vendorPhoneNumber.setCreatedByUserId(userId);
-              });
+            } else if (vendorAddress.isEmail()) {
+              emails.add(vendorAddress.toEmail(categories));
+            } else if (vendorAddress.isUrl()) {
+              urls.add(vendorAddress.toUrl(categories));
             }
+            vendorAddressPhoneNumbersContext.put(ADDRESS_ID, vendorAddress.getAddressId());
+            vendorAddressPhoneNumbersContext.put(CATEGORIES, categories);
+            vendorPhoneNumbers.addAll(getVendorAddressPhoneNumbers(phoneStatement, vendorAddressPhoneNumbersContext));
 
-            vendorRecord.setCreatedDate(createdDate);
-            vendorRecord.setCreatedByUserId(userId);
+            vendorPhoneNumbers.forEach(vendorPhoneNumber -> {
+              vendorPhoneNumber.setCreatedDate(createdDate);
+              vendorPhoneNumber.setCreatedByUserId(userId);
+            });
+          }
 
-            vendorRecord.setAddresses(addresses);
-            vendorRecord.setContacts(contacts);
-            vendorRecord.setEmails(emails);
-            vendorRecord.setUrls(urls);
-            vendorRecord.setVendorPhoneNumbers(vendorPhoneNumbers);
+          vendorRecord.setCreatedDate(createdDate);
+          vendorRecord.setCreatedByUserId(userId);
 
-            Organization organization = vendorRecord.toOrganization(defaults);
+          vendorRecord.setAddresses(addresses);
+          vendorRecord.setContacts(contacts);
+          vendorRecord.setEmails(emails);
+          vendorRecord.setUrls(urls);
+          vendorRecord.setVendorPhoneNumbers(vendorPhoneNumbers);
 
-            if (!processCode(organization.getCode().toLowerCase())) {
-              log.warn("{} vendor id {} code {} already processed", schema, vendorId, organization.getCode());
-              continue;
-            }
+          Organization organization = vendorRecord.toOrganization(defaults);
 
-            String orgUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(organization)));
-
-            organizationWriter.println(String.join("\t", organization.getId(), orgUtf8Json, createdAt, createdByUserId));
-
-          } catch (JsonProcessingException e) {
-            log.error("{} vendor id {} error processing json", schema, vendorId);
-            log.debug(e.getMessage());
+          if (!processCode(organization.getCode().toLowerCase())) {
+            log.warn("{} vendor id {} code {} already processed", schema, vendorId, organization.getCode());
             continue;
+          }
+
+          try {
+            migrationService.okapiService.createOrganization(organization, tenant, token);
+          } catch (Exception e) {
+            log.error("{} vendor id {} error creating organization {}\n{}", schema, vendorId, organization, e.getMessage());
           }
         }
 
@@ -508,7 +489,7 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
     return CODES.add(code);
   }
 
-  private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
+  private ThreadConnections getThreadConnections(Database voyagerSettings) {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     threadConnections.setAccountConnection(getConnection(voyagerSettings));
@@ -516,13 +497,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
     threadConnections.setAliasConnection(getConnection(voyagerSettings));
     threadConnections.setNoteConnection(getConnection(voyagerSettings));
     threadConnections.setPhoneConnection(getConnection(voyagerSettings));
-    try {
-      threadConnections.setContactsRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-      threadConnections.setOrganizationRecordConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-      throw new RuntimeException(e);
-    }
     return threadConnections;
   }
 
@@ -534,9 +508,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
     private Connection aliasConnection;
     private Connection noteConnection;
     private Connection phoneConnection;
-
-    private BaseConnection contactsRecordConnection;
-    private BaseConnection organizationRecordConnection;
 
     public ThreadConnections() {
 
@@ -590,22 +561,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       this.phoneConnection = phoneConnection;
     }
 
-    public BaseConnection getContactsRecordConnection() {
-      return contactsRecordConnection;
-    }
-
-    public void setContactsRecordConnection(BaseConnection contactsRecordConnection) {
-      this.contactsRecordConnection = contactsRecordConnection;
-    }
-
-    public BaseConnection getOrganizationRecordConnection() {
-      return organizationRecordConnection;
-    }
-
-    public void setOrganizationRecordConnection(BaseConnection organizationRecordConnection) {
-      this.organizationRecordConnection = organizationRecordConnection;
-    }
-
     public void closeAll() {
       try {
         pageConnection.close();
@@ -614,8 +569,6 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
         aliasConnection.close();
         noteConnection.close();
         phoneConnection.close();
-        contactsRecordConnection.close();
-        organizationRecordConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
         throw new RuntimeException(e);
