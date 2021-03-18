@@ -25,6 +25,7 @@ import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Note;
 import org.folio.rest.jaxrs.model.inventory.ReceivingHistory;
+import org.folio.rest.jaxrs.model.orders.acq_models.common.schemas.ReferenceNumberItem;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePoLine;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePoLine.ReceiptStatus;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePurchaseOrder;
@@ -525,11 +526,15 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
               vendorDetail.setInstructions(StringUtils.SPACE);
 
               if (StringUtils.isNotEmpty(vendorRefNumber)) {
-                vendorDetail.setRefNumberType(VendorDetail.RefNumberType.fromValue(maps.getVendorRefQual().get(vendorRefQual)));
-                vendorDetail.setRefNumber(vendorRefNumber);
+                ReferenceNumberItem refNumItem = new ReferenceNumberItem();
+                refNumItem.setRefNumberType(ReferenceNumberItem.RefNumberType.fromValue(maps.getVendorRefQual().get(vendorRefQual)));
+                refNumItem.setRefNumber(vendorRefNumber);
+                vendorDetail.getReferenceNumbers().add(refNumItem);
               } else if (StringUtils.isNotEmpty(vendorTitleNumber)) {
-                vendorDetail.setRefNumberType(VendorDetail.RefNumberType.fromValue(maps.getVendorRefQual().get(defaults.getVendorRefQual())));
-                vendorDetail.setRefNumber(vendorTitleNumber);
+                ReferenceNumberItem refNumItem = new ReferenceNumberItem();
+                refNumItem.setRefNumberType(ReferenceNumberItem.RefNumberType.fromValue(maps.getVendorRefQual().get(defaults.getVendorRefQual())));
+                refNumItem.setRefNumber(vendorTitleNumber);
+                vendorDetail.getReferenceNumbers().add(refNumItem);
               }
 
               compositePoLine.setVendorDetail(vendorDetail);
