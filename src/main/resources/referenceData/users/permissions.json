@@ -6,10 +6,18 @@
   "transform" : { },
   "excludedProperties" : [ "childOf", "dummy", "grantedTo", "metadata", "tags" ],
   "data" : [ {
-    "permissionName" : "62852d44-d07d-470b-a7f9-0d68e2f365c4",
-    "displayName" : "VuFind",
-    "id" : "62852d44-d07d-470b-a7f9-0d68e2f365c4",
-    "subPermissions" : [ "circulation.requests.item.get", "gobi.all", "inventory-storage.holdings.collection.get", "inventory-storage.instances.collection.get", "inventory-storage.items.collection.get", "inventory-storage.locations.item.get", "inventory-storage.locations.collection.get", "rtac.holdings.item.get", "ncip.all", "oai-pmh.all", "patron.all", "rtac.all", "rtac.batch.post", "SYS#mod-rtac-2.0.1#/rtac-batch#[POST]", "SYS#mod-rtac-2.0.1#/rtac/{id}#[GET]", "users.collection.get" ],
+    "permissionName" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
+    "displayName" : "Acquisitions_Financial_Admin",
+    "id" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
+    "subPermissions" : [ "ui-finance.allocations.create", "ui-finance.transfers.create", "ui-finance.acq.unit.assignment.manage", "ui-finance.fiscal-year.view", "ui-finance.fund-budget.view", "ui-finance.group.view", "ui-finance.ledger.view", "ui-finance.fiscal-year.edit", "ui-finance.fund-budget.edit", "ui-finance.group.edit", "ui-finance.ledger.edit", "ui-finance.fiscal-year.create", "ui-finance.fund-budget.create", "ui-finance.group.create", "ui-finance.ledger.create", "ui-finance.fiscal-year.delete", "ui-finance.fund-budget.delete", "ui-finance.group.delete", "ui-finance.ledger.delete", "module.invoice.enabled" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
+    "permissionName" : "945ff52a-7e81-4374-a8be-41cb481db236",
+    "displayName" : "Cat_Settings",
+    "id" : "945ff52a-7e81-4374-a8be-41cb481db236",
+    "description" : "All settings related to the inventory application. May need to add more later.",
+    "subPermissions" : [ "ui-inventory.settings.alternative-title-types", "ui-inventory.settings.call-number-types", "ui-inventory.settings.classification-types", "ui-inventory.settings.contributor-types", "ui-inventory.settings.instance-formats", "ui-inventory.settings.holdings-note-types", "ui-inventory.settings.holdings-sources", "ui-inventory.settings.holdings-types", "ui-inventory.settings.ill-policies", "ui-inventory.settings.instance-note-types", "ui-inventory.settings.instance-statuses", "ui-inventory.settings.item-note-types", "ui-inventory.settings.loantypes", "ui-inventory.settings.modes-of-issuance", "ui-inventory.settings.instance-types", "ui-inventory.settings.materialtypes", "ui-inventory.settings.nature-of-content-terms", "ui-inventory.settings.identifier-types", "ui-inventory.settings.statistical-code-types", "ui-inventory.settings.statistical-codes", "ui-inventory.settings.electronic-access-relationships", "ui-inventory.settings.list.view", "ui-inventory.settings.fast-add", "ui-tenant-settings.settings.location" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -33,14 +41,6 @@
     "displayName" : "Circ_Staff",
     "id" : "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
     "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "course-reserves.read-add-edit", "ui-plugin-create-inventory-records.create", "ui-users.feefineactions", "ui-users.accounts", "ui-users.manual_charge", "ui-users.manual_pay", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.item.markasmissing", "ui-notes.item.create", "ui-notes.item.delete", "ui-notes.item.edit", "ui-notes.item.view", "ui-requests.create", "ui-requests.edit", "ui-tags.view", "ui-users.create", "ui-users.patron_blocks", "ui-users.editproxies", "ui-users.edit", "ui-users.viewproxies", "ui-users.viewuserservicepoints", "ui-users.view", "ui-users.loans.edit", "ui-users.loans.claim-item-returned", "ui-users.loans.declare-item-lost", "ui-users.loans.declare-claimed-returned-item-as-missing", "ui-users.loans.renew-override", "ui-users.loans.all", "ui-users.requests.all" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
-    "permissionName" : "945ff52a-7e81-4374-a8be-41cb481db236",
-    "displayName" : "Cat_Settings",
-    "id" : "945ff52a-7e81-4374-a8be-41cb481db236",
-    "description" : "All settings related to the inventory application. May need to add more later.",
-    "subPermissions" : [ "ui-inventory.settings.alternative-title-types", "ui-inventory.settings.call-number-types", "ui-inventory.settings.classification-types", "ui-inventory.settings.contributor-types", "ui-inventory.settings.instance-formats", "ui-inventory.settings.holdings-note-types", "ui-inventory.settings.holdings-sources", "ui-inventory.settings.holdings-types", "ui-inventory.settings.ill-policies", "ui-inventory.settings.instance-note-types", "ui-inventory.settings.instance-statuses", "ui-inventory.settings.item-note-types", "ui-inventory.settings.loantypes", "ui-inventory.settings.modes-of-issuance", "ui-inventory.settings.instance-types", "ui-inventory.settings.materialtypes", "ui-inventory.settings.nature-of-content-terms", "ui-inventory.settings.identifier-types", "ui-inventory.settings.statistical-code-types", "ui-inventory.settings.statistical-codes", "ui-inventory.settings.electronic-access-relationships", "ui-inventory.settings.list.view", "ui-inventory.settings.fast-add", "ui-tenant-settings.settings.location" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -146,13 +146,6 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
-    "displayName" : "Acquisitions_Financial_Admin",
-    "id" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
-    "subPermissions" : [ "ui-finance.allocations.create", "ui-finance.transfers.create", "ui-finance.acq.unit.assignment.manage", "ui-finance.fiscal-year.view", "ui-finance.fund-budget.view", "ui-finance.group.view", "ui-finance.ledger.view", "ui-finance.fiscal-year.edit", "ui-finance.fund-budget.edit", "ui-finance.group.edit", "ui-finance.ledger.edit", "ui-finance.fiscal-year.create", "ui-finance.fund-budget.create", "ui-finance.group.create", "ui-finance.ledger.create", "ui-finance.fiscal-year.delete", "ui-finance.fund-budget.delete", "ui-finance.group.delete", "ui-finance.ledger.delete", "module.invoice.enabled" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
     "permissionName" : "df294639-9886-44ae-a215-257e3f0bdfd2",
     "displayName" : "Cat_Item",
     "id" : "df294639-9886-44ae-a215-257e3f0bdfd2",
@@ -248,11 +241,10 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
-    "displayName" : "Permission_sets_assign",
-    "id" : "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
-    "description" : "Can assign permission sets to users",
-    "subPermissions" : [ "ui-users.editperms" ],
+    "permissionName" : "fd81b059-b046-414e-9da5-46a420c4a180",
+    "displayName" : "Edge_user",
+    "id" : "fd81b059-b046-414e-9da5-46a420c4a180",
+    "subPermissions" : [ "circulation.requests.item.get", "gobi.all", "inventory-storage.items.collection.get", "ncip.all", "oai-pmh.all", "patron.all", "rtac.all", "ui-circulation.settings.lost-item-fees-policies", "ui-circulation.settings.overdue-fines-policies", "users.collection.get" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -264,10 +256,18 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "fd81b059-b046-414e-9da5-46a420c4a180",
-    "displayName" : "Edge_user",
-    "id" : "fd81b059-b046-414e-9da5-46a420c4a180",
-    "subPermissions" : [ "circulation.requests.item.get", "gobi.all", "inventory-storage.items.collection.get", "ncip.all", "oai-pmh.all", "patron.all", "rtac.all", "ui-circulation.settings.lost-item-fees-policies", "ui-circulation.settings.overdue-fines-policies", "users.collection.get" ],
+    "permissionName" : "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
+    "displayName" : "Permission_sets_assign",
+    "id" : "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
+    "description" : "Can assign permission sets to users",
+    "subPermissions" : [ "ui-users.editperms" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
+    "permissionName" : "62852d44-d07d-470b-a7f9-0d68e2f365c4",
+    "displayName" : "VuFind",
+    "id" : "62852d44-d07d-470b-a7f9-0d68e2f365c4",
+    "subPermissions" : [ "circulation.requests.item.get", "gobi.all", "inventory-storage.holdings.collection.get", "inventory-storage.instances.collection.get", "inventory-storage.items.collection.get", "inventory-storage.locations.item.get", "inventory-storage.locations.collection.get", "rtac.holdings.item.get", "ncip.all", "oai-pmh.all", "patron.all", "rtac.all", "rtac.batch.post", "SYS#mod-rtac-2.0.1#/rtac-batch#[POST]", "SYS#mod-rtac-2.0.1#/rtac/{id}#[GET]", "users.collection.get" ],
     "mutable" : true,
     "visible" : true
   } ]

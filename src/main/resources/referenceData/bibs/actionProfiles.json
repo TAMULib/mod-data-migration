@@ -10,20 +10,6 @@
   "excludedProperties" : [ "profile.metadata", "profile.id", "profile.parentProfiles", "profile.childProfiles" ],
   "data" : [ {
     "profile" : {
-      "name" : "MARC delete 922 field",
-      "description" : "",
-      "action" : "MODIFY",
-      "folioRecord" : "MARC_BIBLIOGRAPHIC",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "d7391f03-a3aa-4652-8bf8-2a60b80c096a"
-  }, {
-    "profile" : {
       "name" : "MARCIVE-Create New Holdings Record URL",
       "description" : "",
       "action" : "CREATE",
@@ -52,20 +38,6 @@
     "id" : "bed64a5a-6678-433c-a8a2-842eae8fbe97"
   }, {
     "profile" : {
-      "name" : "Print Books - Creat Holdings Record",
-      "description" : "",
-      "action" : "CREATE",
-      "folioRecord" : "HOLDINGS",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "48e017ca-3a46-4f7b-a4cf-a2d535eee9a2"
-  }, {
-    "profile" : {
       "name" : "Print Books - Create Instance Record",
       "description" : "",
       "action" : "CREATE",
@@ -92,5 +64,47 @@
       }
     },
     "id" : "c14234c6-7834-4ec4-9f16-dd3c5ccb6470"
+  }, {
+    "profile" : {
+      "name" : "Print Books - Creat Holdings Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "HOLDINGS",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "48e017ca-3a46-4f7b-a4cf-a2d535eee9a2"
+  }, {
+    "profile" : {
+      "name" : "MARC delete 947 field",
+      "description" : "",
+      "action" : "MODIFY",
+      "folioRecord" : "MARC_BIBLIOGRAPHIC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "dcc61fbc-2219-43b3-a21d-2c19e39d2d36"
+  }, {
+    "profile" : {
+      "name" : "MARC delete 945 field",
+      "description" : "",
+      "action" : "MODIFY",
+      "folioRecord" : "MARC_BIBLIOGRAPHIC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "d7391f03-a3aa-4652-8bf8-2a60b80c096a"
   } ]
 }
