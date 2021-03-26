@@ -33,6 +33,8 @@ import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Materialtype;
 import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.inventory.Note__1;
+import org.folio.rest.jaxrs.model.inventory.Personal;
+import org.folio.rest.jaxrs.model.inventory.Source;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
@@ -61,7 +63,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String STATISTICAL_CODES = "STATISTICAL_CODES";
   private static final String MATERIAL_TYPES = "MATERIAL_TYPES";
 
-  private static final String USER_ID = "USER_ID";
+  private static final String USER = "USER";
 
   private static final String ITEM_ID = "ITEM_ID";
   private static final String PERM_ITEM_TYPE_ID = "ITEM_TYPE_ID";
@@ -184,7 +186,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         partitionContext.put(LOCATIONS_MAP, locationsMap);
         partitionContext.put(STATISTICAL_CODES, statisticalcodes);
         partitionContext.put(MATERIAL_TYPES, materialTypes);
-        partitionContext.put(USER_ID, user.getId());
+        partitionContext.put(USER, user);
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new ItemPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -234,7 +236,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       Materialtypes materialtypes = (Materialtypes) partitionContext.get(MATERIAL_TYPES);
       Statisticalcodes statisticalcodes = (Statisticalcodes) partitionContext.get(STATISTICAL_CODES);
 
-      String userId = (String) partitionContext.get(USER_ID);
+      Userdata user = (Userdata) partitionContext.get(USER);
 
       ItemMaps maps = context.getMaps();
       ItemDefaults defaults = context.getDefaults();
@@ -342,7 +344,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
               .thenAccept((mfhdItem) -> itemRecord.setMfhdItem(mfhdItem)),
             getItemStatuses(itemStatusStatement, itemStatusContext)
               .thenAccept((statuses) -> itemRecord.setStatuses(statuses)),
-            getNotes(noteStatement, noteContext, job.getItemNoteTypeId())
+            getNotes(noteStatement, noteContext, job.getItemNoteTypeId(), user)
               .thenAccept((noteWrapper) -> {
                 itemRecord.setItemNotes(noteWrapper.getNotes());
                 itemRecord.setCirculationNotes(noteWrapper.getCirculationNotes());
@@ -394,11 +396,11 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           }
 
           Date createdDate = new Date();
-          itemRecord.setCreatedByUserId(userId);
+          itemRecord.setCreatedByUserId(user.getId());
           itemRecord.setCreatedDate(createdDate);
 
           String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-          String createdByUserId = userId;
+          String createdByUserId = user.getId();
 
           String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
 
@@ -533,7 +535,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       return future;
     }
 
-    private CompletableFuture<ItemNoteWrapper> getNotes(Statement statement, Map<String, Object> context, String itemNoteTypeId) {
+    private CompletableFuture<ItemNoteWrapper> getNotes(Statement statement, Map<String, Object> context, String itemNoteTypeId, Userdata user) {
       CompletableFuture<ItemNoteWrapper> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
         List<Note__1> notes = new ArrayList<>();
@@ -558,6 +560,13 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
                 circulationNote.setId(UUID.randomUUID().toString());
                 circulationNote.setNote(itemNote);
                 circulationNote.setStaffOnly(true);
+                Source source = new Source();
+                source.setId(user.getId());
+                Personal personal = new Personal();
+                personal.setFirstName(user.getPersonal().getFirstName());
+                personal.setLastName(user.getPersonal().getLastName());
+                source.setPersonal(personal);
+                circulationNote.setSource(source);
                 if (itemNoteType == 2) {
                   circulationNote.setNoteType(NoteType.CHECK_OUT);
                 } else if (itemNoteType == 3) {

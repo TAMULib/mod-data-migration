@@ -34,5 +34,18 @@
       }
     },
     "id" : "d1ad0fc7-1eb4-412e-b16a-fb9e0d7a2512"
+  }, {
+    "profile" : {
+      "name" : "Test 9xx delete",
+      "description" : "",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "35aa20b8-1363-4a90-a7f1-000df4f473c3"
   } ]
 }

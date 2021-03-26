@@ -1225,7 +1225,7 @@ POST to http://localhost:9000/migrate/requests
       "ResDesk": "CircDesk",
       "CircDesk": "CircDesk",
       "Mobile": "CircDesk",
-      "CoPkingsvl": "kingsvl"
+      "kingsvl": "kingsville"
     }
   }
 }
@@ -1335,7 +1335,7 @@ POST to http://localhost:9000/migrate/loans
       "ResDesk": "CircDesk",
       "CircDesk": "CircDesk",
       "Mobile": "CircDesk",
-      "CoPkingsvl": "kingsville"
+      "kingsvl": "kingsville"
     }
   }
 }
