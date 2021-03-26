@@ -20,28 +20,6 @@
     } ],
     "id" : "26c4ddaf-95ad-44d6-bd93-8492e278a41e"
   }, {
-    "owner" : "Medical Sciences Library",
-    "servicePointOwner" : [ {
-      "value" : "9311b907-0c9f-42d0-aea4-62d33a7ab7b7",
-      "label" : "MSL AskUs"
-    }, {
-      "value" : "7f719f23-7e2e-4a60-8e58-9e778ad6344f",
-      "label" : "HSC College of Pharmacy (Kingsville, TX)"
-    }, {
-      "value" : "43f9092b-1e4d-4103-ae99-a93ba1d99bc7",
-      "label" : "HSC Bryan Campus Circ"
-    }, {
-      "value" : "564cec55-7add-4f6f-b43a-dd87431b8dfb",
-      "label" : "HSCDalDesk"
-    }, {
-      "value" : "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e",
-      "label" : "HSC Round Rock Circ"
-    }, {
-      "value" : "a2a3b682-35e9-4cc7-af63-1bdfe42e82dd",
-      "label" : "HSC Temple Circulation"
-    } ],
-    "id" : "2eb797c3-8309-4831-a84b-3ca2eeeb2876"
-  }, {
     "owner" : "Policy Sciences & Economics Library",
     "servicePointOwner" : [ {
       "value" : "24f55faf-d42e-4fef-9ad3-43c34b75962f",
@@ -62,7 +40,38 @@
     }, {
       "value" : "d6a37d8a-7d36-416a-a53f-7c703ca4ad5b",
       "label" : "Unassigned"
+    }, {
+      "value" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+      "label" : "Maps & GIS"
     } ],
     "id" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0"
+  }, {
+    "owner" : "Medical Sciences Library",
+    "servicePointOwner" : [ {
+      "value" : "9311b907-0c9f-42d0-aea4-62d33a7ab7b7",
+      "label" : "MSL AskUs"
+    }, {
+      "value" : "7f719f23-7e2e-4a60-8e58-9e778ad6344f",
+      "label" : "HSC College of Pharmacy (Kingsville, TX)"
+    }, {
+      "value" : "43f9092b-1e4d-4103-ae99-a93ba1d99bc7",
+      "label" : "HSC Bryan Campus Circ"
+    }, {
+      "value" : "564cec55-7add-4f6f-b43a-dd87431b8dfb",
+      "label" : "HSCDalDesk"
+    }, {
+      "value" : "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e",
+      "label" : "HSC Round Rock Circ"
+    }, {
+      "value" : "a2a3b682-35e9-4cc7-af63-1bdfe42e82dd",
+      "label" : "HSC Temple Circulation"
+    }, {
+      "value" : "3c3e6453-209c-4069-be0e-16ef5aeed262",
+      "label" : "HSC Houston Campus"
+    }, {
+      "value" : "261f9e14-54b2-46aa-bfd9-23b1dc44e87e",
+      "label" : "HSC McAllen Campus"
+    } ],
+    "id" : "2eb797c3-8309-4831-a84b-3ca2eeeb2876"
   } ]
 }
