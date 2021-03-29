@@ -1251,7 +1251,10 @@ POST to http://localhost:9000/migrate/loans
     }
   },
   "preActions": [],
-  "postActions": [],
+  "postActions": [
+    "DELETE FROM ${TENANT}_mod_circulation_storage.patron_action_session",
+    "DELETE FROM ${TENANT}_mod_circulation_storage.scheduled_notice WHERE (jsonb->>'nextRunTime')::timestamp < NOW()"
+  ],
   "parallelism": 12,
   "jobs": [
     {
