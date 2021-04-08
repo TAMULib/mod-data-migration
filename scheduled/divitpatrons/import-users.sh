@@ -2,7 +2,7 @@
 
 echo "Curl in request to mod-data-migration to import users from DivIT"
 
-curl --location --request POST 'http://mod-data-migration:8081/migrate/divitpatron' \
+curl --location --request POST "$DIVIT_MIGRATION_URL" \
 --header 'Content-Type: application/json' \
 --header "X-Okapi-Tenant: $TENANT_ID" \
 --data-raw '{
