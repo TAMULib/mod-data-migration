@@ -14,7 +14,7 @@ curl --location --request POST "$DIVIT_MIGRATION_URL" \
   },
   "preActions": [],
   "postActions": [
-    "UPDATE ${TENANT}_mod_users.users SET jsonb = jsonb_set(jsonb, '\''{personal, email}'\'', '\''\"folio_user@library.tamu.edu\"'\'') WHERE jsonb->'\''personal'\''->>'\''email'\'' != '\''folio_user@library.tamu.edu'\'' AND jsonb->>'\''username'\'' NOT IN ('\''${TENANT}_admin'\'','\''backup_admin'\'','\''pub-sub'\'','\''edgeuser'\'')"
+    "UPDATE ${TENANT}_mod_users.users SET jsonb = jsonb_set(jsonb, '\''{personal, email}'\'', '\''\"folio_user@library.tamu.edu\"'\'') WHERE jsonb->'\''personal'\''->>'\''email'\'' != '\''folio_user@library.tamu.edu'\'' AND jsonb->>'\''username'\'' NOT IN ('\''${TENANT}_admin'\'','\''backup_admin'\'','\''pub-sub'\'','\''edgeuser'\'','\''vufind'\'')"
   ],
   "parallelism": 1,
   "jobs": [
