@@ -23,12 +23,18 @@
       <name>FOLIO Maven repository</name>
       <url>https://repository.folio.org/repository/maven-folio</url>
     </repository>
+    <repository>
+      <id>indexdata</id>
+      <name>Index Data</name>
+      <url>https://maven.indexdata.com/</url>
+    </repository>
   </repositories>
 
   <parent>
     <groupId>org.folio</groupId>
     <artifactId>spring-module-core</artifactId>
     <version>1.0.0</version>
+    <relativePath></relativePath>
   </parent>
 
   <packaging>jar</packaging>
@@ -299,6 +305,11 @@
     <dependency>
       <groupId>com.oracle.ojdbc</groupId>
       <artifactId>ojdbc8</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.microsoft.sqlserver</groupId>
+      <artifactId>mssql-jdbc</artifactId>
     </dependency>
 
     <dependency>
