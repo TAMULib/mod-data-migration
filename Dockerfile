@@ -1,5 +1,5 @@
 # build base image
-FROM maven:3-openjdk-11-slim as maven
+FROM maven:3.6-openjdk-11-slim as maven
 
 # copy pom.xml
 COPY ./pom.xml ./pom.xml
