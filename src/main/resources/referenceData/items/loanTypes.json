@@ -137,5 +137,8 @@
   }, {
     "id" : "efe735ce-bd12-41f1-81ac-0dbbb9346f0e",
     "name" : "voice_recorder"
+  }, {
+    "id" : "42910f3d-8cda-43f2-b356-0d272d71c0c9",
+    "name" : "calculator_basic"
   } ]
 }

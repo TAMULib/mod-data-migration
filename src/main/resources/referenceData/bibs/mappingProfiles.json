@@ -995,7 +995,7 @@
         "marcMappingDetails" : [ ]
       }
     },
-    "id" : "84da407c-b9c3-4275-b9d0-536099798f23"
+    "id" : "981af243-39e2-4057-b6fc-f0cb4595761d"
   }, {
     "profile" : {
       "name" : "MARCIVE-Create New instance Record URL",
@@ -1402,7 +1402,7 @@
         "marcMappingDetails" : [ ]
       }
     },
-    "id" : "e4c89af7-6dca-45f1-90dc-1e16d6128cf8"
+    "id" : "1ae54019-8a4b-41be-9042-e2d57ab7d317"
   }, {
     "profile" : {
       "name" : "Print Books - Create New Holdings Record",
@@ -2243,7 +2243,7 @@
         "marcMappingDetails" : [ ]
       }
     },
-    "id" : "02220d8e-9309-4d42-8d5c-3aa9684113de"
+    "id" : "996ce019-5fe6-40d8-bf0c-525c6be2ab68"
   }, {
     "profile" : {
       "name" : "Print Books - Create New Instance Record",
@@ -2465,7 +2465,7 @@
         "marcMappingDetails" : [ ]
       }
     },
-    "id" : "d628f44b-d89b-44f5-9113-6e30f2e68a9b"
+    "id" : "03acea04-d118-43b5-bede-6d9312adf4a7"
   }, {
     "profile" : {
       "name" : "MARC delete 945 field",
@@ -2498,7 +2498,7 @@
         "marcMappingOption" : "MODIFY"
       }
     },
-    "id" : "570d1ae4-b572-400e-ac5c-e75418446db0"
+    "id" : "128e886d-3d1c-422a-9319-3516417e0c4e"
   }, {
     "profile" : {
       "name" : "MARC delete 947 field",
@@ -2531,7 +2531,7 @@
         "marcMappingOption" : "MODIFY"
       }
     },
-    "id" : "73c3678a-8177-4f9f-adec-37f90a198c76"
+    "id" : "1fac7b12-653f-4869-8f6a-48f4e9465ce7"
   }, {
     "profile" : {
       "name" : "Print Books - Create New Item Record",
@@ -3540,6 +3540,228 @@
         "marcMappingDetails" : [ ]
       }
     },
-    "id" : "4d7b05e8-a7e1-410e-bce6-10d078cb334c"
+    "id" : "dc416efd-f2e1-4ce9-847f-ee389ca353f4"
+  }, {
+    "profile" : {
+      "name" : "Print Book - Overlay",
+      "description" : "",
+      "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+      "existingRecordType" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      },
+      "marcFieldProtectionSettings" : [ ],
+      "mappingDetails" : {
+        "name" : "instance",
+        "recordType" : "INSTANCE",
+        "mappingFields" : [ {
+          "name" : "discoverySuppress",
+          "enabled" : "true",
+          "path" : "instance.discoverySuppress",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "staffSuppress",
+          "enabled" : "true",
+          "path" : "instance.staffSuppress",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "previouslyHeld",
+          "enabled" : "true",
+          "path" : "instance.previouslyHeld",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "hrid",
+          "enabled" : "false",
+          "path" : "instance.hrid",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "source",
+          "enabled" : "false",
+          "path" : "instance.source",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "catalogedDate",
+          "enabled" : "true",
+          "path" : "instance.catalogedDate",
+          "value" : "###TODAY###",
+          "subfields" : [ ]
+        }, {
+          "name" : "statusId",
+          "enabled" : "true",
+          "path" : "instance.statusId",
+          "value" : "\"Temporary\"",
+          "subfields" : [ ],
+          "acceptedValues" : {
+            "26f5208e-110a-4394-be29-1569a8c84a65" : "Uncataloged",
+            "52a2ff34-2a12-420d-8539-21aa8d3cf5d8" : "Batch Loaded",
+            "f5cc2ab6-bb92-4cab-b83f-5a3d09261a41" : "Not yet assigned",
+            "2a340d34-6b70-443a-bb1b-1b8d1c65d862" : "Other",
+            "9634a5ab-9228-4703-baf2-4d12ebc77d56" : "Cataloged",
+            "c8d51dc6-2f84-4220-8aef-3c4894d53b93" : "Migrated from previous system",
+            "daf2681c-25af-4202-a3fa-e58fdf806183" : "Temporary"
+          }
+        }, {
+          "name" : "modeOfIssuanceId",
+          "enabled" : "false",
+          "path" : "instance.modeOfIssuanceId",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "statisticalCodeIds",
+          "enabled" : "true",
+          "path" : "instance.statisticalCodeIds[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "title",
+          "enabled" : "false",
+          "path" : "instance.title",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "alternativeTitles",
+          "enabled" : "false",
+          "path" : "instance.alternativeTitles[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "indexTitle",
+          "enabled" : "false",
+          "path" : "instance.indexTitle",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "series",
+          "enabled" : "false",
+          "path" : "instance.series[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "precedingTitles",
+          "enabled" : "false",
+          "path" : "instance.precedingTitles[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "succeedingTitles",
+          "enabled" : "false",
+          "path" : "instance.succeedingTitles[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "identifiers",
+          "enabled" : "false",
+          "path" : "instance.identifiers[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "contributors",
+          "enabled" : "false",
+          "path" : "instance.contributors[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "publication",
+          "enabled" : "false",
+          "path" : "instance.publication[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "editions",
+          "enabled" : "false",
+          "path" : "instance.editions[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "physicalDescriptions",
+          "enabled" : "false",
+          "path" : "instance.physicalDescriptions[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "instanceTypeId",
+          "enabled" : "false",
+          "path" : "instance.instanceTypeId",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "natureOfContentTermIds",
+          "enabled" : "true",
+          "path" : "instance.natureOfContentTermIds[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "instanceFormatIds",
+          "enabled" : "false",
+          "path" : "instance.instanceFormatIds[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "languages",
+          "enabled" : "false",
+          "path" : "instance.languages[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "publicationFrequency",
+          "enabled" : "false",
+          "path" : "instance.publicationFrequency[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "publicationRange",
+          "enabled" : "false",
+          "path" : "instance.publicationRange[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "notes",
+          "enabled" : "false",
+          "path" : "instance.notes[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "electronicAccess",
+          "enabled" : "false",
+          "path" : "instance.electronicAccess[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "subjects",
+          "enabled" : "false",
+          "path" : "instance.subjects[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "classifications",
+          "enabled" : "false",
+          "path" : "instance.classifications[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "parentInstances",
+          "enabled" : "true",
+          "path" : "instance.parentInstances[]",
+          "value" : "",
+          "subfields" : [ ]
+        }, {
+          "name" : "childInstances",
+          "enabled" : "true",
+          "path" : "instance.childInstances[]",
+          "value" : "",
+          "subfields" : [ ]
+        } ],
+        "marcMappingDetails" : [ ]
+      }
+    },
+    "id" : "7c12cb12-cd54-4973-b2ed-bfe0e695831f"
   } ]
 }

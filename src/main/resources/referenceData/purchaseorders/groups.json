@@ -126,19 +126,6 @@
     "name" : "zMonographic",
     "status" : "Active"
   }, {
-    "id" : "5ef9cc94-d332-4a4f-a51d-a85e53ed8529",
-    "acqUnitIds" : [ ],
-    "code" : "zrecurring",
-    "description" : "zFor On-Going Purchases",
-    "name" : "zRecurring",
-    "status" : "Active"
-  }, {
-    "id" : "69b7974e-d010-4623-b2ac-1be720efa692",
-    "acqUnitIds" : [ ],
-    "code" : "tamutest",
-    "name" : "TAMU test",
-    "status" : "Active"
-  }, {
     "id" : "3aad39dd-a06a-4a0b-83ca-09239f15afbf",
     "acqUnitIds" : [ ],
     "code" : "usergenerated",
@@ -166,18 +153,31 @@
     "name" : "zRecurring Restricted Etxt",
     "status" : "Inactive"
   }, {
+    "id" : "87c48892-bf45-4e1b-8d4b-c1dd6b721139",
+    "acqUnitIds" : [ ],
+    "code" : "era",
+    "description" : "Includes all etxt, Continuations & Serials",
+    "name" : "Evans Recurring All",
+    "status" : "Active"
+  }, {
+    "id" : "5ef9cc94-d332-4a4f-a51d-a85e53ed8529",
+    "acqUnitIds" : [ ],
+    "code" : "zrecurring",
+    "description" : "zFor On-Going Purchases",
+    "name" : "zRecurring",
+    "status" : "Active"
+  }, {
+    "id" : "69b7974e-d010-4623-b2ac-1be720efa692",
+    "acqUnitIds" : [ ],
+    "code" : "tamutest",
+    "name" : "TAMU test",
+    "status" : "Active"
+  }, {
     "id" : "307ef62f-df35-4a07-b4dd-12151b685d68",
     "acqUnitIds" : [ ],
     "code" : "zrecurringrestricted",
     "description" : "zFor Recurring Restricted Funds",
     "name" : "zRecurring Restricted",
-    "status" : "Active"
-  }, {
-    "id" : "e43412e0-92c3-41fd-b5bd-bd9f2b225ffa",
-    "acqUnitIds" : [ ],
-    "code" : "zrestricted mono",
-    "description" : "zFor Restricted Monographic Funds",
-    "name" : "zMonographic Restricted",
     "status" : "Active"
   }, {
     "id" : "9bde5b17-d962-4726-9d0d-cb07c04f48e6",
@@ -193,11 +193,11 @@
     "name" : "zRecurring - Evans",
     "status" : "Active"
   }, {
-    "id" : "87c48892-bf45-4e1b-8d4b-c1dd6b721139",
+    "id" : "e43412e0-92c3-41fd-b5bd-bd9f2b225ffa",
     "acqUnitIds" : [ ],
-    "code" : "era",
-    "description" : "Includes all etxt, Continuations & Serials",
-    "name" : "Evans Recurring All",
+    "code" : "zrestricted mono",
+    "description" : "zFor Restricted Monographic Funds",
+    "name" : "zMonographic Restricted",
     "status" : "Active"
   } ]
 }
