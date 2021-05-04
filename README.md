@@ -981,6 +981,7 @@ POST to http://localhost:9000/migrate/items
       "blu": "bluray",
       "cass": "cassette",
       "calc": "calculator",
+      "calc_basic": "calculator_basic",
       "head": "headphones",
       "acc": "accessory",
       "proj": "projector",

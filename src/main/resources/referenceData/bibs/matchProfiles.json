@@ -56,6 +56,48 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "04bc7178-7af9-4a9e-9a42-cf4c1961e647"
+    "id" : "ab64654c-282a-4f7d-9fab-18477040a748"
+  }, {
+    "profile" : {
+      "name" : "Match on 001 to HRID",
+      "description" : "",
+      "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+      "existingRecordType" : "INSTANCE",
+      "matchDetails" : [ {
+        "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+        "existingRecordType" : "INSTANCE",
+        "incomingMatchExpression" : {
+          "dataValueType" : "VALUE_FROM_RECORD",
+          "fields" : [ {
+            "label" : "field",
+            "value" : "001"
+          }, {
+            "label" : "indicator1",
+            "value" : ""
+          }, {
+            "label" : "indicator2",
+            "value" : ""
+          }, {
+            "label" : "recordSubfield",
+            "value" : ""
+          } ]
+        },
+        "matchCriterion" : "EXACTLY_MATCHES",
+        "existingMatchExpression" : {
+          "dataValueType" : "VALUE_FROM_RECORD",
+          "fields" : [ {
+            "label" : "field",
+            "value" : "instance.hrid"
+          } ]
+        }
+      } ],
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "cd8d5ead-7453-43b0-a6fd-175521aed7b8"
   } ]
 }
