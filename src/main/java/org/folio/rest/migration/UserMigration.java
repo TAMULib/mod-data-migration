@@ -367,6 +367,14 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           Userdata userdata = userRecord.toUserdata(patronGroup.get(), defaults, maps);
 
+          // NOTE: if no email on user, setting to default email
+          if (StringUtils.isEmpty(userdata.getPersonal().getEmail())) {
+            userdata.getPersonal().setEmail(defaults.getTemporaryEmail());
+          }
+
+          // NOTE: always setting preferred contact type to email 002
+          userdata.getPersonal().setPreferredContactTypeId(defaults.getPreferredContactType());
+
           String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
 
           try {
