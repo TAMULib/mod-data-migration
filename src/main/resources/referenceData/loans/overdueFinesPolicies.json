@@ -22,22 +22,6 @@
     "maxOverdueRecallFine" : 35.0,
     "id" : "47dd0201-8f40-4b7f-9372-f8f3bfb33a05"
   }, {
-    "name" : "day_25_max_150",
-    "overdueFine" : {
-      "quantity" : 25.0,
-      "intervalId" : "day"
-    },
-    "countClosed" : false,
-    "maxOverdueFine" : 150.0,
-    "forgiveOverdueFine" : true,
-    "overdueRecallFine" : {
-      "quantity" : 25.0,
-      "intervalId" : "day"
-    },
-    "gracePeriodRecall" : true,
-    "maxOverdueRecallFine" : 150.0,
-    "id" : "52d596ab-72a8-423d-b425-4dbb18c9c48c"
-  }, {
     "name" : "day_5_max_35",
     "overdueFine" : {
       "quantity" : 5.0,
@@ -53,22 +37,6 @@
     "gracePeriodRecall" : true,
     "maxOverdueRecallFine" : 35.0,
     "id" : "c37d9704-4e19-4910-88a6-19990d0e24d0"
-  }, {
-    "name" : "hour_3_max_150",
-    "overdueFine" : {
-      "quantity" : 3.0,
-      "intervalId" : "hour"
-    },
-    "countClosed" : false,
-    "maxOverdueFine" : 150.0,
-    "forgiveOverdueFine" : true,
-    "overdueRecallFine" : {
-      "quantity" : 3.0,
-      "intervalId" : "hour"
-    },
-    "gracePeriodRecall" : true,
-    "maxOverdueRecallFine" : 150.0,
-    "id" : "4cfa17ca-d29c-4677-a2d7-27c4d521e052"
   }, {
     "name" : "min_50_max_150",
     "overdueFine" : {
@@ -102,5 +70,41 @@
     "gracePeriodRecall" : true,
     "maxOverdueRecallFine" : 35.0,
     "id" : "d87dfe54-6282-4c4e-aaa4-34b6d2953887"
+  }, {
+    "name" : "hour_3_max_150",
+    "overdueFine" : {
+      "quantity" : 3.0,
+      "intervalId" : "hour"
+    },
+    "countClosed" : false,
+    "maxOverdueFine" : 150.0,
+    "forgiveOverdueFine" : false,
+    "gracePeriodRecall" : false,
+    "maxOverdueRecallFine" : 0.0,
+    "id" : "4cfa17ca-d29c-4677-a2d7-27c4d521e052"
+  }, {
+    "name" : "day_25_max_150",
+    "overdueFine" : {
+      "quantity" : 25.0,
+      "intervalId" : "day"
+    },
+    "countClosed" : false,
+    "maxOverdueFine" : 150.0,
+    "forgiveOverdueFine" : false,
+    "gracePeriodRecall" : false,
+    "maxOverdueRecallFine" : 0.0,
+    "id" : "52d596ab-72a8-423d-b425-4dbb18c9c48c"
+  }, {
+    "name" : "hour_3_max_35",
+    "overdueFine" : {
+      "quantity" : 3.0,
+      "intervalId" : "hour"
+    },
+    "countClosed" : false,
+    "maxOverdueFine" : 35.0,
+    "forgiveOverdueFine" : false,
+    "gracePeriodRecall" : false,
+    "maxOverdueRecallFine" : 0.0,
+    "id" : "a3d581a8-d895-49bc-a123-ed966867c2ff"
   } ]
 }

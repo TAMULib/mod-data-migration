@@ -20,20 +20,7 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "aba437b8-4bad-42ed-81a6-b2a6c90b61a3"
-  }, {
-    "profile" : {
-      "name" : "Print Books - Create New Record",
-      "description" : "Creates new instance, holdings, and item record",
-      "dataType" : "MARC",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "d1ad0fc7-1eb4-412e-b16a-fb9e0d7a2512"
+    "id" : "a2d48908-824c-4b7e-8419-8512f06071b7"
   }, {
     "profile" : {
       "name" : "Test 9xx delete",
@@ -46,6 +33,32 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "35aa20b8-1363-4a90-a7f1-000df4f473c3"
+    "id" : "a55ac658-39e2-449f-824c-4f9f5e25b7cc"
+  }, {
+    "profile" : {
+      "name" : "Print Books - Create New Record",
+      "description" : "Creates new instance, holdings, and item record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "df287e8d-afb3-4d70-887b-766dc4369b5d"
+  }, {
+    "profile" : {
+      "name" : "Print Book - Overlay",
+      "description" : "",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "d928d3b5-59de-4bb1-aceb-7f35abb9b88e"
   } ]
 }

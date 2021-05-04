@@ -6,38 +6,6 @@
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "data" : [ {
-    "name" : "lost_item_fee_policy",
-    "description" : "Lost item fee policy",
-    "itemAgedLostOverdue" : {
-      "duration" : 30,
-      "intervalId" : "Days"
-    },
-    "patronBilledAfterAgedLost" : {
-      "duration" : 1,
-      "intervalId" : "Days"
-    },
-    "chargeAmountItem" : {
-      "chargeType" : "anotherCost",
-      "amount" : 0.0
-    },
-    "lostItemProcessingFee" : 2.0,
-    "chargeAmountItemPatron" : true,
-    "chargeAmountItemSystem" : true,
-    "lostItemChargeFeeFine" : {
-      "duration" : 2,
-      "intervalId" : "Days"
-    },
-    "returnedLostItemProcessingFee" : true,
-    "replacedLostItemProcessingFee" : false,
-    "replacementProcessingFee" : 0.0,
-    "replacementAllowed" : true,
-    "lostItemReturned" : "Charge",
-    "feesFinesShallRefunded" : {
-      "duration" : 365,
-      "intervalId" : "Days"
-    },
-    "id" : "ac5ec0dc-9de1-48e1-80ad-53f581857c9d"
-  }, {
     "name" : "lost_item_migration_policy",
     "description" : "Lost item fee policy used for migrating loans & feesfines from Voyager. Doesn't age to lost or charge processing fee.",
     "chargeAmountItem" : {
@@ -61,5 +29,37 @@
       "intervalId" : "Days"
     },
     "id" : "12b96f07-ef7f-4723-b53b-fa56a285194d"
+  }, {
+    "name" : "lost_item_fee_policy",
+    "description" : "Lost item fee policy",
+    "itemAgedLostOverdue" : {
+      "duration" : 30,
+      "intervalId" : "Days"
+    },
+    "patronBilledAfterAgedLost" : {
+      "duration" : 1,
+      "intervalId" : "Days"
+    },
+    "chargeAmountItem" : {
+      "chargeType" : "actualCost",
+      "amount" : 0.0
+    },
+    "lostItemProcessingFee" : 0.0,
+    "chargeAmountItemPatron" : false,
+    "chargeAmountItemSystem" : false,
+    "lostItemChargeFeeFine" : {
+      "duration" : 2,
+      "intervalId" : "Days"
+    },
+    "returnedLostItemProcessingFee" : false,
+    "replacedLostItemProcessingFee" : false,
+    "replacementProcessingFee" : 0.0,
+    "replacementAllowed" : true,
+    "lostItemReturned" : "Charge",
+    "feesFinesShallRefunded" : {
+      "duration" : 365,
+      "intervalId" : "Days"
+    },
+    "id" : "ac5ec0dc-9de1-48e1-80ad-53f581857c9d"
   } ]
 }
