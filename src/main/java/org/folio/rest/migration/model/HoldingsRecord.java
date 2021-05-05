@@ -226,7 +226,7 @@ public class HoldingsRecord {
           case "541":
           case "561":
             // provenance
-            note.setStaffOnly(false);
+            note.setStaffOnly(field.getIndicator1() != '1');
             note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("provenance"));
             break;
           case "562":
@@ -240,9 +240,16 @@ public class HoldingsRecord {
             note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("binding"));
             break;
           case "583":
-            // action
-            note.setStaffOnly(true);
-            note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("action"));
+            Subfield subfield = field.getSubfield('z');
+            if (Objects.nonNull(subfield)) {
+              note.setStaffOnly(false);
+              note.setNote(subfield.getData());
+              note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
+            } else {
+              // action
+              note.setStaffOnly(true);
+              note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("action"));
+            }
             break;
           default:
             note.setStaffOnly(true);
