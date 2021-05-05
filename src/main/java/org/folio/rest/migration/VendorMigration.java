@@ -332,6 +332,10 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
           Organization organization = vendorRecord.toOrganization(defaults);
 
+          if (!organization.getAddresses().isEmpty()) {
+            organization.getAddresses().get(0).setIsPrimary(true);
+          }
+
           if (!processCode(organization.getCode().toLowerCase())) {
             log.warn("{} vendor id {} code {} already processed", schema, vendorId, organization.getCode());
             continue;
