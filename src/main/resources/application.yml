@@ -14,6 +14,8 @@ logging:
 
 server:
   port: 9000
+  servlet:
+    context-path: /mod-data-migration
   tomcat:
     connection-timeout: -1
     accept-count: 1000
