@@ -851,7 +851,7 @@ POST to http://localhost:9000/migrate/holdings
       "8": "Permanently retained"
     },
     "fieldRegexExclusion": {
-      "583": "(?i).*[sub pattern created|subpattern created|subscription pattern created].*"
+      "583": "(?i)(.*sub pattern created.*)|(.*subpattern created.*)|(.*subscription pattern created.*)"
     }
   },
   "defaults": {
@@ -1675,6 +1675,7 @@ POST to http://localhost:9000/migrate/purchaseorders
       "additionalHoldingsNotes": [{
           "id": "7ca7dc63-c053-4aec-8272-c03aeda4840c",
           "note": "Ask the MSL AskUs Desk about latest journal issues",
+          "holdingsNoteTypeId": "0fe80632-2616-4626-a316-c3bba0e3eeb9",
           "staffOnly": false
       }]
     }

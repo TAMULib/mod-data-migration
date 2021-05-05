@@ -154,55 +154,54 @@ public class HoldingsRecord {
   }
 
   public Holdingsrecord toHolding(HoldingMapper holdingMapper, HoldingsMaps holdingsMaps, String hridString) throws JsonProcessingException {
-    final Holdingsrecord holding = holdingMapper.getHolding(parsedRecord);
-    if (Objects.nonNull(holding)) {
-      holding.setId(holdingId);
-      holding.setInstanceId(instanceId);
-      holding.setPermanentLocationId(locationId);
+    final Holdingsrecord holdings = holdingMapper.getHolding(parsedRecord);
+    if (Objects.nonNull(holdings)) {
+      holdings.setId(holdingId);
+      holdings.setInstanceId(instanceId);
+      holdings.setPermanentLocationId(locationId);
       // holding.setTemporaryLocationId(null);
-      holding.setHoldingsTypeId(holdingsType);
+      holdings.setHoldingsTypeId(holdingsType);
 
       if (Objects.nonNull(callNumberType)) {
-        holding.setCallNumberTypeId(callNumberType);
+        holdings.setCallNumberTypeId(callNumberType);
       }
 
       // holding.setIllPolicyId(null);
 
-      holding.setDiscoverySuppress(discoverySuppress);
-      holding.setCallNumber(callNumber);
-      holding.setReceiptStatus(receiptStatus);
-      holding.setAcquisitionMethod(acquisitionMethod);
-      holding.setRetentionPolicy(retentionPolicy);
-      holding.setStatisticalCodeIds(statisticalCodes);
+      holdings.setDiscoverySuppress(discoverySuppress);
+      holdings.setCallNumber(callNumber);
+      holdings.setReceiptStatus(receiptStatus);
+      holdings.setAcquisitionMethod(acquisitionMethod);
+      holdings.setRetentionPolicy(retentionPolicy);
+      holdings.setStatisticalCodeIds(statisticalCodes);
 
-      processMarcHolding(holding, holdingsMaps.getFieldRegexExclusion());
+      processMarcHolding(holdings, holdingsMaps.getFieldRegexExclusion());
 
-      holding.setHrid(hridString);
+      holdings.setHrid(hridString);
 
       Set<String> formerIds = new HashSet<>();
       formerIds.add(mfhdId);
-      holding.setFormerIds(formerIds);
+      holdings.setFormerIds(formerIds);
 
       Metadata metadata = new Metadata();
       metadata.setCreatedByUserId(createdByUserId);
       metadata.setCreatedDate(createdDate);
       metadata.setUpdatedByUserId(createdByUserId);
       metadata.setUpdatedDate(createdDate);
-      holding.setMetadata(metadata);
+      holdings.setMetadata(metadata);
     }
-    return holding;
+    return holdings;
   }
 
-  public void processMarcHolding(Holdingsrecord holding, Map<String, String> fieldRegexExclusion) {
-    process5xxFields(holding, fieldRegexExclusion);
-    process852Field(holding);
-    process866Field(holding);
-    process867Field(holding);
-    process868Field(holding);
+  public void processMarcHolding(Holdingsrecord holdings, Map<String, String> fieldRegexExclusion) {
+    process5xxFields(holdings, fieldRegexExclusion);
+    process852Field(holdings);
+    process866Field(holdings);
+    process867Field(holdings);
+    process868Field(holdings);
   }
 
-  public void process5xxFields(Holdingsrecord holding, Map<String, String> fieldRegexExclusion) {
-    List<Note> notes = holding.getNotes();
+  public void process5xxFields(Holdingsrecord holdings, Map<String, String> fieldRegexExclusion) {
     record.getVariableFields().stream()
       .filter(Objects::nonNull)
       .filter(field -> field instanceof DataField)
@@ -226,7 +225,7 @@ public class HoldingsRecord {
           case "541":
           case "561":
             // provenance
-            note.setStaffOnly(false);
+            note.setStaffOnly(field.getIndicator1() != '1');
             note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("provenance"));
             break;
           case "562":
@@ -240,22 +239,28 @@ public class HoldingsRecord {
             note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("binding"));
             break;
           case "583":
-            // action
-            note.setStaffOnly(true);
-            note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("action"));
+            Subfield subfield = field.getSubfield('z');
+            if (Objects.nonNull(subfield)) {
+              note.setStaffOnly(false);
+              note.setNote(subfield.getData());
+              note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
+            } else {
+              // action
+              note.setStaffOnly(true);
+              note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("action"));
+            }
             break;
           default:
             note.setStaffOnly(true);
             note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
             break;
           }
-          notes.add(note);
+          holdings.getNotes().add(note);
         }
       });
   }
 
   public void process852Field(Holdingsrecord holding) {
-    List<Note> notes = holding.getNotes();
     StringBuilder callNumberBuilder = new StringBuilder();
     DataField f852 = (DataField) record.getVariableField("852");
     if (Objects.nonNull(f852)) {
@@ -269,7 +274,7 @@ public class HoldingsRecord {
           note.setStaffOnly(false);
           note.setNote(data);
           note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("latest_in"));
-          notes.add(note);
+          holding.getNotes().add(note);
         } break;
         case 'h':
         case 'i':
@@ -295,7 +300,7 @@ public class HoldingsRecord {
           note.setStaffOnly(true);
           note.setNote(data);
           note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
-          notes.add(note);
+          holding.getNotes().add(note);
         } break;
         case 'z': {
           // note
@@ -303,7 +308,7 @@ public class HoldingsRecord {
           note.setStaffOnly(false);
           note.setNote(data);
           note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
-          notes.add(note);
+          holding.getNotes().add(note);
         } break;
         case 'b':
           // do nothing
