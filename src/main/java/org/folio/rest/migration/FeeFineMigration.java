@@ -8,10 +8,12 @@ import java.sql.Statement;
 import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -74,6 +76,8 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
   private static final String ITEM_REFERENCE_ID = "itemTypeId";
 
+  private static final Set<String> FEE_FINE_IDS = new HashSet<>();
+
   // (id,jsonb,creation_date,created_by)
   private static String ACCOUNT_COPY_SQL = "COPY %s_mod_feesfines.accounts (id,jsonb,creation_date,created_by) FROM STDIN WITH NULL AS 'null'";
 
@@ -103,6 +107,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       @Override
       public void complete() {
         postActions(folioSettings, context.getPostActions());
+        FEE_FINE_IDS.clear();
         migrationService.complete();
       }
 
@@ -228,6 +233,11 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
           String fineLocation = pageResultSet.getString(FINE_LOCATION);
           String title = pageResultSet.getString(TITLE);
           String bibId = pageResultSet.getString(BIB_ID);
+
+          if (!processFeeFineId(schema, finefeeId)) {
+            log.warn("{} fee/fine with id {} already processed", schema, finefeeId);
+            continue;
+          }
 
           FeeFineRecord feefineRecord = new FeeFineRecord(
             patronId,
@@ -385,6 +395,10 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       e.printStackTrace();
     }
     return idToDisplayName;
+  }
+
+  private synchronized Boolean processFeeFineId(String schema, String feeFineId) {
+    return FEE_FINE_IDS.add(String.format("%s:%s", schema, feeFineId));
   }
 
   private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
