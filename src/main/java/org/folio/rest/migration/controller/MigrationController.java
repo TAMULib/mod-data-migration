@@ -2,18 +2,17 @@ package org.folio.rest.migration.controller;
 
 import java.util.concurrent.CompletableFuture;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import org.folio.rest.migration.BibMigration;
 import org.folio.rest.migration.BoundWithMigration;
+import org.folio.rest.migration.CourseReserveMigration;
 import org.folio.rest.migration.DivITPatronMigration;
 import org.folio.rest.migration.FeeFineMigration;
 import org.folio.rest.migration.HoldingsMigration;
 import org.folio.rest.migration.InventoryReferenceLinkMigration;
 import org.folio.rest.migration.ItemMigration;
 import org.folio.rest.migration.LoanMigration;
-import org.folio.rest.migration.PurchaseOrderMigration;
 import org.folio.rest.migration.ProxyForMigration;
+import org.folio.rest.migration.PurchaseOrderMigration;
 import org.folio.rest.migration.RequestMigration;
 import org.folio.rest.migration.UserMigration;
 import org.folio.rest.migration.UserReferenceLinkMigration;
@@ -25,6 +24,7 @@ import org.folio.rest.migration.aspect.annotation.CreateReferenceLinkTypes;
 import org.folio.rest.migration.aspect.annotation.UpdateRules;
 import org.folio.rest.migration.model.request.bib.BibContext;
 import org.folio.rest.migration.model.request.boundwith.BoundWithContext;
+import org.folio.rest.migration.model.request.coursereserve.CourseReserveContext;
 import org.folio.rest.migration.model.request.divitpatron.DivITPatronContext;
 import org.folio.rest.migration.model.request.feefine.FeeFineContext;
 import org.folio.rest.migration.model.request.holdings.HoldingsContext;
@@ -243,13 +243,12 @@ public class MigrationController {
   }
 
   @PostMapping("/coursereserves")
-  @CreateReferenceData(pattern = "classpath:/referenceData/coursereserves/*.json")
-  public String coursereserves(
-      @RequestBody JsonNode context,
+  public CompletableFuture<String> coursereserves(
+      @RequestBody CourseReserveContext context,
       @TenantHeader String tenant,
       @RequestParam(required = false, defaultValue = "false") boolean skipReferenceData
   ) {
-    return "Migration not yet implemented";
+    return migrationService.migrate(CourseReserveMigration.with(context, referenceDataService, tenant));
   }
 
 }
