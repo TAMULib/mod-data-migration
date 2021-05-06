@@ -2,9 +2,13 @@
   "path" : "/coursereserves/courselistings",
   "query" : "limit=9999",
   "reify" : false,
-  "dependencies" : [ "courses" ],
+  "dependencies" : [ "courseTypes", "departments" ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional": [{
+    "path": "/coursereserves/courselistings/${id}/instructors",
+    "source": "/instructorObjects"
+  }],
   "data" : [ {
     "id" : "0cc79d1d-a704-4f13-8763-66e30534d701",
     "registrarId" : "2021:SPRINGGEOG489500",

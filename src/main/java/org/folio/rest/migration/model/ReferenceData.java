@@ -38,6 +38,8 @@ public class ReferenceData {
 
   private List<String> excludedProperties;
 
+  private List<AdditionalReferenceData> additional;
+
   private List<JsonNode> data;
 
   public ReferenceData() {
@@ -45,6 +47,7 @@ public class ReferenceData {
     dependencies = new ArrayList<>();
     transform = new HashMap<>();
     excludedProperties = new ArrayList<>();
+    additional = new ArrayList<>();
     data = new ArrayList<>();
   }
 
@@ -126,6 +129,14 @@ public class ReferenceData {
 
   public void setExcludedProperties(List<String> excludedProperties) {
     this.excludedProperties = excludedProperties;
+  }
+
+  public List<AdditionalReferenceData> getAdditional() {
+    return additional;
+  }
+
+  public void setAdditional(List<AdditionalReferenceData> additional) {
+    this.additional = additional;
   }
 
   public List<JsonNode> getData() {

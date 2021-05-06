@@ -17,9 +17,12 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.text.StringSubstitutor;
+import org.folio.rest.migration.model.AdditionalReferenceData;
 import org.folio.rest.migration.model.ReferenceData;
 import org.folio.rest.migration.model.ReferenceDatum;
 import org.folio.rest.migration.model.request.ExternalOkapi;
@@ -133,6 +136,34 @@ public class ReferenceDataService {
       } catch (Exception e) {
         logger.warn("failed creating reference data {}: {}", referenceData.getName(), e.getMessage());
       }
+
+      for (AdditionalReferenceData additional : referenceData.getAdditional()) {
+        JsonNode sourceData = data.at(additional.getSource());
+        if (sourceData.isArray()) {
+          for (JsonNode additionalData : ((ArrayNode) sourceData)) {
+            createAdditionalData(referenceData, data, additional, additionalData);
+          }
+        } else {
+          createAdditionalData(referenceData, data, additional, sourceData);
+        }
+      }
+    }
+  }
+
+  private void createAdditionalData(ReferenceData referenceData, JsonNode data, AdditionalReferenceData additional, JsonNode additionalData) {
+    String tenant = referenceData.getTenant();
+    String token = referenceData.getToken();
+    Map<String, Object> context = objectMapper.convertValue(data, new TypeReference<Map<String, Object>>(){});
+    StringSubstitutor sub = new StringSubstitutor(context);
+    String path = sub.replace(additional.getPath());
+
+    ReferenceDatum additionalDatum = ReferenceDatum.of(tenant, token, path, additionalData);
+
+    try {
+      JsonNode response = okapiService.createReferenceData(additionalDatum);
+      logger.info("created additional reference data {} {} {}", referenceData.getName(), additional.getSource(), response);
+    } catch (Exception e) {
+      logger.warn("failed creating additional reference data {} {}: {}", referenceData.getName(), additional.getSource(), e.getMessage());
     }
   }
 
