@@ -2,7 +2,7 @@
   "path" : "/coursereserves/courselistings",
   "query" : "limit=9999",
   "reify" : false,
-  "dependencies" : [ "courses", "courseTypes", "departments" ],
+  "dependencies" : [ "courses" ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "data" : [ {
