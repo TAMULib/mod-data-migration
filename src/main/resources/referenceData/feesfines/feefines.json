@@ -5,6 +5,7 @@
   "dependencies" : [ "owners" ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "automatic" : false,
     "feeFineType" : "Lost item replacement (migrated-do not use)",

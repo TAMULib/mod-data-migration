@@ -5,6 +5,7 @@
   "dependencies" : [ "courseListings", "processingStatuses" ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "id" : "052f7573-7d9e-470a-9807-e4aed22e7d8e",
     "courseListingId" : "3dc1c603-1fb4-462e-8b96-43141a0ef726",

@@ -5,6 +5,7 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "id" : "c8d51dc6-2f84-4220-8aef-3c4894d53b93",
     "code" : "migrated",
