@@ -6,22 +6,6 @@
   "transform" : { },
   "excludedProperties" : [ "childOf", "dummy", "grantedTo", "metadata", "tags" ],
   "data" : [ {
-    "permissionName" : "82b9ae05-d805-4ae8-9553-5ff9113091f7",
-    "displayName" : "Circ_Settings",
-    "id" : "82b9ae05-d805-4ae8-9553-5ff9113091f7",
-    "description" : "All settings that are related to circulation: circ, users, requests, feesfines",
-    "subPermissions" : [ "ui-circulation.settings.cancellation-reasons", "ui-circulation.settings.circulation-rules", "ui-circulation.settings.fixed-due-date-schedules", "ui-circulation.settings.loan-policies", "ui-circulation.settings.lost-item-fees-policies", "ui-circulation.settings.notice-policies", "ui-circulation.settings.other-settings", "ui-circulation.settings.overdue-fines-policies", "ui-circulation.settings.notice-templates", "ui-circulation.settings.request-policies", "ui-circulation.settings.staff-slips", "ui-circulation.settings.loan-history", "course-reserves.maintain-settings", "ui-tenant-settings.settings.servicepoints", "ui-users.settings.addresstypes", "ui-users.settings.feefines.all", "ui-users.settings.comments", "ui-users.settings.feefines", "ui-users.settings.owners", "ui-users.settings.conditions", "ui-users.settings.limits", "ui-users.settings.usergroups", "ui-users.settings.payments", "ui-users.settings.refunds", "ui-users.settings.transfers", "ui-users.settings.transfertypes", "ui-users.settings.waives", "ui-users.settings.customfields.edit", "ui-users.settings.customfields.all", "ui-users.settings.customfields.view", "ui-users.settings.departments.create.edit.view", "ui-users.settings.departments.all", "ui-users.settings.departments.view" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
-    "permissionName" : "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
-    "displayName" : "Permission_sets_assign",
-    "id" : "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
-    "description" : "Can assign permission sets to users",
-    "subPermissions" : [ "ui-users.editperms" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
     "permissionName" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
     "displayName" : "Acquisitions_Financial_Admin",
     "id" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
@@ -50,19 +34,19 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
-    "displayName" : "Cat_AllStaff",
-    "id" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
-    "description" : "Set of permissions for Staff and Professionals",
-    "subPermissions" : [ "ui-inventory.all-permissions.TEMPORARY", "ui-inventory.items.mark-items-withdrawn", "ui-orders.order-lines.view", "ui-orders.order.view", "ui-quick-marc.quick-marc-editor.all", "ui-tags.view" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
     "permissionName" : "dfe8fa76-9e3f-420e-bada-10d077ddf1ae",
     "displayName" : "Circ_View_only",
     "id" : "dfe8fa76-9e3f-420e-bada-10d077ddf1ae",
     "description" : "Staff needing to view Circ records",
     "subPermissions" : [ "ui-circulation-log.log-event.all", "ui-notes.item.view", "ui-requests.view", "ui-users.loans.view", "ui-users.requests.all" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
+    "permissionName" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
+    "displayName" : "Cat_AllStaff",
+    "id" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
+    "description" : "Set of permissions for Staff and Professionals",
+    "subPermissions" : [ "ui-inventory.all-permissions.TEMPORARY", "ui-inventory.items.mark-items-withdrawn", "ui-orders.order-lines.view", "ui-orders.order.view", "ui-quick-marc.quick-marc-editor.all", "ui-tags.view" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -147,11 +131,11 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "9ccfdbfe-ad7e-4103-9906-b06a47940eca",
-    "displayName" : "Data_import_create_run",
-    "id" : "9ccfdbfe-ad7e-4103-9906-b06a47940eca",
-    "description" : "Allows user to create data import profiles and run data import jobs",
-    "subPermissions" : [ "settings.data-import.enabled", "module.data-import.enabled" ],
+    "permissionName" : "82b9ae05-d805-4ae8-9553-5ff9113091f7",
+    "displayName" : "Circ_Settings",
+    "id" : "82b9ae05-d805-4ae8-9553-5ff9113091f7",
+    "description" : "All settings that are related to circulation: circ, users, requests, feesfines",
+    "subPermissions" : [ "ui-circulation.settings.cancellation-reasons", "ui-circulation.settings.circulation-rules", "ui-circulation.settings.fixed-due-date-schedules", "ui-circulation.settings.loan-policies", "ui-circulation.settings.lost-item-fees-policies", "ui-circulation.settings.notice-policies", "ui-circulation.settings.other-settings", "ui-circulation.settings.overdue-fines-policies", "ui-circulation.settings.notice-templates", "ui-circulation.settings.request-policies", "ui-circulation.settings.staff-slips", "ui-circulation.settings.loan-history", "course-reserves.maintain-settings", "ui-tenant-settings.settings.servicepoints", "ui-users.settings.addresstypes", "ui-users.settings.feefines.all", "ui-users.settings.comments", "ui-users.settings.feefines", "ui-users.settings.owners", "ui-users.settings.conditions", "ui-users.settings.limits", "ui-users.settings.usergroups", "ui-users.settings.payments", "ui-users.settings.refunds", "ui-users.settings.transfers", "ui-users.settings.transfertypes", "ui-users.settings.waives", "ui-users.settings.customfields.edit", "ui-users.settings.customfields.all", "ui-users.settings.customfields.view", "ui-users.settings.departments.create.edit.view", "ui-users.settings.departments.all", "ui-users.settings.departments.view" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -170,11 +154,27 @@
     "mutable" : true,
     "visible" : true
   }, {
+    "permissionName" : "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
+    "displayName" : "Permission_sets_assign",
+    "id" : "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
+    "description" : "Can assign permission sets to users",
+    "subPermissions" : [ "ui-users.editperms" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
     "permissionName" : "05e05c02-f870-4602-9e1b-1451cf4ec9b1",
     "displayName" : "Shelving_Staff",
     "id" : "05e05c02-f870-4602-9e1b-1451cf4ec9b1",
     "description" : "Shelving Department employees performing Circ functions",
     "subPermissions" : [ "ui-checkin.all", "ui-circulation-log.log-event.all", "ui-notes.item.view", "ui-requests.view", "ui-users.loans.view", "ui-users.requests.all" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
+    "permissionName" : "9ccfdbfe-ad7e-4103-9906-b06a47940eca",
+    "displayName" : "Data_import_create_run",
+    "id" : "9ccfdbfe-ad7e-4103-9906-b06a47940eca",
+    "description" : "Allows user to create data import profiles and run data import jobs",
+    "subPermissions" : [ "settings.data-import.enabled", "module.data-import.enabled", "converter-storage.all" ],
     "mutable" : true,
     "visible" : true
   }, {

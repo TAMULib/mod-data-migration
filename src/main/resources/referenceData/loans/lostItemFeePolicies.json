@@ -41,12 +41,12 @@
       "intervalId" : "Days"
     },
     "chargeAmountItem" : {
-      "chargeType" : "actualCost",
+      "chargeType" : "anotherCost",
       "amount" : 0.0
     },
-    "lostItemProcessingFee" : 0.0,
-    "chargeAmountItemPatron" : false,
-    "chargeAmountItemSystem" : false,
+    "lostItemProcessingFee" : 2.0,
+    "chargeAmountItemPatron" : true,
+    "chargeAmountItemSystem" : true,
     "lostItemChargeFeeFine" : {
       "duration" : 2,
       "intervalId" : "Days"
