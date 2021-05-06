@@ -5,6 +5,7 @@
   "dependencies" : [ "statisticalCodeTypes" ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "id" : "6e2654ac-9a86-433d-a50e-c570925b9b05",
     "code" : "AADR",

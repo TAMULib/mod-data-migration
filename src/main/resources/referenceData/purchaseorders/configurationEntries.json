@@ -5,18 +5,13 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "id" : "c0693d5c-f7a8-407d-a8de-e12d90bea207",
     "module" : "CHECKOUT",
     "configName" : "other_settings",
     "enabled" : true,
     "value" : "{\"audioAlertsEnabled\":false,\"prefPatronIdentifier\":\"BARCODE,EXTERNAL,FOLIO,USER\",\"checkoutTimeout\":true,\"checkoutTimeoutDuration\":5}"
-  }, {
-    "id" : "6060b98d-87d3-47c7-b944-996a8ca8f07b",
-    "module" : "LOAN_HISTORY",
-    "configName" : "loan_history",
-    "enabled" : true,
-    "value" : "{\"closingType\":{\"loan\":\"immediately\",\"feeFine\":null,\"loanExceptions\":[]},\"loan\":{},\"feeFine\":{},\"loanExceptions\":[],\"treatEnabled\":false}"
   }, {
     "id" : "43bdbfcc-2062-491d-8602-47a22b80f9d3",
     "module" : "OAIPMH",
@@ -309,5 +304,11 @@
     "code" : "ADDRESS_SRMSVWM",
     "enabled" : true,
     "value" : "{\"name\":\"SRMSVWM\",\"address\":\"TEXAS A&M UNIVERSITY\\nEVANS LIBRARY-SERIALS RECORDS\\n5000 TAMU\\nCOLLEGE STATION, TX   77843-5000\"}"
+  }, {
+    "id" : "6060b98d-87d3-47c7-b944-996a8ca8f07b",
+    "module" : "LOAN_HISTORY",
+    "configName" : "loan_history",
+    "enabled" : true,
+    "value" : "{\"closingType\":{\"loan\":\"interval\",\"feeFine\":null,\"loanExceptions\":[]},\"loan\":{\"duration\":30,\"intervalId\":\"Days\"},\"feeFine\":{\"duration\":30,\"intervalId\":\"Days\"},\"loanExceptions\":[],\"treatEnabled\":false}"
   } ]
 }

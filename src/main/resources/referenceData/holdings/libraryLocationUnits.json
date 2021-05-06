@@ -5,6 +5,7 @@
   "dependencies" : [ "institutionLocationUnits", "campusLocationUnits" ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "id" : "3fb6a4cf-362a-4d59-8558-9bee67fd50eb",
     "name" : "Business Library and Collaboration Commons",

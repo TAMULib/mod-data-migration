@@ -5,6 +5,7 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "name" : "day_1_max_35",
     "overdueFine" : {

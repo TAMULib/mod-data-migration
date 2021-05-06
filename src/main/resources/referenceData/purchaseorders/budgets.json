@@ -5,6 +5,7 @@
   "dependencies" : [ "fiscalYears", "funds" ],
   "transform" : { },
   "excludedProperties" : [ "metadata", "unavailable", "available", "allowableExpenditure", "awaitingPayment", "netTransfers", "overEncumbrance", "allocated", "allowableEncumbrance", "expenditures", "encumbered", "overExpended" ],
+  "additional" : [ ],
   "data" : [ {
     "statusExpenseClasses" : [ ],
     "id" : "8401cc0b-d497-46cc-8d8e-b568841806f1",

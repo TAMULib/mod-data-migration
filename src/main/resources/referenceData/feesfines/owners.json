@@ -5,6 +5,7 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "owner" : "Business Library & Collaboration Commons",
     "servicePointOwner" : [ {

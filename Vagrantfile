@@ -42,6 +42,7 @@ Vagrant.configure(2) do |config|
   # https://app.vagrantup.com/folio/boxes/release
   config.vm.define "release", autostart: false do |release|
     release.vm.box = "folio/release"
+    release.vm.network "forwarded_port", guest: 5432, host: 5433
   end
 
 end

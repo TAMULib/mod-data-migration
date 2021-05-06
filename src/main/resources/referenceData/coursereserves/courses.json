@@ -2,9 +2,10 @@
   "path" : "/coursereserves/courses",
   "query" : "limit=9999",
   "reify" : false,
-  "dependencies" : [ "courseTypes", "departments" ],
+  "dependencies" : [ "courseListings" ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "id" : "06ea64ed-ca90-4fff-bfcd-110ac9e0c444",
     "name" : "KINE",
@@ -825,10 +826,10 @@
         "barcode" : "6016426592776773",
         "courseListingId" : "0cc79d1d-a704-4f13-8763-66e30534d701",
         "metadata" : {
-          "createdDate" : "2021-03-17T21:27:18.671+00:00",
-          "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
-          "updatedDate" : "2021-03-17T21:27:18.671+00:00",
-          "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+          "createdDate" : "2021-05-06T17:18:17.883+00:00",
+          "createdByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498",
+          "updatedDate" : "2021-05-06T17:18:17.883+00:00",
+          "updatedByUserId" : "8969ea03-da8f-47bc-a35b-e5257581d498"
         }
       } ],
       "metadata" : {

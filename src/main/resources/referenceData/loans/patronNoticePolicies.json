@@ -5,15 +5,8 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
-    "id" : "122b3d2b-4788-4f1e-9117-56daa91cb75c",
-    "name" : "Send No Notices",
-    "description" : "A basic notice policy that does not define any notices",
-    "active" : true,
-    "loanNotices" : [ ],
-    "feeFineNotices" : [ ],
-    "requestNotices" : [ ]
-  }, {
     "id" : "a570df1b-763e-4622-828b-fc9b546efc8b",
     "name" : "notices_basic",
     "active" : true,

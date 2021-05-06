@@ -5,6 +5,7 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "group" : "comm",
     "desc" : "Community User",

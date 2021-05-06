@@ -8,6 +8,7 @@
     "id" : "id"
   },
   "excludedProperties" : [ "profile.metadata", "profile.id", "profile.parentProfiles", "profile.childProfiles" ],
+  "additional" : [ ],
   "data" : [ {
     "profile" : {
       "name" : "MARCIVE-Create New Holdings Record URL",

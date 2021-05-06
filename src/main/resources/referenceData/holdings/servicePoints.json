@@ -5,6 +5,7 @@
   "dependencies" : [ "institutionLocationUnits", "campusLocationUnits", "libraryLocationUnits" ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "id" : "fc64d24e-5247-402a-ae19-21de454c025d",
     "name" : "Business Library Circulation",

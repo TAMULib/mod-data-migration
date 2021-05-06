@@ -5,6 +5,7 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "id" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
     "name" : "2021 Fall",
