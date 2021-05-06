@@ -1866,7 +1866,11 @@ Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropr
 POST to http://localhost:9000/migrate/coursereserves
 
 ```
-{}
+{
+  "parallelism": 1,
+  "preActions": [],
+  "postActions": []
+}
 ```
 
 ## Migration Notes
