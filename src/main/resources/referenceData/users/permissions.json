@@ -5,6 +5,7 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "childOf", "dummy", "grantedTo", "metadata", "tags" ],
+  "additional" : [ ],
   "data" : [ {
     "permissionName" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
     "displayName" : "Acquisitions_Financial_Admin",

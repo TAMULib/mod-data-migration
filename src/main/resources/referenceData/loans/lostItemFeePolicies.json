@@ -5,6 +5,7 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "name" : "lost_item_migration_policy",
     "description" : "Lost item fee policy used for migrating loans & feesfines from Voyager. Doesn't age to lost or charge processing fee.",

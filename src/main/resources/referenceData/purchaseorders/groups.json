@@ -5,6 +5,7 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "id" : "7e946263-5ab1-43a7-afc5-462976e134b5",
     "acqUnitIds" : [ ],

@@ -5,6 +5,7 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "id" : "c0693d5c-f7a8-407d-a8de-e12d90bea207",
     "module" : "CHECKOUT",

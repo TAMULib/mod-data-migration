@@ -5,6 +5,7 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "nameReason" : "Error",
     "id" : "82eeeeb6-1d01-4c8b-bfac-05f92a3498d8"

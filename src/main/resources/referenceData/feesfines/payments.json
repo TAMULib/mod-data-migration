@@ -5,6 +5,7 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "nameMethod" : "Interdepartmental transfer",
     "allowedRefundMethod" : true,

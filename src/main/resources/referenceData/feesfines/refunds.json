@@ -5,6 +5,7 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "nameReason" : "Lost item renewed",
     "id" : "aa8a4a2b-924f-4c36-b12e-c1b29ab3b789"

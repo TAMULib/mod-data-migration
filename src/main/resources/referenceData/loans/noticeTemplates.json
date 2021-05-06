@@ -5,6 +5,7 @@
   "dependencies" : [ ],
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
   "data" : [ {
     "id" : "631ff684-e221-45d8-822d-bc3a444c489b",
     "outputFormats" : [ "text/html" ],
