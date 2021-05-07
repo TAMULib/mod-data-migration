@@ -110,7 +110,7 @@ public class BibRecord {
     recordModel.setId(sourceRecordId);
     recordModel.setSnapshotId(jobExecutionId);
     recordModel.setMatchedId(sourceRecordId);
-    recordModel.setRecordType(RecordType.MARC);
+    recordModel.setRecordType(RecordType.MARC_BIB);
     recordModel.setRawRecordId(sourceRecordId);
     recordModel.setParsedRecordId(sourceRecordId);
     recordModel.setOrder(order);
