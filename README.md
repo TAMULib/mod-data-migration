@@ -660,7 +660,7 @@ POST to http://localhost:9000/migrate/bibs
       "profile": {
         "name": "TAMU AMDB Bibligraphic Migration",
         "description": "Voyager migration profile",
-        "dataType": "MARC"
+        "dataType": "MARC_BIB"
       },
       "references": {
         "sourceRecordTypeId": "96017110-47c5-4d55-8324-7dab1771749b",
@@ -676,7 +676,7 @@ POST to http://localhost:9000/migrate/bibs
       "profile": {
         "name": "TAMU MSDB Bibligraphic Migration",
         "description": "Voyager migration profile",
-        "dataType": "MARC"
+        "dataType": "MARC_BIB"
       },
       "references": {
         "sourceRecordTypeId": "b9f633b3-22e4-4bad-8785-da09d9eaa6c8",
