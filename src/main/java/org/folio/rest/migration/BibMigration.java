@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -455,6 +456,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
       recordsMetadata.setTotal(count);
       recordsMetadata.setContentType(ContentType.MARC_RAW);
       rawRecordsDto.setRecordsMetadata(recordsMetadata);
+      rawRecordsDto.setId(UUID.randomUUID().toString());
 
       try {
         migrationService.okapiService.finishJobExecution(tenant, token, jobExecutionId, rawRecordsDto);
