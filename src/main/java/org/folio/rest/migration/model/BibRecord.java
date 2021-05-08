@@ -4,12 +4,12 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
-import org.folio.rest.jaxrs.model.dataimport.common.ExternalIdsHolder;
-import org.folio.rest.jaxrs.model.dataimport.dto.AdditionalInfo;
-import org.folio.rest.jaxrs.model.dataimport.dto.ParsedRecord;
-import org.folio.rest.jaxrs.model.dataimport.dto.ParsedRecordDto.RecordType;
-import org.folio.rest.jaxrs.model.dataimport.dto.RawRecord;
-import org.folio.rest.jaxrs.model.dataimport.mod_source_record_storage.RecordModel;
+import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.common.ExternalIdsHolder;
+import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.AdditionalInfo;
+import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.ParsedRecord;
+import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.ParsedRecordDto.RecordType;
+import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.RawRecord;
+import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_source_record_storage.RecordModel;
 import org.folio.rest.jaxrs.model.inventory.Instance;
 import org.folio.rest.jaxrs.model.inventory.Metadata;
 import org.folio.rest.migration.mapping.InstanceMapper;
@@ -110,7 +110,7 @@ public class BibRecord {
     recordModel.setId(sourceRecordId);
     recordModel.setSnapshotId(jobExecutionId);
     recordModel.setMatchedId(sourceRecordId);
-    recordModel.setRecordType(RecordType.MARC_BIB);
+    recordModel.setRecordType(RecordType.MARC);
     recordModel.setRawRecordId(sourceRecordId);
     recordModel.setParsedRecordId(sourceRecordId);
     recordModel.setOrder(order);
@@ -120,7 +120,7 @@ public class BibRecord {
     AdditionalInfo additionalInfo = new AdditionalInfo();
     additionalInfo.setSuppressDiscovery(suppressDiscovery);
     recordModel.setAdditionalInfo(additionalInfo);
-    org.folio.rest.jaxrs.model.dataimport.dto.Metadata metadata = new org.folio.rest.jaxrs.model.dataimport.dto.Metadata();
+    org.folio.rest.jaxrs.model.dataimport.raml_storage.raml_util.schemas.tagged_record_example.Metadata metadata = new org.folio.rest.jaxrs.model.dataimport.raml_storage.raml_util.schemas.tagged_record_example.Metadata();
     metadata.setCreatedByUserId(createdByUserId);
     metadata.setCreatedDate(createdDate);
     metadata.setUpdatedByUserId(createdByUserId);

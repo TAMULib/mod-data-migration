@@ -1,6 +1,6 @@
-[submodule "data-import-raml-storage"]
-	path = data-import-raml-storage
-	url = https://github.com/folio-org/data-import-raml-storage.git
+[submodule "mod-data-import-converter-storage"]
+	path = mod-data-import-converter-storage
+	url = git@github.com:folio-org/mod-data-import-converter-storage.git
 [submodule "mod-inventory-storage"]
 	path = mod-inventory-storage
 	url = https://github.com/folio-org/mod-inventory-storage.git

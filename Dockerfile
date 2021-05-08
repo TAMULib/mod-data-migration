@@ -8,7 +8,7 @@ COPY ./pom.xml ./pom.xml
 COPY ./src ./src
 
 # Copy the sub-modules to the container
-COPY ./data-import-raml-storage ./data-import-raml-storage
+COPY ./mod-data-import-converter-storage ./mod-data-import-converter-storage
 COPY ./mod-inventory-storage ./mod-inventory-storage
 COPY ./mod-organizations-storage ./mod-organizations-storage
 COPY ./mod-users ./mod-users

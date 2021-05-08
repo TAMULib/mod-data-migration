@@ -75,6 +75,17 @@
          </configuration>
          <executions>
           <execution>
+            <id>mod-data-import-converter-storage/ramls</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <sourceDirectory>${basedir}/mod-data-import-converter-storage/ramls</sourceDirectory>
+              <targetPackage>org.folio.rest.jaxrs.model.dataimport</targetPackage>
+            </configuration>
+          </execution>
+          <execution>
             <id>mod-feesfines/ramls</id>
             <phase>generate-sources</phase>
             <goals>
@@ -94,17 +105,6 @@
              <configuration>
                <sourceDirectory>${basedir}/mod-circulation/ramls</sourceDirectory>
                <targetPackage>org.folio.rest.jaxrs.model.circulation</targetPackage>
-             </configuration>
-           </execution>
-           <execution>
-             <id>data-import-raml-storage/schemas</id>
-             <phase>generate-sources</phase>
-             <goals>
-               <goal>generate</goal>
-             </goals>
-             <configuration>
-               <sourceDirectory>${basedir}/data-import-raml-storage/schemas</sourceDirectory>
-               <targetPackage>org.folio.rest.jaxrs.model.dataimport</targetPackage>
              </configuration>
            </execution>
            <execution>
