@@ -46,6 +46,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   private static final String PATRON_ID = "PATRON_ID";
   private static final String EXTERNAL_SYSTEM_ID = "EXTERNAL_SYSTEM_ID";
+  private static final String NAME_TYPE = "NAME_TYPE";
   private static final String LAST_NAME = "LAST_NAME";
   private static final String FIRST_NAME = "FIRST_NAME";
   private static final String MIDDLE_NAME = "MIDDLE_NAME";
@@ -214,6 +215,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
       ) {
 
         while (pageResultSet.next()) {
+          Integer nameType = pageResultSet.getInt(NAME_TYPE);
           String patronId = pageResultSet.getString(PATRON_ID);
           String externalSystemId = pageResultSet.getString(EXTERNAL_SYSTEM_ID);
           String lastName = pageResultSet.getString(LAST_NAME);
@@ -238,7 +240,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
           String referenceId = userReferenceLinks.get(0).getFolioReference().toString();
 
-          List<PatronNote> patronNotes = new ArrayList<>();
+          List<String> patronNotes = new ArrayList<>();
 
           String createdByUserId = userId;
           Date createdDate = new Date();
@@ -249,8 +251,9 @@ public class UserMigration extends AbstractMigration<UserContext> {
               .thenAccept((pn) -> patronNotes.addAll(pn))
               .get();
 
-            for (PatronNote patronNote : patronNotes) {
-              Note note = patronNote.toNote(referenceId, job.getDbCode(), job.getNoteTypeId(), createdByUserId, createdDate);
+            for (String content : patronNotes) {
+              String title = String.format("Patron note (migrated %s)", job.getDbCode());
+              Note note = createUserNote(referenceId, title, content, job.getNoteTypeId(), createdByUserId, createdDate);
 
               try {
                 note = migrationService.okapiService.createNote(note, tenant, token);
@@ -260,6 +263,16 @@ public class UserMigration extends AbstractMigration<UserContext> {
             }
 
             continue;
+          }
+
+          if (nameType == 2) {
+            Note note = createUserNote(referenceId, "institutional user", "", job.getNoteTypeId(), createdByUserId, createdDate);
+
+            try {
+              note = migrationService.okapiService.createNote(note, tenant, token);
+            } catch (Exception e) {
+              log.error("{} error creating note {}\n{}", schema, note, e.getMessage());
+            }
           }
 
           UserRecord userRecord = new UserRecord(referenceId, patronId, externalSystemId, lastName, firstName, middleName, expireDate, smsNumber, currentCharges);
@@ -471,14 +484,13 @@ public class UserMigration extends AbstractMigration<UserContext> {
       return future;
     }
 
-    private CompletableFuture<List<PatronNote>> getPatronNotes(Statement statement, Map<String, Object> patronNoteContext) {
-      CompletableFuture<List<PatronNote>> future = new CompletableFuture<>();
+    private CompletableFuture<List<String>> getPatronNotes(Statement statement, Map<String, Object> patronNoteContext) {
+      CompletableFuture<List<String>> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
-        List<PatronNote> patronNotes = new ArrayList<>();
+        List<String> patronNotes = new ArrayList<>();
         try (ResultSet resultSet = getResultSet(statement, patronNoteContext)) {
           while(resultSet.next()) {
-            String note = resultSet.getString(NOTE);
-            patronNotes.add(new PatronNote(note));
+            patronNotes.add(resultSet.getString(NOTE));
           }
         } catch (SQLException e) {
           e.printStackTrace();
@@ -608,43 +620,32 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   }
 
-  private class PatronNote {
+  private Note createUserNote(String userId, String title, String content, String noteTypeId, String createdByUserId, Date createdDate) {
+    Note note = new Note();
+    note.setId(UUID.randomUUID().toString());
+    note.setTypeId(noteTypeId);
+    note.setDomain("users");
+    note.setTitle(title);
 
-    private String content;
+    note.setContent(String.format("<p>%s</p>", content.replaceAll("(\r\n|\n)", "<br />")));
 
-    public PatronNote(final String content) {
-      this.content = content;
-    }
+    List<Link> links = new ArrayList<>();
+    Link link = new Link();
+    link.setId(userId);
+    link.setType("user");
 
-    public Note toNote(String userId, String dbCode, String noteTypeId, String createdByUserId, Date createdDate) {
-      Note note = new Note();
+    links.add(link);
 
-      note.setId(UUID.randomUUID().toString());
-      note.setTitle(String.format("Patron note (migrated %s)", dbCode));
-      note.setDomain("users");
-      note.setTypeId(noteTypeId);
+    note.setLinks(links);
 
-      note.setContent(String.format("<p>%s</p>", content.replaceAll("(\r\n|\n)", "<br />")));
+    Metadata metadata = new Metadata();
+    metadata.setCreatedByUserId(createdByUserId);
+    metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
+    note.setMetadata(metadata);
 
-      List<Link> links = new ArrayList<>();
-      Link link = new Link();
-      link.setId(userId);
-      link.setType("user");
-
-      links.add(link);
-
-      note.setLinks(links);
-
-      Metadata metadata = new Metadata();
-      metadata.setCreatedByUserId(createdByUserId);
-      metadata.setCreatedDate(createdDate);
-      metadata.setUpdatedByUserId(createdByUserId);
-      metadata.setUpdatedDate(createdDate);
-      note.setMetadata(metadata);
-
-      return note;
-    }
-
+    return note;
   }
 
 }
