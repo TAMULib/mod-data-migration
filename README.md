@@ -571,7 +571,6 @@ POST to http://localhost:9000/migrate/users
     }
   },
   "defaults": {
-    "primaryAddress": true,
     "preferredContactType": "002",
     "temporaryEmail": "example@example.com",
     "expirationDate": "2021-09-01"
