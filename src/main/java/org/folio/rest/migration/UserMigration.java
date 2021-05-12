@@ -375,7 +375,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
   
           if (importResponse.getFailedRecords() > 0) {
             importResponse.getFailedUsers().forEach(failedUser -> {
-              log.info("{} {} {}", failedUser.getUsername(), failedUser.getExternalSystemId(), failedUser.getErrorMessage());
+              log.info("{} {}: {} {} {}", schema, index, failedUser.getUsername(), failedUser.getExternalSystemId(), failedUser.getErrorMessage());
             });
           }
         }
