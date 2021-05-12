@@ -422,9 +422,9 @@ public class UserMigration extends AbstractMigration<UserContext> {
         List<UserAddressRecord> userAddressRecords = new ArrayList<>();
         try (ResultSet resultSet = getResultSet(statement, addressContext)) {
           while (resultSet.next()) {
+            Integer addressType = resultSet.getInt(ADDRESS_TYPE);
             String addressDescription = resultSet.getString(ADDRESS_DESC);
             String addressStatus = resultSet.getString(ADDRESS_STATUS);
-            String addressType = resultSet.getString(ADDRESS_TYPE);
             String addressLine1 = resultSet.getString(ADDRESS_LINE1);
             String addressLine2 = resultSet.getString(ADDRESS_LINE2);
             String city = resultSet.getString(CITY);
@@ -433,7 +433,7 @@ public class UserMigration extends AbstractMigration<UserContext> {
             String phoneDescription = resultSet.getString(PHONE_DESC);
             String stateProvince = resultSet.getString(STATE_PROVINCE);
             String zipPostal = resultSet.getString(ZIP_POSTAL);
-            userAddressRecords.add(new UserAddressRecord(addressDescription, addressStatus, addressType, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal));
+            userAddressRecords.add(new UserAddressRecord(addressType, addressDescription, addressStatus, addressLine1, addressLine2, city, country, phoneNumber, phoneDescription, stateProvince, zipPostal));
           }
         } catch (SQLException e) {
           e.printStackTrace();

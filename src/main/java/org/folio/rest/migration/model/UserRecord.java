@@ -3,8 +3,9 @@ package org.folio.rest.migration.model;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.userimport.raml_util.schemas.tagged_record_example.Metadata;
@@ -13,7 +14,6 @@ import org.folio.rest.jaxrs.model.userimport.schemas.Personal;
 import org.folio.rest.jaxrs.model.userimport.schemas.Userdataimport;
 import org.folio.rest.migration.model.request.user.UserDefaults;
 import org.folio.rest.migration.model.request.user.UserMaps;
-import org.folio.rest.migration.utility.FormatUtility;
 
 public class UserRecord {
 
@@ -23,8 +23,8 @@ public class UserRecord {
   // private static final String MAIL = "Mail";
   // private static final String TEXT = "Text message";
 
-  private static final String PHONE_PRIMARY = "Primary";
-  private static final String PHONE_MOBILE = "Mobile";
+  // private static final String PHONE_PRIMARY = "Primary";
+  // private static final String PHONE_MOBILE = "Mobile";
 
   // private static final String EXPIRED_DATE_FORMAT = "yyyy-MM-dd";
 
@@ -50,7 +50,8 @@ public class UserRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public UserRecord(String referenceId, String patronId, String externalSystemId, String lastName, String firstName, String middleName, String expireDate, String smsNumber, String currentCharges) {
+  public UserRecord(String referenceId, String patronId, String externalSystemId, String lastName, String firstName,
+      String middleName, String expireDate, String smsNumber, String currentCharges) {
     this.referenceId = referenceId;
     this.patronId = patronId;
     this.externalSystemId = externalSystemId;
@@ -171,26 +172,137 @@ public class UserRecord {
   }
 
   public Userdataimport toUserdataimport(UserDefaults defaults, UserMaps maps) {
-    final Userdataimport userdata = new Userdataimport();
     final Personal personal = new Personal();
 
-    setLastName(personal);
-    setFirstName(personal);
-    setMiddleName(personal);
-    setPreferredContactTypeId(personal, defaults, maps);
+    personal.setLastName(lastName);
+    personal.setFirstName(firstName);
+    personal.setMiddleName(middleName);
 
-    setAddresses(personal, defaults);
+    Map<Integer, Address> orderedAddresses = new HashMap<>();
+
+    for (UserAddressRecord userAddressRecord : userAddressRecords) {
+      int type = userAddressRecord.getAddressType();
+
+      Integer index = type - 1;
+
+      if (type == 3) {
+        personal.setEmail(userAddressRecord.getAddressLine1());
+      } else {
+        Address address = new Address();
+
+        address.setAddressTypeId(userAddressRecord.getAddressDescription());
+
+        address.setPrimaryAddress(false);
+
+        if (StringUtils.isNotEmpty(userAddressRecord.getAddressLine1())) {
+          address.setAddressLine1(userAddressRecord.getAddressLine1());
+        }
+
+        if (StringUtils.isNotEmpty(userAddressRecord.getAddressLine2())) {
+          String addressLine2 = userAddressRecord.getAddressLine2().replaceAll("\\s+", StringUtils.SPACE);
+          addressLine2 = addressLine2.replaceAll("\\s$", StringUtils.EMPTY);
+          address.setAddressLine2(addressLine2);
+        }
+
+        if (StringUtils.isNotEmpty(userAddressRecord.getCity())) {
+          address.setCity(userAddressRecord.getCity());
+        }
+
+        if (StringUtils.isNotEmpty(userAddressRecord.getStateProvince())) {
+          address.setRegion(userAddressRecord.getStateProvince());
+        }
+
+        if (StringUtils.isNotEmpty(userAddressRecord.getZipPostal())) {
+          address.setPostalCode(userAddressRecord.getZipPostal());
+        }
+
+        if (StringUtils.isNotEmpty(userAddressRecord.getPhoneNumber())) {
+
+          if (userAddressRecord.getPhoneDescription().equalsIgnoreCase("Primary")) {
+            personal.setPhone(userAddressRecord.getPhoneNumber());
+          } else if (userAddressRecord.getPhoneDescription().equalsIgnoreCase("Mobile")) {
+            personal.setMobilePhone(userAddressRecord.getPhoneNumber());
+          }
+        }
+
+        orderedAddresses.put(index, address);
+      }
+
+    }
+
+    if (orderedAddresses.containsKey(1) && (groupcode.equalsIgnoreCase("grad") || groupcode.equalsIgnoreCase("ungr"))) {
+      orderedAddresses.get(1).setPrimaryAddress(true);
+    } else {
+      orderedAddresses.get(0).setPrimaryAddress(true);
+    }
+
+    personal.setAddresses(new ArrayList<>(orderedAddresses.values()));
+
+
+    // NOTE: always setting preferred contact type to email 002
+
+    // if (!defined $users_voyager[$user_index]{'personal'}{'preferredContactTypeId'}) {
+    //   if (defined $email_status && $email_status =~ /N/) {
+    //     $users_voyager[$user_index]{'personal'}{'preferredContactTypeId'} = 'email';
+    //   }
+    //   elsif ($perm_status =~ /N/ or $temp_status =~ /N/) {
+    //     $users_voyager[$user_index]{'personal'}{'preferredContactTypeId'} = 'mail';
+    //   }
+    //   else {
+    //     $users_voyager[$user_index]{'personal'}{'preferredContactTypeId'} = $default_preferred_contact_type;
+    //   }
+    // }
+    personal.setPreferredContactTypeId(defaults.getPreferredContactType());
+
+    // NOTE: if no email on user, setting to default email
+    if (StringUtils.isEmpty(personal.getEmail())) {
+      personal.setEmail(defaults.getTemporaryEmail());
+    }
+
+    final Userdataimport userdata = new Userdataimport();
 
     userdata.setId(referenceId);
-    userdata.setPersonal(personal);
+    userdata.setExternalSystemId(externalSystemId);
+    userdata.setUsername(username);
+    userdata.setBarcode(barcode);
+    userdata.setPatronGroup(groupcode);
+
     userdata.setType(PATRON);
 
-    setExternalSystemId(userdata);
-    setActive(userdata, defaults);
-    setBarcode(userdata);
-    setUsername(userdata);
+    userdata.setPersonal(personal);
 
-    userdata.setPatronGroup(groupcode);
+    // NOTE: always setting user active to expire in 370 days
+
+    // if (defined $hr->{'active_date'}) {
+    //   $users_voyager[$user_index]{'expirationDate'}= $hr->{'expire_date'};
+
+    //   my $year = substr($hr->{'active_date'},0,4);
+    //   my $month = substr($hr->{'active_date'},4,2);
+    //   my $day = substr($hr->{'active_date'},6,2);
+    //   my @expire_date = ($year, $month, $day);
+    //   my $expired = Delta_Days(@today_date,@expire_date);
+    //   if ($hr->{'current_charges'} > 0) {
+    //     $users_voyager[$user_index]{'active'} = 'true';
+    //     if ($expired < 0) {
+    //       $users_voyager[$user_index]{'expirationDate'}= '2021-09-01';
+    //     }
+    //   }
+    //   elsif ($expired > 0) {
+    //     $users_voyager[$user_index]{'active'} = 'true';
+    //   }	
+    //   else {
+    //     $users_voyager[$user_index]{'active'} = 'false';
+    //   }
+    // }
+    // else {
+    //   $users_voyager[$user_index]{'active'} = 'true';
+    // }
+    userdata.setActive(true);
+
+    Calendar c = Calendar.getInstance();
+    c.setTime(new Date());
+    c.add(Calendar.DATE, 370);
+    userdata.setExpirationDate(c.getTime());
 
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
@@ -200,169 +312,6 @@ public class UserRecord {
     userdata.setMetadata(metadata);
 
     return userdata;
-  }
-
-  private void setLastName(Personal personal) {
-    if (Objects.nonNull(lastName)) {
-      personal.setLastName(lastName);
-    }
-  }
-
-  private void setFirstName(Personal personal) {
-    if (Objects.nonNull(firstName)) {
-      personal.setFirstName(firstName);
-    }
-  }
-
-  private void setMiddleName(Personal personal) {
-    if (Objects.nonNull(middleName)) {
-      personal.setMiddleName(middleName);
-    }
-  }
-
-  private void setPreferredContactTypeId(Personal personal, UserDefaults defaults, UserMaps maps) {
-    // NOTE: always setting preferred contact type to email 002
-    personal.setPreferredContactTypeId(defaults.getPreferredContactType());
-
-    // if (Objects.nonNull(smsNumber)) {
-    //   preferredContactTypeId = maps.getPreferredContactType().get(TEXT);
-    //   personal.setPreferredContactTypeId(preferredContactTypeId);
-    // }
-
-    // if (Objects.isNull(preferredContactTypeId)) {
-    //   if (Objects.nonNull(addressType) && Objects.nonNull(addressStatus)) {
-    //     if (addressType.equals("3") && addressStatus.equalsIgnoreCase("n")) {
-    //       preferredContactTypeId = maps.getPreferredContactType().get(EMAIL);
-    //     } else if ((addressType.equals("1") || addressType.equals("2")) && addressStatus.equalsIgnoreCase("n")) {
-    //       preferredContactTypeId = maps.getPreferredContactType().get(MAIL);
-    //     }
-    //   }
-
-    //   if (Objects.nonNull(preferredContactTypeId)) {
-    //     personal.setPreferredContactTypeId(preferredContactTypeId);
-    //   } else if (Objects.nonNull(defaults.getPreferredContactType())) {
-    //     personal.setPreferredContactTypeId(defaults.getPreferredContactType());
-    //   }
-    // }
-  }
-
-  private void setAddresses(Personal personal, UserDefaults defaults) {
-    List<Address> addresses = new ArrayList<>();
-
-    boolean permanentStatusNormal = false;
-    boolean temporaryStatusNormal = false;
-
-    List<String> phoneNumbers = new ArrayList<>();
-    List<String> phoneTypes = new ArrayList<>();
-
-    for (UserAddressRecord userAddressRecord : userAddressRecords) {
-      if (userAddressRecord.isEmail()) {
-        personal.setEmail(userAddressRecord.toEmail(defaults));
-      } else {
-        if (userAddressRecord.hasPhoneNumber()) {
-          // phone type is stored as phone description.
-          phoneNumbers.add(FormatUtility.normalizePhoneNumber(userAddressRecord.getPhoneNumber()));
-          phoneTypes.add(userAddressRecord.getPhoneDescription());
-        } else {
-          phoneNumbers.add(StringUtils.EMPTY);
-          phoneTypes.add(StringUtils.EMPTY);
-        }
-
-        if (userAddressRecord.isPrimary()) {
-          if (userAddressRecord.isNormal()) {
-            permanentStatusNormal = true;
-          }
-        } else if (userAddressRecord.isTemporary()) {
-          if (userAddressRecord.isNormal()) {
-            temporaryStatusNormal = true;
-          }
-        }
-        addresses.add(userAddressRecord.toAddress());
-      }
-
-    }
-
-    if (permanentStatusNormal && temporaryStatusNormal) {
-      addresses.forEach(userAddressRecord -> {
-        if (userAddressRecord.getPrimaryAddress()) {
-          userAddressRecord.setPrimaryAddress(true);
-        } else {
-          userAddressRecord.setPrimaryAddress(false);
-        }
-      });
-    }
-
-    for (int i = 0; i < addresses.size(); i++) {
-      Address address = addresses.get(i);
-      if (address.getPrimaryAddress()) {
-        if (phoneTypes.get(i).equalsIgnoreCase(PHONE_PRIMARY)) {
-          personal.setPhone(phoneNumbers.get(i));
-        } else if (phoneTypes.get(i).equalsIgnoreCase(PHONE_MOBILE)) {
-          personal.setMobilePhone(phoneNumbers.get(i));
-        }
-      }
-    }
-
-    personal.setAddresses(addresses);
-
-    // NOTE: if no email on user, setting to default email
-    if (StringUtils.isEmpty(personal.getEmail())) {
-      personal.setEmail(defaults.getTemporaryEmail());
-    }
-  }
-
-  private void setExternalSystemId(Userdataimport userdata) {
-    if (Objects.nonNull(externalSystemId)) {
-      userdata.setExternalSystemId(externalSystemId);
-    }
-  }
-
-  private void setActive(Userdataimport userdata, UserDefaults defaults) {
-    userdata.setActive(true);
-
-    Calendar c = Calendar.getInstance();
-    c.setTime(new Date());
-    c.add(Calendar.DATE, 370);
-    userdata.setExpirationDate(c.getTime());
-
-    /*
-    if (Objects.nonNull(expireDate)) {
-      try {
-        Date expirationDate = DateUtils.parseDate(expireDate, EXPIRED_DATE_FORMAT);
-        userdata.setExpirationDate(expirationDate);
-        Date now = new Date();
-        boolean hasExpired = now.after(expirationDate);
-        if (Objects.nonNull(currentCharges) && Long.parseLong(currentCharges) > 0) {
-          userdata.setActive(true);
-          if (hasExpired) {
-            userdata.setExpirationDate(DateUtils.parseDate(defaults.getExpirationDate(), EXPIRED_DATE_FORMAT));
-          }
-        } else {
-          if (hasExpired) {
-            userdata.setActive(false);
-          } else {
-            userdata.setActive(true);
-          }
-        }
-      } catch (ParseException e) {
-        userdata.setActive(true);
-      }
-    } else {
-      userdata.setActive(true);
-    }
-    */
-  }
-
-  private void setBarcode(Userdataimport userdata) {
-    if (Objects.nonNull(barcode)) {
-      userdata.setBarcode(barcode);
-    }
-  }
-
-  private void setUsername(Userdataimport userdata) {
-    if (Objects.nonNull(username)) {
-      userdata.setUsername(username);
-    }
   }
 
 }
