@@ -3,7 +3,7 @@ package org.folio.rest.migration.model;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.users.Address;
+import org.folio.rest.jaxrs.model.userimport.schemas.Address;
 import org.folio.rest.migration.model.request.user.UserDefaults;
 import org.folio.rest.migration.utility.FormatUtility;
 

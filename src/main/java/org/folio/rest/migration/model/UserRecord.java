@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.users.Address;
-import org.folio.rest.jaxrs.model.users.Metadata;
-import org.folio.rest.jaxrs.model.users.Personal;
-import org.folio.rest.jaxrs.model.users.Userdata;
+import org.folio.rest.jaxrs.model.userimport.raml_util.schemas.tagged_record_example.Metadata;
+import org.folio.rest.jaxrs.model.userimport.schemas.Address;
+import org.folio.rest.jaxrs.model.userimport.schemas.Personal;
+import org.folio.rest.jaxrs.model.userimport.schemas.Userdataimport;
 import org.folio.rest.migration.model.request.user.UserDefaults;
 import org.folio.rest.migration.model.request.user.UserMaps;
 import org.folio.rest.migration.utility.FormatUtility;
@@ -170,8 +170,8 @@ public class UserRecord {
     this.createdDate = createdDate;
   }
 
-  public Userdata toUserdata(String patronGroup, UserDefaults defaults, UserMaps maps) {
-    final Userdata userdata = new Userdata();
+  public Userdataimport toUserdataimport(String patronGroup, UserDefaults defaults, UserMaps maps) {
+    final Userdataimport userdata = new Userdataimport();
     final Personal personal = new Personal();
 
     setLastName(personal);
@@ -221,26 +221,29 @@ public class UserRecord {
   }
 
   private void setPreferredContactTypeId(Personal personal, UserDefaults defaults, UserMaps maps) {
-    if (Objects.nonNull(smsNumber)) {
-      preferredContactTypeId = maps.getPreferredContactType().get(TEXT);
-      personal.setPreferredContactTypeId(preferredContactTypeId);
-    }
+    // NOTE: always setting preferred contact type to email 002
+    personal.setPreferredContactTypeId(defaults.getPreferredContactType());
 
-    if (Objects.isNull(preferredContactTypeId)) {
-      if (Objects.nonNull(addressType) && Objects.nonNull(addressStatus)) {
-        if (addressType.equals("3") && addressStatus.equalsIgnoreCase("n")) {
-          preferredContactTypeId = maps.getPreferredContactType().get(EMAIL);
-        } else if ((addressType.equals("1") || addressType.equals("2")) && addressStatus.equalsIgnoreCase("n")) {
-          preferredContactTypeId = maps.getPreferredContactType().get(MAIL);
-        }
-      }
+    // if (Objects.nonNull(smsNumber)) {
+    //   preferredContactTypeId = maps.getPreferredContactType().get(TEXT);
+    //   personal.setPreferredContactTypeId(preferredContactTypeId);
+    // }
 
-      if (Objects.nonNull(preferredContactTypeId)) {
-        personal.setPreferredContactTypeId(preferredContactTypeId);
-      } else if (Objects.nonNull(defaults.getPreferredContactType())) {
-        personal.setPreferredContactTypeId(defaults.getPreferredContactType());
-      }
-    }
+    // if (Objects.isNull(preferredContactTypeId)) {
+    //   if (Objects.nonNull(addressType) && Objects.nonNull(addressStatus)) {
+    //     if (addressType.equals("3") && addressStatus.equalsIgnoreCase("n")) {
+    //       preferredContactTypeId = maps.getPreferredContactType().get(EMAIL);
+    //     } else if ((addressType.equals("1") || addressType.equals("2")) && addressStatus.equalsIgnoreCase("n")) {
+    //       preferredContactTypeId = maps.getPreferredContactType().get(MAIL);
+    //     }
+    //   }
+
+    //   if (Objects.nonNull(preferredContactTypeId)) {
+    //     personal.setPreferredContactTypeId(preferredContactTypeId);
+    //   } else if (Objects.nonNull(defaults.getPreferredContactType())) {
+    //     personal.setPreferredContactTypeId(defaults.getPreferredContactType());
+    //   }
+    // }
   }
 
   private void setAddresses(Personal personal, UserDefaults defaults) {
@@ -301,15 +304,20 @@ public class UserRecord {
     }
 
     personal.setAddresses(addresses);
+
+    // NOTE: if no email on user, setting to default email
+    if (StringUtils.isEmpty(personal.getEmail())) {
+      personal.setEmail(defaults.getTemporaryEmail());
+    }
   }
 
-  private void setExternalSystemId(Userdata userdata) {
+  private void setExternalSystemId(Userdataimport userdata) {
     if (Objects.nonNull(externalSystemId)) {
       userdata.setExternalSystemId(externalSystemId);
     }
   }
 
-  private void setActive(Userdata userdata, UserDefaults defaults) {
+  private void setActive(Userdataimport userdata, UserDefaults defaults) {
     userdata.setActive(true);
 
     Calendar c = Calendar.getInstance();
@@ -345,13 +353,13 @@ public class UserRecord {
     */
   }
 
-  private void setBarcode(Userdata userdata) {
+  private void setBarcode(Userdataimport userdata) {
     if (Objects.nonNull(barcode)) {
       userdata.setBarcode(barcode);
     }
   }
 
-  private void setUsername(Userdata userdata) {
+  private void setUsername(Userdataimport userdata) {
     if (Objects.nonNull(username)) {
       userdata.setUsername(username);
     }

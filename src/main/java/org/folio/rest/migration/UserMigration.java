@@ -1,11 +1,9 @@
 package org.folio.rest.migration;
 
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,13 +19,13 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.io.JsonStringEncoder;
-
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.notes.raml_util.schemas.tagged_record_example.Metadata;
 import org.folio.rest.jaxrs.model.notes.types.notes.Link;
 import org.folio.rest.jaxrs.model.notes.types.notes.Note;
+import org.folio.rest.jaxrs.model.userimport.schemas.ImportResponse;
+import org.folio.rest.jaxrs.model.userimport.schemas.Userdataimport;
+import org.folio.rest.jaxrs.model.userimport.schemas.UserdataimportCollection;
 import org.folio.rest.jaxrs.model.users.Addresstype;
 import org.folio.rest.jaxrs.model.users.AddresstypeCollection;
 import org.folio.rest.jaxrs.model.users.Userdata;
@@ -43,8 +41,6 @@ import org.folio.rest.migration.model.request.user.UserMaps;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
-import org.postgresql.copy.PGCopyOutputStream;
-import org.postgresql.core.BaseConnection;
 
 public class UserMigration extends AbstractMigration<UserContext> {
 
@@ -86,12 +82,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
   private static final Set<String> BARCODES = new HashSet<>();
   private static final Set<String> USERNAMES = new HashSet<>();
-
-  // (id,jsonb,creation_date,created_by,patrongroup)
-  private static final String USERS_COPY_SQL = "COPY %s_mod_users.users (id,jsonb,creation_date,created_by,patrongroup) FROM STDIN";
-
-  // (id,jsonb,temporary_type_id)
-  private static final String NOTES_COPY_SQL = "COPY %s_mod_notes.note_data (id,jsonb) FROM STDIN";
 
   private UserMigration(UserContext context, String tenant) {
     super(context, tenant);
@@ -189,10 +179,17 @@ public class UserMigration extends AbstractMigration<UserContext> {
     public UserPartitionTask execute(UserContext context) {
       long startTime = System.nanoTime();
 
+      Database voyagerSettings = context.getExtraction().getDatabase();
+      Database usernameSettings = context.getExtraction().getUsernameDatabase();
+
+      ThreadConnections threadConnections = getThreadConnections(voyagerSettings, usernameSettings);
+
       UserJob job = (UserJob) partitionContext.get(JOB);
 
       Usergroups usergroups = (Usergroups) partitionContext.get(USER_GROUPS);
       AddresstypeCollection addresstypes = (AddresstypeCollection) partitionContext.get(ADDRESS_TYPES);
+
+      String token = (String) partitionContext.get(TOKEN);
 
       String userId = (String) partitionContext.get(USER_ID);
 
@@ -202,10 +199,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
       String schema = job.getSchema();
 
       int index = this.getIndex();
-
-      Database voyagerSettings = context.getExtraction().getDatabase();
-      Database usernameSettings = context.getExtraction().getUsernameDatabase();
-      Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
 
       Map<String, Object> usernameContext = new HashMap<>();
       usernameContext.put(SQL, context.getExtraction().getUsernameSql());
@@ -225,13 +218,9 @@ public class UserMigration extends AbstractMigration<UserContext> {
       patronNoteContext.put(SCHEMA, job.getSchema());
       patronNoteContext.put(WHERE_CLAUSE, job.getNoteWhereClause());
 
-      JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
-
-      ThreadConnections threadConnections = getThreadConnections(voyagerSettings, usernameSettings, folioSettings);
+      List<Userdataimport> users = new ArrayList<>();
 
       try (
-        PrintWriter userWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getUserConnection(), String.format(USERS_COPY_SQL, tenant)), true);
-        PrintWriter noteWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getNoteConnection(), String.format(NOTES_COPY_SQL, tenant)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement usernameStatement = threadConnections.getUsernameConnection().createStatement();
         Statement addressStatement = threadConnections.getAddressConnection().createStatement();
@@ -278,11 +267,11 @@ public class UserMigration extends AbstractMigration<UserContext> {
 
             for (PatronNote patronNote : patronNotes) {
               Note note = patronNote.toNote(referenceId, job.getDbCode(), job.getNoteTypeId(), createdByUserId, createdDate);
+
               try {
-                String noteUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(note)));
-                noteWriter.println(String.join("\t", note.getId(), noteUtf8Json));
-              } catch (JsonProcessingException e) {
-                log.error("{} patron id {} note id {} error serializing note", schema, patronId, note.getId());
+                note = migrationService.okapiService.createNote(note, tenant, token);
+              } catch (Exception e) {
+                log.error("{} error creating note {}\n{}", schema, note, e.getMessage());
               }
             }
 
@@ -365,41 +354,57 @@ public class UserMigration extends AbstractMigration<UserContext> {
           userRecord.setCreatedByUserId(userId);
           userRecord.setCreatedDate(createdDate);
 
-          Userdata userdata = userRecord.toUserdata(patronGroup.get(), defaults, maps);
+          Userdataimport userImport = userRecord.toUserdataimport(patronGroup.get(), defaults, maps);
 
-          // NOTE: if no email on user, setting to default email
-          if (StringUtils.isEmpty(userdata.getPersonal().getEmail())) {
-            userdata.getPersonal().setEmail(defaults.getTemporaryEmail());
-          }
-
-          // NOTE: always setting preferred contact type to email 002
-          userdata.getPersonal().setPreferredContactTypeId(defaults.getPreferredContactType());
-
-          String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-
-          try {
-            String userUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(userdata)));
-
-            userWriter.println(String.join("\t", userdata.getId(), userUtf8Json, createdAt, createdByUserId, userdata.getPatronGroup()));
-
-            for (PatronNote patronNote : patronNotes) {
-              Note note = patronNote.toNote(referenceId, job.getDbCode(), job.getNoteTypeId(), createdByUserId, createdDate);
-              try {
-                String noteUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(note)));
-                noteWriter.println(String.join("\t", note.getId(), noteUtf8Json));
-              } catch (JsonProcessingException e) {
-                log.error("{} patron id {} note id {} error serializing note", schema, patronId, note.getId());
-              }
-            }
-          } catch (JsonProcessingException e) {
-            log.error("{} patron id {} error serializing user", schema, patronId);
-          }
+          users.add(userImport);
         }
 
       } catch (SQLException | InterruptedException | ExecutionException e) {
         e.printStackTrace();
       } finally {
         threadConnections.closeAll();
+      }
+
+      if (users.isEmpty()) {
+        log.info("{} {} has no users to migrate", schema, index);
+        return this;
+      }
+
+      UserdataimportCollection userImportCollection = new UserdataimportCollection();
+
+      userImportCollection.setUsers(users);
+      userImportCollection.setTotalRecords(users.size());
+
+      userImportCollection.setDeactivateMissingUsers(false);
+      userImportCollection.setUpdateOnlyPresentFields(true);
+
+      log.info("submitting user import with {} users", userImportCollection.getTotalRecords());
+
+      try {
+        ImportResponse importResponse = migrationService.okapiService.postUserdataimportCollection(tenant, token, userImportCollection);
+
+        if (StringUtils.isNotEmpty(importResponse.getError())) {
+          log.error("{} {}: {}", schema, index, importResponse.getError());
+        } else {
+          log.info("{} {}: {}", schema, index, importResponse.getMessage());
+  
+          log.info("{} {}: {} total records", schema, index, importResponse.getTotalRecords());
+  
+          log.info("{} {}: {} newly created users", schema, index, importResponse.getCreatedRecords());
+  
+          log.info("{} {}: {} updated users", schema, index, importResponse.getUpdatedRecords());
+  
+          log.info("{} {}: {} failed records", schema, index, importResponse.getFailedRecords());
+  
+          if (importResponse.getFailedRecords() > 0) {
+            importResponse.getFailedUsers().forEach(failedUser -> {
+              log.info("{} {} {}", failedUser.getUsername(), failedUser.getExternalSystemId(), failedUser.getErrorMessage());
+            });
+          }
+        }
+
+      } catch (Exception e) {
+        log.error("failed to import users: {}", e.getMessage());
       }
 
       log.info("{} {} user finished in {} milliseconds", schema, index, TimingUtility.getDeltaInMilliseconds(startTime));
@@ -538,22 +543,13 @@ public class UserMigration extends AbstractMigration<UserContext> {
     return Optional.empty();
   }
 
-  private ThreadConnections getThreadConnections(Database voyagerSettings, Database usernameSettings, Database folioSettings) {
+  private ThreadConnections getThreadConnections(Database voyagerSettings, Database usernameSettings) {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     threadConnections.setAddressConnection(getConnection(voyagerSettings));
     threadConnections.setPatronGroupConnection(getConnection(voyagerSettings));
     threadConnections.setPatronNoteConnection(getConnection(voyagerSettings));
     threadConnections.setUsernameConnection(getConnection(usernameSettings));
-
-    try {
-      threadConnections.setUserConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-      threadConnections.setNoteConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-      throw new RuntimeException(e);
-    }
-
     return threadConnections;
   }
 
@@ -564,9 +560,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
     private Connection patronGroupConnection;
     private Connection patronNoteConnection;
     private Connection usernameConnection;
-
-    private BaseConnection userConnection;
-    private BaseConnection noteConnection;
 
     public ThreadConnections() {
 
@@ -612,22 +605,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
       this.usernameConnection = usernameConnection;
     }
 
-    public BaseConnection getUserConnection() {
-      return userConnection;
-    }
-
-    public void setUserConnection(BaseConnection userConnection) {
-      this.userConnection = userConnection;
-    }
-
-    public BaseConnection getNoteConnection() {
-      return noteConnection;
-    }
-
-    public void setNoteConnection(BaseConnection noteConnection) {
-      this.noteConnection = noteConnection;
-    }
-
     public void closeAll() {
       try {
         pageConnection.close();
@@ -635,8 +612,6 @@ public class UserMigration extends AbstractMigration<UserContext> {
         patronGroupConnection.close();
         patronNoteConnection.close();
         usernameConnection.close();
-        userConnection.close();
-        noteConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
         throw new RuntimeException(e);
