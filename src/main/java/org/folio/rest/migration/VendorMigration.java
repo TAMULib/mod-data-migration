@@ -265,15 +265,17 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
           VendorRecord vendorRecord = new VendorRecord(referenceId, vendorId, vendorCode, vendorType, vendorName, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
 
+          List<String> notes = new ArrayList<>();
+
           CompletableFuture.allOf(
             getVendorAccounts(accountStatement, vendorAccountsContext)
               .thenAccept((vendorAccountRecords) -> vendorRecord.setVendorAccountRecords(vendorAccountRecords)),
             getVendorAddresses(addressStatement, vendorAddressesContext)
               .thenAccept((vendorAddresses) -> vendorRecord.setVendorAddresses(vendorAddresses)),
             getVendorAliases(aliasStatement, vendorAliasesContext)
-              .thenAccept((vendorAliases) -> vendorRecord.setVendorAliases(vendorAliases))
-            // getVendorNotes(noteStatement, vendorNotesContext)
-            //   .thenAccept((vendorNotes) -> vendorRecord.setVendorNotes(vendorNotes))
+              .thenAccept((vendorAliases) -> vendorRecord.setVendorAliases(vendorAliases)),
+            getVendorNotes(noteStatement, vendorNotesContext)
+              .thenAccept((vendorNotes) -> notes.addAll(vendorNotes))
           ).get();
 
           List<VendorPhoneRecord> vendorPhoneNumbers = new ArrayList<>();
@@ -464,24 +466,21 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       return vendorPhoneNumbers;
     }
   
-    private CompletableFuture<String> getVendorNotes(Statement statement, Map<String, Object> vendorNotesContext) {
-      CompletableFuture<String> future = new CompletableFuture<>();
+    private CompletableFuture<List<String>> getVendorNotes(Statement statement, Map<String, Object> vendorNotesContext) {
+      CompletableFuture<List<String>> future = new CompletableFuture<>();
       additionalExecutor.submit(() -> {
-        StringBuilder vendorNotes = new StringBuilder();
+        List<String> notes = new ArrayList<>();
         try (ResultSet resultSet = getResultSet(statement, vendorNotesContext)) {
           while (resultSet.next()) {
             String note = resultSet.getString(NOTE);
             if (StringUtils.isNotEmpty(note)) {
-              if (vendorNotes.length() > 0) {
-                vendorNotes.append(StringUtils.SPACE);
-              }
-              vendorNotes.append(note);
+              notes.add(note);
             }
           }
         } catch (SQLException e) {
           e.printStackTrace();
         } finally {
-          future.complete(vendorNotes.toString());
+          future.complete(notes);
         }
       });
       return future;
