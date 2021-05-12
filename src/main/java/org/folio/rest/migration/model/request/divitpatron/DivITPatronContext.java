@@ -15,6 +15,9 @@ public class DivITPatronContext extends AbstractContext {
 
   private List<DivITPatronJob> jobs;
 
+  @NotNull
+  private DivITPatronDefaults defaults;
+
   public DivITPatronContext() {
     super();
     jobs = new ArrayList<>();
@@ -34,6 +37,14 @@ public class DivITPatronContext extends AbstractContext {
 
   public void setJobs(List<DivITPatronJob> jobs) {
     this.jobs = jobs;
+  }
+
+  public DivITPatronDefaults getDefaults() {
+    return defaults;
+  }
+
+  public void setDefaults(DivITPatronDefaults defaults) {
+    this.defaults = defaults;
   }
 
 }

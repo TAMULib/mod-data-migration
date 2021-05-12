@@ -21,6 +21,7 @@ import org.folio.rest.jaxrs.model.userimport.schemas.Userdataimport;
 import org.folio.rest.jaxrs.model.userimport.schemas.UserdataimportCollection;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.request.divitpatron.DivITPatronContext;
+import org.folio.rest.migration.model.request.divitpatron.DivITPatronDefaults;
 import org.folio.rest.migration.model.request.divitpatron.DivITPatronJob;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.FormatUtility;
@@ -123,6 +124,8 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
 
       DivITPatronJob job = (DivITPatronJob) partitionContext.get(JOB);
 
+      DivITPatronDefaults defaults = context.getDefaults();
+
       String token = (String) partitionContext.get(TOKEN);
 
       log.info("processing {} patrons", job.getName());
@@ -178,7 +181,14 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
           personal.setMiddleName(personal_middleName);
           personal.setEmail(personal_email);
           personal.setPhone(FormatUtility.normalizePhoneNumber(personal_phone));
-          personal.setPreferredContactTypeId("002");
+
+           // NOTE: if no email on user, setting to default email
+           if (StringUtils.isEmpty(personal.getEmail())) {
+            personal.setEmail(defaults.getTemporaryEmail());
+          }
+
+          // NOTE: always setting preferred contact type to email 002
+          personal.setPreferredContactTypeId(defaults.getPreferredContactType());
 
           if (StringUtils.isNotEmpty(addresses_permanent_addressLine1)) {
             Address permanentAddress = new Address();

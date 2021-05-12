@@ -1595,7 +1595,11 @@ POST to http://localhost:9000/migrate/divitpatron
       "name": "other people",
       "sql": "SELECT DISTINCT CASE WHEN op.tamu_netid IS NOT NULL THEN op.tamu_netid ELSE op.uin END AS username, op.uin AS externalSystemId, CASE WHEN pi.id_card_num IS NOT NULL THEN pi.id_card_num ELSE op.uin END AS barcode, 'true' AS active, 'fast' AS patronGroup, op.last_name AS personal_lastName, op.first_name AS personal_firstName, op.middle_name AS personal_middleName, op.tamu_preferred_alias AS personal_email, op.office_phone AS personal_phone, NULL AS addresses_permanent_addressTypeId, NULL AS addresses_permanent_countryId, NULL AS addresses_permanent_addressLine1, NULL AS addresses_permanent_addressLine2, NULL AS addresses_permanent_city, NULL AS addresses_permanent_region, NULL AS addresses_permanent_postalCode, NULL AS addresses_temporary_addressTypeId, NULL AS addresses_temporary_addressLine2, NULL AS addresses_temporary_addressLine1, NULL AS addresses_temporary_city, NULL AS addresses_temporary_region, NULL AS addresses_temporary_postalCode, NULL AS departments_0, format(getdate() + 200, 'yyyy-MM-dd') AS expirationDate FROM patron.other_people op LEFT OUTER JOIN patron.person_identifiers pi ON op.uin = pi.uin LEFT OUTER JOIN patron.students stu ON op.uin = stu.uin LEFT OUTER JOIN patron.employees_retirees emp ON op.uin = emp.uin WHERE stu.uin IS NULL AND emp.uin IS NULL AND op.tamu_preferred_alias IS NOT NULL AND( ( affiliate_role IN ( 'affiliate:continuingeducationstudent', 'affiliate:clinicaltrainee', 'affiliate:faculty:future', 'affiliate:graduateassistant:future', 'affiliate:librarian', 'affiliate:medicalresident', 'affiliate:regent', 'affiliate:staff:future', 'affiliate:usda', 'affiliate:veteransprogram', 'affiliate:visitingscholar', 'employee:faculty:retired', 'faculty:adjunct') AND system_member IN ( '01', '02', '06', '07', '09', '10', '11', '12', '20', '23', '26', '28' ) ) OR (op.data_provider IN ('HSCAFFILIATES', 'QATAR')) ) AND ( op.last_updated > getdate() - 1 OR pi.last_updated > getdate() - 1 ) AND op.last_name IS NOT NULL"
     }
-  ]
+  ],
+  "defaults": {
+    "preferredContactType": "002",
+    "temporaryEmail": "example@example.com"
+  }
 }
 ```
 
