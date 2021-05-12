@@ -130,8 +130,6 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
 
       log.info("processing {} patrons", job.getName());
 
-      UserdataimportCollection userImportCollection = new UserdataimportCollection();
-
       List<Userdataimport> users = new ArrayList<>();
 
       try (
@@ -243,6 +241,8 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
         log.info("{} has no patrons at this time", job.getName());
         return this;
       }
+
+      UserdataimportCollection userImportCollection = new UserdataimportCollection();
 
       userImportCollection.setUsers(users);
       userImportCollection.setTotalRecords(users.size());
