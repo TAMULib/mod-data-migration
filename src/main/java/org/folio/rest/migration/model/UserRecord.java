@@ -19,15 +19,6 @@ public class UserRecord {
 
   private static final String PATRON = "patron";
 
-  // private static final String EMAIL = "Email";
-  // private static final String MAIL = "Mail";
-  // private static final String TEXT = "Text message";
-
-  // private static final String PHONE_PRIMARY = "Primary";
-  // private static final String PHONE_MOBILE = "Mobile";
-
-  // private static final String EXPIRED_DATE_FORMAT = "yyyy-MM-dd";
-
   private final String referenceId;
   private final String patronId;
   private final String externalSystemId;
