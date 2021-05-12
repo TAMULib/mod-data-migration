@@ -285,9 +285,9 @@ public class UserRecord {
     if (permanentStatusNormal && temporaryStatusNormal) {
       addresses.forEach(userAddressRecord -> {
         if (userAddressRecord.getPrimaryAddress()) {
-          userAddressRecord.setPrimaryAddress(defaults.getPrimaryAddress());
+          userAddressRecord.setPrimaryAddress(true);
         } else {
-          userAddressRecord.setPrimaryAddress(!defaults.getPrimaryAddress());
+          userAddressRecord.setPrimaryAddress(false);
         }
       });
     }
