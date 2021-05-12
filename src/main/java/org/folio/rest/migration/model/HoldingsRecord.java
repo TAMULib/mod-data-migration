@@ -241,14 +241,17 @@ public class HoldingsRecord {
           case "583":
             Subfield subfield = field.getSubfield('z');
             if (Objects.nonNull(subfield)) {
-              note.setStaffOnly(false);
-              note.setNote(subfield.getData());
-              note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
-            } else {
-              // action
-              note.setStaffOnly(true);
-              note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("action"));
+              Note zNote = new Note();
+              zNote.setStaffOnly(false);
+              zNote.setNote(subfield.getData());
+              zNote.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("note"));
+              holdings.getNotes().add(zNote);
+
+              note.setNote(field.getSubfields().stream().filter(sf -> sf.getCode() != 'z').map(Subfield::getData).collect(Collectors.joining(". ")));
             }
+            // action
+            note.setStaffOnly(true);
+            note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("action"));
             break;
           default:
             note.setStaffOnly(true);
