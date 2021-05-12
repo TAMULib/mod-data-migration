@@ -420,7 +420,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
               item.getPermanentLoanTypeId(),
               Objects.nonNull(item.getTemporaryLoanTypeId()) ? item.getTemporaryLoanTypeId() : NULL,
               item.getMaterialTypeId(),
-              item.getPermanentLocationId(),
+              Objects.nonNull(item.getPermanentLocationId()) ? item.getPermanentLocationId() : NULL,
               Objects.nonNull(item.getTemporaryLocationId()) ? item.getTemporaryLocationId() : NULL,
               Objects.nonNull(item.getEffectiveLocationId()) ? item.getEffectiveLocationId() : NULL
             ));

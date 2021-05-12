@@ -249,7 +249,9 @@ public class ItemRecord {
       item.setTemporaryLoanTypeId(temporaryLoanTypeId);
     }
 
-    item.setPermanentLocationId(permanentLocationId);
+    if (Objects.nonNull(permanentLocationId)) {
+      item.setPermanentLocationId(permanentLocationId);
+    }
     if (Objects.nonNull(temporaryLocationId)) {
       item.setTemporaryLocationId(temporaryLocationId);
     }
