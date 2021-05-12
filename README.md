@@ -272,6 +272,7 @@ POST to http://localhost:9000/migrate/vendors
       "locations": "'SR', 'SRDB', 'SRDBProcar', 'SRDIR', 'SRDIRM', 'SRDIRMP', 'SRDIRN', 'SRDIRO', 'SRDIRP', 'SRGFT', 'SRMSV', 'SRMSVM', 'SRMSVMO', 'SRMSVO', 'SRMSVP', 'SRMSVPM', 'SRMSVW', 'SRMSV WM', 'SRProcard', 'SRSOV', 'SRSOVM', 'SRVSVO'",
       "statuses": "'Approved/Sent', 'Pending'",
       "types": "'Approval', 'Firm Order', 'Gift', 'Exchange', 'Depository', 'Continuation'",
+      "dbCode": "Evans",
       "noteTypeId": "c209f4ca-86b6-4838-beb6-cfec1cccc164"
     },
     {
@@ -284,6 +285,7 @@ POST to http://localhost:9000/migrate/vendors
       "locations": "'AcqCleanUp'",
       "statuses": "'Approved/Sent', 'Pending', 'Received Complete'",
       "types": "'Continuation'",
+      "dbCode": "MSL",
       "noteTypeId": "c209f4ca-86b6-4838-beb6-cfec1cccc164"
     }
   ],

@@ -13,12 +13,16 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.folio.rest.jaxrs.model.notes.raml_util.schemas.tagged_record_example.Metadata;
+import org.folio.rest.jaxrs.model.notes.types.notes.Link;
+import org.folio.rest.jaxrs.model.notes.types.notes.Note;
 import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Address;
 import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Contact;
 import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Email;
@@ -278,15 +282,26 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
               .thenAccept((vendorNotes) -> notes.addAll(vendorNotes))
           ).get();
 
+          Date createdDate = new Date();
+          String createdByUserId = userId;
+
+          for (String content : notes) {
+            String title = String.format("Vendor note (migrated %s)", job.getDbCode());
+            Note note = createVendorNote(referenceId, title, content, job.getNoteTypeId(), createdByUserId, createdDate);
+
+            try {
+              note = migrationService.okapiService.createNote(note, tenant, token);
+            } catch (Exception e) {
+              log.error("{} error creating note {}\n{}", schema, note, e.getMessage());
+            }
+          }
+
           List<VendorPhoneRecord> vendorPhoneNumbers = new ArrayList<>();
 
           List<Address> addresses = new ArrayList<>();
           List<String> contacts = new ArrayList<>();
           List<Email> emails = new ArrayList<>();
           List<Url> urls = new ArrayList<>();
-
-          Date createdDate = new Date();
-          String createdByUserId = userId;
 
           for (VendorAddressRecord vendorAddress : vendorRecord.getVendorAddresses()) {
             vendorAddress.setVendorId(vendorId);
@@ -578,6 +593,34 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       }
     }
 
+  }
+
+  private Note createVendorNote(String vendorId, String title, String content, String noteTypeId, String createdByUserId, Date createdDate) {
+    Note note = new Note();
+    note.setId(UUID.randomUUID().toString());
+    note.setTypeId(noteTypeId);
+    note.setDomain("organizations");
+    note.setTitle(title);
+
+    note.setContent(String.format("<p>%s</p>", content.replaceAll("(\r\n|\n)", "<br />")));
+
+    List<Link> links = new ArrayList<>();
+    Link link = new Link();
+    link.setId(vendorId);
+    link.setType("organization");
+
+    links.add(link);
+
+    note.setLinks(links);
+
+    Metadata metadata = new Metadata();
+    metadata.setCreatedByUserId(createdByUserId);
+    metadata.setCreatedDate(createdDate);
+    metadata.setUpdatedByUserId(createdByUserId);
+    metadata.setUpdatedDate(createdDate);
+    note.setMetadata(metadata);
+
+    return note;
   }
 
 }

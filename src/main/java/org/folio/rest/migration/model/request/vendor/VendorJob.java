@@ -24,6 +24,9 @@ public class VendorJob extends AbstractJob {
   private String types;
 
   @NotNull
+  private String dbCode;
+
+  @NotNull
   private String noteTypeId;
 
   public VendorJob() {
@@ -69,6 +72,14 @@ public class VendorJob extends AbstractJob {
 
   public void setTypes(String types) {
     this.types = types;
+  }
+
+  public String getDbCode() {
+    return dbCode;
+  }
+
+  public void setDbCode(String dbCode) {
+    this.dbCode = dbCode;
   }
 
   public String getNoteTypeId() {
