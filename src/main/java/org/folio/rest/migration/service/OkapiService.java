@@ -42,6 +42,7 @@ import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.inventory.Servicepoints;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
+import org.folio.rest.jaxrs.model.notes.types.notes.Note;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_finance.schemas.FundCollection;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePurchaseOrder;
 import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Contact;
@@ -134,6 +135,13 @@ public class OkapiService {
     String url = okapi.getUrl() + referenceDatum.getPath();
     HttpEntity<JsonNode> entity = new HttpEntity<>(referenceDatum.getData(), headers(referenceDatum.getTenant(), referenceDatum.getToken()));
     ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.POST, entity, JsonNode.class);
+    return response.getBody();
+  }
+
+  public Note createNote(Note note, String tenant, String token) {
+    String url = okapi.getUrl() + "/notes";
+    HttpEntity<Note> entity = new HttpEntity<>(note, headers(tenant, token));
+    ResponseEntity<Note> response = restTemplate.exchange(url, HttpMethod.POST, entity, Note.class);
     return response.getBody();
   }
 
