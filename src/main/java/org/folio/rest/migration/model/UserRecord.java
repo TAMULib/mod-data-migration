@@ -19,9 +19,9 @@ public class UserRecord {
 
   private static final String PATRON = "patron";
 
-  private static final String EMAIL = "Email";
-  private static final String MAIL = "Mail";
-  private static final String TEXT = "Text message";
+  // private static final String EMAIL = "Email";
+  // private static final String MAIL = "Mail";
+  // private static final String TEXT = "Text message";
 
   private static final String PHONE_PRIMARY = "Primary";
   private static final String PHONE_MOBILE = "Mobile";
@@ -170,7 +170,7 @@ public class UserRecord {
     this.createdDate = createdDate;
   }
 
-  public Userdataimport toUserdataimport(String patronGroup, UserDefaults defaults, UserMaps maps) {
+  public Userdataimport toUserdataimport(UserDefaults defaults, UserMaps maps) {
     final Userdataimport userdata = new Userdataimport();
     final Personal personal = new Personal();
 
@@ -190,7 +190,7 @@ public class UserRecord {
     setBarcode(userdata);
     setUsername(userdata);
 
-    userdata.setPatronGroup(patronGroup);
+    userdata.setPatronGroup(groupcode);
 
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
