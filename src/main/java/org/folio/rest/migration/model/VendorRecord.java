@@ -36,8 +36,6 @@ public class VendorRecord {
   private List<Email> emails;
   private List<Url> urls;
 
-  private String vendorNotes;
-
   private String createdByUserId;
   private Date createdDate;
 
@@ -156,14 +154,6 @@ public class VendorRecord {
     this.urls = urls;
   }
 
-  public String getVendorNotes() {
-    return vendorNotes;
-  }
-
-  public void setVendorNotes(String vendorNotes) {
-    this.vendorNotes = vendorNotes;
-  }
-
   public String getCreatedByUserId() {
     return createdByUserId;
   }
@@ -186,6 +176,7 @@ public class VendorRecord {
     organization.setId(referenceId);
     organization.setIsVendor(true);
     organization.setName(name);
+    organization.setDescription(type);
     if (StringUtils.isNotEmpty(taxId)) {
       organization.setTaxId(taxId);
     }
@@ -206,7 +197,6 @@ public class VendorRecord {
 
     setCode(organization);
     setCurrencies(organization);
-    setDescription(organization);
     setStatus(organization, defaults);
     setLanguage(organization, defaults);
     setSanCode(organization);
@@ -227,20 +217,6 @@ public class VendorRecord {
     }
 
     organization.setVendorCurrencies(currencies);
-  }
-
-  private void setDescription(Organization organization) {
-    String description = type;
-
-    if (Objects.nonNull(vendorNotes)) {
-      if (StringUtils.isEmpty(description)) {
-        description = vendorNotes;
-      } else {
-        description += StringUtils.SPACE + vendorNotes;
-      }
-    }
-
-    organization.setDescription(description);
   }
 
   private void setStatus(Organization organization, VendorDefaults defaults) {

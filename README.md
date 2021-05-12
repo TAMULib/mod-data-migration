@@ -45,6 +45,157 @@ Reference data is loaded before a migration begins. The reference data is loaded
 
 > It is possible to have infinite recursion if unable to resolve dependent reference data. This will happen with circular dependencies. i.e. (x depends on y and y depdends on x), (x depends on y, y depends on z, z depends on x), ...
 
+## User Reference Link Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/user-reference-links
+```
+{
+  "extraction": {
+    "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.patron WHERE last_name IS NOT NULL",
+    "pageSql": "SELECT p.patron_id, (SELECT DISTINCT patron_barcode FROM (SELECT barcode_status, to_char(barcode_status_date, 'YYYYMMDD') AS barcode_status_date, DECODE (patron_group_code, ${DECODE}) AS patron_group_level, patron_group_code, patron_barcode FROM (SELECT barcode_status, barcode_status_date, patron_barcode, patron_group_code, rank() OVER (PARTITION BY pg.patron_group_id ORDER BY barcode_status, barcode_status_date desc) barcode_rank FROM ${SCHEMA}.patron_barcode pb, ${SCHEMA}.patron_group pg WHERE pb.patron_id = p.patron_id AND pb.patron_group_id = pg.patron_group_id) WHERE barcode_rank = 1 ORDER BY barcode_status asc, barcode_status_date desc, patron_group_level asc OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY)) as patron_barcode, NVL2(p.institution_id, regexp_replace(p.institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\\1\\2\\3'), '${SCHEMA}_' || p.patron_id) AS external_system_id FROM ${SCHEMA}.patron p WHERE last_name IS NOT NULL ORDER BY patron_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": "oracle.jdbc.OracleDriver"
+    }
+  },
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 12,
+      "decodeSql": "'fast', 1, 'grad', 2, 'ungr', 3, 'illend', 4, 'libd', 5, 'comm', 6, 'cour', 7, 'texs', 8, 'nonr', 9",
+      "references": {
+        "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
+        "userBarcodeTypeId": "f2eca16b-a6bd-4688-8424-ef5d47e06750",
+        "userToBarcodeTypeId": "3ed9f301-3426-4e7f-8cc9-3044d5e1e192",
+        "userExternalTypeId": "0ed6f994-8dbd-4827-94c0-905504169c90",
+        "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
+      }
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 4,
+      "decodeSql": "'fac/staff', 1, 'grad/prof', 2, 'undergrad', 3",
+      "references": {
+        "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
+        "userBarcodeTypeId": "9c5efc8b-4e97-4631-ad6f-6a68d9eb48de",
+        "userToBarcodeTypeId": "3ed9f301-3426-4e7f-8cc9-3044d5e1e192",
+        "userExternalTypeId": "426ce32f-388c-4edf-9c79-d6b8348148a0",
+        "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
+      }
+    }
+  ]
+}
+```
+
+## User Migration
+
+Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
+
+POST to http://localhost:9000/migrate/users
+
+```
+{
+  "extraction": {
+    "countSql": "SELECT COUNT(*) as total FROM ${SCHEMA}.patron WHERE last_name is not null",
+    "pageSql": "SELECT name_type, patron_id, NVL2(institution_id, regexp_replace(institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\\1\\2\\3'), '${SCHEMA}_' || patron_id) AS external_system_id, last_name, first_name, middle_name, NVL2(expire_date, to_char(expire_date,'YYYY-MM-DD'), to_char(purge_date,'YYYY-MM-DD')) AS expire_date, sms_number, current_charges FROM ${SCHEMA}.patron WHERE last_name is not null ORDER BY patron_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "usernameSql": "SELECT uin, tamu_netid FROM patron.person_identifiers WHERE uin = '${EXTERNAL_SYSTEM_ID}'",
+    "addressSql": "SELECT address_type, address_desc, address_line1, address_line2, city, state_province, zip_postal, country, address_status, phone_number, phone_desc FROM ( SELECT pa.address_type AS address_type, address_desc, address_line1, trim(address_line2) ||' '|| trim(address_line3) ||' '|| trim(address_line4) ||' '|| trim(address_line5) AS address_line2, city, state_province, zip_postal, country, address_status, phone_number, phone_desc, rank() over (PARTITION BY pa.address_type order by effect_date desc) dest_rank FROM ${SCHEMA}.patron_address pa, ${SCHEMA}.address_type atype, ${SCHEMA}.patron_phone pp, ${SCHEMA}.phone_type pt WHERE pa.patron_id = ${PATRON_ID} AND pa.address_id = pp.address_id(+) AND pp.phone_type = pt.phone_type(+) AND effect_date < sysdate AND atype.address_type = pa.address_type AND pa.address_type in (2,3) ) WHERE dest_rank = 1 UNION SELECT pa.address_type AS address_type, address_desc, address_line1, trim(address_line2) ||' '|| trim(address_line3) ||' '|| trim(address_line4) ||' '|| trim(address_line5) AS address_line2, city, state_province, zip_postal, country, address_status, phone_number, phone_desc FROM ${SCHEMA}.patron_address pa, ${SCHEMA}.address_type atype, ${SCHEMA}.patron_phone pp, ${SCHEMA}.phone_type pt WHERE pa.address_type = 1 AND pa.patron_id = ${PATRON_ID} AND atype.address_type = pa.address_type AND pa.address_id = pp.address_id(+) AND pp.phone_type = pt.phone_type(+)",
+    "patronGroupSql": "SELECT barcode_status, to_char(barcode_status_date,'YYYYMMDD') AS barcode_status_date, DECODE (patron_group_code, ${DECODE}) as patron_group_level, patron_group_code, patron_barcode FROM (select barcode_status, barcode_status_date, patron_barcode, patron_group_code, rank() OVER (PARTITION BY pg.patron_group_id ORDER BY barcode_status, barcode_status_date desc) barcode_rank from ${SCHEMA}.patron_barcode pb, ${SCHEMA}.patron_group pg WHERE pb.patron_id = ${PATRON_ID} and pb.patron_group_id = pg.patron_group_id) WHERE barcode_rank = 1 ORDER BY barcode_status asc, barcode_status_date desc, patron_group_level asc",
+    "patronNoteSql": "SELECT patron_id, patron_note_id, note FROM ${SCHEMA}.patron_notes WHERE ${WHERE_CLAUSE} AND patron_id = ${PATRON_ID} ORDER BY patron_note_id",
+    "database": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": "oracle.jdbc.OracleDriver"
+    },
+    "usernameDatabase": {
+      "url": "",
+      "username": "",
+      "password": "",
+      "driverClassName": "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    }
+  },
+  "preActions": [],
+  "postActions": [
+    "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\"",
+    "WITH temp AS (SELECT id AS userId, uuid_generate_v4() AS permId, to_char (now()::timestamp at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS createdDate, (SELECT id FROM ${TENANT}_mod_users.users WHERE jsonb->>'username' = '${TENANT}_admin') AS createdBy FROM ${TENANT}_mod_users.users WHERE jsonb->>'username' NOT IN ('${TENANT}_admin','backup_admin','pub-sub','edgeuser','vufind')) INSERT INTO ${TENANT}_mod_permissions.permissions_users (id,jsonb,creation_date,created_by) SELECT permId AS id, concat('{\"id\": \"', permId, '\", \"userId\": \"', userId, '\", \"metadata\": {\"createdDate\": \"', createdDate, '\", \"updatedDate\": \"', createdDate, '\", \"createdByUserId\": \"', createdBy, '\", \"updatedByUserId\": \"', createdBy, '\"}, \"permissions\": []}')::jsonb AS jsonb, now()::timestamp at time zone 'UTC' AS creation_date, createdBy AS created_by FROM temp",
+    "UPDATE ${TENANT}_mod_users.users SET jsonb = jsonb_set(jsonb, '{personal, email}', '\"folio_user@library.tamu.edu\"') WHERE jsonb->'personal'->>'email' != 'folio_user@library.tamu.edu' AND jsonb->>'username' NOT IN ('${TENANT}_admin','backup_admin','system-user','mod-search','data-export-system-user','pub-sub','edgeuser','vufind')"
+  ],
+  "parallelism": 12,
+  "jobs": [
+    {
+      "schema": "AMDB",
+      "partitions": 12,
+      "decodeSql": "'fast', 1, 'grad', 2, 'ungr', 3, 'illend', 4, 'libd', 5, 'comm', 6, 'cour', 7, 'texs', 8, 'nonr', 9",
+      "user": "tamu_admin",
+      "dbCode": "Evans",
+      "noteWhereClause": "note IS NOT NULL",
+      "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
+      "skipDuplicates": false,
+      "userExternalReferenceTypeIds": [
+        "0ed6f994-8dbd-4827-94c0-905504169c90",
+        "426ce32f-388c-4edf-9c79-d6b8348148a0"
+      ],
+      "barcodeReferenceTypeIds": [
+        "f2eca16b-a6bd-4688-8424-ef5d47e06750",
+        "9c5efc8b-4e97-4631-ad6f-6a68d9eb48de"
+      ],
+      "alternativeExternalReferenceTypeIds": {
+        "MSDB": "426ce32f-388c-4edf-9c79-d6b8348148a0"
+      }
+    },
+    {
+      "schema": "MSDB",
+      "partitions": 4,
+      "decodeSql": "'fac/staff', 1, 'grad/prof', 2, 'undergrad', 3",
+      "user": "tamu_admin",
+      "dbCode": "MSL",
+      "noteWhereClause": "note IS NOT NULL AND lower(note) NOT LIKE '%patron has graduated%'",
+      "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
+      "skipDuplicates": true,
+      "userExternalReferenceTypeIds": [
+        "0ed6f994-8dbd-4827-94c0-905504169c90",
+        "426ce32f-388c-4edf-9c79-d6b8348148a0"
+      ],
+      "barcodeReferenceTypeIds": [
+        "f2eca16b-a6bd-4688-8424-ef5d47e06750",
+        "9c5efc8b-4e97-4631-ad6f-6a68d9eb48de"
+      ],
+      "alternativeExternalReferenceTypeIds": {
+        "AMDB": "0ed6f994-8dbd-4827-94c0-905504169c90"
+      }
+    }
+  ],
+  "maps": {
+    "patronGroup": {
+      "fac/staff": "fast",
+      "grad/prof": "grad",
+      "undergrad": "ungr",
+      "texshare": "texs",
+      "other": "cour",
+      "ill": "illend"
+    },
+    "preferredContactType": {
+      "Mail": "001",
+      "Email": "002",
+      "Text message": "003",
+      "Phone": "004",
+      "Mobile phone": "005"
+    }
+  },
+  "defaults": {
+    "preferredContactType": "002",
+    "temporaryEmail": "example@example.com",
+    "expirationDate": "2021-09-01"
+  }
+}
+```
+
 ## Vendor Reference Link Migration
 
 Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
@@ -120,7 +271,9 @@ POST to http://localhost:9000/migrate/vendors
       },
       "locations": "'SR', 'SRDB', 'SRDBProcar', 'SRDIR', 'SRDIRM', 'SRDIRMP', 'SRDIRN', 'SRDIRO', 'SRDIRP', 'SRGFT', 'SRMSV', 'SRMSVM', 'SRMSVMO', 'SRMSVO', 'SRMSVP', 'SRMSVPM', 'SRMSVW', 'SRMSV WM', 'SRProcard', 'SRSOV', 'SRSOVM', 'SRVSVO'",
       "statuses": "'Approved/Sent', 'Pending'",
-      "types": "'Approval', 'Firm Order', 'Gift', 'Exchange', 'Depository', 'Continuation'"
+      "types": "'Approval', 'Firm Order', 'Gift', 'Exchange', 'Depository', 'Continuation'",
+      "dbCode": "Evans",
+      "noteTypeId": "c209f4ca-86b6-4838-beb6-cfec1cccc164"
     },
     {
       "schema": "MSDB",
@@ -131,7 +284,9 @@ POST to http://localhost:9000/migrate/vendors
       },
       "locations": "'AcqCleanUp'",
       "statuses": "'Approved/Sent', 'Pending', 'Received Complete'",
-      "types": "'Continuation'"
+      "types": "'Continuation'",
+      "dbCode": "MSL",
+      "noteTypeId": "c209f4ca-86b6-4838-beb6-cfec1cccc164"
     }
   ],
   "maps": {
@@ -423,157 +578,6 @@ POST to http://localhost:9000/migrate/vendors
     "paymentMethod": "EFT",
     "phoneType": "Other",
     "status": "active"
-  }
-}
-```
-
-## User Reference Link Migration
-
-Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
-
-POST to http://localhost:9000/migrate/user-reference-links
-```
-{
-  "extraction": {
-    "countSql": "SELECT COUNT(*) AS total FROM ${SCHEMA}.patron WHERE last_name IS NOT NULL",
-    "pageSql": "SELECT p.patron_id, (SELECT DISTINCT patron_barcode FROM (SELECT barcode_status, to_char(barcode_status_date, 'YYYYMMDD') AS barcode_status_date, DECODE (patron_group_code, ${DECODE}) AS patron_group_level, patron_group_code, patron_barcode FROM (SELECT barcode_status, barcode_status_date, patron_barcode, patron_group_code, rank() OVER (PARTITION BY pg.patron_group_id ORDER BY barcode_status, barcode_status_date desc) barcode_rank FROM ${SCHEMA}.patron_barcode pb, ${SCHEMA}.patron_group pg WHERE pb.patron_id = p.patron_id AND pb.patron_group_id = pg.patron_group_id) WHERE barcode_rank = 1 ORDER BY barcode_status asc, barcode_status_date desc, patron_group_level asc OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY)) as patron_barcode, NVL2(p.institution_id, regexp_replace(p.institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\\1\\2\\3'), '${SCHEMA}_' || p.patron_id) AS external_system_id FROM ${SCHEMA}.patron p WHERE last_name IS NOT NULL ORDER BY patron_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
-    "database": {
-      "url": "",
-      "username": "",
-      "password": "",
-      "driverClassName": "oracle.jdbc.OracleDriver"
-    }
-  },
-  "parallelism": 12,
-  "jobs": [
-    {
-      "schema": "AMDB",
-      "partitions": 12,
-      "decodeSql": "'fast', 1, 'grad', 2, 'ungr', 3, 'illend', 4, 'libd', 5, 'comm', 6, 'cour', 7, 'texs', 8, 'nonr', 9",
-      "references": {
-        "userTypeId": "fb86289b-001d-4a6f-8adf-5076b162a6c7",
-        "userBarcodeTypeId": "f2eca16b-a6bd-4688-8424-ef5d47e06750",
-        "userToBarcodeTypeId": "3ed9f301-3426-4e7f-8cc9-3044d5e1e192",
-        "userExternalTypeId": "0ed6f994-8dbd-4827-94c0-905504169c90",
-        "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
-      }
-    },
-    {
-      "schema": "MSDB",
-      "partitions": 4,
-      "decodeSql": "'fac/staff', 1, 'grad/prof', 2, 'undergrad', 3",
-      "references": {
-        "userTypeId": "7a244692-dc96-48f1-9bf8-39578b8fee45",
-        "userBarcodeTypeId": "9c5efc8b-4e97-4631-ad6f-6a68d9eb48de",
-        "userToBarcodeTypeId": "3ed9f301-3426-4e7f-8cc9-3044d5e1e192",
-        "userExternalTypeId": "426ce32f-388c-4edf-9c79-d6b8348148a0",
-        "userToExternalTypeId": "6d451e5d-371a-48ec-b59d-28be5508df49"
-      }
-    }
-  ]
-}
-```
-
-## User Migration
-
-Use an HTTP POST request with the `X-Okapi-Tenant` HTTP Header set to an appropriate Tenant.
-
-POST to http://localhost:9000/migrate/users
-
-```
-{
-  "extraction": {
-    "countSql": "SELECT COUNT(*) as total FROM ${SCHEMA}.patron WHERE last_name is not null",
-    "pageSql": "SELECT name_type, patron_id, NVL2(institution_id, regexp_replace(institution_id, '([[:digit:]]{3})-([[:digit:]]{2})-([[:digit:]]{4})', '\\1\\2\\3'), '${SCHEMA}_' || patron_id) AS external_system_id, last_name, first_name, middle_name, NVL2(expire_date, to_char(expire_date,'YYYY-MM-DD'), to_char(purge_date,'YYYY-MM-DD')) AS expire_date, sms_number, current_charges FROM ${SCHEMA}.patron WHERE last_name is not null ORDER BY patron_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
-    "usernameSql": "SELECT uin, tamu_netid FROM patron.person_identifiers WHERE uin = '${EXTERNAL_SYSTEM_ID}'",
-    "addressSql": "SELECT address_type, address_desc, address_line1, address_line2, city, state_province, zip_postal, country, address_status, phone_number, phone_desc FROM ( SELECT pa.address_type AS address_type, address_desc, address_line1, trim(address_line2) ||' '|| trim(address_line3) ||' '|| trim(address_line4) ||' '|| trim(address_line5) AS address_line2, city, state_province, zip_postal, country, address_status, phone_number, phone_desc, rank() over (PARTITION BY pa.address_type order by effect_date desc) dest_rank FROM ${SCHEMA}.patron_address pa, ${SCHEMA}.address_type atype, ${SCHEMA}.patron_phone pp, ${SCHEMA}.phone_type pt WHERE pa.patron_id = ${PATRON_ID} AND pa.address_id = pp.address_id(+) AND pp.phone_type = pt.phone_type(+) AND effect_date < sysdate AND atype.address_type = pa.address_type AND pa.address_type in (2,3) ) WHERE dest_rank = 1 UNION SELECT pa.address_type AS address_type, address_desc, address_line1, trim(address_line2) ||' '|| trim(address_line3) ||' '|| trim(address_line4) ||' '|| trim(address_line5) AS address_line2, city, state_province, zip_postal, country, address_status, phone_number, phone_desc FROM ${SCHEMA}.patron_address pa, ${SCHEMA}.address_type atype, ${SCHEMA}.patron_phone pp, ${SCHEMA}.phone_type pt WHERE pa.address_type = 1 AND pa.patron_id = ${PATRON_ID} AND atype.address_type = pa.address_type AND pa.address_id = pp.address_id(+) AND pp.phone_type = pt.phone_type(+)",
-    "patronGroupSql": "SELECT barcode_status, to_char(barcode_status_date,'YYYYMMDD') AS barcode_status_date, DECODE (patron_group_code, ${DECODE}) as patron_group_level, patron_group_code, patron_barcode FROM (select barcode_status, barcode_status_date, patron_barcode, patron_group_code, rank() OVER (PARTITION BY pg.patron_group_id ORDER BY barcode_status, barcode_status_date desc) barcode_rank from ${SCHEMA}.patron_barcode pb, ${SCHEMA}.patron_group pg WHERE pb.patron_id = ${PATRON_ID} and pb.patron_group_id = pg.patron_group_id) WHERE barcode_rank = 1 ORDER BY barcode_status asc, barcode_status_date desc, patron_group_level asc",
-    "patronNoteSql": "SELECT patron_id, patron_note_id, note FROM ${SCHEMA}.patron_notes WHERE ${WHERE_CLAUSE} AND patron_id = ${PATRON_ID} ORDER BY patron_note_id",
-    "database": {
-      "url": "",
-      "username": "",
-      "password": "",
-      "driverClassName": "oracle.jdbc.OracleDriver"
-    },
-    "usernameDatabase": {
-      "url": "",
-      "username": "",
-      "password": "",
-      "driverClassName": "com.microsoft.sqlserver.jdbc.SQLServerDriver"
-    }
-  },
-  "preActions": [],
-  "postActions": [
-    "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\"",
-    "WITH temp AS (SELECT id AS userId, uuid_generate_v4() AS permId, to_char (now()::timestamp at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS createdDate, (SELECT id FROM ${TENANT}_mod_users.users WHERE jsonb->>'username' = '${TENANT}_admin') AS createdBy FROM ${TENANT}_mod_users.users WHERE jsonb->>'username' NOT IN ('${TENANT}_admin','backup_admin','pub-sub','edgeuser','vufind')) INSERT INTO ${TENANT}_mod_permissions.permissions_users (id,jsonb,creation_date,created_by) SELECT permId AS id, concat('{\"id\": \"', permId, '\", \"userId\": \"', userId, '\", \"metadata\": {\"createdDate\": \"', createdDate, '\", \"updatedDate\": \"', createdDate, '\", \"createdByUserId\": \"', createdBy, '\", \"updatedByUserId\": \"', createdBy, '\"}, \"permissions\": []}')::jsonb AS jsonb, now()::timestamp at time zone 'UTC' AS creation_date, createdBy AS created_by FROM temp",
-    "UPDATE ${TENANT}_mod_users.users SET jsonb = jsonb_set(jsonb, '{personal, email}', '\"folio_user@library.tamu.edu\"') WHERE jsonb->'personal'->>'email' != 'folio_user@library.tamu.edu' AND jsonb->>'username' NOT IN ('${TENANT}_admin','backup_admin','system-user','mod-search','data-export-system-user','pub-sub','edgeuser','vufind')"
-  ],
-  "parallelism": 12,
-  "jobs": [
-    {
-      "schema": "AMDB",
-      "partitions": 12,
-      "decodeSql": "'fast', 1, 'grad', 2, 'ungr', 3, 'illend', 4, 'libd', 5, 'comm', 6, 'cour', 7, 'texs', 8, 'nonr', 9",
-      "user": "tamu_admin",
-      "dbCode": "Evans",
-      "noteWhereClause": "note IS NOT NULL",
-      "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
-      "skipDuplicates": false,
-      "userExternalReferenceTypeIds": [
-        "0ed6f994-8dbd-4827-94c0-905504169c90",
-        "426ce32f-388c-4edf-9c79-d6b8348148a0"
-      ],
-      "barcodeReferenceTypeIds": [
-        "f2eca16b-a6bd-4688-8424-ef5d47e06750",
-        "9c5efc8b-4e97-4631-ad6f-6a68d9eb48de"
-      ],
-      "alternativeExternalReferenceTypeIds": {
-        "MSDB": "426ce32f-388c-4edf-9c79-d6b8348148a0"
-      }
-    },
-    {
-      "schema": "MSDB",
-      "partitions": 4,
-      "decodeSql": "'fac/staff', 1, 'grad/prof', 2, 'undergrad', 3",
-      "user": "tamu_admin",
-      "dbCode": "MSL",
-      "noteWhereClause": "note IS NOT NULL AND lower(note) NOT LIKE '%patron has graduated%'",
-      "noteTypeId": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
-      "skipDuplicates": true,
-      "userExternalReferenceTypeIds": [
-        "0ed6f994-8dbd-4827-94c0-905504169c90",
-        "426ce32f-388c-4edf-9c79-d6b8348148a0"
-      ],
-      "barcodeReferenceTypeIds": [
-        "f2eca16b-a6bd-4688-8424-ef5d47e06750",
-        "9c5efc8b-4e97-4631-ad6f-6a68d9eb48de"
-      ],
-      "alternativeExternalReferenceTypeIds": {
-        "AMDB": "0ed6f994-8dbd-4827-94c0-905504169c90"
-      }
-    }
-  ],
-  "maps": {
-    "patronGroup": {
-      "fac/staff": "fast",
-      "grad/prof": "grad",
-      "undergrad": "ungr",
-      "texshare": "texs",
-      "other": "cour",
-      "ill": "illend"
-    },
-    "preferredContactType": {
-      "Mail": "001",
-      "Email": "002",
-      "Text message": "003",
-      "Phone": "004",
-      "Mobile phone": "005"
-    }
-  },
-  "defaults": {
-    "preferredContactType": "002",
-    "temporaryEmail": "example@example.com",
-    "expirationDate": "2021-09-01"
   }
 }
 ```

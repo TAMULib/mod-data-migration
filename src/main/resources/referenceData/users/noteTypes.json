@@ -1,0 +1,27 @@
+{
+  "path": "/note-types",
+  "query": "limit=9999&query=name<>General note",
+  "reify": false,
+  "dependencies": [],
+  "transform": {},
+  "excludedProperties": [
+    "metadata"
+  ],
+  "additional": [],
+  "data": [
+    {
+      "id": "659ee423-2b5c-4146-a45e-8c36ec3ad42c",
+      "name": "User note",
+      "usage": {
+        "noteTotal": 24909
+      }
+    },
+    {
+      "id": "33f937c8-598e-402a-bcea-3ae20bfc4f08",
+      "name": "Vendor note",
+      "usage": {
+        "noteTotal": 24909
+      }
+    }
+  ]
+}

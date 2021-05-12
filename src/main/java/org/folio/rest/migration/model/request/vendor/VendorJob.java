@@ -23,6 +23,12 @@ public class VendorJob extends AbstractJob {
   @NotNull
   private String types;
 
+  @NotNull
+  private String dbCode;
+
+  @NotNull
+  private String noteTypeId;
+
   public VendorJob() {
     super();
     references = new HashMap<>();
@@ -66,6 +72,22 @@ public class VendorJob extends AbstractJob {
 
   public void setTypes(String types) {
     this.types = types;
+  }
+
+  public String getDbCode() {
+    return dbCode;
+  }
+
+  public void setDbCode(String dbCode) {
+    this.dbCode = dbCode;
+  }
+
+  public String getNoteTypeId() {
+    return noteTypeId;
+  }
+
+  public void setNoteTypeId(String noteTypeId) {
+    this.noteTypeId = noteTypeId;
   }
 
 }
