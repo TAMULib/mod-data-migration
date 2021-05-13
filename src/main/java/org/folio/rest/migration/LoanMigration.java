@@ -16,7 +16,10 @@ import java.util.concurrent.CompletableFuture;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
+import org.folio.rest.jaxrs.model.circulation.ItemNotLoanableBlock;
 import org.folio.rest.jaxrs.model.circulation.Loan;
+import org.folio.rest.jaxrs.model.circulation.OverrideBlocks;
+import org.folio.rest.jaxrs.model.circulation.PatronBlock;
 import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Servicepoint;
@@ -235,22 +238,21 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
           checkoutRequest.setItemBarcode(itemBarcode.toLowerCase());
           checkoutRequest.setUserBarcode(user.getBarcode());
           checkoutRequest.setServicePointId(servicePoint.get().getId());
+          checkoutRequest.setLoanDate(Date.from(Instant.parse(loanDate)));
+
+          OverrideBlocks overrideBlocks = new OverrideBlocks();
+
+          PatronBlock patronBlock = new PatronBlock();
+          overrideBlocks.setPatronBlock(patronBlock);
+
+          ItemNotLoanableBlock itemNotLoanableBlock = new ItemNotLoanableBlock();
+          itemNotLoanableBlock.setDueDate(Date.from(Instant.parse(dueDate)));
+          overrideBlocks.setItemNotLoanableBlock(itemNotLoanableBlock);
+
+          checkoutRequest.setOverrideBlocks(overrideBlocks);
 
           try {
-            Loan loan = migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
-            try {
-              loan.setAction("dueDateChanged");
-              loan.setLoanDate(Date.from(Instant.parse(loanDate)));
-              loan.setDueDate(Date.from(Instant.parse(dueDate)));
-              if (renewalCount > 0) {
-                loan.setRenewalCount(renewalCount);
-              }
-              JsonNode updateLoanRequest = migrationService.objectMapper.valueToTree(loan);
-              migrationService.okapiService.updateLoan(updateLoanRequest, tenant, token);
-            } catch (Exception e) {
-              log.error("{} failed to update loan with id {}", schema, loan.getId());
-              log.error(e.getMessage());
-            }
+            migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
           } catch (Exception e) {
             log.error("{} failed to checkout item with barcode {} to user with barcode {} at service point {}", schema, itemBarcode, user.getBarcode(), servicePoint.get().getName());
             log.error(e.getMessage());
