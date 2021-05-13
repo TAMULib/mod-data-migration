@@ -31,6 +31,8 @@ import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.RawRecords
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_data_import_converter_storage.JobProfile;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_data_import_converter_storage.JobProfileCollection;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_data_import_converter_storage.JobProfileUpdateDto;
+import org.folio.rest.jaxrs.model.feesfines.Accountdata;
+import org.folio.rest.jaxrs.model.feesfines.actions.Feefineactiondata;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecords;
 import org.folio.rest.jaxrs.model.inventory.Instance;
@@ -163,6 +165,20 @@ public class OkapiService {
     String url = okapi.getUrl() + "/circulation/requests";
     HttpEntity<JsonNode> entity = new HttpEntity<>(request, headers(tenant, token));
     ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.POST, entity, JsonNode.class);
+    return response.getBody();
+  }
+
+  public Accountdata createAccount(Accountdata account, String tenant, String token) {
+    String url = okapi.getUrl() + "/accounts";
+    HttpEntity<Accountdata> entity = new HttpEntity<>(account, headers(tenant, token));
+    ResponseEntity<Accountdata> response = restTemplate.exchange(url, HttpMethod.POST, entity, Accountdata.class);
+    return response.getBody();
+  }
+
+  public Feefineactiondata createFeeFineAction(Feefineactiondata feefineaction, String tenant, String token) {
+    String url = okapi.getUrl() + "/feefineactions";
+    HttpEntity<Feefineactiondata> entity = new HttpEntity<>(feefineaction, headers(tenant, token));
+    ResponseEntity<Feefineactiondata> response = restTemplate.exchange(url, HttpMethod.POST, entity, Feefineactiondata.class);
     return response.getBody();
   }
 
