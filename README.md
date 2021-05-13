@@ -1076,7 +1076,6 @@ POST to http://localhost:9000/migrate/items
   },
   "defaults": {
     "permanentLoanTypeId": "42865fba-5fd1-4275-85ff-7c5865c6990a",
-    "permanentLocationId": "2b8f7d63-706a-4b56-8a5e-50ad24e33e4c",
     "materialTypeId": "3212b3e9-bce7-4ff1-88e2-8def758ba977",
     "callNumberTypeId": "24badefa-4456-40c5-845c-3f45ffbc4c03"
   }
