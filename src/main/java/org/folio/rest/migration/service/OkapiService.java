@@ -52,6 +52,7 @@ import org.folio.rest.jaxrs.model.organizations.acq_models.mod_orgs.schemas.Orga
 import org.folio.rest.jaxrs.model.userimport.schemas.ImportResponse;
 import org.folio.rest.jaxrs.model.userimport.schemas.UserdataimportCollection;
 import org.folio.rest.jaxrs.model.users.AddresstypeCollection;
+import org.folio.rest.jaxrs.model.users.Proxyfor;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.jaxrs.model.users.UserdataCollection;
 import org.folio.rest.jaxrs.model.users.Usergroups;
@@ -165,6 +166,13 @@ public class OkapiService {
     String url = okapi.getUrl() + "/circulation/requests";
     HttpEntity<JsonNode> entity = new HttpEntity<>(request, headers(tenant, token));
     ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.POST, entity, JsonNode.class);
+    return response.getBody();
+  }
+
+  public Proxyfor createProxyFor(Proxyfor account, String tenant, String token) {
+    String url = okapi.getUrl() + "/proxiesfor";
+    HttpEntity<Proxyfor> entity = new HttpEntity<>(account, headers(tenant, token));
+    ResponseEntity<Proxyfor> response = restTemplate.exchange(url, HttpMethod.POST, entity, Proxyfor.class);
     return response.getBody();
   }
 
