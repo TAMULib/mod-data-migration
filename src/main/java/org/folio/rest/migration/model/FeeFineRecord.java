@@ -282,8 +282,6 @@ public class FeeFineRecord {
         callNumber += StringUtils.SPACE + chron;
       }
       account.setCallNumber(callNumber);
-    } else {
-      account.setItemId(defaults.getItemId());
     }
 
     Map<String, FeeFineOwner> feeFineOwnerMap = maps.getFeefineOwner().get(schema);
