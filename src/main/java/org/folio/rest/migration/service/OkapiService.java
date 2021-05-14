@@ -375,6 +375,13 @@ public class OkapiService {
     return response.getBody();
   }
 
+  public Instance fetchInstanceById(String tenant, String token, String instanceId) {
+    HttpEntity<Instance> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/instance-storage/instances/" + instanceId;
+    ResponseEntity<Instance> response = restTemplate.exchange(url, HttpMethod.GET, entity, Instance.class);
+    return response.getBody();
+  }
+
   public Instance postInstance(String tenant, String token, Instance instance) {
     HttpEntity<Instance> entity = new HttpEntity<>(instance, headers(tenant, token));
     String url = okapi.getUrl() + "/instance-storage/instances";

@@ -187,12 +187,23 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
             if (holdingsRecords.getTotalRecords() == 0) {
               Holdingsrecord childHoldingsRecord = existingHoldingsRecord;
               String bibId = instanceRL.getExternalReference();
+              String instanceId = instanceRL.getFolioReference();
               childHoldingsRecord.setId(craftUUID("bound-with-child-holdings-record", schema, mfhdId + ":" + bibId));
-              childHoldingsRecord.setInstanceId(instanceRL.getFolioReference());
+              childHoldingsRecord.setInstanceId(instanceId);
+              
+              Instance childInstance;
+              try {
+                childInstance = migrationService.okapiService.fetchInstanceById(tenant, token, instanceId);
+              } catch (Exception e) {
+                log.error("failed to fetch child instance {}: {}", instanceId, e.getMessage());
+                continue;
+              }
+              childHoldingsRecord.setDiscoverySuppress(childInstance.getDiscoverySuppress());
+
               try {
                 migrationService.okapiService.postHoldingsrecord(tenant, token, childHoldingsRecord);
               } catch (Exception e) {
-                log.error("failed to create duplicate child holdings record for child instance {}: {}", instanceRL.getFolioReference(), e.getMessage());
+                log.error("failed to create duplicate child holdings record for child instance {}: {}", instanceId, e.getMessage());
                 continue;
               }
             }
