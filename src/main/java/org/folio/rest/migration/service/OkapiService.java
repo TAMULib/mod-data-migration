@@ -20,7 +20,6 @@ import org.folio.Instancenotetypes;
 import org.folio.Instancetypes;
 import org.folio.Issuancemodes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
-import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
 import org.folio.rest.jaxrs.model.circulation.Loan;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.common.Status;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.InitJobExecutionsRqDto;
@@ -190,9 +189,9 @@ public class OkapiService {
     return response.getBody();
   }
 
-  public Loan checkoutByBarcode(CheckOutByBarcodeRequest request, String tenant, String token) {
+  public Loan checkoutByBarcode(JsonNode request, String tenant, String token) {
     String url = okapi.getUrl() + "/circulation/check-out-by-barcode";
-    HttpEntity<CheckOutByBarcodeRequest> entity = new HttpEntity<>(request, headers(tenant, token));
+    HttpEntity<JsonNode> entity = new HttpEntity<>(request, headers(tenant, token));
     ResponseEntity<Loan> response = restTemplate.exchange(url, HttpMethod.POST, entity, Loan.class);
     return response.getBody();
   }

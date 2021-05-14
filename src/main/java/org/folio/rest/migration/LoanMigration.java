@@ -13,10 +13,10 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
+import org.folio.rest.jaxrs.model.circulation.ItemNotLoanableBlock;
 import org.folio.rest.jaxrs.model.circulation.Loan;
 import org.folio.rest.jaxrs.model.circulation.OverrideBlocks;
 import org.folio.rest.jaxrs.model.circulation.PatronBlock;
@@ -243,18 +243,22 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
           OverrideBlocks overrideBlocks = new OverrideBlocks();
           overrideBlocks.setComment("");
 
+          ItemNotLoanableBlock itemNotLoanableBlock = new ItemNotLoanableBlock();
+          itemNotLoanableBlock.setDueDate(Date.from(Instant.parse(dueDate)));
+          overrideBlocks.setItemNotLoanableBlock(itemNotLoanableBlock);
+
           PatronBlock patronBlock = new PatronBlock();
           overrideBlocks.setPatronBlock(patronBlock);
 
           checkoutRequest.setOverrideBlocks(overrideBlocks);
 
+          JsonNode request = migrationService.objectMapper.valueToTree(checkoutRequest);
+
           try {
-            Loan loan = migrationService.okapiService.checkoutByBarcode(checkoutRequest, tenant, token);
+            Loan loan = migrationService.okapiService.checkoutByBarcode(request, tenant, token);
 
             try {
-              loan.setAction("dueDateChanged");
-              loan.setLoanDate(Date.from(Instant.parse(loanDate)));
-              loan.setDueDate(Date.from(Instant.parse(dueDate)));
+              loan.setAction("setRenewalCount");
               if (renewalCount > 0) {
                 loan.setRenewalCount(renewalCount);
               }
@@ -265,12 +269,12 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
               log.error(e.getMessage());
             }
           } catch (Exception e) {
-            log.error("{} failed to checkout item with barcode {} to user with barcode {} at service point {}: {}", schema, itemBarcode, user.getBarcode(), servicePoint.get().getName(), migrationService.objectMapper.writeValueAsString(checkoutRequest));
+            log.error("{} failed to checkout item with barcode {} to user with barcode {} at service point {}: {}", schema, itemBarcode, user.getBarcode(), servicePoint.get().getName(), request);
             log.error(e.getMessage());
           }
         }
 
-      } catch (SQLException | JsonProcessingException e) {
+      } catch (SQLException e) {
         e.printStackTrace();
       } finally {
         threadConnections.closeAll();
