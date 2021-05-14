@@ -17,7 +17,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
-import org.folio.rest.jaxrs.model.circulation.ItemNotLoanableBlock;
 import org.folio.rest.jaxrs.model.circulation.Loan;
 import org.folio.rest.jaxrs.model.circulation.OverrideBlocks;
 import org.folio.rest.jaxrs.model.circulation.PatronBlock;
@@ -243,10 +242,6 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
 
           OverrideBlocks overrideBlocks = new OverrideBlocks();
           overrideBlocks.setComment("");
-
-          ItemNotLoanableBlock itemNotLoanableBlock = new ItemNotLoanableBlock();
-          itemNotLoanableBlock.setDueDate(Date.from(Instant.parse(dueDate)));
-          overrideBlocks.setItemNotLoanableBlock(itemNotLoanableBlock);
 
           PatronBlock patronBlock = new PatronBlock();
           overrideBlocks.setPatronBlock(patronBlock);
