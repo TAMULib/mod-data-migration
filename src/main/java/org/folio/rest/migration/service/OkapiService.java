@@ -197,6 +197,12 @@ public class OkapiService {
     return response.getBody();
   }
 
+  public void updateLoan(JsonNode loan, String tenant, String token) {
+    String url = okapi.getUrl() + "/circulation/loans/" + loan.get("id").asText();
+    HttpEntity<?> entity = new HttpEntity<>(loan, headers(tenant, token));
+    restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
+  }
+
   public Servicepoints fetchServicepoints(String tenant, String token) {
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/service-points?limit=9999";
