@@ -190,6 +190,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
               String instanceId = instanceRL.getFolioReference();
               childHoldingsRecord.setId(craftUUID("bound-with-child-holdings-record", schema, mfhdId + ":" + bibId));
               childHoldingsRecord.setInstanceId(instanceId);
+              childHoldingsRecord.setHrid(null);
               
               Instance childInstance;
               try {
