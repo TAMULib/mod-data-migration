@@ -32,7 +32,7 @@ curl --location --request POST "$DIVIT_MIGRATION_URL" \
     }
   ],
   "defaults": {
-    "preferredContactType": "002",
+    "preferredContactType": "email",
     "temporaryEmail": "folio_user@library.tamu.edu"
   }
 }'

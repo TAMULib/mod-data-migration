@@ -189,7 +189,7 @@ POST to http://localhost:9000/migrate/users
     }
   },
   "defaults": {
-    "preferredContactType": "002",
+    "preferredContactType": "email",
     "temporaryEmail": "example@example.com",
     "expirationDate": "2021-09-01"
   }
@@ -1598,7 +1598,7 @@ POST to http://localhost:9000/migrate/divitpatron
     }
   ],
   "defaults": {
-    "preferredContactType": "002",
+    "preferredContactType": "email",
     "temporaryEmail": "example@example.com"
   }
 }
