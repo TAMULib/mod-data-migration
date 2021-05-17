@@ -3,6 +3,7 @@
   "query" : "limit=9999&query=automatic<>true",
   "reify" : false,
   "dependencies" : [ "owners" ],
+  "defaults" : { },
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "additional" : [ ],

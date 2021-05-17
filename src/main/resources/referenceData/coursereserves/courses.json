@@ -3,6 +3,7 @@
   "query" : "limit=9999",
   "reify" : false,
   "dependencies" : [ "courseListings" ],
+  "defaults" : { },
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "additional" : [ ],

@@ -3,6 +3,7 @@
   "query" : "limit=9999&query=module==(CHECKOUT OR LOAN_HISTORY OR OAIPMH OR ORDERS OR TENANT)",
   "reify" : false,
   "dependencies" : [ ],
+  "defaults" : { },
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "additional" : [ ],

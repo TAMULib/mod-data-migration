@@ -3,6 +3,9 @@
   "query" : "limit=9999&query=name<>General note",
   "reify" : false,
   "dependencies" : [ ],
+  "defaults" : {
+    "usage.noteTotal" : 0
+  },
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "additional" : [ ],
