@@ -13,7 +13,6 @@
     "description" : "Evans FY2021",
     "fiscalYearOneId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "ledgerStatus" : "Active",
-    "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
     "restrictExpenditures" : true
@@ -24,7 +23,6 @@
     "description" : "MSL FY2021 Ledger",
     "fiscalYearOneId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "ledgerStatus" : "Active",
-    "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
     "restrictExpenditures" : true
@@ -35,7 +33,6 @@
     "description" : "OneTime FY2021",
     "fiscalYearOneId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "ledgerStatus" : "Active",
-    "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
     "restrictExpenditures" : true
@@ -46,7 +43,6 @@
     "description" : "Parent FY2021 Ledger",
     "fiscalYearOneId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "ledgerStatus" : "Active",
-    "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
     "restrictExpenditures" : true
@@ -56,7 +52,6 @@
     "code" : "tamutest",
     "fiscalYearOneId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "ledgerStatus" : "Active",
-    "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
     "restrictExpenditures" : true
@@ -67,7 +62,6 @@
     "description" : "zFY21 Cushing short yr ledger for testing Honeysuckle Folio",
     "fiscalYearOneId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "ledgerStatus" : "Inactive",
-    "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
     "restrictExpenditures" : true
@@ -78,7 +72,6 @@
     "description" : "zFY21 testing ledger for Monographic purchases",
     "fiscalYearOneId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "ledgerStatus" : "Inactive",
-    "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
     "restrictExpenditures" : true
@@ -89,7 +82,6 @@
     "description" : "zRecurring FY21 ",
     "fiscalYearOneId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "ledgerStatus" : "Inactive",
-    "netTransfers" : 0.0,
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
     "restrictExpenditures" : true

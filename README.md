@@ -273,7 +273,7 @@ POST to http://localhost:9000/migrate/vendors
       "statuses": "'Approved/Sent', 'Pending'",
       "types": "'Approval', 'Firm Order', 'Gift', 'Exchange', 'Depository', 'Continuation'",
       "dbCode": "Evans",
-      "noteTypeId": "c209f4ca-86b6-4838-beb6-cfec1cccc164"
+      "noteTypeId": "33f937c8-598e-402a-bcea-3ae20bfc4f08"
     },
     {
       "schema": "MSDB",
@@ -286,7 +286,7 @@ POST to http://localhost:9000/migrate/vendors
       "statuses": "'Approved/Sent', 'Pending', 'Received Complete'",
       "types": "'Continuation'",
       "dbCode": "MSL",
-      "noteTypeId": "c209f4ca-86b6-4838-beb6-cfec1cccc164"
+      "noteTypeId": "33f937c8-598e-402a-bcea-3ae20bfc4f08"
     }
   ],
   "maps": {

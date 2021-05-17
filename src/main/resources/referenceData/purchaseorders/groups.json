@@ -120,6 +120,13 @@
     "name" : "zStreaming Video",
     "status" : "Active"
   }, {
+    "id" : "307ef62f-df35-4a07-b4dd-12151b685d68",
+    "acqUnitIds" : [ ],
+    "code" : "zrecurringrestricted",
+    "description" : "zFor Recurring Restricted Funds",
+    "name" : "zRecurring Restricted",
+    "status" : "Active"
+  }, {
     "id" : "9123c165-b4f0-4c0b-bbf3-6d6ef1de1908",
     "acqUnitIds" : [ ],
     "code" : "zmonographic",
@@ -172,13 +179,6 @@
     "acqUnitIds" : [ ],
     "code" : "tamutest",
     "name" : "TAMU test",
-    "status" : "Active"
-  }, {
-    "id" : "307ef62f-df35-4a07-b4dd-12151b685d68",
-    "acqUnitIds" : [ ],
-    "code" : "zrecurringrestricted",
-    "description" : "zFor Recurring Restricted Funds",
-    "name" : "zRecurring Restricted",
     "status" : "Active"
   }, {
     "id" : "9bde5b17-d962-4726-9d0d-cb07c04f48e6",

@@ -45,7 +45,8 @@
         "recallReturnInterval" : {
           "duration" : 14,
           "intervalId" : "Days"
-        }
+        },
+        "allowRecallsToExtendOverdueLoans" : false
       }
     }
   }, {
@@ -102,7 +103,8 @@
         "recallReturnInterval" : {
           "duration" : 14,
           "intervalId" : "Days"
-        }
+        },
+        "allowRecallsToExtendOverdueLoans" : false
       }
     }
   }, {
@@ -157,7 +159,8 @@
         "recallReturnInterval" : {
           "duration" : 14,
           "intervalId" : "Days"
-        }
+        },
+        "allowRecallsToExtendOverdueLoans" : false
       }
     }
   }, {
@@ -200,7 +203,8 @@
         "recallReturnInterval" : {
           "duration" : 14,
           "intervalId" : "Days"
-        }
+        },
+        "allowRecallsToExtendOverdueLoans" : false
       }
     }
   }, {
@@ -226,7 +230,8 @@
         "recallReturnInterval" : {
           "duration" : 7,
           "intervalId" : "Days"
-        }
+        },
+        "allowRecallsToExtendOverdueLoans" : false
       }
     }
   }, {
@@ -259,7 +264,8 @@
         "recallReturnInterval" : {
           "duration" : 2,
           "intervalId" : "Hours"
-        }
+        },
+        "allowRecallsToExtendOverdueLoans" : false
       }
     }
   }, {
@@ -312,7 +318,8 @@
         "recallReturnInterval" : {
           "duration" : 14,
           "intervalId" : "Days"
-        }
+        },
+        "allowRecallsToExtendOverdueLoans" : false
       }
     }
   }, {
@@ -341,7 +348,8 @@
         "recallReturnInterval" : {
           "duration" : 14,
           "intervalId" : "Days"
-        }
+        },
+        "allowRecallsToExtendOverdueLoans" : false
       }
     }
   }, {

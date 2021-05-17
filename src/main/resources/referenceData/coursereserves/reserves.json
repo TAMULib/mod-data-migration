@@ -44,7 +44,7 @@
       } ],
       "callNumber" : "KF902 .S924 2015",
       "instanceId" : "f0f01a3a-19ed-30b5-bc30-106adfdb321d",
-      "instanceHrid" : "in00004592525",
+      "instanceHrid" : "in00004600047",
       "holdingsId" : "0d09ea48-c8dc-3dff-982f-d67e69a92fdb"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -74,7 +74,7 @@
       } ],
       "callNumber" : "QC173.7 .H477 2012",
       "instanceId" : "98eac002-75e5-346c-bb6d-1903606b890e",
-      "instanceHrid" : "in00003936149",
+      "instanceHrid" : "in00003942469",
       "holdingsId" : "7a3dbb83-4a07-3978-8617-1e799d88a835"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -102,7 +102,7 @@
       } ],
       "callNumber" : "GR105 .B7 1998",
       "instanceId" : "d57986b7-e00d-3d40-9ffd-3a88b96d44a4",
-      "instanceHrid" : "in00001650988",
+      "instanceHrid" : "in00001653653",
       "holdingsId" : "706ac9f7-2b65-3394-b040-7391371fb3d4"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -135,7 +135,7 @@
       "callNumber" : "BS621 .M39 2007",
       "enumeration" : "1",
       "instanceId" : "35c4c80d-26f5-3a14-8ef5-6e1396f56c6b",
-      "instanceHrid" : "in00002731709",
+      "instanceHrid" : "in00002736040",
       "holdingsId" : "510d2080-65d0-3d2e-8c6a-91cbe96d7aa9"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -161,7 +161,7 @@
       } ],
       "callNumber" : "GN304 .M35 1984",
       "instanceId" : "eba14387-7f14-3dea-8979-461677355814",
-      "instanceHrid" : "in00000467075",
+      "instanceHrid" : "in00000371350",
       "holdingsId" : "91fddc80-3e3e-3529-8145-035e31dbf5eb"
     }
   }, {
@@ -188,7 +188,7 @@
       } ],
       "callNumber" : "QH 75 .R54 2016",
       "instanceId" : "14aba6f2-d1ac-3222-be44-1734df139b2d",
-      "instanceHrid" : "in00003742581",
+      "instanceHrid" : "in00003748728",
       "holdingsId" : "69219e27-da84-37a9-8cf4-8847428f722d"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -220,7 +220,7 @@
       } ],
       "callNumber" : "GC11.2 .T49 2014",
       "instanceId" : "5f03bd9d-98a9-3dd3-9000-eafc2e939bf2",
-      "instanceHrid" : "in00003497569",
+      "instanceHrid" : "in00003503260",
       "holdingsId" : "98d8af96-d570-3390-871c-6ab44cfd595e"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -251,7 +251,7 @@
       } ],
       "callNumber" : "JQ1850.A91 B57 2013",
       "instanceId" : "d5f161bf-d6ed-373a-b942-1c9aaddf03df",
-      "instanceHrid" : "in00003498613",
+      "instanceHrid" : "in00003504208",
       "holdingsId" : "cd5f3629-9f23-3fab-a83c-87cf6f0f35c5"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -286,7 +286,7 @@
       } ],
       "callNumber" : "TA174 .F66 2008",
       "instanceId" : "8a80fd06-6b7c-38c0-a8e3-747ee130e0e1",
-      "instanceHrid" : "in00002344576",
+      "instanceHrid" : "in00002348376",
       "holdingsId" : "6a09db26-fcfe-3a80-bbb0-932c79e6b1cb"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -318,7 +318,7 @@
       } ],
       "callNumber" : "HB171 .H426 1989 v.2",
       "instanceId" : "de980331-547f-363c-bd09-fbc4eea509ac",
-      "instanceHrid" : "in00004156205",
+      "instanceHrid" : "in00004162932",
       "holdingsId" : "34d0880c-51e7-3d54-a482-52dc0f458fce"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -346,7 +346,7 @@
       } ],
       "callNumber" : "HD30.2 .S7835 2000",
       "instanceId" : "458198d2-c66a-3d0e-a373-ab8089e5cd96",
-      "instanceHrid" : "in00001498904",
+      "instanceHrid" : "in00001501296",
       "holdingsId" : "7c3841dc-a92d-3d87-a29b-adb37f4a4fe2"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -383,7 +383,7 @@
       "callNumber" : "CB245 .W4845 2017",
       "enumeration" : "v.2",
       "instanceId" : "ab89e063-43d1-39a6-b9ab-f18e556a6f74",
-      "instanceHrid" : "in00003918380",
+      "instanceHrid" : "in00003924766",
       "holdingsId" : "89c56a55-fc0d-3ea5-a4b2-066f53c34efb"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -413,7 +413,7 @@
       } ],
       "callNumber" : "JQ1850.A91 N49 2014",
       "instanceId" : "af79c06e-89dd-3ecf-a9c5-f97a49928e2c",
-      "instanceHrid" : "in00003504128",
+      "instanceHrid" : "in00003412812",
       "holdingsId" : "8b422d8f-962a-3dac-9435-72b60766aa93"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -450,7 +450,7 @@
       } ],
       "callNumber" : "JZ1318 .S765 2019",
       "instanceId" : "f428253c-1aff-39be-9f8e-3ca1f69beefe",
-      "instanceHrid" : "in00004534314",
+      "instanceHrid" : "in00004541643",
       "holdingsId" : "db561cfe-f920-36ad-a912-418f37e0b150"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -484,7 +484,7 @@
       } ],
       "callNumber" : "QA76.758 .P75 2020",
       "instanceId" : "60656286-97ae-3576-b65e-243e0122ee12",
-      "instanceHrid" : "in00004513734",
+      "instanceHrid" : "in00004521130",
       "holdingsId" : "c40a66c5-8af5-3700-aed5-3d9c5f669b3d"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -516,7 +516,7 @@
       } ],
       "callNumber" : "LB1051 .W74 2019",
       "instanceId" : "fd2784f3-8d23-303e-9c7f-3fcd0dea9f9f",
-      "instanceHrid" : "in00004184418",
+      "instanceHrid" : "in00004191259",
       "holdingsId" : "c6412a56-1d10-3acd-b186-7067bd09ce2f"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -546,7 +546,7 @@
       } ],
       "callNumber" : "JZ1318 .S74 2020",
       "instanceId" : "e3ce0e68-c88e-35af-a006-6667facf03d8",
-      "instanceHrid" : "in00004561186",
+      "instanceHrid" : "in00004568492",
       "holdingsId" : "5ede96ac-7086-3dc6-ade9-08b23e5e0fc4"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -581,7 +581,7 @@
       } ],
       "callNumber" : "TA174 .F66 2008",
       "instanceId" : "8a80fd06-6b7c-38c0-a8e3-747ee130e0e1",
-      "instanceHrid" : "in00002344576",
+      "instanceHrid" : "in00002348376",
       "holdingsId" : "fc3ae68d-0c09-3d6f-a265-8a42c5f16fea"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -611,7 +611,7 @@
       } ],
       "callNumber" : "QA76.73.C153 G33 2012",
       "instanceId" : "bef9feb0-9fc9-347a-a033-3900a9611d81",
-      "instanceHrid" : "in00003333819",
+      "instanceHrid" : "in00003339263",
       "holdingsId" : "139beec6-e19e-3d72-9b10-e28a3daba602"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -637,7 +637,7 @@
       } ],
       "callNumber" : "D843 .G23 1997",
       "instanceId" : "1cf4d03a-027a-3d35-82bc-0f9ccc901f4d",
-      "instanceHrid" : "in00001344298",
+      "instanceHrid" : "in00001346480",
       "holdingsId" : "80583476-65d2-30b4-aa6a-6bf71b4e46b5"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -665,7 +665,7 @@
       } ],
       "callNumber" : "GR550 .F284 2009",
       "instanceId" : "a597297f-8dc2-37c9-a506-bc2c0bf9f961",
-      "instanceHrid" : "in00002492463",
+      "instanceHrid" : "in00002496461",
       "holdingsId" : "176c5e53-9d7c-328f-97bd-6c5cde20c6b7"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -699,7 +699,7 @@
       } ],
       "callNumber" : "E184.S75 C467 1997",
       "instanceId" : "10ca9b85-cca9-3a44-8567-924148c0c6a1",
-      "instanceHrid" : "in00002236945",
+      "instanceHrid" : "in00002240548",
       "holdingsId" : "9eaf8bbe-5cf4-3d7e-a738-f8c928ceedc9"
     }
   }, {
@@ -724,7 +724,7 @@
       } ],
       "callNumber" : "QH91 .L427 2001",
       "instanceId" : "600b4fa0-489a-3bbb-bbad-edfe23986ccb",
-      "instanceHrid" : "in00001638120",
+      "instanceHrid" : "in00001640837",
       "holdingsId" : "84ec675b-69c8-3f28-926d-f40e7eb7348c"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -752,7 +752,7 @@
       } ],
       "callNumber" : "BR166 .S75 1996",
       "instanceId" : "0af2eea4-8388-3dbe-ab5d-4011b982fb96",
-      "instanceHrid" : "in00001370779",
+      "instanceHrid" : "in00001372980",
       "holdingsId" : "d8f11711-0d0c-377b-8914-6355d6ce662e"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -784,7 +784,7 @@
       } ],
       "callNumber" : "LB1051 .W74 2019",
       "instanceId" : "fd2784f3-8d23-303e-9c7f-3fcd0dea9f9f",
-      "instanceHrid" : "in00004184418",
+      "instanceHrid" : "in00004191259",
       "holdingsId" : "d2a11874-7f83-3995-b9f0-b1a92f3f8eaf"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -817,7 +817,7 @@
       "callNumber" : "HM291 .E625 1999",
       "enumeration" : "v.3",
       "instanceId" : "a33216db-ab41-3af0-9921-5298a1128665",
-      "instanceHrid" : "in00001388527",
+      "instanceHrid" : "in00001390763",
       "holdingsId" : "837a2fa3-5e05-368b-bfac-d4a59cf04ad2"
     }
   }, {
@@ -862,7 +862,7 @@
       } ],
       "callNumber" : "CB245 .H86 2017",
       "instanceId" : "090c97e5-3532-30c2-ba79-4c0cb0c226b6",
-      "instanceHrid" : "in00004151605",
+      "instanceHrid" : "in00004158339",
       "holdingsId" : "ccaf724b-cd3b-3e22-9065-65e3fb2e60d6"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -892,7 +892,7 @@
       } ],
       "callNumber" : "QA76.9.A25 L36 2017",
       "instanceId" : "8fd2ea95-2ff7-3af6-9d4e-9d5ff2e0f40b",
-      "instanceHrid" : "in00003956513",
+      "instanceHrid" : "in00003962887",
       "holdingsId" : "7486de04-5b4f-302d-8c4c-846834cbe682"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -922,7 +922,7 @@
       } ],
       "callNumber" : "DC138 .T63213 2008",
       "instanceId" : "c5c4e1db-584a-3d8a-9f57-b48c1c962439",
-      "instanceHrid" : "in00002368576",
+      "instanceHrid" : "in00002372397",
       "holdingsId" : "613e966f-983f-3121-baca-4f65319c97c1"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -949,7 +949,7 @@
       } ],
       "callNumber" : "E185.61 .D85 2011",
       "instanceId" : "e49b30c0-d8b6-3e4e-8532-bbfd8eb290f3",
-      "instanceHrid" : "in00004059407",
+      "instanceHrid" : "in00004065993",
       "holdingsId" : "cc6fd18f-58e9-35ed-b254-5019b63c3a86"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -977,7 +977,7 @@
       } ],
       "callNumber" : "DT83 .C53 1994",
       "instanceId" : "6da8e085-115d-34ea-add4-d0b53fbd71c1",
-      "instanceHrid" : "in00001213645",
+      "instanceHrid" : "in00001215612",
       "holdingsId" : "de54707a-f2ba-3fd4-98b0-a16e1b3774b4"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1008,7 +1008,7 @@
       } ],
       "callNumber" : "QA300 .L427 2014",
       "instanceId" : "ddd86159-185d-3693-895d-86d3a1884ec3",
-      "instanceHrid" : "in00004652332",
+      "instanceHrid" : "in00004659988",
       "holdingsId" : "3cfe9d97-bf8e-39d5-bd3b-f1ea8c1088c9"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1036,7 +1036,7 @@
       } ],
       "callNumber" : "E184.S75 G655 2011",
       "instanceId" : "bee6d477-585e-3831-bdce-a28ff55dc786",
-      "instanceHrid" : "in00002689968",
+      "instanceHrid" : "in00002694232",
       "holdingsId" : "77d2bfa9-bddc-30c8-b639-881002196625"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1064,7 +1064,7 @@
       } ],
       "callNumber" : "QC173.7 .H477 2012",
       "instanceId" : "98eac002-75e5-346c-bb6d-1903606b890e",
-      "instanceHrid" : "in00003936149",
+      "instanceHrid" : "in00003942469",
       "holdingsId" : "7a3dbb83-4a07-3978-8617-1e799d88a835"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1106,7 +1106,7 @@
       } ],
       "callNumber" : "LB1028.38 .D53 2015",
       "instanceId" : "d6f5c965-3daf-3498-8279-9b4f5145ffc7",
-      "instanceHrid" : "in00004182547",
+      "instanceHrid" : "in00004189366",
       "holdingsId" : "f9bdc0ed-04a8-3fee-ac40-cc04e9b9e566"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1132,7 +1132,7 @@
       } ],
       "callNumber" : "BV3785.P74 S46 2005",
       "instanceId" : "6f787dd2-57ea-3437-915b-86e7b8232510",
-      "instanceHrid" : "in00002030556",
+      "instanceHrid" : "in00002033739",
       "holdingsId" : "2f7a2071-dd1b-3fee-9a7d-26b71ddc0c44"
     }
   }, {
@@ -1161,7 +1161,7 @@
       } ],
       "callNumber" : "JZ1318 .S74 2020",
       "instanceId" : "e3ce0e68-c88e-35af-a006-6667facf03d8",
-      "instanceHrid" : "in00004561186",
+      "instanceHrid" : "in00004568492",
       "holdingsId" : "5ede96ac-7086-3dc6-ade9-08b23e5e0fc4"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1191,7 +1191,7 @@
       } ],
       "callNumber" : "QA76.76.I59 M87 1997",
       "instanceId" : "c30f9ae0-ce09-3890-ab99-8460802e09e4",
-      "instanceHrid" : "in00001451816",
+      "instanceHrid" : "in00001357473",
       "holdingsId" : "bf57a5d8-1ee6-3658-a4e7-2720565fce50"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1219,7 +1219,7 @@
       } ],
       "callNumber" : "DT60 .B373 2008",
       "instanceId" : "7156209a-9e2d-3584-9464-a30553a596cd",
-      "instanceHrid" : "in00002338343",
+      "instanceHrid" : "in00002342099",
       "holdingsId" : "65c94a69-e715-3ee2-a87d-7118fd36d1cd"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1247,7 +1247,7 @@
       } ],
       "callNumber" : "QH91 .T69 2012",
       "instanceId" : "9b3a550c-eb1e-3aac-b3d4-3d1ca121c05f",
-      "instanceHrid" : "in00003768976",
+      "instanceHrid" : "in00003775103",
       "holdingsId" : "ee91b4eb-f9b5-3afe-8f3c-b6ac54b0c739"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1277,7 +1277,7 @@
       } ],
       "callNumber" : "DG286 .W44 2000",
       "instanceId" : "630361c5-d33f-38c8-831c-7909f6d5ba91",
-      "instanceHrid" : "in00001534366",
+      "instanceHrid" : "in00001536836",
       "holdingsId" : "377a1407-2f6d-32f3-b9ab-04709230db6c"
     }
   }, {
@@ -1304,7 +1304,7 @@
       } ],
       "callNumber" : "B132.Y6 Y53 2007",
       "instanceId" : "bc3e1a06-3cb4-3a24-9a25-32c842dce4e7",
-      "instanceHrid" : "in00002332760",
+      "instanceHrid" : "in00002239541",
       "holdingsId" : "b556d1bf-a436-3581-b147-209ac1ef4494"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1334,7 +1334,7 @@
       } ],
       "callNumber" : "JZ1318 .G55894 2015",
       "instanceId" : "d1ec1209-54c8-3e73-8e6e-a3dcbdedcb05",
-      "instanceHrid" : "in00003981573",
+      "instanceHrid" : "in00003988067",
       "holdingsId" : "7b77d970-2fe3-332c-ba4a-22bc6c8b82a6"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1367,7 +1367,7 @@
       "callNumber" : "HM291 .E625 1999",
       "enumeration" : "v.2",
       "instanceId" : "a33216db-ab41-3af0-9921-5298a1128665",
-      "instanceHrid" : "in00001388527",
+      "instanceHrid" : "in00001390763",
       "holdingsId" : "837a2fa3-5e05-368b-bfac-d4a59cf04ad2"
     }
   }, {
@@ -1395,7 +1395,7 @@
       } ],
       "callNumber" : "JZ1773 .F47 2006",
       "instanceId" : "ff40dd6f-3e4a-3f13-b2b5-98eb13b266df",
-      "instanceHrid" : "in00002058981",
+      "instanceHrid" : "in00002062302",
       "holdingsId" : "c4ff7db0-05cc-3ac9-babf-4638797c8894"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1423,7 +1423,7 @@
       } ],
       "callNumber" : "QA76.76.I59 M87 1997",
       "instanceId" : "c30f9ae0-ce09-3890-ab99-8460802e09e4",
-      "instanceHrid" : "in00001451816",
+      "instanceHrid" : "in00001357473",
       "holdingsId" : "bf57a5d8-1ee6-3658-a4e7-2720565fce50"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1453,7 +1453,7 @@
       } ],
       "callNumber" : "HF1359 .C524 2003",
       "instanceId" : "760c3ba1-23ec-37fd-acf2-f348e519b10b",
-      "instanceHrid" : "in00001697508",
+      "instanceHrid" : "in00001700181",
       "holdingsId" : "b602a8c9-e95f-3727-ad2e-7506a351437a"
     }
   }, {
@@ -1484,7 +1484,7 @@
       } ],
       "callNumber" : "GC11.2 .T49 2014",
       "instanceId" : "5f03bd9d-98a9-3dd3-9000-eafc2e939bf2",
-      "instanceHrid" : "in00003497569",
+      "instanceHrid" : "in00003503260",
       "holdingsId" : "cdfbd2b4-a84d-3573-9f25-a4baccce21a8"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1517,7 +1517,7 @@
       "callNumber" : "HM291 .E625 1999",
       "enumeration" : "v.1",
       "instanceId" : "a33216db-ab41-3af0-9921-5298a1128665",
-      "instanceHrid" : "in00001388527",
+      "instanceHrid" : "in00001390763",
       "holdingsId" : "837a2fa3-5e05-368b-bfac-d4a59cf04ad2"
     }
   }, {
@@ -1544,7 +1544,7 @@
       } ],
       "callNumber" : "QA76.9.A25 L36 2017",
       "instanceId" : "8fd2ea95-2ff7-3af6-9d4e-9d5ff2e0f40b",
-      "instanceHrid" : "in00003956513",
+      "instanceHrid" : "in00003962887",
       "holdingsId" : "7486de04-5b4f-302d-8c4c-846834cbe682"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
@@ -1583,7 +1583,7 @@
       } ],
       "callNumber" : "BH39 .A2875 2020",
       "instanceId" : "01ed4b52-7382-3915-ba01-484c54e1f785",
-      "instanceHrid" : "in00004661159",
+      "instanceHrid" : "in00004668595",
       "holdingsId" : "76f51189-8652-3b81-91f0-f541f2baa13e"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
