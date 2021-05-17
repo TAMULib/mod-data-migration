@@ -182,6 +182,27 @@ public class ReferenceDataService {
                 String id = node.get("id").asText();
                 node = okapiService.fetchReferenceDataById(okapi, datum, id);
               }
+              for (Map.Entry<String, Object> def : datum.getDefaults().entrySet()) {
+                String property = def.getKey();
+                Object value = def.getValue();
+                int lastIndexOf = property.lastIndexOf(".");
+                if (lastIndexOf >= 0) {
+                  property = property.substring(lastIndexOf + 1);
+                }
+                if (value instanceof String) {
+                  getNode(node, def.getKey()).put(property, (String) value);
+                } else if (value instanceof Integer) {
+                  getNode(node, def.getKey()).put(property, (Integer) value);
+                } else if (value instanceof Long) {
+                  getNode(node, def.getKey()).put(property, (Long) value);
+                } else if (value instanceof Float) {
+                  getNode(node, def.getKey()).put(property, (Float) value);
+                } else if (value instanceof Double) {
+                  getNode(node, def.getKey()).put(property, (Double) value);
+                } else if (value instanceof Boolean) {
+                  getNode(node, def.getKey()).put(property, (Boolean) value);
+                }
+              }
               if (!datum.getTransform().isEmpty()) {
                 ObjectNode transformed = objectMapper.createObjectNode();
                 for (Map.Entry<String, String> te : datum.getTransform().entrySet()) {

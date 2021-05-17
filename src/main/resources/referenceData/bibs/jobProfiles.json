@@ -3,6 +3,7 @@
   "query" : "limit=9999&query=(name<>TAMU * Bibligraphic Migration) AND (name<>Create MARC Bibs)",
   "reify" : false,
   "dependencies" : [ ],
+  "defaults" : { },
   "transform" : {
     "profile" : ".",
     "id" : "id"
@@ -10,6 +11,61 @@
   "excludedProperties" : [ "profile.metadata", "profile.id", "profile.parentProfiles", "profile.childProfiles" ],
   "additional" : [ ],
   "data" : [ {
+    "profile" : {
+      "name" : "Inventory Single Record - Default Create Instance",
+      "description" : "Triggered by an action in Inventory, this job profile imports a single record from an external system, to create an Instance and MARC record",
+      "dataType" : "MARC",
+      "tags" : {
+        "tagList" : [ ]
+      },
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "System",
+        "lastName" : "System",
+        "userName" : "System"
+      }
+    },
+    "id" : "d0ebb7b0-2f0f-11eb-adc1-0242ac120002"
+  }, {
+    "profile" : {
+      "name" : "Inventory Single Record - Default Update Instance",
+      "description" : "Triggered by an action in Inventory, this job profile imports a single record from an external system, to update an existing Instance, and either create a new MARC record or update an existing MARC record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "System",
+        "lastName" : "System",
+        "userName" : "System"
+      }
+    },
+    "id" : "91f9b8d6-d80e-4727-9783-73fb53e3c786"
+  }, {
+    "profile" : {
+      "name" : "Default - Create instance and SRS MARC Bib",
+      "description" : "This job profile creates SRS MARC Bib records and corresponding Inventory Instances using the library's default MARC-to-Instance mapping. It can be edited, duplicated, or deleted.",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "System",
+        "lastName" : "System",
+        "userName" : "System"
+      }
+    },
+    "id" : "e34d7b92-9b83-11eb-a8b3-0242ac130003"
+  }, {
+    "profile" : {
+      "name" : "quickMARC Derive - Create SRS MARC Bib and Instance",
+      "description" : "This job profile is used by the quickMARC Derive action to create a new SRS MARC Bib record and corresponding Inventory Instance. It cannot be edited or deleted.",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "System",
+        "lastName" : "System",
+        "userName" : "System"
+      }
+    },
+    "id" : "6409dcff-71fa-433a-bc6a-e70ad38a9604"
+  }, {
     "profile" : {
       "name" : "MARCIVE-Create New Instances and Holdings Records URL",
       "description" : "",
@@ -21,7 +77,7 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "a2d48908-824c-4b7e-8419-8512f06071b7"
+    "id" : "81945013-722c-43be-b0be-7015168127ff"
   }, {
     "profile" : {
       "name" : "Test 9xx delete",
@@ -34,7 +90,7 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "a55ac658-39e2-449f-824c-4f9f5e25b7cc"
+    "id" : "0476a45b-1ec5-4f96-9a94-1207a92a294f"
   }, {
     "profile" : {
       "name" : "Print Books - Create New Record",
@@ -42,12 +98,12 @@
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "Shannon",
-        "lastName" : "Burke",
-        "userName" : "sburke"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "df287e8d-afb3-4d70-887b-766dc4369b5d"
+    "id" : "5a2bb97e-137a-4379-b91b-56ebc197816d"
   }, {
     "profile" : {
       "name" : "Print Book - Overlay",
@@ -55,11 +111,11 @@
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "Shannon",
-        "lastName" : "Burke",
-        "userName" : "sburke"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "d928d3b5-59de-4bb1-aceb-7f35abb9b88e"
+    "id" : "fbfa31be-d522-40ef-aa3d-29bde2c5ab1c"
   } ]
 }

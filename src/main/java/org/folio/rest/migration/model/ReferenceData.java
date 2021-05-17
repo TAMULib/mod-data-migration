@@ -34,6 +34,8 @@ public class ReferenceData {
 
   private List<String> dependencies;
 
+  private Map<String, Object> defaults;
+
   private Map<String, String> transform;
 
   private List<String> excludedProperties;
@@ -45,6 +47,7 @@ public class ReferenceData {
   public ReferenceData() {
     reify = false;
     dependencies = new ArrayList<>();
+    defaults = new HashMap<>();
     transform = new HashMap<>();
     excludedProperties = new ArrayList<>();
     additional = new ArrayList<>();
@@ -113,6 +116,14 @@ public class ReferenceData {
 
   public void setReify(Boolean reify) {
     this.reify = reify;
+  }
+
+  public Map<String, Object> getDefaults() {
+    return defaults;
+  }
+
+  public void setDefaults(Map<String, Object> defaults) {
+    this.defaults = defaults;
   }
 
   public Map<String, String> getTransform() {

@@ -3,6 +3,7 @@
   "query" : "limit=9999",
   "reify" : false,
   "dependencies" : [ ],
+  "defaults" : { },
   "transform" : { },
   "excludedProperties" : [ "metadata" ],
   "additional" : [ ],
@@ -263,34 +264,6 @@
     "name" : "BCBP",
     "description" : "Biochemistry and Biophysics"
   }, {
-    "id" : "96394e34-43bc-4705-a677-07d24bf1c7f7",
-    "name" : "CLAS",
-    "description" : "Classics"
-  }, {
-    "id" : "083f28d9-acb1-42ca-85c9-f223c8865531",
-    "name" : "EDTC",
-    "description" : "Educational Technology"
-  }, {
-    "id" : "bfb74ecd-523f-4b87-829c-c72f1dc20939",
-    "name" : "FIVS",
-    "description" : "Forensic & Investigative Sciences"
-  }, {
-    "id" : "5f6ae391-24f5-42a2-ad71-59bd6c737f49",
-    "name" : "MARS",
-    "description" : "Marine Science"
-  }, {
-    "id" : "79ada014-21db-4dd2-bc0a-317092d497db",
-    "name" : "MRAD",
-    "description" : "Radiology"
-  }, {
-    "id" : "99d2efbe-d98b-4701-a70a-e8222d90fc3a",
-    "name" : "OCNG",
-    "description" : "Oceanography"
-  }, {
-    "id" : "968d6ca6-cade-4f85-92ef-33bc49f213bc",
-    "name" : "HISP",
-    "description" : "Hispanic Studies"
-  }, {
     "id" : "1f24b231-ed7c-4da4-8e92-2126984bfedd",
     "name" : "ITDE",
     "description" : "Interdisciplinary Engr"
@@ -322,6 +295,78 @@
     "id" : "5b809041-a071-4599-9fc7-84f81a56ea34",
     "name" : "ECHE",
     "description" : "Early Childhood Ed Fld Based"
+  }, {
+    "id" : "96394e34-43bc-4705-a677-07d24bf1c7f7",
+    "name" : "CLAS",
+    "description" : "Classics"
+  }, {
+    "id" : "083f28d9-acb1-42ca-85c9-f223c8865531",
+    "name" : "EDTC",
+    "description" : "Educational Technology"
+  }, {
+    "id" : "bfb74ecd-523f-4b87-829c-c72f1dc20939",
+    "name" : "FIVS",
+    "description" : "Forensic & Investigative Sciences"
+  }, {
+    "id" : "5f6ae391-24f5-42a2-ad71-59bd6c737f49",
+    "name" : "MARS",
+    "description" : "Marine Science"
+  }, {
+    "id" : "79ada014-21db-4dd2-bc0a-317092d497db",
+    "name" : "MRAD",
+    "description" : "Radiology"
+  }, {
+    "id" : "99d2efbe-d98b-4701-a70a-e8222d90fc3a",
+    "name" : "OCNG",
+    "description" : "Oceanography"
+  }, {
+    "id" : "968d6ca6-cade-4f85-92ef-33bc49f213bc",
+    "name" : "HISP",
+    "description" : "Hispanic Studies"
+  }, {
+    "id" : "bb236cd8-79d3-4599-ac21-1e85ae9002d7",
+    "name" : "MMET",
+    "description" : "Manufacturing & Mechanical Engineering Technology"
+  }, {
+    "id" : "5e6609aa-200c-49cb-af63-7d884c61b19f",
+    "name" : "OBGY",
+    "description" : "Obstetrics & Gynecology"
+  }, {
+    "id" : "03dc9a11-6786-4661-8e5e-76c2df7da0e8",
+    "name" : "HEFB",
+    "description" : "Health Ed Field Based"
+  }, {
+    "id" : "4e7538db-cc10-49c8-a779-eb3c7f267d0a",
+    "name" : "ISTM",
+    "description" : "Information Systems Management"
+  }, {
+    "id" : "5a143de0-ae50-47e1-aca1-e913cb573ccf",
+    "name" : "METR",
+    "description" : "Meteorology"
+  }, {
+    "id" : "04c238bd-74d2-40f7-93ff-0ce84a5e4d36",
+    "name" : "NEXT",
+    "description" : "Neurosci & Exp Therapeutics"
+  }, {
+    "id" : "0a0eeae3-c3ea-4510-8984-03bd5125d5fb",
+    "name" : "PEDD",
+    "description" : "Pediatric Dentistry"
+  }, {
+    "id" : "901e3674-f0c0-4ce8-8d9a-2d3bbc2e4d68",
+    "name" : "MICR",
+    "description" : "Microbiology"
+  }, {
+    "id" : "0df6ddcc-bc39-419e-95fe-aaba11cf7f9a",
+    "name" : "MART",
+    "description" : "Marine Transportation"
+  }, {
+    "id" : "e9174810-304d-4514-8a3d-ab7c8afb3b08",
+    "name" : "MSCI",
+    "description" : "Medical Sciences"
+  }, {
+    "id" : "968eff45-28b3-4a63-8de7-ee0e27aeb322",
+    "name" : "OCRE",
+    "description" : "Ocean & Coastal Resources"
   }, {
     "id" : "b3b5697b-7c58-4e78-b898-7af193e7fea4",
     "name" : "EPSY",
@@ -434,6 +479,38 @@
     "id" : "471d54c9-86f6-4d96-a29e-01f70b7c57cc",
     "name" : "COSC",
     "description" : "Construction Science"
+  }, {
+    "id" : "9e5f72d0-8df7-4723-ad9f-57ea20caec49",
+    "name" : "MXET",
+    "description" : "Multidiscip Engr Tech"
+  }, {
+    "id" : "e9869826-9c2e-4d2d-b870-6cbc37100d4e",
+    "name" : "OMSU",
+    "description" : "Dpt Oral & Maxofac Surg"
+  }, {
+    "id" : "2e2eab6a-aaee-462e-85af-33da69e1b039",
+    "name" : "HORT",
+    "description" : "Horticultural Sciences"
+  }, {
+    "id" : "c73ab978-5bac-4999-8d69-e84d34b455ed",
+    "name" : "MARA",
+    "description" : "Maritime Administration"
+  }, {
+    "id" : "288cca7b-0c78-4381-88f5-cb29c452f653",
+    "name" : "KINE",
+    "description" : "Kinesiology"
+  }, {
+    "id" : "88b8e8b2-0850-41ad-9d25-07656e96ae3a",
+    "name" : "MKTG",
+    "description" : "Marketing"
+  }, {
+    "id" : "023c939e-17b5-40cf-99a4-e5e60f787b8a",
+    "name" : "NURS",
+    "description" : "Nursing"
+  }, {
+    "id" : "7e88c988-88ae-48e5-aed2-96e9c52b09d4",
+    "name" : "PHAR",
+    "description" : "Pharmacy"
   }, {
     "id" : "bc8ae36e-8e7f-4aaa-ae68-d386f8694d46",
     "name" : "CVEN",
@@ -587,85 +664,93 @@
     "name" : "MAST",
     "description" : "Maritime Studies"
   }, {
-    "id" : "9e5f72d0-8df7-4723-ad9f-57ea20caec49",
-    "name" : "MXET",
-    "description" : "Multidiscip Engr Tech"
+    "id" : "f55b4aa5-5d6c-486c-81ed-b1cbb3f3d4bd",
+    "name" : "VSCS",
+    "description" : "Veterinary Small Animal Clin Sc"
   }, {
-    "id" : "e9869826-9c2e-4d2d-b870-6cbc37100d4e",
-    "name" : "OMSU",
-    "description" : "Dpt Oral & Maxofac Surg"
+    "id" : "52bc4b6b-8f3a-4354-9f0f-6153066240b0",
+    "name" : "WGST",
+    "description" : "Woman & Gender Studies"
   }, {
-    "id" : "2e2eab6a-aaee-462e-85af-33da69e1b039",
-    "name" : "HORT",
-    "description" : "Horticultural Sciences"
+    "id" : "84b47378-8de0-4561-b954-c64f5c392657",
+    "name" : "PHIL",
+    "description" : "Philosophy"
   }, {
-    "id" : "c73ab978-5bac-4999-8d69-e84d34b455ed",
-    "name" : "MARA",
-    "description" : "Maritime Administration"
+    "id" : "12bdd58f-2112-45ee-b06d-daa90c0742c3",
+    "name" : "PHYS",
+    "description" : "Physics"
   }, {
-    "id" : "bb236cd8-79d3-4599-ac21-1e85ae9002d7",
-    "name" : "MMET",
-    "description" : "Manufacturing & Mechanical Engineering Technology"
+    "id" : "46bb429b-283f-46ed-ad0a-2b0214914a3b",
+    "name" : "PSAA",
+    "description" : "Public Service and Administration"
   }, {
-    "id" : "5e6609aa-200c-49cb-af63-7d884c61b19f",
-    "name" : "OBGY",
-    "description" : "Obstetrics & Gynecology"
+    "id" : "bd664c12-e783-4d45-b311-65480792ef59",
+    "name" : "RENR",
+    "description" : "Renewable Natural Resources"
   }, {
-    "id" : "03dc9a11-6786-4661-8e5e-76c2df7da0e8",
-    "name" : "HEFB",
-    "description" : "Health Ed Field Based"
+    "id" : "dc7bdbff-d646-4c49-b25b-cba2852b2253",
+    "name" : "SCEN",
+    "description" : "Science"
   }, {
-    "id" : "4e7538db-cc10-49c8-a779-eb3c7f267d0a",
-    "name" : "ISTM",
-    "description" : "Information Systems Management"
+    "id" : "03e26b2a-9f8e-4a47-ad8a-1585baec5826",
+    "name" : "SPAN",
+    "description" : "Spanish"
   }, {
-    "id" : "5a143de0-ae50-47e1-aca1-e913cb573ccf",
-    "name" : "METR",
-    "description" : "Meteorology"
+    "id" : "4ff80419-b4a7-4fe5-98c1-0a9e0f0c6aee",
+    "name" : "SRPH",
+    "description" : "School of Rural Public Health"
   }, {
-    "id" : "04c238bd-74d2-40f7-93ff-0ce84a5e4d36",
-    "name" : "NEXT",
-    "description" : "Neurosci & Exp Therapeutics"
+    "id" : "ee5ddb33-86f9-4afc-8592-e40ae783be6e",
+    "name" : "TEST",
+    "description" : "Test course"
   }, {
-    "id" : "0a0eeae3-c3ea-4510-8984-03bd5125d5fb",
-    "name" : "PEDD",
-    "description" : "Pediatric Dentistry"
+    "id" : "9372ce39-b2bc-49fc-a3d0-aa172c8ba87d",
+    "name" : "URPN",
+    "description" : "Urban & Regional Planning"
   }, {
-    "id" : "901e3674-f0c0-4ce8-8d9a-2d3bbc2e4d68",
-    "name" : "MICR",
-    "description" : "Microbiology"
+    "id" : "d6165232-209b-4128-8dab-31b2beb9eeac",
+    "name" : "VLCS",
+    "description" : "Veterinary Large Animal Clin Sc"
   }, {
-    "id" : "0df6ddcc-bc39-419e-95fe-aaba11cf7f9a",
-    "name" : "MART",
-    "description" : "Marine Transportation"
+    "id" : "c6ba02fc-87cc-4350-9a19-9258c00f21a7",
+    "name" : "VTPP",
+    "description" : "Veterinary Physiology and Pharm"
   }, {
-    "id" : "e9174810-304d-4514-8a3d-ab7c8afb3b08",
-    "name" : "MSCI",
-    "description" : "Medical Sciences"
+    "id" : "bea6ec9d-ad5e-4e10-95ed-b73746ac51e4",
+    "name" : "PHLT",
+    "description" : "Public Health"
   }, {
-    "id" : "968eff45-28b3-4a63-8de7-ee0e27aeb322",
-    "name" : "OCRE",
-    "description" : "Ocean & Coastal Resources"
+    "id" : "2ca2f4ae-9d79-4912-b089-a29a76e8177a",
+    "name" : "POLS",
+    "description" : "Political Science"
+  }, {
+    "id" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+    "name" : "PSYC",
+    "description" : "Psychology"
   }, {
     "id" : "7046d03b-83f2-419a-ad34-c7ee85149243",
     "name" : "HLKN",
     "description" : "Health and Kinesiology"
   }, {
-    "id" : "288cca7b-0c78-4381-88f5-cb29c452f653",
-    "name" : "KINE",
-    "description" : "Kinesiology"
+    "id" : "01518200-9116-4b41-a147-050f8a2ebd66",
+    "name" : "SOMS",
+    "description" : "School of Military Sciences"
   }, {
-    "id" : "88b8e8b2-0850-41ad-9d25-07656e96ae3a",
-    "name" : "MKTG",
-    "description" : "Marketing"
+    "id" : "edbac64b-8754-4848-961b-a3c0f2adc3ec",
+    "name" : "SPSC",
+    "description" : "Spatial Sciences"
   }, {
-    "id" : "023c939e-17b5-40cf-99a4-e5e60f787b8a",
-    "name" : "NURS",
-    "description" : "Nursing"
+    "id" : "81367982-542f-4bbb-8ea7-d0ff15b40556",
+    "name" : "TEFB",
+    "description" : "Teacher Ed Field Based"
   }, {
-    "id" : "7e88c988-88ae-48e5-aed2-96e9c52b09d4",
-    "name" : "PHAR",
-    "description" : "Pharmacy"
+    "id" : "3a24f209-a5d8-4a47-a9ad-eb92e13328d6",
+    "name" : "UGST",
+    "description" : "Undergraduate Studies"
+  }, {
+    "id" : "cd748a98-df0d-455c-87e6-8eb5ed24444d",
+    "name" : "VIST",
+    "description" : "Visualization"
   }, {
     "id" : "8b9426f3-30c3-4654-9078-e0ee7e8bc2b5",
     "name" : "MEFB",
@@ -810,90 +895,6 @@
     "id" : "27da09ae-180a-49c7-8a61-453ce0c660fc",
     "name" : "RPTS",
     "description" : "Recreation Parks & Tourism Sciences"
-  }, {
-    "id" : "01518200-9116-4b41-a147-050f8a2ebd66",
-    "name" : "SOMS",
-    "description" : "School of Military Sciences"
-  }, {
-    "id" : "edbac64b-8754-4848-961b-a3c0f2adc3ec",
-    "name" : "SPSC",
-    "description" : "Spatial Sciences"
-  }, {
-    "id" : "81367982-542f-4bbb-8ea7-d0ff15b40556",
-    "name" : "TEFB",
-    "description" : "Teacher Ed Field Based"
-  }, {
-    "id" : "3a24f209-a5d8-4a47-a9ad-eb92e13328d6",
-    "name" : "UGST",
-    "description" : "Undergraduate Studies"
-  }, {
-    "id" : "cd748a98-df0d-455c-87e6-8eb5ed24444d",
-    "name" : "VIST",
-    "description" : "Visualization"
-  }, {
-    "id" : "f55b4aa5-5d6c-486c-81ed-b1cbb3f3d4bd",
-    "name" : "VSCS",
-    "description" : "Veterinary Small Animal Clin Sc"
-  }, {
-    "id" : "52bc4b6b-8f3a-4354-9f0f-6153066240b0",
-    "name" : "WGST",
-    "description" : "Woman & Gender Studies"
-  }, {
-    "id" : "84b47378-8de0-4561-b954-c64f5c392657",
-    "name" : "PHIL",
-    "description" : "Philosophy"
-  }, {
-    "id" : "12bdd58f-2112-45ee-b06d-daa90c0742c3",
-    "name" : "PHYS",
-    "description" : "Physics"
-  }, {
-    "id" : "46bb429b-283f-46ed-ad0a-2b0214914a3b",
-    "name" : "PSAA",
-    "description" : "Public Service and Administration"
-  }, {
-    "id" : "bd664c12-e783-4d45-b311-65480792ef59",
-    "name" : "RENR",
-    "description" : "Renewable Natural Resources"
-  }, {
-    "id" : "dc7bdbff-d646-4c49-b25b-cba2852b2253",
-    "name" : "SCEN",
-    "description" : "Science"
-  }, {
-    "id" : "03e26b2a-9f8e-4a47-ad8a-1585baec5826",
-    "name" : "SPAN",
-    "description" : "Spanish"
-  }, {
-    "id" : "4ff80419-b4a7-4fe5-98c1-0a9e0f0c6aee",
-    "name" : "SRPH",
-    "description" : "School of Rural Public Health"
-  }, {
-    "id" : "ee5ddb33-86f9-4afc-8592-e40ae783be6e",
-    "name" : "TEST",
-    "description" : "Test course"
-  }, {
-    "id" : "9372ce39-b2bc-49fc-a3d0-aa172c8ba87d",
-    "name" : "URPN",
-    "description" : "Urban & Regional Planning"
-  }, {
-    "id" : "d6165232-209b-4128-8dab-31b2beb9eeac",
-    "name" : "VLCS",
-    "description" : "Veterinary Large Animal Clin Sc"
-  }, {
-    "id" : "c6ba02fc-87cc-4350-9a19-9258c00f21a7",
-    "name" : "VTPP",
-    "description" : "Veterinary Physiology and Pharm"
-  }, {
-    "id" : "bea6ec9d-ad5e-4e10-95ed-b73746ac51e4",
-    "name" : "PHLT",
-    "description" : "Public Health"
-  }, {
-    "id" : "2ca2f4ae-9d79-4912-b089-a29a76e8177a",
-    "name" : "POLS",
-    "description" : "Political Science"
-  }, {
-    "id" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
-    "name" : "PSYC",
-    "description" : "Psychology"
   }, {
     "id" : "80f253d8-3e1d-46f6-ba01-00855d105228",
     "name" : "RLEM",

@@ -3,6 +3,7 @@
   "query" : "limit=9999",
   "reify" : false,
   "dependencies" : [ "actionProfiles", "jobProfiles" ],
+  "defaults" : { },
   "transform" : {
     "profile" : ".",
     "id" : "id"
@@ -10,6 +11,99 @@
   "excludedProperties" : [ "profile.metadata", "profile.id", "profile.parentProfiles", "profile.childProfiles" ],
   "additional" : [ ],
   "data" : [ {
+    "profile" : {
+      "name" : "Inventory Single Record - Default match for existing SRS record",
+      "description" : "Matches the Instance UUID from the 999 ff $i in the incoming MARC record to the same field in any SRS MARC Bib",
+      "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+      "existingRecordType" : "MARC_BIBLIOGRAPHIC",
+      "matchDetails" : [ {
+        "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+        "existingRecordType" : "MARC_BIBLIOGRAPHIC",
+        "incomingMatchExpression" : {
+          "dataValueType" : "VALUE_FROM_RECORD",
+          "fields" : [ {
+            "label" : "field",
+            "value" : "999"
+          }, {
+            "label" : "indicator1",
+            "value" : "f"
+          }, {
+            "label" : "indicator2",
+            "value" : "f"
+          }, {
+            "label" : "recordSubfield",
+            "value" : "i"
+          } ]
+        },
+        "matchCriterion" : "EXACTLY_MATCHES",
+        "existingMatchExpression" : {
+          "dataValueType" : "VALUE_FROM_RECORD",
+          "fields" : [ {
+            "label" : "field",
+            "value" : "999"
+          }, {
+            "label" : "indicator1",
+            "value" : "f"
+          }, {
+            "label" : "indicator2",
+            "value" : "f"
+          }, {
+            "label" : "recordSubfield",
+            "value" : "i"
+          } ]
+        }
+      } ],
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "System",
+        "lastName" : "System",
+        "userName" : "System"
+      }
+    },
+    "id" : "d27d71ce-8a1e-44c6-acea-96961b5592c6"
+  }, {
+    "profile" : {
+      "name" : "Inventory Single Record - Default match for no SRS record",
+      "description" : "Matches the Instance UUID from the 999 ff $i in the incoming MARC record to the UUID of the existing Instance record",
+      "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+      "existingRecordType" : "INSTANCE",
+      "matchDetails" : [ {
+        "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+        "existingRecordType" : "INSTANCE",
+        "incomingMatchExpression" : {
+          "dataValueType" : "VALUE_FROM_RECORD",
+          "fields" : [ {
+            "label" : "field",
+            "value" : "999"
+          }, {
+            "label" : "indicator1",
+            "value" : "f"
+          }, {
+            "label" : "indicator2",
+            "value" : "f"
+          }, {
+            "label" : "recordSubfield",
+            "value" : "i"
+          } ]
+        },
+        "matchCriterion" : "EXACTLY_MATCHES",
+        "existingMatchExpression" : {
+          "dataValueType" : "VALUE_FROM_RECORD",
+          "fields" : [ {
+            "label" : "field",
+            "value" : "instance.id"
+          } ]
+        }
+      } ],
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "System",
+        "lastName" : "System",
+        "userName" : "System"
+      }
+    },
+    "id" : "31dbb554-0826-48ec-a0a4-3c55293d4dee"
+  }, {
     "profile" : {
       "name" : "MATCH-MARCIVE Instances",
       "description" : "",
@@ -57,7 +151,7 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "ab64654c-282a-4f7d-9fab-18477040a748"
+    "id" : "2e6016cf-68c3-4834-bf0b-e079c4233fab"
   }, {
     "profile" : {
       "name" : "Match on 001 to HRID",
@@ -94,11 +188,11 @@
       } ],
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "Shannon",
-        "lastName" : "Burke",
-        "userName" : "sburke"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "cd8d5ead-7453-43b0-a6fd-175521aed7b8"
+    "id" : "4b7d7a4c-06b1-471d-ba7a-db967b533fc2"
   } ]
 }
