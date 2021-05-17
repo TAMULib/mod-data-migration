@@ -1,6 +1,6 @@
 {
   "path" : "/data-import-profiles/actionProfiles",
-  "query" : "limit=9999",
+  "query" : "limit=9999&query=(id<>d0ebba8a-2f0f-11eb-adc1-0242ac120002) AND (id<>cddff0e1-233c-47ba-8be5-553c632709d9) AND (id<>6aa8e98b-0d9f-41dd-b26f-15658d07eb52)",
   "reify" : false,
   "dependencies" : [ "jobProfiles" ],
   "defaults" : { },
@@ -11,48 +11,6 @@
   "excludedProperties" : [ "profile.metadata", "profile.id", "profile.parentProfiles", "profile.childProfiles" ],
   "additional" : [ ],
   "data" : [ {
-    "profile" : {
-      "name" : "Inventory Single Record - Default Create Instance",
-      "description" : "Creates new Inventory Instances and SRS MARC Bib records based on Inventory single record imports",
-      "action" : "CREATE",
-      "folioRecord" : "INSTANCE",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "System",
-        "lastName" : "System",
-        "userName" : "System"
-      }
-    },
-    "id" : "d0ebba8a-2f0f-11eb-adc1-0242ac120002"
-  }, {
-    "profile" : {
-      "name" : "Inventory Single Record - Default Update Instance",
-      "description" : "Updates existing Inventory Instances based on Inventory single record imports",
-      "action" : "UPDATE",
-      "folioRecord" : "INSTANCE",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "System",
-        "lastName" : "System",
-        "userName" : "System"
-      }
-    },
-    "id" : "cddff0e1-233c-47ba-8be5-553c632709d9"
-  }, {
-    "profile" : {
-      "name" : "Inventory Single Record - Default Update MARC Bib",
-      "description" : "Updates existing SRS MARC Bib records based on Inventory single record imports",
-      "action" : "UPDATE",
-      "folioRecord" : "MARC_BIBLIOGRAPHIC",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "System",
-        "lastName" : "System",
-        "userName" : "System"
-      }
-    },
-    "id" : "6aa8e98b-0d9f-41dd-b26f-15658d07eb52"
-  }, {
     "profile" : {
       "name" : "Default - Create instance",
       "description" : "This action profile is used with FOLIO's default job profile for creating Inventory Instances and SRS MARC Bibliographic records. It can be edited, duplicated, or deleted.",

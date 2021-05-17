@@ -1,6 +1,6 @@
 {
   "path" : "/data-import-profiles/matchProfiles",
-  "query" : "limit=9999",
+  "query" : "limit=9999&query=(id<>d27d71ce-8a1e-44c6-acea-96961b5592c6) AND (id<>31dbb554-0826-48ec-a0a4-3c55293d4dee)",
   "reify" : false,
   "dependencies" : [ "actionProfiles", "jobProfiles" ],
   "defaults" : { },
@@ -11,99 +11,6 @@
   "excludedProperties" : [ "profile.metadata", "profile.id", "profile.parentProfiles", "profile.childProfiles" ],
   "additional" : [ ],
   "data" : [ {
-    "profile" : {
-      "name" : "Inventory Single Record - Default match for existing SRS record",
-      "description" : "Matches the Instance UUID from the 999 ff $i in the incoming MARC record to the same field in any SRS MARC Bib",
-      "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
-      "existingRecordType" : "MARC_BIBLIOGRAPHIC",
-      "matchDetails" : [ {
-        "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
-        "existingRecordType" : "MARC_BIBLIOGRAPHIC",
-        "incomingMatchExpression" : {
-          "dataValueType" : "VALUE_FROM_RECORD",
-          "fields" : [ {
-            "label" : "field",
-            "value" : "999"
-          }, {
-            "label" : "indicator1",
-            "value" : "f"
-          }, {
-            "label" : "indicator2",
-            "value" : "f"
-          }, {
-            "label" : "recordSubfield",
-            "value" : "i"
-          } ]
-        },
-        "matchCriterion" : "EXACTLY_MATCHES",
-        "existingMatchExpression" : {
-          "dataValueType" : "VALUE_FROM_RECORD",
-          "fields" : [ {
-            "label" : "field",
-            "value" : "999"
-          }, {
-            "label" : "indicator1",
-            "value" : "f"
-          }, {
-            "label" : "indicator2",
-            "value" : "f"
-          }, {
-            "label" : "recordSubfield",
-            "value" : "i"
-          } ]
-        }
-      } ],
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "System",
-        "lastName" : "System",
-        "userName" : "System"
-      }
-    },
-    "id" : "d27d71ce-8a1e-44c6-acea-96961b5592c6"
-  }, {
-    "profile" : {
-      "name" : "Inventory Single Record - Default match for no SRS record",
-      "description" : "Matches the Instance UUID from the 999 ff $i in the incoming MARC record to the UUID of the existing Instance record",
-      "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
-      "existingRecordType" : "INSTANCE",
-      "matchDetails" : [ {
-        "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
-        "existingRecordType" : "INSTANCE",
-        "incomingMatchExpression" : {
-          "dataValueType" : "VALUE_FROM_RECORD",
-          "fields" : [ {
-            "label" : "field",
-            "value" : "999"
-          }, {
-            "label" : "indicator1",
-            "value" : "f"
-          }, {
-            "label" : "indicator2",
-            "value" : "f"
-          }, {
-            "label" : "recordSubfield",
-            "value" : "i"
-          } ]
-        },
-        "matchCriterion" : "EXACTLY_MATCHES",
-        "existingMatchExpression" : {
-          "dataValueType" : "VALUE_FROM_RECORD",
-          "fields" : [ {
-            "label" : "field",
-            "value" : "instance.id"
-          } ]
-        }
-      } ],
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "System",
-        "lastName" : "System",
-        "userName" : "System"
-      }
-    },
-    "id" : "31dbb554-0826-48ec-a0a4-3c55293d4dee"
-  }, {
     "profile" : {
       "name" : "MATCH-MARCIVE Instances",
       "description" : "",
