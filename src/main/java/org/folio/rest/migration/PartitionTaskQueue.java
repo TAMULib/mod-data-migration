@@ -1,5 +1,6 @@
 package org.folio.rest.migration;
 
+import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CompletableFuture;
@@ -33,11 +34,12 @@ public class PartitionTaskQueue<C extends AbstractContext> {
     this.callback = callback;
     this.executor = Executors.newFixedThreadPool(context.getParallelism());
     this.inProcess = new ArrayBlockingQueue<>(context.getParallelism());
-    this.inWait = new ArrayBlockingQueue<>(1024);
+    this.inWait = new ArrayBlockingQueue<>(128);
   }
 
   public synchronized void submit(PartitionTask<C> task) {
     if (inProcess.size() < context.getParallelism()) {
+      inProcess.add(task);
       start(task);
     } else {
       inWait.add(task);
@@ -47,12 +49,14 @@ public class PartitionTaskQueue<C extends AbstractContext> {
   public synchronized void complete(PartitionTask<C> task) {
     inProcess.remove(task);
     try {
-      if (inWait.isEmpty()) {
+      PartitionTask<C> nextTask = inWait.poll();
+      if (Objects.nonNull(nextTask)) {
+        inProcess.add(nextTask);
+        start(nextTask);
+      } else {
         if (inProcess.isEmpty()) {
           shutdown();
         }
-      } else {
-        start(inWait.take());
       }
     } catch (InterruptedException e) {
       e.printStackTrace();
@@ -60,16 +64,16 @@ public class PartitionTaskQueue<C extends AbstractContext> {
   }
 
   private void start(PartitionTask<C> task) {
-    inProcess.add(task);
-    CompletableFuture.supplyAsync(() -> task.execute(context), executor).thenAccept(this::complete);
+    CompletableFuture.supplyAsync(() -> task.execute(context), executor)
+      .thenAccept(this::complete);
   }
 
   private void shutdown() throws InterruptedException {
+    log.info("finished: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
+    callback.complete();
     executor.shutdown();
     executor.awaitTermination(1, TimeUnit.MINUTES);
     executor.shutdownNow();
-    log.info("finished: {} milliseconds", TimingUtility.getDeltaInMilliseconds(startTime));
-    callback.complete();
   }
 
 }

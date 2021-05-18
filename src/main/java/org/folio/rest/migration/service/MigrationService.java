@@ -1,7 +1,10 @@
 package org.folio.rest.migration.service;
 
+import java.util.Objects;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.annotation.PostConstruct;
 
@@ -56,9 +59,9 @@ public class MigrationService {
 
   public Database referenceLinkSettings;
 
-  private LinkedBlockingQueue<Migration> queue = new LinkedBlockingQueue<>();
+  private BlockingQueue<Migration> queue = new ArrayBlockingQueue<>(32);
 
-  private boolean inProgress = false;
+  private AtomicBoolean inProgress = new AtomicBoolean(false);
 
   @PostConstruct
   public void init() {
@@ -72,21 +75,21 @@ public class MigrationService {
 
   @Async("asyncTaskExecutor")
   public synchronized CompletableFuture<String> migrate(Migration migration) {
-    if (inProgress) {
-      queue.add(migration);
-      log.info("queued {}, position {}", migration.getClass().getSimpleName(), queue.size());
-      return CompletableFuture.completedFuture(String.format(QUEUED_RESPONSE_TEMPLATE, queue.size()));
+    if (inProgress.compareAndSet(false, true)) {
+      return migration.run(this);
     }
-    inProgress = true;
-    return migration.run(this);
+    queue.add(migration);
+    log.info("queued {}, position {}", migration.getClass().getSimpleName(), queue.size());
+    return CompletableFuture.completedFuture(String.format(QUEUED_RESPONSE_TEMPLATE, queue.size()));
   }
 
   public synchronized void complete() {
-    inProgress = false;
-    if (!queue.isEmpty()) {
-      Migration migration = queue.poll();
+    Migration migration = queue.poll();
+    if (Objects.nonNull(migration)) {
       log.info("dequeued {}, {} remaining", migration.getClass().getSimpleName(), queue.size());
-      migrate(migration);
+      migration.run(this);
+    } else {
+      inProgress.set(false);
     }
   }
 
