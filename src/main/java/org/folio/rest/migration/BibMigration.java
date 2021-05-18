@@ -202,8 +202,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
     private int hrid;
 
-    public BibPartitionTask(MigrationService migrationService, InstanceMapper instanceMapper,
-        Map<String, Object> partitionContext) {
+    public BibPartitionTask(MigrationService migrationService, InstanceMapper instanceMapper, Map<String, Object> partitionContext) {
       this.migrationService = migrationService;
       this.instanceMapper = instanceMapper;
       this.partitionContext = partitionContext;
