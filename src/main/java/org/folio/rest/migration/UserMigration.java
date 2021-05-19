@@ -293,6 +293,17 @@ public class UserMigration extends AbstractMigration<UserContext> {
               .thenAccept((pn) -> patronNotes.addAll(pn))
           ).get();
 
+          for (String content : patronNotes) {
+            String title = String.format("Patron note (migrated %s)", job.getDbCode());
+            Note note = createUserNote(referenceId, title, content, job.getNoteTypeId(), createdByUserId, createdDate);
+
+            try {
+              note = migrationService.okapiService.createNote(note, tenant, token);
+            } catch (Exception e) {
+              log.error("{} error creating note {}\n{}", schema, note, e.getMessage());
+            }
+          }
+
           if (!processUsername(userRecord.getUsername().toLowerCase())) {
             log.warn("{} patron id {} username {} already processed", schema, patronId, userRecord.getUsername());
             continue;
