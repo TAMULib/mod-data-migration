@@ -26,6 +26,7 @@ import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.InitJobExe
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.InitJobExecutionsRsDto;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.JobExecution;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.JobExecution.UiStatus;
+import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.Progress;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.RawRecordsDto;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_data_import_converter_storage.JobProfile;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_data_import_converter_storage.JobProfileCollection;
@@ -323,7 +324,11 @@ public class OkapiService {
     jobExecution.setCompletedDate(new Date());
     jobExecution.setStatus(Status.COMMITTED);
     jobExecution.setUiStatus(UiStatus.RUNNING_COMPLETE);
-    jobExecution.getProgress().setCurrent(rawRecordsDto.getRecordsMetadata().getCounter());
+    Progress progress = new Progress();
+    progress.setCurrent(rawRecordsDto.getRecordsMetadata().getCounter());
+    progress.setTotal(rawRecordsDto.getRecordsMetadata().getTotal());
+    progress.setJobExecutionId(jobExecution.getId());
+    jobExecution.setProgress(progress);
     putJobExecution(tenant, token, jobExecution);
   }
 
