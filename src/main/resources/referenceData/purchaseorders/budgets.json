@@ -24,54 +24,12 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "9d67f28a-12e7-4183-83d0-9809773b1f80",
-    "name" : "aviles-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "81348bdf-785c-4f69-8d2a-4579df2fe1d3",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "4284cef5-1aef-46ce-9d1e-2f8a30886c2d",
-    "name" : "barclay-FY2021",
-    "budgetStatus" : "Inactive",
-    "allocated" : 0.0,
-    "fundId" : "cd92a59f-4558-4867-a377-649d1e190213",
-    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
     "id" : "9d09f3c3-1ba7-4872-b128-3b1b0eec94fe",
     "name" : "bryanhum2-FY2021",
     "budgetStatus" : "Active",
     "allocated" : 0.0,
     "fundId" : "a90b2b82-aae5-4591-b771-287d5903ab82",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "a81f0a33-dfcb-4b04-9105-b2216e9c91df",
-    "name" : "bryanhum-FY2021",
-    "budgetStatus" : "Inactive",
-    "allocated" : 0.0,
-    "fundId" : "85f889f5-b0c0-4a96-a6cf-35066cb6c268",
-    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ],
     "initialAllocation" : 0.0,
     "allocationTo" : 0.0,
@@ -153,6 +111,34 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
+    "id" : "a81f0a33-dfcb-4b04-9105-b2216e9c91df",
+    "name" : "bryanhum-FY2021",
+    "budgetStatus" : "Inactive",
+    "allocated" : 0.0,
+    "fundId" : "85f889f5-b0c0-4a96-a6cf-35066cb6c268",
+    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 3000000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 3000000.0,
+    "cashBalance" : 3000000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "4284cef5-1aef-46ce-9d1e-2f8a30886c2d",
+    "name" : "barclay-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "cd92a59f-4558-4867-a377-649d1e190213",
+    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 0.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 0.0,
+    "cashBalance" : 0.0,
+    "statusExpenseClasses" : [ ]
+  }, {
     "id" : "ff6bc40d-eaec-4553-92bb-bf6162e0dda4",
     "name" : "kyle-FY2021",
     "budgetStatus" : "Inactive",
@@ -167,84 +153,11 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "352b7d7a-a2df-4a26-8916-705159efed32",
-    "name" : "scifi-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "5536d254-e8ae-4ecb-b1f3-352f67bbc925",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "dd065084-6eb4-419c-a07b-8409ab82c49b",
-    "name" : "cbenson-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "9dfaa0f3-023a-4281-a551-d77ca60cf768",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
     "id" : "df92beb2-63ce-42b1-99b9-6550895e91d0",
     "name" : "printbooks-FY2021",
     "budgetStatus" : "Inactive",
     "allocated" : 0.0,
     "fundId" : "e5fafe9a-2430-4b1a-8245-f5a8f152aab7",
-    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "7abe86eb-ffe6-44c8-8635-c432e0d86b7f",
-    "name" : "CShipping-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "6d392544-a226-46af-8bb9-29779f25f3b8",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "cb3e603c-ada4-4744-89cb-d3090cd78260",
-    "name" : "mslvethist-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "0609a9ae-78a8-4fd2-80b1-e29d1a9e5770",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ {
-      "expenseClassId" : "012ba30f-1d20-4afb-8029-2d64116e47f0",
-      "status" : "Active"
-    } ]
-  }, {
-    "id" : "d8262c43-62e7-4df6-943c-1cacdbbfcc31",
-    "name" : "weinbaum-FY2021",
-    "budgetStatus" : "Inactive",
-    "allocated" : 0.0,
-    "fundId" : "b4912480-9087-4f46-bca5-d4f0c5d85d9c",
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ],
     "initialAllocation" : 0.0,
@@ -268,26 +181,105 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "358a8ad9-5685-48ad-afca-2110185e0170",
-    "name" : "cmouse-FY2021",
+    "id" : "a70468d7-eed0-4eae-9c7e-47b68e8ee827",
+    "name" : "streaming-FY2021",
     "budgetStatus" : "Active",
     "allocated" : 0.0,
-    "fundId" : "4732e332-e9b0-4d59-b9c6-4dcd781edda1",
+    "fundId" : "fed55d65-8834-4054-9dbc-fe669309c352",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
+    "initialAllocation" : 125000.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
+    "totalFunding" : 125000.0,
+    "cashBalance" : 125000.0,
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "9859d59b-1043-4f3d-bc83-d207d4c2c3f4",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "8dd5588a-de13-45bc-8040-1ee5005160d8",
+      "status" : "Active"
+    } ]
   }, {
-    "id" : "13e1fb37-4e33-4f87-8130-fde0e67fea98",
-    "name" : "momclub2-FY2021",
+    "id" : "7abe86eb-ffe6-44c8-8635-c432e0d86b7f",
+    "name" : "CShipping-FY2021",
     "budgetStatus" : "Active",
     "allocated" : 0.0,
-    "fundId" : "b6e36a14-8d4c-472a-b0af-b5d881ba9d7f",
+    "fundId" : "6d392544-a226-46af-8bb9-29779f25f3b8",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 15000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 15000.0,
+    "cashBalance" : 15000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "352b7d7a-a2df-4a26-8916-705159efed32",
+    "name" : "scifi-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "5536d254-e8ae-4ecb-b1f3-352f67bbc925",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 60000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 60000.0,
+    "cashBalance" : 60000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "dd065084-6eb4-419c-a07b-8409ab82c49b",
+    "name" : "cbenson-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "9dfaa0f3-023a-4281-a551-d77ca60cf768",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 250.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 250.0,
+    "cashBalance" : 250.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "53f8a6dc-e636-4fa4-b269-85a27629b0e2",
+    "name" : "mbenson-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "e2f1ee85-7b9a-462a-b0cd-19a852feb3cc",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 734.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 734.0,
+    "cashBalance" : 734.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "cb3e603c-ada4-4744-89cb-d3090cd78260",
+    "name" : "mslvethist-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "0609a9ae-78a8-4fd2-80b1-e29d1a9e5770",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 100000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 100000.0,
+    "cashBalance" : 100000.0,
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "012ba30f-1d20-4afb-8029-2d64116e47f0",
+      "status" : "Active"
+    } ]
+  }, {
+    "id" : "d8262c43-62e7-4df6-943c-1cacdbbfcc31",
+    "name" : "weinbaum-FY2021",
+    "budgetStatus" : "Inactive",
+    "allocated" : 0.0,
+    "fundId" : "b4912480-9087-4f46-bca5-d4f0c5d85d9c",
+    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ],
     "initialAllocation" : 0.0,
     "allocationTo" : 0.0,
@@ -324,74 +316,12 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "53f8a6dc-e636-4fa4-b269-85a27629b0e2",
-    "name" : "mbenson-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "e2f1ee85-7b9a-462a-b0cd-19a852feb3cc",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "a70468d7-eed0-4eae-9c7e-47b68e8ee827",
-    "name" : "streaming-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "fed55d65-8834-4054-9dbc-fe669309c352",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ {
-      "expenseClassId" : "8dd5588a-de13-45bc-8040-1ee5005160d8",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "9859d59b-1043-4f3d-bc83-d207d4c2c3f4",
-      "status" : "Active"
-    } ]
-  }, {
-    "id" : "996ea62e-2f05-48c4-8de2-0e71d0710ea5",
-    "name" : "ship-FY2021",
-    "budgetStatus" : "Inactive",
-    "allocated" : 0.0,
-    "fundId" : "f5a025da-a1eb-4a12-a812-9f6f73ada150",
-    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
     "id" : "9b70846b-84d3-4876-a298-1a6ca516b98b",
     "name" : "ztest-zFY2021",
     "budgetStatus" : "Active",
     "allocated" : 0.0,
     "fundId" : "db0f5c9a-f483-4ef2-a034-a8418d202816",
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "e42aa23f-7be3-4d6d-8d09-7bb8d8c77f64",
-    "name" : "tamutest-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "8c11f6ae-68ec-4ddd-a837-f87fc9599edd",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
     "initialAllocation" : 0.0,
     "allocationTo" : 0.0,
@@ -414,11 +344,11 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "8881ba85-a89a-4761-9848-26ee4f49e578",
-    "name" : "qatarex-FY2021",
+    "id" : "7d84ea4f-2053-4cc9-a183-0ea3bfb28a38",
+    "name" : "replace-FY2021",
     "budgetStatus" : "Inactive",
     "allocated" : 0.0,
-    "fundId" : "d30d2697-bcae-4d54-827b-22728c31b76b",
+    "fundId" : "ef843bd4-9aeb-4d47-8833-896a6b691165",
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ],
     "initialAllocation" : 0.0,
@@ -428,12 +358,12 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "d5676896-9d18-495b-89aa-1f8d2c551aff",
-    "name" : "libraryendow-FY2021",
-    "budgetStatus" : "Active",
+    "id" : "42b2df20-7f43-4f93-b897-cd12dbe206a3",
+    "name" : "serial-FY2021",
+    "budgetStatus" : "Inactive",
     "allocated" : 0.0,
-    "fundId" : "448e6a06-f034-40de-a3f6-4a327ef95f66",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "fundId" : "bac2e4fd-63e9-494b-881d-bad3328bc9c6",
+    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ],
     "initialAllocation" : 0.0,
     "allocationTo" : 0.0,
@@ -442,12 +372,40 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "1247a63f-d319-448c-ae36-0870b2ac6c96",
-    "name" : "maritime-FY2021",
+    "id" : "0a3b779c-8dae-448e-973e-59a7022088c7",
+    "name" : "ragan-FY2021",
     "budgetStatus" : "Active",
     "allocated" : 0.0,
-    "fundId" : "3652900b-b5aa-4525-adf5-b46114cc3cb8",
+    "fundId" : "a109d620-3fdd-4979-89d1-ab6d96629c4b",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 28000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 28000.0,
+    "cashBalance" : 28000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "358a8ad9-5685-48ad-afca-2110185e0170",
+    "name" : "cmouse-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "4732e332-e9b0-4d59-b9c6-4dcd781edda1",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 450.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 450.0,
+    "cashBalance" : 450.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "996ea62e-2f05-48c4-8de2-0e71d0710ea5",
+    "name" : "ship-FY2021",
+    "budgetStatus" : "Inactive",
+    "allocated" : 0.0,
+    "fundId" : "f5a025da-a1eb-4a12-a812-9f6f73ada150",
+    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ],
     "initialAllocation" : 0.0,
     "allocationTo" : 0.0,
@@ -456,12 +414,12 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "acfbcd72-7b36-4a5d-b481-5ea178cf356c",
-    "name" : "kevin-FY2021",
-    "budgetStatus" : "Active",
+    "id" : "8881ba85-a89a-4761-9848-26ee4f49e578",
+    "name" : "qatarex-FY2021",
+    "budgetStatus" : "Inactive",
     "allocated" : 0.0,
-    "fundId" : "28c60645-252b-4095-bc8d-74e528d3e678",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "fundId" : "d30d2697-bcae-4d54-827b-22728c31b76b",
+    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
     "acqUnitIds" : [ ],
     "initialAllocation" : 0.0,
     "allocationTo" : 0.0,
@@ -498,40 +456,12 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "7d84ea4f-2053-4cc9-a183-0ea3bfb28a38",
-    "name" : "replace-FY2021",
-    "budgetStatus" : "Inactive",
-    "allocated" : 0.0,
-    "fundId" : "ef843bd4-9aeb-4d47-8833-896a6b691165",
-    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
     "id" : "151fdac0-19ce-43c2-9722-593e74c3ff0f",
     "name" : "mouse-FY2021",
     "budgetStatus" : "Inactive",
     "allocated" : 0.0,
     "fundId" : "d44968f2-a02c-4537-89d7-9aa371a6a4f5",
     "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "ad0878e9-ba9b-47b7-8b9f-81019da74457",
-    "name" : "buffer-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "80885d10-1abe-4d97-ab3d-1f7dda1c1b82",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
     "initialAllocation" : 0.0,
     "allocationTo" : 0.0,
@@ -554,6 +484,48 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
+    "id" : "acfbcd72-7b36-4a5d-b481-5ea178cf356c",
+    "name" : "kevin-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "28c60645-252b-4095-bc8d-74e528d3e678",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 140000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 140000.0,
+    "cashBalance" : 140000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "1247a63f-d319-448c-ae36-0870b2ac6c96",
+    "name" : "maritime-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "3652900b-b5aa-4525-adf5-b46114cc3cb8",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 15000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 15000.0,
+    "cashBalance" : 15000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "e42aa23f-7be3-4d6d-8d09-7bb8d8c77f64",
+    "name" : "tamutest-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "8c11f6ae-68ec-4ddd-a837-f87fc9599edd",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 100000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 100000.0,
+    "cashBalance" : 100000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
     "id" : "abbf7b8e-587f-425d-bc9c-4e366c6ace50",
     "name" : "tapley-FY2021",
     "budgetStatus" : "Inactive",
@@ -567,52 +539,6 @@
     "totalFunding" : 0.0,
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "0a3b779c-8dae-448e-973e-59a7022088c7",
-    "name" : "ragan-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "a109d620-3fdd-4979-89d1-ab6d96629c4b",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "c25628ec-6f47-4ed5-ac3e-0cf76ce9f897",
-    "name" : "usergen2-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "14b12443-9bed-4853-aaf9-c9f3e0106ce0",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ {
-      "expenseClassId" : "f36e0eaf-9fe6-4736-ba0b-261be1a05e68",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "575f5703-8e63-4d93-b473-faf29436b80d",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "a914893c-513b-406e-b842-bf43a56c99c8",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "6a7d9cb5-41c8-4ac0-b42f-d348fcdb8bd6",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "b9b1995b-f3fa-4b81-8cee-015b766bbb17",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "23f61163-756d-4a05-8b03-63c459eaadd7",
-      "status" : "Active"
-    } ]
   }, {
     "id" : "bbe4eae7-fb89-4c4e-be3d-1f06d9279f0a",
     "name" : "momclub-FY2021",
@@ -628,18 +554,50 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "42b2df20-7f43-4f93-b897-cd12dbe206a3",
-    "name" : "serial-FY2021",
-    "budgetStatus" : "Inactive",
+    "id" : "c25628ec-6f47-4ed5-ac3e-0cf76ce9f897",
+    "name" : "usergen2-FY2021",
+    "budgetStatus" : "Active",
     "allocated" : 0.0,
-    "fundId" : "bac2e4fd-63e9-494b-881d-bad3328bc9c6",
-    "fiscalYearId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
+    "fundId" : "14b12443-9bed-4853-aaf9-c9f3e0106ce0",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
+    "initialAllocation" : 560000.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
+    "totalFunding" : 560000.0,
+    "cashBalance" : 560000.0,
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "f36e0eaf-9fe6-4736-ba0b-261be1a05e68",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "6a7d9cb5-41c8-4ac0-b42f-d348fcdb8bd6",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "b9b1995b-f3fa-4b81-8cee-015b766bbb17",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "575f5703-8e63-4d93-b473-faf29436b80d",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "23f61163-756d-4a05-8b03-63c459eaadd7",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "a914893c-513b-406e-b842-bf43a56c99c8",
+      "status" : "Active"
+    } ]
+  }, {
+    "id" : "43709318-a676-4ece-8e7d-543b3c5cf1b0",
+    "name" : "childrens-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "9203b370-d4c6-48d9-a15c-f4bf5ad1ec57",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 15000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 15000.0,
+    "cashBalance" : 15000.0,
     "statusExpenseClasses" : [ ]
   }, {
     "id" : "c8cefcd1-a57c-4d5a-81e9-f74c6551c5cd",
@@ -649,11 +607,11 @@
     "fundId" : "f23b4c26-9618-4f38-b5fd-48d83333fc64",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
+    "initialAllocation" : 29000.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
+    "totalFunding" : 29000.0,
+    "cashBalance" : 29000.0,
     "statusExpenseClasses" : [ ]
   }, {
     "id" : "561820e3-e0f4-4b80-9f00-2821ff53a02a",
@@ -663,101 +621,11 @@
     "fundId" : "985af0e0-f081-4087-90d2-80b348e54242",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
+    "initialAllocation" : 40000.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "f370845b-9058-45f5-b304-92490e68d452",
-    "name" : "ebook-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "da701580-607d-44dd-8ab9-c8103fc1c0a0",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ {
-      "expenseClassId" : "8ff925ba-e022-4534-af9a-8e912c8963a9",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "bbef4f8c-1173-45da-be6a-47c3aacb531c",
-      "status" : "Active"
-    } ]
-  }, {
-    "id" : "2328ba87-2979-45e8-9b38-034a2390f566",
-    "name" : "taex-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "1d96b965-3aea-4b22-8b4f-18ec4e86a333",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "e8807585-d35e-4f79-a1da-453a96fe5657",
-    "name" : "serials-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "f1b09c05-c854-4f4a-b413-bff94a99e207",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "0443bfa4-a501-49ce-99b5-bfe09f32696d",
-    "name" : "cont2-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "6db022b1-f872-4c4f-8cba-27630b404e52",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "c687ecb9-44e7-445c-b55c-ec0eafbbce74",
-    "name" : "shipping-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "4c6d9a98-aa6f-4bfa-9087-6517dbb9a225",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "43709318-a676-4ece-8e7d-543b3c5cf1b0",
-    "name" : "childrens-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "9203b370-d4c6-48d9-a15c-f4bf5ad1ec57",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
+    "totalFunding" : 40000.0,
+    "cashBalance" : 40000.0,
     "statusExpenseClasses" : [ ]
   }, {
     "id" : "31b19278-0f49-4e76-a1a1-0cc3926fcaa7",
@@ -767,67 +635,25 @@
     "fundId" : "1fc3f163-005c-445a-8857-57ee98050b92",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
+    "initialAllocation" : 451.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
+    "totalFunding" : 451.0,
+    "cashBalance" : 451.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "6f0f3b90-fbee-4efa-94ae-76afcd5705d4",
-    "name" : "fbenson-FY2021",
+    "id" : "2328ba87-2979-45e8-9b38-034a2390f566",
+    "name" : "taex-FY2021",
     "budgetStatus" : "Active",
     "allocated" : 0.0,
-    "fundId" : "d9b62c5b-4f02-437c-8734-cb160e7bd5c6",
+    "fundId" : "1d96b965-3aea-4b22-8b4f-18ec4e86a333",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
+    "initialAllocation" : 800.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "64e4675b-c457-4bb5-98da-004c44b14a97",
-    "name" : "rebecca-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "2a7a2d7b-701a-42b1-b8ff-48e54351ad80",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "d8f74d84-d01e-4e4c-bc16-8ae7551a54ac",
-    "name" : "watson-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "c5d34282-b1f5-4def-9144-e7b13ff7ce75",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "acbdd496-a078-4c2f-b46e-426e5370fdb8",
-    "name" : "mousetext-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "2329a667-7d86-40d2-b247-40fd77786f3d",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
+    "totalFunding" : 800.0,
+    "cashBalance" : 800.0,
     "statusExpenseClasses" : [ ]
   }, {
     "id" : "2ddc72d1-2114-4b72-b0df-71797b99ef77",
@@ -835,68 +661,6 @@
     "budgetStatus" : "Active",
     "allocated" : 0.0,
     "fundId" : "82163603-687f-46e3-90c9-6b33f2909be8",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "ef69d901-5a1c-471b-a4bc-d20a1c57a955",
-    "name" : "libprop2-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "81b89e93-3703-4430-ae06-42aae1917849",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "464a22dd-67e7-400a-9853-e4860bb0c508",
-    "name" : "replacement-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "41c4fe20-9108-466f-803e-bf665efd20ed",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ {
-      "expenseClassId" : "c9282d86-4120-4f5a-be3e-657067784124",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "487e4cd5-7c9f-4674-a594-6c41c6e5b689",
-      "status" : "Active"
-    } ]
-  }, {
-    "id" : "c45f5c82-eb83-4938-bdce-2c39052260bf",
-    "name" : "hinton-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "572bb92b-b2fd-4b6c-a54e-be7e270c9219",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
-    "id" : "52395391-657c-4c98-82c4-0f1ac2159275",
-    "name" : "weinbaum2-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "5400ea2b-d665-4ccd-8568-6debb4dc587e",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
     "initialAllocation" : 0.0,
@@ -920,18 +684,88 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "01923613-a41e-490e-adee-fd4f9e57bc1d",
-    "name" : "texas-FY2021",
+    "id" : "c687ecb9-44e7-445c-b55c-ec0eafbbce74",
+    "name" : "shipping-FY2021",
     "budgetStatus" : "Active",
     "allocated" : 0.0,
-    "fundId" : "f17df6d0-28e9-4736-b68d-0383033a3d3a",
+    "fundId" : "4c6d9a98-aa6f-4bfa-9087-6517dbb9a225",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
+    "initialAllocation" : 10000.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
+    "totalFunding" : 10000.0,
+    "cashBalance" : 10000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "0443bfa4-a501-49ce-99b5-bfe09f32696d",
+    "name" : "cont2-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "6db022b1-f872-4c4f-8cba-27630b404e52",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 150000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 150000.0,
+    "cashBalance" : 150000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "64e4675b-c457-4bb5-98da-004c44b14a97",
+    "name" : "rebecca-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "2a7a2d7b-701a-42b1-b8ff-48e54351ad80",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 60000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 60000.0,
+    "cashBalance" : 60000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "6f0f3b90-fbee-4efa-94ae-76afcd5705d4",
+    "name" : "fbenson-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "d9b62c5b-4f02-437c-8734-cb160e7bd5c6",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 724.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 724.0,
+    "cashBalance" : 724.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "c45f5c82-eb83-4938-bdce-2c39052260bf",
+    "name" : "hinton-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "572bb92b-b2fd-4b6c-a54e-be7e270c9219",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 3000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 3000.0,
+    "cashBalance" : 3000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "d8f74d84-d01e-4e4c-bc16-8ae7551a54ac",
+    "name" : "watson-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "c5d34282-b1f5-4def-9144-e7b13ff7ce75",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 634.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 634.0,
+    "cashBalance" : 634.0,
     "statusExpenseClasses" : [ ]
   }, {
     "id" : "29816080-82eb-4cd1-b6cb-177861dd53c3",
@@ -941,11 +775,59 @@
     "fundId" : "2d74ba9a-e966-4c0f-b493-6f4f02dc4a7a",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
+    "initialAllocation" : 100000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 100000.0,
+    "cashBalance" : 100000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "824bf78c-a515-45b7-9415-f8a7863d692d",
+    "name" : "etxtkyle-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "dbcc81b7-1aa6-4557-a612-f889670a36f3",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
     "initialAllocation" : 0.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
     "totalFunding" : 0.0,
     "cashBalance" : 0.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "f370845b-9058-45f5-b304-92490e68d452",
+    "name" : "ebook-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "da701580-607d-44dd-8ab9-c8103fc1c0a0",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 850000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 850000.0,
+    "cashBalance" : 850000.0,
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "8ff925ba-e022-4534-af9a-8e912c8963a9",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "bbef4f8c-1173-45da-be6a-47c3aacb531c",
+      "status" : "Active"
+    } ]
+  }, {
+    "id" : "ef69d901-5a1c-471b-a4bc-d20a1c57a955",
+    "name" : "libprop2-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "81b89e93-3703-4430-ae06-42aae1917849",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 107111.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 107111.0,
+    "cashBalance" : 107111.0,
     "statusExpenseClasses" : [ ]
   }, {
     "id" : "04574c61-3639-4434-9451-d7e965ba7455",
@@ -955,11 +837,119 @@
     "fundId" : "78079626-2087-4c29-b5a3-657d934625ca",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
+    "initialAllocation" : 4156.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
+    "totalFunding" : 4156.0,
+    "cashBalance" : 4156.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "13e1fb37-4e33-4f87-8130-fde0e67fea98",
+    "name" : "momclub2-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "b6e36a14-8d4c-472a-b0af-b5d881ba9d7f",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 10000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 10000.0,
+    "cashBalance" : 10000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "05de5bf3-9fd3-4e08-b599-7811947a6845",
+    "name" : "tapley2-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "cae6e17f-1d0a-487a-9166-79c5debab45d",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 1000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 1000.0,
+    "cashBalance" : 1000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "52395391-657c-4c98-82c4-0f1ac2159275",
+    "name" : "weinbaum2-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "5400ea2b-d665-4ccd-8568-6debb4dc587e",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 1304.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 1304.0,
+    "cashBalance" : 1304.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "01923613-a41e-490e-adee-fd4f9e57bc1d",
+    "name" : "texas-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "f17df6d0-28e9-4736-b68d-0383033a3d3a",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 35000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 35000.0,
+    "cashBalance" : 35000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "9a50d60c-116f-4af5-816f-8bd78fb309d0",
+    "name" : "mslemono-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "501682ed-ce9e-4ab9-95f5-61aac2200d6b",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 100000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 100000.0,
+    "cashBalance" : 100000.0,
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "4d66214f-c976-4c8b-b6b6-931bb3a405b0",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "c3798940-c25d-4713-a9ac-b55656924309",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "aa6723ba-f4e7-436b-82da-7c12dcf5313d",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "a67628e0-dd84-4fd8-9508-4041ed9e31e0",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "34a6d786-e95b-41ae-a392-a2b935a445bf",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "58462e8f-7391-4095-a182-840981763bd4",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "f1f1d1af-5078-4b90-8461-58b2a8200775",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "905c5782-1d8a-4fc2-8a8b-7c9c274eac60",
+      "status" : "Active"
+    } ]
+  }, {
+    "id" : "9d67f28a-12e7-4183-83d0-9809773b1f80",
+    "name" : "aviles-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "81348bdf-785c-4f69-8d2a-4579df2fe1d3",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 500000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 500000.0,
+    "cashBalance" : 500000.0,
     "statusExpenseClasses" : [ ]
   }, {
     "id" : "6bf64692-7c1a-49fc-8e5f-5344a631ae38",
@@ -976,105 +966,87 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "9937b9d8-9bb2-4a96-aea3-3862e7738b12",
-    "name" : "etxt2-FY2021",
+    "id" : "464a22dd-67e7-400a-9853-e4860bb0c508",
+    "name" : "replacement-FY2021",
     "budgetStatus" : "Active",
     "allocated" : 0.0,
-    "fundId" : "692bc717-e37a-4525-95e3-fa25f58ecbef",
+    "fundId" : "41c4fe20-9108-466f-803e-bf665efd20ed",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
+    "initialAllocation" : 25000.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
+    "totalFunding" : 25000.0,
+    "cashBalance" : 25000.0,
     "statusExpenseClasses" : [ {
-      "expenseClassId" : "012ba30f-1d20-4afb-8029-2d64116e47f0",
+      "expenseClassId" : "c9282d86-4120-4f5a-be3e-657067784124",
       "status" : "Active"
     }, {
-      "expenseClassId" : "0d3c9098-e315-45aa-be46-cf9b642459c2",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "2e158b89-4715-4028-8086-af85ca6da0c8",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "6dfe92d5-a325-482b-bc78-744bd87920b1",
+      "expenseClassId" : "487e4cd5-7c9f-4674-a594-6c41c6e5b689",
       "status" : "Active"
     } ]
   }, {
-    "id" : "9a50d60c-116f-4af5-816f-8bd78fb309d0",
-    "name" : "mslemono-FY2021",
+    "id" : "acbdd496-a078-4c2f-b46e-426e5370fdb8",
+    "name" : "mousetext-FY2021",
     "budgetStatus" : "Active",
     "allocated" : 0.0,
-    "fundId" : "501682ed-ce9e-4ab9-95f5-61aac2200d6b",
+    "fundId" : "2329a667-7d86-40d2-b247-40fd77786f3d",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
+    "initialAllocation" : 15434.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
+    "totalFunding" : 15434.0,
+    "cashBalance" : 15434.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "7bc95ae6-23da-4adf-ad46-cb006ec9cc3e",
+    "name" : "mslejournals-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "8c02c28a-865d-4165-9e0f-769351ac8b11",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 200000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 200000.0,
+    "cashBalance" : 200000.0,
     "statusExpenseClasses" : [ {
-      "expenseClassId" : "a67628e0-dd84-4fd8-9508-4041ed9e31e0",
+      "expenseClassId" : "9507d669-99cb-4c30-b12f-73ddae3b6759",
       "status" : "Active"
     }, {
-      "expenseClassId" : "c3798940-c25d-4713-a9ac-b55656924309",
+      "expenseClassId" : "96dc22d8-2870-464e-b059-c216eca711e1",
       "status" : "Active"
     }, {
-      "expenseClassId" : "f1f1d1af-5078-4b90-8461-58b2a8200775",
+      "expenseClassId" : "2e3553cd-e7ab-4a69-8ffb-7ba564b9221c",
       "status" : "Active"
     }, {
-      "expenseClassId" : "aa6723ba-f4e7-436b-82da-7c12dcf5313d",
+      "expenseClassId" : "4e005163-6eb2-46a6-a7d4-b894f3d1b5ee",
       "status" : "Active"
     }, {
-      "expenseClassId" : "58462e8f-7391-4095-a182-840981763bd4",
+      "expenseClassId" : "de02ccbb-afc9-4393-aa09-bbfcf531e3a4",
       "status" : "Active"
     }, {
-      "expenseClassId" : "4d66214f-c976-4c8b-b6b6-931bb3a405b0",
+      "expenseClassId" : "f21e409d-03de-43c8-bb42-de42796035b1",
       "status" : "Active"
     }, {
-      "expenseClassId" : "34a6d786-e95b-41ae-a392-a2b935a445bf",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "905c5782-1d8a-4fc2-8a8b-7c9c274eac60",
+      "expenseClassId" : "27ddca39-01d3-4cd7-91fa-4f1b034c9df3",
       "status" : "Active"
     } ]
   }, {
-    "id" : "c09cd1e5-6c17-487f-b080-3135e5549e23",
-    "name" : "print-FY2021",
+    "id" : "78c58fc1-27cf-4950-9c89-0b4695e6ff83",
+    "name" : "TF-FY2021",
     "budgetStatus" : "Active",
     "allocated" : 0.0,
-    "fundId" : "1e410c13-699e-45a0-8389-1bdd5f29980d",
+    "fundId" : "f631300b-8c0e-4a73-a99b-7821b0a5c06a",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
+    "initialAllocation" : 100000.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ {
-      "expenseClassId" : "3a576abb-811e-4945-a651-42b9d517bb15",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "82bc9d63-a3d0-4aed-872d-d4d2112b1668",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "ff651515-9b20-4449-8dd3-500e7353ce11",
-      "status" : "Active"
-    } ]
-  }, {
-    "id" : "05de5bf3-9fd3-4e08-b599-7811947a6845",
-    "name" : "tapley2-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "cae6e17f-1d0a-487a-9166-79c5debab45d",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
+    "totalFunding" : 100000.0,
+    "cashBalance" : 100000.0,
     "statusExpenseClasses" : [ ]
   }, {
     "id" : "eb848b57-4ac6-4511-a556-eca1e2af598f",
@@ -1105,96 +1077,6 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "7bc95ae6-23da-4adf-ad46-cb006ec9cc3e",
-    "name" : "mslejournals-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "8c02c28a-865d-4165-9e0f-769351ac8b11",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ {
-      "expenseClassId" : "96dc22d8-2870-464e-b059-c216eca711e1",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "2e3553cd-e7ab-4a69-8ffb-7ba564b9221c",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "9507d669-99cb-4c30-b12f-73ddae3b6759",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "27ddca39-01d3-4cd7-91fa-4f1b034c9df3",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "4e005163-6eb2-46a6-a7d4-b894f3d1b5ee",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "f21e409d-03de-43c8-bb42-de42796035b1",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "de02ccbb-afc9-4393-aa09-bbfcf531e3a4",
-      "status" : "Active"
-    } ]
-  }, {
-    "id" : "9c0eb523-9058-4e67-88b4-40cd22289fce",
-    "name" : "mslpmono-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "5cd9eff1-eb21-4cae-9b8b-79866f24d703",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ {
-      "expenseClassId" : "d20a2068-089f-42d0-9893-0afdcc56b27a",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "788fd5a9-f4bc-4b65-813b-2eade0637f4d",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "59090265-788d-4e9d-919e-e5443658708c",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "ee5ea835-8896-45f4-b4ef-c1e9812c2d24",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "1d287ea8-28df-4d3e-82a0-f9865cf759de",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "3d5cd0fc-5ceb-4505-91ce-b7f3c8f87e02",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "a5f3bdc9-a8a1-4027-bd2e-ad08050be710",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "4ceadf32-6197-4f92-ab18-847d627a04cd",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "b9e6408f-5ec9-4d86-8f6a-734701bc735f",
-      "status" : "Active"
-    } ]
-  }, {
-    "id" : "824bf78c-a515-45b7-9415-f8a7863d692d",
-    "name" : "etxtkyle-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "dbcc81b7-1aa6-4557-a612-f889670a36f3",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
-    "statusExpenseClasses" : [ ]
-  }, {
     "id" : "c19d1e5e-415a-4e9f-82e5-9f75f23d910d",
     "name" : "qer-FY2021",
     "budgetStatus" : "Active",
@@ -1209,6 +1091,57 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
+    "id" : "c09cd1e5-6c17-487f-b080-3135e5549e23",
+    "name" : "print-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "1e410c13-699e-45a0-8389-1bdd5f29980d",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 450000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 450000.0,
+    "cashBalance" : 450000.0,
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "ff651515-9b20-4449-8dd3-500e7353ce11",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "82bc9d63-a3d0-4aed-872d-d4d2112b1668",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "3a576abb-811e-4945-a651-42b9d517bb15",
+      "status" : "Active"
+    } ]
+  }, {
+    "id" : "d5676896-9d18-495b-89aa-1f8d2c551aff",
+    "name" : "libraryendow-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "448e6a06-f034-40de-a3f6-4a327ef95f66",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 3429.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 3429.0,
+    "cashBalance" : 3429.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "ad0878e9-ba9b-47b7-8b9f-81019da74457",
+    "name" : "buffer-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "80885d10-1abe-4d97-ab3d-1f7dda1c1b82",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 81000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 81000.0,
+    "cashBalance" : 81000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
     "id" : "93fe48dc-344d-45d0-be60-720207a21e13",
     "name" : "msldata-FY2021",
     "budgetStatus" : "Active",
@@ -1216,31 +1149,72 @@
     "fundId" : "9759fff9-bfc2-4b39-ad1f-08a17c77eb8e",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
+    "initialAllocation" : 250000.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
+    "totalFunding" : 250000.0,
+    "cashBalance" : 250000.0,
     "statusExpenseClasses" : [ {
-      "expenseClassId" : "246f7cda-493e-46bb-83bb-1f411a921caa",
-      "status" : "Active"
-    }, {
       "expenseClassId" : "c2911bac-0765-4f7d-8316-28b9460eb5b5",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "4dc2c928-ddeb-45c3-ac2d-0d46456b955b",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "8dd52aa3-2182-4fb5-80be-9328018ea6c3",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "68d3269f-0d7a-4d49-ae55-ef6381e64b16",
       "status" : "Active"
     }, {
       "expenseClassId" : "647c7986-a3ba-40c0-b063-adda5d3d5987",
       "status" : "Active"
     }, {
+      "expenseClassId" : "4dc2c928-ddeb-45c3-ac2d-0d46456b955b",
+      "status" : "Active"
+    }, {
       "expenseClassId" : "be541231-61f8-49a0-bafd-8e85e7fe23d3",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "246f7cda-493e-46bb-83bb-1f411a921caa",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "68d3269f-0d7a-4d49-ae55-ef6381e64b16",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "8dd52aa3-2182-4fb5-80be-9328018ea6c3",
+      "status" : "Active"
+    } ]
+  }, {
+    "id" : "9c0eb523-9058-4e67-88b4-40cd22289fce",
+    "name" : "mslpmono-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "5cd9eff1-eb21-4cae-9b8b-79866f24d703",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 100000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 100000.0,
+    "cashBalance" : 100000.0,
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "4ceadf32-6197-4f92-ab18-847d627a04cd",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "788fd5a9-f4bc-4b65-813b-2eade0637f4d",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "3d5cd0fc-5ceb-4505-91ce-b7f3c8f87e02",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "1d287ea8-28df-4d3e-82a0-f9865cf759de",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "b9e6408f-5ec9-4d86-8f6a-734701bc735f",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "a5f3bdc9-a8a1-4027-bd2e-ad08050be710",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "59090265-788d-4e9d-919e-e5443658708c",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "ee5ea835-8896-45f4-b4ef-c1e9812c2d24",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "d20a2068-089f-42d0-9893-0afdcc56b27a",
       "status" : "Active"
     } ]
   }, {
@@ -1251,29 +1225,111 @@
     "fundId" : "55f3641d-021a-4024-a5a2-1cf1acc87675",
     "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
-    "initialAllocation" : 0.0,
+    "initialAllocation" : 100000.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 0.0,
-    "cashBalance" : 0.0,
+    "totalFunding" : 100000.0,
+    "cashBalance" : 100000.0,
     "statusExpenseClasses" : [ {
-      "expenseClassId" : "12b86b7f-bdf8-4cbd-b009-7587626b304d",
-      "status" : "Active"
-    }, {
       "expenseClassId" : "bf4299b5-ac72-4509-b921-822c3c74ce6c",
       "status" : "Active"
     }, {
-      "expenseClassId" : "8d1d5118-e848-4fee-b254-676afc4d6504",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "773e4920-f787-4132-a668-613de4ec764d",
+      "expenseClassId" : "85673c7d-d865-4a52-a6eb-5eea4c9ec9d0",
       "status" : "Active"
     }, {
       "expenseClassId" : "37ebcaec-92f3-4cfc-8ed3-98dc98fe3c32",
       "status" : "Active"
     }, {
-      "expenseClassId" : "85673c7d-d865-4a52-a6eb-5eea4c9ec9d0",
+      "expenseClassId" : "773e4920-f787-4132-a668-613de4ec764d",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "8d1d5118-e848-4fee-b254-676afc4d6504",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "12b86b7f-bdf8-4cbd-b009-7587626b304d",
       "status" : "Active"
     } ]
+  }, {
+    "id" : "9937b9d8-9bb2-4a96-aea3-3862e7738b12",
+    "name" : "etxt2-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "692bc717-e37a-4525-95e3-fa25f58ecbef",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 1.4370585E7,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 1.4370585E7,
+    "cashBalance" : 1.4370585E7,
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "012ba30f-1d20-4afb-8029-2d64116e47f0",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "2e158b89-4715-4028-8086-af85ca6da0c8",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "6dfe92d5-a325-482b-bc78-744bd87920b1",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "0d3c9098-e315-45aa-be46-cf9b642459c2",
+      "status" : "Active"
+    } ]
+  }, {
+    "id" : "e8807585-d35e-4f79-a1da-453a96fe5657",
+    "name" : "serials-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "f1b09c05-c854-4f4a-b413-bff94a99e207",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 425000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 425000.0,
+    "cashBalance" : 425000.0,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "49937088-87f8-4422-a467-f513b19647a3",
+    "name" : "jf-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "566bc41a-31f5-49b4-8d0f-a53d5c6d31b6",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 10000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 10000.0,
+    "cashBalance" : 9990.1,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "530095ec-c9b1-485b-a62d-fa657323affc",
+    "name" : "msltf-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "67d8227c-da1c-488e-875a-269f8fa800b0",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 10000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 10000.0,
+    "cashBalance" : 9912.5,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "9d3340ee-8795-4995-bd61-62f600c6d6d9",
+    "name" : "jf2-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "e9111832-08f9-4112-81df-313b0022d723",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 600.0,
+    "allocationTo" : 9025.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 9625.0,
+    "cashBalance" : 9475.0,
+    "statusExpenseClasses" : [ ]
   } ]
 }

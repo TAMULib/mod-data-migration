@@ -86,5 +86,14 @@
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
     "restrictExpenditures" : true
+  }, {
+    "id" : "2d681c78-5be8-4bac-a9ec-7eba5a175f49",
+    "name" : "Johns ledger",
+    "code" : "jl",
+    "fiscalYearOneId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "ledgerStatus" : "Active",
+    "acqUnitIds" : [ ],
+    "restrictEncumbrance" : true,
+    "restrictExpenditures" : true
   } ]
 }
