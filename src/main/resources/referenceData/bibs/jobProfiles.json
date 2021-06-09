@@ -12,30 +12,30 @@
   "additional" : [ ],
   "data" : [ {
     "profile" : {
-      "name" : "Default - Create instance and SRS MARC Bib",
-      "description" : "This job profile creates SRS MARC Bib records and corresponding Inventory Instances using the library's default MARC-to-Instance mapping. It can be edited, duplicated, or deleted.",
-      "dataType" : "MARC",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "System",
-        "lastName" : "System",
-        "userName" : "System"
-      }
-    },
-    "id" : "e34d7b92-9b83-11eb-a8b3-0242ac130003"
-  }, {
-    "profile" : {
       "name" : "quickMARC Derive - Create SRS MARC Bib and Instance",
       "description" : "This job profile is used by the quickMARC Derive action to create a new SRS MARC Bib record and corresponding Inventory Instance. It cannot be edited or deleted.",
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "System",
-        "lastName" : "System",
-        "userName" : "System"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "6409dcff-71fa-433a-bc6a-e70ad38a9604"
+    "id" : "4d9f14d6-e47b-4fef-ac75-e3fd00a3af43"
+  }, {
+    "profile" : {
+      "name" : "Default - Create instance and SRS MARC Bib",
+      "description" : "This job profile creates SRS MARC Bib records and corresponding Inventory Instances using the library's default MARC-to-Instance mapping. It can be edited, duplicated, or deleted.",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "8a64004f-a832-4b41-96c0-24c3890acba7"
   }, {
     "profile" : {
       "name" : "MARCIVE-Create New Instances and Holdings Records URL",
@@ -48,7 +48,7 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "81945013-722c-43be-b0be-7015168127ff"
+    "id" : "da8181be-2e5b-4579-960a-9755e35c719f"
   }, {
     "profile" : {
       "name" : "Test 9xx delete",
@@ -61,7 +61,7 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "0476a45b-1ec5-4f96-9a94-1207a92a294f"
+    "id" : "dcf7fbdf-5bd1-4688-8971-11bbccd2bdbc"
   }, {
     "profile" : {
       "name" : "Print Books - Create New Record",
@@ -74,7 +74,7 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "5a2bb97e-137a-4379-b91b-56ebc197816d"
+    "id" : "027ec796-3d95-42a5-810d-291b8891bc46"
   }, {
     "profile" : {
       "name" : "Print Book - Overlay",
@@ -87,6 +87,6 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "fbfa31be-d522-40ef-aa3d-29bde2c5ab1c"
+    "id" : "7a420b8a-15ce-4286-a8bf-b40211f95095"
   } ]
 }

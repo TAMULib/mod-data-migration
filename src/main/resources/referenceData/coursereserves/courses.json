@@ -16,10 +16,10 @@
       "name" : "KINE",
       "description" : "Kinesiology",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:27.138+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:27.138+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.207+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.207+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "1a7ec7cc-af82-4165-8adf-fe8480a635a4",
@@ -65,17 +65,17 @@
         },
         "courseListingId" : "1a7ec7cc-af82-4165-8adf-fe8480a635a4",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:31.605+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:31.605+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:36.138+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:36.138+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:31.583+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:31.583+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:36.066+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:36.066+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "198",
@@ -89,10 +89,10 @@
       "name" : "MATH",
       "description" : "Mathematics",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:27.475+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:27.475+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:32.333+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:32.333+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "de9f403d-0d22-4843-8fe7-c6f3434a5a6c",
@@ -138,17 +138,17 @@
         },
         "courseListingId" : "de9f403d-0d22-4843-8fe7-c6f3434a5a6c",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:31.086+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:31.086+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:35.640+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:35.640+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:31.051+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:31.051+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:35.553+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:35.553+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "409",
@@ -163,10 +163,10 @@
       "name" : "HIST",
       "description" : "History",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:25.837+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:25.837+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.061+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.061+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "b2c95112-7e0f-415d-b723-b4208025804c",
@@ -212,10 +212,10 @@
         },
         "courseListingId" : "b2c95112-7e0f-415d-b723-b4208025804c",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:30.349+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:30.349+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:35.073+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:35.073+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       }, {
         "id" : "f44082ee-df49-49fe-921a-62035c3718f0",
@@ -223,17 +223,17 @@
         "barcode" : "6016426592776773",
         "courseListingId" : "b2c95112-7e0f-415d-b723-b4208025804c",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:30.475+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:30.475+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:35.141+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:35.141+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:30.326+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:30.326+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:35.062+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:35.062+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "360",
@@ -247,10 +247,10 @@
       "name" : "SOCI",
       "description" : "Sociology",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:27.659+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:27.659+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:32.558+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:32.558+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "e390a683-2466-4f53-b4ac-305bb0514e93",
@@ -296,17 +296,17 @@
         },
         "courseListingId" : "e390a683-2466-4f53-b4ac-305bb0514e93",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:31.156+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:31.156+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:35.739+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:35.739+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:31.139+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:31.139+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:35.670+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:35.670+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "SOCI 206",
@@ -320,10 +320,10 @@
       "name" : "AFST",
       "description" : "Africana Studies",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:23.848+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:23.848+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:29.605+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:29.605+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "cc3adcc4-9024-49d4-9c3b-a9d429703c8b",
@@ -369,17 +369,17 @@
         },
         "courseListingId" : "cc3adcc4-9024-49d4-9c3b-a9d429703c8b",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:30.828+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:30.828+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:35.352+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:35.352+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:30.813+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:30.813+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:35.342+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:35.342+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "489",
@@ -393,10 +393,10 @@
       "name" : "CVEN",
       "description" : "Civil Engineering",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:26.099+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:26.099+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.259+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.259+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "edcf3c9f-82b9-4b69-80ec-ae5fc3e331ca",
@@ -442,17 +442,17 @@
         },
         "courseListingId" : "edcf3c9f-82b9-4b69-80ec-ae5fc3e331ca",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:31.225+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:31.225+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:35.777+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:35.777+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:31.211+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:31.211+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:35.767+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:35.767+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "654",
@@ -466,10 +466,10 @@
       "name" : "HIST",
       "description" : "History",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:25.837+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:25.837+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.061+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.061+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "2ecbe41e-c700-4902-a875-0ab07b89213d",
@@ -515,17 +515,17 @@
         },
         "courseListingId" : "2ecbe41e-c700-4902-a875-0ab07b89213d",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:29.105+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:29.105+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.061+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.061+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:29.090+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:29.090+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.051+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.051+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "481",
@@ -539,10 +539,10 @@
       "name" : "SOCI",
       "description" : "Sociology",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:27.659+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:27.659+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:32.558+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:32.558+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "fee903cd-3551-41db-abf2-feaa6c7bd761",
@@ -588,17 +588,17 @@
         },
         "courseListingId" : "fee903cd-3551-41db-abf2-feaa6c7bd761",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:31.427+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:31.427+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:35.959+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:35.959+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:31.407+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:31.407+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:35.950+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:35.950+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "317",
@@ -612,10 +612,10 @@
       "name" : "HIST",
       "description" : "History",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:25.837+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:25.837+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.061+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.061+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "9e92d13b-8f74-4502-b1f7-341d5e299c59",
@@ -661,17 +661,17 @@
         },
         "courseListingId" : "9e92d13b-8f74-4502-b1f7-341d5e299c59",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:30.250+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:30.250+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.966+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.966+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:30.235+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:30.235+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.957+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.957+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "201",
@@ -686,10 +686,10 @@
       "name" : "RDNG",
       "description" : "Reading",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:27.787+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:27.787+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:32.739+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:32.739+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "5a56806e-e803-4754-9463-fd854333b773",
@@ -735,17 +735,17 @@
         },
         "courseListingId" : "5a56806e-e803-4754-9463-fd854333b773",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:29.531+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:29.531+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.531+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.531+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:29.512+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:29.512+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.508+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.508+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "360",
@@ -760,10 +760,10 @@
       "name" : "ENDG",
       "description" : "Engr Design Graphics",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:25.609+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:25.609+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:30.877+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:30.877+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "5a56806e-e803-4754-9463-fd854333b773",
@@ -809,17 +809,17 @@
         },
         "courseListingId" : "5a56806e-e803-4754-9463-fd854333b773",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:29.531+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:29.531+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.531+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.531+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:29.512+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:29.512+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.508+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.508+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "360",
@@ -833,10 +833,10 @@
       "name" : "GEOG",
       "description" : "Geography",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:24.667+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:24.667+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:30.082+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:30.082+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "0cc79d1d-a704-4f13-8763-66e30534d701",
@@ -869,17 +869,17 @@
         "barcode" : "6016426592776773",
         "courseListingId" : "0cc79d1d-a704-4f13-8763-66e30534d701",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:29.492+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:29.492+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.492+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.492+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:29.476+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:29.476+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.480+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.480+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "489",
@@ -893,10 +893,10 @@
       "name" : "EPSY",
       "description" : "Educational Psychology",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:25.548+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:25.548+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:30.834+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:30.834+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "fcde11f0-46cd-4b3b-915a-5b70dd73497a",
@@ -942,17 +942,17 @@
         },
         "courseListingId" : "fcde11f0-46cd-4b3b-915a-5b70dd73497a",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:31.326+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:31.326+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:35.856+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:35.856+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:31.307+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:31.307+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:35.846+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:35.846+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "602",
@@ -966,10 +966,10 @@
       "name" : "SOCI",
       "description" : "Sociology",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:27.659+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:27.659+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:32.558+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:32.558+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "14d69665-fb3a-4c1c-a300-9e2ebdb40377",
@@ -1015,17 +1015,17 @@
         },
         "courseListingId" : "14d69665-fb3a-4c1c-a300-9e2ebdb40377",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:28.944+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:28.944+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:33.955+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:33.955+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:28.926+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:28.926+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:33.942+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:33.942+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "489",
@@ -1039,10 +1039,10 @@
       "name" : "COSC",
       "description" : "Construction Science",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:26.046+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:26.046+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.165+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.165+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "3dc1c603-1fb4-462e-8b96-43141a0ef726",
@@ -1088,17 +1088,17 @@
         },
         "courseListingId" : "3dc1c603-1fb4-462e-8b96-43141a0ef726",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:29.383+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:29.383+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.429+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.429+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:29.351+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:29.351+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.352+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.352+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "463",
@@ -1112,10 +1112,10 @@
       "name" : "INTS",
       "description" : "International Studies",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:26.410+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:26.410+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.705+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.705+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "9d172770-99ae-4ca1-9e8d-90e3b7a5f4f8",
@@ -1161,17 +1161,17 @@
         },
         "courseListingId" : "9d172770-99ae-4ca1-9e8d-90e3b7a5f4f8",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:30.152+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:30.152+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.891+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.891+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:30.136+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:30.136+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.882+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.882+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "481",
@@ -1185,10 +1185,10 @@
       "name" : "OCNG",
       "description" : "Oceanography",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:25.302+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:25.302+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:30.679+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:30.679+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "d128bc6d-1507-44fd-8248-eaae18789335",
@@ -1234,17 +1234,17 @@
         },
         "courseListingId" : "d128bc6d-1507-44fd-8248-eaae18789335",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:30.927+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:30.927+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:35.454+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:35.454+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:30.909+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:30.909+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:35.442+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:35.442+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "440",
@@ -1259,10 +1259,10 @@
       "name" : "SOCI",
       "description" : "Sociology",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:27.659+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:27.659+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:32.558+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:32.558+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "b2c95112-7e0f-415d-b723-b4208025804c",
@@ -1308,10 +1308,10 @@
         },
         "courseListingId" : "b2c95112-7e0f-415d-b723-b4208025804c",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:30.349+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:30.349+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:35.073+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:35.073+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       }, {
         "id" : "f44082ee-df49-49fe-921a-62035c3718f0",
@@ -1319,17 +1319,17 @@
         "barcode" : "6016426592776773",
         "courseListingId" : "b2c95112-7e0f-415d-b723-b4208025804c",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:30.475+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:30.475+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:35.141+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:35.141+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:30.326+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:30.326+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:35.062+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:35.062+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "206",
@@ -1343,10 +1343,10 @@
       "name" : "INTS",
       "description" : "International Studies",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:26.410+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:26.410+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.705+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.705+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "77d0cbc1-cb34-462a-801b-e1635f486caa",
@@ -1392,17 +1392,17 @@
         },
         "courseListingId" : "77d0cbc1-cb34-462a-801b-e1635f486caa",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:29.747+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:29.747+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.652+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.652+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:29.731+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:29.731+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.642+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.642+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "251",
@@ -1416,10 +1416,10 @@
       "name" : "LMAS",
       "description" : "Latino Mexican American Studies",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:25.979+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:25.979+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.129+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.129+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "86a48f76-cb65-4291-9331-0410585a76b5",
@@ -1465,17 +1465,17 @@
         },
         "courseListingId" : "86a48f76-cb65-4291-9331-0410585a76b5",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:29.848+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:29.848+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.713+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.713+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:29.804+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:29.804+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.702+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.702+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "201",
@@ -1489,10 +1489,10 @@
       "name" : "INTS",
       "description" : "International Studies",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:26.410+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:26.410+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.705+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.705+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "3b4817bf-33de-4a62-a3f7-69f686a1c45b",
@@ -1538,17 +1538,17 @@
         },
         "courseListingId" : "3b4817bf-33de-4a62-a3f7-69f686a1c45b",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:29.226+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:29.226+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.254+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.254+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:29.210+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:29.210+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.241+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.241+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "201",
@@ -1562,10 +1562,10 @@
       "name" : "INTS",
       "description" : "International Studies",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:26.410+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:26.410+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.705+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.705+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "c60d84a4-c75b-468b-a29a-a99c27e94f80",
@@ -1611,17 +1611,17 @@
         },
         "courseListingId" : "c60d84a4-c75b-468b-a29a-a99c27e94f80",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:30.734+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:30.734+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:35.244+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:35.244+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:30.717+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:30.717+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:35.229+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:35.229+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "201",
@@ -1635,10 +1635,10 @@
       "name" : "INTS",
       "description" : "International Studies",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:26.410+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:26.410+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.705+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.705+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "cc3adcc4-9024-49d4-9c3b-a9d429703c8b",
@@ -1684,17 +1684,17 @@
         },
         "courseListingId" : "cc3adcc4-9024-49d4-9c3b-a9d429703c8b",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:30.828+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:30.828+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:35.352+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:35.352+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:30.813+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:30.813+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:35.342+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:35.342+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "489",
@@ -1708,10 +1708,10 @@
       "name" : "PHIL",
       "description" : "Philosophy",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:28.009+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:28.009+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:32.036+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:32.036+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "14d69665-fb3a-4c1c-a300-9e2ebdb40377",
@@ -1757,17 +1757,17 @@
         },
         "courseListingId" : "14d69665-fb3a-4c1c-a300-9e2ebdb40377",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:28.944+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:28.944+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:33.955+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:33.955+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:28.926+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:28.926+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:33.942+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:33.942+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "330",
@@ -1781,10 +1781,10 @@
       "name" : "BOTN",
       "description" : "Botany",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:25.079+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:25.079+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:30.405+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:30.405+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "9e92d13b-8f74-4502-b1f7-341d5e299c59",
@@ -1830,17 +1830,17 @@
         },
         "courseListingId" : "9e92d13b-8f74-4502-b1f7-341d5e299c59",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:30.250+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:30.250+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.966+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.966+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:30.235+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:30.235+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.957+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.957+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "201",
@@ -1854,10 +1854,10 @@
       "name" : "TCMG",
       "description" : "Technology Management",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:26.685+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:26.685+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.897+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.897+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "95091510-408c-472a-ba4e-aab18cae94c0",
@@ -1903,17 +1903,17 @@
         },
         "courseListingId" : "95091510-408c-472a-ba4e-aab18cae94c0",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:29.935+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:29.935+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.807+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.807+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:29.920+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:29.920+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.796+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.796+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "402",
@@ -1927,10 +1927,10 @@
       "name" : "HIST",
       "description" : "History",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:25.837+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:25.837+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.061+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.061+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "cd1df4a7-70df-4afa-b706-30006faa25e9",
@@ -1976,17 +1976,17 @@
         },
         "courseListingId" : "cd1df4a7-70df-4afa-b706-30006faa25e9",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:30.075+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:30.075+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.846+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.846+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:30.051+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:30.051+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.837+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.837+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "481",
@@ -2000,10 +2000,10 @@
       "name" : "HIST",
       "description" : "History",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:25.837+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:25.837+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.061+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.061+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "1192daf9-8d45-4f16-a4db-6491d6d79483",
@@ -2049,17 +2049,17 @@
         },
         "courseListingId" : "1192daf9-8d45-4f16-a4db-6491d6d79483",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:28.726+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:28.726+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:33.457+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:33.457+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:28.626+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:28.626+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:33.340+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:33.340+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "365",
@@ -2073,10 +2073,10 @@
       "name" : "INTS",
       "description" : "International Studies",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:26.410+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:26.410+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:31.705+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:31.705+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "bbc6fd69-edbc-4e1b-b431-4628810b9601",
@@ -2122,17 +2122,17 @@
         },
         "courseListingId" : "bbc6fd69-edbc-4e1b-b431-4628810b9601",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:30.644+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:30.644+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:35.163+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:35.163+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:30.573+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:30.573+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:35.154+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:35.154+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "481",
@@ -2146,10 +2146,10 @@
       "name" : "ENGL",
       "description" : "English",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:25.127+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:25.127+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:30.423+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:30.423+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "7268e5c6-878a-4b9d-92d3-aed726c56283",
@@ -2195,17 +2195,17 @@
         },
         "courseListingId" : "7268e5c6-878a-4b9d-92d3-aed726c56283",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:29.661+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:29.661+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.592+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.592+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:29.633+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:29.633+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.583+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.583+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "391",
@@ -2220,10 +2220,10 @@
       "name" : "ARCH",
       "description" : "Architecture",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:25.062+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:25.062+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:30.397+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:30.397+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "d91bd046-02c6-4a4e-99cb-c877bfe3b8f9",
@@ -2262,17 +2262,17 @@
         "barcode" : "6016426592776773",
         "courseListingId" : "d91bd046-02c6-4a4e-99cb-c877bfe3b8f9",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:31.021+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:31.021+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:34.194+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:34.194+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:31.007+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:31.007+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:34.184+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:34.184+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "489",
@@ -2287,10 +2287,10 @@
       "name" : "CSCE",
       "description" : "Computer Science & Engineering",
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:25.713+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:25.713+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:30.959+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:30.959+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseListingId" : "7d37a8f3-b46a-44df-bfb7-fc441d2edcbb",
@@ -2327,7 +2327,7 @@
         "id" : "515b8381-64d8-4af8-9167-069007e596c8",
         "userId" : "0e45fbfb-997d-3044-88ad-804b8b7846e9",
         "name" : "Pauline Wade",
-        "barcode" : "6016426593824986",
+        "barcode" : "6016426594782712",
         "patronGroup" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
         "patronGroupObject" : {
           "id" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
@@ -2336,17 +2336,17 @@
         },
         "courseListingId" : "7d37a8f3-b46a-44df-bfb7-fc441d2edcbb",
         "metadata" : {
-          "createdDate" : "2021-05-16T07:55:31.518+00:00",
-          "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-          "updatedDate" : "2021-05-16T07:55:31.518+00:00",
-          "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+          "createdDate" : "2021-06-09T06:12:36.029+00:00",
+          "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+          "updatedDate" : "2021-06-09T06:12:36.029+00:00",
+          "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
         }
       } ],
       "metadata" : {
-        "createdDate" : "2021-05-16T07:55:31.505+00:00",
-        "createdByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd",
-        "updatedDate" : "2021-05-16T07:55:31.505+00:00",
-        "updatedByUserId" : "f340b8ba-2958-479d-ac79-c283020e20cd"
+        "createdDate" : "2021-06-09T06:12:35.996+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:35.996+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     },
     "courseNumber" : "482",
