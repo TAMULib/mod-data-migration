@@ -103,16 +103,6 @@
     "externalAccountNumberExt" : "242405-21999",
     "name" : "MSL PJ Public Health"
   }, {
-    "id" : "f36e0eaf-9fe6-4736-ba0b-261be1a05e68",
-    "code" : "sel24",
-    "externalAccountNumberExt" : "242406",
-    "name" : "Selectors"
-  }, {
-    "id" : "ee5ea835-8896-45f4-b4ef-c1e9812c2d24",
-    "code" : "mslpmonohumanmed",
-    "externalAccountNumberExt" : "242405-21400",
-    "name" : "MSL PMono Human Medicine"
-  }, {
     "id" : "8d1d5118-e848-4fee-b254-676afc4d6504",
     "code" : "mslpjpharmacy",
     "externalAccountNumberExt" : "242405-21999",
@@ -123,25 +113,10 @@
     "externalAccountNumberExt" : "242405-22300",
     "name" : "MSL EDb Veterinary Medicine"
   }, {
-    "id" : "3a576abb-811e-4945-a651-42b9d517bb15",
-    "code" : "techpro",
-    "externalAccountNumberExt" : "242406",
-    "name" : "TechPro"
-  }, {
-    "id" : "82bc9d63-a3d0-4aed-872d-d4d2112b1668",
-    "code" : "papp",
-    "externalAccountNumberExt" : "242406",
-    "name" : "Print approval"
-  }, {
     "id" : "9507d669-99cb-4c30-b12f-73ddae3b6759",
     "code" : "mslejbioresearch",
     "externalAccountNumberExt" : "242405-22999",
     "name" : "MSL EJ Biomedical Research"
-  }, {
-    "id" : "de02ccbb-afc9-4393-aa09-bbfcf531e3a4",
-    "code" : "mslejmisc",
-    "externalAccountNumberExt" : "242405-22999",
-    "name" : "MSL EJ Miscellaneous"
   }, {
     "id" : "c3798940-c25d-4713-a9ac-b55656924309",
     "code" : "mslemonovetmed",
@@ -183,16 +158,6 @@
     "externalAccountNumberExt" : "242405-22999",
     "name" : "MSL EJ Public Health"
   }, {
-    "id" : "f21e409d-03de-43c8-bb42-de42796035b1",
-    "code" : "mslejhumanmed",
-    "externalAccountNumberExt" : "242405-22999",
-    "name" : "MSL EJ Human Medicine"
-  }, {
-    "id" : "4e005163-6eb2-46a6-a7d4-b894f3d1b5ee",
-    "code" : "mslejpharmacy",
-    "externalAccountNumberExt" : "242405-22999",
-    "name" : "MSL EJ College of Pharmacy"
-  }, {
     "id" : "bf4299b5-ac72-4509-b921-822c3c74ce6c",
     "code" : "mslpjmisc",
     "externalAccountNumberExt" : "242405-21999",
@@ -202,11 +167,6 @@
     "code" : "mslpmonoag",
     "externalAccountNumberExt" : "242405-21400",
     "name" : "MSL PMono Agriculture"
-  }, {
-    "id" : "27ddca39-01d3-4cd7-91fa-4f1b034c9df3",
-    "code" : "mslejnursing",
-    "externalAccountNumberExt" : "242405-22999",
-    "name" : "MSL EJ Nursing"
   }, {
     "id" : "58462e8f-7391-4095-a182-840981763bd4",
     "code" : "mslemonobioresearch",
@@ -218,6 +178,51 @@
     "externalAccountNumberExt" : "242405-22400",
     "name" : "MSL EMono Nursing"
   }, {
+    "id" : "96dc22d8-2870-464e-b059-c216eca711e1",
+    "code" : "mslejvetmed",
+    "externalAccountNumberExt" : "242405-22999",
+    "name" : "MSL EJ Veterinary Medicine"
+  }, {
+    "id" : "f36e0eaf-9fe6-4736-ba0b-261be1a05e68",
+    "code" : "sel24",
+    "externalAccountNumberExt" : "242406",
+    "name" : "Selectors"
+  }, {
+    "id" : "ee5ea835-8896-45f4-b4ef-c1e9812c2d24",
+    "code" : "mslpmonohumanmed",
+    "externalAccountNumberExt" : "242405-21400",
+    "name" : "MSL PMono Human Medicine"
+  }, {
+    "id" : "3a576abb-811e-4945-a651-42b9d517bb15",
+    "code" : "techpro",
+    "externalAccountNumberExt" : "242406",
+    "name" : "TechPro"
+  }, {
+    "id" : "82bc9d63-a3d0-4aed-872d-d4d2112b1668",
+    "code" : "papp",
+    "externalAccountNumberExt" : "242406",
+    "name" : "Print approval"
+  }, {
+    "id" : "de02ccbb-afc9-4393-aa09-bbfcf531e3a4",
+    "code" : "mslejmisc",
+    "externalAccountNumberExt" : "242405-22999",
+    "name" : "MSL EJ Miscellaneous"
+  }, {
+    "id" : "f21e409d-03de-43c8-bb42-de42796035b1",
+    "code" : "mslejhumanmed",
+    "externalAccountNumberExt" : "242405-22999",
+    "name" : "MSL EJ Human Medicine"
+  }, {
+    "id" : "4e005163-6eb2-46a6-a7d4-b894f3d1b5ee",
+    "code" : "mslejpharmacy",
+    "externalAccountNumberExt" : "242405-22999",
+    "name" : "MSL EJ College of Pharmacy"
+  }, {
+    "id" : "27ddca39-01d3-4cd7-91fa-4f1b034c9df3",
+    "code" : "mslejnursing",
+    "externalAccountNumberExt" : "242405-22999",
+    "name" : "MSL EJ Nursing"
+  }, {
     "id" : "487e4cd5-7c9f-4674-a594-6c41c6e5b689",
     "code" : "preplacement",
     "externalAccountNumberExt" : "242406",
@@ -228,10 +233,25 @@
     "externalAccountNumberExt" : "242406",
     "name" : "Undergrad"
   }, {
-    "id" : "96dc22d8-2870-464e-b059-c216eca711e1",
-    "code" : "mslejvetmed",
-    "externalAccountNumberExt" : "242405-22999",
-    "name" : "MSL EJ Veterinary Medicine"
+    "id" : "aa6723ba-f4e7-436b-82da-7c12dcf5313d",
+    "code" : "mslemonopharmacy",
+    "externalAccountNumberExt" : "242405-22400",
+    "name" : "MSL EMono Pharmacy"
+  }, {
+    "id" : "4ceadf32-6197-4f92-ab18-847d627a04cd",
+    "code" : "mslpmonomisc",
+    "externalAccountNumberExt" : "242405-21400",
+    "name" : "MSL PMono Miscellaneous"
+  }, {
+    "id" : "a5f3bdc9-a8a1-4027-bd2e-ad08050be710",
+    "code" : "mslpmononursing",
+    "externalAccountNumberExt" : "242405-21400",
+    "name" : "MSL PMono Nursing"
+  }, {
+    "id" : "788fd5a9-f4bc-4b65-813b-2eade0637f4d",
+    "code" : "mslpmonopubhealth",
+    "externalAccountNumberExt" : "242405-21400",
+    "name" : "MSL PMono Public Health"
   }, {
     "id" : "37ebcaec-92f3-4cfc-8ed3-98dc98fe3c32",
     "code" : "mslpjhumanmed",
@@ -263,11 +283,6 @@
     "externalAccountNumberExt" : "242405-22400",
     "name" : "MSL EMono Human Medicine"
   }, {
-    "id" : "aa6723ba-f4e7-436b-82da-7c12dcf5313d",
-    "code" : "mslemonopharmacy",
-    "externalAccountNumberExt" : "242405-22400",
-    "name" : "MSL EMono Pharmacy"
-  }, {
     "id" : "4d66214f-c976-4c8b-b6b6-931bb3a405b0",
     "code" : "mslemonopubhealth",
     "externalAccountNumberExt" : "242405-22400",
@@ -287,20 +302,5 @@
     "code" : "PPDA",
     "externalAccountNumberExt" : "242406",
     "name" : "Print Purchase on Demand"
-  }, {
-    "id" : "4ceadf32-6197-4f92-ab18-847d627a04cd",
-    "code" : "mslpmonomisc",
-    "externalAccountNumberExt" : "242405-21400",
-    "name" : "MSL PMono Miscellaneous"
-  }, {
-    "id" : "a5f3bdc9-a8a1-4027-bd2e-ad08050be710",
-    "code" : "mslpmononursing",
-    "externalAccountNumberExt" : "242405-21400",
-    "name" : "MSL PMono Nursing"
-  }, {
-    "id" : "788fd5a9-f4bc-4b65-813b-2eade0637f4d",
-    "code" : "mslpmonopubhealth",
-    "externalAccountNumberExt" : "242405-21400",
-    "name" : "MSL PMono Public Health"
   } ]
 }

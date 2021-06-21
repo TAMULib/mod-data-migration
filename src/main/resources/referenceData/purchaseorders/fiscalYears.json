@@ -8,16 +8,6 @@
   "excludedProperties" : [ "metadata" ],
   "additional" : [ ],
   "data" : [ {
-    "id" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
-    "acqUnitIds" : [ ],
-    "name" : "z2021",
-    "code" : "zFY2021",
-    "currency" : "USD",
-    "description" : "FY21 for Testing Honeysuckle and Iris.",
-    "periodStart" : "2021-01-01T00:00:00.000+00:00",
-    "periodEnd" : "2021-08-31T00:00:00.000+00:00",
-    "series" : "zFY"
-  }, {
     "id" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "acqUnitIds" : [ ],
     "name" : "FY2021",

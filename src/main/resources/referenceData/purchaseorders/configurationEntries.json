@@ -237,12 +237,6 @@
     "enabled" : true,
     "value" : "{\"name\":\"SRMSVW\",\"address\":\"WEST CAMPUS LIBRARY\\nTEXAS A&M UNIVERSITY\\n5001 TAMU\\nCOLLEGE STATION, TX   77843-5001\"}"
   }, {
-    "id" : "6060b98d-87d3-47c7-b944-996a8ca8f07b",
-    "module" : "LOAN_HISTORY",
-    "configName" : "loan_history",
-    "enabled" : true,
-    "value" : "{\"closingType\":{\"loan\":\"interval\",\"feeFine\":null,\"loanExceptions\":[]},\"loan\":{\"duration\":30,\"intervalId\":\"Days\"},\"feeFine\":{\"duration\":30,\"intervalId\":\"Days\"},\"loanExceptions\":[],\"treatEnabled\":false}"
-  }, {
     "id" : "b4bc5bc4-f37b-4b75-a6a4-bfba38e1811d",
     "module" : "TENANT",
     "configName" : "tenant.addresses",
@@ -310,6 +304,12 @@
     "module" : "OAIPMH",
     "configName" : "technical",
     "enabled" : true,
-    "value" : "{\"enableValidation\":\"false\",\"formattedOutput\":\"false\",\"maxRecordsPerResponse\":\"100\"}"
+    "value" : "{\"enableValidation\":\"false\",\"formattedOutput\":\"false\",\"maxRecordsPerResponse\":\"400\"}"
+  }, {
+    "id" : "6060b98d-87d3-47c7-b944-996a8ca8f07b",
+    "module" : "LOAN_HISTORY",
+    "configName" : "loan_history",
+    "enabled" : true,
+    "value" : "{\"closingType\":{\"loan\":\"interval\",\"feeFine\":\"interval\",\"loanExceptions\":[]},\"loan\":{\"duration\":30,\"intervalId\":\"Days\"},\"feeFine\":{\"duration\":14,\"intervalId\":\"Days\"},\"loanExceptions\":[],\"treatEnabled\":true}"
   } ]
 }

@@ -58,7 +58,7 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "2e6016cf-68c3-4834-bf0b-e079c4233fab"
+    "id" : "5e7a5211-7bea-4e3d-8f64-902336beb05c"
   }, {
     "profile" : {
       "name" : "Match on 001 to HRID",
@@ -100,6 +100,99 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "4b7d7a4c-06b1-471d-ba7a-db967b533fc2"
+    "id" : "ff2f9cfc-9702-4351-88b1-a91965a89a94"
+  }, {
+    "profile" : {
+      "name" : "Match on 856$u",
+      "description" : "",
+      "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+      "existingRecordType" : "INSTANCE",
+      "matchDetails" : [ {
+        "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+        "existingRecordType" : "INSTANCE",
+        "incomingMatchExpression" : {
+          "dataValueType" : "VALUE_FROM_RECORD",
+          "fields" : [ {
+            "label" : "field",
+            "value" : "856"
+          }, {
+            "label" : "indicator1",
+            "value" : "*"
+          }, {
+            "label" : "indicator2",
+            "value" : "*"
+          }, {
+            "label" : "recordSubfield",
+            "value" : "u"
+          } ]
+        },
+        "matchCriterion" : "EXACTLY_MATCHES",
+        "existingMatchExpression" : {
+          "dataValueType" : "VALUE_FROM_RECORD",
+          "fields" : [ {
+            "label" : "field",
+            "value" : "instance.electronicAccess[].uri"
+          } ]
+        }
+      } ],
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "84121bdc-77bb-45a6-8ac4-d7efb3b45e0d"
+  }, {
+    "profile" : {
+      "name" : "MARCIVE MATCH-CREATE NEW INSTANCES AND HOLDINGS",
+      "description" : "",
+      "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+      "existingRecordType" : "INSTANCE",
+      "matchDetails" : [ {
+        "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+        "existingRecordType" : "INSTANCE",
+        "incomingMatchExpression" : {
+          "dataValueType" : "VALUE_FROM_RECORD",
+          "fields" : [ {
+            "label" : "field",
+            "value" : "035"
+          }, {
+            "label" : "indicator1",
+            "value" : ""
+          }, {
+            "label" : "indicator2",
+            "value" : ""
+          }, {
+            "label" : "recordSubfield",
+            "value" : "a"
+          } ],
+          "qualifier" : {
+            "comparisonPart" : "ALPHANUMERICS_ONLY"
+          }
+        },
+        "matchCriterion" : "EXISTING_VALUE_CONTAINS_INCOMING_VALUE",
+        "existingMatchExpression" : {
+          "dataValueType" : "VALUE_FROM_RECORD",
+          "fields" : [ {
+            "label" : "field",
+            "value" : "instance.identifiers[].value"
+          }, {
+            "label" : "identifierTypeId",
+            "value" : "439bfbae-75bc-4f74-9fc7-b2a2d47ce3ef"
+          } ],
+          "qualifier" : {
+            "comparisonPart" : "NUMERICS_ONLY"
+          }
+        }
+      } ],
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "8146c068-c60b-4eb1-9f7b-1b459d8f8b0b"
   } ]
 }
