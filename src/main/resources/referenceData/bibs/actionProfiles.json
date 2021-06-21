@@ -54,34 +54,6 @@
     "id" : "20845cfb-111e-46db-906d-7fc7db88282a"
   }, {
     "profile" : {
-      "name" : "MARCIVE-Create New Holdings Record URL",
-      "description" : "",
-      "action" : "CREATE",
-      "folioRecord" : "HOLDINGS",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "ffac4a3a-0264-42da-ac09-1dcc14d35949"
-  }, {
-    "profile" : {
-      "name" : "MARCIVE-Create New Instance Record URL",
-      "description" : "",
-      "action" : "CREATE",
-      "folioRecord" : "INSTANCE",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "8fb61714-e1c2-4774-8390-91309bc4d7a6"
-  }, {
-    "profile" : {
       "name" : "MARC delete 945 field",
       "description" : "",
       "action" : "MODIFY",
@@ -96,48 +68,6 @@
     "id" : "af71c31f-cbff-4be3-87e4-cd4feb987cb0"
   }, {
     "profile" : {
-      "name" : "Print Books - Create Instance Record",
-      "description" : "",
-      "action" : "CREATE",
-      "folioRecord" : "INSTANCE",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "f537a837-27f6-4198-9eab-f259947db507"
-  }, {
-    "profile" : {
-      "name" : "Print Books - Creat Holdings Record",
-      "description" : "",
-      "action" : "CREATE",
-      "folioRecord" : "HOLDINGS",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "bab52e11-d717-4705-b4d8-37dfc3883088"
-  }, {
-    "profile" : {
-      "name" : "Print Books - Create Item Record",
-      "description" : "",
-      "action" : "CREATE",
-      "folioRecord" : "ITEM",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "ae26f828-d48b-4d73-8096-1d774e4d1267"
-  }, {
-    "profile" : {
       "name" : "Print Book - Overlay",
       "description" : "",
       "action" : "UPDATE",
@@ -150,5 +80,243 @@
       }
     },
     "id" : "cab7a1a7-ce8a-4f55-a37e-e105c1a016ce"
+  }, {
+    "profile" : {
+      "name" : "YBP Approval Print Books - Create Instance Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "0bcbe20a-49b8-4de4-84d7-e48e091bdec5"
+  }, {
+    "profile" : {
+      "name" : "KP TEST - Harr Invoice",
+      "description" : "Testing Serials Harrassowitz Invoice",
+      "action" : "CREATE",
+      "folioRecord" : "INVOICE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "825d0a15-56db-4f3f-bac9-0219b73a5067"
+  }, {
+    "profile" : {
+      "name" : "MARCIVE ACTION-Create New Holdings Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "HOLDINGS",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "ffac4a3a-0264-42da-ac09-1dcc14d35949"
+  }, {
+    "profile" : {
+      "name" : "Default Print Books - Create Instance Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "f537a837-27f6-4198-9eab-f259947db507"
+  }, {
+    "profile" : {
+      "name" : "KP TEST - Monograph Invoice 2",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "INVOICE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "bb7bceb6-5dc5-4b88-abe7-16c75b7337c1"
+  }, {
+    "profile" : {
+      "name" : "MSL test action",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "9f1b11f3-132a-4266-8b9f-67eca17a16d5"
+  }, {
+    "profile" : {
+      "name" : "MARCIVE ACTION-Create New Instance Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "8fb61714-e1c2-4774-8390-91309bc4d7a6"
+  }, {
+    "profile" : {
+      "name" : "KP TEST - YBP Invoice",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "INVOICE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "f94e5091-3924-4c61-a7c8-5aa025f5f636"
+  }, {
+    "profile" : {
+      "name" : "KP TEST - YBP Monograph Invoice",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "INVOICE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "92bf7c42-c35b-49ed-becc-663c87e3a400"
+  }, {
+    "profile" : {
+      "name" : "Deafult Print Books - Create Item Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "ITEM",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "ae26f828-d48b-4d73-8096-1d774e4d1267"
+  }, {
+    "profile" : {
+      "name" : "Default - EBooks - Create Holdings Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "HOLDINGS",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "67333175-34f3-4daa-99d0-90216b0f9d8a"
+  }, {
+    "profile" : {
+      "name" : "GOBI Monograph Invoice",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "INVOICE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "648c4f60-cdac-4c03-abad-3d4b1e27cb9b"
+  }, {
+    "profile" : {
+      "name" : "Default Print Books - Creat Holdings Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "HOLDINGS",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "bab52e11-d717-4705-b4d8-37dfc3883088"
+  }, {
+    "profile" : {
+      "name" : "Default - EBooks - Create Instance Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "1f9d47db-d0b5-4a53-8c57-953f4cd2ba71"
+  }, {
+    "profile" : {
+      "name" : "Ebooks - GOBI Firm - Create Holdings Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "HOLDINGS",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "f0002a12-9ff9-4a93-9094-7d3182e9bc3b"
+  }, {
+    "profile" : {
+      "name" : "Ebooks - GOBI Firm - Create Instance Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "38443997-27c7-40b5-91bc-143516f361c2"
+  }, {
+    "profile" : {
+      "name" : "EBooks - ybppdatrig - Overlay",
+      "description" : "",
+      "action" : "UPDATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "d2b75909-240f-4f24-b05e-9a5da53068b6"
   } ]
 }

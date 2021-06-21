@@ -38,19 +38,6 @@
     "id" : "8a64004f-a832-4b41-96c0-24c3890acba7"
   }, {
     "profile" : {
-      "name" : "MARCIVE-Create New Instances and Holdings Records URL",
-      "description" : "",
-      "dataType" : "MARC",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "da8181be-2e5b-4579-960a-9755e35c719f"
-  }, {
-    "profile" : {
       "name" : "Test 9xx delete",
       "description" : "",
       "dataType" : "MARC",
@@ -64,19 +51,6 @@
     "id" : "dcf7fbdf-5bd1-4688-8971-11bbccd2bdbc"
   }, {
     "profile" : {
-      "name" : "Print Books - Create New Record",
-      "description" : "Creates new instance, holdings, and item record",
-      "dataType" : "MARC",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "027ec796-3d95-42a5-810d-291b8891bc46"
-  }, {
-    "profile" : {
       "name" : "Print Book - Overlay",
       "description" : "",
       "dataType" : "MARC",
@@ -88,5 +62,177 @@
       }
     },
     "id" : "7a420b8a-15ce-4286-a8bf-b40211f95095"
+  }, {
+    "profile" : {
+      "name" : "YBP Approval Print Books - Create New Record",
+      "description" : "Creates new instance, holdings, and item record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "b1a1c164-9929-4450-bd7f-41b962c9255d"
+  }, {
+    "profile" : {
+      "name" : "KP TEST - Harr Invoice Profile",
+      "description" : "Serials Invoice Test",
+      "dataType" : "EDIFACT",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "ce1810d1-37a5-48e5-a033-f92197c02f15"
+  }, {
+    "profile" : {
+      "name" : "MSL test A",
+      "description" : "",
+      "dataType" : "MARC",
+      "tags" : {
+        "tagList" : [ ]
+      },
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "af997756-dfbf-4eb3-a954-13f651955f21"
+  }, {
+    "profile" : {
+      "name" : "KP TEST - YBP Monograph Invoice Profile",
+      "description" : "",
+      "dataType" : "EDIFACT",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "647fd5cb-a815-4b11-9886-afe6a2a434fc"
+  }, {
+    "profile" : {
+      "name" : "TestQatar",
+      "description" : "Creates E-book records",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "78d919c4-5cd0-4bef-86ab-841f32baa1a3"
+  }, {
+    "profile" : {
+      "name" : "MARCIVE-Create New Instances and Holdings Records",
+      "description" : "",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "da8181be-2e5b-4579-960a-9755e35c719f"
+  }, {
+    "profile" : {
+      "name" : "KP Test - YBP Invoice Profile",
+      "description" : "",
+      "dataType" : "EDIFACT",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "efb3d3fa-06a0-4e97-85b4-caf133c3ad80"
+  }, {
+    "profile" : {
+      "name" : "KP TEST Monograph Invoice 2",
+      "description" : "",
+      "dataType" : "EDIFACT",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "7382eafe-ee3a-4a5a-9a82-d9cda2937b33"
+  }, {
+    "profile" : {
+      "name" : "Default - Ebooks - Create New Record",
+      "description" : "Creates new instance and holdings record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "fce57a88-82b2-488f-8c2e-61e6996f24af"
+  }, {
+    "profile" : {
+      "name" : "GOBI Monograph Invoice",
+      "description" : "",
+      "dataType" : "EDIFACT",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "be8b48fa-a27b-4452-8e34-4340679137fc"
+  }, {
+    "profile" : {
+      "name" : "Default Print Books - Create New Record",
+      "description" : "Creates new instance, holdings, and item record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "027ec796-3d95-42a5-810d-291b8891bc46"
+  }, {
+    "profile" : {
+      "name" : "Ebooks - GOBI Firm- Create New Record",
+      "description" : "Creates new instance and holdings record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "1108fb6c-22a3-474b-86ed-5398d3e4bad2"
+  }, {
+    "profile" : {
+      "name" : "EBooks - ybppdatrig - Overlay",
+      "description" : "",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "0ae9059c-a2ec-486b-b10b-301b4d2ddd94"
   } ]
 }

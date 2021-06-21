@@ -64,7 +64,7 @@
     "permissionName" : "fd81b059-b046-414e-9da5-46a420c4a180",
     "displayName" : "Edge_user",
     "id" : "fd81b059-b046-414e-9da5-46a420c4a180",
-    "subPermissions" : [ "circulation.requests.item.get", "circulation.scheduled-age-to-lost-fee-charging.post", "circulation.scheduled-age-to-lost.post", "gobi.all", "inventory-storage.items.collection.get", "ncip.all", "oai-pmh.all", "patron.all", "rtac.all", "ui-circulation.settings.lost-item-fees-policies", "ui-circulation.settings.overdue-fines-policies", "users.collection.get" ],
+    "subPermissions" : [ "circulation.requests.item.get", "circulation.scheduled-age-to-lost-fee-charging.post", "circulation.scheduled-age-to-lost.post", "copycat.all", "gobi.all", "inventory-storage.items.collection.get", "ncip.all", "oai-pmh.all", "patron.all", "rtac.all", "ui-circulation.settings.lost-item-fees-policies", "ui-circulation.settings.overdue-fines-policies", "users.collection.get" ],
     "mutable" : true,
     "visible" : true
   }, {

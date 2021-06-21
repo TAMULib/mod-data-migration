@@ -48,50 +48,20 @@
     "restrictEncumbrance" : true,
     "restrictExpenditures" : true
   }, {
-    "id" : "8a479153-d433-420d-95a1-fa835d36542d",
-    "name" : "TAMU test",
-    "code" : "tamutest",
-    "fiscalYearOneId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "ledgerStatus" : "Active",
-    "acqUnitIds" : [ ],
-    "restrictEncumbrance" : true,
-    "restrictExpenditures" : true
-  }, {
-    "id" : "421f8806-47f3-4418-a2a2-1d309733305e",
-    "name" : "z21Cushing",
-    "code" : "z21cushing",
-    "description" : "zFY21 Cushing short yr ledger for testing Honeysuckle Folio",
-    "fiscalYearOneId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
-    "ledgerStatus" : "Inactive",
-    "acqUnitIds" : [ ],
-    "restrictEncumbrance" : true,
-    "restrictExpenditures" : true
-  }, {
-    "id" : "d6ed19ee-ce91-4d70-ae9f-5dbdddf87553",
-    "name" : "z21OneTime",
-    "code" : "z21onetime",
-    "description" : "zFY21 testing ledger for Monographic purchases",
-    "fiscalYearOneId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
-    "ledgerStatus" : "Inactive",
-    "acqUnitIds" : [ ],
-    "restrictEncumbrance" : true,
-    "restrictExpenditures" : true
-  }, {
-    "id" : "a8eb1ff4-19e0-4436-a449-808d4cebd602",
-    "name" : "z21Recurring",
-    "code" : "z21recurring",
-    "description" : "zRecurring FY21 ",
-    "fiscalYearOneId" : "89d9d596-7d60-4b20-88c2-bf0fa1524e38",
-    "ledgerStatus" : "Inactive",
-    "acqUnitIds" : [ ],
-    "restrictEncumbrance" : true,
-    "restrictExpenditures" : true
-  }, {
     "id" : "2d681c78-5be8-4bac-a9ec-7eba5a175f49",
     "name" : "Johns ledger",
     "code" : "jl",
     "fiscalYearOneId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
     "ledgerStatus" : "Active",
+    "acqUnitIds" : [ ],
+    "restrictEncumbrance" : true,
+    "restrictExpenditures" : true
+  }, {
+    "id" : "8a479153-d433-420d-95a1-fa835d36542d",
+    "name" : "TAMU test",
+    "code" : "tamutest",
+    "fiscalYearOneId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "ledgerStatus" : "Inactive",
     "acqUnitIds" : [ ],
     "restrictEncumbrance" : true,
     "restrictExpenditures" : true
