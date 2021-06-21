@@ -26,34 +26,6 @@
     "id" : "e8a6de1a-c98a-4a8a-9c36-fc1ae88a61ba"
   }, {
     "profile" : {
-      "name" : "Default - Create instance",
-      "description" : "This action profile is used with FOLIO's default job profile for creating Inventory Instances and SRS MARC Bibliographic records. It can be edited, duplicated, or deleted.",
-      "action" : "CREATE",
-      "folioRecord" : "INSTANCE",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "aa639af7-58e7-441d-afbc-5d17e914e706"
-  }, {
-    "profile" : {
-      "name" : "quickMARC Derive - Create Inventory Instance",
-      "description" : "This action profile is used by the quickMARC Derive action to create a new Inventory Instance. It cannot be edited or deleted.",
-      "action" : "CREATE",
-      "folioRecord" : "INSTANCE",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "20845cfb-111e-46db-906d-7fc7db88282a"
-  }, {
-    "profile" : {
       "name" : "MARC delete 945 field",
       "description" : "",
       "action" : "MODIFY",
