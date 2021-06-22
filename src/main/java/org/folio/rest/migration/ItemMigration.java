@@ -1,31 +1,29 @@
 package org.folio.rest.migration;
 
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.io.JsonStringEncoder;
-
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote.NoteType;
 import org.folio.rest.jaxrs.model.inventory.Item;
+import org.folio.rest.jaxrs.model.inventory.ItemsPost;
 import org.folio.rest.jaxrs.model.inventory.Loantype;
 import org.folio.rest.jaxrs.model.inventory.Loantypes;
 import org.folio.rest.jaxrs.model.inventory.Location;
@@ -48,8 +46,6 @@ import org.folio.rest.migration.model.request.item.ItemMaps;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.utility.TimingUtility;
 import org.folio.rest.model.ReferenceLink;
-import org.postgresql.copy.PGCopyOutputStream;
-import org.postgresql.core.BaseConnection;
 
 import io.vertx.core.json.JsonObject;
 
@@ -106,8 +102,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String HOLDING_TO_CALL_NUMBER_PREFIX_ID = "holdingToCallNumberPrefixTypeId";
   private static final String HOLDING_TO_CALL_NUMBER_SUFFIX_ID = "holdingToCallNumberSuffixTypeId";
 
-  // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
-  private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid) FROM STDIN WITH NULL AS 'null'";
+  private static final Set<String> BARCODES = new HashSet<>();
 
   private ItemMigration(ItemContext context, String tenant) {
     super(context, tenant);
@@ -142,6 +137,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           log.error("failed to updated hrid settings: {}", e.getMessage());
         }
         postActions(folioSettings, context.getPostActions());
+        BARCODES.clear();
         migrationService.complete();
       }
 
@@ -187,6 +183,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         partitionContext.put(STATISTICAL_CODES, statisticalcodes);
         partitionContext.put(MATERIAL_TYPES, materialTypes);
         partitionContext.put(USER, user);
+        partitionContext.put(TOKEN, token);
         log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
         taskQueue.submit(new ItemPartitionTask(migrationService, partitionContext));
         offset += limit;
@@ -229,6 +226,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     public PartitionTask<ItemContext> execute(ItemContext context) {
       long startTime = System.nanoTime();
 
+      String token = (String) partitionContext.get(TOKEN);
+
       String hridPrefix = (String) partitionContext.get(HRID_PREFIX);
 
       ItemJob job = (ItemJob) partitionContext.get(JOB);
@@ -249,10 +248,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       int index = this.getIndex();
 
       Database voyagerSettings = context.getExtraction().getDatabase();
-
-      Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
-
-      JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
 
       Map<String, Object> mfhdContext = new HashMap<>();
       mfhdContext.put(SQL, context.getExtraction().getMfhdSql());
@@ -280,12 +275,16 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       String holdingToCallNumberPrefixTypeId = job.getReferences().get(HOLDING_TO_CALL_NUMBER_PREFIX_ID);
       String holdingToCallNumberSuffixTypeId = job.getReferences().get(HOLDING_TO_CALL_NUMBER_SUFFIX_ID);
 
-      ThreadConnections threadConnections = getThreadConnections(voyagerSettings, folioSettings);
+      ThreadConnections threadConnections = getThreadConnections(voyagerSettings);
+
+      ItemsPost itemsBatch = new ItemsPost();
+      List<Item> items = new ArrayList<>();
+
+      itemsBatch.setItems(items);
 
       int count = 0;
 
       try (
-          PrintWriter itemWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getItemConnection(), String.format(ITEM_COPY_SQL, tenant)), true);
           Statement pageStatement = threadConnections.getPageConnection().createStatement();
           Statement mfhdItemStatement = threadConnections.getMfhdConnection().createStatement();
           Statement barcodeStatement = threadConnections.getBarcodeConnection().createStatement();
@@ -351,6 +350,11 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
               })
           ).get();
 
+          if (!processBarcode(itemRecord.getBarcode().toLowerCase())) {
+            log.warn("{} item id {} barcode {} already processed", schema, itemId, itemRecord.getBarcode());
+            continue;
+          }
+
           itemRecord.setId(id);
           itemRecord.setHoldingId(holdingId);
 
@@ -399,40 +403,19 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           itemRecord.setCreatedByUserId(user.getId());
           itemRecord.setCreatedDate(createdDate);
 
-          String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-          String createdByUserId = user.getId();
-
           String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
 
           Item item = itemRecord.toItem(hridString, statisticalcodes, materialtypes, maps, defaults);
 
-          try {
+          itemsBatch.getItems().add(item);
 
-            String iUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(item)));
+          hrid++;
+          count++;
 
-            // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
-            itemWriter.println(String.join("\t",
-              item.getId(),
-              iUtf8Json,
-              createdAt,
-              createdByUserId,
-              item.getHoldingsRecordId(),
-              item.getPermanentLoanTypeId(),
-              Objects.nonNull(item.getTemporaryLoanTypeId()) ? item.getTemporaryLoanTypeId() : NULL,
-              item.getMaterialTypeId(),
-              Objects.nonNull(item.getPermanentLocationId()) ? item.getPermanentLocationId() : NULL,
-              Objects.nonNull(item.getTemporaryLocationId()) ? item.getTemporaryLocationId() : NULL,
-              Objects.nonNull(item.getEffectiveLocationId()) ? item.getEffectiveLocationId() : NULL
-            ));
-
-            hrid++;
-            count++;
-
-          } catch (JsonProcessingException e) {
-            log.error("{} item id {} error serializing item", schema, itemId);
-            log.debug(e.getMessage());
+          if (itemsBatch.getItems().size() == job.getBatchSize()) {
+            String messageTemplate = String.format("%s %s item batch {} %s-%s in %s milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
+            submitItemsbatch(token, itemsBatch, messageTemplate);
           }
-
         }
 
       } catch (SQLException | InterruptedException | ExecutionException e) {
@@ -441,9 +424,26 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         threadConnections.closeAll();
       }
 
-      log.info("{} {} item finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
+      if (!itemsBatch.getItems().isEmpty()) {
+        String messageTemplate = String.format("%s %s item batch {} %s-%s in %s milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
+        submitItemsbatch(token, itemsBatch, messageTemplate);
+      } else {
+        log.info("{} {} items finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
+      }
 
       return this;
+    }
+
+    private void submitItemsbatch(String token, ItemsPost itemsBatch, String messageTemplate) {
+      try {
+        migrationService.okapiService.postItemsBatch(tenant, token, itemsBatch);
+        log.info(messageTemplate, "finished");
+      } catch(Exception e) {
+        log.info(messageTemplate, "failed");
+        e.printStackTrace();
+      }
+
+      itemsBatch.getItems().clear();
     }
 
     @Override
@@ -589,6 +589,10 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
   }
 
+  private synchronized Boolean processBarcode(String barcode) {
+    return BARCODES.add(barcode);
+  }
+
   private Map<String, String> getLoanTypesMap(Loantypes loanTypes, String schema) {
     Map<String, String> idToUuid = new HashMap<>();
     Map<String, Object> itemTypeContext = new HashMap<>();
@@ -646,7 +650,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     return idToUuid;
   }
 
-  private ThreadConnections getThreadConnections(Database voyagerSettings, Database folioSettings) {
+  private ThreadConnections getThreadConnections(Database voyagerSettings) {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     threadConnections.setBarcodeConnection(getConnection(voyagerSettings));
@@ -654,12 +658,12 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     threadConnections.setMfhdConnection(getConnection(voyagerSettings));
     threadConnections.setNoteConnection(getConnection(voyagerSettings));
     threadConnections.setMaterialTypeConnection(getConnection(voyagerSettings));
-    try {
-      threadConnections.setItemConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-      throw new RuntimeException(e);
-    }
+    // try {
+    //   threadConnections.setItemConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
+    // } catch (SQLException e) {
+    //   log.error(e.getMessage());
+    //   throw new RuntimeException(e);
+    // }
     return threadConnections;
   }
 
@@ -672,7 +676,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     private Connection noteConnection;
     private Connection materialTypeConnection;
 
-    private BaseConnection itemConnection;
+    // private BaseConnection itemConnection;
 
     public ThreadConnections() {
 
@@ -726,21 +730,12 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       this.materialTypeConnection = materialTypeConnection;
     }
 
-    public BaseConnection getItemConnection() {
-      return itemConnection;
-    }
-
-    public void setItemConnection(BaseConnection itemConnection) {
-      this.itemConnection = itemConnection;
-    }
-
     public void closeAll() {
       try {
         pageConnection.close();
         mfhdConnection.close();
         barcodeConnection.close();
         itemStatusConnection.close();
-        itemConnection.close();
         noteConnection.close();
         materialTypeConnection.close();
       } catch (SQLException e) {

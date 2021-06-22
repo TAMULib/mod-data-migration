@@ -900,6 +900,7 @@ POST to http://localhost:9000/migrate/items
     {
       "schema": "AMDB",
       "partitions": 48,
+      "batchSize": 2000,
       "user": "tamu_admin",
       "itemNoteTypeId": "8d0a5eca-25de-4391-81a9-236eeefdd20b",
       "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
@@ -913,6 +914,7 @@ POST to http://localhost:9000/migrate/items
     {
       "schema": "MSDB",
       "partitions": 4,
+      "batchSize": 2000,
       "user": "tamu_admin",
       "itemNoteTypeId": "8d0a5eca-25de-4391-81a9-236eeefdd20b",
       "itemDamagedStatusId": "54d1dd76-ea33-4bcb-955b-6b29df4f7930",
