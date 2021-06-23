@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.codehaus.plexus.util.StringUtils;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote;
@@ -24,6 +26,8 @@ import org.folio.rest.jaxrs.model.inventory.Status;
 import org.folio.rest.jaxrs.model.inventory.Status.Name;
 import org.folio.rest.migration.model.request.item.ItemDefaults;
 import org.folio.rest.migration.model.request.item.ItemMaps;
+import org.marc4j.callnum.CallNumber;
+import org.marc4j.callnum.LCCallNumber;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -366,6 +370,7 @@ public class ItemRecord {
 
     item.setEffectiveCallNumberComponents(effectiveCallNumberComponents);
 
+    setEffectiveShelvingOrder(item);
 
     Metadata metadata = new Metadata();
     metadata.setCreatedByUserId(createdByUserId);
@@ -377,6 +382,40 @@ public class ItemRecord {
     item.setMaterialTypeId(materialTypeId);
 
     return item;
+  }
+
+  private void setEffectiveShelvingOrder(final Item item) {
+    if (StringUtils.isNotBlank(item.getEffectiveCallNumberComponents().getCallNumber())) {
+      Optional<String> shelfKey
+        = getShelfKeyFromCallNumber(
+        Stream.of(
+          item.getEffectiveCallNumberComponents().getCallNumber(),
+          item.getVolume(),
+          item.getEnumeration(),
+          item.getChronology(),
+          item.getCopyNumber()
+        ).filter(StringUtils::isNotBlank)
+          .map(StringUtils::trim)
+          .collect(Collectors.joining(" "))
+      );
+      String suffixValue =
+        Objects.toString(Optional.ofNullable(item.getEffectiveCallNumberComponents())
+          .orElse(new EffectiveCallNumberComponents()).getSuffix(), "")
+          .trim();
+      String nonNullableSuffixValue = suffixValue.isEmpty() ? "" : " " + suffixValue;
+      item.setEffectiveShelvingOrder(
+        shelfKey.stream()
+          .map(shelfKeyValue -> shelfKeyValue + nonNullableSuffixValue)
+          .findFirst()
+          .orElse(nonNullableSuffixValue));
+    }
+  }
+
+  private Optional<String> getShelfKeyFromCallNumber(String callNumberParam) {
+    if (callNumberParam == null) return Optional.empty();
+    CallNumber callNumber = new LCCallNumber();
+    callNumber.parse(callNumberParam);
+    return callNumber.isValid() ? Optional.of(callNumber.getShelfKey()) : Optional.empty();
   }
 
 }
