@@ -184,7 +184,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         partitionContext.put(MATERIAL_TYPES, materialTypes);
         partitionContext.put(USER, user);
         partitionContext.put(TOKEN, token);
-        log.info("submitting task schema {}, offset {}, limit {}", job.getSchema(), offset, limit);
+        log.info("submitting task schema {}, offset {}, limit {}, with batch size {}", job.getSchema(), offset, limit, job.getBatchSize());
         taskQueue.submit(new ItemPartitionTask(migrationService, partitionContext));
         offset += limit;
         hridStartNumber += limit;
@@ -350,7 +350,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
               })
           ).get();
 
-          if (!processBarcode(itemRecord.getBarcode().toLowerCase())) {
+          if (StringUtils.isEmpty(itemRecord.getBarcode())) {
+            log.debug("{} item id {} has no bracode", schema, itemId);
+          } else if (!processBarcode(itemRecord.getBarcode())) {
             log.warn("{} item id {} barcode {} already processed", schema, itemId, itemRecord.getBarcode());
             continue;
           }
@@ -590,7 +592,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   }
 
   private synchronized Boolean processBarcode(String barcode) {
-    return BARCODES.add(barcode);
+    return BARCODES.add(barcode.toLowerCase());
   }
 
   private Map<String, String> getLoanTypesMap(Loantypes loanTypes, String schema) {

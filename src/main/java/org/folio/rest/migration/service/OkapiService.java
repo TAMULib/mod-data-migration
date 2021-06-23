@@ -443,11 +443,10 @@ public class OkapiService {
     return response.getBody();
   }
 
-  public String postItemsBatch(String tenant, String token, ItemsPost itemsBatch) {
+  public void postItemsBatch(String tenant, String token, ItemsPost itemsBatch) {
     HttpEntity<ItemsPost> entity = new HttpEntity<>(itemsBatch, headers(tenant, token));
     String url = okapi.getUrl() + "/item-storage/batch/synchronous";
-    ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
-    return response.getBody();
+    restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
   }
 
   public CompositePurchaseOrder postCompositePurchaseOrder(String tenant, String token, CompositePurchaseOrder compositePurchaseOrder) {
