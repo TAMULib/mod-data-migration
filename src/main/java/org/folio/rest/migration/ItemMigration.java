@@ -9,10 +9,12 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -106,6 +108,8 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String HOLDING_TO_CALL_NUMBER_PREFIX_ID = "holdingToCallNumberPrefixTypeId";
   private static final String HOLDING_TO_CALL_NUMBER_SUFFIX_ID = "holdingToCallNumberSuffixTypeId";
 
+  private static final Set<String> BARCODES = new HashSet<>();
+
   // (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid)
   private static String ITEM_COPY_SQL = "COPY %s_mod_inventory_storage.item (id,jsonb,creation_date,created_by,holdingsrecordid,permanentloantypeid,temporaryloantypeid,materialtypeid,permanentlocationid,temporarylocationid,effectivelocationid) FROM STDIN WITH NULL AS 'null'";
 
@@ -142,6 +146,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
           log.error("failed to updated hrid settings: {}", e.getMessage());
         }
         postActions(folioSettings, context.getPostActions());
+        BARCODES.clear();
         migrationService.complete();
       }
 
@@ -350,6 +355,13 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
                 itemRecord.setCirculationNotes(noteWrapper.getCirculationNotes());
               })
           ).get();
+
+          if (StringUtils.isEmpty(itemRecord.getBarcode())) {
+            log.debug("{} item id {} has no bracode", schema, itemId);
+          } else if (!processBarcode(itemRecord.getBarcode())) {
+            log.warn("{} item id {} barcode {} already processed", schema, itemId, itemRecord.getBarcode());
+            continue;
+          }
 
           itemRecord.setId(id);
           itemRecord.setHoldingId(holdingId);
@@ -587,6 +599,10 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       return future;
     }
 
+  }
+
+  private synchronized Boolean processBarcode(String barcode) {
+    return BARCODES.add(barcode.toLowerCase());
   }
 
   private Map<String, String> getLoanTypesMap(Loantypes loanTypes, String schema) {
