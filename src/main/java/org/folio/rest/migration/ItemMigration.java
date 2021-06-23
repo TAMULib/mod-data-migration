@@ -429,9 +429,9 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       if (!itemsBatch.getItems().isEmpty()) {
         String messageTemplate = String.format("%s %s item batch {} %s-%s in %s milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
         submitItemsbatch(token, itemsBatch, messageTemplate);
-      } else {
-        log.info("{} {} items finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
       }
+       
+      log.info("{} {} items finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
     }
@@ -439,10 +439,11 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     private void submitItemsbatch(String token, ItemsPost itemsBatch, String messageTemplate) {
       try {
         migrationService.okapiService.postItemsBatch(tenant, token, itemsBatch);
-        log.info(messageTemplate, "finished");
       } catch(Exception e) {
-        log.info(messageTemplate, "failed");
-        e.printStackTrace();
+        log.error(messageTemplate, "failed");
+        if (log.isDebugEnabled()) {
+          e.printStackTrace();
+        }
       }
 
       itemsBatch.getItems().clear();
@@ -660,12 +661,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     threadConnections.setMfhdConnection(getConnection(voyagerSettings));
     threadConnections.setNoteConnection(getConnection(voyagerSettings));
     threadConnections.setMaterialTypeConnection(getConnection(voyagerSettings));
-    // try {
-    //   threadConnections.setItemConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
-    // } catch (SQLException e) {
-    //   log.error(e.getMessage());
-    //   throw new RuntimeException(e);
-    // }
     return threadConnections;
   }
 
@@ -677,8 +672,6 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
     private Connection itemStatusConnection;
     private Connection noteConnection;
     private Connection materialTypeConnection;
-
-    // private BaseConnection itemConnection;
 
     public ThreadConnections() {
 
