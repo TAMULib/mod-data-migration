@@ -234,5 +234,31 @@
       }
     },
     "id" : "0ae9059c-a2ec-486b-b10b-301b4d2ddd94"
+  }, {
+    "profile" : {
+      "name" : "KP TEST - Harr Invoice Profile w Subscription info",
+      "description" : "Serials Invoice Test",
+      "dataType" : "EDIFACT",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "70a5fb49-48a4-4539-b6ea-77f1bb7a5526"
+  }, {
+    "profile" : {
+      "name" : "MSL Ebooks - Create New Record",
+      "description" : "Creates new instance and holdings record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "46640ddd-15a3-4592-8de9-1bb84a9a8cea"
   } ]
 }
