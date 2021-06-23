@@ -26,6 +26,34 @@
     "id" : "e8a6de1a-c98a-4a8a-9c36-fc1ae88a61ba"
   }, {
     "profile" : {
+      "name" : "Default - Create instance",
+      "description" : "This action profile is used with FOLIO's default job profile for creating Inventory Instances and SRS MARC Bibliographic records. It can be edited, duplicated, or deleted.",
+      "action" : "CREATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "aa639af7-58e7-441d-afbc-5d17e914e706"
+  }, {
+    "profile" : {
+      "name" : "quickMARC Derive - Create Inventory Instance",
+      "description" : "This action profile is used by the quickMARC Derive action to create a new Inventory Instance. It cannot be edited or deleted.",
+      "action" : "CREATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "20845cfb-111e-46db-906d-7fc7db88282a"
+  }, {
+    "profile" : {
       "name" : "MARC delete 945 field",
       "description" : "",
       "action" : "MODIFY",
@@ -80,20 +108,6 @@
       }
     },
     "id" : "825d0a15-56db-4f3f-bac9-0219b73a5067"
-  }, {
-    "profile" : {
-      "name" : "MARCIVE ACTION-Create New Holdings Record",
-      "description" : "",
-      "action" : "CREATE",
-      "folioRecord" : "HOLDINGS",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
-      }
-    },
-    "id" : "ffac4a3a-0264-42da-ac09-1dcc14d35949"
   }, {
     "profile" : {
       "name" : "Default Print Books - Create Instance Record",
@@ -290,5 +304,61 @@
       }
     },
     "id" : "d2b75909-240f-4f24-b05e-9a5da53068b6"
+  }, {
+    "profile" : {
+      "name" : "MARCIVE ACTION-Create New Holdings Record (electronic)",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "HOLDINGS",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "ffac4a3a-0264-42da-ac09-1dcc14d35949"
+  }, {
+    "profile" : {
+      "name" : "KP TEST - Harr Invoice w Subscription info",
+      "description" : "Testing Serials Harrassowitz Invoice",
+      "action" : "CREATE",
+      "folioRecord" : "INVOICE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "49f5afef-09da-4b72-9a0c-33bf1120ef00"
+  }, {
+    "profile" : {
+      "name" : "MSL EBooks - Create Instance Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "d4ad0e88-c45d-40e5-9e2f-73cc722fec85"
+  }, {
+    "profile" : {
+      "name" : "MSL EBooks - Create Holdings Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "HOLDINGS",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "895e92c9-ea47-4343-a898-ddb46b828112"
   } ]
 }
