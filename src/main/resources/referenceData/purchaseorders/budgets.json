@@ -576,29 +576,6 @@
     "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "c09cd1e5-6c17-487f-b080-3135e5549e23",
-    "name" : "print-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "1e410c13-699e-45a0-8389-1bdd5f29980d",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 450000.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 450000.0,
-    "cashBalance" : 450000.0,
-    "statusExpenseClasses" : [ {
-      "expenseClassId" : "ff651515-9b20-4449-8dd3-500e7353ce11",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "82bc9d63-a3d0-4aed-872d-d4d2112b1668",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "3a576abb-811e-4945-a651-42b9d517bb15",
-      "status" : "Active"
-    } ]
-  }, {
     "id" : "130af9cf-1f51-4e95-9311-0fa314ce85cd",
     "name" : "barclay2-FY2021",
     "budgetStatus" : "Active",
@@ -920,6 +897,29 @@
       "status" : "Active"
     }, {
       "expenseClassId" : "012ba30f-1d20-4afb-8029-2d64116e47f0",
+      "status" : "Active"
+    } ]
+  }, {
+    "id" : "c09cd1e5-6c17-487f-b080-3135e5549e23",
+    "name" : "print-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "1e410c13-699e-45a0-8389-1bdd5f29980d",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 450000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 450000.0,
+    "cashBalance" : 449900.0,
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "ff651515-9b20-4449-8dd3-500e7353ce11",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "82bc9d63-a3d0-4aed-872d-d4d2112b1668",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "3a576abb-811e-4945-a651-42b9d517bb15",
       "status" : "Active"
     } ]
   } ]
