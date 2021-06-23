@@ -7,35 +7,7 @@
   "transform" : { },
   "excludedProperties" : [ "metadata", "tags" ],
   "additional" : [ ],
-  "data" : [ {
-    "id" : "bbae7f76-30cb-4a5b-b2e3-678852e05451",
-    "userId" : "f69d8a8e-04c6-4701-97a8-eba6eadc19d9",
-    "permissions" : [ "pubsub.events.post" ]
-  }, {
-    "id" : "0e1bbc1b-7189-44e2-b381-c49578c6f6fb",
-    "userId" : "a6712cc7-8188-452f-b562-43b95838d944",
-    "permissions" : [ "accounts.collection.get", "accounts.transfer.post", "circulation-logs.collection.get", "configuration.entries.collection.get", "configuration.entries.item.post", "configuration.entries.item.put", "feefineactions.collection.get", "inventory-storage.service-points.collection.get", "transfers.collection.get", "users.collection.get", "users.item.post", "users.item.put" ]
-  }, {
-    "id" : "58f54f76-01f9-45ed-9fab-f030ea37fd80",
-    "userId" : "955efeca-6f2f-4001-ae1b-34b57e3ad73b",
-    "permissions" : [ "inventory-storage.identifier-types.collection.get", "inventory-storage.inventory-view.instances.collection.get" ]
-  }, {
-    "id" : "c7555b04-dc0d-40ed-87a3-5bbe73953fa1",
-    "userId" : "1825f15f-8417-4ad0-8ef8-8e69730ffc16",
-    "permissions" : [ "inventory.instances.collection.get" ]
-  }, {
-    "id" : "51050349-6c4e-4511-8dbb-763a6b5e55ae",
-    "userId" : "96a5d676-30eb-4db9-922a-0a3f0ac87fc2",
-    "permissions" : [ "e3cd6ade-b03c-42e0-ab7e-a34071e77e38" ]
-  }, {
-    "id" : "e3fb40fc-135b-4e44-a03c-af302784d417",
-    "userId" : "6a416e15-c3af-4e50-873a-449909ca4c8e",
-    "permissions" : [ "62852d44-d07d-470b-a7f9-0d68e2f365c4" ]
-  }, {
-    "id" : "a7d154b0-9d28-43ce-bb30-cbc3fa42a56b",
-    "userId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
-    "permissions" : [ "e3cd6ade-b03c-42e0-ab7e-a34071e77e38" ]
-  }, {
+  "data" : [{
     "id" : "ccbe82fb-cedb-4c03-8f55-fc42c9eb12f0",
     "userId" : "5932427c-0e7b-377e-bdd0-d491050f8abc",
     "permissions" : [ "b03402f4-b8e2-45c9-b791-3d1197ab9d86" ]
@@ -339,14 +311,6 @@
     "id" : "95b29680-b1f2-4af0-b19d-6b2033bd4679",
     "userId" : "623e4b8e-5834-3a53-9ddc-904e50826a54",
     "permissions" : [ "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "60564d19-d5b9-4ed4-b4df-06b79b5efc5f", "9ccfdbfe-ad7e-4103-9906-b06a47940eca" ]
-  }, {
-    "id" : "3eeefd02-8390-4430-b07a-6c07b2fdbcca",
-    "userId" : "ac5b011f-19f3-4fc5-9657-3370ba457862",
-    "permissions" : [ "fd81b059-b046-414e-9da5-46a420c4a180" ]
-  }, {
-    "id" : "485811b1-8bcd-4c9e-8261-a9e8ab834b14",
-    "userId" : "1ce092a9-d236-48f3-96e8-ca3662e4aea3",
-    "permissions" : [ "e3cd6ade-b03c-42e0-ab7e-a34071e77e38" ]
   }, {
     "id" : "f6aa5e68-5e01-4052-9039-47084a74892f",
     "userId" : "bb371f27-b411-3ef4-8d25-e44f3d50697d",
