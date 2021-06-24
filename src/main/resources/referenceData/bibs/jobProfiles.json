@@ -260,5 +260,31 @@
       }
     },
     "id" : "46640ddd-15a3-4592-8de9-1bb84a9a8cea"
+  }, {
+    "profile" : {
+      "name" : "EBooks - jstdda discovery - Create New Record",
+      "description" : "Creates new instance and holdings record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "1b938f2e-2315-43b1-b631-67e3ea4cc16d"
+  }, {
+    "profile" : {
+      "name" : "EBooks - jstaddatrig - Overlay",
+      "description" : "JSTOR DDA Purchased Ebooks",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "1c569d74-154c-468e-b547-649c21e1e8de"
   } ]
 }

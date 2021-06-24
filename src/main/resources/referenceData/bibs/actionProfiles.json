@@ -360,5 +360,75 @@
       }
     },
     "id" : "895e92c9-ea47-4343-a898-ddb46b828112"
+  }, {
+    "profile" : {
+      "name" : "EBooks - jstorddatrig - Overlay",
+      "description" : "",
+      "action" : "UPDATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "417f9eea-83ee-4f44-a6d7-790c56176940"
+  }, {
+    "profile" : {
+      "name" : "EBooks - jstdda discovery - Create Instance Record",
+      "description" : "JSTOR Discovery Ebooks",
+      "action" : "CREATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "2a9b8d14-7b9a-448f-bcce-36e27d6c05c7"
+  }, {
+    "profile" : {
+      "name" : "EBooks - jstdda discovery Create Holdings Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "HOLDINGS",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "847e2f35-242f-475e-a19b-e16320913a8d"
+  }, {
+    "profile" : {
+      "name" : "EBooks - jstddatrig - Create Instance Record",
+      "description" : "JSTOR DDA Purchased Ebooks",
+      "action" : "CREATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "2c449f5b-752b-4ff7-bec4-02924ca1ed68"
+  }, {
+    "profile" : {
+      "name" : "EBooks - jstddatrig Create Holdings Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "HOLDINGS",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "c9470949-a36a-45ad-8943-8feb81e08917"
   } ]
 }

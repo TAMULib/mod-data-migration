@@ -811,5 +811,11 @@
     "name" : "ybppfirm",
     "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
     "source" : "voyager"
+  }, {
+    "id" : "dced8ca6-03c3-4b7f-8dce-c759758d2a16",
+    "code" : "jstddatrig",
+    "name" : "jstddatrig",
+    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+    "source" : "local"
   } ]
 }
