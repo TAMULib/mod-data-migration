@@ -681,5 +681,11 @@
         "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
       }
     } ]
+  }, {
+    "id" : "bbc0d3ae-53b9-4c00-a569-e10e05cc33e0",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ ]
   } ]
 }
