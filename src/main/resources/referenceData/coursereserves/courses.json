@@ -2351,5 +2351,59 @@
     },
     "courseNumber" : "482",
     "sectionName" : "936"
+  }, {
+    "id" : "d649ac2c-3ff5-4371-a291-bc74f52962a6",
+    "name" : "Test BIOL",
+    "departmentId" : "aff3de9b-1f7f-4a68-b787-457a4e6ebb20",
+    "departmentObject" : {
+      "id" : "aff3de9b-1f7f-4a68-b787-457a4e6ebb20",
+      "name" : "BIOL",
+      "description" : "Biology",
+      "metadata" : {
+        "createdDate" : "2021-06-09T06:12:30.901+00:00",
+        "createdByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047",
+        "updatedDate" : "2021-06-09T06:12:30.901+00:00",
+        "updatedByUserId" : "b65163a0-d174-4ae9-bc22-890dc1117047"
+      }
+    },
+    "courseListingId" : "bbc0d3ae-53b9-4c00-a569-e10e05cc33e0",
+    "courseListingObject" : {
+      "id" : "bbc0d3ae-53b9-4c00-a569-e10e05cc33e0",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+      "termObject" : {
+        "id" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+        "name" : "2021 Fall",
+        "startDate" : "2021-07-30T05:00:00.000Z",
+        "endDate" : "2021-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ ],
+      "metadata" : {
+        "createdDate" : "2021-06-24T14:37:15.356+00:00",
+        "createdByUserId" : "1ce092a9-d236-48f3-96e8-ca3662e4aea3",
+        "updatedDate" : "2021-06-24T14:37:15.356+00:00",
+        "updatedByUserId" : "1ce092a9-d236-48f3-96e8-ca3662e4aea3"
+      }
+    },
+    "courseNumber" : "101",
+    "sectionName" : "100"
   } ]
 }
