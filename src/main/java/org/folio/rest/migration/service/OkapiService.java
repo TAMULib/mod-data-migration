@@ -35,6 +35,7 @@ import org.folio.rest.jaxrs.model.feesfines.Accountdata;
 import org.folio.rest.jaxrs.model.feesfines.actions.Feefineactiondata;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecords;
+import org.folio.rest.jaxrs.model.inventory.HoldingsrecordsPost;
 import org.folio.rest.jaxrs.model.inventory.Instance;
 import org.folio.rest.jaxrs.model.inventory.Instancerelationship;
 import org.folio.rest.jaxrs.model.inventory.Item;
@@ -440,6 +441,12 @@ public class OkapiService {
     String url = okapi.getUrl() + "/user-import";
     ResponseEntity<ImportResponse> response = restTemplate.exchange(url, HttpMethod.POST, entity, ImportResponse.class);
     return response.getBody();
+  }
+
+  public void postHoldingsRecordsPostBatch(String tenant, String token, HoldingsrecordsPost holdingsRecordsPost) {
+    HttpEntity<HoldingsrecordsPost> entity = new HttpEntity<>(holdingsRecordsPost, headers(tenant, token));
+    String url = okapi.getUrl() + "/holdings-storage/batch/synchronous";
+    restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
   }
 
   public CompositePurchaseOrder postCompositePurchaseOrder(String tenant, String token, CompositePurchaseOrder compositePurchaseOrder) {
