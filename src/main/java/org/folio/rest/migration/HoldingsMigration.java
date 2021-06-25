@@ -6,10 +6,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,10 +19,9 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.core.io.JsonStringEncoder;
-
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
+import org.folio.rest.jaxrs.model.inventory.HoldingsrecordsPost;
 import org.folio.rest.jaxrs.model.inventory.Location;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
@@ -74,10 +74,7 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
   private static final String HOLDING_TO_CALL_NUMBER_SUFFIX_ID = "holdingToCallNumberSuffixTypeId";
 
   // (id,external_reference,folio_reference,type_id)
-  private static String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,external_reference,folio_reference,type_id) FROM STDIN WITH NULL AS 'null'";
-
-  // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
-  private static final String HOLDING_RECORDS_COPY_SQL = "COPY %s_mod_inventory_storage.holdings_record (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid) FROM STDIN WITH NULL AS 'null'";
+  private static final String REFERENCE_LINK_COPY_SQL = "COPY %s.reference_links (id,external_reference,folio_reference,type_id) FROM STDIN WITH NULL AS 'null'";
 
   private HoldingsMigration(HoldingsContext context, String tenant) {
     super(context, tenant);
@@ -194,6 +191,8 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
     public HoldingPartitionTask execute(HoldingsContext context) {
       long startTime = System.nanoTime();
 
+      String token = (String) partitionContext.get(TOKEN);
+
       String hridPrefix = (String) partitionContext.get(HRID_PREFIX);
 
       HoldingsJob job = (HoldingsJob) partitionContext.get(JOB);
@@ -212,10 +211,6 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
 
       Database referenceLinkSettings = migrationService.referenceLinkSettings;
 
-      Database folioSettings = migrationService.okapiService.okapi.getModules().getDatabase();
-
-      JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
-
       HoldingsMaps holdingMaps = context.getMaps();
       HoldingsDefaults holdingDefaults = context.getDefaults();
 
@@ -229,15 +224,19 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
       String holdingToCallNumberPrefixTypeId = job.getReferences().get(HOLDING_TO_CALL_NUMBER_PREFIX_ID);
       String holdingToCallNumberSuffixTypeId = job.getReferences().get(HOLDING_TO_CALL_NUMBER_SUFFIX_ID);
 
-      ThreadConnections threadConnections = getThreadConnections(voyagerSettings, referenceLinkSettings, folioSettings);
+      ThreadConnections threadConnections = getThreadConnections(voyagerSettings, referenceLinkSettings);
 
       String tenantSchema = migrationService.schemaService.getSchema(tenant);
+
+      HoldingsrecordsPost holdingsRecordsBatch = new HoldingsrecordsPost();
+      List<Holdingsrecord> holdings = new ArrayList<>();
+
+      holdingsRecordsBatch.setHoldingsRecords(holdings);
 
       int count = 0;
 
       try (
-        PrintWriter referenceLinkWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenantSchema)), true);  
-        PrintWriter holdingsRecordWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getHoldingConnection(), String.format(HOLDING_RECORDS_COPY_SQL, tenant)), true);
+        PrintWriter referenceLinkWriter = new PrintWriter(new PGCopyOutputStream(threadConnections.getReferenceLinkConnection(), String.format(REFERENCE_LINK_COPY_SQL, tenantSchema)), true);
         Statement pageStatement = threadConnections.getPageConnection().createStatement();
         Statement marcStatement = threadConnections.getMarcConnection().createStatement();
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
@@ -346,24 +345,21 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
               matchedCodes = new HashSet<>();
             }
 
-            HoldingsRecord holdingRecord = new HoldingsRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, matchedCodes, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
+            HoldingsRecord holdingsRecord = new HoldingsRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, matchedCodes, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
-            holdingRecord.setHoldingId(holdingId);
-            holdingRecord.setInstanceId(instanceId);
+            holdingsRecord.setHoldingId(holdingId);
+            holdingsRecord.setInstanceId(instanceId);
 
             Date createdDate = new Date();
-            holdingRecord.setCreatedByUserId(userId);
-            holdingRecord.setCreatedDate(createdDate);
-
-            String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
-            String createdByUserId = userId;
+            holdingsRecord.setCreatedByUserId(userId);
+            holdingsRecord.setCreatedDate(createdDate);
 
             String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
 
-            Holdingsrecord holdingsRecord = holdingRecord.toHolding(holdingMapper, holdingMaps, hridString);
+            Holdingsrecord holdingsrecord = holdingsRecord.toHolding(holdingMapper, holdingMaps, hridString);
 
-            String callNumberPrefix = holdingsRecord.getCallNumberPrefix();
-            String callNumberSuffix = holdingsRecord.getCallNumberSuffix();
+            String callNumberPrefix = holdingsrecord.getCallNumberPrefix();
+            String callNumberSuffix = holdingsrecord.getCallNumberSuffix();
 
             if (StringUtils.isNoneEmpty(callNumberPrefix)) {
               String rlId = UUID.randomUUID().toString();
@@ -377,24 +373,15 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
               referenceLinkWriter.println(String.join("\t", rlId, holdingRlId, callNumberSuffix, holdingToCallNumberSuffixTypeId));
             }
 
-            String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(holdingsRecord)));
-
-            // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
-            holdingsRecordWriter.println(String.join("\t",
-              holdingsRecord.getId(),
-              hrUtf8Json,
-              createdAt,
-              createdByUserId,
-              holdingsRecord.getInstanceId(),
-              holdingsRecord.getPermanentLocationId(),
-              Objects.nonNull(holdingsRecord.getTemporaryLocationId()) ? holdingsRecord.getTemporaryLocationId() : NULL,
-              holdingsRecord.getHoldingsTypeId(),
-              holdingsRecord.getCallNumberTypeId(),
-              Objects.nonNull(holdingsRecord.getIllPolicyId()) ? holdingsRecord.getIllPolicyId() : NULL
-            ));
+            holdingsRecordsBatch.getHoldingsRecords().add(holdingsrecord);
 
             hrid++;
             count++;
+
+            if (holdingsRecordsBatch.getHoldingsRecords().size() == job.getBatchSize()) {
+              String messageTemplate = String.format("%s %s holdings batch {} %s-%s in %s milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
+              submitHoldingsRecordsbatch(token, holdingsRecordsBatch, messageTemplate);
+            }
 
           } catch (IOException e) {
               log.error("{} holding id {} error processing marc", schema, mfhdId);
@@ -411,9 +398,27 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
         threadConnections.closeAll();
       }
 
-      log.info("{} {} holding finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
+      if (!holdingsRecordsBatch.getHoldingsRecords().isEmpty()) {
+        String messageTemplate = String.format("%s %s holdings batch {} %s-%s in %s milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
+        submitHoldingsRecordsbatch(token, holdingsRecordsBatch, messageTemplate);
+      }
+
+      log.info("{} {} holdings finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));
 
       return this;
+    }
+
+    private void submitHoldingsRecordsbatch(String token, HoldingsrecordsPost holdingsRecordsBatch, String messageTemplate) {
+      try {
+        migrationService.okapiService.postHoldingsRecordsPostBatch(tenant, token, holdingsRecordsBatch);
+      } catch(Exception e) {
+        log.error(messageTemplate, "failed");
+        if (log.isDebugEnabled()) {
+          e.printStackTrace();
+        }
+      }
+
+      holdingsRecordsBatch.getHoldingsRecords().clear();
     }
 
     @Override
@@ -458,18 +463,12 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
       .collect(Collectors.toSet());
   }
 
-  private ThreadConnections getThreadConnections(Database voyagerSettings, Database referenceLinkSettings, Database folioSettings) {
+  private ThreadConnections getThreadConnections(Database voyagerSettings, Database referenceLinkSettings) {
     ThreadConnections threadConnections = new ThreadConnections();
     threadConnections.setPageConnection(getConnection(voyagerSettings));
     threadConnections.setMarcConnection(getConnection(voyagerSettings));
     try {
       threadConnections.setReferenceLinkConnection(getConnection(referenceLinkSettings).unwrap(BaseConnection.class));
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-      throw new RuntimeException(e);
-    }
-    try {
-      threadConnections.setHoldingConnection(getConnection(folioSettings).unwrap(BaseConnection.class));
     } catch (SQLException e) {
       log.error(e.getMessage());
       throw new RuntimeException(e);
@@ -481,8 +480,6 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
 
     private Connection pageConnection;
     private Connection marcConnection;
-
-    private BaseConnection holdingConnection;
 
     private BaseConnection referenceLinkConnection;
 
@@ -506,14 +503,6 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
       this.marcConnection = marcConnection;
     }
 
-    public BaseConnection getHoldingConnection() {
-      return holdingConnection;
-    }
-
-    public void setHoldingConnection(BaseConnection holdingConnection) {
-      this.holdingConnection = holdingConnection;
-    }
-
     public BaseConnection getReferenceLinkConnection() {
       return referenceLinkConnection;
     }
@@ -526,7 +515,6 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
       try {
         pageConnection.close();
         marcConnection.close();
-        holdingConnection.close();
         referenceLinkConnection.close();
       } catch (SQLException e) {
         log.error(e.getMessage());
