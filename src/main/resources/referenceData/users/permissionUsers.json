@@ -24,10 +24,6 @@
     "userId" : "8ac9b049-1815-3c8b-8f04-3803a8a09a75",
     "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "60564d19-d5b9-4ed4-b4df-06b79b5efc5f" ]
   }, {
-    "id" : "c4b0d8c2-a6bf-45f7-9180-86486b228c62",
-    "userId" : "6ee950aa-ef71-31cb-bcad-6f627279198f",
-    "permissions" : [ "e3cd6ade-b03c-42e0-ab7e-a34071e77e38" ]
-  }, {
     "id" : "40ec1c9f-790b-406a-8a82-b3b19a2b19dc",
     "userId" : "2188f579-7b4b-33da-b8cb-af289b1eac69",
     "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "60564d19-d5b9-4ed4-b4df-06b79b5efc5f" ]
@@ -298,7 +294,7 @@
   }, {
     "id" : "14297959-7ba6-488d-8044-29cd0e09ba48",
     "userId" : "f0c4cc32-f80d-38eb-8638-8a26e28be2b8",
-    "permissions" : [ "7fd42e23-08bf-4bf3-ad66-f6e27c446649", "bbc81742-5f20-4517-9e38-a1ed0631d874", "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "cc4a6624-190c-4872-95dd-be090a74b61f", "e3cd6ade-b03c-42e0-ab7e-a34071e77e38", "8641feeb-07f3-495e-86cb-93df4eb85068", "60564d19-d5b9-4ed4-b4df-06b79b5efc5f", "7301b3b0-7075-4e66-8c43-12ed005e6c6b" ]
+    "permissions" : [ "7fd42e23-08bf-4bf3-ad66-f6e27c446649", "bbc81742-5f20-4517-9e38-a1ed0631d874", "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "cc4a6624-190c-4872-95dd-be090a74b61f", "8641feeb-07f3-495e-86cb-93df4eb85068", "60564d19-d5b9-4ed4-b4df-06b79b5efc5f", "7301b3b0-7075-4e66-8c43-12ed005e6c6b" ]
   }, {
     "id" : "b58fbf22-16f4-4abf-aa5d-e952dbd71f6d",
     "userId" : "59ead036-b01f-30d0-ac93-86a4ec0d0230",
@@ -324,17 +320,9 @@
     "userId" : "1dba898b-6d74-37e8-bf58-cc27a9b2733e",
     "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068" ]
   }, {
-    "id" : "9d8b14f1-6c0d-45ee-8ca8-85220543bc04",
-    "userId" : "b5501672-3f3f-3489-aa9d-dd41afcb7d1f",
-    "permissions" : [ "e3cd6ade-b03c-42e0-ab7e-a34071e77e38" ]
-  }, {
     "id" : "d94570d1-128e-431b-a59d-25105f671b84",
     "userId" : "5843e9b8-792a-314a-ad32-a0d567704e05",
     "permissions" : [ "b03402f4-b8e2-45c9-b791-3d1197ab9d86" ]
-  }, {
-    "id" : "83a58572-f142-4338-9704-59ea96718198",
-    "userId" : "d9b3743e-a44d-352f-af17-d012d855eaa1",
-    "permissions" : [ "e3cd6ade-b03c-42e0-ab7e-a34071e77e38" ]
   }, {
     "id" : "12c2b0dc-8f78-458e-9833-7fa00ffbd5bf",
     "userId" : "cae10d1b-9f98-3859-8220-7527efaf557a",
@@ -343,10 +331,6 @@
     "id" : "a7dbf9c4-cf1a-4124-953a-27fa5ad29a1c",
     "userId" : "76803542-263e-32ce-8709-48c35b19c1ed",
     "permissions" : [ "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "945ff52a-7e81-4374-a8be-41cb481db236" ]
-  }, {
-    "id" : "d8059ea1-c87c-45a7-a118-bff2a26c6159",
-    "userId" : "c7eef007-5820-3889-b078-19744f3c6b0c",
-    "permissions" : [ "e3cd6ade-b03c-42e0-ab7e-a34071e77e38" ]
   }, {
     "id" : "9033e91a-1990-475a-b13b-722e61f7cb20",
     "userId" : "7e1f50d5-30e0-3ffa-ae80-a2e58a3c0677",
@@ -367,10 +351,6 @@
     "id" : "cbbf6328-b5ae-42ec-9c28-1a70fada07ed",
     "userId" : "1df3e46e-d888-358f-8b76-1c594a88187a",
     "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "60564d19-d5b9-4ed4-b4df-06b79b5efc5f" ]
-  }, {
-    "id" : "d508bb2f-a4e2-433f-b0fc-cb3c3fcdadfa",
-    "userId" : "2d07ab53-2465-3131-9df6-01b985f0af0d",
-    "permissions" : [ "e3cd6ade-b03c-42e0-ab7e-a34071e77e38" ]
   }, {
     "id" : "1d8d4913-158b-43cb-9e0c-a4bd330ec7dc",
     "userId" : "63766f7a-35ee-3088-a37c-e177728e4781",
@@ -395,10 +375,6 @@
     "id" : "10887fd4-35ff-41ab-8fad-1e4d39f9ff02",
     "userId" : "9e7140a4-595f-334c-ac75-2d7b67bf386e",
     "permissions" : [ "b03402f4-b8e2-45c9-b791-3d1197ab9d86" ]
-  }, {
-    "id" : "d341fef2-f41c-4cd2-b4c6-992293b73e64",
-    "userId" : "3c9855e0-5125-3b18-a17b-0e13829946d1",
-    "permissions" : [ "e3cd6ade-b03c-42e0-ab7e-a34071e77e38" ]
   }, {
     "id" : "aa4cb666-68f9-4234-94bf-464ef5fae1ce",
     "userId" : "67ba2980-ad2d-3354-9451-d2f034d932f7",
@@ -427,10 +403,6 @@
     "id" : "5bb6c30e-b5b7-4305-8eb8-93329e417956",
     "userId" : "e39aa7dc-a991-3318-9836-ffcd449a17f6",
     "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "bd76b150-f075-4bdc-a93a-e6f7a563067e" ]
-  }, {
-    "id" : "0b8594bf-395d-499a-b8df-b5b420006099",
-    "userId" : "00f455c0-2857-363a-8b0b-ff2359a332a5",
-    "permissions" : [ "e3cd6ade-b03c-42e0-ab7e-a34071e77e38" ]
   }, {
     "id" : "0d5e0c1b-cfc1-4e8c-b76f-36cf6c1f2949",
     "userId" : "86c2b4fc-397c-3e05-adfd-c0489af2a771",

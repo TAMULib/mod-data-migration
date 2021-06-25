@@ -152,20 +152,6 @@
     "id" : "9f1b11f3-132a-4266-8b9f-67eca17a16d5"
   }, {
     "profile" : {
-      "name" : "MARCIVE ACTION-Create New Instance Record",
-      "description" : "",
-      "action" : "CREATE",
-      "folioRecord" : "INSTANCE",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
-      }
-    },
-    "id" : "8fb61714-e1c2-4774-8390-91309bc4d7a6"
-  }, {
-    "profile" : {
       "name" : "KP TEST - YBP Invoice",
       "description" : "",
       "action" : "CREATE",
@@ -236,6 +222,20 @@
     "id" : "648c4f60-cdac-4c03-abad-3d4b1e27cb9b"
   }, {
     "profile" : {
+      "name" : "MARCIVE LOAD-ACTION-Create Instance Record",
+      "description" : "",
+      "action" : "UPDATE",
+      "folioRecord" : "INSTANCE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "8fb61714-e1c2-4774-8390-91309bc4d7a6"
+  }, {
+    "profile" : {
       "name" : "Default Print Books - Creat Holdings Record",
       "description" : "",
       "action" : "CREATE",
@@ -304,20 +304,6 @@
       }
     },
     "id" : "d2b75909-240f-4f24-b05e-9a5da53068b6"
-  }, {
-    "profile" : {
-      "name" : "MARCIVE ACTION-Create New Holdings Record (electronic)",
-      "description" : "",
-      "action" : "CREATE",
-      "folioRecord" : "HOLDINGS",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "ffac4a3a-0264-42da-ac09-1dcc14d35949"
   }, {
     "profile" : {
       "name" : "KP TEST - Harr Invoice w Subscription info",
@@ -402,6 +388,20 @@
       }
     },
     "id" : "847e2f35-242f-475e-a19b-e16320913a8d"
+  }, {
+    "profile" : {
+      "name" : "MARCIVE LOAD-ACTION-Create Holdings Record",
+      "description" : "",
+      "action" : "CREATE",
+      "folioRecord" : "HOLDINGS",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "test",
+        "lastName" : "user",
+        "userName" : "tamu_test"
+      }
+    },
+    "id" : "ffac4a3a-0264-42da-ac09-1dcc14d35949"
   }, {
     "profile" : {
       "name" : "EBooks - jstddatrig - Create Instance Record",
