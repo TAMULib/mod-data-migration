@@ -55,7 +55,6 @@
   }, {
     "profile" : {
       "name" : "Match on 856$u",
-      "description" : "",
       "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
       "existingRecordType" : "INSTANCE",
       "matchDetails" : [ {
@@ -88,15 +87,15 @@
       } ],
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
       }
     },
     "id" : "84121bdc-77bb-45a6-8ac4-d7efb3b45e0d"
   }, {
     "profile" : {
-      "name" : "MARCIVE LOAD-MATCH-Create Instances and Holdings Records",
+      "name" : "MARCIVE LOAD-MATCH-Instance Records",
       "description" : "",
       "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
       "existingRecordType" : "INSTANCE",
@@ -110,10 +109,10 @@
             "value" : "035"
           }, {
             "label" : "indicator1",
-            "value" : ""
+            "value" : "*"
           }, {
             "label" : "indicator2",
-            "value" : ""
+            "value" : "*"
           }, {
             "label" : "recordSubfield",
             "value" : "a"
@@ -135,9 +134,9 @@
       } ],
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
+        "firstName" : "Zonia",
+        "lastName" : "Prado",
+        "userName" : "zprado"
       }
     },
     "id" : "8146c068-c60b-4eb1-9f7b-1b459d8f8b0b"

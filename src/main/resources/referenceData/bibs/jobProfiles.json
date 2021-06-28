@@ -64,19 +64,6 @@
     "id" : "7a420b8a-15ce-4286-a8bf-b40211f95095"
   }, {
     "profile" : {
-      "name" : "YBP Approval Print Books - Create New Record",
-      "description" : "Creates new instance, holdings, and item record",
-      "dataType" : "MARC",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
-      }
-    },
-    "id" : "b1a1c164-9929-4450-bd7f-41b962c9255d"
-  }, {
-    "profile" : {
       "name" : "KP TEST - Harr Invoice Profile",
       "description" : "Serials Invoice Test",
       "dataType" : "EDIFACT",
@@ -132,19 +119,6 @@
     "id" : "78d919c4-5cd0-4bef-86ab-841f32baa1a3"
   }, {
     "profile" : {
-      "name" : "MARCIVE-Create New Instances and Holdings Records",
-      "description" : "",
-      "dataType" : "MARC",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
-      }
-    },
-    "id" : "da8181be-2e5b-4579-960a-9755e35c719f"
-  }, {
-    "profile" : {
       "name" : "KP Test - YBP Invoice Profile",
       "description" : "",
       "dataType" : "EDIFACT",
@@ -171,19 +145,6 @@
     "id" : "7382eafe-ee3a-4a5a-9a82-d9cda2937b33"
   }, {
     "profile" : {
-      "name" : "Default - Ebooks - Create New Record",
-      "description" : "Creates new instance and holdings record",
-      "dataType" : "MARC",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
-      }
-    },
-    "id" : "fce57a88-82b2-488f-8c2e-61e6996f24af"
-  }, {
-    "profile" : {
       "name" : "GOBI Monograph Invoice",
       "description" : "",
       "dataType" : "EDIFACT",
@@ -195,45 +156,6 @@
       }
     },
     "id" : "be8b48fa-a27b-4452-8e34-4340679137fc"
-  }, {
-    "profile" : {
-      "name" : "Default Print Books - Create New Record",
-      "description" : "Creates new instance, holdings, and item record",
-      "dataType" : "MARC",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
-      }
-    },
-    "id" : "027ec796-3d95-42a5-810d-291b8891bc46"
-  }, {
-    "profile" : {
-      "name" : "Ebooks - GOBI Firm- Create New Record",
-      "description" : "Creates new instance and holdings record",
-      "dataType" : "MARC",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
-      }
-    },
-    "id" : "1108fb6c-22a3-474b-86ed-5398d3e4bad2"
-  }, {
-    "profile" : {
-      "name" : "EBooks - ybppdatrig - Overlay",
-      "description" : "",
-      "dataType" : "MARC",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
-      }
-    },
-    "id" : "0ae9059c-a2ec-486b-b10b-301b4d2ddd94"
   }, {
     "profile" : {
       "name" : "KP TEST - Harr Invoice Profile w Subscription info",
@@ -262,29 +184,158 @@
     "id" : "46640ddd-15a3-4592-8de9-1bb84a9a8cea"
   }, {
     "profile" : {
-      "name" : "EBooks - jstdda discovery - Create New Record",
+      "name" : "MARCIVE-CREATE/UPDATE Instances and Holdings Records",
+      "description" : "",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Zonia",
+        "lastName" : "Prado",
+        "userName" : "zprado"
+      }
+    },
+    "id" : "da8181be-2e5b-4579-960a-9755e35c719f"
+  }, {
+    "profile" : {
+      "name" : "Ebooks - EBSCOpdatrig - Create Record",
       "description" : "Creates new instance and holdings record",
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "ff6cab2d-51da-46c6-830a-d7cc4edc09d6"
+  }, {
+    "profile" : {
+      "name" : "Ebooks - jstaddatrig - Overlay",
+      "description" : "JSTOR DDA Purchased Ebooks",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "1c569d74-154c-468e-b547-649c21e1e8de"
+  }, {
+    "profile" : {
+      "name" : "Ebooks - PQ ybppdatrig - Overlay",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "0ae9059c-a2ec-486b-b10b-301b4d2ddd94"
+  }, {
+    "profile" : {
+      "name" : "Ebooks - GOBI Approval - Create Record",
+      "description" : "Creates new instance and holdings record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "9f5e69cb-5740-45d0-8ed1-69b2679ebf56"
+  }, {
+    "profile" : {
+      "name" : "Print - GOBI Firm - Create Record",
+      "description" : "Creates new instance, holdings, and item record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "b57b34f5-3aaa-491b-a65d-756fed833a75"
+  }, {
+    "profile" : {
+      "name" : "Default - Ebooks - Create Record",
+      "description" : "Creates new instance and holdings record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "fce57a88-82b2-488f-8c2e-61e6996f24af"
+  }, {
+    "profile" : {
+      "name" : "Ebooks - GOBI Firm - Create Record",
+      "description" : "Creates new instance and holdings record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "1108fb6c-22a3-474b-86ed-5398d3e4bad2"
+  }, {
+    "profile" : {
+      "name" : "Ebooks - jstdda discovery - Create Record",
+      "description" : "Creates new instance and holdings record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
       }
     },
     "id" : "1b938f2e-2315-43b1-b631-67e3ea4cc16d"
   }, {
     "profile" : {
-      "name" : "EBooks - jstaddatrig - Overlay",
-      "description" : "JSTOR DDA Purchased Ebooks",
+      "name" : "Ebooks - PQ ybppda discovery - Create Record",
+      "description" : "Creates new instance and holdings record",
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
       }
     },
-    "id" : "1c569d74-154c-468e-b547-649c21e1e8de"
+    "id" : "c881907c-4c35-49d0-9639-d23f18d16fcb"
+  }, {
+    "profile" : {
+      "name" : "Default Print Books - Create Record",
+      "description" : "Creates new instance, holdings, and item record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "027ec796-3d95-42a5-810d-291b8891bc46"
+  }, {
+    "profile" : {
+      "name" : "Print - GOBI Approval - Create Record",
+      "description" : "Creates new instance, holdings, and item record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "b1a1c164-9929-4450-bd7f-41b962c9255d"
   } ]
 }
