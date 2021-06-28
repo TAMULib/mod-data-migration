@@ -400,10 +400,6 @@
     "userId" : "747bb656-14d8-307b-bb3e-26539bebb0cc",
     "permissions" : [ "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "7b0b50d2-89b5-4a3c-9137-5513a23327b7", "5b92a0a0-25a2-42a4-95e1-775f118d3ef2" ]
   }, {
-    "id" : "80a6843f-c1b2-4a7b-9961-231177243877",
-    "userId" : "c52e526e-5714-346e-929c-1f4d4227984d",
-    "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "05e05c02-f870-4602-9e1b-1451cf4ec9b1" ]
-  }, {
     "id" : "3d622ea0-111e-4d43-90b4-25f9876b7c79",
     "userId" : "7545ae3d-a735-32b7-bc31-573b93850c8f",
     "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "50a15dba-6ea2-426a-9118-369084f1247b" ]
@@ -500,13 +496,13 @@
     "userId" : "a25b9ac0-18d4-38c2-a977-7995b21202b7",
     "permissions" : [ "3bc06f71-3a30-4d79-853f-ca6b6170b97b", "8641feeb-07f3-495e-86cb-93df4eb85068", "dfe8fa76-9e3f-420e-bada-10d077ddf1ae", "7b0b50d2-89b5-4a3c-9137-5513a23327b7" ]
   }, {
-    "id" : "c87afb52-379f-42b8-adbc-a639e75ef31c",
-    "userId" : "b9d0c2bc-8121-329f-a7a7-23315b8d03e2",
-    "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "05e05c02-f870-4602-9e1b-1451cf4ec9b1" ]
-  }, {
     "id" : "e5c58ad8-f672-4e4f-89f6-1cf1fb7743db",
     "userId" : "8c6e113e-66cb-3396-bf21-3fd8ec9eea50",
     "permissions" : [ "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "cc4a6624-190c-4872-95dd-be090a74b61f", "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "module.data-import.enabled", "9ccfdbfe-ad7e-4103-9906-b06a47940eca", "7301b3b0-7075-4e66-8c43-12ed005e6c6b", "61978e3d-e0aa-4329-a2c0-36c6191aa09b", "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1", "8e6f20f4-58ae-4051-b7e4-abb4b36966a1" ]
+  }, {
+    "id" : "c87afb52-379f-42b8-adbc-a639e75ef31c",
+    "userId" : "b9d0c2bc-8121-329f-a7a7-23315b8d03e2",
+    "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "ui-checkin.all", "05e05c02-f870-4602-9e1b-1451cf4ec9b1" ]
   }, {
     "id" : "59a4b898-cc8d-4c77-93b1-44a67a109862",
     "userId" : "ecf592e7-a4f0-33bb-89da-c76dfcc3f3a3",
@@ -559,6 +555,10 @@
     "id" : "f3f70614-ece8-4d23-9b7b-30a572e0a470",
     "userId" : "3a643914-313f-353c-8085-8f312953c89b",
     "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "60564d19-d5b9-4ed4-b4df-06b79b5efc5f", "ui-courses.add-edit-items", "ui-courses.maintain-items", "ui-courses.all", "ui-courses.read-all", "ui-courses.read-add-edit" ]
+  }, {
+    "id" : "80a6843f-c1b2-4a7b-9961-231177243877",
+    "userId" : "c52e526e-5714-346e-929c-1f4d4227984d",
+    "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "60564d19-d5b9-4ed4-b4df-06b79b5efc5f", "05e05c02-f870-4602-9e1b-1451cf4ec9b1" ]
   }, {
     "id" : "4e011d72-922c-4419-b607-66b710bf3499",
     "userId" : "ae60fc2e-70c4-3355-8cf2-36309ca2a065",

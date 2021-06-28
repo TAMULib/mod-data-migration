@@ -8,6 +8,13 @@
   "excludedProperties" : [ "childOf", "dummy", "deprecated", "grantedTo", "metadata", "tags" ],
   "additional" : [ ],
   "data" : [ {
+    "permissionName" : "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
+    "displayName" : "Circ_Staff",
+    "id" : "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
+    "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "ui-plugin-create-inventory-records.create", "ui-users.feefineactions", "ui-users.accounts", "ui-users.manual_charge", "ui-users.manual_pay", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.item.markasmissing", "ui-notes.item.create", "ui-notes.item.delete", "ui-notes.item.edit", "ui-notes.item.view", "ui-requests.create", "ui-requests.edit", "ui-tags.view", "ui-users.create", "ui-users.patron_blocks", "ui-users.editproxies", "ui-users.edit", "ui-users.viewproxies", "ui-users.viewuserservicepoints", "ui-users.view", "ui-users.loans.edit", "ui-users.loans.claim-item-returned", "ui-users.loans.declare-item-lost", "ui-users.loans.declare-claimed-returned-item-as-missing", "ui-users.loans.renew-override", "ui-users.loans.all", "ui-users.requests.all" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
     "permissionName" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
     "displayName" : "Cat_AllStaff",
     "id" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
@@ -103,13 +110,6 @@
     "displayName" : "Acquisitions_Financial_View",
     "id" : "49f5a06f-a114-4772-a7ef-8f5b2bc71067",
     "subPermissions" : [ "ui-finance.fiscal-year.view", "ui-finance.fund-budget.view", "ui-finance.group.view", "ui-finance.ledger.view" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
-    "permissionName" : "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
-    "displayName" : "Circ_Staff",
-    "id" : "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
-    "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "ui-plugin-create-inventory-records.create", "ui-users.feefineactions", "ui-users.accounts", "ui-users.manual_charge", "ui-users.manual_pay", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.item.markasmissing", "ui-notes.item.create", "ui-notes.item.delete", "ui-notes.item.edit", "ui-notes.item.view", "ui-requests.create", "ui-requests.edit", "ui-tags.view", "ui-users.create", "ui-users.patron_blocks", "ui-users.editproxies", "ui-users.edit", "ui-users.viewproxies", "ui-users.viewuserservicepoints", "ui-users.view", "ui-users.loans.edit", "ui-users.loans.claim-item-returned", "ui-users.loans.declare-item-lost", "ui-users.loans.declare-claimed-returned-item-as-missing", "ui-users.loans.renew-override", "ui-users.loans.all", "ui-users.requests.all" ],
     "mutable" : true,
     "visible" : true
   }, {
