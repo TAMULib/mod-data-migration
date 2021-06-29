@@ -141,5 +141,49 @@
       }
     },
     "id" : "8146c068-c60b-4eb1-9f7b-1b459d8f8b0b"
+  }, {
+    "profile" : {
+      "name" : "MARCIVE LOAD-MATCH-Match on 856$u",
+      "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+      "existingRecordType" : "INSTANCE",
+      "matchDetails" : [ {
+        "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+        "existingRecordType" : "INSTANCE",
+        "incomingMatchExpression" : {
+          "dataValueType" : "VALUE_FROM_RECORD",
+          "fields" : [ {
+            "label" : "field",
+            "value" : "856"
+          }, {
+            "label" : "indicator1",
+            "value" : "*"
+          }, {
+            "label" : "indicator2",
+            "value" : "*"
+          }, {
+            "label" : "recordSubfield",
+            "value" : "u"
+          } ],
+          "qualifier" : {
+            "comparisonPart" : "ALPHANUMERICS_ONLY"
+          }
+        },
+        "matchCriterion" : "INCOMING_VALUE_CONTAINS_EXISTING_VALUE",
+        "existingMatchExpression" : {
+          "dataValueType" : "VALUE_FROM_RECORD",
+          "fields" : [ {
+            "label" : "field",
+            "value" : "instance.electronicAccess[].uri"
+          } ]
+        }
+      } ],
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Zonia",
+        "lastName" : "Prado",
+        "userName" : "zprado"
+      }
+    },
+    "id" : "adce7b36-7d13-40d9-adc5-21a69f356dc2"
   } ]
 }
