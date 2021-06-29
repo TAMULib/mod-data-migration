@@ -755,20 +755,6 @@
       "status" : "Active"
     } ]
   }, {
-    "id" : "e8807585-d35e-4f79-a1da-453a96fe5657",
-    "name" : "serials-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "f1b09c05-c854-4f4a-b413-bff94a99e207",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 450000.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 450000.0,
-    "cashBalance" : 450000.0,
-    "statusExpenseClasses" : [ ]
-  }, {
     "id" : "9a50d60c-116f-4af5-816f-8bd78fb309d0",
     "name" : "mslemono-FY2021",
     "budgetStatus" : "Active",
@@ -922,5 +908,19 @@
       "expenseClassId" : "6a7d9cb5-41c8-4ac0-b42f-d348fcdb8bd6",
       "status" : "Active"
     } ]
+  }, {
+    "id" : "e8807585-d35e-4f79-a1da-453a96fe5657",
+    "name" : "serials-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "f1b09c05-c854-4f4a-b413-bff94a99e207",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 450000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 450000.0,
+    "cashBalance" : 450000.0,
+    "statusExpenseClasses" : [ ]
   } ]
 }

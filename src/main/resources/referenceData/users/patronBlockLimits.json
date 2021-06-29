@@ -1,0 +1,186 @@
+{
+  "path" : "/patron-block-limits",
+  "query" : "limit=9999",
+  "reify" : false,
+  "dependencies" : [ ],
+  "defaults" : { },
+  "transform" : { },
+  "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
+  "data" : [ {
+    "id" : "bc500ca1-b026-49d5-a439-ccf12316c92d",
+    "patronGroupId" : "aca51035-5570-4e61-9cb7-827e8fbd5a0d",
+    "conditionId" : "3d7c52dc-c732-4223-8bf8-e5917801386f",
+    "value" : 5.0
+  }, {
+    "id" : "d99e8e98-cdd4-4a80-914b-4ec7defa474f",
+    "patronGroupId" : "6585adb2-6ee7-4f95-b115-b5b0acf0f181",
+    "conditionId" : "3d7c52dc-c732-4223-8bf8-e5917801386f",
+    "value" : 5.0
+  }, {
+    "id" : "4749d551-5e33-4c8e-bddf-db865f61995d",
+    "patronGroupId" : "6585adb2-6ee7-4f95-b115-b5b0acf0f181",
+    "conditionId" : "72b67965-5b73-4840-bc0b-be8f3f6e047e",
+    "value" : 2.0
+  }, {
+    "id" : "e6a71afd-800e-40b7-84b8-16a8916700af",
+    "patronGroupId" : "6585adb2-6ee7-4f95-b115-b5b0acf0f181",
+    "conditionId" : "cf7a0d5f-a327-4ca1-aa9e-dc55ec006b8a",
+    "value" : 75.0
+  }, {
+    "id" : "d9cea8a9-269e-40d2-99b1-47ff202e84e2",
+    "patronGroupId" : "6585adb2-6ee7-4f95-b115-b5b0acf0f181",
+    "conditionId" : "e5b45031-a202-4abb-917b-e1df9346fe2c",
+    "value" : 2.0
+  }, {
+    "id" : "116613a8-77e6-4012-8c4b-26303dbcae29",
+    "patronGroupId" : "6585adb2-6ee7-4f95-b115-b5b0acf0f181",
+    "conditionId" : "584fbd4f-6a34-4730-a6ca-73a6a6a9d845",
+    "value" : 5.0
+  }, {
+    "id" : "1421d324-af1d-49a0-8a6d-1c5bac09a9a8",
+    "patronGroupId" : "aca51035-5570-4e61-9cb7-827e8fbd5a0d",
+    "conditionId" : "584fbd4f-6a34-4730-a6ca-73a6a6a9d845",
+    "value" : 5.0
+  }, {
+    "id" : "57b540fe-03a2-49b0-8306-f825693a279d",
+    "patronGroupId" : "aca51035-5570-4e61-9cb7-827e8fbd5a0d",
+    "conditionId" : "72b67965-5b73-4840-bc0b-be8f3f6e047e",
+    "value" : 2.0
+  }, {
+    "id" : "21a73d74-0449-46d3-8d35-5bbd55b2c190",
+    "patronGroupId" : "aca51035-5570-4e61-9cb7-827e8fbd5a0d",
+    "conditionId" : "e5b45031-a202-4abb-917b-e1df9346fe2c",
+    "value" : 2.0
+  }, {
+    "id" : "36708b71-95df-45c9-9fac-ce9960b172af",
+    "patronGroupId" : "aca51035-5570-4e61-9cb7-827e8fbd5a0d",
+    "conditionId" : "cf7a0d5f-a327-4ca1-aa9e-dc55ec006b8a",
+    "value" : 75.0
+  }, {
+    "id" : "d545b7c2-10d6-4e5e-a8dc-525e6b119e80",
+    "patronGroupId" : "56272c94-68f5-4a0c-99c1-d06283364cde",
+    "conditionId" : "3d7c52dc-c732-4223-8bf8-e5917801386f",
+    "value" : 5.0
+  }, {
+    "id" : "4abe1888-a7c5-4f22-b904-23d32544d449",
+    "patronGroupId" : "56272c94-68f5-4a0c-99c1-d06283364cde",
+    "conditionId" : "72b67965-5b73-4840-bc0b-be8f3f6e047e",
+    "value" : 2.0
+  }, {
+    "id" : "15fd2c13-26e0-42f9-8cce-65516ab17088",
+    "patronGroupId" : "56272c94-68f5-4a0c-99c1-d06283364cde",
+    "conditionId" : "e5b45031-a202-4abb-917b-e1df9346fe2c",
+    "value" : 2.0
+  }, {
+    "id" : "7e0b1f59-780c-46c8-b09b-0633ae93ac49",
+    "patronGroupId" : "56272c94-68f5-4a0c-99c1-d06283364cde",
+    "conditionId" : "584fbd4f-6a34-4730-a6ca-73a6a6a9d845",
+    "value" : 5.0
+  }, {
+    "id" : "aed5e70d-112b-486b-9f59-0517b4162dbc",
+    "patronGroupId" : "56272c94-68f5-4a0c-99c1-d06283364cde",
+    "conditionId" : "cf7a0d5f-a327-4ca1-aa9e-dc55ec006b8a",
+    "value" : 75.0
+  }, {
+    "id" : "345dcd9c-0e83-433a-8ff9-97ba7e477501",
+    "patronGroupId" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+    "conditionId" : "e5b45031-a202-4abb-917b-e1df9346fe2c",
+    "value" : 2.0
+  }, {
+    "id" : "6faae3d1-2611-4c13-95f7-77d6a2c0d165",
+    "patronGroupId" : "1d235322-75a3-4386-9876-c3cdf9c95495",
+    "conditionId" : "72b67965-5b73-4840-bc0b-be8f3f6e047e",
+    "value" : 2.0
+  }, {
+    "id" : "a9d90ba8-cd9e-4594-8c49-dbb5eeed6279",
+    "patronGroupId" : "666d2e72-2d05-4d6f-849d-d5234bf77686",
+    "conditionId" : "e5b45031-a202-4abb-917b-e1df9346fe2c",
+    "value" : 2.0
+  }, {
+    "id" : "c05c7eb4-7302-4bd0-8939-f763eda68002",
+    "patronGroupId" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+    "conditionId" : "cf7a0d5f-a327-4ca1-aa9e-dc55ec006b8a",
+    "value" : 75.0
+  }, {
+    "id" : "33cba958-8a8f-48e4-8bbe-26a22af76b40",
+    "patronGroupId" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+    "conditionId" : "3d7c52dc-c732-4223-8bf8-e5917801386f",
+    "value" : 300.0
+  }, {
+    "id" : "3faccb2e-c233-426d-b221-dab33b7eefd8",
+    "patronGroupId" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+    "conditionId" : "72b67965-5b73-4840-bc0b-be8f3f6e047e",
+    "value" : 2.0
+  }, {
+    "id" : "5836760d-6f93-40f8-a0f2-5088eaf6a2b3",
+    "patronGroupId" : "1d235322-75a3-4386-9876-c3cdf9c95495",
+    "conditionId" : "3d7c52dc-c732-4223-8bf8-e5917801386f",
+    "value" : 5.0
+  }, {
+    "id" : "8563af9a-3dae-4b26-aca3-9fedd171d580",
+    "patronGroupId" : "328e3247-cdc9-490b-be83-9a6a079eb9ad",
+    "conditionId" : "584fbd4f-6a34-4730-a6ca-73a6a6a9d845",
+    "value" : 5.0
+  }, {
+    "id" : "e3e74589-e1b0-407d-abfb-8f061ba6ba7e",
+    "patronGroupId" : "6508e3bb-0225-4d1e-b609-a926dda4bccc",
+    "conditionId" : "3d7c52dc-c732-4223-8bf8-e5917801386f",
+    "value" : 300.0
+  }, {
+    "id" : "4ca2d398-b169-478d-a941-08a508448a68",
+    "patronGroupId" : "6508e3bb-0225-4d1e-b609-a926dda4bccc",
+    "conditionId" : "cf7a0d5f-a327-4ca1-aa9e-dc55ec006b8a",
+    "value" : 75.0
+  }, {
+    "id" : "c08bdba0-e8bd-42e5-85b4-55cc1bac77bd",
+    "patronGroupId" : "1d235322-75a3-4386-9876-c3cdf9c95495",
+    "conditionId" : "cf7a0d5f-a327-4ca1-aa9e-dc55ec006b8a",
+    "value" : 75.0
+  }, {
+    "id" : "1d4c5861-13de-4c9f-bd9c-a5e356e11655",
+    "patronGroupId" : "666d2e72-2d05-4d6f-849d-d5234bf77686",
+    "conditionId" : "cf7a0d5f-a327-4ca1-aa9e-dc55ec006b8a",
+    "value" : 75.0
+  }, {
+    "id" : "b5d7d790-d5a2-4563-9406-e51bfd3afd09",
+    "patronGroupId" : "1d235322-75a3-4386-9876-c3cdf9c95495",
+    "conditionId" : "584fbd4f-6a34-4730-a6ca-73a6a6a9d845",
+    "value" : 5.0
+  }, {
+    "id" : "f2ad0155-6a0f-4d27-83b4-bee4bdb4c9e7",
+    "patronGroupId" : "666d2e72-2d05-4d6f-849d-d5234bf77686",
+    "conditionId" : "3d7c52dc-c732-4223-8bf8-e5917801386f",
+    "value" : 100.0
+  }, {
+    "id" : "fee4185d-11a3-4d04-af12-0f6746049f00",
+    "patronGroupId" : "328e3247-cdc9-490b-be83-9a6a079eb9ad",
+    "conditionId" : "e5b45031-a202-4abb-917b-e1df9346fe2c",
+    "value" : 2.0
+  }, {
+    "id" : "0f6db62b-e89a-4163-bd03-455a1baa9880",
+    "patronGroupId" : "1d235322-75a3-4386-9876-c3cdf9c95495",
+    "conditionId" : "e5b45031-a202-4abb-917b-e1df9346fe2c",
+    "value" : 2.0
+  }, {
+    "id" : "473c63d4-8457-4711-ab56-4dcbab06e37a",
+    "patronGroupId" : "328e3247-cdc9-490b-be83-9a6a079eb9ad",
+    "conditionId" : "3d7c52dc-c732-4223-8bf8-e5917801386f",
+    "value" : 5.0
+  }, {
+    "id" : "878cbaf8-9ef4-4b7a-aa92-5fb025ccda18",
+    "patronGroupId" : "328e3247-cdc9-490b-be83-9a6a079eb9ad",
+    "conditionId" : "cf7a0d5f-a327-4ca1-aa9e-dc55ec006b8a",
+    "value" : 75.0
+  }, {
+    "id" : "70ea15d0-77f4-4892-868f-6d50d0ecc46e",
+    "patronGroupId" : "328e3247-cdc9-490b-be83-9a6a079eb9ad",
+    "conditionId" : "72b67965-5b73-4840-bc0b-be8f3f6e047e",
+    "value" : 2.0
+  }, {
+    "id" : "ad6af74b-311a-48fe-8a13-b4494448702e",
+    "patronGroupId" : "6508e3bb-0225-4d1e-b609-a926dda4bccc",
+    "conditionId" : "e5b45031-a202-4abb-917b-e1df9346fe2c",
+    "value" : 2.0
+  } ]
+}

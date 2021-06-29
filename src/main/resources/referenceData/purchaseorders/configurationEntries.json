@@ -311,5 +311,12 @@
     "configName" : "loan_history",
     "enabled" : true,
     "value" : "{\"closingType\":{\"loan\":\"interval\",\"feeFine\":\"interval\",\"loanExceptions\":[]},\"loan\":{\"duration\":30,\"intervalId\":\"Days\"},\"feeFine\":{\"duration\":14,\"intervalId\":\"Days\"},\"loanExceptions\":[],\"treatEnabled\":true}"
+  }, {
+    "id" : "4ec31ef9-5b9c-490a-9fd6-061a08337377",
+    "module" : "TENANT",
+    "configName" : "tenant.addresses",
+    "code" : "ADDRESS_1624996127160",
+    "enabled" : true,
+    "value" : "{\"name\":\"SRDBProcard\",\"address\":\"SRDBProcard\\n5000 TAMU\\nCollege Station, TX 77843-5000\"}"
   } ]
 }
