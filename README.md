@@ -1635,7 +1635,7 @@ POST to http://localhost:9000/migrate/purchaseorders
       "pageAdditionalContext": {
         "COLUMNS": "po.po_id, po.po_number, po.po_status, po.vendor_id, shipto.location_code AS shiploc, billto.location_code AS billloc",
         "TABLES": "AMDB.purchase_order po, AMDB.po_status stat, AMDB.location shipto, AMDB.location billto",
-        "CONDITIONS": "po.ship_location = shipto.location_id AND po.bill_location = billto.location_id AND po.po_status = stat.po_status AND shipto.location_code IN ('SR', 'SRDB', 'SRDBProcar', 'SRDIR', 'SRDIRM', 'SRDIRMP', 'SRDIRN', 'SRDIRO', 'SRDIRP', 'SRGFT', 'SRMSV', 'SRMSVM', 'SRMSVMO', 'SRMSVO', 'SRMSVP', 'SRMSVPM', 'SRMSVW', 'SRMSVWM', 'SRProcard', 'SRSOV', 'SRSOVM', 'SRVSVO', 'SRSUSPENDED')"
+        "CONDITIONS": "po.ship_location = shipto.location_id AND po.bill_location = billto.location_id AND shipto.location_code in ('SR','SRDB','SRDBProcar','SRDIR','SRDIRM','SRDIRMP','SRDIRN','SRDIRO','SRDIRP','SRGFT', 'SRMSV','SRMSVM','SRMSVMO','SRMSVO','SRMSVP','SRMSVPM','SRMSVW','SRMSVWM','SRProcard','SRSOV','SRSOVM','SRVSVO','SRSUSPENDED') AND po.po_status = stat.po_status AND po_status_desc in ('Approved/Sent','Pending')"
       },
       "poNumberPrefix": "evans",
       "includeAddresses": true,
