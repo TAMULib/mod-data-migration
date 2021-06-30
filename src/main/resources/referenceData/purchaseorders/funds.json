@@ -100,19 +100,6 @@
     "groupIds" : [ "8cac000d-8364-44be-9e9b-3b1d137672c8" ]
   }, {
     "fund" : {
-      "id" : "b6e36a14-8d4c-472a-b0af-b5d881ba9d7f",
-      "allocatedFromIds" : [ ],
-      "allocatedToIds" : [ ],
-      "code" : "momclub2",
-      "externalAccountNo" : "57152",
-      "fundStatus" : "Active",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "name" : "Mom's Club",
-      "acqUnitIds" : [ ]
-    },
-    "groupIds" : [ "8cac000d-8364-44be-9e9b-3b1d137672c8" ]
-  }, {
-    "fund" : {
       "id" : "2329a667-7d86-40d2-b247-40fd77786f3d",
       "allocatedFromIds" : [ ],
       "allocatedToIds" : [ ],
@@ -165,6 +152,19 @@
     "groupIds" : [ "95406f00-ad4a-411c-9b52-ce179b742d31" ]
   }, {
     "fund" : {
+      "id" : "b6e36a14-8d4c-472a-b0af-b5d881ba9d7f",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "momclub",
+      "externalAccountNo" : "57152",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Mom's Club",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "8cac000d-8364-44be-9e9b-3b1d137672c8" ]
+  }, {
+    "fund" : {
       "id" : "d9b62c5b-4f02-437c-8734-cb160e7bd5c6",
       "allocatedFromIds" : [ ],
       "allocatedToIds" : [ ],
@@ -176,19 +176,6 @@
       "acqUnitIds" : [ ]
     },
     "groupIds" : [ "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2" ]
-  }, {
-    "fund" : {
-      "id" : "81b89e93-3703-4430-ae06-42aae1917849",
-      "allocatedFromIds" : [ ],
-      "allocatedToIds" : [ ],
-      "code" : "libprop2",
-      "externalAccountNo" : "242406",
-      "fundStatus" : "Active",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "name" : "Library Proposals",
-      "acqUnitIds" : [ ]
-    },
-    "groupIds" : [ "95406f00-ad4a-411c-9b52-ce179b742d31" ]
   }, {
     "fund" : {
       "id" : "8c02c28a-865d-4165-9e0f-769351ac8b11",
@@ -243,19 +230,6 @@
     "groupIds" : [ "5a3d2eb6-e3a0-49af-b3e5-601ad64a7ef2" ]
   }, {
     "fund" : {
-      "id" : "cae6e17f-1d0a-487a-9166-79c5debab45d",
-      "allocatedFromIds" : [ ],
-      "allocatedToIds" : [ ],
-      "code" : "tapley2",
-      "externalAccountNo" : "57674",
-      "fundStatus" : "Active",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "name" : "Tapley",
-      "acqUnitIds" : [ ]
-    },
-    "groupIds" : [ "8cac000d-8364-44be-9e9b-3b1d137672c8" ]
-  }, {
-    "fund" : {
       "id" : "55f3641d-021a-4024-a5a2-1cf1acc87675",
       "allocatedFromIds" : [ ],
       "allocatedToIds" : [ ],
@@ -280,6 +254,32 @@
       "acqUnitIds" : [ ]
     },
     "groupIds" : [ "9259b254-17dd-46cb-82c4-03aaf19d8972", "87c48892-bf45-4e1b-8d4b-c1dd6b721139" ]
+  }, {
+    "fund" : {
+      "id" : "81b89e93-3703-4430-ae06-42aae1917849",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "libprop",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Library Proposals",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "95406f00-ad4a-411c-9b52-ce179b742d31" ]
+  }, {
+    "fund" : {
+      "id" : "cae6e17f-1d0a-487a-9166-79c5debab45d",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "tapley",
+      "externalAccountNo" : "57674",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "Tapley",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "8cac000d-8364-44be-9e9b-3b1d137672c8" ]
   }, {
     "fund" : {
       "id" : "3652900b-b5aa-4525-adf5-b46114cc3cb8",
@@ -386,19 +386,6 @@
     "groupIds" : [ "96d9827a-ca78-489b-b38f-968a394a76f9" ]
   }, {
     "fund" : {
-      "id" : "5400ea2b-d665-4ccd-8568-6debb4dc587e",
-      "allocatedFromIds" : [ ],
-      "allocatedToIds" : [ ],
-      "code" : "weinbaum2",
-      "externalAccountNo" : "511603",
-      "fundStatus" : "Active",
-      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "name" : "Weinbaum",
-      "acqUnitIds" : [ ]
-    },
-    "groupIds" : [ "8cac000d-8364-44be-9e9b-3b1d137672c8" ]
-  }, {
-    "fund" : {
       "id" : "4c6d9a98-aa6f-4bfa-9087-6517dbb9a225",
       "allocatedFromIds" : [ ],
       "allocatedToIds" : [ ],
@@ -425,17 +412,17 @@
     "groupIds" : [ "8d414b94-14e8-4323-bcdc-1ac6ace09404", "87c48892-bf45-4e1b-8d4b-c1dd6b721139" ]
   }, {
     "fund" : {
-      "id" : "14b12443-9bed-4853-aaf9-c9f3e0106ce0",
+      "id" : "5400ea2b-d665-4ccd-8568-6debb4dc587e",
       "allocatedFromIds" : [ ],
       "allocatedToIds" : [ ],
-      "code" : "usergen2",
-      "externalAccountNo" : "242406",
+      "code" : "weinbaum",
+      "externalAccountNo" : "511603",
       "fundStatus" : "Active",
       "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
-      "name" : "User Generated",
+      "name" : "Weinbaum",
       "acqUnitIds" : [ ]
     },
-    "groupIds" : [ "95406f00-ad4a-411c-9b52-ce179b742d31" ]
+    "groupIds" : [ "8cac000d-8364-44be-9e9b-3b1d137672c8" ]
   }, {
     "fund" : {
       "id" : "a109d620-3fdd-4979-89d1-ab6d96629c4b",
@@ -485,6 +472,19 @@
       "fundStatus" : "Active",
       "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
       "name" : "Replacement",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ "95406f00-ad4a-411c-9b52-ce179b742d31" ]
+  }, {
+    "fund" : {
+      "id" : "14b12443-9bed-4853-aaf9-c9f3e0106ce0",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "usergen",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "2d90bab0-c77f-4eef-b1c1-c8d0029fa346",
+      "name" : "User Generated",
       "acqUnitIds" : [ ]
     },
     "groupIds" : [ "95406f00-ad4a-411c-9b52-ce179b742d31" ]

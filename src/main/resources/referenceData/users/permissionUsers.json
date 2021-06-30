@@ -228,10 +228,6 @@
     "userId" : "2fa1e05f-9503-37a4-9e4f-525fe41156d4",
     "permissions" : [ "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "60564d19-d5b9-4ed4-b4df-06b79b5efc5f", "9ccfdbfe-ad7e-4103-9906-b06a47940eca" ]
   }, {
-    "id" : "c3d26b78-e01d-43f3-b300-4641caf55d3a",
-    "userId" : "0807ee16-412d-3afc-a8af-8bd2407b52db",
-    "permissions" : [ "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "9ccfdbfe-ad7e-4103-9906-b06a47940eca" ]
-  }, {
     "id" : "b3b77cf5-14c1-4229-9dac-afd0cf6d76ab",
     "userId" : "431e7633-51a8-3196-b213-8e3bcadfaf41",
     "permissions" : [ "49f5a06f-a114-4772-a7ef-8f5b2bc71067", "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "dfe8fa76-9e3f-420e-bada-10d077ddf1ae", "7301b3b0-7075-4e66-8c43-12ed005e6c6b" ]
@@ -512,9 +508,13 @@
     "userId" : "89ec9905-02eb-3d90-93ad-0bb32451f209",
     "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "ui-courses.add-edit-items", "ui-courses.maintain-items", "ui-courses.all", "ui-courses.read-all", "ui-courses.read-add-edit", "ui-courses.maintain-settings" ]
   }, {
+    "id" : "201d6666-6fca-4d5b-b963-b745af319ed1",
+    "userId" : "1a7d2036-3085-3db3-9c9a-46a40d73a490",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
     "id" : "b71baf37-27e0-4580-a74c-66c440b8af6b",
     "userId" : "b8e6b697-c7fe-35a7-9cbc-7b46c9dda8e8",
-    "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "bd76b150-f075-4bdc-a93a-e6f7a563067e" ]
+    "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "ui-calendar.edit", "ui-calendar.all", "ui-calendar.view" ]
   }, {
     "id" : "931c51bb-41bb-42a1-a921-2e3907119dcc",
     "userId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
@@ -552,9 +552,49 @@
     "userId" : "4d860cdc-5f82-394e-971c-b4992036a6ff",
     "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "82b9ae05-d805-4ae8-9553-5ff9113091f7", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "7b0b50d2-89b5-4a3c-9137-5513a23327b7", "5b92a0a0-25a2-42a4-95e1-775f118d3ef2", "ui-calendar.edit", "ui-calendar.all", "ui-calendar.view" ]
   }, {
+    "id" : "e74262eb-28a0-46b2-b450-80746ca7d0c9",
+    "userId" : "4b09ca31-3883-341f-a2e0-b937812c59fa",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "122270fa-b6bd-4bf5-a17c-993ee144c84e",
+    "userId" : "2d5ef7ca-a06f-3958-9f9c-cb476d5d6b6b",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "b84badb5-4336-4b15-9dfc-f732ab6326be",
+    "userId" : "525702c9-6cbf-3a02-85be-c61aebb0a704",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "db77af0f-e8b2-4dc6-b5c0-8a542a026076",
+    "userId" : "d9608f06-232a-313e-bb34-ce33b7f1c926",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "0c393533-e8d9-4e00-bb01-feddd8ff7970",
+    "userId" : "362a28de-824a-3132-b1a1-c113922c450a",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "9b63f185-e7de-456b-aa24-7f37d5db4cc9",
+    "userId" : "e9ac47d1-cfda-37f4-bca0-eec11d744929",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "fc658c8d-1111-48a4-997d-87d6d0d83d53",
+    "userId" : "0358695f-9763-3626-85dd-612a4c5da1e2",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
     "id" : "b4bb151f-25c9-4c18-b347-bdad2e6df3ab",
     "userId" : "27bb5880-4bc4-38c6-8bcb-2c89c700cc0b",
-    "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "82b9ae05-d805-4ae8-9553-5ff9113091f7", "bd76b150-f075-4bdc-a93a-e6f7a563067e" ]
+    "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "82b9ae05-d805-4ae8-9553-5ff9113091f7", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "7b0b50d2-89b5-4a3c-9137-5513a23327b7", "5b92a0a0-25a2-42a4-95e1-775f118d3ef2", "ui-tenant-settings.settings.servicepoints", "ui-users.edituserservicepoints" ]
+  }, {
+    "id" : "d1ccbf03-7deb-42b0-97cf-b9b9821a4e8a",
+    "userId" : "76eea7d0-07b3-35f7-b0d0-feda8fa31b5b",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "bba3a62f-9d4f-49a3-8d8a-4bd4681a7de6",
+    "userId" : "1c4f488b-864f-346b-a346-02282916330b",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "8613e0a0-dea7-4107-a416-faa1d6c32880",
+    "userId" : "8ea1200e-6357-38e1-b058-3f1722cc8c4a",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
   }, {
     "id" : "a8f2c00d-a452-47a0-90e2-78230ef0d9c5",
     "userId" : "883f3880-0792-3c13-ae99-120cbc362560",
@@ -564,8 +604,84 @@
     "userId" : "8c6e113e-66cb-3396-bf21-3fd8ec9eea50",
     "permissions" : [ "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "cc4a6624-190c-4872-95dd-be090a74b61f", "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "module.data-import.enabled", "9ccfdbfe-ad7e-4103-9906-b06a47940eca", "7301b3b0-7075-4e66-8c43-12ed005e6c6b", "61978e3d-e0aa-4329-a2c0-36c6191aa09b", "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1", "ui-invoice.approve", "ui-invoice.invoice.create", "ui-invoice.invoice.delete", "ui-invoice.batchVoucher.download", "8e6f20f4-58ae-4051-b7e4-abb4b36966a1" ]
   }, {
+    "id" : "3198ddd5-33a3-4736-ab8a-9657fe9eedf5",
+    "userId" : "dc241cf6-79ea-3c34-8db6-404ccad73a0d",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "213614f0-cb45-4910-bcc5-62d6c237174c",
+    "userId" : "9563c3ce-d5ba-35b4-9e37-fe68e4d402f1",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "e307411e-ece1-48b2-89c1-f49681213f84",
+    "userId" : "4bcc1527-5692-3984-9aaa-a366520aa95b",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "8755a057-8d21-4501-9b7d-34b801050b1b",
+    "userId" : "190c9f5a-64c4-3321-a91c-cbb1ca1c3850",
+    "permissions" : [ "3c62be56-0b25-43bb-a2b3-05e8891369b0" ]
+  }, {
+    "id" : "67384b8b-36d9-4c81-8188-c0f6c758ee48",
+    "userId" : "30026c4d-f306-395b-bc77-b47de739a5e5",
+    "permissions" : [ "3c62be56-0b25-43bb-a2b3-05e8891369b0" ]
+  }, {
     "id" : "c643874f-f0bd-4f8a-802f-4b4f0bce0e0d",
     "userId" : "5bf3e9e6-3a2e-3409-a80b-c9ea29dad05c",
     "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "60564d19-d5b9-4ed4-b4df-06b79b5efc5f" ]
+  }, {
+    "id" : "77861433-6a3f-4ad6-b7b7-cd9c10a30d50",
+    "userId" : "8665c3cb-0640-30b7-a92a-f83275f9e42b",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "fe137d27-3a1b-41f3-b393-8c88721ca5a9",
+    "userId" : "81132151-ab51-31dd-bcbb-746189a671c7",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "c3d26b78-e01d-43f3-b300-4641caf55d3a",
+    "userId" : "0807ee16-412d-3afc-a8af-8bd2407b52db",
+    "permissions" : [ "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "9ccfdbfe-ad7e-4103-9906-b06a47940eca", "ui-calendar.edit", "ui-calendar.all", "ui-calendar.view" ]
+  }, {
+    "id" : "1670ad50-9555-48e1-b1e3-b0562d2900b6",
+    "userId" : "6cdb72b1-b576-3af9-9b05-7a81706b791b",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "5f67a30b-8a8f-42e7-914c-eb827b987f71",
+    "userId" : "b207710e-7b32-31de-9ae7-d8ac007d5e83",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "f50d5e26-9f68-4f27-916a-d56b3587622a",
+    "userId" : "73082f04-2852-3deb-a2cd-3017878b6617",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "8b553797-5a56-4e7e-b7ee-a6296ec31e3b",
+    "userId" : "32c2aa1e-a7dd-3bf1-8f50-1272357d06a4",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "cefdfd91-10f4-4e6b-bdc9-21b186ac3905",
+    "userId" : "9bcf6a35-0ec5-35a7-96e5-68695fb50b5c",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "7433021f-8ba4-4067-babd-5c550c3aa7fd",
+    "userId" : "e8d49541-3f69-3723-b14f-def2c6837519",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "40865d69-66e0-4f5e-90f8-eca25291a5a4",
+    "userId" : "eca77499-1482-3565-95cd-910e4dc78fe1",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "51697662-08c2-4d71-bee3-7bed2f77cd87",
+    "userId" : "fd6644c6-cdd4-3b81-9ba6-e1240dfc6829",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "98390707-986a-4302-95d5-392b5a7ca65f",
+    "userId" : "597298a7-0a40-3ec1-81b4-2a41f4b092f5",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "5a37abf7-c489-441b-9aac-b08af469d338",
+    "userId" : "a8970372-345b-3a90-a581-3e9038af147e",
+    "permissions" : [ "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0" ]
+  }, {
+    "id" : "6a781ac6-2a0c-4bea-8647-79c4facc2a33",
+    "userId" : "0b431ed3-9943-3917-b307-75071dddcbf0",
+    "permissions" : [ "3c62be56-0b25-43bb-a2b3-05e8891369b0" ]
   } ]
 }

@@ -107,6 +107,14 @@
     "mutable" : true,
     "visible" : true
   }, {
+    "permissionName" : "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
+    "displayName" : "Permission_sets_create_edit",
+    "id" : "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
+    "description" : "Ability to create permission sets",
+    "subPermissions" : [ "ui-users.settings.permsets", "ui-users.settings.profilePictures" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
     "permissionName" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
     "displayName" : "Acquisitions_Financial_Admin",
     "id" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
@@ -125,13 +133,6 @@
     "displayName" : "Acquisitions_Orders_View",
     "id" : "3bc06f71-3a30-4d79-853f-ca6b6170b97b",
     "subPermissions" : [ "ui-orders.order-lines.view", "ui-orders.order.view" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
-    "permissionName" : "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
-    "displayName" : "Circ_Students",
-    "id" : "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
-    "subPermissions" : [ "ui-checkin.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "ui-inventory.instance.view", "ui-notes.item.create", "ui-notes.item.view", "ui-tags.view", "ui-users.viewproxies", "ui-users.view", "ui-users.loans.renew", "ui-users.loans.view", "ui-users.requests.all" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -159,7 +160,7 @@
     "permissionName" : "3c62be56-0b25-43bb-a2b3-05e8891369b0",
     "displayName" : "ILS_Students",
     "id" : "3c62be56-0b25-43bb-a2b3-05e8891369b0",
-    "subPermissions" : [ ],
+    "subPermissions" : [ "ui-checkin.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "ui-inventory.instance.view", "ui-notes.item.create", "ui-notes.item.view", "ui-requests.create", "ui-tags.view", "ui-users.viewproxies", "ui-users.loans.renew", "ui-users.loans.view", "ui-users.requests.all" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -235,14 +236,6 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
-    "displayName" : "Permission_sets_create_edit",
-    "id" : "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
-    "description" : "Ability to create permission sets",
-    "subPermissions" : [ "ui-users.settings.permsets", "ui-users.settings.profilePictures" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
     "permissionName" : "dfe8fa76-9e3f-420e-bada-10d077ddf1ae",
     "displayName" : "Circ_View_only",
     "id" : "dfe8fa76-9e3f-420e-bada-10d077ddf1ae",
@@ -270,6 +263,13 @@
     "id" : "9ccfdbfe-ad7e-4103-9906-b06a47940eca",
     "description" : "Allows user to create data import profiles and run data import jobs",
     "subPermissions" : [ "settings.data-import.enabled", "module.data-import.enabled", "converter-storage.all" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
+    "permissionName" : "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
+    "displayName" : "Circ_Students",
+    "id" : "b546c5b5-815e-45d4-bdd4-3c5a3bf2bcb0",
+    "subPermissions" : [ "ui-checkin.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "ui-inventory.instance.view", "ui-notes.item.create", "ui-notes.item.view", "ui-tags.view", "ui-users.viewproxies", "ui-users.view", "ui-users.loans.renew", "ui-users.loans.view", "ui-users.requests.all" ],
     "mutable" : true,
     "visible" : true
   } ]
