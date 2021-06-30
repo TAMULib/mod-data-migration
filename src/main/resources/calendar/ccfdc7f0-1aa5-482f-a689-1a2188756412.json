@@ -134,73 +134,6 @@
       }
     } ]
   }, {
-    "id" : "c115270a-4ac6-4315-afac-d208896b999e",
-    "servicePointId" : "ccfdc7f0-1aa5-482f-a689-1a2188756412",
-    "name" : "Qatar Interim",
-    "startDate" : "2021-12-14T00:00:00.000+00:00",
-    "endDate" : "2022-01-09T00:00:00.000+00:00",
-    "openingDays" : [ {
-      "weekdays" : {
-        "day" : "SUNDAY"
-      },
-      "openingDay" : {
-        "openingHour" : [ {
-          "startTime" : "02:00",
-          "endTime" : "06:00"
-        } ],
-        "allDay" : false,
-        "open" : true
-      }
-    }, {
-      "weekdays" : {
-        "day" : "MONDAY"
-      },
-      "openingDay" : {
-        "openingHour" : [ {
-          "startTime" : "02:00",
-          "endTime" : "06:00"
-        } ],
-        "allDay" : false,
-        "open" : true
-      }
-    }, {
-      "weekdays" : {
-        "day" : "TUESDAY"
-      },
-      "openingDay" : {
-        "openingHour" : [ {
-          "startTime" : "02:00",
-          "endTime" : "06:00"
-        } ],
-        "allDay" : false,
-        "open" : true
-      }
-    }, {
-      "weekdays" : {
-        "day" : "WEDNESDAY"
-      },
-      "openingDay" : {
-        "openingHour" : [ {
-          "startTime" : "02:00",
-          "endTime" : "06:00"
-        } ],
-        "allDay" : false,
-        "open" : true
-      }
-    }, {
-      "weekdays" : {
-        "day" : "THURSDAY"
-      },
-      "openingDay" : {
-        "openingHour" : [ {
-          "startTime" : "02:00",
-          "endTime" : "06:00"
-        } ],
-        "allDay" : false,
-        "open" : true
-      }
-    } ]
-  }, {
     "id" : "f45b9b56-a91b-4baa-8bde-4ceae9087b36",
     "servicePointId" : "ccfdc7f0-1aa5-482f-a689-1a2188756412",
     "name" : "Qatar Summer 2021",
@@ -262,6 +195,73 @@
         "openingHour" : [ {
           "startTime" : "00:00",
           "endTime" : "09:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "c115270a-4ac6-4315-afac-d208896b999e",
+    "servicePointId" : "ccfdc7f0-1aa5-482f-a689-1a2188756412",
+    "name" : "Qatar Interim",
+    "startDate" : "2021-12-14T00:00:00.000+00:00",
+    "endDate" : "2022-06-01T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "02:00",
+          "endTime" : "06:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "02:00",
+          "endTime" : "06:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "02:00",
+          "endTime" : "06:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "02:00",
+          "endTime" : "06:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "02:00",
+          "endTime" : "06:00"
         } ],
         "allDay" : false,
         "open" : true
