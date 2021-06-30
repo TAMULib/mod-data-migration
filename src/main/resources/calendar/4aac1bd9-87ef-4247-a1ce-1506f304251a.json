@@ -3,8 +3,8 @@
     "id" : "adc1f0e2-9849-4c92-b767-79979539639a",
     "servicePointId" : "4aac1bd9-87ef-4247-a1ce-1506f304251a",
     "name" : "ILS Calendar",
-    "startDate" : "1988-01-01T00:00:00.000+0000",
-    "endDate" : "2024-12-31T00:00:00.000+0000",
+    "startDate" : "1988-01-01T00:00:00.000+00:00",
+    "endDate" : "2024-12-31T00:00:00.000+00:00",
     "openingDays" : [ {
       "weekdays" : {
         "day" : "SUNDAY"

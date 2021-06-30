@@ -3,8 +3,8 @@
     "id" : "6770ff9d-9003-44f8-b184-e691e979922f",
     "servicePointId" : "43f9092b-1e4d-4103-ae99-a93ba1d99bc7",
     "name" : "HSC Bryan Campus Circ Calendar",
-    "startDate" : "1988-01-01T00:00:00.000+0000",
-    "endDate" : "2024-12-31T00:00:00.000+0000",
+    "startDate" : "1988-01-01T00:00:00.000+00:00",
+    "endDate" : "2024-12-31T00:00:00.000+00:00",
     "openingDays" : [ {
       "weekdays" : {
         "day" : "SUNDAY"

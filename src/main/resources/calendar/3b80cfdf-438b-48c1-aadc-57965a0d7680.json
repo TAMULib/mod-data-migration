@@ -3,8 +3,8 @@
     "id" : "291ca4e1-fe89-4695-8995-b385be75a9b0",
     "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
     "name" : "AskUs Desk Regular",
-    "startDate" : "1988-01-01T00:00:00.000+0000",
-    "endDate" : "2024-12-31T00:00:00.000+0000",
+    "startDate" : "1988-01-01T00:00:00.000+00:00",
+    "endDate" : "2024-12-31T00:00:00.000+00:00",
     "openingDays" : [ {
       "weekdays" : {
         "day" : "SUNDAY"
@@ -83,6 +83,9 @@
       },
       "openingDay" : {
         "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
           "startTime" : "07:00",
           "endTime" : "21:00"
         } ],

@@ -3,8 +3,8 @@
     "id" : "4a3bf2f6-eb0f-477c-92e1-563091716d17",
     "servicePointId" : "fc64d24e-5247-402a-ae19-21de454c025d",
     "name" : "BLCC Calendar",
-    "startDate" : "1988-01-01T00:00:00.000+0000",
-    "endDate" : "2024-08-31T00:00:00.000+0000",
+    "startDate" : "1988-01-01T00:00:00.000+00:00",
+    "endDate" : "2024-08-31T00:00:00.000+00:00",
     "openingDays" : [ {
       "weekdays" : {
         "day" : "SUNDAY"

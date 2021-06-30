@@ -3,8 +3,8 @@
     "id" : "b608100c-8d49-4c92-8170-4eb470a83032",
     "servicePointId" : "b1b88b7e-9c47-42c9-9eb8-da9d8c68af6e",
     "name" : "HSC Round Rock Circ Calendar",
-    "startDate" : "1988-01-01T00:00:00.000+0000",
-    "endDate" : "2024-12-31T00:00:00.000+0000",
+    "startDate" : "1988-01-01T00:00:00.000+00:00",
+    "endDate" : "2024-12-31T00:00:00.000+00:00",
     "openingDays" : [ {
       "weekdays" : {
         "day" : "SUNDAY"
