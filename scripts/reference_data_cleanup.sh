@@ -74,6 +74,7 @@ select '/data-import-profiles/jobProfiles/' || id from diku_mod_data_import_conv
 select '/data-import-profiles/actionProfiles/' || id from diku_mod_data_import_converter_storage.action_profiles where id not in ('d0ebba8a-2f0f-11eb-adc1-0242ac120002', 'cddff0e1-233c-47ba-8be5-553c632709d9', '6aa8e98b-0d9f-41dd-b26f-15658d07eb52', 'fa45f3ec-9b83-11eb-a8b3-0242ac130003', 'f8e58651-f651-485d-aead-d2fa8700e2d1');
 select '/data-import-profiles/matchProfiles/' || id from diku_mod_data_import_converter_storage.match_profiles where id not in ('d27d71ce-8a1e-44c6-acea-96961b5592c6', '31dbb554-0826-48ec-a0a4-3c55293d4dee');
 select '/data-import-profiles/mappingProfiles/' || id from diku_mod_data_import_converter_storage.mapping_profiles where id not in ('d0ebbc2e-2f0f-11eb-adc1-0242ac120002', '862000b9-84ea-4cae-a223-5fc0552f2b42', 'f90864ef-8030-480f-a43f-8cdd21233252', 'bf7b3b86-9b84-11eb-a8b3-0242ac130003', '991c0300-44a6-47e3-8ea2-b01bb56a38cc');
+select '/copycat/profiles/' || id from diku_mod_copycat.profile;
 EOM
 
 # iterate select statements
