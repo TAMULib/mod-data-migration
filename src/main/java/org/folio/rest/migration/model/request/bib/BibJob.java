@@ -1,6 +1,7 @@
 package org.folio.rest.migration.model.request.bib;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.constraints.NotNull;
@@ -24,9 +25,12 @@ public class BibJob extends AbstractJob {
 
   private Map<String, String> references;
 
+  private Map<String, List<String>> exclusions;
+
   public BibJob() {
     super();
-    references = new HashMap<String, String>();
+    references = new HashMap<>();
+    exclusions = new HashMap<>();
   }
 
   public String getUser() {
@@ -67,6 +71,14 @@ public class BibJob extends AbstractJob {
 
   public void setReferences(Map<String, String> references) {
     this.references = references;
+  }
+
+  public Map<String, List<String>> getExclusions() {
+    return exclusions;
+  }
+
+  public void setExclusions(Map<String, List<String>> exclusions) {
+    this.exclusions = exclusions;
   }
 
 }

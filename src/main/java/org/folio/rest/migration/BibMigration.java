@@ -295,6 +295,10 @@ public class BibMigration extends AbstractMigration<BibContext> {
           String suppressInOpac = pageResultSet.getString(SUPPRESS_IN_OPAC);
           String operatorId = pageResultSet.getString(OPERATOR_ID);
 
+          if (exclude(job.getExclusions(), pageResultSet)) {
+            continue;
+          }
+
           Boolean suppressDiscovery = suppressInOpac.equals("Y");
 
           marcContext.put(BIB_ID, bibId);
