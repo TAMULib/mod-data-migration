@@ -1,6 +1,7 @@
 {
   "path" : "/groups",
   "query" : "limit=9999&query=group<>admin",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ ],
   "defaults" : { },

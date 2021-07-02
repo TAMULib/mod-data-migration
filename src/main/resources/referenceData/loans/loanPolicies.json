@@ -1,6 +1,7 @@
 {
   "path" : "/loan-policy-storage/loan-policies",
   "query" : "limit=9999",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ ],
   "defaults" : { },

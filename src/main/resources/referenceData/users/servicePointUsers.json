@@ -1,6 +1,7 @@
 {
   "path" : "/service-points-users",
   "query" : "limit=9999&query=(servicePointsIds<>[] and defaultServicePointId==*)",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ "servicePoints" ],
   "defaults" : { },
@@ -150,6 +151,11 @@
   }, {
     "id" : "a4651d0c-f26e-480b-906f-f2161845ec36",
     "userId" : "5d6c0d18-a308-3537-8694-3267fa900c9b",
+    "servicePointsIds" : [ "9311b907-0c9f-42d0-aea4-62d33a7ab7b7" ],
+    "defaultServicePointId" : "9311b907-0c9f-42d0-aea4-62d33a7ab7b7"
+  }, {
+    "id" : "f9f2981e-e132-44b3-903c-87c366549f02",
+    "userId" : "ecf592e7-a4f0-33bb-89da-c76dfcc3f3a3",
     "servicePointsIds" : [ "9311b907-0c9f-42d0-aea4-62d33a7ab7b7" ],
     "defaultServicePointId" : "9311b907-0c9f-42d0-aea4-62d33a7ab7b7"
   }, {
@@ -343,11 +349,6 @@
     "servicePointsIds" : [ "3b80cfdf-438b-48c1-aadc-57965a0d7680", "382bbd83-8f05-4063-8d08-adf1d3316e0a" ],
     "defaultServicePointId" : "382bbd83-8f05-4063-8d08-adf1d3316e0a"
   }, {
-    "id" : "f5da8dd9-0bdf-4514-8f9d-a0a15c3e4628",
-    "userId" : "4d860cdc-5f82-394e-971c-b4992036a6ff",
-    "servicePointsIds" : [ "3b80cfdf-438b-48c1-aadc-57965a0d7680", "24f55faf-d42e-4fef-9ad3-43c34b75962f" ],
-    "defaultServicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680"
-  }, {
     "id" : "658e2d12-9723-40e7-bf9c-30e13e337e12",
     "userId" : "30026c4d-f306-395b-bc77-b47de739a5e5",
     "servicePointsIds" : [ "4aac1bd9-87ef-4247-a1ce-1506f304251a" ],
@@ -356,6 +357,11 @@
     "id" : "007a9f6e-0c06-487b-ab87-df90783f7064",
     "userId" : "b8e6b697-c7fe-35a7-9cbc-7b46c9dda8e8",
     "servicePointsIds" : [ "3b80cfdf-438b-48c1-aadc-57965a0d7680", "382bbd83-8f05-4063-8d08-adf1d3316e0a" ],
+    "defaultServicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680"
+  }, {
+    "id" : "f5da8dd9-0bdf-4514-8f9d-a0a15c3e4628",
+    "userId" : "4d860cdc-5f82-394e-971c-b4992036a6ff",
+    "servicePointsIds" : [ "3b80cfdf-438b-48c1-aadc-57965a0d7680", "24f55faf-d42e-4fef-9ad3-43c34b75962f" ],
     "defaultServicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680"
   }, {
     "id" : "157b62f5-e458-4ac2-8924-beeceabe67f3",

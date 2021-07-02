@@ -1,6 +1,7 @@
 {
   "path" : "/feefines",
   "query" : "limit=9999&query=automatic<>true",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ "owners" ],
   "defaults" : { },

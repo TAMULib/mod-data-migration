@@ -1,6 +1,7 @@
 {
   "path" : "/holdings-types",
   "query" : "limit=9999&query=id==61155a36-148b-4664-bb7f-64ad708e0b32",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ ],
   "defaults" : { },

@@ -12,11 +12,14 @@ public class ReferenceDatum {
 
   private final JsonNode data;
 
-  public ReferenceDatum(String tenant, String token, String path, JsonNode data) {
+  private final ReferenceData.Action action;
+
+  public ReferenceDatum(String tenant, String token, String path, JsonNode data, ReferenceData.Action action) {
     this.tenant = tenant;
     this.token = token;
     this.path = path;
     this.data = data;
+    this.action = action;
   }
 
   public String getTenant() {
@@ -35,12 +38,16 @@ public class ReferenceDatum {
     return data;
   }
 
-  public static ReferenceDatum of(ReferenceData referenceData, JsonNode data) {
-    return of(referenceData.getTenant(), referenceData.getToken(), referenceData.getPath(), data);
+  public ReferenceData.Action getAction() {
+    return action;
   }
 
-  public static ReferenceDatum of(String tenant, String token, String path, JsonNode data) {
-    return new ReferenceDatum(tenant, token, path, data);
+  public static ReferenceDatum of(ReferenceData referenceData, JsonNode data) {
+    return of(referenceData.getTenant(), referenceData.getToken(), referenceData.getPath(), data, referenceData.getAction());
+  }
+
+  public static ReferenceDatum of(String tenant, String token, String path, JsonNode data, ReferenceData.Action action) {
+    return new ReferenceDatum(tenant, token, path, data, action);
   }
 
 }

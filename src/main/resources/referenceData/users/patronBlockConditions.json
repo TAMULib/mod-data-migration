@@ -1,0 +1,60 @@
+{
+  "path" : "/patron-block-conditions",
+  "query" : "limit=9999",
+  "action" : "UPDATE",
+  "reify" : false,
+  "dependencies" : [ ],
+  "defaults" : { },
+  "transform" : { },
+  "excludedProperties" : [ "metadata" ],
+  "additional" : [ ],
+  "data" : [ {
+    "id" : "72b67965-5b73-4840-bc0b-be8f3f6e047e",
+    "name" : "Maximum number of lost items",
+    "blockBorrowing" : true,
+    "blockRenewals" : true,
+    "blockRequests" : true,
+    "valueType" : "Integer",
+    "message" : "Patron is blocked due to maximum number of  lost items reached. "
+  }, {
+    "id" : "584fbd4f-6a34-4730-a6ca-73a6a6a9d845",
+    "name" : "Maximum number of overdue items",
+    "blockBorrowing" : true,
+    "blockRenewals" : false,
+    "blockRequests" : true,
+    "valueType" : "Integer",
+    "message" : "Patron is blocked due to maximum number of  overdue items reached. "
+  }, {
+    "id" : "08530ac4-07f2-48e6-9dda-a97bc2bf7053",
+    "name" : "Recall overdue by maximum number of days",
+    "blockBorrowing" : true,
+    "blockRenewals" : true,
+    "blockRequests" : false,
+    "valueType" : "Integer",
+    "message" : "Patron is blocked due to overdue recall. "
+  }, {
+    "id" : "3d7c52dc-c732-4223-8bf8-e5917801386f",
+    "name" : "Maximum number of items charged out",
+    "blockBorrowing" : true,
+    "blockRenewals" : false,
+    "blockRequests" : false,
+    "valueType" : "Integer",
+    "message" : "Patron is blocked due to too many items checked out."
+  }, {
+    "id" : "e5b45031-a202-4abb-917b-e1df9346fe2c",
+    "name" : "Maximum number of overdue recalls",
+    "blockBorrowing" : true,
+    "blockRenewals" : true,
+    "blockRequests" : false,
+    "valueType" : "Integer",
+    "message" : "Patron is blocked due to maximum number of overdue recalls. "
+  }, {
+    "id" : "cf7a0d5f-a327-4ca1-aa9e-dc55ec006b8a",
+    "name" : "Maximum outstanding fee/fine balance",
+    "blockBorrowing" : true,
+    "blockRenewals" : true,
+    "blockRequests" : true,
+    "valueType" : "Double",
+    "message" : "Patron is blocked due to reaching the maximum fee/fines amount allowed. "
+  } ]
+}

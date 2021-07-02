@@ -1,6 +1,7 @@
 {
   "path" : "/data-import-profiles/mappingProfiles",
   "query" : "limit=9999&query=(id<>d0ebbc2e-2f0f-11eb-adc1-0242ac120002) AND (id<>862000b9-84ea-4cae-a223-5fc0552f2b42) AND (id<>f90864ef-8030-480f-a43f-8cdd21233252)",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ "matchProfiles", "actionProfiles", "jobProfiles" ],
   "defaults" : { },

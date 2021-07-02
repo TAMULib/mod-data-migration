@@ -68,7 +68,7 @@ public class ReferenceDataService {
     String token = okapiService.getToken(tenant);
     List<ReferenceData> referenceData = readReferenceData(pattern, tenant, token);
     logger.info("creating reference data; tenant: {}, pattern: {}, quantity: {}", tenant, pattern, referenceData.size());
-    createReferenceData(referenceData);
+    loadReferenceData(referenceData);
   }
 
   public List<ReferenceData> harvestReferenceData(String pattern, ExternalOkapi okapi) throws IOException {
@@ -105,7 +105,7 @@ public class ReferenceDataService {
     return Arrays.asList(ResourcePatternUtils.getResourcePatternResolver(resourceLoader).getResources(pattern));
   }
 
-  private void createReferenceData(List<ReferenceData> referenceData) {
+  private void loadReferenceData(List<ReferenceData> referenceData) {
     Iterator<ReferenceData> rdItr = referenceData.iterator();
     while (rdItr.hasNext()) {
       ReferenceData currRd = rdItr.next();
@@ -117,21 +117,21 @@ public class ReferenceDataService {
         }
       }
       if (depsMet) {
-        createReferenceData(currRd);
+        loadReferenceData(currRd);
         rdItr.remove();
       }
     }
     if (referenceData.size() > 0) {
       logger.info("reference data remaining {}", referenceData.size());
-      createReferenceData(referenceData);
+      loadReferenceData(referenceData);
     }
   }
 
-  private void createReferenceData(ReferenceData referenceData) {
+  private void loadReferenceData(ReferenceData referenceData) {
     for (JsonNode data : referenceData.getData()) {
       ReferenceDatum datum = ReferenceDatum.of(referenceData, data);
       try {
-        JsonNode response = okapiService.createReferenceData(datum);
+        String response = okapiService.loadReferenceData(datum);
         logger.info("created reference data {} {}", referenceData.getName(), response);
       } catch (Exception e) {
         logger.warn("failed creating reference data {}: {}", referenceData.getName(), e.getMessage());
@@ -157,10 +157,10 @@ public class ReferenceDataService {
     StringSubstitutor sub = new StringSubstitutor(context);
     String path = sub.replace(additional.getPath());
 
-    ReferenceDatum additionalDatum = ReferenceDatum.of(tenant, token, path, additionalData);
+    ReferenceDatum additionalDatum = ReferenceDatum.of(tenant, token, path, additionalData, referenceData.getAction());
 
     try {
-      JsonNode response = okapiService.createReferenceData(additionalDatum);
+      String response = okapiService.loadReferenceData(additionalDatum);
       logger.info("created additional reference data {} {} {}", referenceData.getName(), additional.getSource(), response);
     } catch (Exception e) {
       logger.warn("failed creating additional reference data {} {}: {}", referenceData.getName(), additional.getSource(), e.getMessage());

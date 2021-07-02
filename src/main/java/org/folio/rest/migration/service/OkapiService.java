@@ -134,11 +134,22 @@ public class OkapiService {
     return response.getBody();
   }
 
-  public JsonNode createReferenceData(ReferenceDatum referenceDatum) {
-    String url = okapi.getUrl() + referenceDatum.getPath();
-    HttpEntity<JsonNode> entity = new HttpEntity<>(referenceDatum.getData(), headers(referenceDatum.getTenant(), referenceDatum.getToken()));
-    ResponseEntity<JsonNode> response = restTemplate.exchange(url, HttpMethod.POST, entity, JsonNode.class);
-    return response.getBody();
+  public String loadReferenceData(ReferenceDatum referenceDatum) {
+    switch (referenceDatum.getAction()) {
+      case CREATE:
+        String createUrl = okapi.getUrl() + referenceDatum.getPath();
+        HttpEntity<JsonNode> createEntity = new HttpEntity<>(referenceDatum.getData(), headers(referenceDatum.getTenant(), referenceDatum.getToken()));
+        ResponseEntity<String> createResponse = restTemplate.exchange(createUrl, HttpMethod.POST, createEntity, String.class);
+        return createResponse.getBody();
+      case UPDATE:
+        String id = referenceDatum.getData().get("id").asText();
+        String updateUrl = okapi.getUrl() + referenceDatum.getPath() + "/" + id;
+        HttpEntity<JsonNode> updateEntity = new HttpEntity<>(referenceDatum.getData(), headers(referenceDatum.getTenant(), referenceDatum.getToken()));
+        ResponseEntity<String> updateResponse = restTemplate.exchange(updateUrl, HttpMethod.PUT, updateEntity, String.class);
+        return updateResponse.getBody();
+      default:
+        return "Unknown action";
+    }
   }
 
   public Note createNote(Note note, String tenant, String token) {
