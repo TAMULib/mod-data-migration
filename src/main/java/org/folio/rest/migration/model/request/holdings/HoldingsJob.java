@@ -19,7 +19,7 @@ public class HoldingsJob extends AbstractJob {
 
   public HoldingsJob() {
     super();
-    references = new HashMap<String, String>();
+    references = new HashMap<>();
     exclusions = new HashMap<>();
   }
 

@@ -17,9 +17,9 @@ public class VendorMaps {
   private Map<String, String> vendorTypes;
 
   public VendorMaps() {
-    categories = new HashMap<String, String>();
-    countryCodes = new HashMap<String, String>();
-    vendorTypes = new HashMap<String, String>();
+    categories = new HashMap<>();
+    countryCodes = new HashMap<>();
+    vendorTypes = new HashMap<>();
   }
 
   public Map<String, String> getCategories() {
