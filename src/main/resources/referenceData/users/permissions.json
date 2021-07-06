@@ -1,6 +1,7 @@
 {
   "path" : "/perms/permissions",
   "query" : "length=9999&query=(mutable==true AND displayName<>all*permission*)",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ ],
   "defaults" : { },
@@ -8,19 +9,19 @@
   "excludedProperties" : [ "childOf", "dummy", "deprecated", "grantedTo", "metadata", "tags" ],
   "additional" : [ ],
   "data" : [ {
-    "permissionName" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
-    "displayName" : "Cat_AllStaff",
-    "id" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
-    "description" : "Set of permissions for Staff and Professionals",
-    "subPermissions" : [ "ui-inventory-es.all-permissions.TEMPORARY", "module.inventory-es.enabled", "ui-inventory.all-permissions.TEMPORARY", "ui-inventory.single-record-import", "ui-inventory.items.mark-items-withdrawn", "ui-orders.order-lines.view", "ui-orders.order.view", "ui-quick-marc.quick-marc-editor.all", "ui-tags.view" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
     "permissionName" : "8641feeb-07f3-495e-86cb-93df4eb85068",
     "displayName" : "Cat_View",
     "id" : "8641feeb-07f3-495e-86cb-93df4eb85068",
     "description" : "Permits non-catalogers to view Inventory, FOLIO Holdings, and Items",
     "subPermissions" : [ "ui-inventory.instance.view-staff-suppressed-records", "ui-inventory.instance.view", "ui-tags.view" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
+    "permissionName" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
+    "displayName" : "Cat_AllStaff",
+    "id" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
+    "description" : "Set of permissions for Staff and Professionals",
+    "subPermissions" : [ "ui-inventory-es.all-permissions.TEMPORARY", "module.inventory-es.enabled", "ui-inventory.all-permissions.TEMPORARY", "ui-inventory.single-record-import", "ui-inventory.items.mark-items-withdrawn", "ui-orders.order-lines.view", "ui-orders.order.view", "ui-quick-marc.quick-marc-editor.all", "ui-tags.view" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -68,19 +69,19 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "80a761b1-fdb8-4bfa-988e-65760ff72ec5",
-    "displayName" : "Cat_Student",
-    "id" : "80a761b1-fdb8-4bfa-988e-65760ff72ec5",
-    "description" : "Student Workers doing maintenance operations ",
-    "subPermissions" : [ "ui-inventory.items.mark-items-withdrawn", "ui-inventory.instance.view-staff-suppressed-records", "ui-inventory.instance.view", "ui-inventory.holdings.delete", "ui-inventory.item.delete", "ui-inventory.item.markasmissing", "ui-tags.view" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
     "permissionName" : "82b9ae05-d805-4ae8-9553-5ff9113091f7",
     "displayName" : "Circ_Settings",
     "id" : "82b9ae05-d805-4ae8-9553-5ff9113091f7",
     "description" : "All settings that are related to circulation: circ, users, requests, feesfines",
     "subPermissions" : [ "ui-circulation.settings.cancellation-reasons", "ui-circulation.settings.circulation-rules", "ui-circulation.settings.fixed-due-date-schedules", "ui-circulation.settings.loan-policies", "ui-circulation.settings.lost-item-fees-policies", "ui-circulation.settings.notice-policies", "ui-circulation.settings.other-settings", "ui-circulation.settings.overdue-fines-policies", "ui-circulation.settings.notice-templates", "ui-circulation.settings.request-policies", "ui-circulation.settings.staff-slips", "ui-circulation.settings.loan-history", "ui-tenant-settings.settings.servicepoints", "ui-users.settings.addresstypes", "ui-users.settings.feefines.all", "ui-users.settings.comments", "ui-users.settings.feefines", "ui-users.settings.owners", "ui-users.settings.conditions", "ui-users.settings.limits", "ui-users.settings.usergroups", "ui-users.settings.payments", "ui-users.settings.refunds", "ui-users.settings.transfers", "ui-users.settings.transfertypes", "ui-users.settings.waives", "ui-users.settings.customfields.edit", "ui-users.settings.customfields.all", "ui-users.settings.customfields.view", "ui-users.settings.departments.create.edit.view", "ui-users.settings.departments.all", "ui-users.settings.departments.view" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
+    "permissionName" : "80a761b1-fdb8-4bfa-988e-65760ff72ec5",
+    "displayName" : "Cat_Student",
+    "id" : "80a761b1-fdb8-4bfa-988e-65760ff72ec5",
+    "description" : "Student Workers doing maintenance operations ",
+    "subPermissions" : [ "ui-inventory.items.mark-items-withdrawn", "ui-inventory.instance.view-staff-suppressed-records", "ui-inventory.instance.view", "ui-inventory.holdings.delete", "ui-inventory.item.delete", "ui-inventory.item.markasmissing", "ui-tags.view" ],
     "mutable" : true,
     "visible" : true
   }, {

@@ -1,6 +1,7 @@
 {
   "path" : "/statistical-code-types",
   "query" : "limit=9999",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ ],
   "defaults" : { },

@@ -1,6 +1,7 @@
 {
   "path" : "/perms/users",
   "query" : "length=999999&query=(permissions<>[] and permissions<>[\"e3cd6ade-b03c-42e0-ab7e-a34071e77e38\"])",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ "permissions" ],
   "defaults" : { },
@@ -476,13 +477,13 @@
     "userId" : "b9d0c2bc-8121-329f-a7a7-23315b8d03e2",
     "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "ui-checkin.all", "05e05c02-f870-4602-9e1b-1451cf4ec9b1" ]
   }, {
-    "id" : "59a4b898-cc8d-4c77-93b1-44a67a109862",
-    "userId" : "ecf592e7-a4f0-33bb-89da-c76dfcc3f3a3",
-    "permissions" : [ "7fd42e23-08bf-4bf3-ad66-f6e27c446649", "bbc81742-5f20-4517-9e38-a1ed0631d874", "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "cc4a6624-190c-4872-95dd-be090a74b61f", "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "82b9ae05-d805-4ae8-9553-5ff9113091f7", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "dfe8fa76-9e3f-420e-bada-10d077ddf1ae", "9ccfdbfe-ad7e-4103-9906-b06a47940eca", "7b0b50d2-89b5-4a3c-9137-5513a23327b7", "5b92a0a0-25a2-42a4-95e1-775f118d3ef2" ]
-  }, {
     "id" : "d8c79a9c-b9d3-48a1-b11a-e7ba34f2b589",
     "userId" : "c2c9323e-f0e2-3895-8f9c-1a7e7c42a9be",
     "permissions" : [ "2347a558-b532-4b28-971f-3dd05420375a", "8641feeb-07f3-495e-86cb-93df4eb85068", "dfe8fa76-9e3f-420e-bada-10d077ddf1ae", "module.data-import.enabled", "9ccfdbfe-ad7e-4103-9906-b06a47940eca" ]
+  }, {
+    "id" : "59a4b898-cc8d-4c77-93b1-44a67a109862",
+    "userId" : "ecf592e7-a4f0-33bb-89da-c76dfcc3f3a3",
+    "permissions" : [ "7fd42e23-08bf-4bf3-ad66-f6e27c446649", "bbc81742-5f20-4517-9e38-a1ed0631d874", "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "cc4a6624-190c-4872-95dd-be090a74b61f", "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "82b9ae05-d805-4ae8-9553-5ff9113091f7", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "dfe8fa76-9e3f-420e-bada-10d077ddf1ae", "9ccfdbfe-ad7e-4103-9906-b06a47940eca", "7b0b50d2-89b5-4a3c-9137-5513a23327b7", "5b92a0a0-25a2-42a4-95e1-775f118d3ef2" ]
   }, {
     "id" : "d4ac2c85-ad48-4601-a543-f93ba0378dd9",
     "userId" : "5077ccdb-2e0a-3ebd-8433-d2d113c0f9eb",
@@ -547,10 +548,6 @@
     "id" : "14297959-7ba6-488d-8044-29cd0e09ba48",
     "userId" : "f0c4cc32-f80d-38eb-8638-8a26e28be2b8",
     "permissions" : [ "7fd42e23-08bf-4bf3-ad66-f6e27c446649", "bbc81742-5f20-4517-9e38-a1ed0631d874", "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "cc4a6624-190c-4872-95dd-be090a74b61f", "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "module.data-import.enabled", "9ccfdbfe-ad7e-4103-9906-b06a47940eca", "7301b3b0-7075-4e66-8c43-12ed005e6c6b", "7b0b50d2-89b5-4a3c-9137-5513a23327b7", "5b92a0a0-25a2-42a4-95e1-775f118d3ef2" ]
-  }, {
-    "id" : "3c880a99-2fd5-4c48-8ae9-42818672e60a",
-    "userId" : "4d860cdc-5f82-394e-971c-b4992036a6ff",
-    "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "82b9ae05-d805-4ae8-9553-5ff9113091f7", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "7b0b50d2-89b5-4a3c-9137-5513a23327b7", "5b92a0a0-25a2-42a4-95e1-775f118d3ef2", "ui-calendar.edit", "ui-calendar.all", "ui-calendar.view" ]
   }, {
     "id" : "e74262eb-28a0-46b2-b450-80746ca7d0c9",
     "userId" : "4b09ca31-3883-341f-a2e0-b937812c59fa",
@@ -683,5 +680,17 @@
     "id" : "6a781ac6-2a0c-4bea-8647-79c4facc2a33",
     "userId" : "0b431ed3-9943-3917-b307-75071dddcbf0",
     "permissions" : [ "3c62be56-0b25-43bb-a2b3-05e8891369b0" ]
+  }, {
+    "id" : "4d8e8bfe-6a43-43ae-9782-3d57a4bffe02",
+    "userId" : "df832661-6b0c-3166-9243-940aeddf37c4",
+    "permissions" : [ "df294639-9886-44ae-a215-257e3f0bdfd2", "80a761b1-fdb8-4bfa-988e-65760ff72ec5", "8641feeb-07f3-495e-86cb-93df4eb85068" ]
+  }, {
+    "id" : "ebb3822a-3a75-407d-91e9-39bf622aa304",
+    "userId" : "e133cdaa-de60-3f55-a5e3-6a3ab7a25043",
+    "permissions" : [ "df294639-9886-44ae-a215-257e3f0bdfd2", "80a761b1-fdb8-4bfa-988e-65760ff72ec5", "8641feeb-07f3-495e-86cb-93df4eb85068" ]
+  }, {
+    "id" : "3c880a99-2fd5-4c48-8ae9-42818672e60a",
+    "userId" : "4d860cdc-5f82-394e-971c-b4992036a6ff",
+    "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "82b9ae05-d805-4ae8-9553-5ff9113091f7", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "7b0b50d2-89b5-4a3c-9137-5513a23327b7", "5b92a0a0-25a2-42a4-95e1-775f118d3ef2", "ui-calendar.edit", "ui-calendar.all", "ui-calendar.view" ]
   } ]
 }

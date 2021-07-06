@@ -1,6 +1,7 @@
 {
   "path" : "/finance/budgets",
   "query" : "limit=9999",
+  "action" : "CREATE",
   "reify" : true,
   "dependencies" : [ "fiscalYears", "funds" ],
   "defaults" : {

@@ -1,6 +1,7 @@
 {
   "path" : "/call-number-types",
   "query" : "limit=9999&query=id==24badefa-4456-40c5-845c-3f45ffbc4c03",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ ],
   "defaults" : { },

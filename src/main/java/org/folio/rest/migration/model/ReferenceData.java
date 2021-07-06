@@ -14,6 +14,8 @@ public class ReferenceData {
 
   private String query;
 
+  private Action action;
+
   // will be populated during processing
   @JsonIgnore
   private String name;
@@ -46,6 +48,7 @@ public class ReferenceData {
 
   public ReferenceData() {
     reify = false;
+    action = Action.CREATE;
     dependencies = new ArrayList<>();
     defaults = new HashMap<>();
     transform = new HashMap<>();
@@ -68,6 +71,14 @@ public class ReferenceData {
 
   public void setQuery(String query) {
     this.query = query;
+  }
+
+  public Action getAction() {
+    return action;
+  }
+
+  public void setAction(Action action) {
+    this.action = action;
   }
 
   public String getName() {
@@ -181,6 +192,10 @@ public class ReferenceData {
   public ReferenceData withToken(String token) {
     this.token = token;
     return this;
+  }
+
+  public enum Action {
+    CREATE, UPDATE
   }
 
 }

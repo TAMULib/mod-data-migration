@@ -1,6 +1,7 @@
 {
   "path" : "/data-import-profiles/actionProfiles",
   "query" : "limit=9999&query=(id<>d0ebba8a-2f0f-11eb-adc1-0242ac120002) AND (id<>cddff0e1-233c-47ba-8be5-553c632709d9) AND (id<>6aa8e98b-0d9f-41dd-b26f-15658d07eb52)",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ "jobProfiles" ],
   "defaults" : { },

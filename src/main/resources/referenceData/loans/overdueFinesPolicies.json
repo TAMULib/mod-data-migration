@@ -1,6 +1,7 @@
 {
   "path" : "/overdue-fines-policies",
   "query" : "limit=9999",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ ],
   "defaults" : { },

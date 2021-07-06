@@ -1,6 +1,7 @@
 {
   "path" : "/data-import-profiles/jobProfiles",
   "query" : "limit=9999&query=(name<>TAMU * Bibligraphic Migration) AND (name<>Create MARC Bibs) AND (id<>d0ebb7b0-2f0f-11eb-adc1-0242ac120002) AND (id<>91f9b8d6-d80e-4727-9783-73fb53e3c786)",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ ],
   "defaults" : { },

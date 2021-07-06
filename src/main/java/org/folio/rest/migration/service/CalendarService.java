@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import org.apache.commons.io.FilenameUtils;
+import org.folio.rest.migration.model.ReferenceData;
 import org.folio.rest.migration.model.ReferenceDatum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,9 +60,9 @@ public class CalendarService {
       String path = String.format(CALENDAR_PERIOD_PATH_TEMPLATE, servicePointId);
       JsonNode periods = objectMapper.readTree(resource.getInputStream());
       ((ArrayNode) periods.get(OPENING_PERIODS)).forEach(data -> {
-        ReferenceDatum referenceDatum = ReferenceDatum.of(tenant, token, path, data);
+        ReferenceDatum referenceDatum = ReferenceDatum.of(tenant, token, path, data, ReferenceData.Action.CREATE);
         try {
-          JsonNode response = okapiService.createReferenceData(referenceDatum);
+          String response = okapiService.loadReferenceData(referenceDatum);
           logger.info("created calendar period for service point {}: {}", servicePointId, response);
         } catch (Exception e) {
           logger.debug("failed creating calendar period for service point {}: {}", servicePointId, e.getMessage());

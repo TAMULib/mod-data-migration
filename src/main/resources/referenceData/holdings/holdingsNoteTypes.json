@@ -1,6 +1,7 @@
 {
   "path" : "/holdings-note-types",
   "query" : "limit=9999&query=id==(f453de0f-8b54-4e99-9180-52932529e3a6 or 7ca7dc63-c053-4aec-8272-c03aeda4840c or 0fe80632-2616-4626-a316-c3bba0e3eeb9)",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ ],
   "defaults" : { },

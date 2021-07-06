@@ -1,6 +1,7 @@
 {
   "path" : "/identifier-types",
   "query" : "limit=9999&query=id==76b5963b-ccce-4715-b453-1a7354f4f597",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ ],
   "defaults" : { },

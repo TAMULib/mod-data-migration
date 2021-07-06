@@ -1,6 +1,7 @@
 {
   "path" : "/coursereserves/reserves",
   "query" : "limit=9999",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ "courseListings", "processingStatuses" ],
   "defaults" : { },

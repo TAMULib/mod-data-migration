@@ -1,6 +1,7 @@
 {
   "path" : "/configurations/entries",
   "query" : "limit=9999&query=module==(CHECKOUT OR LOAN_HISTORY OR OAIPMH OR ORDERS OR TENANT)",
+  "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ ],
   "defaults" : { },
