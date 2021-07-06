@@ -16,7 +16,7 @@ public class UserReferenceLinkJob extends AbstractJob {
 
   public UserReferenceLinkJob() {
     super();
-    references = new HashMap<String, String>();
+    references = new HashMap<>();
   }
 
   public String getDecodeSql() {

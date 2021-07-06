@@ -667,6 +667,9 @@ POST to http://localhost:9000/migrate/bibs
       "references": {
         "sourceRecordTypeId": "96017110-47c5-4d55-8324-7dab1771749b",
         "instanceTypeId": "43efa217-2d57-4d75-82ef-4372507d0672"
+      },
+      "exclusions": {
+        "OPERATOR_ID": ["olibrary"]
       }
     },
     {
@@ -683,6 +686,9 @@ POST to http://localhost:9000/migrate/bibs
       "references": {
         "sourceRecordTypeId": "b9f633b3-22e4-4bad-8785-da09d9eaa6c8",
         "instanceTypeId": "fb6db4f0-e5c3-483b-a1da-3edbb96dc8e8"
+      },
+      "exclusions": {
+        "OPERATOR_ID": ["olibrary"]
       }
     }
   ],
@@ -727,6 +733,9 @@ POST to http://localhost:9000/migrate/holdings
         "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc",
         "holdingToCallNumberPrefixTypeId": "bdc5c8b1-7b21-45ea-943b-585764f3715c",
         "holdingToCallNumberSuffixTypeId": "fcd2963b-b75d-4401-8eda-7e91efd8ddc3"
+      },
+      "exclusions": {
+        "OPERATOR_ID": ["olibrary"]
       }
     },
     {
@@ -738,6 +747,9 @@ POST to http://localhost:9000/migrate/holdings
         "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba",
         "holdingToCallNumberPrefixTypeId": "78991218-9141-4807-9175-7147c861a596",
         "holdingToCallNumberSuffixTypeId": "be7288c9-7c67-4b6b-b662-a57816569e46"
+      },
+      "exclusions": {
+        "OPERATOR_ID": ["olibrary"]
       }
     }
   ],

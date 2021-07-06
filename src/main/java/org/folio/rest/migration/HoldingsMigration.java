@@ -10,6 +10,7 @@ import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -258,6 +259,10 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
           String receiptStatusCode = pageResultSet.getString(RECEIPT_STATUS);
           String acqMethodCode = pageResultSet.getString(ACQ_METHOD);
           String retentionCode = pageResultSet.getString(RETENTION);
+
+          if (exclude(job.getExclusions(), pageResultSet)) {
+            continue;
+          }
 
           marcContext.put(MFHD_ID, mfhdId);
 

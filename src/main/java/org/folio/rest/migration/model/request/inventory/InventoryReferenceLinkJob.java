@@ -11,7 +11,7 @@ public class InventoryReferenceLinkJob extends AbstractJob {
 
   public InventoryReferenceLinkJob() {
     super();
-    references = new HashMap<String, String>();
+    references = new HashMap<>();
   }
 
   public Map<String, String> getReferences() {
