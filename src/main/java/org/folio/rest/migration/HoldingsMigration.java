@@ -10,7 +10,6 @@ import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -71,6 +70,7 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
   private static final String HOLDING_REFERENCE_ID = "holdingTypeId";
   private static final String HOLDING_TO_BIB_REFERENCE_ID = "holdingToBibTypeId";
 
+  private static final String HOLDING_TO_CALL_NUMBER_ID = "holdingToCallNumberTypeId";
   private static final String HOLDING_TO_CALL_NUMBER_PREFIX_ID = "holdingToCallNumberPrefixTypeId";
   private static final String HOLDING_TO_CALL_NUMBER_SUFFIX_ID = "holdingToCallNumberSuffixTypeId";
 
@@ -227,6 +227,7 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
       String holdingRLTypeId = job.getReferences().get(HOLDING_REFERENCE_ID);
       String holdingToBibRLTypeId = job.getReferences().get(HOLDING_TO_BIB_REFERENCE_ID);
 
+      String holdingToCallNumberTypeId = job.getReferences().get(HOLDING_TO_CALL_NUMBER_ID);
       String holdingToCallNumberPrefixTypeId = job.getReferences().get(HOLDING_TO_CALL_NUMBER_PREFIX_ID);
       String holdingToCallNumberSuffixTypeId = job.getReferences().get(HOLDING_TO_CALL_NUMBER_SUFFIX_ID);
 
@@ -251,7 +252,7 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
           String permanentLocationId = pageResultSet.getString(LOCATION_ID);
 
           String suppressInOpac = pageResultSet.getString(SUPPRESS_IN_OPAC);
-          String callNumber = pageResultSet.getString(CALL_NUMBER);
+          String displayCallNumber = pageResultSet.getString(CALL_NUMBER);
 
           String callNumberType = pageResultSet.getString(CALL_NUMBER_TYPE);
           String holdingsType = pageResultSet.getString(HOLDINGS_TYPE);
@@ -351,7 +352,7 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
               matchedCodes = new HashSet<>();
             }
 
-            HoldingsRecord holdingRecord = new HoldingsRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, matchedCodes, discoverySuppress, callNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
+            HoldingsRecord holdingRecord = new HoldingsRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, matchedCodes, discoverySuppress, displayCallNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
             holdingRecord.setHoldingId(holdingId);
             holdingRecord.setInstanceId(instanceId);
@@ -367,8 +368,15 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
 
             Holdingsrecord holdingsRecord = holdingRecord.toHolding(holdingMapper, holdingMaps, hridString);
 
+            String callNumber = holdingsRecord.getCallNumber();
             String callNumberPrefix = holdingsRecord.getCallNumberPrefix();
             String callNumberSuffix = holdingsRecord.getCallNumberSuffix();
+
+            if (StringUtils.isNoneEmpty(callNumber)) {
+              String rlId = UUID.randomUUID().toString();
+              String holdingRlId = holdingRL.get().getId();
+              referenceLinkWriter.println(String.join("\t", rlId, holdingRlId, callNumber, holdingToCallNumberTypeId));
+            }
 
             if (StringUtils.isNoneEmpty(callNumberPrefix)) {
               String rlId = UUID.randomUUID().toString();
