@@ -731,6 +731,7 @@ POST to http://localhost:9000/migrate/holdings
       "references": {
         "holdingTypeId": "67c65ccb-02b1-4f15-8278-eb5b029cdcd5",
         "holdingToBibTypeId": "0ff1680d-caf5-4977-a78f-2a4fd64a2cdc",
+        "holdingToCallNumberTypeId": "0d9b3c6e-e486-4e8f-97c8-60995d46cfce",
         "holdingToCallNumberPrefixTypeId": "bdc5c8b1-7b21-45ea-943b-585764f3715c",
         "holdingToCallNumberSuffixTypeId": "fcd2963b-b75d-4401-8eda-7e91efd8ddc3"
       },
@@ -745,6 +746,7 @@ POST to http://localhost:9000/migrate/holdings
       "references": {
         "holdingTypeId": "e7fbdcf5-8fb0-417e-b477-6ee9d6832f12",
         "holdingToBibTypeId": "f8252895-6bf5-4458-8a3f-57bd8c36c6ba",
+        "holdingToCallNumberTypeId": "2237564d-30f2-4529-9320-374221af44f1",
         "holdingToCallNumberPrefixTypeId": "78991218-9141-4807-9175-7147c861a596",
         "holdingToCallNumberSuffixTypeId": "be7288c9-7c67-4b6b-b662-a57816569e46"
       },
@@ -918,6 +920,7 @@ POST to http://localhost:9000/migrate/items
       "references": {
         "itemTypeId": "53e72510-dc82-4caa-a272-1522cca70bc2",
         "itemToHoldingTypeId": "39670cf7-de23-4473-b5e3-abf6d79735e1",
+        "holdingToCallNumberTypeId": "0d9b3c6e-e486-4e8f-97c8-60995d46cfce",
         "holdingToCallNumberPrefixTypeId": "bdc5c8b1-7b21-45ea-943b-585764f3715c",
         "holdingToCallNumberSuffixTypeId": "fcd2963b-b75d-4401-8eda-7e91efd8ddc3"
       }
@@ -931,6 +934,7 @@ POST to http://localhost:9000/migrate/items
       "references": {
         "itemTypeId": "0014559d-39f6-45c7-9406-03643459aaf0",
         "itemToHoldingTypeId": "492fea54-399a-4822-8d4b-242096c2ab12",
+        "holdingToCallNumberTypeId": "2237564d-30f2-4529-9320-374221af44f1",
         "holdingToCallNumberPrefixTypeId": "78991218-9141-4807-9175-7147c861a596",
         "holdingToCallNumberSuffixTypeId": "be7288c9-7c67-4b6b-b662-a57816569e46"
       }

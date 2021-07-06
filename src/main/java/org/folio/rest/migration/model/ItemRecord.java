@@ -69,6 +69,8 @@ public class ItemRecord {
   private String createdByUserId;
   private Date createdDate;
 
+  private String callNumber;
+
   private String callNumberPrefix;
 
   private String callNumberSuffix;
@@ -226,6 +228,14 @@ public class ItemRecord {
     this.createdDate = createdDate;
   }
 
+  public String getCallNumber() {
+    return callNumber;
+  }
+
+  public void setCallNumber(String callNumber) {
+    this.callNumber = callNumber;
+  }
+
   public String getCallNumberPrefix() {
     return callNumberPrefix;
   }
@@ -356,7 +366,6 @@ public class ItemRecord {
 
 
     EffectiveCallNumberComponents effectiveCallNumberComponents = new EffectiveCallNumberComponents();
-    effectiveCallNumberComponents.setCallNumber(mfhdItem.getCallNumber());
 
     String callNumberType = mfhdItem.getCallNumberType();
     if (StringUtils.isNotEmpty(callNumberType) && maps.getCallNumberType().containsKey(callNumberType)) {
@@ -365,6 +374,7 @@ public class ItemRecord {
       effectiveCallNumberComponents.setTypeId(defaults.getCallNumberTypeId());
     }
 
+    effectiveCallNumberComponents.setCallNumber(callNumber);
     effectiveCallNumberComponents.setPrefix(callNumberPrefix);
     effectiveCallNumberComponents.setSuffix(callNumberSuffix);
 

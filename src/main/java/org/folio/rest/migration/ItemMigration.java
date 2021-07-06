@@ -105,6 +105,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
   private static final String ITEM_REFERENCE_ID = "itemTypeId";
   private static final String ITEM_TO_HOLDING_REFERENCE_ID = "itemToHoldingTypeId";
 
+  private static final String HOLDING_TO_CALL_NUMBER_ID = "holdingToCallNumberTypeId";
   private static final String HOLDING_TO_CALL_NUMBER_PREFIX_ID = "holdingToCallNumberPrefixTypeId";
   private static final String HOLDING_TO_CALL_NUMBER_SUFFIX_ID = "holdingToCallNumberSuffixTypeId";
 
@@ -282,6 +283,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       String itemRLTypeId = job.getReferences().get(ITEM_REFERENCE_ID);
       String itemToHoldingRLTypeId = job.getReferences().get(ITEM_TO_HOLDING_REFERENCE_ID);
 
+      String holdingToCallNumberTypeId = job.getReferences().get(HOLDING_TO_CALL_NUMBER_ID);
       String holdingToCallNumberPrefixTypeId = job.getReferences().get(HOLDING_TO_CALL_NUMBER_PREFIX_ID);
       String holdingToCallNumberSuffixTypeId = job.getReferences().get(HOLDING_TO_CALL_NUMBER_SUFFIX_ID);
 
@@ -393,6 +395,12 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
             if (locationsMap.containsKey(voyagerPermLocationId)) {
               itemRecord.setEffectiveLocationId(locationsMap.get(voyagerPermLocationId));
             }
+          }
+
+          Optional<ReferenceLink> callNumberRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToCallNumberTypeId, holdingRL.get().getId());
+
+          if (callNumberRL.isPresent()) {
+            itemRecord.setCallNumber(callNumberRL.get().getFolioReference());
           }
 
           Optional<ReferenceLink> callNumberPrefixRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(holdingToCallNumberPrefixTypeId, holdingRL.get().getId());
