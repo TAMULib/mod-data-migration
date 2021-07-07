@@ -93,5 +93,10 @@
     "name" : "Temple Campus",
     "code" : "temple",
     "campusId" : "a69407e7-e8bf-44f0-8757-cdbe7f047f43"
+  }, {
+    "id" : "6d3c12d1-cd56-4330-91c4-8e4ea5a10801",
+    "name" : "Bush DC",
+    "code" : "bush_dc",
+    "campusId" : "7d88761a-6e81-4066-beb2-3ca4d0fe934a"
   } ]
 }

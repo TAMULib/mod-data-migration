@@ -386,23 +386,6 @@
     },
     "renewable" : false
   }, {
-    "id" : "a7d0c3ec-503f-44d0-ab72-2de61abc3031",
-    "name" : "hour_2_renew_0_recall_n",
-    "loanable" : true,
-    "loansPolicy" : {
-      "profileId" : "Rolling",
-      "period" : {
-        "duration" : 1,
-        "intervalId" : "Hours"
-      },
-      "closedLibraryDueDateManagementId" : "BEGINNING_OF_THE_NEXT_OPEN_SERVICE_POINT_HOURS",
-      "openingTimeOffset" : {
-        "duration" : 2,
-        "intervalId" : "Hours"
-      }
-    },
-    "renewable" : false
-  }, {
     "id" : "b1c3d40f-f3e5-4b37-ab08-babf061db2da",
     "name" : "noncirc",
     "description" : "Non-circulating policy",
@@ -421,6 +404,23 @@
       "closedLibraryDueDateManagementId" : "BEGINNING_OF_THE_NEXT_OPEN_SERVICE_POINT_HOURS",
       "openingTimeOffset" : {
         "duration" : 4,
+        "intervalId" : "Hours"
+      }
+    },
+    "renewable" : false
+  }, {
+    "id" : "a7d0c3ec-503f-44d0-ab72-2de61abc3031",
+    "name" : "hour_2_renew_0_recall_n",
+    "loanable" : true,
+    "loansPolicy" : {
+      "profileId" : "Rolling",
+      "period" : {
+        "duration" : 2,
+        "intervalId" : "Hours"
+      },
+      "closedLibraryDueDateManagementId" : "BEGINNING_OF_THE_NEXT_OPEN_SERVICE_POINT_HOURS",
+      "openingTimeOffset" : {
+        "duration" : 2,
         "intervalId" : "Hours"
       }
     },

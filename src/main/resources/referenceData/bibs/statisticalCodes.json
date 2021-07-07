@@ -567,12 +567,6 @@
     "statisticalCodeTypeId" : "e7dff618-aad7-4af9-8d8d-a5a945b12431",
     "source" : "local"
   }, {
-    "id" : "53de001a-6701-4512-8185-ac10fe1efa7a",
-    "code" : "safari",
-    "name" : "safari",
-    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-    "source" : "voyager"
-  }, {
     "id" : "ba46acb5-68fb-452f-89c7-748a4f35a9f5",
     "code" : "SageBusCas",
     "name" : "SageBusCas",
@@ -615,6 +609,36 @@
     "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
     "source" : "voyager"
   }, {
+    "id" : "53de001a-6701-4512-8185-ac10fe1efa7a",
+    "code" : "safari",
+    "name" : "safari",
+    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+    "source" : "voyager"
+  }, {
+    "id" : "dbc46726-263b-47d2-ae70-e36c8edf12c2",
+    "code" : "SagePol",
+    "name" : "SagePol",
+    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+    "source" : "voyager"
+  }, {
+    "id" : "c686f1b0-b103-4bfc-a79d-ba0f3e381be2",
+    "code" : "SageRes",
+    "name" : "SageRes",
+    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+    "source" : "voyager"
+  }, {
+    "id" : "99a43ad0-7faa-4aab-8f57-dfe15dc594eb",
+    "code" : "sageresch",
+    "name" : "sageresch",
+    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+    "source" : "voyager"
+  }, {
+    "id" : "ec65f123-25f8-407d-b5d5-6648b0c56fff",
+    "code" : "springer1",
+    "name" : "springer1",
+    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+    "source" : "voyager"
+  }, {
     "id" : "9c2883ca-79a3-4f23-83d5-cae6354731b9",
     "code" : "wileyeb",
     "name" : "wileyeb",
@@ -651,12 +675,6 @@
     "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
     "source" : "voyager"
   }, {
-    "id" : "42ec7486-3ab4-470c-b1b6-48652c42495a",
-    "code" : "ppda",
-    "name" : "ppda",
-    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-    "source" : "voyager"
-  }, {
     "id" : "6e78b2e8-490a-439b-a975-3500d6808bca",
     "code" : "wiley",
     "name" : "wiley",
@@ -678,6 +696,24 @@
     "id" : "b4a7c802-213b-4764-865c-bd21cabbceba",
     "code" : "SageSoc",
     "name" : "SageSoc",
+    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+    "source" : "voyager"
+  }, {
+    "id" : "854ef875-a631-4108-a42b-cc300ada242f",
+    "code" : "samethods",
+    "name" : "samethods",
+    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+    "source" : "voyager"
+  }, {
+    "id" : "b9050100-049b-45dc-8841-e00409309929",
+    "code" : "springersu",
+    "name" : "springersu",
+    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+    "source" : "voyager"
+  }, {
+    "id" : "42ec7486-3ab4-470c-b1b6-48652c42495a",
+    "code" : "ppda",
+    "name" : "ppda",
     "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
     "source" : "voyager"
   }, {
@@ -747,42 +783,6 @@
     "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
     "source" : "voyager"
   }, {
-    "id" : "dbc46726-263b-47d2-ae70-e36c8edf12c2",
-    "code" : "SagePol",
-    "name" : "SagePol",
-    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-    "source" : "voyager"
-  }, {
-    "id" : "c686f1b0-b103-4bfc-a79d-ba0f3e381be2",
-    "code" : "SageRes",
-    "name" : "SageRes",
-    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-    "source" : "voyager"
-  }, {
-    "id" : "99a43ad0-7faa-4aab-8f57-dfe15dc594eb",
-    "code" : "sageresch",
-    "name" : "sageresch",
-    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-    "source" : "voyager"
-  }, {
-    "id" : "854ef875-a631-4108-a42b-cc300ada242f",
-    "code" : "samethods",
-    "name" : "samethods",
-    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-    "source" : "voyager"
-  }, {
-    "id" : "ec65f123-25f8-407d-b5d5-6648b0c56fff",
-    "code" : "springer1",
-    "name" : "springer1",
-    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-    "source" : "voyager"
-  }, {
-    "id" : "b9050100-049b-45dc-8841-e00409309929",
-    "code" : "springersu",
-    "name" : "springersu",
-    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
-    "source" : "voyager"
-  }, {
     "id" : "fd0463dc-a818-4d2a-9bcf-1c69d3bbeb07",
     "code" : "springerEB",
     "name" : "springerEB",
@@ -816,6 +816,12 @@
     "id" : "dced8ca6-03c3-4b7f-8dce-c759758d2a16",
     "code" : "jstddatrig",
     "name" : "jstddatrig",
+    "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+    "source" : "local"
+  }, {
+    "id" : "6b9ab93c-e039-4803-ba89-c387d6c18a9a",
+    "code" : "oxford",
+    "name" : "oxford",
     "statisticalCodeTypeId" : "b0c98509-f7e8-411c-94b5-494b4b4518c8",
     "source" : "local"
   } ]

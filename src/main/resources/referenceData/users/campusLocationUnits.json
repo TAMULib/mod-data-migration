@@ -33,5 +33,10 @@
     "name" : "Rellis Campus",
     "code" : "rellis",
     "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac"
+  }, {
+    "id" : "7d88761a-6e81-4066-beb2-3ca4d0fe934a",
+    "name" : "Washington DC",
+    "code" : "bush_dc",
+    "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac"
   } ]
 }

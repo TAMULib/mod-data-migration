@@ -1,6 +1,6 @@
 {
   "path" : "/data-import-profiles/jobProfiles",
-  "query" : "limit=9999&query=(name<>TAMU * Bibligraphic Migration) AND (name<>Create MARC Bibs) AND (id<>d0ebb7b0-2f0f-11eb-adc1-0242ac120002) AND (id<>91f9b8d6-d80e-4727-9783-73fb53e3c786)",
+  "query" : "limit=9999&query=(userInfo.userName<>System)",
   "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ ],
@@ -13,19 +13,6 @@
   "additional" : [ ],
   "data" : [ {
     "profile" : {
-      "name" : "quickMARC Derive - Create SRS MARC Bib and Instance",
-      "description" : "This job profile is used by the quickMARC Derive action to create a new SRS MARC Bib record and corresponding Inventory Instance. It cannot be edited or deleted.",
-      "dataType" : "MARC",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "4d9f14d6-e47b-4fef-ac75-e3fd00a3af43"
-  }, {
-    "profile" : {
       "name" : "Default - Create instance and SRS MARC Bib",
       "description" : "This job profile creates SRS MARC Bib records and corresponding Inventory Instances using the library's default MARC-to-Instance mapping. It can be edited, duplicated, or deleted.",
       "dataType" : "MARC",
@@ -36,7 +23,20 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "8a64004f-a832-4b41-96c0-24c3890acba7"
+    "id" : "61e5b4f0-a0a5-47ad-8634-66be64be5edb"
+  }, {
+    "profile" : {
+      "name" : "quickMARC Derive - Create SRS MARC Bib and Instance",
+      "description" : "This job profile is used by the quickMARC Derive action to create a new SRS MARC Bib record and corresponding Inventory Instance. It cannot be edited or deleted.",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "6e6519fb-3b49-4b34-a44d-44cd5c6f1efc"
   }, {
     "profile" : {
       "name" : "Test 9xx delete",
@@ -49,7 +49,7 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "dcf7fbdf-5bd1-4688-8971-11bbccd2bdbc"
+    "id" : "911edc31-00e9-43b0-b376-f38c62f9d0b7"
   }, {
     "profile" : {
       "name" : "Print Book - Overlay",
@@ -62,7 +62,7 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "7a420b8a-15ce-4286-a8bf-b40211f95095"
+    "id" : "6e6edfb3-24fc-44f6-a496-1a959438a3fe"
   }, {
     "profile" : {
       "name" : "KP TEST - Harr Invoice Profile",
@@ -70,12 +70,12 @@
       "dataType" : "EDIFACT",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "ce1810d1-37a5-48e5-a033-f92197c02f15"
+    "id" : "078335c0-f031-4acc-a80d-6f3024f53c86"
   }, {
     "profile" : {
       "name" : "MSL test A",
@@ -86,12 +86,12 @@
       },
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "af997756-dfbf-4eb3-a954-13f651955f21"
+    "id" : "96c04dc8-1ef3-4f0b-b159-6f061dce25bc"
   }, {
     "profile" : {
       "name" : "KP TEST - YBP Monograph Invoice Profile",
@@ -99,12 +99,12 @@
       "dataType" : "EDIFACT",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "647fd5cb-a815-4b11-9886-afe6a2a434fc"
+    "id" : "9b84079e-2518-49ef-aa56-f947b09e47cd"
   }, {
     "profile" : {
       "name" : "TestQatar",
@@ -112,12 +112,12 @@
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "78d919c4-5cd0-4bef-86ab-841f32baa1a3"
+    "id" : "38803170-60f8-4f8d-81b1-e054de097cbc"
   }, {
     "profile" : {
       "name" : "KP Test - YBP Invoice Profile",
@@ -125,12 +125,12 @@
       "dataType" : "EDIFACT",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "efb3d3fa-06a0-4e97-85b4-caf133c3ad80"
+    "id" : "bcf45cde-cd12-48d1-8322-81db499cce11"
   }, {
     "profile" : {
       "name" : "KP TEST Monograph Invoice 2",
@@ -138,12 +138,12 @@
       "dataType" : "EDIFACT",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "7382eafe-ee3a-4a5a-9a82-d9cda2937b33"
+    "id" : "b7b95b6a-280c-4f88-8876-a4ac473637bd"
   }, {
     "profile" : {
       "name" : "GOBI Monograph Invoice",
@@ -151,12 +151,12 @@
       "dataType" : "EDIFACT",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "be8b48fa-a27b-4452-8e34-4340679137fc"
+    "id" : "147fdcef-ad05-4251-a550-b917e6ef0b2d"
   }, {
     "profile" : {
       "name" : "KP TEST - Harr Invoice Profile w Subscription info",
@@ -164,12 +164,12 @@
       "dataType" : "EDIFACT",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "70a5fb49-48a4-4539-b6ea-77f1bb7a5526"
+    "id" : "40223483-7c63-4e5d-8645-97c7e73e730b"
   }, {
     "profile" : {
       "name" : "MSL Ebooks - Create New Record",
@@ -177,12 +177,12 @@
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "test",
-        "lastName" : "user",
-        "userName" : "tamu_test"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "46640ddd-15a3-4592-8de9-1bb84a9a8cea"
+    "id" : "4f57ea4b-ad4b-46cd-942c-349bd198825b"
   }, {
     "profile" : {
       "name" : "Ebooks - EBSCOpdatrig - Create Record",
@@ -190,12 +190,12 @@
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "Shannon",
-        "lastName" : "Burke",
-        "userName" : "sburke"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "ff6cab2d-51da-46c6-830a-d7cc4edc09d6"
+    "id" : "a618b057-28a8-498b-888f-ef6e660b2a8a"
   }, {
     "profile" : {
       "name" : "MARCIVE-CREATE/UPDATE Instances and Holdings Records",
@@ -203,12 +203,12 @@
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "Zonia",
-        "lastName" : "Prado",
-        "userName" : "zprado"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "da8181be-2e5b-4579-960a-9755e35c719f"
+    "id" : "8dd0e232-76b4-4640-9dfd-36193382b509"
   }, {
     "profile" : {
       "name" : "Ebooks - jstaddatrig - Overlay",
@@ -216,24 +216,24 @@
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "Shannon",
-        "lastName" : "Burke",
-        "userName" : "sburke"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "1c569d74-154c-468e-b547-649c21e1e8de"
+    "id" : "33a2b860-66dd-4b78-8264-5e6978244547"
   }, {
     "profile" : {
       "name" : "Ebooks - PQ ybppdatrig - Overlay",
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "Shannon",
-        "lastName" : "Burke",
-        "userName" : "sburke"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "0ae9059c-a2ec-486b-b10b-301b4d2ddd94"
+    "id" : "10ef7cb5-bae4-41c6-a638-b2a5c3db5f95"
   }, {
     "profile" : {
       "name" : "Ebooks - GOBI Approval - Create Record",
@@ -241,12 +241,12 @@
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "Shannon",
-        "lastName" : "Burke",
-        "userName" : "sburke"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "9f5e69cb-5740-45d0-8ed1-69b2679ebf56"
+    "id" : "6929d500-eb0e-4312-bdc5-d5f09fda4564"
   }, {
     "profile" : {
       "name" : "Print - GOBI Firm - Create Record",
@@ -254,12 +254,12 @@
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "Shannon",
-        "lastName" : "Burke",
-        "userName" : "sburke"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "b57b34f5-3aaa-491b-a65d-756fed833a75"
+    "id" : "3361a225-9264-43db-94c8-f65a3a9d5d13"
   }, {
     "profile" : {
       "name" : "Default - Ebooks - Create Record",
@@ -267,12 +267,12 @@
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "Shannon",
-        "lastName" : "Burke",
-        "userName" : "sburke"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "fce57a88-82b2-488f-8c2e-61e6996f24af"
+    "id" : "7ef1d03a-b190-4e51-8fd5-19ba519e3a98"
   }, {
     "profile" : {
       "name" : "Ebooks - GOBI Firm - Create Record",
@@ -280,25 +280,51 @@
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "Shannon",
-        "lastName" : "Burke",
-        "userName" : "sburke"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "1108fb6c-22a3-474b-86ed-5398d3e4bad2"
+    "id" : "ba041710-b25c-446f-8427-e5cc8a6f8be6"
   }, {
     "profile" : {
-      "name" : "Ebooks - jstdda discovery - Create Record",
-      "description" : "Creates new instance and holdings record",
+      "name" : "Print - GOBI Approval - Create Record",
+      "description" : "Creates new instance, holdings, and item record",
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "Shannon",
-        "lastName" : "Burke",
-        "userName" : "sburke"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "1b938f2e-2315-43b1-b631-67e3ea4cc16d"
+    "id" : "ac1d5993-ef0d-42ed-b22c-22a890361838"
+  }, {
+    "profile" : {
+      "name" : "TAMU AMDB Bibligraphic Migration",
+      "description" : "Voyager migration profile",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "ac1ddfa3-a771-4318-abd5-a165d0b7a224"
+  }, {
+    "profile" : {
+      "name" : "TAMU MSDB Bibligraphic Migration",
+      "description" : "Voyager migration profile",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
+      }
+    },
+    "id" : "08193adc-7490-4c8d-b7e2-e1834911e9aa"
   }, {
     "profile" : {
       "name" : "Ebooks - PQ ybppda discovery - Create Record",
@@ -311,7 +337,46 @@
         "userName" : "sburke"
       }
     },
-    "id" : "c881907c-4c35-49d0-9639-d23f18d16fcb"
+    "id" : "3aa5f342-7308-414a-8660-71a69f31d923"
+  }, {
+    "profile" : {
+      "name" : "MARCIVE-CREATE/OVERLAY Instances and Holdings Records-035",
+      "description" : "",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Zonia",
+        "lastName" : "Prado",
+        "userName" : "zprado"
+      }
+    },
+    "id" : "440c53d7-7601-4fa3-977a-7ed9c6a6c241"
+  }, {
+    "profile" : {
+      "name" : "SB Overlay 035",
+      "description" : "",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "50f59b21-23be-4861-813d-d24b44259913"
+  }, {
+    "profile" : {
+      "name" : "Ebooks - jstdda discovery - Create Record",
+      "description" : "Creates new instance and holdings record",
+      "dataType" : "MARC",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "7e65f2ef-54e5-43bf-ae57-880ffab61720"
   }, {
     "profile" : {
       "name" : "Default Print Books - Create Record",
@@ -324,11 +389,11 @@
         "userName" : "sburke"
       }
     },
-    "id" : "027ec796-3d95-42a5-810d-291b8891bc46"
+    "id" : "22171b9e-2701-4dd5-9f07-f52b587830f9"
   }, {
     "profile" : {
-      "name" : "Print - GOBI Approval - Create Record",
-      "description" : "Creates new instance, holdings, and item record",
+      "name" : "Ebooks - Oxford - Create Record",
+      "description" : "Creates new instance and holdings record",
       "dataType" : "MARC",
       "deleted" : false,
       "userInfo" : {
@@ -337,19 +402,6 @@
         "userName" : "sburke"
       }
     },
-    "id" : "b1a1c164-9929-4450-bd7f-41b962c9255d"
-  }, {
-    "profile" : {
-      "name" : "MARCIVE-CREATE/UPDATE Instances and Holdings Records-856",
-      "description" : "",
-      "dataType" : "MARC",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "Zonia",
-        "lastName" : "Prado",
-        "userName" : "zprado"
-      }
-    },
-    "id" : "753ce2d2-0ebb-4b94-a7d7-29901aa7b200"
+    "id" : "665ef678-a18a-4cd6-b5f9-8a541ce4ecab"
   } ]
 }

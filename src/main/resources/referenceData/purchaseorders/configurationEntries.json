@@ -319,5 +319,12 @@
     "code" : "ADDRESS_1624996127160",
     "enabled" : true,
     "value" : "{\"name\":\"SRDBProcard\",\"address\":\"SRDBProcard\\n5000 TAMU\\nCollege Station, TX 77843-5000\"}"
+  }, {
+    "id" : "fe251e25-ab6f-424f-94d0-4dcd2ec12e76",
+    "module" : "TENANT",
+    "configName" : "tenant.addresses",
+    "code" : "ADDRESS_1625509390502",
+    "enabled" : true,
+    "value" : "{\"name\":\"TAMU-SER-Print\",\"address\":\"\"}"
   } ]
 }

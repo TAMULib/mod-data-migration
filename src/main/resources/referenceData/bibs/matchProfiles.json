@@ -1,6 +1,6 @@
 {
   "path" : "/data-import-profiles/matchProfiles",
-  "query" : "limit=9999&query=(id<>d27d71ce-8a1e-44c6-acea-96961b5592c6) AND (id<>31dbb554-0826-48ec-a0a4-3c55293d4dee)",
+  "query" : "limit=9999&query=(userInfo.userName<>System)",
   "action" : "CREATE",
   "reify" : false,
   "dependencies" : [ "actionProfiles", "jobProfiles" ],
@@ -52,7 +52,7 @@
         "userName" : "tamu_admin"
       }
     },
-    "id" : "ff2f9cfc-9702-4351-88b1-a91965a89a94"
+    "id" : "50199045-72b9-405b-9837-185097b872ac"
   }, {
     "profile" : {
       "name" : "Match on 856$u",
@@ -88,15 +88,15 @@
       } ],
       "deleted" : false,
       "userInfo" : {
-        "firstName" : "Shannon",
-        "lastName" : "Burke",
-        "userName" : "sburke"
+        "firstName" : "tamu",
+        "lastName" : "admin",
+        "userName" : "tamu_admin"
       }
     },
-    "id" : "84121bdc-77bb-45a6-8ac4-d7efb3b45e0d"
+    "id" : "8f775db8-0589-4f45-8bac-52cf228292bf"
   }, {
     "profile" : {
-      "name" : "MARCIVE LOAD-MATCH-Instance Records",
+      "name" : "SB - Overlay 035",
       "description" : "",
       "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
       "existingRecordType" : "INSTANCE",
@@ -107,17 +107,63 @@
           "dataValueType" : "VALUE_FROM_RECORD",
           "fields" : [ {
             "label" : "field",
-            "value" : "001"
+            "value" : "035"
           }, {
-            "label" : "indicator1"
+            "label" : "indicator1",
+            "value" : "*"
           }, {
-            "label" : "indicator2"
+            "label" : "indicator2",
+            "value" : "*"
           }, {
-            "label" : "recordSubfield"
+            "label" : "recordSubfield",
+            "value" : "a"
+          } ]
+        },
+        "matchCriterion" : "EXACTLY_MATCHES",
+        "existingMatchExpression" : {
+          "dataValueType" : "VALUE_FROM_RECORD",
+          "fields" : [ {
+            "label" : "field",
+            "value" : "instance.identifiers[].value"
+          }, {
+            "label" : "identifierTypeId",
+            "value" : "439bfbae-75bc-4f74-9fc7-b2a2d47ce3ef"
+          } ]
+        }
+      } ],
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Shannon",
+        "lastName" : "Burke",
+        "userName" : "sburke"
+      }
+    },
+    "id" : "464f3e28-443b-4f5c-8ed9-e78e6afc0884"
+  }, {
+    "profile" : {
+      "name" : "MARCIVE LOAD-MATCH-Instance Records-035",
+      "description" : "",
+      "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+      "existingRecordType" : "INSTANCE",
+      "matchDetails" : [ {
+        "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
+        "existingRecordType" : "INSTANCE",
+        "incomingMatchExpression" : {
+          "dataValueType" : "VALUE_FROM_RECORD",
+          "fields" : [ {
+            "label" : "field",
+            "value" : "035"
+          }, {
+            "label" : "indicator1",
+            "value" : "*"
+          }, {
+            "label" : "indicator2",
+            "value" : "*"
+          }, {
+            "label" : "recordSubfield",
+            "value" : "a"
           } ],
-          "qualifier" : {
-            "comparisonPart" : "NUMERICS_ONLY"
-          }
+          "qualifier" : { }
         },
         "matchCriterion" : "EXISTING_VALUE_CONTAINS_INCOMING_VALUE",
         "existingMatchExpression" : {
@@ -129,9 +175,7 @@
             "label" : "identifierTypeId",
             "value" : "439bfbae-75bc-4f74-9fc7-b2a2d47ce3ef"
           } ],
-          "qualifier" : {
-            "comparisonPart" : "NUMERICS_ONLY"
-          }
+          "qualifier" : { }
         }
       } ],
       "deleted" : false,
@@ -141,50 +185,6 @@
         "userName" : "zprado"
       }
     },
-    "id" : "8146c068-c60b-4eb1-9f7b-1b459d8f8b0b"
-  }, {
-    "profile" : {
-      "name" : "MARCIVE LOAD-MATCH-Match on 856$u",
-      "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
-      "existingRecordType" : "INSTANCE",
-      "matchDetails" : [ {
-        "incomingRecordType" : "MARC_BIBLIOGRAPHIC",
-        "existingRecordType" : "INSTANCE",
-        "incomingMatchExpression" : {
-          "dataValueType" : "VALUE_FROM_RECORD",
-          "fields" : [ {
-            "label" : "field",
-            "value" : "856"
-          }, {
-            "label" : "indicator1",
-            "value" : "*"
-          }, {
-            "label" : "indicator2",
-            "value" : "*"
-          }, {
-            "label" : "recordSubfield",
-            "value" : "u"
-          } ],
-          "qualifier" : {
-            "comparisonPart" : "ALPHANUMERICS_ONLY"
-          }
-        },
-        "matchCriterion" : "INCOMING_VALUE_CONTAINS_EXISTING_VALUE",
-        "existingMatchExpression" : {
-          "dataValueType" : "VALUE_FROM_RECORD",
-          "fields" : [ {
-            "label" : "field",
-            "value" : "instance.electronicAccess[].uri"
-          } ]
-        }
-      } ],
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "Zonia",
-        "lastName" : "Prado",
-        "userName" : "zprado"
-      }
-    },
-    "id" : "adce7b36-7d13-40d9-adc5-21a69f356dc2"
+    "id" : "a747f5df-a994-4936-a76f-f2cef03b8cf5"
   } ]
 }
