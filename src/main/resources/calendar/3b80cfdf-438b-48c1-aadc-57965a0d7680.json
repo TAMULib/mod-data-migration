@@ -1,9 +1,312 @@
 {
   "openingPeriods" : [ {
+    "id" : "7f972354-6e90-47bf-80d1-036f1e713973",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "Evans AskUs Spring 22 A",
+    "startDate" : "2022-01-18T00:00:00.000+00:00",
+    "endDate" : "2022-03-10T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "79d55f81-40f1-4f9e-9d81-07fdab5c98c0",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "Evans Askus Summer 22",
+    "startDate" : "2022-05-31T00:00:00.000+00:00",
+    "endDate" : "2022-08-09T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
     "id" : "291ca4e1-fe89-4695-8995-b385be75a9b0",
     "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
-    "name" : "AskUs Desk Regular",
+    "name" : "Evans AskUs Summer 21",
     "startDate" : "1988-01-01T00:00:00.000+00:00",
+    "endDate" : "2021-08-10T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "22:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "22:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "22:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "22:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "22:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "e9781474-f6db-4211-a08e-e5a6ace16fb5",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "Evans AskUs Fall 22",
+    "startDate" : "2022-08-27T00:00:00.000+00:00",
     "endDate" : "2024-12-31T00:00:00.000+00:00",
     "openingDays" : [ {
       "weekdays" : {
@@ -105,6 +408,899 @@
         "open" : true
       }
     } ]
+  }, {
+    "id" : "7fb49fef-7d95-4d00-8ae5-7e9827237d29",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "Evans AskUs Fall 21 Interim",
+    "startDate" : "2021-12-16T00:00:00.000+00:00",
+    "endDate" : "2022-01-17T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "a543ac62-d89b-4a28-9f81-2d709946f1a1",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "Evans AskUs Spring 22 Interim",
+    "startDate" : "2022-05-12T00:00:00.000+00:00",
+    "endDate" : "2022-05-30T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "d84becef-49f8-4b24-922b-b9eb3ba8db5b",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "Evans AskUs Summer 22 Interim",
+    "startDate" : "2022-08-11T00:00:00.000+00:00",
+    "endDate" : "2022-08-26T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "c6263919-01c3-49d5-881e-41f32b5cb51b",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "Evans AskUs Summer 21 Interim",
+    "startDate" : "2021-08-11T00:00:00.000+00:00",
+    "endDate" : "2021-08-27T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "622e273f-37a6-45e3-afbd-22fbcd749b87",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "Evans AskUs Fall 21 Finals",
+    "startDate" : "2021-12-10T00:00:00.000+00:00",
+    "endDate" : "2021-12-15T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "79828e14-91bc-4585-aafe-b79f0ed9cf88",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "Evans AskUs Fall 21",
+    "startDate" : "2021-08-28T00:00:00.000+00:00",
+    "endDate" : "2021-12-09T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "4d420438-9c02-4aad-97f4-1b70564d3976",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "Evans AskUs Spring 22 SB",
+    "startDate" : "2022-03-12T00:00:00.000+00:00",
+    "endDate" : "2022-03-19T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "13:00",
+          "endTime" : "17:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "171fb524-26d3-4fc1-a978-a0048cc64dba",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "Evans AskUs Spring 22 B",
+    "startDate" : "2022-03-20T00:00:00.000+00:00",
+    "endDate" : "2022-05-05T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "4571da0d-fced-4993-b3a0-2655af1833b2",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "Evans AskUs Spring 22 Finals",
+    "startDate" : "2022-05-06T00:00:00.000+00:00",
+    "endDate" : "2022-05-11T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "b094c98b-ec83-46db-a250-72d859c7b14c",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "Evans AskUs Spring 22 SB Transition",
+    "startDate" : "2022-03-11T00:00:00.000+00:00",
+    "endDate" : "2022-03-11T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "37c5e7b5-b7d4-4112-82c8-028b0b388b7f",
+    "servicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680",
+    "name" : "Evans AskUs Summer 22 Interim Transition",
+    "startDate" : "2022-08-10T00:00:00.000+00:00",
+    "endDate" : "2022-08-10T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
   } ],
-  "totalRecords" : 1
+  "totalRecords" : 15
 }
