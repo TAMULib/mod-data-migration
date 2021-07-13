@@ -31,17 +31,11 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "4b69cdcb-3093-4713-a568-caa143803234",
-    "displayName" : "Read_Only",
-    "id" : "4b69cdcb-3093-4713-a568-caa143803234",
-    "subPermissions" : [ "ui-agreements.agreements.view", "ui-agreements.resources.view", "ui-agreements.platforms.view", "ui-checkout.viewFeeFines", "ui-checkout.viewLoans", "ui-checkout.viewRequests", "ui-courses.read-all", "ui-eholdings.app.enabled", "ui-eholdings.costperuse.view", "ui-erm-comparisons.jobs.view", "ui-erm-usage.harvester.view", "ui-erm-usage.view", "ui-finance.fiscal-year.view", "ui-finance.fund-budget.view", "ui-finance.group.view", "ui-finance.ledger.view", "ui-plugin-find-agreement.search", "ui-plugin-find-eresource.search", "ui-plugin-find-license.search", "ui-inventory.instance.view-staff-suppressed-records", "ui-inventory.instance.view", "ui-licenses.licenses.view", "ui-local-kb-admin.jobs.view", "ui-notes.item.view", "ui-orders.order-lines.view", "ui-orders.order.view", "ui-organizations.view", "ui-receiving.view", "ui-requests.view", "ui-calendar.view", "ui-tenant-settings.settings.enabled", "ui-tags.view", "ui-users.viewperms", "ui-users.viewproxies", "ui-users.viewuserservicepoints", "ui-users.view", "ui-users.loans.view", "ui-users.requests.all" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
-    "permissionName" : "cc4a6624-190c-4872-95dd-be090a74b61f",
-    "displayName" : "Acquisitions_Receiving_Staff",
-    "id" : "cc4a6624-190c-4872-95dd-be090a74b61f",
-    "subPermissions" : [ "ui-receiving.create", "ui-receiving.delete" ],
+    "permissionName" : "2f43ac27-f1dd-48d7-a50f-a2d8ad8349d5",
+    "displayName" : "Circ_Settings_Feesfines",
+    "id" : "2f43ac27-f1dd-48d7-a50f-a2d8ad8349d5",
+    "description" : "All settings that are related to circulation owners for ff:",
+    "subPermissions" : [ "templates.collection.get", "ui-users.settings.feefines", "ui-users.settings.payments", "ui-users.settings.transfers", "ui-users.settings.transfertypes" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -53,6 +47,13 @@
     "mutable" : true,
     "visible" : true
   }, {
+    "permissionName" : "027b1ee0-fae8-4c51-bfc2-ecdae133fc9f",
+    "displayName" : "Courses",
+    "id" : "027b1ee0-fae8-4c51-bfc2-ecdae133fc9f",
+    "subPermissions" : [ "course-reserves-storage.all", "course-reserves-storage.copyright-statuses.collection.get", "course-reserves-storage.copyright-statuses.item.delete", "course-reserves-storage.copyright-statuses.item.get", "course-reserves-storage.copyright-statuses.item.post", "course-reserves-storage.copyright-statuses.item.put", "course-reserves-storage.copyright-statuses.read", "course-reserves-storage.copyright-statuses.write", "course-reserves-storage.courselisting.courses.item.post", "course-reserves-storage.courselistings.collection.get", "course-reserves-storage.courselistings.courses.collection.get", "course-reserves-storage.courselistings.courses.item.delete", "course-reserves-storage.courselistings.courses.item.get", "course-reserves-storage.courselistings.courses.item.put", "course-reserves-storage.courselistings.instructors.collection.get", "course-reserves-storage.courselistings.instructors.item.delete", "course-reserves-storage.courselistings.instructors.item.get", "course-reserves-storage.courselistings.instructors.item.post", "course-reserves-storage.courselistings.instructors.item.put", "course-reserves-storage.courselistings.item.delete", "course-reserves-storage.courselistings.item.get", "course-reserves-storage.courselistings.item.post", "course-reserves-storage.courselistings.item.put", "course-reserves-storage.courselistings.read", "course-reserves-storage.courselistings.reserves.collection.get", "course-reserves-storage.courselistings.reserves.item.delete", "course-reserves-storage.courselistings.reserves.item.get", "course-reserves-storage.courselistings.reserves.item.post", "course-reserves-storage.courselistings.reserves.item.put", "course-reserves-storage.courselistings.write", "course-reserves-storage.courses.collection.get", "course-reserves-storage.courses.item.delete", "course-reserves-storage.courses.item.get", "course-reserves-storage.courses.item.post", "course-reserves-storage.courses.item.put", "course-reserves-storage.courses.read", "course-reserves-storage.courses.write", "course-reserves-storage.course-types.collection.get", "course-reserves-storage.course-types.item.delete", "course-reserves-storage.course-types.item.get", "course-reserves-storage.course-types.item.post", "course-reserves-storage.course-types.item.put", "course-reserves-storage.course-types.read", "course-reserves-storage.course-types.write", "course-reserves-storage.departments.collection.get", "course-reserves-storage.departments.item.delete", "course-reserves-storage.departments.item.get", "course-reserves-storage.departments.item.post", "course-reserves-storage.departments.item.put", "course-reserves-storage.departments.read", "course-reserves-storage.departments.write", "course-reserves-storage.processing-statuses.collection.get", "course-reserves-storage.processing-statuses.item.delete", "course-reserves-storage.processing-statuses.item.get", "course-reserves-storage.processing-statuses.item.post", "course-reserves-storage.processing-statuses.item.put", "course-reserves-storage.processing-statuses.read", "course-reserves-storage.processing-statuses.write", "course-reserves-storage.reserves.collection.get", "course-reserves-storage.reserves.item.delete", "course-reserves-storage.reserves.item.get", "course-reserves-storage.reserves.item.post", "course-reserves-storage.reserves.item.put", "course-reserves-storage.reserves.read", "course-reserves-storage.reserves.write", "course-reserves-storage.roles.collection.get", "course-reserves-storage.roles.item.delete", "course-reserves-storage.roles.item.get", "course-reserves-storage.roles.item.post", "course-reserves-storage.roles.item.put", "course-reserves-storage.roles.read", "course-reserves-storage.roles.write", "course-reserves-storage.terms.collection.get", "course-reserves-storage.terms.item.delete", "course-reserves-storage.terms.item.get", "course-reserves-storage.terms.item.post", "course-reserves-storage.terms.item.put", "course-reserves-storage.terms.read", "course-reserves-storage.terms.write", "module.courses.enabled", "settings.courses.enabled", "ui-courses.add-edit-items", "ui-courses.all", "ui-courses.maintain-items", "ui-courses.maintain-settings", "ui-courses.read-add-edit", "ui-courses.read-all", "ui-circulation.settings.circulation-rules" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
     "permissionName" : "945ff52a-7e81-4374-a8be-41cb481db236",
     "displayName" : "Cat_Settings",
     "id" : "945ff52a-7e81-4374-a8be-41cb481db236",
@@ -61,17 +62,17 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
-    "displayName" : "Acquisitions_Financial_Admin",
-    "id" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
-    "subPermissions" : [ "ui-finance.allocations.create", "ui-finance.transfers.create", "ui-finance.acq.unit.assignment.manage", "ui-finance.fiscal-year.view", "ui-finance.fund-budget.view", "ui-finance.group.view", "ui-finance.ledger.view", "ui-finance.fiscal-year.edit", "ui-finance.fund-budget.edit", "ui-finance.group.edit", "ui-finance.ledger.edit", "ui-finance.fiscal-year.create", "ui-finance.fund-budget.create", "ui-finance.group.create", "ui-finance.ledger.create", "ui-finance.fiscal-year.delete", "ui-finance.fund-budget.delete", "ui-finance.group.delete", "ui-finance.ledger.delete", "module.invoice.enabled" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
     "permissionName" : "62852d44-d07d-470b-a7f9-0d68e2f365c4",
     "displayName" : "VuFind",
     "id" : "62852d44-d07d-470b-a7f9-0d68e2f365c4",
     "subPermissions" : [ "accounts.collection.get", "circulation.loans.collection.get", "circulation.renew-loan", "circulation.requests.item.get", "course-reserves-storage.courselistings.collection.get", "course-reserves-storage.courselistings.courses.collection.get", "course-reserves-storage.courselistings.instructors.collection.get", "course-reserves-storage.courselistings.reserves.collection.get", "course-reserves-storage.courses.collection.get", "course-reserves-storage.departments.collection.get", "course-reserves-storage.reserves.collection.get", "gobi.all", "inventory-storage.holdings.collection.get", "inventory-storage.instances.collection.get", "inventory-storage.items.collection.get", "inventory-storage.locations.collection.get", "inventory-storage.locations.item.get", "inventory-storage.service-points.collection.get", "inventory.instances.item.get", "ncip.all", "oai-pmh.all", "patron.all", "rtac.all", "rtac.batch.post", "rtac.holdings.item.get", "users.collection.get" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
+    "permissionName" : "3c62be56-0b25-43bb-a2b3-05e8891369b0",
+    "displayName" : "ILS_Students",
+    "id" : "3c62be56-0b25-43bb-a2b3-05e8891369b0",
+    "subPermissions" : [ "ui-checkin.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "ui-inventory.instance.view", "ui-notes.item.create", "ui-notes.item.view", "ui-requests.create", "ui-requests.edit", "ui-tags.view", "ui-users.viewproxies", "ui-users.loans.change-due-date", "ui-users.loans.renew", "ui-users.loans.view", "ui-users.requests.all" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -83,10 +84,26 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "3c62be56-0b25-43bb-a2b3-05e8891369b0",
-    "displayName" : "ILS_Students",
-    "id" : "3c62be56-0b25-43bb-a2b3-05e8891369b0",
-    "subPermissions" : [ "ui-checkin.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "ui-inventory.instance.view", "ui-notes.item.create", "ui-notes.item.view", "ui-requests.create", "ui-requests.edit", "ui-tags.view", "ui-users.viewproxies", "ui-users.loans.renew", "ui-users.loans.view", "ui-users.requests.all" ],
+    "permissionName" : "50a15dba-6ea2-426a-9118-369084f1247b",
+    "displayName" : "ILS_Staff",
+    "id" : "50a15dba-6ea2-426a-9118-369084f1247b",
+    "description" : "Interlibrary Loan staff",
+    "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-circulation-log.log-event.all", "ui-plugin-create-inventory-records.create", "ui-notes.item.create", "ui-notes.item.view", "ui-requests.all", "ui-requests.create", "ui-requests.edit", "ui-tags.view", "ui-users.loans.change-due-date", "ui-users.loans.renew", "ui-users.loans.view", "ui-users.requests.all" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
+    "permissionName" : "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
+    "displayName" : "Permission_sets_create_edit",
+    "id" : "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
+    "description" : "Ability to create permission sets",
+    "subPermissions" : [ "ui-users.settings.permsets", "ui-users.settings.profilePictures" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
+    "permissionName" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
+    "displayName" : "Acquisitions_Financial_Admin",
+    "id" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
+    "subPermissions" : [ "ui-finance.allocations.create", "ui-finance.transfers.create", "ui-finance.acq.unit.assignment.manage", "ui-finance.fiscal-year.view", "ui-finance.fund-budget.view", "ui-finance.group.view", "ui-finance.ledger.view", "ui-finance.fiscal-year.edit", "ui-finance.fund-budget.edit", "ui-finance.group.edit", "ui-finance.ledger.edit", "ui-finance.fiscal-year.create", "ui-finance.fund-budget.create", "ui-finance.group.create", "ui-finance.ledger.create", "ui-finance.fiscal-year.delete", "ui-finance.fund-budget.delete", "ui-finance.group.delete", "ui-finance.ledger.delete", "module.invoice.enabled" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -97,11 +114,10 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
-    "displayName" : "Permission_sets_create_edit",
-    "id" : "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
-    "description" : "Ability to create permission sets",
-    "subPermissions" : [ "ui-users.settings.permsets", "ui-users.settings.profilePictures" ],
+    "permissionName" : "cc4a6624-190c-4872-95dd-be090a74b61f",
+    "displayName" : "Acquisitions_Receiving_Staff",
+    "id" : "cc4a6624-190c-4872-95dd-be090a74b61f",
+    "subPermissions" : [ "ui-receiving.create", "ui-receiving.delete" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -150,6 +166,13 @@
     "mutable" : true,
     "visible" : true
   }, {
+    "permissionName" : "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1",
+    "displayName" : "ER_Financial_Staff",
+    "id" : "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1",
+    "subPermissions" : [ ],
+    "mutable" : true,
+    "visible" : true
+  }, {
     "permissionName" : "ee7c2fab-0080-4c11-80ce-94c6c51f27f9",
     "displayName" : "ER_Settings_Supervisor",
     "id" : "ee7c2fab-0080-4c11-80ce-94c6c51f27f9",
@@ -164,18 +187,10 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1",
-    "displayName" : "ER_Financial_Staff",
-    "id" : "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1",
-    "subPermissions" : [ ],
-    "mutable" : true,
-    "visible" : true
-  }, {
-    "permissionName" : "50a15dba-6ea2-426a-9118-369084f1247b",
-    "displayName" : "ILS_Staff",
-    "id" : "50a15dba-6ea2-426a-9118-369084f1247b",
-    "description" : "Interlibrary Loan staff",
-    "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-circulation-log.log-event.all", "ui-plugin-create-inventory-records.create", "ui-notes.item.create", "ui-notes.item.view", "ui-requests.all", "ui-requests.create", "ui-requests.edit", "ui-tags.view", "ui-users.loans.renew", "ui-users.loans.view", "ui-users.requests.all" ],
+    "permissionName" : "61978e3d-e0aa-4329-a2c0-36c6191aa09b",
+    "displayName" : "ER_eUsage_Staff",
+    "id" : "61978e3d-e0aa-4329-a2c0-36c6191aa09b",
+    "subPermissions" : [ "ui-erm-usage.all", "module.erm-usage.enabled" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -186,32 +201,18 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "61978e3d-e0aa-4329-a2c0-36c6191aa09b",
-    "displayName" : "ER_eUsage_Staff",
-    "id" : "61978e3d-e0aa-4329-a2c0-36c6191aa09b",
-    "subPermissions" : [ "ui-erm-usage.all", "module.erm-usage.enabled" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
     "permissionName" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
     "displayName" : "Cat_AllStaff",
     "id" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
     "description" : "Set of permissions for Staff and Professionals",
-    "subPermissions" : [ "ui-inventory-es.all-permissions.TEMPORARY", "module.inventory-es.enabled", "ui-inventory.all-permissions.TEMPORARY", "ui-inventory.single-record-import", "ui-inventory.items.mark-items-withdrawn", "ui-orders.order-lines.view", "ui-orders.order.view", "ui-quick-marc.quick-marc-editor.all", "ui-tags.view" ],
+    "subPermissions" : [ "ui-inventory-es.all-permissions.TEMPORARY", "module.inventory-es.enabled", "ui-inventory.all-permissions.TEMPORARY", "ui-inventory.single-record-import", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.holdings.move", "ui-inventory.item.move", "ui-orders.order-lines.view", "ui-orders.order.view", "ui-quick-marc.quick-marc-editor.all", "ui-tags.view" ],
     "mutable" : true,
     "visible" : true
   }, {
     "permissionName" : "bd76b150-f075-4bdc-a93a-e6f7a563067e",
     "displayName" : "Circ_Supervisors",
     "id" : "bd76b150-f075-4bdc-a93a-e6f7a563067e",
-    "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-checkout.circulation", "circulation.loans.change-due-date.post", "ui-circulation-log.log-event.all", "ui-courses.read-all", "ui-plugin-create-inventory-records.create", "ui-users.feefineactions", "ui-users.accounts", "ui-users.manual_charge", "ui-users.manual_pay", "ui-users.manual_waive", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.item.markasmissing", "ui-notes.item.create", "ui-notes.item.delete", "ui-notes.item.edit", "ui-notes.item.view", "refunds.collection.get", "ui-requests.all", "ui-tags.view", "ui-users.overrideItemBlock", "ui-users.overridePatronBlock", "ui-users.edituserservicepoints", "ui-users.create", "ui-users.feesfines.actions.all", "ui-users.patron_blocks", "ui-users.editproxies", "ui-users.edit", "ui-users.viewperms", "ui-users.viewproxies", "ui-users.viewuserservicepoints", "ui-users.view", "ui-users.reset.password", "ui-users.loans.change-due-date", "ui-users.loans.claim-item-returned", "ui-users.loans.declare-item-lost", "ui-users.loans.declare-claimed-returned-item-as-missing", "ui-users.loans.renew", "ui-users.loans.renew-override", "ui-users.loans.view", "ui-users.loans.all", "ui-users.requests.all" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
-    "permissionName" : "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
-    "displayName" : "Circ_Staff",
-    "id" : "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
-    "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "ui-courses.read-all", "ui-plugin-create-inventory-records.create", "ui-users.feefineactions", "ui-users.accounts", "ui-users.manual_charge", "ui-users.manual_pay", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.item.markasmissing", "ui-notes.item.create", "ui-notes.item.delete", "ui-notes.item.edit", "ui-notes.item.view", "ui-requests.view", "ui-requests.create", "ui-requests.edit", "ui-tags.view", "ui-users.create", "ui-users.patron_blocks", "ui-users.editproxies", "ui-users.edit", "ui-users.viewproxies", "ui-users.viewuserservicepoints", "ui-users.view", "ui-users.loans.claim-item-returned", "ui-users.loans.declare-item-lost", "ui-users.loans.declare-claimed-returned-item-as-missing", "ui-users.loans.renew-override", "ui-users.loans.all", "ui-users.requests.all" ],
+    "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-checkout.circulation", "check-in-storage.check-ins.collection.get", "circulation.loans.change-due-date.post", "ui-circulation-log.log-event.all", "course-reserves-storage.course-types.collection.get", "course-reserves-storage.terms.collection.get", "ui-courses.read-all", "ui-plugin-create-inventory-records.create", "ui-users.feefineactions", "ui-users.accounts", "ui-users.manual_charge", "ui-users.manual_pay", "ui-users.manual_waive", "inventory.items.item.mark-missing.post", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.item.markasmissing", "calendar.opening-hours.collection.get", "login.password-reset.post", "login.password.validate", "lost-item-fees-policies.collection.get", "manual-block-templates.collection.get", "ui-notes.item.create", "ui-notes.item.delete", "ui-notes.item.edit", "ui-notes.item.view", "refunds.collection.get", "ui-requests.all", "ui-tags.view", "ui-users.overrideItemBlock", "ui-users.overridePatronBlock", "ui-users.edituserservicepoints", "ui-users.create", "ui-users.feesfines.actions.all", "ui-users.patron_blocks", "ui-users.editproxies", "ui-users.edit", "ui-users.viewperms", "ui-users.viewproxies", "ui-users.viewuserservicepoints", "ui-users.view", "ui-users.reset.password", "ui-users.loans.change-due-date", "ui-users.loans.claim-item-returned", "ui-users.loans.declare-item-lost", "ui-users.loans.declare-claimed-returned-item-as-missing", "ui-users.loans.renew", "ui-users.loans.renew-override", "ui-users.loans.view", "ui-users.loans.all", "ui-users.requests.all" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -223,6 +224,13 @@
     "mutable" : true,
     "visible" : true
   }, {
+    "permissionName" : "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
+    "displayName" : "Circ_Staff",
+    "id" : "60564d19-d5b9-4ed4-b4df-06b79b5efc5f",
+    "subPermissions" : [ "ui-checkin.all", "ui-checkout.all", "ui-checkout.circulation", "ui-circulation-log.log-event.all", "ui-courses.read-all", "ui-plugin-create-inventory-records.create", "ui-users.feefineactions", "ui-users.accounts", "ui-users.manual_charge", "ui-users.manual_pay", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.item.markasmissing", "ui-notes.item.create", "ui-notes.item.delete", "ui-notes.item.edit", "ui-notes.item.view", "ui-requests.view", "ui-requests.create", "ui-requests.edit", "ui-tags.view", "ui-users.create", "ui-users.patron_blocks", "ui-users.editproxies", "ui-users.edit", "ui-users.viewproxies", "ui-users.viewuserservicepoints", "ui-users.view", "ui-users.loans.change-due-date", "ui-users.loans.claim-item-returned", "ui-users.loans.declare-item-lost", "ui-users.loans.declare-claimed-returned-item-as-missing", "ui-users.loans.renew-override", "ui-users.loans.all", "ui-users.requests.all" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
     "permissionName" : "05e05c02-f870-4602-9e1b-1451cf4ec9b1",
     "displayName" : "Shelving_Staff",
     "id" : "05e05c02-f870-4602-9e1b-1451cf4ec9b1",
@@ -231,17 +239,17 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "3bc06f71-3a30-4d79-853f-ca6b6170b97b",
-    "displayName" : "Acquisitions_Orders_View",
-    "id" : "3bc06f71-3a30-4d79-853f-ca6b6170b97b",
-    "subPermissions" : [ "ui-orders.order-lines.view", "ui-orders.order.view" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
     "permissionName" : "560116fb-772e-4a00-90a2-fdc2b748ea2b",
     "displayName" : "Acquisitions_Settings_Staff",
     "id" : "560116fb-772e-4a00-90a2-fdc2b748ea2b",
     "subPermissions" : [ "ui-finance.settings.all", "settings.invoice.enabled", "settings.orders.enabled" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
+    "permissionName" : "3bc06f71-3a30-4d79-853f-ca6b6170b97b",
+    "displayName" : "Acquisitions_Orders_View",
+    "id" : "3bc06f71-3a30-4d79-853f-ca6b6170b97b",
+    "subPermissions" : [ "ui-orders.order-lines.view", "ui-orders.order.view" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -270,7 +278,7 @@
     "permissionName" : "09f9b0a3-6be0-4fac-ac18-2f379337868b",
     "displayName" : "Acquisitions_Orders_Staff",
     "id" : "09f9b0a3-6be0-4fac-ac18-2f379337868b",
-    "subPermissions" : [ "ui-invoice.invoice.edit", "ui-orders.acq.unit.assignment.assign", "ui-orders.order-lines.create", "ui-orders.order.create", "ui-orders.order-lines.delete", "ui-orders.order-lines.edit", "ui-orders.order.edit", "ui-orders.order.exportCSV", "ui-orders.acq.unit.assignment.manage", "ui-orders.order.delete", "ui-orders.order.reopen", "ui-orders.order.unopen", "ui-orders.order.updateEncumbrances", "ui-orders.order-lines.view", "ui-orders.order.view", "ui-orders.settings.order-templates.delete" ],
+    "subPermissions" : [ "ui-invoice.invoice.edit", "ui-orders.acq.unit.assignment.assign", "ui-orders.order-lines.create", "ui-orders.order.create", "ui-orders.order-lines.delete", "ui-orders.order-lines.edit", "ui-orders.order.edit", "ui-orders.order.exportCSV", "ui-orders.acq.unit.assignment.manage", "ui-orders.order.delete", "ui-orders.order.reopen", "ui-orders.order.unopen", "ui-orders.order.updateEncumbrances", "ui-orders.order-lines.view", "ui-orders.order.view", "ui-orders.settings.order-templates.create", "ui-orders.settings.order-templates.delete" ],
     "mutable" : true,
     "visible" : true
   }, {

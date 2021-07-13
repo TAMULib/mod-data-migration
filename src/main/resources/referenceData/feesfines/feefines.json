@@ -68,14 +68,6 @@
     "id" : "69482cfd-efce-4a32-a001-a6d9bdd217ec"
   }, {
     "automatic" : false,
-    "feeFineType" : "Lost item processing",
-    "defaultAmount" : 2.0,
-    "chargeNoticeId" : "bd639688-ff1c-4092-ac94-65d7339910da",
-    "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
-    "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
-    "id" : "731af59a-1e73-4eda-a32f-c490753badd0"
-  }, {
-    "automatic" : false,
     "feeFineType" : "Lost item replacement (migrated-do not use)",
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "7e6832e2-b047-471e-9194-7e4106e0af1e",
@@ -179,5 +171,41 @@
     "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
     "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
     "id" : "eead2e33-4784-4b50-9e86-4101c16e8b25"
+  }, {
+    "automatic" : false,
+    "feeFineType" : "Lost item processing",
+    "defaultAmount" : 2.0,
+    "chargeNoticeId" : "bd639688-ff1c-4092-ac94-65d7339910da",
+    "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
+    "ownerId" : "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
+    "id" : "c996142f-117c-4cb5-8a7f-a35f914047eb"
+  }, {
+    "automatic" : false,
+    "feeFineType" : "Lost item replacement",
+    "chargeNoticeId" : "3fe59fee-0afa-4dd6-9fd2-655f4e6751fd",
+    "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
+    "ownerId" : "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
+    "id" : "24fb91e0-5819-44ba-a6ff-c14845c053da"
+  }, {
+    "automatic" : false,
+    "feeFineType" : "Overdue",
+    "chargeNoticeId" : "3a335d9d-89a0-4cde-8338-b0d298039aa6",
+    "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
+    "ownerId" : "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
+    "id" : "f93f1c88-44f2-432f-b5d6-1ce06c996940"
+  }, {
+    "automatic" : false,
+    "feeFineType" : "Lost item processing",
+    "chargeNoticeId" : "bd639688-ff1c-4092-ac94-65d7339910da",
+    "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
+    "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
+    "id" : "731af59a-1e73-4eda-a32f-c490753badd0"
+  }, {
+    "automatic" : false,
+    "feeFineType" : "Community user card",
+    "defaultAmount" : 15.0,
+    "actionNoticeId" : "3d1534cb-8c98-466c-acd9-fd1448468d7f",
+    "ownerId" : "e7942c89-74f1-419f-ae7c-56336e0c4ff0",
+    "id" : "40d0d7ac-014c-4db4-a3cd-83534b8e99f7"
   } ]
 }

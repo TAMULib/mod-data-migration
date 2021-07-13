@@ -103,5 +103,10 @@
     "allowedRefundMethod" : true,
     "ownerId" : "014416f2-7609-4222-a812-1a3deb0591b8",
     "id" : "f6949f49-10ef-4b16-9534-f667c279bcf2"
+  }, {
+    "nameMethod" : "Cash",
+    "allowedRefundMethod" : false,
+    "ownerId" : "26c4ddaf-95ad-44d6-bd93-8492e278a41e",
+    "id" : "3d457f43-422f-40fd-adc0-ec6fe6a1a023"
   } ]
 }

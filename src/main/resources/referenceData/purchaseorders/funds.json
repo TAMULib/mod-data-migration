@@ -583,19 +583,6 @@
     "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "9259b254-17dd-46cb-82c4-03aaf19d8972" ]
   }, {
     "fund" : {
-      "id" : "566bc41a-31f5-49b4-8d0f-a53d5c6d31b6",
-      "allocatedFromIds" : [ ],
-      "allocatedToIds" : [ ],
-      "code" : "jf",
-      "externalAccountNo" : "242406",
-      "fundStatus" : "Active",
-      "ledgerId" : "2d681c78-5be8-4bac-a9ec-7eba5a175f49",
-      "name" : "John fund",
-      "acqUnitIds" : [ ]
-    },
-    "groupIds" : [ "359218e1-1123-4a3f-9edb-d6849ed6382e" ]
-  }, {
-    "fund" : {
       "id" : "14b12443-9bed-4853-aaf9-c9f3e0106ce0",
       "allocatedFromIds" : [ ],
       "allocatedToIds" : [ ],
@@ -633,33 +620,6 @@
       "acqUnitIds" : [ ]
     },
     "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "9259b254-17dd-46cb-82c4-03aaf19d8972" ]
-  }, {
-    "fund" : {
-      "id" : "e9111832-08f9-4112-81df-313b0022d723",
-      "allocatedFromIds" : [ ],
-      "allocatedToIds" : [ ],
-      "code" : "jfer",
-      "externalAccountNo" : "111",
-      "fundStatus" : "Active",
-      "fundTypeId" : "aea28ac6-f085-4833-bd54-d8f605d28d48",
-      "ledgerId" : "2d681c78-5be8-4bac-a9ec-7eba5a175f49",
-      "name" : "john ER fund ",
-      "acqUnitIds" : [ ]
-    },
-    "groupIds" : [ "428b4b9a-fe16-41ae-8fb5-70633999a17c" ]
-  }, {
-    "fund" : {
-      "id" : "67d8227c-da1c-488e-875a-269f8fa800b0",
-      "allocatedFromIds" : [ ],
-      "allocatedToIds" : [ ],
-      "code" : "msltf",
-      "externalAccountNo" : "242406",
-      "fundStatus" : "Active",
-      "ledgerId" : "2d681c78-5be8-4bac-a9ec-7eba5a175f49",
-      "name" : "John MSL test fund",
-      "acqUnitIds" : [ ]
-    },
-    "groupIds" : [ ]
   }, {
     "fund" : {
       "id" : "f23b4c26-9618-4f38-b5fd-48d83333fc64",
@@ -712,5 +672,18 @@
       "acqUnitIds" : [ ]
     },
     "groupIds" : [ "87c48892-bf45-4e1b-8d4b-c1dd6b721139", "8d414b94-14e8-4323-bcdc-1ac6ace09404" ]
+  }, {
+    "fund" : {
+      "id" : "3855a291-3b80-415a-ac96-14e991a9fdc3",
+      "allocatedFromIds" : [ ],
+      "allocatedToIds" : [ ],
+      "code" : "btetxt",
+      "externalAccountNo" : "242406",
+      "fundStatus" : "Active",
+      "ledgerId" : "5c0137bf-0882-449d-a299-d145aaff3085",
+      "name" : "Big Ticket",
+      "acqUnitIds" : [ ]
+    },
+    "groupIds" : [ ]
   } ]
 }

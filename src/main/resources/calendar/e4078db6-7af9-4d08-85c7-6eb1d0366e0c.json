@@ -2,17 +2,17 @@
   "openingPeriods" : [ {
     "id" : "2c9e6db6-9295-48d1-b6f8-0c1897afb71c",
     "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
-    "name" : "Maps calendar",
-    "startDate" : "1988-10-01T00:00:00.000+00:00",
-    "endDate" : "2024-12-31T00:00:00.000+00:00",
+    "name" : "Maps & GIS Summer 21",
+    "startDate" : "1988-01-01T00:00:00.000+00:00",
+    "endDate" : "2021-08-10T00:00:00.000+00:00",
     "openingDays" : [ {
       "weekdays" : {
         "day" : "SUNDAY"
       },
       "openingDay" : {
         "openingHour" : [ {
-          "startTime" : "08:00",
-          "endTime" : "17:00"
+          "startTime" : "10:00",
+          "endTime" : "22:00"
         } ],
         "allDay" : false,
         "open" : true
@@ -23,8 +23,8 @@
       },
       "openingDay" : {
         "openingHour" : [ {
-          "startTime" : "08:00",
-          "endTime" : "17:00"
+          "startTime" : "07:00",
+          "endTime" : "22:00"
         } ],
         "allDay" : false,
         "open" : true
@@ -35,8 +35,8 @@
       },
       "openingDay" : {
         "openingHour" : [ {
-          "startTime" : "08:00",
-          "endTime" : "17:00"
+          "startTime" : "07:00",
+          "endTime" : "22:00"
         } ],
         "allDay" : false,
         "open" : true
@@ -47,8 +47,8 @@
       },
       "openingDay" : {
         "openingHour" : [ {
-          "startTime" : "08:00",
-          "endTime" : "17:00"
+          "startTime" : "07:00",
+          "endTime" : "22:00"
         } ],
         "allDay" : false,
         "open" : true
@@ -59,8 +59,8 @@
       },
       "openingDay" : {
         "openingHour" : [ {
-          "startTime" : "08:00",
-          "endTime" : "17:00"
+          "startTime" : "07:00",
+          "endTime" : "22:00"
         } ],
         "allDay" : false,
         "open" : true
@@ -71,7 +71,977 @@
       },
       "openingDay" : {
         "openingHour" : [ {
-          "startTime" : "08:00",
+          "startTime" : "07:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "5fae35b5-178a-4570-aa0a-a6f28c60af14",
+    "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps & GIS Spring 22 B",
+    "startDate" : "2022-03-20T00:00:00.000+00:00",
+    "endDate" : "2022-05-05T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "d69f9713-5036-4da5-9089-71e004a8e9e6",
+    "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps & GIS Fall 21",
+    "startDate" : "2021-08-28T00:00:00.000+00:00",
+    "endDate" : "2021-12-09T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "53ae8c86-f961-4674-a834-cfeb5e000abf",
+    "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps & GIS Fall 21 Finals",
+    "startDate" : "2021-12-10T00:00:00.000+00:00",
+    "endDate" : "2021-12-15T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "f7bdb0d7-c2a7-4ee2-a16d-1976934c23bf",
+    "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps & GIS Fall 21 Interim",
+    "startDate" : "2021-12-16T00:00:00.000+00:00",
+    "endDate" : "2022-01-17T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "36a7e0d0-b7af-41a0-b923-9fb5ebd24b28",
+    "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps & GIS Fall 22",
+    "startDate" : "2022-08-27T00:00:00.000+00:00",
+    "endDate" : "2024-12-31T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "c22120b7-a9cd-4f4d-8427-ebaf1521a866",
+    "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps & GIS Spring 22 A",
+    "startDate" : "2022-01-18T00:00:00.000+00:00",
+    "endDate" : "2022-03-10T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "21:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "69f21b0c-ceed-4fd9-bc78-be2c71956108",
+    "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps & GIS Spring 22 Finals",
+    "startDate" : "2022-05-06T00:00:00.000+00:00",
+    "endDate" : "2022-05-11T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "09:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "67799ceb-72b8-4468-91cd-c8133d456c72",
+    "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps & GIS Spring 22 Interim",
+    "startDate" : "2022-05-12T00:00:00.000+00:00",
+    "endDate" : "2022-05-30T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "e6c8f408-d66f-4905-a916-8692c99e1cb3",
+    "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps & GIS Summer 22 Interim",
+    "startDate" : "2022-08-11T00:00:00.000+00:00",
+    "endDate" : "2022-08-26T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "050bb370-d99c-4f2e-b0af-45e8ec8cc9c3",
+    "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps & GIS Spring 22 SB",
+    "startDate" : "2022-03-12T00:00:00.000+00:00",
+    "endDate" : "2022-03-19T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "13:00",
           "endTime" : "17:00"
         } ],
         "allDay" : false,
@@ -83,13 +1053,254 @@
       },
       "openingDay" : {
         "openingHour" : [ {
-          "startTime" : "08:00",
-          "endTime" : "17:00"
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "cf00c898-5db0-4571-b327-bf9c01a31053",
+    "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps & GIS Spring 22 SB Transition",
+    "startDate" : "2022-03-11T00:00:00.000+00:00",
+    "endDate" : "2022-03-11T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "f3611281-dad3-4420-9c6d-e5f663dd10bc",
+    "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps & GIS Summer 21 Interim",
+    "startDate" : "2021-08-11T00:00:00.000+00:00",
+    "endDate" : "2021-08-27T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "07:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "18:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "f9b795bd-e0d7-4b47-8d2b-7782adce9570",
+    "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps & GIS Summer 22",
+    "startDate" : "2022-05-31T00:00:00.000+00:00",
+    "endDate" : "2022-08-09T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "SUNDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "MONDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "TUESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "THURSDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "23:59"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "FRIDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    }, {
+      "weekdays" : {
+        "day" : "SATURDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "10:00",
+          "endTime" : "19:00"
+        } ],
+        "allDay" : false,
+        "open" : true
+      }
+    } ]
+  }, {
+    "id" : "63d4b83a-cdd8-4f4b-9a46-5c4e84c077c5",
+    "servicePointId" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps & GIS Summer 22 Interim Transition",
+    "startDate" : "2022-08-10T00:00:00.000+00:00",
+    "endDate" : "2022-08-10T00:00:00.000+00:00",
+    "openingDays" : [ {
+      "weekdays" : {
+        "day" : "WEDNESDAY"
+      },
+      "openingDay" : {
+        "openingHour" : [ {
+          "startTime" : "00:00",
+          "endTime" : "02:00"
+        }, {
+          "startTime" : "07:00",
+          "endTime" : "19:00"
         } ],
         "allDay" : false,
         "open" : true
       }
     } ]
   } ],
-  "totalRecords" : 1
+  "totalRecords" : 15
 }

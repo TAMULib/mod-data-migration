@@ -253,12 +253,6 @@ public class OkapiService {
     return response.getBody();
   }
 
-  public void updateRules(JsonNode rules, String path, String tenant, String token) {
-    HttpEntity<?> entity = new HttpEntity<>(rules, headers(tenant, token));
-    String url = okapi.getUrl() + "/" + path;
-    restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
-  }
-
   public JsonObject fetchRules(String tenant, String token) {
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/mapping-rules";
