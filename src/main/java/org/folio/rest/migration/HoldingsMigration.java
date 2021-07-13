@@ -352,25 +352,25 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
               matchedCodes = new HashSet<>();
             }
 
-            HoldingsRecord holdingRecord = new HoldingsRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, matchedCodes, discoverySuppress, displayCallNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
+            HoldingsRecord holdingsRecord = new HoldingsRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, matchedCodes, discoverySuppress, displayCallNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
 
-            holdingRecord.setHoldingId(holdingId);
-            holdingRecord.setInstanceId(instanceId);
+            holdingsRecord.setHoldingId(holdingId);
+            holdingsRecord.setInstanceId(instanceId);
 
             Date createdDate = new Date();
-            holdingRecord.setCreatedByUserId(userId);
-            holdingRecord.setCreatedDate(createdDate);
+            holdingsRecord.setCreatedByUserId(userId);
+            holdingsRecord.setCreatedDate(createdDate);
 
             String createdAt = DATE_TIME_FOMATTER.format(createdDate.toInstant().atOffset(ZoneOffset.UTC));
             String createdByUserId = userId;
 
             String hridString = String.format(HRID_TEMPLATE, hridPrefix, hrid);
 
-            Holdingsrecord holdingsRecord = holdingRecord.toHolding(holdingMapper, holdingMaps, hridString);
+            Holdingsrecord holdingsrecord = holdingsRecord.toHolding(holdingMapper, holdingMaps, hridString);
 
-            String callNumber = holdingsRecord.getCallNumber();
-            String callNumberPrefix = holdingsRecord.getCallNumberPrefix();
-            String callNumberSuffix = holdingsRecord.getCallNumberSuffix();
+            String callNumber = holdingsrecord.getCallNumber();
+            String callNumberPrefix = holdingsrecord.getCallNumberPrefix();
+            String callNumberSuffix = holdingsrecord.getCallNumberSuffix();
 
             if (StringUtils.isNoneEmpty(callNumber)) {
               String rlId = UUID.randomUUID().toString();
@@ -390,20 +390,20 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
               referenceLinkWriter.println(String.join("\t", rlId, holdingRlId, callNumberSuffix, holdingToCallNumberSuffixTypeId));
             }
 
-            String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(holdingsRecord)));
+            String hrUtf8Json = new String(jsonStringEncoder.quoteAsUTF8(migrationService.objectMapper.writeValueAsString(holdingsrecord)));
 
             // (id,jsonb,creation_date,created_by,instanceid,permanentlocationid,temporarylocationid,holdingstypeid,callnumbertypeid,illpolicyid)
             holdingsRecordWriter.println(String.join("\t",
-              holdingsRecord.getId(),
+              holdingsrecord.getId(),
               hrUtf8Json,
               createdAt,
               createdByUserId,
-              holdingsRecord.getInstanceId(),
-              holdingsRecord.getPermanentLocationId(),
-              Objects.nonNull(holdingsRecord.getTemporaryLocationId()) ? holdingsRecord.getTemporaryLocationId() : NULL,
-              holdingsRecord.getHoldingsTypeId(),
-              holdingsRecord.getCallNumberTypeId(),
-              Objects.nonNull(holdingsRecord.getIllPolicyId()) ? holdingsRecord.getIllPolicyId() : NULL
+              holdingsrecord.getInstanceId(),
+              holdingsrecord.getPermanentLocationId(),
+              Objects.nonNull(holdingsrecord.getTemporaryLocationId()) ? holdingsrecord.getTemporaryLocationId() : NULL,
+              holdingsrecord.getHoldingsTypeId(),
+              holdingsrecord.getCallNumberTypeId(),
+              Objects.nonNull(holdingsrecord.getIllPolicyId()) ? holdingsrecord.getIllPolicyId() : NULL
             ));
 
             hrid++;
