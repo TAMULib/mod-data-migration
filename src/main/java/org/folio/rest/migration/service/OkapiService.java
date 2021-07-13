@@ -142,8 +142,11 @@ public class OkapiService {
         ResponseEntity<String> createResponse = restTemplate.exchange(createUrl, HttpMethod.POST, createEntity, String.class);
         return createResponse.getBody();
       case UPDATE:
-        String id = referenceDatum.getData().get("id").asText();
-        String updateUrl = okapi.getUrl() + referenceDatum.getPath() + "/" + id;
+        String updateUrl = okapi.getUrl() + referenceDatum.getPath();
+        if (referenceDatum.getData().has("id")) {
+          String id = referenceDatum.getData().get("id").asText();
+          updateUrl += "/" + id;
+        }
         HttpEntity<JsonNode> updateEntity = new HttpEntity<>(referenceDatum.getData(), headers(referenceDatum.getTenant(), referenceDatum.getToken()));
         ResponseEntity<String> updateResponse = restTemplate.exchange(updateUrl, HttpMethod.PUT, updateEntity, String.class);
         return updateResponse.getBody();
