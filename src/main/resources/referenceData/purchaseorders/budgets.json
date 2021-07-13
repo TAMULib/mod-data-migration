@@ -136,8 +136,8 @@
     "initialAllocation" : 150000.0,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 150000.0,
-    "cashBalance" : 150000.0,
+    "totalFunding" : 0.0,
+    "cashBalance" : 0.0,
     "statusExpenseClasses" : [ ]
   }, {
     "id" : "a70468d7-eed0-4eae-9c7e-47b68e8ee827",
@@ -486,20 +486,6 @@
     "cashBalance" : 27950.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "0443bfa4-a501-49ce-99b5-bfe09f32696d",
-    "name" : "cont-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "6db022b1-f872-4c4f-8cba-27630b404e52",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 150000.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 150000.0,
-    "cashBalance" : 149186.0,
-    "statusExpenseClasses" : [ ]
-  }, {
     "id" : "9a50d60c-116f-4af5-816f-8bd78fb309d0",
     "name" : "mslemono-FY2021",
     "budgetStatus" : "Active",
@@ -549,7 +535,21 @@
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
     "totalFunding" : 10000.0,
-    "cashBalance" : 10000.0,
+    "cashBalance" : 9934.72,
+    "statusExpenseClasses" : [ ]
+  }, {
+    "id" : "0443bfa4-a501-49ce-99b5-bfe09f32696d",
+    "name" : "cont-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "6db022b1-f872-4c4f-8cba-27630b404e52",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 150000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 150000.0,
+    "cashBalance" : 148882.79,
     "statusExpenseClasses" : [ ]
   }, {
     "id" : "c687ecb9-44e7-445c-b55c-ec0eafbbce74",
@@ -615,26 +615,6 @@
       "status" : "Active"
     } ]
   }, {
-    "id" : "464a22dd-67e7-400a-9853-e4860bb0c508",
-    "name" : "replacement-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "41c4fe20-9108-466f-803e-bf665efd20ed",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 25000.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 25000.0,
-    "cashBalance" : 24985.01,
-    "statusExpenseClasses" : [ {
-      "expenseClassId" : "487e4cd5-7c9f-4674-a594-6c41c6e5b689",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "c9282d86-4120-4f5a-be3e-657067784124",
-      "status" : "Active"
-    } ]
-  }, {
     "id" : "c25628ec-6f47-4ed5-ac3e-0cf76ce9f897",
     "name" : "usergen2-FY2021",
     "budgetStatus" : "Active",
@@ -646,7 +626,7 @@
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
     "totalFunding" : 560000.0,
-    "cashBalance" : 559782.65,
+    "cashBalance" : 559636.73,
     "statusExpenseClasses" : [ {
       "expenseClassId" : "575f5703-8e63-4d93-b473-faf29436b80d",
       "status" : "Active"
@@ -664,6 +644,26 @@
       "status" : "Active"
     }, {
       "expenseClassId" : "a914893c-513b-406e-b842-bf43a56c99c8",
+      "status" : "Active"
+    } ]
+  }, {
+    "id" : "464a22dd-67e7-400a-9853-e4860bb0c508",
+    "name" : "replacement-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "41c4fe20-9108-466f-803e-bf665efd20ed",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 25000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 25000.0,
+    "cashBalance" : 24985.01,
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "487e4cd5-7c9f-4674-a594-6c41c6e5b689",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "c9282d86-4120-4f5a-be3e-657067784124",
       "status" : "Active"
     } ]
   }, {
@@ -880,8 +880,8 @@
     "initialAllocation" : 1.348362E7,
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
-    "totalFunding" : 1.348362E7,
-    "cashBalance" : 1.339190704E7,
+    "totalFunding" : 1.363362E7,
+    "cashBalance" : 1.353593904E7,
     "statusExpenseClasses" : [ {
       "expenseClassId" : "0d3c9098-e315-45aa-be46-cf9b642459c2",
       "status" : "Active"

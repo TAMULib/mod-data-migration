@@ -5526,6 +5526,28 @@
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   }, {
+    "id" : "612e9ddc-47ba-4d22-a732-a967916c9916",
+    "courseListingId" : "d4ef8374-0ad3-4745-bea0-45c336876c40",
+    "itemId" : "4626656e-b643-3f9e-ac56-e618ecad27b7",
+    "copiedItem" : {
+      "barcode" : "A14833746098",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "47b5ed08-d5d1-4a46-973d-10412c1d88e4",
+      "title" : "Introduction to psychology / Ernest R. Hilgard, Rita L. Atkinson, Richard C. Atkinson.",
+      "contributors" : [ {
+        "name" : "Hilgard, Ernest R. (Ernest Ropiequet)",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "BF121 .N66 2014",
+      "enumeration" : "16TH EDITION2014",
+      "instanceId" : "ebfe2aef-cd84-3afd-8ff8-2b9b3a742c60",
+      "instanceHrid" : "in00004205644",
+      "holdingsId" : "5d4881b7-38f6-36e7-84f8-e3cce884091f"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
     "id" : "e827b371-9642-4d58-bcb6-5945d282de5c",
     "courseListingId" : "8b3e8f1a-3069-4129-8738-631ad1b0b653",
     "itemId" : "a2292f36-b486-35f2-b6f2-0840cfe7da81",
@@ -5643,6 +5665,28 @@
       "instanceId" : "f74e9595-7131-320e-b52f-a1af9e563b52",
       "instanceHrid" : "in00004152058",
       "holdingsId" : "2968800b-fcc5-30be-80d0-01c6c6066650"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "448e0350-58cf-457c-bcfe-79cb8299818e",
+    "courseListingId" : "e3176e6d-2217-433d-8652-fca9ed7c14df",
+    "itemId" : "512f7a32-08db-3d8d-82e0-e0dc1c07a4ee",
+    "copiedItem" : {
+      "barcode" : "A14843471641",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "47b5ed08-d5d1-4a46-973d-10412c1d88e4",
+      "title" : "American government : a brief introduction.",
+      "contributors" : [ {
+        "name" : "Lowi, Theodore, Ginsberg, Benjamin;Shepsle, Arthur, Ansolabehere, Stephen",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "JK276.L69 2019",
+      "volume" : "2019",
+      "instanceId" : "a66361cb-632e-3a2e-a915-a8d3841b7fc1",
+      "instanceHrid" : "in00004051989",
+      "holdingsId" : "14c4c610-f57e-30f8-9822-83395439e995"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   }, {
@@ -6583,6 +6627,461 @@
       "instanceId" : "927a8dff-dd6e-38b4-bc7c-250aafb003ab",
       "instanceHrid" : "in00004100583",
       "holdingsId" : "5677231f-9ef9-362a-a9c7-13783f4a1d49"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "f38411b3-d84f-4bc8-b1a4-2129600661f5",
+    "courseListingId" : "3e415a57-1ec8-42fa-bed7-8e57aee00a82",
+    "itemId" : "2498e364-6917-3a89-b944-ba56494f01b8",
+    "copiedItem" : {
+      "barcode" : "A14830057131",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "47b5ed08-d5d1-4a46-973d-10412c1d88e4",
+      "title" : "Psychology of Women and Gender.",
+      "contributors" : [ {
+        "name" : "Liss, Miriam, & Richmond, Kate & Erchull, Mindy J",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "HQ1206 .L5497 2019",
+      "instanceId" : "48c0573a-cff5-3400-8ce3-f4622fed5dcc",
+      "instanceHrid" : "in00004149264",
+      "holdingsId" : "78d82e66-9712-3d53-a23a-bc95963ad421"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "7f859e6e-631c-4ee1-9447-0ae28b1473af",
+    "courseListingId" : "d04e823a-ada3-470f-8085-d11c3a985d16",
+    "itemId" : "2498e364-6917-3a89-b944-ba56494f01b8",
+    "copiedItem" : {
+      "barcode" : "A14830057131",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "47b5ed08-d5d1-4a46-973d-10412c1d88e4",
+      "title" : "Psychology of Women and Gender.",
+      "contributors" : [ {
+        "name" : "Liss, Miriam, & Richmond, Kate & Erchull, Mindy J",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "HQ1206 .L5497 2019",
+      "instanceId" : "48c0573a-cff5-3400-8ce3-f4622fed5dcc",
+      "instanceHrid" : "in00004149264",
+      "holdingsId" : "78d82e66-9712-3d53-a23a-bc95963ad421"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ccc9ef30-cbfb-4789-a85d-d2901e1ba66e",
+    "courseListingId" : "f3c8bf04-7cb0-43c0-a740-f4bae126e9aa",
+    "itemId" : "e38c7da9-91eb-3b6b-b9a0-6d7fbb423da9",
+    "copiedItem" : {
+      "barcode" : "A14842362460",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "47b5ed08-d5d1-4a46-973d-10412c1d88e4",
+      "title" : "Psychology: Perspectives and Connections.",
+      "contributors" : [ {
+        "name" : "Feist, Gregory",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "BF121.f32 2019",
+      "instanceId" : "3af27c72-c5e2-3522-b54a-0498611124f9",
+      "instanceHrid" : "in00004097993",
+      "holdingsId" : "d9532907-68fa-3c33-a6bd-2b78eabcd27f"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "49f2b9e8-f020-4222-b2b8-dea8092f3a5f",
+    "courseListingId" : "1d8a39f1-6cb5-440f-9505-38c63191cfbc",
+    "itemId" : "a355f08e-5f5b-3882-8b91-80014aa986bc",
+    "copiedItem" : {
+      "barcode" : "A14850460644",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Cognition / Thomas A. Farmer, University of Iowa and Margaret W. Matlin, SUNY Geneseo.",
+      "contributors" : [ {
+        "name" : "Farmer, Thomas A.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Matlin, Margaret W.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "John Wiley & Sons",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2019]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2019"
+      } ],
+      "callNumber" : "BF311 .M426 2019",
+      "instanceId" : "8a03cec7-b614-39a6-8cf5-194f31ed464e",
+      "instanceHrid" : "in00004206490",
+      "holdingsId" : "9225f76b-2849-3a93-953c-38b26f28dc17"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "a51359b2-a4b6-4810-b67f-7b0103afb85f",
+    "courseListingId" : "fdcd2151-6e47-4876-96b2-937c86e8c8de",
+    "itemId" : "f338c572-a295-35e5-8027-7e762345e9db",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-12-26",
+    "endDate" : "2021-05-17",
+    "copiedItem" : {
+      "barcode" : "A14851521550",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Software engineering : a practitioners approach / Roger S. Pressman, Ph. D., Bruce R. Maxim, Ph. D.",
+      "contributors" : [ {
+        "name" : "Pressman, Roger S.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Maxim, Bruce R.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "McGraw-Hill Education",
+        "place" : "New York",
+        "dateOfPublication" : "[2020]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2020"
+      } ],
+      "callNumber" : "QA76.758 .P75 2020",
+      "instanceId" : "60656286-97ae-3576-b65e-243e0122ee12",
+      "instanceHrid" : "in00004431609",
+      "holdingsId" : "c40a66c5-8af5-3700-aed5-3d9c5f669b3d"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "8a772f35-497d-4f38-b99f-a28510370350",
+    "courseListingId" : "831565c7-6773-49b6-9fc5-fa73c85fe45b",
+    "itemId" : "66ca3319-7fb8-30b1-b0c5-0251f76353c8",
+    "copiedItem" : {
+      "barcode" : "A14842362338",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "47b5ed08-d5d1-4a46-973d-10412c1d88e4",
+      "title" : "Social Psychology.",
+      "contributors" : [ {
+        "name" : "Aronson, Elliot",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "HM1033.A78 2019",
+      "instanceId" : "6d3c2abf-21d4-30e7-b8fe-07c8b42e9771",
+      "instanceHrid" : "in00004130252",
+      "holdingsId" : "d48a4855-1e55-3b1c-806e-adcc013b1adc"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "3d9aa54f-6a1b-4eaf-a39e-3c6b6c5e180f",
+    "courseListingId" : "f2f459ce-209f-480a-af3f-c9b2375f726a",
+    "itemId" : "9b485e75-78f3-33f2-bd5f-8ed5f4515a73",
+    "copiedItem" : {
+      "barcode" : "A14842150642",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Crime and the punished / [edited by] Douglas Hartmann, University of Minnesota, Christopher Uggen, University of Minnesota, Suzy McElrath, University of Minnesota, Sarah Shannon, University of Minnesota.",
+      "contributors" : [ {
+        "name" : "Hartmann, Douglas",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "W. W. Norton & Company",
+        "place" : "New York",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "HV6789 .C6888 2014",
+      "instanceId" : "978e9b05-116b-36e3-9849-b6248cdb86ae",
+      "instanceHrid" : "in00003384114",
+      "holdingsId" : "c9333408-7d2b-3c49-8107-c5efe03a2e48"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "44588c22-a17f-46da-b73b-95a5067ac4bb",
+    "courseListingId" : "64d0b6e7-5fca-4713-a8dc-b8cfb5f362dc",
+    "itemId" : "9b485e75-78f3-33f2-bd5f-8ed5f4515a73",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30T05:00:00.000Z",
+    "endDate" : "2021-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14842150642",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Crime and the punished / [edited by] Douglas Hartmann, University of Minnesota, Christopher Uggen, University of Minnesota, Suzy McElrath, University of Minnesota, Sarah Shannon, University of Minnesota.",
+      "contributors" : [ {
+        "name" : "Hartmann, Douglas",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "W. W. Norton & Company",
+        "place" : "New York",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "HV6789 .C6888 2014",
+      "instanceId" : "978e9b05-116b-36e3-9849-b6248cdb86ae",
+      "instanceHrid" : "in00003384114",
+      "holdingsId" : "c9333408-7d2b-3c49-8107-c5efe03a2e48"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "3ff8b908-1a68-4f1c-a042-7364aacff17a",
+    "courseListingId" : "d4ef8374-0ad3-4745-bea0-45c336876c40",
+    "itemId" : "e88a565c-b1bd-3fa3-b618-2cc5e45d6ced",
+    "copiedItem" : {
+      "barcode" : "A14850459497",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Introduction to psychology.",
+      "contributors" : [ {
+        "name" : "Nolen-Hoeksema, Susan, 1959-2013,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Fredrickson, Barbara,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Loftus, Geoffrey R.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Lutz, Christel,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Cengage",
+        "place" : "Andover, Hampshire, UK",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "BF121 .N65 2014",
+      "instanceId" : "ac1cdb20-2919-3db0-976d-403fdf1f9dc0",
+      "instanceHrid" : "in00004135065",
+      "holdingsId" : "4ffd5efb-4a62-3eff-8157-9f91f0970962"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "086282e3-b9d0-4bf8-8fb5-8e8449e63401",
+    "courseListingId" : "e3176e6d-2217-433d-8652-fca9ed7c14df",
+    "itemId" : "51a24cef-60da-31f9-a2bd-61e3c5008456",
+    "copiedItem" : {
+      "barcode" : "A14843471633",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "47b5ed08-d5d1-4a46-973d-10412c1d88e4",
+      "title" : "American government : a brief introduction.",
+      "contributors" : [ {
+        "name" : "Lowi, Theodore, Ginsberg, Benjamin;Shepsle, Arthur, Ansolabehere, Stephen",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "JK276.L69 2019",
+      "instanceId" : "a66361cb-632e-3a2e-a915-a8d3841b7fc1",
+      "instanceHrid" : "in00004051989",
+      "holdingsId" : "14c4c610-f57e-30f8-9822-83395439e995"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "df703bfc-d562-4e02-8f60-2b3092c647cb",
+    "courseListingId" : "f2f459ce-209f-480a-af3f-c9b2375f726a",
+    "itemId" : "2067c381-fe4b-3e3d-992d-723c8c752e18",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30",
+    "endDate" : "2021-12-25",
+    "copiedItem" : {
+      "barcode" : "A14850775215",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Vold's theoretical criminology / Jeffrey B. Snipes, San Francisco State University, Thomas J. Bernard, The Pennsylvania State University, Alexander L. Gerould, De Anza College.",
+      "contributors" : [ {
+        "name" : "Snipes, Jeffrey B.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Bernard, Thomas J.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Gerould, Alexander L.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Oxford University Press",
+        "place" : "New York",
+        "dateOfPublication" : "[2019]",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "HV6035 .V6 2019",
+      "instanceId" : "0b7b5ff6-913b-3a1a-a607-b447126ca24f",
+      "instanceHrid" : "in00004196957",
+      "holdingsId" : "96491de2-a872-3760-95b7-c0fe3bc1e66a"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "de0224f2-3046-4565-8b4b-54377d4a52a1",
+    "courseListingId" : "1688a240-794c-45f9-845e-670a9e719bf1",
+    "itemId" : "47527b4a-00dd-34bc-90fb-05068d040dc2",
+    "copiedItem" : {
+      "barcode" : "A14835015930",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "A brief history of modern psychology / Ludy T. Benjamin, Jr.",
+      "contributors" : [ {
+        "name" : "Benjamin, Ludy T., 1945-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Blackwell Pub.",
+        "place" : "Malden, MA ; Oxford",
+        "dateOfPublication" : "2007",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "BF95 .B43 2007",
+      "instanceId" : "4e75367e-96b6-3b5e-b1b5-08ed2b5624c0",
+      "instanceHrid" : "in00002205841",
+      "holdingsId" : "72783a3e-abb4-31d0-9dc6-6d159f57a8b7"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "4f58ae3c-05c6-45cc-b936-e290a776c3d6",
+    "courseListingId" : "b8582ad9-fb7b-4354-8a10-0de8ac1f474d",
+    "itemId" : "6c5052cb-0b72-3c55-b7d4-680ef2715869",
+    "copiedItem" : {
+      "barcode" : "A14843625568",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Self-Directed Behavior : Self-Modification for Personal Adjustment / David L. Watson, University of Hawai'i at Manoa, Roland G. Tharp, University of Hawai'i at Manoa.",
+      "contributors" : [ {
+        "name" : "Watson, David L., 1934-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Tharp, Roland G., 1930-2015",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Wadsworth/Cengage Learning",
+        "place" : "Belmont, California",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "BF637.B4 W38 2014",
+      "instanceId" : "3aafbadf-e982-3475-93c2-3314a81958ab",
+      "instanceHrid" : "in00003793854",
+      "holdingsId" : "527479f9-0927-36ec-88f8-472ca9c4295f"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "eb05e2fa-bbee-48a1-a9a8-ff75a45dda53",
+    "courseListingId" : "5400bcd5-d40f-4a5b-8339-00691755c27a",
+    "itemId" : "5064352f-b8b1-3b58-aa8f-56283a7171a2",
+    "copiedItem" : {
+      "barcode" : "A14842200173",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The science of psychology : an appreciative view / Laura A. King.",
+      "contributors" : [ {
+        "name" : "King, Laura A. (Laura Ann)",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "McGraw-Hill",
+        "place" : "New York",
+        "dateOfPublication" : "[2011]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2011"
+      } ],
+      "callNumber" : "BF77 .K53 2011",
+      "instanceId" : "020d3677-f765-328c-928a-4017887ba58b",
+      "instanceHrid" : "in00003363312",
+      "holdingsId" : "2de2d57e-f1cc-3218-a195-962ea59a68c2"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "288e4253-3cd1-4cc4-beb8-400ec87633a9",
+    "courseListingId" : "f3c8bf04-7cb0-43c0-a740-f4bae126e9aa",
+    "itemId" : "4881ccad-8078-35a2-8ea0-b31045e6d1af",
+    "copiedItem" : {
+      "barcode" : "A14842362346",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "47b5ed08-d5d1-4a46-973d-10412c1d88e4",
+      "title" : "Psychology: Perspectives and Connections.",
+      "contributors" : [ {
+        "name" : "Feist, Gregory",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "BF121.f32 2019",
+      "instanceId" : "3af27c72-c5e2-3522-b54a-0498611124f9",
+      "instanceHrid" : "in00004097993",
+      "holdingsId" : "d9532907-68fa-3c33-a6bd-2b78eabcd27f"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "238e4f22-1122-4a03-8916-64eaf6b55d27",
+    "courseListingId" : "136db98d-3d3a-428c-9c8b-ff51adf6fb0a",
+    "itemId" : "10170f1a-f5a3-3b43-b93d-957613e4e8ec",
+    "copiedItem" : {
+      "barcode" : "A14850430563",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Comparing the states and communities : a STEM approach to politics, government and policy in the United States.",
+      "contributors" : [ {
+        "name" : "Tucker, Harvey J.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Express Publishing",
+        "place" : "[United States?]",
+        "dateOfPublication" : "[2019]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2018"
+      } ],
+      "callNumber" : "JK2408 .L88 2019",
+      "instanceId" : "6954066d-1515-31f3-9f5f-1f95f8d44734",
+      "instanceHrid" : "in00004042233",
+      "holdingsId" : "2703f1b0-556d-3b2e-a4fe-b860717ec609"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   } ]

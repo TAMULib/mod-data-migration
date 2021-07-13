@@ -3024,7 +3024,25 @@
         "name" : "Face to face",
         "description" : "Face to face"
       },
-      "instructorObjects" : [ ],
+      "instructorObjects" : [ {
+        "id" : "e51e9dc1-0d13-4f04-b6aa-75ff6c36a71f",
+        "userId" : "0e45fbfb-997d-3044-88ad-804b8b7846e9",
+        "name" : "Pauline Wade",
+        "barcode" : "6016426594782712",
+        "patronGroup" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+        "patronGroupObject" : {
+          "id" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+          "desc" : "Faculty/Staff",
+          "group" : "fast"
+        },
+        "courseListingId" : "fdcd2151-6e47-4876-96b2-937c86e8c8de",
+        "metadata" : {
+          "createdDate" : "2021-07-13T15:36:56.203+00:00",
+          "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
+          "updatedDate" : "2021-07-13T15:36:56.203+00:00",
+          "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
+        }
+      } ],
       "metadata" : {
         "createdDate" : "2021-07-09T20:16:30.158+00:00",
         "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
@@ -9300,5 +9318,887 @@
     },
     "courseNumber" : "RPTS 426",
     "sectionName" : "700"
+  }, {
+    "id" : "b9c0c559-69b1-4943-95f4-13899bb3ca79",
+    "name" : "PSYC",
+    "departmentId" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+    "departmentObject" : {
+      "id" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+      "name" : "PSYC",
+      "description" : "Psychology",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:38.373+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:38.373+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "3e415a57-1ec8-42fa-bed7-8e57aee00a82",
+    "courseListingObject" : {
+      "id" : "3e415a57-1ec8-42fa-bed7-8e57aee00a82",
+      "registrarId" : "2019:Fall:PSYC300502",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+      "termObject" : {
+        "id" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+        "name" : "2019 Fall",
+        "startDate" : "2019-07-30T05:00:00.000Z",
+        "endDate" : "2019-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "60d202f7-6e25-43da-9274-ca7956019353",
+        "userId" : "e29dec81-7460-3a04-9fef-b0d3550826f7",
+        "name" : "Adrienne Carter Sowell",
+        "barcode" : "6016426594793495",
+        "courseListingId" : "3e415a57-1ec8-42fa-bed7-8e57aee00a82",
+        "metadata" : {
+          "createdDate" : "2021-07-13T15:30:45.822+00:00",
+          "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+          "updatedDate" : "2021-07-13T15:30:45.822+00:00",
+          "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-13T15:30:14.083+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-13T15:30:14.083+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    },
+    "courseNumber" : "PSYC 300",
+    "sectionName" : "502"
+  }, {
+    "id" : "aa7e8ba4-b618-471a-a5a6-3101258f45e3",
+    "name" : "WGST",
+    "departmentId" : "52bc4b6b-8f3a-4354-9f0f-6153066240b0",
+    "departmentObject" : {
+      "id" : "52bc4b6b-8f3a-4354-9f0f-6153066240b0",
+      "name" : "WGST",
+      "description" : "Woman & Gender Studies",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:38.181+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:38.181+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "d04e823a-ada3-470f-8085-d11c3a985d16",
+    "courseListingObject" : {
+      "id" : "d04e823a-ada3-470f-8085-d11c3a985d16",
+      "registrarId" : "2019:Fall:WGST300502",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+      "termObject" : {
+        "id" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+        "name" : "2019 Fall",
+        "startDate" : "2019-07-30T05:00:00.000Z",
+        "endDate" : "2019-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "1d3334d2-7ae2-479b-86ea-6e0756e03048",
+        "userId" : "e29dec81-7460-3a04-9fef-b0d3550826f7",
+        "name" : "Adrienne Carter Sowell",
+        "courseListingId" : "d04e823a-ada3-470f-8085-d11c3a985d16",
+        "metadata" : {
+          "createdDate" : "2021-07-13T15:31:18.036+00:00",
+          "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+          "updatedDate" : "2021-07-13T15:31:18.036+00:00",
+          "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-13T15:31:18.011+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-13T15:31:56.461+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    },
+    "courseNumber" : "WGST 300",
+    "sectionName" : "502"
+  }, {
+    "id" : "713b4b46-e3e4-444f-9c03-116a56f22e05",
+    "name" : "PSYC",
+    "departmentId" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+    "departmentObject" : {
+      "id" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+      "name" : "PSYC",
+      "description" : "Psychology",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:38.373+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:38.373+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "1d8a39f1-6cb5-440f-9505-38c63191cfbc",
+    "courseListingObject" : {
+      "id" : "1d8a39f1-6cb5-440f-9505-38c63191cfbc",
+      "registrarId" : "2019:Fall:PSYC345500",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+      "termObject" : {
+        "id" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+        "name" : "2019 Fall",
+        "startDate" : "2019-07-30T05:00:00.000Z",
+        "endDate" : "2019-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "08cd0a93-9734-4f42-8b82-c31509351c5d",
+        "userId" : "3cc7a0dd-c502-3117-86f0-028b5627a201",
+        "name" : "Omar Garcia",
+        "barcode" : "6016426592679597",
+        "courseListingId" : "1d8a39f1-6cb5-440f-9505-38c63191cfbc",
+        "metadata" : {
+          "createdDate" : "2021-07-13T15:35:20.375+00:00",
+          "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+          "updatedDate" : "2021-07-13T15:35:20.375+00:00",
+          "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-13T15:34:50.621+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-13T15:34:50.621+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    },
+    "courseNumber" : "PSYC 345",
+    "sectionName" : "500"
+  }, {
+    "id" : "562feffa-7801-42fb-8c7d-7b3485b0445d",
+    "name" : "PSYC",
+    "departmentId" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+    "departmentObject" : {
+      "id" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+      "name" : "PSYC",
+      "description" : "Psychology",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:38.373+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:38.373+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "831565c7-6773-49b6-9fc5-fa73c85fe45b",
+    "courseListingObject" : {
+      "id" : "831565c7-6773-49b6-9fc5-fa73c85fe45b",
+      "registrarId" : "2019:fALL:PSYC315502",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+      "termObject" : {
+        "id" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+        "name" : "2019 Fall",
+        "startDate" : "2019-07-30T05:00:00.000Z",
+        "endDate" : "2019-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "594aad5b-6769-4a9b-987d-49f82df555ac",
+        "userId" : "eb4726e8-af5d-308c-a151-da409ef18f52",
+        "name" : "Rachel Smallman",
+        "barcode" : "6016426590900805",
+        "courseListingId" : "831565c7-6773-49b6-9fc5-fa73c85fe45b",
+        "metadata" : {
+          "createdDate" : "2021-07-13T15:39:04.480+00:00",
+          "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+          "updatedDate" : "2021-07-13T15:39:04.480+00:00",
+          "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-13T15:38:09.499+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-13T15:38:09.499+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    },
+    "courseNumber" : "PSYC 315",
+    "sectionName" : "502"
+  }, {
+    "id" : "9cc233f7-184f-4c4c-8139-a13522e0694f",
+    "name" : "PSYC",
+    "departmentId" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+    "departmentObject" : {
+      "id" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+      "name" : "PSYC",
+      "description" : "Psychology",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:38.373+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:38.373+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "1688a240-794c-45f9-845e-670a9e719bf1",
+    "courseListingObject" : {
+      "id" : "1688a240-794c-45f9-845e-670a9e719bf1",
+      "registrarId" : "2019:Fall:Psyc306250",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+      "termObject" : {
+        "id" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+        "name" : "2019 Fall",
+        "startDate" : "2019-07-30T05:00:00.000Z",
+        "endDate" : "2019-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "4482a86c-d497-4a7a-93c6-083207a2d3d8",
+        "userId" : "ef8e6915-138d-3eba-acd4-5f3450ea7f6f",
+        "name" : "Sherecce Fields",
+        "barcode" : "6016426590866261",
+        "courseListingId" : "1688a240-794c-45f9-845e-670a9e719bf1",
+        "metadata" : {
+          "createdDate" : "2021-07-13T15:54:15.669+00:00",
+          "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+          "updatedDate" : "2021-07-13T15:54:15.669+00:00",
+          "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-13T15:41:12.833+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-13T15:41:12.833+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    },
+    "courseNumber" : "PSYC 306",
+    "sectionName" : "250"
+  }, {
+    "id" : "482d3fd9-c2e3-4a0a-8ae7-6a57d20d8135",
+    "name" : "PSCY",
+    "departmentId" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+    "departmentObject" : {
+      "id" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+      "name" : "PSYC",
+      "description" : "Psychology",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:38.373+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:38.373+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "b8582ad9-fb7b-4354-8a10-0de8ac1f474d",
+    "courseListingObject" : {
+      "id" : "b8582ad9-fb7b-4354-8a10-0de8ac1f474d",
+      "registrarId" : "2019:Fall:PSYC305100",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+      "termObject" : {
+        "id" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+        "name" : "2019 Fall",
+        "startDate" : "2019-07-30T05:00:00.000Z",
+        "endDate" : "2019-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "522d95c1-31e1-45bf-ae94-132a318269c5",
+        "userId" : "51e299ab-d706-3756-8031-8645666a2176",
+        "name" : "Cassandra Baldwin",
+        "barcode" : "6016426593068808",
+        "courseListingId" : "b8582ad9-fb7b-4354-8a10-0de8ac1f474d",
+        "metadata" : {
+          "createdDate" : "2021-07-13T15:57:37.771+00:00",
+          "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+          "updatedDate" : "2021-07-13T15:57:37.771+00:00",
+          "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-13T15:57:02.700+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-13T15:57:02.700+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    },
+    "courseNumber" : "PSYC 305",
+    "sectionName" : "100"
+  }, {
+    "id" : "2d511edd-11ed-4e95-96b1-74325358a70d",
+    "name" : "SOCI",
+    "departmentId" : "60e05e6b-6f64-41a6-bba4-e2fd629e2c4b",
+    "departmentObject" : {
+      "id" : "60e05e6b-6f64-41a6-bba4-e2fd629e2c4b",
+      "name" : "SOCI",
+      "description" : "Sociology",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:39.078+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:39.078+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "f2f459ce-209f-480a-af3f-c9b2375f726a",
+    "courseListingObject" : {
+      "id" : "f2f459ce-209f-480a-af3f-c9b2375f726a",
+      "registrarId" : "2021:Fall:SOCI304200",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+      "termObject" : {
+        "id" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+        "name" : "2021 Fall",
+        "startDate" : "2021-07-30T05:00:00.000Z",
+        "endDate" : "2021-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "00272b00-5080-41ee-9483-c6add74e9272",
+        "userId" : "73384cee-ebb6-3668-940a-1362e8116bf5",
+        "name" : "Holly Foster",
+        "barcode" : "6016422525850298",
+        "patronGroup" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+        "patronGroupObject" : {
+          "id" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+          "desc" : "Faculty/Staff",
+          "group" : "fast"
+        },
+        "courseListingId" : "f2f459ce-209f-480a-af3f-c9b2375f726a",
+        "metadata" : {
+          "createdDate" : "2021-07-13T15:45:09.018+00:00",
+          "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
+          "updatedDate" : "2021-07-13T15:45:09.018+00:00",
+          "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-13T15:45:08.994+00:00",
+        "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
+        "updatedDate" : "2021-07-13T15:45:30.165+00:00",
+        "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
+      }
+    },
+    "courseNumber" : "SOCI 304",
+    "sectionName" : "200"
+  }, {
+    "id" : "e0263b36-23aa-4ec8-b646-b86a2dd8fd6f",
+    "name" : "SOCI",
+    "departmentId" : "60e05e6b-6f64-41a6-bba4-e2fd629e2c4b",
+    "departmentObject" : {
+      "id" : "60e05e6b-6f64-41a6-bba4-e2fd629e2c4b",
+      "name" : "SOCI",
+      "description" : "Sociology",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:39.078+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:39.078+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "64d0b6e7-5fca-4713-a8dc-b8cfb5f362dc",
+    "courseListingObject" : {
+      "id" : "64d0b6e7-5fca-4713-a8dc-b8cfb5f362dc",
+      "registrarId" : "2021:Fall:SOCI304501",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+      "termObject" : {
+        "id" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+        "name" : "2021 Fall",
+        "startDate" : "2021-07-30T05:00:00.000Z",
+        "endDate" : "2021-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "a58b6fbf-5ffe-436b-b73d-fb723909ee51",
+        "userId" : "73384cee-ebb6-3668-940a-1362e8116bf5",
+        "name" : "Holly Foster",
+        "barcode" : "6016422525850298",
+        "patronGroup" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+        "patronGroupObject" : {
+          "id" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+          "desc" : "Faculty/Staff",
+          "group" : "fast"
+        },
+        "courseListingId" : "64d0b6e7-5fca-4713-a8dc-b8cfb5f362dc",
+        "metadata" : {
+          "createdDate" : "2021-07-13T15:43:45.862+00:00",
+          "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
+          "updatedDate" : "2021-07-13T15:43:45.862+00:00",
+          "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-13T15:42:04.214+00:00",
+        "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
+        "updatedDate" : "2021-07-13T15:46:18.067+00:00",
+        "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
+      }
+    },
+    "courseNumber" : "SOCI 304",
+    "sectionName" : "501"
+  }, {
+    "id" : "f3786a8f-0698-40c1-95b7-5ed238e94d19",
+    "name" : "PSYC",
+    "departmentId" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+    "departmentObject" : {
+      "id" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+      "name" : "PSYC",
+      "description" : "Psychology",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:38.373+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:38.373+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "f3c8bf04-7cb0-43c0-a740-f4bae126e9aa",
+    "courseListingObject" : {
+      "id" : "f3c8bf04-7cb0-43c0-a740-f4bae126e9aa",
+      "registrarId" : "2019:Fall:PSYC107504",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+      "termObject" : {
+        "id" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+        "name" : "2019 Fall",
+        "startDate" : "2019-07-30T05:00:00.000Z",
+        "endDate" : "2019-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "62d356ab-01e5-458f-aa0d-9a4cedc2176e",
+        "userId" : "eb4726e8-af5d-308c-a151-da409ef18f52",
+        "name" : "Rachel Smallman",
+        "barcode" : "6016426590900805",
+        "courseListingId" : "f3c8bf04-7cb0-43c0-a740-f4bae126e9aa",
+        "metadata" : {
+          "createdDate" : "2021-07-13T16:04:00.729+00:00",
+          "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+          "updatedDate" : "2021-07-13T16:04:00.729+00:00",
+          "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-13T16:03:27.568+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-13T16:03:27.568+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    },
+    "courseNumber" : "PSYC 107",
+    "sectionName" : "504"
+  }, {
+    "id" : "3bedd6f5-26fa-4f1b-a3b4-a98dd0d1cd24",
+    "name" : "PSYC",
+    "departmentId" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+    "departmentObject" : {
+      "id" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+      "name" : "PSYC",
+      "description" : "Psychology",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:38.373+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:38.373+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "5400bcd5-d40f-4a5b-8339-00691755c27a",
+    "courseListingObject" : {
+      "id" : "5400bcd5-d40f-4a5b-8339-00691755c27a",
+      "registrarId" : "2019:Fall:PSYC107158",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+      "termObject" : {
+        "id" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+        "name" : "2019 Fall",
+        "startDate" : "2019-07-30T05:00:00.000Z",
+        "endDate" : "2019-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "6bdff148-a37c-47d2-85ac-06c8ef90f113",
+        "userId" : "8096ded9-a04a-32e5-9736-55fe71664a7a",
+        "name" : "Rebecca Schlegel",
+        "barcode" : "6016426590708471",
+        "courseListingId" : "5400bcd5-d40f-4a5b-8339-00691755c27a",
+        "metadata" : {
+          "createdDate" : "2021-07-13T16:00:33.546+00:00",
+          "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+          "updatedDate" : "2021-07-13T16:00:33.546+00:00",
+          "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-13T15:59:56.555+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-13T15:59:56.555+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    },
+    "courseNumber" : "PSYC 107",
+    "sectionName" : "518"
+  }, {
+    "id" : "4b8d7cd0-0de1-401d-88ca-74ef9426b85c",
+    "name" : "PSYC",
+    "departmentId" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+    "departmentObject" : {
+      "id" : "f43d71b3-bb94-4b56-b7ed-ffcfb962bed9",
+      "name" : "PSYC",
+      "description" : "Psychology",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:38.373+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:38.373+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "d4ef8374-0ad3-4745-bea0-45c336876c40",
+    "courseListingObject" : {
+      "id" : "d4ef8374-0ad3-4745-bea0-45c336876c40",
+      "registrarId" : "2019:Fall:PSYC107202",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+      "termObject" : {
+        "id" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+        "name" : "2019 Fall",
+        "startDate" : "2019-07-30T05:00:00.000Z",
+        "endDate" : "2019-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "e2113e3e-3e9e-4c15-b4cb-88d0a3910c9d",
+        "userId" : "ef5e51e1-b4a3-376a-835d-f8cc95f8e548",
+        "name" : "Mark Packard",
+        "barcode" : "6016426592434043",
+        "courseListingId" : "d4ef8374-0ad3-4745-bea0-45c336876c40",
+        "metadata" : {
+          "createdDate" : "2021-07-13T16:06:59.472+00:00",
+          "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+          "updatedDate" : "2021-07-13T16:06:59.472+00:00",
+          "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-13T16:06:30.217+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-13T16:06:30.217+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    },
+    "courseNumber" : "PSYC 107",
+    "sectionName" : "202"
+  }, {
+    "id" : "155c5561-2052-433a-a760-26562d99ebb8",
+    "name" : "POLS",
+    "departmentId" : "2ca2f4ae-9d79-4912-b089-a29a76e8177a",
+    "departmentObject" : {
+      "id" : "2ca2f4ae-9d79-4912-b089-a29a76e8177a",
+      "name" : "POLS",
+      "description" : "Political Science",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:38.363+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:38.363+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "136db98d-3d3a-428c-9c8b-ff51adf6fb0a",
+    "courseListingObject" : {
+      "id" : "136db98d-3d3a-428c-9c8b-ff51adf6fb0a",
+      "registrarId" : "2021:Spring:POLS207504",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+      "termObject" : {
+        "id" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+        "name" : "2021 Spring",
+        "startDate" : "2020-12-26T06:00:00.000Z",
+        "endDate" : "2021-05-17T05:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "a19b1c4e-dbb8-4bff-a6f4-535984c40665",
+        "userId" : "cc83627a-73ed-3175-9a41-85eafd4acc44",
+        "name" : "Dwight Roblyer",
+        "barcode" : "6016426594458685",
+        "courseListingId" : "136db98d-3d3a-428c-9c8b-ff51adf6fb0a",
+        "metadata" : {
+          "createdDate" : "2021-07-13T16:28:08.213+00:00",
+          "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+          "updatedDate" : "2021-07-13T16:28:08.213+00:00",
+          "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-13T16:13:58.953+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-13T16:28:58.747+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    },
+    "courseNumber" : "POLS 207",
+    "sectionName" : "504"
+  }, {
+    "id" : "62f49e03-1a75-4789-98a3-074c861a1e57",
+    "name" : "POLS",
+    "departmentId" : "2ca2f4ae-9d79-4912-b089-a29a76e8177a",
+    "departmentObject" : {
+      "id" : "2ca2f4ae-9d79-4912-b089-a29a76e8177a",
+      "name" : "POLS",
+      "description" : "Political Science",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:38.363+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:38.363+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "e3176e6d-2217-433d-8652-fca9ed7c14df",
+    "courseListingObject" : {
+      "id" : "e3176e6d-2217-433d-8652-fca9ed7c14df",
+      "registrarId" : "2019:Fall:POLS206506 2019:Fall:POLS206508",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+      "termObject" : {
+        "id" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+        "name" : "2019 Fall",
+        "startDate" : "2019-07-30T05:00:00.000Z",
+        "endDate" : "2019-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "c91cb479-53ba-4d28-bfc6-fdb73ebb614b",
+        "userId" : "85ad8767-a1ac-34b0-ac4d-56b8a619a713",
+        "name" : "Christine Lipsmeyer",
+        "barcode" : "6016426594463552",
+        "courseListingId" : "e3176e6d-2217-433d-8652-fca9ed7c14df",
+        "metadata" : {
+          "createdDate" : "2021-07-13T16:32:44.793+00:00",
+          "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+          "updatedDate" : "2021-07-13T16:32:44.793+00:00",
+          "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-13T16:32:09.673+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-13T16:32:09.673+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    },
+    "courseNumber" : "POLS 206",
+    "sectionName" : "506 508"
   } ]
 }

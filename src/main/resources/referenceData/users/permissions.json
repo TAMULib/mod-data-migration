@@ -205,7 +205,7 @@
     "displayName" : "Cat_AllStaff",
     "id" : "b03402f4-b8e2-45c9-b791-3d1197ab9d86",
     "description" : "Set of permissions for Staff and Professionals",
-    "subPermissions" : [ "ui-inventory-es.all-permissions.TEMPORARY", "module.inventory-es.enabled", "ui-inventory.all-permissions.TEMPORARY", "ui-inventory.single-record-import", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.holdings.move", "ui-inventory.item.move", "ui-orders.order-lines.view", "ui-orders.order.view", "ui-quick-marc.quick-marc-editor.all", "ui-tags.view" ],
+    "subPermissions" : [ "ui-inventory-es.all-permissions.TEMPORARY", "module.inventory-es.enabled", "ui-inventory.all-permissions.TEMPORARY", "ui-inventory.single-record-import", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.holdings.move", "ui-inventory.item.move", "ui-orders.order-lines.view", "ui-orders.order.view", "ui-quick-marc.quick-marc-editor.all", "ui-tags.view", "inventory.items.item.mark-in-process-non-requestable.post", "inventory.items.item.mark-in-process.post", "inventory.items.item.mark-intellectual-item.post", "inventory.items.item.mark-long-missing.post", "inventory.items.item.mark-missing.post", "inventory.items.item.mark-restricted.post", "inventory.items.item.mark-unavailable.post", "inventory.items.item.mark-unknown.post", "inventory.items.item.mark-withdrawn.post", "ui-inventory.item.markasmissing", "ui-inventory.items.mark-in-process-non-requestable", "ui-inventory.items.mark-intellectual-item", "ui-inventory.items.mark-items-withdrawn", "ui-inventory.items.mark-long-missing", "ui-inventory.items.mark-restricted", "ui-inventory.items.mark-unavailable", "ui-inventory.items.mark-unknown" ],
     "mutable" : true,
     "visible" : true
   }, {
