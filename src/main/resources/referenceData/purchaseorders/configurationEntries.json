@@ -326,5 +326,12 @@
     "code" : "ADDRESS_1625509390502",
     "enabled" : true,
     "value" : "{\"name\":\"TAMU-SER-Print\",\"address\":\"\"}"
+  }, {
+    "id" : "d6346dee-ab7e-45b7-a8e3-338877d6aef4",
+    "module" : "TENANT",
+    "configName" : "tenant.addresses",
+    "code" : "ADDRESS_1625758525246",
+    "enabled" : true,
+    "value" : "{\"name\":\"Complete\",\"address\":\"Complete\"}"
   } ]
 }

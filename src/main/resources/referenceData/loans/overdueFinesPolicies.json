@@ -109,5 +109,33 @@
     "gracePeriodRecall" : false,
     "maxOverdueRecallFine" : 0.0,
     "id" : "a3d581a8-d895-49bc-a123-ed966867c2ff"
+  }, {
+    "name" : "day_3_max_45",
+    "overdueFine" : {
+      "quantity" : 3.0,
+      "intervalId" : "day"
+    },
+    "countClosed" : false,
+    "maxOverdueFine" : 45.0,
+    "forgiveOverdueFine" : false,
+    "overdueRecallFine" : {
+      "quantity" : 3.0,
+      "intervalId" : "day"
+    },
+    "gracePeriodRecall" : true,
+    "maxOverdueRecallFine" : 45.0,
+    "id" : "121a5b1e-d316-4bf0-8a70-1a453da373f9"
+  }, {
+    "name" : "overdue_recall_3_day_max_45",
+    "countClosed" : false,
+    "maxOverdueFine" : 0.0,
+    "forgiveOverdueFine" : true,
+    "overdueRecallFine" : {
+      "quantity" : 3.0,
+      "intervalId" : "day"
+    },
+    "gracePeriodRecall" : true,
+    "maxOverdueRecallFine" : 45.0,
+    "id" : "8d6fa78b-1a0a-4901-b36c-4a68f14b3d48"
   } ]
 }

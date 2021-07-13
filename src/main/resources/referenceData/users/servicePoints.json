@@ -156,12 +156,6 @@
       "printByDefault" : false
     } ]
   }, {
-    "id" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
-    "name" : "Maps & GIS",
-    "code" : "maps",
-    "discoveryDisplayName" : "Maps & GIS",
-    "staffSlips" : [ ]
-  }, {
     "id" : "261f9e14-54b2-46aa-bfd9-23b1dc44e87e",
     "name" : "HSC McAllen Campus",
     "code" : "mcallen",
@@ -297,6 +291,25 @@
     }, {
       "id" : "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
       "printByDefault" : false
+    } ]
+  }, {
+    "id" : "e4078db6-7af9-4d08-85c7-6eb1d0366e0c",
+    "name" : "Maps and GIS",
+    "code" : "maps",
+    "discoveryDisplayName" : "Maps and GIS",
+    "pickupLocation" : false,
+    "staffSlips" : [ {
+      "id" : "6a6e72f0-69da-4b4c-8254-7154679e9d88",
+      "printByDefault" : true
+    }, {
+      "id" : "8812bae1-2738-442c-bc20-fe4bb38a11f8",
+      "printByDefault" : true
+    }, {
+      "id" : "1ed55c5c-64d9-40eb-8b80-7438a262288b",
+      "printByDefault" : true
+    }, {
+      "id" : "f838cdaf-555a-473f-abf1-f35ef6ab8ae1",
+      "printByDefault" : true
     } ]
   } ]
 }

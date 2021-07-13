@@ -233,5 +233,15 @@
     "patronGroupId" : "1d235322-75a3-4386-9876-c3cdf9c95495",
     "conditionId" : "08530ac4-07f2-48e6-9dda-a97bc2bf7053",
     "value" : 1.0
+  }, {
+    "id" : "4d686ba7-2fad-4b0e-acfc-1aea6f49dc72",
+    "patronGroupId" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+    "conditionId" : "72b67965-5b73-4840-bc0b-be8f3f6e047e",
+    "value" : 1.0
+  }, {
+    "id" : "abb99619-9e7a-45b9-8559-e6678a6d2b91",
+    "patronGroupId" : "6508e3bb-0225-4d1e-b609-a926dda4bccc",
+    "conditionId" : "72b67965-5b73-4840-bc0b-be8f3f6e047e",
+    "value" : 1.0
   } ]
 }

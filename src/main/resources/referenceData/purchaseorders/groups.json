@@ -79,17 +79,5 @@
     "description" : "Includes all etxt, Continuations & Serials",
     "name" : "Evans Recurring All",
     "status" : "Active"
-  }, {
-    "id" : "428b4b9a-fe16-41ae-8fb5-70633999a17c",
-    "acqUnitIds" : [ ],
-    "code" : "j_group_2",
-    "name" : "john group 2",
-    "status" : "Active"
-  }, {
-    "id" : "359218e1-1123-4a3f-9edb-d6849ed6382e",
-    "acqUnitIds" : [ ],
-    "code" : "j_group",
-    "name" : "john_group",
-    "status" : "Active"
   } ]
 }
