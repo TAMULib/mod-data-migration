@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-import org.codehaus.plexus.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.feesfines.Accountdata;
 import org.folio.rest.jaxrs.model.feesfines.actions.Feefineactiondata;
 import org.folio.rest.jaxrs.model.inventory.Location;

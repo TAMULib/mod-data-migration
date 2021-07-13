@@ -12,8 +12,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
-import org.codehaus.plexus.util.StringUtils;
 import org.folio.rest.jaxrs.model.userimport.schemas.Address;
 import org.folio.rest.jaxrs.model.userimport.schemas.ImportResponse;
 import org.folio.rest.jaxrs.model.userimport.schemas.Personal;

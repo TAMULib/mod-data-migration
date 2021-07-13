@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.codehaus.plexus.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote;
 import org.folio.rest.jaxrs.model.inventory.EffectiveCallNumberComponents;
 import org.folio.rest.jaxrs.model.inventory.Item;
