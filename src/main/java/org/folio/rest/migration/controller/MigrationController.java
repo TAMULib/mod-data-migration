@@ -21,7 +21,6 @@ import org.folio.rest.migration.VendorReferenceLinkMigration;
 import org.folio.rest.migration.aspect.annotation.CreateCalendarPeriods;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceData;
 import org.folio.rest.migration.aspect.annotation.CreateReferenceLinkTypes;
-import org.folio.rest.migration.aspect.annotation.UpdateRules;
 import org.folio.rest.migration.model.request.bib.BibContext;
 import org.folio.rest.migration.model.request.boundwith.BoundWithContext;
 import org.folio.rest.migration.model.request.coursereserve.CourseReserveContext;
@@ -41,7 +40,6 @@ import org.folio.rest.migration.model.request.vendor.VendorReferenceLinkContext;
 import org.folio.rest.migration.service.CalendarService;
 import org.folio.rest.migration.service.MigrationService;
 import org.folio.rest.migration.service.ReferenceDataService;
-import org.folio.rest.migration.service.RulesService;
 import org.folio.spring.tenant.annotation.TenantHeader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,9 +61,6 @@ public class MigrationController {
   @Autowired
   private CalendarService calendarService;
 
-  @Autowired
-  private RulesService rulesService;
-
   @PostMapping("/reference-data")
   public CompletableFuture<Void> loadReferenceData(
       @TenantHeader String tenant,
@@ -77,16 +72,6 @@ public class MigrationController {
   @PostMapping("/calendar-periods")
   public CompletableFuture<Void> createCalendarPeriods(@TenantHeader String tenant) {
     return calendarService.createCalendarPeriodsAsync("classpath:/calendar/*.json", tenant);
-  }
-
-  @PostMapping("/circ-rules")
-  public CompletableFuture<Void> updateCircRules(@TenantHeader String tenant) {
-    return rulesService.updateRulesAsync("classpath:/rules/loans/rules.json", "circulation-rules-storage", tenant);
-  }
-
-  @PostMapping("/bib-mapping-rules")
-  public CompletableFuture<Void> updateBibMappingRules(@TenantHeader String tenant) {
-    return rulesService.updateRulesAsync("classpath:/rules/bibs/rules.json", "mapping-rules", tenant);
   }
 
   @PostMapping("/user-reference-links")
@@ -141,7 +126,6 @@ public class MigrationController {
 
   @PostMapping("/bibs")
   @CreateReferenceData(pattern = "classpath:/referenceData/bibs/*.json")
-  @UpdateRules(file = "classpath:/rules/bibs/rules.json", path = "mapping-rules")
   public CompletableFuture<String> bibs(
       @RequestBody BibContext context,
       @TenantHeader String tenant,
@@ -184,7 +168,6 @@ public class MigrationController {
   @PostMapping("/loans")
   @CreateCalendarPeriods(pattern = "classpath:/calendar/*.json")
   @CreateReferenceData(pattern = "classpath:/referenceData/loans/*.json")
-  @UpdateRules(file = "classpath:/rules/loans/rules.json", path = "circulation-rules-storage")
   public CompletableFuture<String> loans(
       @RequestBody LoanContext context,
       @TenantHeader String tenant,

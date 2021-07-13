@@ -14,7 +14,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -171,71 +173,75 @@ public class ReferenceDataService {
     referenceData.forEach(datum -> {
       try {
         JsonNode response = okapiService.fetchReferenceData(okapi, datum);
-        Iterator<Entry<String, JsonNode>> nodes = response.fields();
-        logger.info("harvested reference data {} {}", datum.getPath(), response);
-        while (nodes.hasNext()) {
-          Map.Entry<String, JsonNode> entry = (Map.Entry<String, JsonNode>) nodes.next();
-          if (!entry.getKey().equals("totalRecords") && !entry.getKey().equals("resultInfo")) {
-            List<JsonNode> data = objectMapper.convertValue(entry.getValue(), new TypeReference<ArrayList<JsonNode>>() { });
-            datum.setData(data.stream().map(node -> {
-              if (datum.getReify()) {
-                String id = node.get("id").asText();
-                node = okapiService.fetchReferenceDataById(okapi, datum, id);
-              }
-              for (Map.Entry<String, Object> def : datum.getDefaults().entrySet()) {
-                String property = def.getKey();
-                Object value = def.getValue();
-                int lastIndexOf = property.lastIndexOf(".");
-                if (lastIndexOf >= 0) {
-                  property = property.substring(lastIndexOf + 1);
+        if (response.has("totalRecords")) {
+          Iterator<Entry<String, JsonNode>> nodes = response.fields();
+          logger.info("harvested reference data {} {}", datum.getPath(), response);
+          while (nodes.hasNext()) {
+            Map.Entry<String, JsonNode> entry = (Map.Entry<String, JsonNode>) nodes.next();
+            if (!entry.getKey().equals("totalRecords") && !entry.getKey().equals("resultInfo")) {
+              List<JsonNode> data = objectMapper.convertValue(entry.getValue(), new TypeReference<ArrayList<JsonNode>>() { });
+              datum.setData(data.stream().map(node -> {
+                if (datum.getReify()) {
+                  String id = node.get("id").asText();
+                  node = okapiService.fetchReferenceDataById(okapi, datum, id);
                 }
-                if (value instanceof String) {
-                  getNode(node, def.getKey()).put(property, (String) value);
-                } else if (value instanceof Integer) {
-                  getNode(node, def.getKey()).put(property, (Integer) value);
-                } else if (value instanceof Long) {
-                  getNode(node, def.getKey()).put(property, (Long) value);
-                } else if (value instanceof Float) {
-                  getNode(node, def.getKey()).put(property, (Float) value);
-                } else if (value instanceof Double) {
-                  getNode(node, def.getKey()).put(property, (Double) value);
-                } else if (value instanceof Boolean) {
-                  getNode(node, def.getKey()).put(property, (Boolean) value);
-                }
-              }
-              if (!datum.getTransform().isEmpty()) {
-                ObjectNode transformed = objectMapper.createObjectNode();
-                for (Map.Entry<String, String> te : datum.getTransform().entrySet()) {
-                  String key = te.getKey();
-                  String value = te.getValue();
-                  if (value.equals(".")) {
-                    transformed.set(key, node);
-                  } else {
-                    String property = value;
-                    int lastIndexOf = property.lastIndexOf(".");
-                    if (lastIndexOf >= 0) {
-                      property = property.substring(lastIndexOf + 1);
-                    }
-                    transformed.set(key, getNode(node, value).get(property));
+                for (Map.Entry<String, Object> def : datum.getDefaults().entrySet()) {
+                  String property = def.getKey();
+                  Object value = def.getValue();
+                  int lastIndexOf = property.lastIndexOf(".");
+                  if (lastIndexOf >= 0) {
+                    property = property.substring(lastIndexOf + 1);
+                  }
+                  if (value instanceof String) {
+                    getNode(node, def.getKey()).put(property, (String) value);
+                  } else if (value instanceof Integer) {
+                    getNode(node, def.getKey()).put(property, (Integer) value);
+                  } else if (value instanceof Long) {
+                    getNode(node, def.getKey()).put(property, (Long) value);
+                  } else if (value instanceof Float) {
+                    getNode(node, def.getKey()).put(property, (Float) value);
+                  } else if (value instanceof Double) {
+                    getNode(node, def.getKey()).put(property, (Double) value);
+                  } else if (value instanceof Boolean) {
+                    getNode(node, def.getKey()).put(property, (Boolean) value);
                   }
                 }
-                node = transformed;
-              }
-              for (String exclude : datum.getExcludedProperties()) {
-                String property = exclude;
-                int lastIndexOf = property.lastIndexOf(".");
-                if (lastIndexOf >= 0) {
-                  property = property.substring(lastIndexOf + 1);
+                if (!datum.getTransform().isEmpty()) {
+                  ObjectNode transformed = objectMapper.createObjectNode();
+                  for (Map.Entry<String, String> te : datum.getTransform().entrySet()) {
+                    String key = te.getKey();
+                    String value = te.getValue();
+                    if (value.equals(".")) {
+                      transformed.set(key, node);
+                    } else {
+                      String property = value;
+                      int lastIndexOf = property.lastIndexOf(".");
+                      if (lastIndexOf >= 0) {
+                        property = property.substring(lastIndexOf + 1);
+                      }
+                      transformed.set(key, getNode(node, value).get(property));
+                    }
+                  }
+                  node = transformed;
                 }
-                getNode(node, exclude).remove(property);
-              }
-              return node;
-            }).collect(Collectors.toList()));
-            String filePath = datum.getFilePath().replace("target\\classes", "src\\main\\resources");
-            logger.info("writing reference data {}", filePath);
-            objectMapper.writerWithDefaultPrettyPrinter()
-              .writeValue(new File(filePath), datum);
+                for (String exclude : datum.getExcludedProperties()) {
+                  String property = exclude;
+                  int lastIndexOf = property.lastIndexOf(".");
+                  if (lastIndexOf >= 0) {
+                    property = property.substring(lastIndexOf + 1);
+                  }
+                  getNode(node, exclude).remove(property);
+                }
+                return node;
+              }).collect(Collectors.toList()));
+              writeReferenceData(datum);
+            }
           }
+        } else {
+          List<JsonNode> data = new ArrayList<>();
+          data.add(response);
+          datum.setData(data);
+          writeReferenceData(datum);
         }
       } catch (Exception e) {
         logger.warn("failed harvesting reference data {}: {}", datum.getPath(), e.getMessage());
@@ -253,6 +259,13 @@ public class ReferenceDataService {
       return current;
     }
     return getNode(current, path.substring(path.indexOf(".") + 1));
+  }
+
+  private void writeReferenceData(ReferenceData datum) throws JsonGenerationException, JsonMappingException, IOException {
+    String filePath = datum.getFilePath().replace("target\\classes", "src\\main\\resources");
+    logger.info("writing reference data {}", filePath);
+    objectMapper.writerWithDefaultPrettyPrinter()
+      .writeValue(new File(filePath), datum);
   }
 
 }
