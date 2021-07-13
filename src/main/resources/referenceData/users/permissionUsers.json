@@ -699,7 +699,7 @@
   }, {
     "id" : "14297959-7ba6-488d-8044-29cd0e09ba48",
     "userId" : "f0c4cc32-f80d-38eb-8638-8a26e28be2b8",
-    "permissions" : [ "7fd42e23-08bf-4bf3-ad66-f6e27c446649", "bbc81742-5f20-4517-9e38-a1ed0631d874", "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "cc4a6624-190c-4872-95dd-be090a74b61f", "560116fb-772e-4a00-90a2-fdc2b748ea2b", "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "module.data-import.enabled", "9ccfdbfe-ad7e-4103-9906-b06a47940eca", "7301b3b0-7075-4e66-8c43-12ed005e6c6b", "7b0b50d2-89b5-4a3c-9137-5513a23327b7", "5b92a0a0-25a2-42a4-95e1-775f118d3ef2" ]
+    "permissions" : [ "7fd42e23-08bf-4bf3-ad66-f6e27c446649", "bbc81742-5f20-4517-9e38-a1ed0631d874", "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "cc4a6624-190c-4872-95dd-be090a74b61f", "560116fb-772e-4a00-90a2-fdc2b748ea2b", "46d2d78f-0882-4f54-99b3-dc1ee0eb2af7", "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "module.data-import.enabled", "9ccfdbfe-ad7e-4103-9906-b06a47940eca", "7301b3b0-7075-4e66-8c43-12ed005e6c6b", "7b0b50d2-89b5-4a3c-9137-5513a23327b7", "5b92a0a0-25a2-42a4-95e1-775f118d3ef2" ]
   }, {
     "id" : "c6160fa9-a5d9-4c07-a4e6-a38cf1d07093",
     "userId" : "5b7440dd-46fa-4c54-b791-a1e6c6078ab7",
@@ -719,7 +719,7 @@
   }, {
     "id" : "1358d0d6-8c1b-4101-81e4-9edba45ac39b",
     "userId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
-    "permissions" : [ "bd76b150-f075-4bdc-a93a-e6f7a563067e" ]
+    "permissions" : [ "46d2d78f-0882-4f54-99b3-dc1ee0eb2af7", "bd76b150-f075-4bdc-a93a-e6f7a563067e" ]
   }, {
     "id" : "b525f60b-4d34-4458-93c4-7887ab531b7c",
     "userId" : "6ee950aa-ef71-31cb-bcad-6f627279198f",

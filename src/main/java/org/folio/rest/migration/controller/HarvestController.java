@@ -2,6 +2,7 @@ package org.folio.rest.migration.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,7 +35,7 @@ public class HarvestController {
   private ObjectMapper objectMapper;
 
   @PostMapping("/calendar")
-  public JsonNode harvestServicePointCalendarPeriods(@RequestBody ExternalOkapi okapi) throws IOException {
+  public ObjectNode harvestServicePointCalendarPeriods(@RequestBody ExternalOkapi okapi) throws IOException {
     ObjectNode response = objectMapper.createObjectNode();
     response.put("okapi", okapi.getUrl());
     response.put("tenant", okapi.getTenant());
@@ -62,6 +63,8 @@ public class HarvestController {
     ObjectNode response = objectMapper.createObjectNode();
     response.put("okapi", okapi.getUrl());
     response.put("tenant", okapi.getTenant());
+    ObjectNode calendar = harvestServicePointCalendarPeriods(okapi);
+    response.set("calendar", calendar.without(Arrays.asList("okapi", "tenant")));
     referenceDataService.harvestReferenceData(pattern, okapi);
     return response;
   }
