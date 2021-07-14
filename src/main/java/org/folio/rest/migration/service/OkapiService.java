@@ -39,6 +39,7 @@ import org.folio.rest.jaxrs.model.inventory.Instance;
 import org.folio.rest.jaxrs.model.inventory.Instancerelationship;
 import org.folio.rest.jaxrs.model.inventory.Item;
 import org.folio.rest.jaxrs.model.inventory.Items;
+import org.folio.rest.jaxrs.model.inventory.ItemsPost;
 import org.folio.rest.jaxrs.model.inventory.Loantypes;
 import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Materialtypes;
@@ -448,6 +449,12 @@ public class OkapiService {
     String url = okapi.getUrl() + "/user-import";
     ResponseEntity<ImportResponse> response = restTemplate.exchange(url, HttpMethod.POST, entity, ImportResponse.class);
     return response.getBody();
+  }
+
+  public void postItemsBatch(String tenant, String token, ItemsPost itemsBatch) {
+    HttpEntity<ItemsPost> entity = new HttpEntity<>(itemsBatch, headers(tenant, token));
+    String url = okapi.getUrl() + "/item-storage/batch/synchronous";
+    restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
   }
 
   public CompositePurchaseOrder postCompositePurchaseOrder(String tenant, String token, CompositePurchaseOrder compositePurchaseOrder) {

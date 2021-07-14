@@ -10,6 +10,9 @@ import org.folio.rest.migration.model.request.AbstractJob;
 public class ItemJob extends AbstractJob {
 
   @NotNull
+  private int batchSize;
+
+  @NotNull
   private String user;
 
   @NotNull
@@ -22,6 +25,14 @@ public class ItemJob extends AbstractJob {
 
   public ItemJob() {
     this.references = new HashMap<>();
+  }
+
+  public int getBatchSize() {
+    return batchSize;
+  }
+
+  public void setBatchSize(int batchSize) {
+    this.batchSize = batchSize;
   }
 
   public String getUser() {
