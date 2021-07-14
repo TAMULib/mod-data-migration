@@ -5548,6 +5548,31 @@
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   }, {
+    "id" : "396ca335-4956-4680-b49f-5615d76a9d65",
+    "courseListingId" : "64072d64-c6d0-4ddf-8030-953043e96735",
+    "itemId" : "af64a656-ac59-3e52-a7b3-39cf54e5933a",
+    "copiedItem" : {
+      "barcode" : "A14821604515",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Creating country music : fabricating authenticity / Richard A. Peterson.",
+      "contributors" : [ {
+        "name" : "Peterson, Richard A",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "University of Chicago Press",
+        "place" : "Chicago",
+        "dateOfPublication" : "©1997"
+      } ],
+      "callNumber" : "ML3524 .P48 1997",
+      "instanceId" : "811719f4-b948-30a4-aa37-e60d6f0f4ba3",
+      "instanceHrid" : "in00001467819",
+      "holdingsId" : "3af13c02-78a2-3254-b236-ca7064760af0"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
     "id" : "e827b371-9642-4d58-bcb6-5945d282de5c",
     "courseListingId" : "8b3e8f1a-3069-4129-8738-631ad1b0b653",
     "itemId" : "a2292f36-b486-35f2-b6f2-0840cfe7da81",
@@ -5687,6 +5712,32 @@
       "instanceId" : "a66361cb-632e-3a2e-a915-a8d3841b7fc1",
       "instanceHrid" : "in00004051989",
       "holdingsId" : "14c4c610-f57e-30f8-9822-83395439e995"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "e33d2d98-87cf-4054-ad65-652f3718a326",
+    "courseListingId" : "832366b1-e5d3-434e-9fae-ea23ccab9b30",
+    "itemId" : "25f30f2f-d22f-3932-bf02-93495fb8497a",
+    "copiedItem" : {
+      "barcode" : "A14817742490",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Tendencies / Eve Kosofsky Sedgwick.",
+      "contributors" : [ {
+        "name" : "Sedgwick, Eve Kosofsky",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Duke University Press",
+        "place" : "Durham",
+        "dateOfPublication" : "1993",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "PN56.H57 S43 1993",
+      "instanceId" : "a6febaec-d09b-3800-b702-fbe8be124d51",
+      "instanceHrid" : "in00001153280",
+      "holdingsId" : "e248c993-8732-33d9-8a4e-de32d5b49bd5"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   }, {
@@ -7082,6 +7133,2323 @@
       "instanceId" : "6954066d-1515-31f3-9f5f-1f95f8d44734",
       "instanceHrid" : "in00004042233",
       "holdingsId" : "2703f1b0-556d-3b2e-a4fe-b860717ec609"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "fffed95d-7774-44df-8f86-077e66638301",
+    "courseListingId" : "d73fbb53-0b91-4f17-894c-adb80d3f7c65",
+    "itemId" : "02778d24-fead-31b3-8863-404808ca1d0f",
+    "copiedItem" : {
+      "barcode" : "A14842811680",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Fluid mechanics / Pijush K. Kundu, Ira M. Cohen, David R. Dowling ; with contributions by Grétar Tryggvason.",
+      "contributors" : [ {
+        "name" : "Kundu, Pijush K.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Cohen, Ira M.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Dowling, David R.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Tryggvason, Grétar,",
+        "contributorTypeText" : "contributor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Academic Press ; Elsevier",
+        "place" : "London",
+        "dateOfPublication" : "[2016]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2016"
+      } ],
+      "callNumber" : "QA901 .K86 2016",
+      "instanceId" : "4e7dc629-5450-3f5b-a848-bf985ee02073",
+      "instanceHrid" : "in00003601891",
+      "holdingsId" : "304ab588-675c-312d-aaec-c35748c0c1c8"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "3ed97b6a-ba80-460c-a720-147231f1e248",
+    "courseListingId" : "b319c93a-e46e-44ec-8e75-16375f85f80d",
+    "itemId" : "11799227-eaa1-3869-a8fc-0a705df51f2d",
+    "copiedItem" : {
+      "barcode" : "A14839311401",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Migritude / by Shailja Patel.",
+      "contributors" : [ {
+        "name" : "Patel, Shailja",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Kaya Press",
+        "place" : "New York",
+        "dateOfPublication" : "[2010]",
+        "role" : "Publication"
+      }, {
+        "publisher" : "Distributed by D.A.P./Distributed Art Publishers",
+        "place" : "New York",
+        "role" : "Distribution"
+      }, {
+        "dateOfPublication" : "©2010"
+      } ],
+      "callNumber" : "PS3616.A8665 Z46 2010",
+      "instanceId" : "d2ca5083-d9a5-3c06-bdf8-c2a0cebb33a5",
+      "instanceHrid" : "in00002720690",
+      "holdingsId" : "aacd2e4b-4637-351f-98ea-dd5cf40d7d24"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ca693635-41a9-4d7a-97df-a81e9ed79f23",
+    "courseListingId" : "86067ecb-69b3-4d88-af1d-6ad5aa1010f6",
+    "itemId" : "11799227-eaa1-3869-a8fc-0a705df51f2d",
+    "copiedItem" : {
+      "barcode" : "A14839311401",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Migritude / by Shailja Patel.",
+      "contributors" : [ {
+        "name" : "Patel, Shailja",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Kaya Press",
+        "place" : "New York",
+        "dateOfPublication" : "[2010]",
+        "role" : "Publication"
+      }, {
+        "publisher" : "Distributed by D.A.P./Distributed Art Publishers",
+        "place" : "New York",
+        "role" : "Distribution"
+      }, {
+        "dateOfPublication" : "©2010"
+      } ],
+      "callNumber" : "PS3616.A8665 Z46 2010",
+      "instanceId" : "d2ca5083-d9a5-3c06-bdf8-c2a0cebb33a5",
+      "instanceHrid" : "in00002720690",
+      "holdingsId" : "aacd2e4b-4637-351f-98ea-dd5cf40d7d24"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "9a04e838-e15e-47d3-9362-907f726dcd4c",
+    "courseListingId" : "a3e12f21-e717-4e88-8274-1a393644111e",
+    "itemId" : "4bfd0bc3-57b7-347c-9d66-f5ed663d7078",
+    "copiedItem" : {
+      "barcode" : "A14843622151",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Educational research : planning, conducting, and evaluating quantitative and qualitative research / John W. Creswell, John W. Creswell, University of Nebraska-Lincoln.",
+      "contributors" : [ {
+        "name" : "Creswell, John W",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson",
+        "place" : "Boston",
+        "dateOfPublication" : "[2015]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2015"
+      } ],
+      "callNumber" : "LB1028 .C742 2015",
+      "instanceId" : "a158f6eb-032e-3a28-a82d-1a55754c87de",
+      "instanceHrid" : "in00003751178",
+      "holdingsId" : "7fc6c613-e660-3791-9ca0-af81af471576"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "59f571e2-aca8-4f59-8dc1-aea4c41512cf",
+    "courseListingId" : "35f9dae3-17b7-4367-9d2f-cdb58fd1067e",
+    "itemId" : "e93c6d20-e35a-39ca-b98c-9f4f66683af7",
+    "copiedItem" : {
+      "barcode" : "A14813836138",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Hollywood from Vietnam to Reagan-- and beyond / Robin Wood.",
+      "contributors" : [ {
+        "name" : "Wood, Robin, 1931-2009",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Wood, Robin, 1931-2009. Hollywood from Vietnam to Reagan",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Columbia University Press",
+        "place" : "New York",
+        "dateOfPublication" : "c2003"
+      } ],
+      "callNumber" : "PN1993.5.U6 W64 2003",
+      "instanceId" : "2181e93f-41e6-32fe-aba5-20599dbbe71a",
+      "instanceHrid" : "in00002113351",
+      "holdingsId" : "c37bf3dd-946b-3b37-9cad-b871e8a1136f"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "92232819-f32f-4676-9dba-e04c58ddf529",
+    "courseListingId" : "1da31d27-972f-4a5b-baf4-caf20bd93c8c",
+    "itemId" : "39b15956-6962-3672-82e3-224ecc26dda1",
+    "copiedItem" : {
+      "barcode" : "A14850964314",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Gladiators in suits : race, gender, and the politics of representation in Scandal / edited by Simone Adams, Kimberly R. Moffitt, and Ronald L. Jackson II.",
+      "contributors" : [ {
+        "name" : "Adams, Simone,",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Moffitt, Kimberly R.,",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Jackson, Ronald L., 1970-",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Syracuse University Press",
+        "place" : "Syracuse, New York",
+        "dateOfPublication" : "2019",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2019"
+      } ],
+      "callNumber" : "PN1992.77.S33 G58 2019",
+      "instanceId" : "a558459d-804a-3cc3-9473-8e55410f69a8",
+      "instanceHrid" : "in00004217771",
+      "holdingsId" : "8aea715f-bb99-39dd-8ee7-7196e0e70587"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "6a92de87-d2bb-4928-8aa6-1bdd00c9dc12",
+    "courseListingId" : "b3c03d1e-970b-407e-ae67-15c5fed7347c",
+    "itemId" : "39b15956-6962-3672-82e3-224ecc26dda1",
+    "copiedItem" : {
+      "barcode" : "A14850964314",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Gladiators in suits : race, gender, and the politics of representation in Scandal / edited by Simone Adams, Kimberly R. Moffitt, and Ronald L. Jackson II.",
+      "contributors" : [ {
+        "name" : "Adams, Simone,",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Moffitt, Kimberly R.,",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Jackson, Ronald L., 1970-",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Syracuse University Press",
+        "place" : "Syracuse, New York",
+        "dateOfPublication" : "2019",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2019"
+      } ],
+      "callNumber" : "PN1992.77.S33 G58 2019",
+      "instanceId" : "a558459d-804a-3cc3-9473-8e55410f69a8",
+      "instanceHrid" : "in00004217771",
+      "holdingsId" : "8aea715f-bb99-39dd-8ee7-7196e0e70587"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "738b32fd-b48c-47b8-9b22-96a15e80035e",
+    "courseListingId" : "264800f3-a389-45f6-9290-9a6d18cd9b30",
+    "itemId" : "00ef84b1-6193-3426-8312-e5b8b644ab5a",
+    "copiedItem" : {
+      "barcode" : "A14850459588",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Playwriting, brief & brilliant / by Julie Jensen.",
+      "contributors" : [ {
+        "name" : "Jensen, Julie",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Smith and Kraus",
+        "place" : "Hanover, New Hampshire",
+        "dateOfPublication" : "[2007]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2007"
+      } ],
+      "callNumber" : "PN1661 .J46 2007",
+      "instanceId" : "b1724ad6-2e1b-3544-94bc-edda82d638f5",
+      "instanceHrid" : "in00004144108",
+      "holdingsId" : "f1f25db1-5d17-352e-a7de-33db94fcc194"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "108964ec-cc9c-4355-b04a-1f26ce46142b",
+    "courseListingId" : "7c0f41fb-3b88-45ab-bc22-227afe9bfe4b",
+    "itemId" : "87ccee60-7964-3137-a942-916134cdcae0",
+    "copiedItem" : {
+      "barcode" : "A14850031817",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Making places for people : 12 questions every designer should ask / Christie Johnson Coffin and Jenny Young.",
+      "contributors" : [ {
+        "name" : "Coffin, Christie,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Young, Jenny (Jenny E.),",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Routledge",
+        "place" : "New York",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "NA2542.4 .C64 2017",
+      "instanceId" : "c1bf2a1c-f14a-304e-8d79-464a54255bec",
+      "instanceHrid" : "in00003894749",
+      "holdingsId" : "1ada1485-8f6f-305b-a3aa-08644985f97f"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "99f78d00-109d-4b53-bc1e-7b0163ba048c",
+    "courseListingId" : "f752b68b-92c8-488f-9bf4-7d817db8f58f",
+    "itemId" : "e06d6777-7748-3787-bc29-6ac505305f8b",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-07-30T05:00:00.000Z",
+    "endDate" : "2019-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14833745165",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "01efba3f-5feb-472a-a446-268c0e5f4634",
+      "title" : "Some prefer nettles.",
+      "contributors" : [ {
+        "name" : "Tanizaki, Jun'ichiro¯",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "PL839.A7 T3313 1955",
+      "instanceId" : "8d9fca5b-bb47-3119-accd-e14fe2555665",
+      "instanceHrid" : "in00003777155",
+      "holdingsId" : "718c6f2d-aac3-3ecb-8a59-89ed281dc312"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "3558cfe4-a4e6-46d0-bbd3-9442f38e95ce",
+    "courseListingId" : "264800f3-a389-45f6-9290-9a6d18cd9b30",
+    "itemId" : "41d6783c-2447-3513-9d61-0e621f034a9e",
+    "copiedItem" : {
+      "barcode" : "A14833172964",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Playwriting : the structure of action / Sam Smiley with Norman Bert.",
+      "contributors" : [ {
+        "name" : "Smiley, Sam, 1931-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Bert, Norman A",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Yale University Press",
+        "place" : "New Haven",
+        "dateOfPublication" : "2005",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "PN1661 .S65 2005",
+      "instanceId" : "800ea722-8152-3bb8-bbed-8dd226c378c8",
+      "instanceHrid" : "in00002116866",
+      "holdingsId" : "871ca4f9-9e41-3c30-b482-9eab621346c7"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "036d751a-3fea-473d-85ce-689144309600",
+    "courseListingId" : "264800f3-a389-45f6-9290-9a6d18cd9b30",
+    "itemId" : "d750deb2-e260-3e57-92f5-9353fdac0926",
+    "copiedItem" : {
+      "barcode" : "A14828841142",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The playwright's guidebook / Stuart Spencer.",
+      "contributors" : [ {
+        "name" : "Spencer, Stuart, 1957-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Faber and Faber, Inc.",
+        "place" : "New York",
+        "dateOfPublication" : "2002",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "PN1661 .S68 2002",
+      "instanceId" : "2a2676f9-d9fd-31ab-b7c6-45da2f2ac014",
+      "instanceHrid" : "in00001586056",
+      "holdingsId" : "fd06636d-64f6-31ba-a622-4987bee658af"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "11cd0046-062d-4563-9469-95793ac17640",
+    "courseListingId" : "9e613045-7c9b-482b-b077-da97dfabfbbd",
+    "itemId" : "100e71fd-29f5-30e0-a50b-3279ed5336a9",
+    "copiedItem" : {
+      "barcode" : "A14837535431",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Bird by bird : some instructions on writing and life / Anne Lamott.",
+      "contributors" : [ {
+        "name" : "Lamott, Anne,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Anchor Books",
+        "place" : "New York",
+        "dateOfPublication" : "1995",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©1994"
+      } ],
+      "callNumber" : "PN147 .L315 1995",
+      "instanceId" : "c308e3e5-7295-377d-bdb2-a0c7b6b7b8e3",
+      "instanceHrid" : "in00002421905",
+      "holdingsId" : "fca4abea-5986-3b2d-b857-bcb513a5a4db"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "5ad68a96-7b9a-482a-9275-1b7175f810db",
+    "courseListingId" : "c5251412-5c73-499d-8f7b-616a7f48040a",
+    "itemId" : "9704e10b-d828-3784-8c4a-457116f9e427",
+    "copiedItem" : {
+      "barcode" : "A14850276966",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Assigning, responding, evaluating : a writing teacher's guide / Edward M. White, Cassie A. Wright.",
+      "contributors" : [ {
+        "name" : "White, Edward M. (Edward Michael), 1933-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Wright, Cassie A.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Bedford/St. Martin's",
+        "place" : "Boston",
+        "dateOfPublication" : "[2016]",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "PE1404 .W46 2016",
+      "instanceId" : "ea609f09-9ce2-373d-bee1-5919aa5a7f90",
+      "instanceHrid" : "in00003995393",
+      "holdingsId" : "bb82cdaf-1c91-3b2b-9c80-66fb9362604c"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ff87620e-cfc4-4c32-9aaf-a2a8e7947d45",
+    "courseListingId" : "1da31d27-972f-4a5b-baf4-caf20bd93c8c",
+    "itemId" : "7a91475a-4b43-3d5f-bab3-2d3a4589cb9d",
+    "copiedItem" : {
+      "barcode" : "A14822487225",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Men, masculinity, and the media / edited by Steve Craig.",
+      "contributors" : [ {
+        "name" : "Craig, Steve, 1947-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Sage",
+        "place" : "Newbury Park",
+        "dateOfPublication" : "[1992]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©1992"
+      } ],
+      "callNumber" : "P94.5.M44 M46 1992",
+      "instanceId" : "4d93e13f-9bc8-307d-be52-5131d1fdbb85",
+      "instanceHrid" : "in00001397248",
+      "holdingsId" : "c26a8efd-1dd4-3781-8780-2958a9a315db"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "f271dd15-12c1-4953-8c8b-3fd8bb158347",
+    "courseListingId" : "b3c03d1e-970b-407e-ae67-15c5fed7347c",
+    "itemId" : "7a91475a-4b43-3d5f-bab3-2d3a4589cb9d",
+    "copiedItem" : {
+      "barcode" : "A14822487225",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Men, masculinity, and the media / edited by Steve Craig.",
+      "contributors" : [ {
+        "name" : "Craig, Steve, 1947-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Sage",
+        "place" : "Newbury Park",
+        "dateOfPublication" : "[1992]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©1992"
+      } ],
+      "callNumber" : "P94.5.M44 M46 1992",
+      "instanceId" : "4d93e13f-9bc8-307d-be52-5131d1fdbb85",
+      "instanceHrid" : "in00001397248",
+      "holdingsId" : "c26a8efd-1dd4-3781-8780-2958a9a315db"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "d79d08fb-6299-48ad-b863-c43f625f0092",
+    "courseListingId" : "9f17f7b6-2a2b-4673-bf53-380790040200",
+    "itemId" : "766e3251-70cd-3157-a1aa-0bc65abb3f66",
+    "copiedItem" : {
+      "barcode" : "A14819713992",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The decorated style : architecture and ornament, 1240-1360 / Nicola Coldstream.",
+      "contributors" : [ {
+        "name" : "Coldstream, Nicola",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "University of Toronto Press",
+        "place" : "Toronto ; Buffalo",
+        "dateOfPublication" : "[1994]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©1994"
+      } ],
+      "callNumber" : "NA5463 .C63 1994",
+      "instanceId" : "ff1f3056-5da5-381b-9399-40ac9f45e718",
+      "instanceHrid" : "in00001230527",
+      "holdingsId" : "e7d75264-de5a-3578-a33d-a67a283b60b4"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "6655d0df-cb88-4175-ab2e-2c5dcbd5304b",
+    "courseListingId" : "9f17f7b6-2a2b-4673-bf53-380790040200",
+    "itemId" : "e2ac4362-06ba-3120-a225-c9f1e78cd116",
+    "copiedItem" : {
+      "barcode" : "A14840503956",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Gothic : architecture, sculpture, painting / edited by Rolf Toman ; photography by Achim Bednorz.",
+      "contributors" : [ {
+        "name" : "Toman, Rolf",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Bednorz, Achim, 1947-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "H.F.Ullmann",
+        "place" : "[Cologne?]",
+        "dateOfPublication" : "[2010]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2010"
+      } ],
+      "callNumber" : "NA440 .G67 2010",
+      "instanceId" : "0008c8d7-5334-3d2e-aef4-3943451a69b1",
+      "instanceHrid" : "in00002714166",
+      "holdingsId" : "16a7dc22-bc61-3323-8129-87792f69a28e"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "fdaeb06c-c25e-438c-a052-1edc99624fa9",
+    "courseListingId" : "9f17f7b6-2a2b-4673-bf53-380790040200",
+    "itemId" : "46be66ba-35a7-3c8e-b001-7bb716c4bbf5",
+    "copiedItem" : {
+      "barcode" : "A14803410887",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Gothic architecture / Louis Grodecki, in collaboration with Anne Prache and Roland Recht ; translated from the French by I. Mark Paris.",
+      "contributors" : [ {
+        "name" : "Grodecki, Louis, 1910-1982",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Prache, Anne",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Recht, Roland",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "H. N. Abrams",
+        "place" : "New York",
+        "dateOfPublication" : "1977",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©1976"
+      } ],
+      "callNumber" : "NA480 .G7613 1977",
+      "instanceId" : "ff2a6f91-1de0-3ad3-93b5-d87190f67526",
+      "instanceHrid" : "in00000325423",
+      "holdingsId" : "3110c9fc-bf88-3634-ae24-bed49257bdbf"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "5997810a-997e-4053-ad83-14ee72538765",
+    "courseListingId" : "9f17f7b6-2a2b-4673-bf53-380790040200",
+    "itemId" : "617e9721-d499-3cd9-9c06-0b5d1caa3fb6",
+    "copiedItem" : {
+      "barcode" : "A14835550736",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The formation of English Gothic : architecture and identity / Peter Draper.",
+      "contributors" : [ {
+        "name" : "Draper, Peter",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Published for The Paul Mellon Centre for studies in British Art by Yale University Press",
+        "place" : "New Haven [Conn.] ; London",
+        "dateOfPublication" : "[2006]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2006"
+      } ],
+      "callNumber" : "NA963 .D73 2006",
+      "instanceId" : "328efcfe-9cf8-323c-8ad6-69a0be759865",
+      "instanceHrid" : "in00002228389",
+      "holdingsId" : "8606b609-e0b1-3905-ab4e-e845f764564b"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "70b00f68-808e-44dc-b291-b5e0fde57691",
+    "courseListingId" : "9f17f7b6-2a2b-4673-bf53-380790040200",
+    "itemId" : "8afa2e17-6993-35cb-9318-599ca2cb01ef",
+    "copiedItem" : {
+      "barcode" : "A14827847501",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Gothic architecture / Paul Frankl ; revised by Paul Crossley.",
+      "contributors" : [ {
+        "name" : "Frankl, Paul, 1878-1962",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Crossley, Paul, 1945-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Yale University Press",
+        "place" : "New Haven",
+        "dateOfPublication" : "2000",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "NA5453 .F683 2000",
+      "instanceId" : "a44c93f7-fe8e-3fb0-b117-1d58cdab3499",
+      "instanceHrid" : "in00001602396",
+      "holdingsId" : "b2565921-399e-39c1-bc06-e02181264fd4"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "3d3db93d-cc79-4e5f-909f-2c2a13bd23b9",
+    "courseListingId" : "9f17f7b6-2a2b-4673-bf53-380790040200",
+    "itemId" : "0effa578-a41d-31af-843f-6731e752c8d8",
+    "copiedItem" : {
+      "barcode" : "A14809080779",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "French Gothic architecture of the 12th and 13th centuries / Jean Bony.",
+      "contributors" : [ {
+        "name" : "Bony, Jean",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "University of California Press",
+        "place" : "Berkeley",
+        "dateOfPublication" : "[1983]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©1983"
+      } ],
+      "callNumber" : "NA5543 .B66 1983",
+      "instanceId" : "6565a70b-4622-3c16-a113-a6e6f81eaf43",
+      "instanceHrid" : "in00000589972",
+      "holdingsId" : "97a2720d-3f05-3112-8970-47023f21c9e6"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ff8b11f7-e7d1-411b-ba78-b8f2c7b892f2",
+    "courseListingId" : "9f17f7b6-2a2b-4673-bf53-380790040200",
+    "itemId" : "a43a4735-8195-3eae-b756-4b6c64dc7d30",
+    "copiedItem" : {
+      "barcode" : "A14826853915",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "German Gothic Church architecture / Norbert Nussbaum ; translated from the German by Scott Kleager.",
+      "contributors" : [ {
+        "name" : "Nussbaum, Norbert",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Yale University Press",
+        "place" : "New Haven",
+        "dateOfPublication" : "[2000]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2000"
+      } ],
+      "callNumber" : "NA5563 .N8813 2000",
+      "instanceId" : "e6dc00b1-342c-3212-911f-c24fc854a55b",
+      "instanceHrid" : "in00001569104",
+      "holdingsId" : "5079f1ef-dc37-31e7-aa42-57b2a00711a3"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "04ac898a-097c-4ce1-974e-aecf7c74dc29",
+    "courseListingId" : "77a2ff9d-1c34-4f4d-9b50-e21461cf6d88",
+    "itemId" : "59be1823-038b-3636-afda-7c3b9eadc525",
+    "copiedItem" : {
+      "barcode" : "A14850457814",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Architectural drawing : a visual compendium of types and methods / Rendow Yee.",
+      "contributors" : [ {
+        "name" : "Yee, Rendow, 1942-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "John Wiley & Sons",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2013]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2013"
+      } ],
+      "callNumber" : "NA2708 .Y439 2013",
+      "instanceId" : "7848ae0e-21da-351d-b6be-72c2171fe8b3",
+      "instanceHrid" : "in00003505253",
+      "holdingsId" : "14d23618-8004-3bd4-972b-1a42ca439f69"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "e89da64b-1818-439e-85d1-14d01d2ecf60",
+    "courseListingId" : "62c84c3f-d4c7-4b17-9a44-2f686068b52b",
+    "itemId" : "0844e9e2-14a1-36cc-b4f1-717971e0808f",
+    "copiedItem" : {
+      "barcode" : "A14839931730",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Site planning and design handbook / Thomas H. Russ.",
+      "contributors" : [ {
+        "name" : "Russ, Thomas H",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "McGraw-Hill",
+        "place" : "New York",
+        "dateOfPublication" : "[2009]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2009"
+      } ],
+      "callNumber" : "NA2540.5 .R87 2009",
+      "instanceId" : "75805356-d6c4-3695-af0c-af2a0580357d",
+      "instanceHrid" : "in00002556688",
+      "holdingsId" : "781382b1-ca67-3aad-925a-9d72098ef210"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "d678c70d-9250-4bce-a0ce-a7b52855b95d",
+    "courseListingId" : "66071ad9-95d4-479e-80b7-37b12191134e",
+    "itemId" : "705c3df4-d2ee-3334-99b0-58845b26e8ea",
+    "startDate" : "2019-07-30",
+    "endDate" : "2019-12-25",
+    "copiedItem" : {
+      "barcode" : "A14843511214",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "title" : "Gardner's Art Through the Ages.",
+      "contributors" : [ {
+        "name" : "Kleiner, Fred S",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "N5300.G256 2016",
+      "volume" : "2016",
+      "enumeration" : "V. 2",
+      "instanceId" : "ca355395-92e7-3299-9aa6-d9e266d020e5",
+      "instanceHrid" : "in00004153778",
+      "holdingsId" : "1a415b36-dd08-3a0c-ad67-57e7b3e6842a"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "f084c98d-70ff-482d-acdf-5e58aba07ca7",
+    "courseListingId" : "64072d64-c6d0-4ddf-8030-953043e96735",
+    "itemId" : "94078209-edb1-338f-b640-7a8cc0dd6443",
+    "copiedItem" : {
+      "barcode" : "A14836511531",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The selling sound : the rise of the country music industry / Diane Pecknold.",
+      "contributors" : [ {
+        "name" : "Pecknold, Diane",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Duke University Press",
+        "place" : "Durham,  North Carolina",
+        "dateOfPublication" : "2007",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "ML3524 .P43 2007",
+      "instanceId" : "45201a4d-0f7b-3f2f-9383-0d8b3ee24eb2",
+      "instanceHrid" : "in00002285983",
+      "holdingsId" : "b9706105-a211-315a-b3cc-0fbc67445784"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "12bcfca1-857c-45fb-a21b-5a8f1bd258f9",
+    "courseListingId" : "64072d64-c6d0-4ddf-8030-953043e96735",
+    "itemId" : "7d402a0c-196a-3a04-9028-d22cf805fd1f",
+    "copiedItem" : {
+      "barcode" : "A14850460495",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The selling sound : the rise of the country music industry / Diane Pecknold.",
+      "contributors" : [ {
+        "name" : "Pecknold, Diane",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Duke University Press",
+        "place" : "Durham,  North Carolina",
+        "dateOfPublication" : "2007",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "ML3524 .P43 2007",
+      "instanceId" : "45201a4d-0f7b-3f2f-9383-0d8b3ee24eb2",
+      "instanceHrid" : "in00002285983",
+      "holdingsId" : "c57579df-1cfb-3c72-ad6c-6068a390d799"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "7a1387ed-5799-4a88-95f2-d0acc7e36119",
+    "courseListingId" : "64072d64-c6d0-4ddf-8030-953043e96735",
+    "itemId" : "1cbcf65d-331a-3725-9299-8d4b8c66c7b3",
+    "copiedItem" : {
+      "barcode" : "A14850458713",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Stranded : rock and roll for a desert island / edited with a new preface by Greil Marcus ; new foreword by Robert Christgau.",
+      "contributors" : [ {
+        "name" : "Marcus, Greil",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Da Capo Press",
+        "place" : "New York",
+        "dateOfPublication" : "2007",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "ML3534 .S8 2007",
+      "instanceId" : "96d22ace-e844-3fc9-bbce-b9f03ce7818f",
+      "instanceHrid" : "in00004125229",
+      "holdingsId" : "47af0eaa-ea7e-3e36-8b09-37f29f413984"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "5f3c1307-0207-47ec-82b0-5f20d5ed3941",
+    "courseListingId" : "62f652f6-e69e-48cd-8ff0-79beb758c59a",
+    "itemId" : "b554ea6b-85f8-32f5-9119-0149a7f3b618",
+    "copiedItem" : {
+      "barcode" : "A14832269807",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Modern processor design : fundamentals of superscalar processors / John Paul Shen, Mikko H. Lipasti.",
+      "contributors" : [ {
+        "name" : "Shen, John Paul",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Lipasti, Mikko H",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "McGraw-Hill Higher Education",
+        "place" : "Boston",
+        "dateOfPublication" : "[2005]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2005"
+      } ],
+      "callNumber" : "TK7895.M5 S52 2005",
+      "instanceId" : "c1138591-addf-34cf-a292-1431c7c4858a",
+      "instanceHrid" : "in00001969068",
+      "holdingsId" : "8b1bf0e9-70ed-3248-95eb-9a650d0c6057"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "cd62dd59-de8e-4d3e-a776-b38d47541509",
+    "courseListingId" : "64072d64-c6d0-4ddf-8030-953043e96735",
+    "itemId" : "030f9584-bdc3-3000-b8cc-0050fcab00af",
+    "copiedItem" : {
+      "barcode" : "A14850607335",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Clothes, clothes, clothes : music, music, music : boys, boys, boys : a memoir / Viv Albertine.",
+      "contributors" : [ {
+        "name" : "Albertine, Viv, 1954-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Thomas Dunne Books",
+        "place" : "New York, N.Y.",
+        "dateOfPublication" : "2014",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "ML420.A514 A3 2014",
+      "instanceId" : "36bddd78-95e2-38bb-88f0-cf92224494d1",
+      "instanceHrid" : "in00004100460",
+      "holdingsId" : "b4e49aed-6c2c-39f5-af57-6ba25915a94e"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "1ef944b5-d6b5-4057-911d-8d74409877ec",
+    "courseListingId" : "91a8f81c-d3c7-4605-8544-d4fa53b8c92f",
+    "itemId" : "f499486f-efd8-3c3a-8c8c-a86e7a1099d9",
+    "copiedItem" : {
+      "barcode" : "A14843146185",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "73e1f211-00dd-421d-8fb4-acb2b19d96dc",
+      "title" : "A manual for writers of research papers, theses, and dissertations : Chicago Style for students and researchers / Kate L. Turabian ; revised by Wayne C. Booth, Gregory G. Colomb, Joseph M. Williams, and the University of Chicago Press editorial staff.",
+      "contributors" : [ {
+        "name" : "Turabian, Kate L.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Booth, Wayne C",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Colomb, Gregory G",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Williams, Joseph M",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "University of Chicago Press",
+        "place" : "Chicago",
+        "dateOfPublication" : "[2013]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2013"
+      } ],
+      "callNumber" : "LB2369 .T8 2013",
+      "instanceId" : "a5c2a847-5b43-3d8c-aab7-c7a3c9e2857c",
+      "instanceHrid" : "in00003548961",
+      "holdingsId" : "5f40481d-adb3-3e30-a360-cd188c9965b0"
+    }
+  }, {
+    "id" : "01d158df-d2b4-4255-8974-d254ecf7ce1c",
+    "courseListingId" : "75f1b5ea-f19c-42c9-bef2-c299bc09d526",
+    "itemId" : "fcf66f60-c121-3533-8ac1-9d5b6c056994",
+    "copiedItem" : {
+      "barcode" : "A14850456931",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Readings in American Indian law : recalling the rhythm of survival / edited by Jo Carrillo.",
+      "contributors" : [ {
+        "name" : "Carrillo, Jo, 1959-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Temple University Press",
+        "place" : "Philadelphia",
+        "dateOfPublication" : "1998",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "KF8204.5 .R424 1998",
+      "instanceId" : "bc22b86a-77ec-34d6-bd61-9bd3af520e88",
+      "instanceHrid" : "in00004222810",
+      "holdingsId" : "6c3816da-8cd5-3acd-99fe-31f43c900df7"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "8315e353-2b0a-4e5a-ac61-6611dbc27220",
+    "courseListingId" : "75f1b5ea-f19c-42c9-bef2-c299bc09d526",
+    "itemId" : "189c6e2f-2288-34db-aebf-aed27b692cb9",
+    "copiedItem" : {
+      "barcode" : "A14818160057",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Crow dog's case : American Indian sovereignty, tribal law, and United States law in the nineteenth century / Sidney L. Harring.",
+      "contributors" : [ {
+        "name" : "Harring, Sidney L., 1947-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Cambridge University Press",
+        "place" : "Cambridge ; New York",
+        "dateOfPublication" : "1994",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "KF8205 .H37 1994",
+      "instanceId" : "f3618a37-1855-3618-9323-0f6c0ffc180c",
+      "instanceHrid" : "in00001082688",
+      "holdingsId" : "323c71d6-4c29-3f22-9bde-665ed3d8e7df"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "7cdc2505-c721-4c7e-aa18-962fd8652314",
+    "courseListingId" : "13f80fb5-073b-4bf8-bbda-f974f3e62011",
+    "itemId" : "e4bdca3d-70ff-3e43-8932-daba9a8e3c9f",
+    "copiedItem" : {
+      "barcode" : "A14843623175",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Environmental law / Nancy K. Kubasek, Gary S. Silverman.",
+      "contributors" : [ {
+        "name" : "Kubasek, Nancy K",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Silverman, Gary",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson Education, Inc.",
+        "place" : "Upper Saddle River, New Jersey",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "KF3775 .K83 2014",
+      "instanceId" : "05799324-d6a5-30bc-852d-a647947201e9",
+      "instanceHrid" : "in00003759519",
+      "holdingsId" : "19f1368a-4f56-3ff6-8818-2ab9416a56df"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "c07674e0-4187-42c3-a261-d9c58c0170bb",
+    "courseListingId" : "75f1b5ea-f19c-42c9-bef2-c299bc09d526",
+    "itemId" : "e5c768a1-8f18-3db9-aaf5-f274f5b381cc",
+    "copiedItem" : {
+      "barcode" : "A14843449142",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The beginning and end of rape : confronting sexual violence in Native America / Sarah Deer.",
+      "contributors" : [ {
+        "name" : "Deer, Sarah, 1972-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "University of Minnesota Press",
+        "place" : "Minneapolis",
+        "dateOfPublication" : "[2015]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2015"
+      } ],
+      "callNumber" : "KIE3560 .D44 2015",
+      "instanceId" : "b2de87b0-d198-3b0a-9c9c-720900e2f097",
+      "instanceHrid" : "in00003754304",
+      "holdingsId" : "8fe79a06-ed7a-375b-ae6e-b59aaede08e2"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "479a2941-56cc-41e8-a2d5-92ac7fedec0c",
+    "courseListingId" : "a2f8a004-0957-4763-aaa4-01ef9d603e67",
+    "itemId" : "5326d5ab-e8fe-34b8-8480-336af6ba5ccb",
+    "copiedItem" : {
+      "barcode" : "A14814995696",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The Bill of Rights : original meaning and current understanding / edited by Eugene W. Hickok, Jr.",
+      "contributors" : [ {
+        "name" : "Hickok, Eugene W., Jr., 1950-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Center for Judicial Studies (U.S.)",
+        "contributorNameTypeId" : "2e48e713-17f3-4c13-a9f8-23845bb210aa",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "University Press of Virginia",
+        "place" : "Charlottesville",
+        "dateOfPublication" : "1991",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "KF4749.A2 B56 1991",
+      "instanceId" : "6762f418-1113-3d26-9994-965cd53a3b00",
+      "instanceHrid" : "in00001040006",
+      "holdingsId" : "b3f4d91d-6666-3ebe-b7b8-02fc4b3c6e42"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "d8a2fe71-ee2b-4851-a71a-8b4d722a5ff1",
+    "courseListingId" : "6d13d402-85e0-4202-be91-4900dee53019",
+    "itemId" : "3143aa20-e178-3b66-be27-4320c7ee04a5",
+    "copiedItem" : {
+      "barcode" : "A14850434383",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "MOBILIZING WITHOUT THE MASSES : control and contention in china.",
+      "contributors" : [ {
+        "name" : "Fu, Diana",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "CAMBRIDGE UNIV PRESS",
+        "place" : "[Place of publication not identified]",
+        "dateOfPublication" : "2017",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "JQ1516 .F82 2018",
+      "instanceId" : "3ae65893-5f3b-3885-bd4e-8ce530368aef",
+      "instanceHrid" : "in00003993114",
+      "holdingsId" : "1637516b-b69f-3872-a325-2dd80dddf43b"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "c703467c-54c7-4561-8f87-3dae705b7a5e",
+    "courseListingId" : "a9df5ebf-e411-4f26-8aae-c9f541c37907",
+    "itemId" : "2a3ecbc3-ac73-320f-8117-bd9b1e8de752",
+    "copiedItem" : {
+      "barcode" : "A14850457384",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The Athenian trireme : the history and reconstruction of an ancient Greek warship / J.S. Morrison, J.F. Coates, and N.B. Rankov.",
+      "contributors" : [ {
+        "name" : "Morrison, J. S. (John S.), 1913-2000",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Coates, J. F. (John F.)",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Rankov, N. B., 1954-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Cambridge University Press",
+        "place" : "Cambridge ; New York",
+        "dateOfPublication" : "2000",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "VM16 .M66 2000",
+      "instanceId" : "6287f31b-c444-3362-a8c6-8d1374a6cbd9",
+      "instanceHrid" : "in00001533757",
+      "holdingsId" : "ddccf189-2cea-3d67-b113-cba4dfa609d1"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "46a64434-e067-4d6b-8707-b2d5916259c5",
+    "courseListingId" : "5a64bd2d-80bb-45ce-9853-13fb931be230",
+    "itemId" : "cc6f9cbf-e1f2-3f34-befa-703943bc003c",
+    "copiedItem" : {
+      "barcode" : "A14850453151",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Doing cultural studies : the story of the Sony Walkman / Paul Du Gay, Stuart Hall, Linda Janes, Anders Koed Madsen, Hugh McKay and Keith Negus.",
+      "contributors" : [ {
+        "name" : "Du Gay, Paul,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Hall, Stuart, 1932-2014,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Janes, Linda,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "McKay, Hugh (Teacher),",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Negus, Keith,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "SAGE Publications",
+        "place" : "Los Angeles",
+        "dateOfPublication" : "2013",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "TK7881.6 .D65 2013",
+      "instanceId" : "d1fcee07-59f4-3b0c-a05b-199319e1e700",
+      "instanceHrid" : "in00004106700",
+      "holdingsId" : "797718fe-24bb-3d27-b1e6-65e33173dbee"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "3d887ad4-7e03-4e95-8d58-c858f8f1f8bb",
+    "courseListingId" : "a9df5ebf-e411-4f26-8aae-c9f541c37907",
+    "itemId" : "eec01fa5-a954-3959-87b5-5f95988d0e64",
+    "copiedItem" : {
+      "barcode" : "A14850457400",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Ships and seamanship in the ancient world / by Lionel Casson.",
+      "contributors" : [ {
+        "name" : "Casson, Lionel, 1914-2009,",
+        "contributorTypeId" : "6e09d47d-95e2-4d8a-831b-f777b8ef6d81",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Princeton University Press",
+        "place" : "Princeton, New Jersey",
+        "dateOfPublication" : "1971",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "VM15 .C35 1971",
+      "instanceId" : "174d4e91-c078-3b02-9eda-727c59a1e057",
+      "instanceHrid" : "in00000112613",
+      "holdingsId" : "f169afb1-e4e6-3b83-b9d3-bf31934b9883"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ec60f0f8-09d4-41aa-b012-f2b2099e28aa",
+    "courseListingId" : "b4a2a592-c094-4b86-b9a7-1034fc1d8813",
+    "itemId" : "a1360f5f-15b4-39cd-8b01-061e256c6d68",
+    "copiedItem" : {
+      "barcode" : "A14843622797",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Powering the dream : the history and promise of green technology / Alexis Madrigal.",
+      "contributors" : [ {
+        "name" : "Madrigal, Alexis, 1982-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Da Capo Press",
+        "place" : "Cambridge, Massachusetts",
+        "dateOfPublication" : "[2011]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2011"
+      } ],
+      "callNumber" : "TJ808.7.U6 M33 2011",
+      "instanceId" : "e0f926b3-1928-3c72-b4df-1ffc4f234d6b",
+      "instanceHrid" : "in00003834214",
+      "holdingsId" : "2d552d17-815d-3c33-aa71-604a7d10fcf4"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "867b46ab-2627-48ba-bf1b-3daedc8fac4c",
+    "courseListingId" : "2470063c-b5de-485e-9c75-6ca836eed0ae",
+    "itemId" : "6912ce8f-0a74-3d4b-963f-de2a99f065f6",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30",
+    "endDate" : "2021-12-25",
+    "copiedItem" : {
+      "barcode" : "A14829411819",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "American agriculture : a brief history / by R. Douglas Hurt.",
+      "contributors" : [ {
+        "name" : "Hurt, R. Douglas",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Purdue University Press",
+        "place" : "West Lafayette, Ind.",
+        "dateOfPublication" : "2002",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "S441 .H918 2002",
+      "instanceId" : "baed389a-cf58-3c68-b3fe-425971ec047b",
+      "instanceHrid" : "in00001734142",
+      "holdingsId" : "e658d35d-1126-3b3e-b700-8f74a7636294"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "50f11473-e593-4f88-ba5b-bf3927a772a3",
+    "courseListingId" : "1bd851b3-5688-41f2-9865-24466dcce639",
+    "itemId" : "cdabdebd-c20a-3675-b4fb-c28486de664f",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30",
+    "endDate" : "2021-12-25",
+    "copiedItem" : {
+      "barcode" : "A14850429276",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Don't panic : a guide to introductory physics for students of science and engineering / by William H. Bassichis, Professor of Physics, Texas A&M University.",
+      "contributors" : [ {
+        "name" : "Bassichis, William H.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "OR Publishing",
+        "place" : "Bronx, New York",
+        "dateOfPublication" : "[2015]-",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2015-"
+      } ],
+      "callNumber" : "QC21.2 .B37 2015",
+      "enumeration" : "v.1",
+      "instanceId" : "967c4641-7595-39e7-8e99-97593b752ff6",
+      "instanceHrid" : "in00004167985",
+      "holdingsId" : "2ea28f6d-2ddc-359b-aaf3-5ac72b856df3"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "4b48e57a-86db-4af7-ba89-a5da630ccf80",
+    "courseListingId" : "d422a254-06b3-4d1e-8d2c-d3a6f2fd75f7",
+    "itemId" : "744fbbac-40ca-3948-95d4-8dd2c70af682",
+    "copiedItem" : {
+      "barcode" : "A14839029143",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Learning to see : value stream mapping to create value and eliminate muda / by Mike Rother and John Shook ; foreword by Jim Womack and Dan Jones.",
+      "contributors" : [ {
+        "name" : "Rother, Mike",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Shook, John",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Lean Enterprise Institute",
+        "contributorNameTypeId" : "2e48e713-17f3-4c13-a9f8-23845bb210aa",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Lean Enterprise Institute",
+        "place" : "Cambridge, Mass.",
+        "dateOfPublication" : "2009",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©1999"
+      } ],
+      "callNumber" : "TS176 .R68 2009",
+      "instanceId" : "5b62ccf9-2c38-34f0-9158-175bb2b70258",
+      "instanceHrid" : "in00002608858",
+      "holdingsId" : "cfdbd713-8e3c-3b11-9898-9ba14211b657"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "0c8cf6f6-572c-49db-8771-66d3eeae5c5e",
+    "courseListingId" : "62f652f6-e69e-48cd-8ff0-79beb758c59a",
+    "itemId" : "62afe410-74c8-3961-8be0-15db6ace748a",
+    "copiedItem" : {
+      "barcode" : "A14850457855",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Modern processor design : fundamentals of superscalar processors / John Paul Shen, Mikko H. Lipasti.",
+      "contributors" : [ {
+        "name" : "Shen, John Paul,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Waveland Press",
+        "place" : "Long Grove, Illinois",
+        "dateOfPublication" : "2013",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "TK7895.M5 S52 2013",
+      "instanceId" : "a754a856-1ad8-33d9-af01-2fc864304bad",
+      "instanceHrid" : "in00004115995",
+      "holdingsId" : "1b99c033-1a86-3952-a8b8-38b52d3f00dc"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "8d7fafa8-28a9-49d9-a98c-2a45c927a142",
+    "courseListingId" : "ad7d3ec3-3c25-47c5-aca5-48d874c8c921",
+    "itemId" : "e76c32ed-d19b-3ca9-a7a9-80a04297f9d7",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30T05:00:00.000Z",
+    "endDate" : "2021-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14850458663",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Justice and ethics in tourism / Tazim Jamal.",
+      "contributors" : [ {
+        "name" : "Jamal, Tazim,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Routledge/Earthscan",
+        "place" : "London ; New York",
+        "dateOfPublication" : "2019",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "G155.A1 J344 2019",
+      "instanceId" : "927a8dff-dd6e-38b4-bc7c-250aafb003ab",
+      "instanceHrid" : "in00004100583",
+      "holdingsId" : "a8c5a0f5-264a-3049-bc96-1229a90323c0"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "959e141b-4f8b-45c4-ae3b-7894231e73c3",
+    "courseListingId" : "6ebb00c3-e74f-40e3-bf79-9260281ed1f8",
+    "itemId" : "13f12379-1368-3721-b5f7-10413038c32f",
+    "copiedItem" : {
+      "barcode" : "A14842808876",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "An introduction to molecular biotechnology : fundamentals, methods, and applications / edited by Michael Wink.",
+      "contributors" : [ {
+        "name" : "Wink, Michael",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Wiley-Blackwell",
+        "place" : "Weinheim",
+        "dateOfPublication" : "[2011]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2011"
+      } ],
+      "callNumber" : "TP248.2 .I6813 2011",
+      "instanceId" : "828001d7-d39e-36a5-8e68-57b7c644dd1a",
+      "instanceHrid" : "in00003597213",
+      "holdingsId" : "55cec2ea-1aa4-3f7c-b31c-da1c909c7caf"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ad55f510-ec28-4268-94c2-a5dcae7623a8",
+    "courseListingId" : "beaa2a62-abdf-45a4-8831-442b45f84449",
+    "itemId" : "13f12379-1368-3721-b5f7-10413038c32f",
+    "copiedItem" : {
+      "barcode" : "A14842808876",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "An introduction to molecular biotechnology : fundamentals, methods, and applications / edited by Michael Wink.",
+      "contributors" : [ {
+        "name" : "Wink, Michael",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Wiley-Blackwell",
+        "place" : "Weinheim",
+        "dateOfPublication" : "[2011]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2011"
+      } ],
+      "callNumber" : "TP248.2 .I6813 2011",
+      "instanceId" : "828001d7-d39e-36a5-8e68-57b7c644dd1a",
+      "instanceHrid" : "in00003597213",
+      "holdingsId" : "55cec2ea-1aa4-3f7c-b31c-da1c909c7caf"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "0d56aa92-3fd5-400d-a409-28badecdd71e",
+    "courseListingId" : "604010a3-9eb0-463e-822c-2261d6ec2594",
+    "itemId" : "fef54188-3c13-3cd4-b219-e324960b554a",
+    "copiedItem" : {
+      "barcode" : "A14842809569",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The green studio handbook : environmental strategies for schematic design / Alison G. Kwok and Walter T. Grondzik.",
+      "contributors" : [ {
+        "name" : "Kwok, Alison G",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Grondzik, Walter T",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Routledge/Architectural Press",
+        "place" : "London ; New York",
+        "dateOfPublication" : "2011",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "TH880 .K87 2011",
+      "instanceId" : "044f357d-6214-38e4-8461-9319b1653b4e",
+      "instanceHrid" : "in00003601702",
+      "holdingsId" : "565feead-8024-35cc-8308-2f5af2704dc0"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "7a1192f5-1d01-4e4a-801a-7777acc10a6c",
+    "courseListingId" : "eefc149b-0928-4e6f-9302-b323648c71a3",
+    "itemId" : "e509ab71-2a20-307c-b1b7-182432665ee8",
+    "copiedItem" : {
+      "barcode" : "A14842609993",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Square foot costs / RS Means.",
+      "contributors" : [ {
+        "name" : "R.S. Means Company",
+        "contributorNameTypeId" : "2e48e713-17f3-4c13-a9f8-23845bb210aa",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "R.S. Means Co.",
+        "place" : "Kingston, MA",
+        "dateOfPublication" : "[1997-]",
+        "role" : "Publication"
+      }, {
+        "publisher" : "RSMeans",
+        "place" : "Norwell, MA",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "TH435 .M44",
+      "enumeration" : "36th ed.",
+      "instanceId" : "fbc0934a-5e22-3c3f-9d43-d245118618a5",
+      "instanceHrid" : "in00000564911",
+      "holdingsId" : "3c69b25d-f554-3c8f-b765-91132e0056d0"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "99aadac7-7e36-4a1c-a504-6963e1c102d8",
+    "courseListingId" : "0fd4aa53-0503-4b2d-90f3-ec074bcf423c",
+    "itemId" : "657d41dc-61e1-3144-b588-222a7c5a84a1",
+    "copiedItem" : {
+      "barcode" : "A14843207847",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Print reading for construction : residential and commercial : write-in text with 140 large prints / by Walter C. Brown, Daniel P. Dorfmueller.",
+      "contributors" : [ {
+        "name" : "Brown, Walter C. (Walter Charles), 1918-2000",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Dorfmueller, Daniel P",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Goodheart-Willcox Company, Inc.",
+        "place" : "Tinley Park, Illinois",
+        "dateOfPublication" : "[2013]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2013"
+      } ],
+      "callNumber" : "TH431 .B76 2013",
+      "enumeration" : "prints",
+      "instanceId" : "4a0caf73-f6a9-3c9a-b02c-9052d1b7763e",
+      "instanceHrid" : "in00003337263",
+      "holdingsId" : "82259693-ca3f-3222-8faf-15b91517a72b"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "b929f01d-4056-4994-9c01-6184058e9ac4",
+    "courseListingId" : "604010a3-9eb0-463e-822c-2261d6ec2594",
+    "itemId" : "b66ca627-3c75-3fba-ab05-2f794f92b498",
+    "copiedItem" : {
+      "barcode" : "A14850098006",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "LEED Green Associate exam preparation guide, LEED v4 edition / Heather C. McCombs.",
+      "contributors" : [ {
+        "name" : "McCombs, Heather C",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "American Technical Publishers",
+        "place" : "Orland Park, Illinois",
+        "dateOfPublication" : "[2015]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2015"
+      } ],
+      "callNumber" : "TH880 .L433 2015",
+      "instanceId" : "9ca4e90d-4c61-31db-bb26-16d14b894008",
+      "instanceHrid" : "in00003475976",
+      "holdingsId" : "0b6a971c-b587-33a3-aff0-b5ff4e2fc3b4"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "f37474cc-73ee-4c3b-a7bb-9946ec85f131",
+    "courseListingId" : "c8140825-ffbb-4c12-8532-fceb5328cec4",
+    "itemId" : "7b2b4f8b-9536-3cad-9330-8602c465088e",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30T05:00:00.000Z",
+    "endDate" : "2021-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14850455230",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Introduction to sociology, seagull / Anthony Giddens, Mitchell Duneier, Richard P. Appelbaum, Deborah Carr.",
+      "contributors" : [ {
+        "name" : "Giddens, Anthony,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Duneier, Mitchell,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Appelbaum, Richard P.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Carr, Deborah,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "W.W. Norton & Company, Inc.",
+        "place" : "New York",
+        "dateOfPublication" : "[2018]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2018"
+      } ],
+      "callNumber" : "HM585 .G53 2018",
+      "instanceId" : "cb1bf9bd-addb-388b-a60b-28c0de1db09a",
+      "instanceHrid" : "in00004060214",
+      "holdingsId" : "15d87385-4ac4-35c3-bfe5-f3de4c8d8083"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ab8802f6-b239-4213-bf33-093e50438e5e",
+    "courseListingId" : "604010a3-9eb0-463e-822c-2261d6ec2594",
+    "itemId" : "8645131c-896a-3f7b-90a6-d28ef4a6f962",
+    "copiedItem" : {
+      "barcode" : "A14842802432",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Guide to the LEED Green Associate V4 Exam / Michelle Cottrell.",
+      "contributors" : [ {
+        "name" : "Cottrell, Michelle",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "John Wiley & Sons",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "TH880 .C68 2014",
+      "instanceId" : "104fd66b-2dbc-3861-a4de-aa36e6881e9f",
+      "instanceHrid" : "in00003464431",
+      "holdingsId" : "891eda45-54db-33b7-8d7b-2f6df3a0bf19"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "7de797e0-254a-44f5-9f40-0821b9be398d",
+    "courseListingId" : "0fd4aa53-0503-4b2d-90f3-ec074bcf423c",
+    "itemId" : "9d12ce24-c5a7-3092-8a7d-dd8c7f90e210",
+    "copiedItem" : {
+      "barcode" : "A14838081647",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Print reading for construction : residential and commercial : write-in text with 140 large prints / by Walter C. Brown, Daniel P. Dorfmueller.",
+      "contributors" : [ {
+        "name" : "Brown, Walter C. (Walter Charles), 1918-2000",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Dorfmueller, Daniel P",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Goodheart-Willcox Company, Inc.",
+        "place" : "Tinley Park, Illinois",
+        "dateOfPublication" : "[2013]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2013"
+      } ],
+      "callNumber" : "TH431 .B76 2013",
+      "instanceId" : "4a0caf73-f6a9-3c9a-b02c-9052d1b7763e",
+      "instanceHrid" : "in00003337263",
+      "holdingsId" : "aaf638a1-66ff-30d4-a17f-66be741dadbd"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "b42801d2-3dba-44fe-9847-d16243615a22",
+    "courseListingId" : "dd5df136-43ec-46c7-851e-db8fbd24674f",
+    "itemId" : "5b834ca0-91b6-30b5-8244-1854581710df",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30T05:00:00.000Z",
+    "endDate" : "2021-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14851525593",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "An introduction to reliability and maintainability engineering / Charles E. Ebeling.",
+      "contributors" : [ {
+        "name" : "Ebeling, Charles E.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Waveland Press",
+        "place" : "Long Grove, Illinois",
+        "dateOfPublication" : "[2019]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2019"
+      } ],
+      "callNumber" : "TA169 .E34 2019",
+      "instanceId" : "cf8c3a74-7f2f-3000-b618-edc576c99b8f",
+      "instanceHrid" : "in00004180357",
+      "holdingsId" : "5e595bdd-b7f1-3512-8925-1c4385590d92"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "bb08a53e-8536-4294-b9d5-87749a3fb6b2",
+    "courseListingId" : "ac908d28-9f3f-4fba-bb93-8d0950855924",
+    "itemId" : "2c143019-3a8d-3087-9285-14385a5e5c6f",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30T05:00:00.000Z",
+    "endDate" : "2021-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14842680499",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Teaching reading sourcebook / Bill Honig, Linda Diamond, Linda Gutlohn ; contributing authors, Carrie L. Cole [and five others].",
+      "contributors" : [ {
+        "name" : "Honig, Bill,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Diamond, Linda, 1949-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Gutlohn, Linda,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Arena Press",
+        "place" : "Novato, California",
+        "dateOfPublication" : "[2018]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2018"
+      } ],
+      "callNumber" : "LB1573 .H4624 2018",
+      "instanceId" : "b64c654c-3764-36d4-a8f8-3b218ed10856",
+      "instanceHrid" : "in00004643287",
+      "holdingsId" : "2f0d1eb0-ba5d-365d-90ed-60fe825112b2"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "9365e240-527e-4354-83ca-ef17427a275f",
+    "courseListingId" : "604010a3-9eb0-463e-822c-2261d6ec2594",
+    "itemId" : "15227b2c-4325-326c-aac7-5544555b25bb",
+    "copiedItem" : {
+      "barcode" : "A14843665416",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "LEED Green Associate V4 exam : practice tests & summary sheets / A. Togay Koralturk.",
+      "contributors" : [ {
+        "name" : "Koralturk, A. Togay,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "[CreateSpace Independent Publishing]",
+        "place" : "[United States?]",
+        "dateOfPublication" : "[2016]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2016"
+      } ],
+      "callNumber" : "TH880 .K67 2016",
+      "instanceId" : "6c19a6b7-a199-3c3a-b975-81e0a0bf15db",
+      "instanceHrid" : "in00003869967",
+      "holdingsId" : "220780ec-0835-3666-b27c-23196682a76c"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "9b7ab410-63c2-4383-b536-9387f6834cda",
+    "courseListingId" : "cc420f2c-99e9-4ff3-b18e-01b4e296874f",
+    "itemId" : "143405b0-ec25-36ea-8fb4-a9efcc0ba3cc",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30T05:00:00.000Z",
+    "endDate" : "2021-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14850457178",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Sensation and perception / Steven Yantis, Richard A. Abrams.",
+      "contributors" : [ {
+        "name" : "Yantis, Steven",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Abrams, Richard A.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Worth Publishers, Macmillan Learning",
+        "place" : "New York",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "BF233 .Y36 2017",
+      "instanceId" : "5557f813-6479-35d9-b1e5-4c92b45cd9d0",
+      "instanceHrid" : "in00003826666",
+      "holdingsId" : "a8e5ceaa-5eb3-32e3-8880-9e5e8dc436f5"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "3ea4fd0f-97d2-4094-a25b-28fc09182e98",
+    "courseListingId" : "eefc149b-0928-4e6f-9302-b323648c71a3",
+    "itemId" : "17fd691d-ac7a-3073-86c1-e138d770ea90",
+    "copiedItem" : {
+      "barcode" : "A14850072522",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Building construction costs with RSMeans data.",
+      "contributors" : [ {
+        "name" : "R.S. Means Company",
+        "contributorNameTypeId" : "2e48e713-17f3-4c13-a9f8-23845bb210aa",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Gordian RSMeans Data",
+        "place" : "Rockland, MA",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2016-"
+      } ],
+      "callNumber" : "TH435 .B84",
+      "enumeration" : "75th ed.",
+      "instanceId" : "36c3c14c-3112-33a4-a85f-2018e72b5052",
+      "instanceHrid" : "in00003795238",
+      "holdingsId" : "e06a4266-e68a-37f2-8528-dbf08c993fe2"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "5b2cca8c-a848-4da7-a3c6-a19e6bfc859a",
+    "courseListingId" : "0fd4aa53-0503-4b2d-90f3-ec074bcf423c",
+    "itemId" : "f20a1d86-7f49-32a7-b32a-566a6042bd64",
+    "copiedItem" : {
+      "barcode" : "A14843207839",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Print reading for construction : residential and commercial : write-in text with 140 large prints / by Walter C. Brown, Daniel P. Dorfmueller.",
+      "contributors" : [ {
+        "name" : "Brown, Walter C. (Walter Charles), 1918-2000",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Dorfmueller, Daniel P",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Goodheart-Willcox Company, Inc.",
+        "place" : "Tinley Park, Illinois",
+        "dateOfPublication" : "[2013]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2013"
+      } ],
+      "callNumber" : "TH431 .B76 2013",
+      "instanceId" : "4a0caf73-f6a9-3c9a-b02c-9052d1b7763e",
+      "instanceHrid" : "in00003337263",
+      "holdingsId" : "82259693-ca3f-3222-8faf-15b91517a72b"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "2a226cec-ea67-4af3-ba1d-55a2c55318a7",
+    "courseListingId" : "bd591128-02f3-45db-9f83-8800962e1089",
+    "itemId" : "aaba4af0-66f3-332b-a92f-620916b3c6dc",
+    "copiedItem" : {
+      "barcode" : "A14850459968",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Fundamentals of building construction : materials and methods / Edward Allen and Joseph Iano.",
+      "contributors" : [ {
+        "name" : "Allen, Edward, 1938-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Iano, Joseph",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "John Wiley & Sons",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "TH145 .A417 2014",
+      "instanceId" : "11c4eb6e-ad1d-3197-a6bb-28b1bf46688c",
+      "instanceHrid" : "in00003370844",
+      "holdingsId" : "620a996a-cad6-3ea4-a420-9836f86a1be5"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "b22e2ff3-7113-476d-9302-4d10e97b4542",
+    "courseListingId" : "f4be05aa-726b-4279-b752-ce9f5f899195",
+    "itemId" : "143405b0-ec25-36ea-8fb4-a9efcc0ba3cc",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30",
+    "endDate" : "2021-12-25",
+    "copiedItem" : {
+      "barcode" : "A14850457178",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Sensation and perception / Steven Yantis, Richard A. Abrams.",
+      "contributors" : [ {
+        "name" : "Yantis, Steven",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Abrams, Richard A.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Worth Publishers, Macmillan Learning",
+        "place" : "New York",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "BF233 .Y36 2017",
+      "instanceId" : "5557f813-6479-35d9-b1e5-4c92b45cd9d0",
+      "instanceHrid" : "in00003826666",
+      "holdingsId" : "a8e5ceaa-5eb3-32e3-8880-9e5e8dc436f5"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "bae50896-1826-4b57-920c-cf58dcc22934",
+    "courseListingId" : "ff19c7e1-ab35-4788-b255-e2242b45d38b",
+    "itemId" : "cbe7907f-9046-3603-ad19-b21fd1b627cf",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30",
+    "endDate" : "2021-12-25",
+    "copiedItem" : {
+      "barcode" : "A14829740331",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Don't panic : a guide to introductory physics for students of science and engineering / William H. Bassichis.",
+      "contributors" : [ {
+        "name" : "Bassichis, William H",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "OR Pub.",
+        "place" : "New York, N.Y.",
+        "dateOfPublication" : "[2005-]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2005-"
+      } ],
+      "callNumber" : "QC21.2 .B37 2005",
+      "enumeration" : "v.2",
+      "instanceId" : "b20e06d8-3b93-3bd3-9798-b6f7f4b5808e",
+      "instanceHrid" : "in00002104915",
+      "holdingsId" : "2834a0f8-bbd3-318b-9a05-1ecd53496219"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "6daefa53-89f0-4ee6-9f2c-df8bda48464c",
+    "courseListingId" : "f752b68b-92c8-488f-9bf4-7d817db8f58f",
+    "itemId" : "e0a96414-1fd5-3070-9586-6dd0dfbd1ffd",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-07-30",
+    "endDate" : "2019-12-25",
+    "copiedItem" : {
+      "barcode" : "A14804286817",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Some prefer nettles / by Junichiro Tanizaki ; [translated from the Japanese by Edward G. Seidensticker].",
+      "contributors" : [ {
+        "name" : "Tanizaki, Jun'ichirō, 1886-1965",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Knopf",
+        "place" : "New York",
+        "dateOfPublication" : "1955",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "PL839.A7 T3313 1955",
+      "instanceId" : "c51b946d-8726-3eb0-9bfb-38e4ecdaf008",
+      "instanceHrid" : "in00000597140",
+      "holdingsId" : "19469497-e41f-39b7-bb3e-edcef09133e2"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "8b2ef28a-ba7a-4e72-acac-d4295ee3d74d",
+    "courseListingId" : "a9df5ebf-e411-4f26-8aae-c9f541c37907",
+    "itemId" : "350f761f-1812-3d4e-a877-2219d4d5c23f",
+    "copiedItem" : {
+      "barcode" : "A14842205958",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Shipsheds of the ancient Mediterranean / by David Blackman and Boris Rankov with Kalliopi Baika, Henrik Gerding and Jari Pakkanen.",
+      "contributors" : [ {
+        "name" : "Blackman, D. J. (David J.). Research and investigation of ancient shipsheds",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Cambridge University Press",
+        "place" : "New York",
+        "dateOfPublication" : "2013",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "TC216 .S55 2013",
+      "instanceId" : "bf713f3f-b06c-35fc-9bff-18a7d27d4f31",
+      "instanceHrid" : "in00003384076",
+      "holdingsId" : "8b58ca94-d2bf-3079-b51a-2065c093d92b"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "0d8621b0-10b0-4f95-abee-97c97428ed05",
+    "courseListingId" : "88bddd05-87af-46de-82e4-93ff899afe94",
+    "itemId" : "60d6682c-24a5-313f-9af8-f0aca90dbb8c",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30T05:00:00.000Z",
+    "endDate" : "2021-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14850726523",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Tourism impacts, planning and management / Peter Mason.",
+      "contributors" : [ {
+        "name" : "Mason, Peter, 1951-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Routledge",
+        "place" : "London ; New York",
+        "dateOfPublication" : "2021",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "G155.A1 M344 2021",
+      "instanceId" : "c0c874b3-249e-39c3-9e46-17acbf32bad2",
+      "instanceHrid" : "in00004698313",
+      "holdingsId" : "19f15557-2a26-3921-93e2-68ae231ecead"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "4788e11e-3fa3-4a6d-ba75-faf25e0e3ed9",
+    "courseListingId" : "60801e12-a385-432c-a3f8-6d3befaed447",
+    "itemId" : "20473762-cae2-30b9-8045-d3cbf5962aae",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30",
+    "endDate" : "2021-12-25",
+    "copiedItem" : {
+      "barcode" : "A14851521915",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Tourism : the business of hospitality and travel / Roy A. Cook, Fort Lewis College, Professor Emeritus, Cathy H. C. Hsu, the Hong Kong Polytechnic University, Chair Professor, Lorraine L. Taylor, Fort Lewis College, Assistant Professor.",
+      "contributors" : [ {
+        "name" : "Cook, Roy A.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Hsu, Cathy H. C.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Taylor, Lorraine L.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson",
+        "place" : "New York",
+        "dateOfPublication" : "[2018]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2020"
+      } ],
+      "callNumber" : "G155.A1 C674 2018",
+      "instanceId" : "9d5daded-03cb-39b7-b240-b20e2ce2c0ce",
+      "instanceHrid" : "in00004691031",
+      "holdingsId" : "d17d04a2-4034-318e-a3ee-4cedf24d1971"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "62b354ed-ee2b-4f00-b215-4811da281da8",
+    "courseListingId" : "ff19c7e1-ab35-4788-b255-e2242b45d38b",
+    "itemId" : "fd17a03f-972f-3cff-b797-9ad90be47b38",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30T05:00:00.000Z",
+    "endDate" : "2021-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14850451718",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Don't panic : a guide to introductory physics for students of science and engineering / William H. Bassichis.",
+      "contributors" : [ {
+        "name" : "Bassichis, William H",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "OR Pub.",
+        "place" : "New York, N.Y.",
+        "dateOfPublication" : "[2005-]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2005-"
+      } ],
+      "callNumber" : "QC21.2 .B37 2005",
+      "enumeration" : "v.2",
+      "instanceId" : "b20e06d8-3b93-3bd3-9798-b6f7f4b5808e",
+      "instanceHrid" : "in00002104915",
+      "holdingsId" : "9fc1d726-657d-3b18-ae03-ceb214552deb"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "0deb882a-1c1c-4f17-9083-2da07a4375db",
+    "courseListingId" : "06841d97-dea6-4a37-834f-75ccf2fcd904",
+    "itemId" : "143405b0-ec25-36ea-8fb4-a9efcc0ba3cc",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30",
+    "endDate" : "2021-12-25",
+    "copiedItem" : {
+      "barcode" : "A14850457178",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Sensation and perception / Steven Yantis, Richard A. Abrams.",
+      "contributors" : [ {
+        "name" : "Yantis, Steven",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Abrams, Richard A.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Worth Publishers, Macmillan Learning",
+        "place" : "New York",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "BF233 .Y36 2017",
+      "instanceId" : "5557f813-6479-35d9-b1e5-4c92b45cd9d0",
+      "instanceHrid" : "in00003826666",
+      "holdingsId" : "a8e5ceaa-5eb3-32e3-8880-9e5e8dc436f5"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "62141fb8-dbc0-49bc-8d90-244f4403a270",
+    "courseListingId" : "55d4a4f1-d5fe-487d-96d0-d4cc8107d2bc",
+    "itemId" : "143405b0-ec25-36ea-8fb4-a9efcc0ba3cc",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30",
+    "endDate" : "2021-12-25",
+    "copiedItem" : {
+      "barcode" : "A14850457178",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Sensation and perception / Steven Yantis, Richard A. Abrams.",
+      "contributors" : [ {
+        "name" : "Yantis, Steven",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Abrams, Richard A.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Worth Publishers, Macmillan Learning",
+        "place" : "New York",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "BF233 .Y36 2017",
+      "instanceId" : "5557f813-6479-35d9-b1e5-4c92b45cd9d0",
+      "instanceHrid" : "in00003826666",
+      "holdingsId" : "a8e5ceaa-5eb3-32e3-8880-9e5e8dc436f5"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "75593189-5453-409e-ba4d-8c682de5e3b5",
+    "courseListingId" : "2c702ce8-3221-4463-bbc6-fca55ba18398",
+    "itemId" : "6313ebbd-e68a-320e-bbee-715fdb2b85e2",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30",
+    "endDate" : "2021-12-25",
+    "copiedItem" : {
+      "barcode" : "A14843094351",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Guide to elementary statistics for psychology / Heather Lench, Rebecca Schlegel, Christopher Berry, Texas A & M University.",
+      "contributors" : [ {
+        "name" : "Lench, Heather (Heather C.),",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Schlegel, Rebecca,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Berry, Christopher (Christopher M.),",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Kendall Hunt Publishing Company",
+        "place" : "Dubuque, IA",
+        "dateOfPublication" : "[2013]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "BF39 .L438 2013",
+      "instanceId" : "b7a6df0b-7e66-330e-a2a9-52c4c1ce1ea3",
+      "instanceHrid" : "in00003598218",
+      "holdingsId" : "f0934925-fb4a-3949-8002-ffb0cc14437b"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "18a739e8-43a3-419d-b45b-a8086f4fcdcc",
+    "courseListingId" : "4d6123ff-c7fc-462f-b140-0df05eab1fbd",
+    "itemId" : "8c255ef4-2211-3ea2-9ec0-6dcb823ac9b8",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30",
+    "endDate" : "2021-12-25",
+    "copiedItem" : {
+      "barcode" : "A14843472185",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "title" : "Cultural Psychology.",
+      "contributors" : [ {
+        "name" : "Heine, Steven J",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "Prof Copy GN 502 H45 2020",
+      "enumeration" : "Fourth Edition",
+      "instanceId" : "d7c14c7e-10aa-3ba7-b97a-62563e7d6900",
+      "instanceHrid" : "in00004705824",
+      "holdingsId" : "b29e29c7-43ca-3b4c-abc9-bd0676fc2b82"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   } ]

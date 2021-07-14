@@ -653,13 +653,13 @@
     "userId" : "0edaf5da-016f-3df3-8bf9-c8465b829078",
     "permissions" : [ "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "cc4a6624-190c-4872-95dd-be090a74b61f", "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "7301b3b0-7075-4e66-8c43-12ed005e6c6b", "61978e3d-e0aa-4329-a2c0-36c6191aa09b", "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1", "ui-invoice.approve", "ui-invoice.invoice.edit", "ui-invoice.invoice.create", "ui-invoice.invoice.delete", "ui-invoice.batchVoucher.download", "8e6f20f4-58ae-4051-b7e4-abb4b36966a1" ]
   }, {
-    "id" : "08f0cbcf-6cd6-4e59-82ed-143153c91046",
-    "userId" : "64b28c18-a9d4-3361-8490-967ac0813be3",
-    "permissions" : [ "module.data-import.enabled", "9ccfdbfe-ad7e-4103-9906-b06a47940eca", "ui-invoice.approve", "ui-invoice.invoice.create", "ui-invoice.invoice.delete", "ui-orders.order-lines.view", "ui-orders.order.view" ]
-  }, {
     "id" : "e5c58ad8-f672-4e4f-89f6-1cf1fb7743db",
     "userId" : "8c6e113e-66cb-3396-bf21-3fd8ec9eea50",
     "permissions" : [ "7fd42e23-08bf-4bf3-ad66-f6e27c446649", "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "cc4a6624-190c-4872-95dd-be090a74b61f", "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "module.data-import.enabled", "9ccfdbfe-ad7e-4103-9906-b06a47940eca", "7301b3b0-7075-4e66-8c43-12ed005e6c6b", "61978e3d-e0aa-4329-a2c0-36c6191aa09b", "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1", "ui-invoice.approve", "ui-invoice.invoice.create", "ui-invoice.invoice.delete", "ui-invoice.batchVoucher.download", "8e6f20f4-58ae-4051-b7e4-abb4b36966a1" ]
+  }, {
+    "id" : "08f0cbcf-6cd6-4e59-82ed-143153c91046",
+    "userId" : "64b28c18-a9d4-3361-8490-967ac0813be3",
+    "permissions" : [ "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "module.data-import.enabled", "9ccfdbfe-ad7e-4103-9906-b06a47940eca", "ui-invoice.approve", "ui-invoice.invoice.create", "ui-invoice.invoice.delete", "ui-orders.order-lines.view", "ui-orders.order.view" ]
   }, {
     "id" : "4ad34b7d-bb7b-4427-8afb-2a888d368213",
     "userId" : "a933a14d-6291-427b-8357-1b9575fd7273",

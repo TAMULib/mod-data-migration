@@ -778,29 +778,6 @@
     "cashBalance" : 15000.0,
     "statusExpenseClasses" : [ ]
   }, {
-    "id" : "c09cd1e5-6c17-487f-b080-3135e5549e23",
-    "name" : "print-FY2021",
-    "budgetStatus" : "Active",
-    "allocated" : 0.0,
-    "fundId" : "1e410c13-699e-45a0-8389-1bdd5f29980d",
-    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
-    "acqUnitIds" : [ ],
-    "initialAllocation" : 450000.0,
-    "allocationTo" : 0.0,
-    "allocationFrom" : 0.0,
-    "totalFunding" : 450000.0,
-    "cashBalance" : 450000.0,
-    "statusExpenseClasses" : [ {
-      "expenseClassId" : "82bc9d63-a3d0-4aed-872d-d4d2112b1668",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "ff651515-9b20-4449-8dd3-500e7353ce11",
-      "status" : "Active"
-    }, {
-      "expenseClassId" : "3a576abb-811e-4945-a651-42b9d517bb15",
-      "status" : "Active"
-    } ]
-  }, {
     "id" : "e8807585-d35e-4f79-a1da-453a96fe5657",
     "name" : "serials-FY2021",
     "budgetStatus" : "Active",
@@ -856,6 +833,29 @@
       "status" : "Active"
     } ]
   }, {
+    "id" : "c09cd1e5-6c17-487f-b080-3135e5549e23",
+    "name" : "print-FY2021",
+    "budgetStatus" : "Active",
+    "allocated" : 0.0,
+    "fundId" : "1e410c13-699e-45a0-8389-1bdd5f29980d",
+    "fiscalYearId" : "34e91bff-4992-467e-9ea6-caacc20e4a9d",
+    "acqUnitIds" : [ ],
+    "initialAllocation" : 450000.0,
+    "allocationTo" : 0.0,
+    "allocationFrom" : 0.0,
+    "totalFunding" : 450000.0,
+    "cashBalance" : 450000.0,
+    "statusExpenseClasses" : [ {
+      "expenseClassId" : "82bc9d63-a3d0-4aed-872d-d4d2112b1668",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "ff651515-9b20-4449-8dd3-500e7353ce11",
+      "status" : "Active"
+    }, {
+      "expenseClassId" : "3a576abb-811e-4945-a651-42b9d517bb15",
+      "status" : "Active"
+    } ]
+  }, {
     "id" : "168b877e-919c-4bd6-bf85-45ae542376ff",
     "name" : "btetxt-FY2021",
     "budgetStatus" : "Active",
@@ -881,7 +881,7 @@
     "allocationTo" : 0.0,
     "allocationFrom" : 0.0,
     "totalFunding" : 1.363362E7,
-    "cashBalance" : 1.353593904E7,
+    "cashBalance" : 1.353588904E7,
     "statusExpenseClasses" : [ {
       "expenseClassId" : "0d3c9098-e315-45aa-be46-cf9b642459c2",
       "status" : "Active"

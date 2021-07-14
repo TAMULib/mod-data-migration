@@ -928,5 +928,9 @@
     "id" : "3d29d4fb-ae7e-4fc2-9319-133d083e8aae",
     "name" : "WFSC",
     "description" : "Wildlife & Fisheries Sciences"
+  }, {
+    "id" : "46b50516-6ebd-4359-8e4c-a1b7995b2932",
+    "name" : "BIOT",
+    "description" : "Biotechnology"
   } ]
 }
