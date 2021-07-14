@@ -20,9 +20,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.folio.Locations;
 import org.folio.rest.jaxrs.model.inventory.Entry;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
-import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Note;
 import org.folio.rest.jaxrs.model.inventory.ReceivingHistory;
 import org.folio.rest.jaxrs.model.orders.acq_models.common.schemas.ReferenceNumberItem;
@@ -689,7 +689,7 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
         String id = rs.getString(LOCATION_ID);
         if (Objects.nonNull(id)) {
           String code = locConv.containsKey(id) ? locConv.get(id) : rs.getString(LOCATION_CODE);
-          Optional<org.folio.rest.jaxrs.model.inventory.Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
+          Optional<org.folio.Location> location = locations.getLocations().stream().filter(loc -> loc.getCode().equals(code)).findFirst();
           if (location.isPresent()) {
             idToUuid.put(id, location.get().getId());
           }

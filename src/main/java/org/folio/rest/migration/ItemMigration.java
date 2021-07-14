@@ -25,19 +25,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 
 import org.apache.commons.lang3.StringUtils;
+import org.folio.Loantype;
+import org.folio.Loantypes;
+import org.folio.Location;
+import org.folio.Locations;
+import org.folio.Materialtypes;
+import org.folio.Mtype;
+import org.folio.Statisticalcodes;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote.NoteType;
 import org.folio.rest.jaxrs.model.inventory.Item;
-import org.folio.rest.jaxrs.model.inventory.Loantype;
-import org.folio.rest.jaxrs.model.inventory.Loantypes;
-import org.folio.rest.jaxrs.model.inventory.Location;
-import org.folio.rest.jaxrs.model.inventory.Locations;
-import org.folio.rest.jaxrs.model.inventory.Materialtype;
-import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.inventory.Note__1;
 import org.folio.rest.jaxrs.model.inventory.Personal;
 import org.folio.rest.jaxrs.model.inventory.Source;
-import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.ItemMfhdRecord;
@@ -495,7 +495,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
         try (ResultSet resultSet = getResultSet(statement, context)) {
           while (resultSet.next()) {
             String materialTypeCode = resultSet.getString(MTYPE_CODE);
-            Optional<Materialtype> potentialMaterialType = materialtypes.getMtypes().stream().filter(mt -> mt.getSource().equals(materialTypeCode)).findFirst();
+            Optional<Mtype> potentialMaterialType = materialtypes.getMtypes().stream().filter(mt -> mt.getSource().equals(materialTypeCode)).findFirst();
             if (potentialMaterialType.isPresent()) {
               materialTypeId = potentialMaterialType.get().getId();
             }

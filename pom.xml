@@ -265,7 +265,13 @@
     <dependency>
       <groupId>org.folio</groupId>
       <artifactId>data-import-processing-core</artifactId>
-      <version>2.1.6</version>
+      <version>3.0.3</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.folio</groupId>
+          <artifactId>mod-pubsub-client</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>

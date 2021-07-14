@@ -21,10 +21,10 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 
 import org.apache.commons.lang3.StringUtils;
+import org.folio.Location;
+import org.folio.Locations;
+import org.folio.Statisticalcodes;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
-import org.folio.rest.jaxrs.model.inventory.Location;
-import org.folio.rest.jaxrs.model.inventory.Locations;
-import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.HoldingMapper;

@@ -1,6 +1,5 @@
 package org.folio.rest.migration.service;
 
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -8,18 +7,58 @@ import java.util.List;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 
-import org.apache.commons.collections4.list.UnmodifiableList;
+import org.folio.AlternativeTitleType;
 import org.folio.Alternativetitletypes;
+import org.folio.CallNumberType;
+import org.folio.Callnumbertypes;
+import org.folio.ClassificationType;
 import org.folio.Classificationtypes;
+import org.folio.ContributorNameType;
+import org.folio.ContributorType;
 import org.folio.Contributornametypes;
 import org.folio.Contributortypes;
+import org.folio.ElectronicAccessRelationship;
 import org.folio.Electronicaccessrelationships;
+import org.folio.HoldingsNoteType;
+import org.folio.HoldingsType;
+import org.folio.Holdingsnotetypes;
+import org.folio.Holdingstypes;
+import org.folio.IdentifierType;
 import org.folio.Identifiertypes;
+import org.folio.IllPolicy;
+import org.folio.Illpolicies;
+import org.folio.InstanceFormat;
+import org.folio.InstanceNoteType;
+import org.folio.InstanceRelationshipType;
+import org.folio.InstanceStatus;
+import org.folio.InstanceType;
 import org.folio.Instanceformats;
 import org.folio.Instancenotetypes;
+import org.folio.Instancerelationshiptypes;
+import org.folio.Instancestatuses;
 import org.folio.Instancetypes;
+import org.folio.IssuanceMode;
 import org.folio.Issuancemodes;
+import org.folio.ItemDamageStatus;
+import org.folio.ItemNoteType;
+import org.folio.Itemdamagedstatuses;
+import org.folio.Itemnotetypes;
+import org.folio.Loantype;
+import org.folio.Loantypes;
+import org.folio.Location;
+import org.folio.Locations;
+import org.folio.MarcFieldProtectionSettingsCollection;
+import org.folio.Materialtypes;
+import org.folio.Mtype;
+import org.folio.NatureOfContentTerm;
+import org.folio.Natureofcontentterms;
+import org.folio.StatisticalCode;
+import org.folio.StatisticalCodeType;
+import org.folio.Statisticalcodes;
+import org.folio.Statisticalcodetypes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
+import org.folio.rest.jaxrs.model.MarcFieldProtectionSetting;
+
 import org.folio.rest.jaxrs.model.circulation.Loan;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.common.Status;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.InitJobExecutionsRqDto;
@@ -39,11 +78,7 @@ import org.folio.rest.jaxrs.model.inventory.Instance;
 import org.folio.rest.jaxrs.model.inventory.Instancerelationship;
 import org.folio.rest.jaxrs.model.inventory.Item;
 import org.folio.rest.jaxrs.model.inventory.Items;
-import org.folio.rest.jaxrs.model.inventory.Loantypes;
-import org.folio.rest.jaxrs.model.inventory.Locations;
-import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.inventory.Servicepoints;
-import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
 import org.folio.rest.jaxrs.model.notes.types.notes.Note;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_finance.schemas.FundCollection;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePurchaseOrder;
@@ -61,8 +96,7 @@ import org.folio.rest.migration.config.model.Okapi;
 import org.folio.rest.migration.model.ReferenceData;
 import org.folio.rest.migration.model.ReferenceDatum;
 import org.folio.rest.migration.model.request.ExternalOkapi;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -70,7 +104,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import io.vertx.core.json.JsonObject;
@@ -79,9 +112,33 @@ import io.vertx.core.json.jackson.DatabindCodec;
 @Service
 public class OkapiService {
 
-  private static final Logger log = LoggerFactory.getLogger(OkapiService.class);
-
   private static final int SETTING_LIMIT = 1000;
+
+  private static final String IDENTIFIER_TYPES_URL = "/identifier-types?limit=" + SETTING_LIMIT;
+  private static final String CLASSIFICATION_TYPES_URL = "/classification-types?limit=" + SETTING_LIMIT;
+  private static final String INSTANCE_TYPES_URL = "/instance-types?limit=" + SETTING_LIMIT;
+  private static final String INSTANCE_FORMATS_URL = "/instance-formats?limit=" + SETTING_LIMIT;
+  private static final String CONTRIBUTOR_TYPES_URL = "/contributor-types?limit=" + SETTING_LIMIT;
+  private static final String CONTRIBUTOR_NAME_TYPES_URL = "/contributor-name-types?limit=" + SETTING_LIMIT;
+  private static final String ELECTRONIC_ACCESS_URL = "/electronic-access-relationships?limit=" + SETTING_LIMIT;
+  private static final String INSTANCE_NOTE_TYPES_URL = "/instance-note-types?limit=" + SETTING_LIMIT;
+  private static final String INSTANCE_ALTERNATIVE_TITLE_TYPES_URL = "/alternative-title-types?limit=" + SETTING_LIMIT;
+  private static final String ISSUANCE_MODES_URL = "/modes-of-issuance?limit=" + SETTING_LIMIT;
+  private static final String INSTANCE_STATUSES_URL = "/instance-statuses?limit=" + SETTING_LIMIT;
+  private static final String NATURE_OF_CONTENT_TERMS_URL = "/nature-of-content-terms?limit=" + SETTING_LIMIT;
+  private static final String INSTANCE_RELATIONSHIP_TYPES_URL = "/instance-relationship-types?limit=" + SETTING_LIMIT;
+  private static final String HOLDINGS_TYPES_URL = "/holdings-types?limit=" + SETTING_LIMIT;
+  private static final String HOLDINGS_NOTE_TYPES_URL = "/holdings-note-types?limit=" + SETTING_LIMIT;
+  private static final String ILL_POLICIES_URL = "/ill-policies?limit=" + SETTING_LIMIT;
+  private static final String CALL_NUMBER_TYPES_URL = "/call-number-types?limit=" + SETTING_LIMIT;
+  private static final String STATISTICAL_CODES_URL = "/statistical-codes?limit=" + SETTING_LIMIT;
+  private static final String STATISTICAL_CODE_TYPES_URL = "/statistical-code-types?limit=" + SETTING_LIMIT;
+  private static final String LOCATIONS_URL = "/locations?limit=" + SETTING_LIMIT;
+  private static final String MATERIAL_TYPES_URL = "/material-types?limit=" + SETTING_LIMIT;
+  private static final String ITEM_DAMAGED_STATUSES_URL = "/item-damaged-statuses?limit=" + SETTING_LIMIT;
+  private static final String LOAN_TYPES_URL = "/loan-types?limit=" + SETTING_LIMIT;
+  private static final String ITEM_NOTE_TYPES_URL = "/item-note-types?limit=" + SETTING_LIMIT;
+  private static final String FIELD_PROTECTION_SETTINGS_URL = "/field-protection-settings/marc?limit=" + SETTING_LIMIT;
 
   @Autowired
   public Okapi okapi;
@@ -458,38 +515,210 @@ public class OkapiService {
   }
 
   public MappingParameters getMappingParamaters(String tenant, String token) {
-    final MappingParameters mappingParameters = new MappingParameters();
-    // @formatter:off
-    Arrays.asList(new ReferenceFetcher[] {
-      new ReferenceFetcher("/identifier-types?limit=" + SETTING_LIMIT, Identifiertypes.class, "identifierTypes"),
-      new ReferenceFetcher("/classification-types?limit=" + SETTING_LIMIT, Classificationtypes.class, "classificationTypes"),
-      new ReferenceFetcher("/instance-types?limit=" + SETTING_LIMIT, Instancetypes.class, "instanceTypes"),
-      new ReferenceFetcher("/electronic-access-relationships?limit=" + SETTING_LIMIT, Electronicaccessrelationships.class, "electronicAccessRelationships"),
-      new ReferenceFetcher("/instance-formats?limit=" + SETTING_LIMIT, Instanceformats.class, "instanceFormats"),
-      new ReferenceFetcher("/contributor-types?limit=" + SETTING_LIMIT, Contributortypes.class, "contributorTypes"),
-      new ReferenceFetcher("/contributor-name-types?limit=" + SETTING_LIMIT, Contributornametypes.class, "contributorNameTypes"),
-      new ReferenceFetcher("/instance-note-types?limit=" + SETTING_LIMIT, Instancenotetypes.class, "instanceNoteTypes"),
-      new ReferenceFetcher("/alternative-title-types?limit=" + SETTING_LIMIT, Alternativetitletypes.class, "alternativeTitleTypes"),
-      new ReferenceFetcher("/modes-of-issuance?limit=" + SETTING_LIMIT, Issuancemodes.class, "issuanceModes")
-    }).forEach(fetcher -> {
-      HttpEntity<Credentials> entity = new HttpEntity<Credentials>(headers(tenant, token));
-      String url = okapi.getUrl() + fetcher.getUrl();
-      Class<?> collectionType = fetcher.getCollectionType();
-      ResponseEntity<?> response = restTemplate.exchange(url, HttpMethod.GET, entity, collectionType);
-      try {
-        Field source = collectionType.getDeclaredField(fetcher.getProperty());
-        source.setAccessible(true);
-        Field target = mappingParameters.getClass().getDeclaredField(fetcher.getProperty());
-        target.setAccessible(true);
-        target.set(mappingParameters, new UnmodifiableList<>((List<?>) source.get(response.getBody())));
-      } catch (RestClientException | NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
-        log.error(e.getMessage());
-        throw new RuntimeException(e);
-      }
-    });
-    mappingParameters.setInitialized(true);
-    // @formatter:on
-    return mappingParameters;
+    HttpHeaders headers = headers(tenant, token);
+    return new MappingParameters()
+      .withInitializedState(true)
+      .withIdentifierTypes(getIdentifierTypes(headers))
+      .withClassificationTypes(getClassificationTypes(headers))
+      .withInstanceTypes(getInstanceTypes(headers))
+      .withElectronicAccessRelationships(getElectronicAccessRelationships(headers))
+      .withInstanceFormats(getInstanceFormats(headers))
+      .withContributorTypes(getContributorTypes(headers))
+      .withContributorNameTypes(getContributorNameTypes(headers))
+      .withInstanceNoteTypes(getInstanceNoteTypes(headers))
+      .withAlternativeTitleTypes(getAlternativeTitleTypes(headers))
+      .withIssuanceModes(getIssuanceModes(headers))
+      .withInstanceStatuses(getInstanceStatuses(headers))
+      .withNatureOfContentTerms(getNatureOfContentTerms(headers))
+      .withInstanceRelationshipTypes(getInstanceRelationshipTypes(headers))
+      .withInstanceRelationshipTypes(getInstanceRelationshipTypes(headers))
+      .withHoldingsTypes(getHoldingsTypes(headers))
+      .withHoldingsNoteTypes(getHoldingsNoteTypes(headers))
+      .withIllPolicies(getIllPolicies(headers))
+      .withCallNumberTypes(getCallNumberTypes(headers))
+      .withStatisticalCodes(getStatisticalCodes(headers))
+      .withStatisticalCodeTypes(getStatisticalCodeTypes(headers))
+      .withLocations(getLocations(headers))
+      .withMaterialTypes(getMaterialTypes(headers))
+      .withItemDamagedStatuses(getItemDamagedStatuses(headers))
+      .withLoanTypes(getLoanTypes(headers))
+      .withItemNoteTypes(getItemNoteTypes(headers))
+      .withMarcFieldProtectionSettings(getMarcFieldProtectionSettings(headers));
+  }
+  
+  private List<IdentifierType> getIdentifierTypes(HttpHeaders headers) {
+    HttpEntity<Identifiertypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + IDENTIFIER_TYPES_URL;
+    ResponseEntity<Identifiertypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Identifiertypes.class);
+    return response.getBody().getIdentifierTypes();
+  }
+
+  private List<ClassificationType> getClassificationTypes(HttpHeaders headers) {
+    HttpEntity<Classificationtypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + CLASSIFICATION_TYPES_URL;
+    ResponseEntity<Classificationtypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Classificationtypes.class);
+    return response.getBody().getClassificationTypes();
+  }
+
+  private List<InstanceType> getInstanceTypes(HttpHeaders headers) {
+    HttpEntity<Instancetypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + INSTANCE_TYPES_URL;
+    ResponseEntity<Instancetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Instancetypes.class);
+    return response.getBody().getInstanceTypes();
+  }
+
+  private List<ElectronicAccessRelationship> getElectronicAccessRelationships(HttpHeaders headers) {
+    HttpEntity<Electronicaccessrelationships> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + ELECTRONIC_ACCESS_URL;
+    ResponseEntity<Electronicaccessrelationships> response = restTemplate.exchange(url, HttpMethod.GET, entity, Electronicaccessrelationships.class);
+    return response.getBody().getElectronicAccessRelationships();
+  }
+
+  private List<InstanceFormat> getInstanceFormats(HttpHeaders headers) {
+    HttpEntity<Instanceformats> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + INSTANCE_FORMATS_URL;
+    ResponseEntity<Instanceformats> response = restTemplate.exchange(url, HttpMethod.GET, entity, Instanceformats.class);
+    return response.getBody().getInstanceFormats();
+  }
+
+  private List<ContributorType> getContributorTypes(HttpHeaders headers) {
+    HttpEntity<Contributortypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + CONTRIBUTOR_TYPES_URL;
+    ResponseEntity<Contributortypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Contributortypes.class);
+    return response.getBody().getContributorTypes();
+  }
+
+  private List<ContributorNameType> getContributorNameTypes(HttpHeaders headers) {
+    HttpEntity<Contributornametypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + CONTRIBUTOR_NAME_TYPES_URL;
+    ResponseEntity<Contributornametypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Contributornametypes.class);
+    return response.getBody().getContributorNameTypes();
+  }
+
+  private List<InstanceNoteType> getInstanceNoteTypes(HttpHeaders headers) {
+    HttpEntity<Instancenotetypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + INSTANCE_NOTE_TYPES_URL;
+    ResponseEntity<Instancenotetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Instancenotetypes.class);
+    return response.getBody().getInstanceNoteTypes();
+  }
+
+  private List<AlternativeTitleType> getAlternativeTitleTypes(HttpHeaders headers) {
+    HttpEntity<Alternativetitletypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + INSTANCE_ALTERNATIVE_TITLE_TYPES_URL;
+    ResponseEntity<Alternativetitletypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Alternativetitletypes.class);
+    return response.getBody().getAlternativeTitleTypes();
+  }
+
+  private List<NatureOfContentTerm> getNatureOfContentTerms(HttpHeaders headers) {
+    HttpEntity<Natureofcontentterms> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + NATURE_OF_CONTENT_TERMS_URL;
+    ResponseEntity<Natureofcontentterms> response = restTemplate.exchange(url, HttpMethod.GET, entity, Natureofcontentterms.class);
+    return response.getBody().getNatureOfContentTerms();
+  }
+
+  private List<InstanceStatus> getInstanceStatuses(HttpHeaders headers) {
+    HttpEntity<Instancestatuses> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + INSTANCE_STATUSES_URL;
+    ResponseEntity<Instancestatuses> response = restTemplate.exchange(url, HttpMethod.GET, entity, Instancestatuses.class);
+    return response.getBody().getInstanceStatuses();
+  }
+
+  private List<InstanceRelationshipType> getInstanceRelationshipTypes(HttpHeaders headers) {
+    HttpEntity<Instancerelationshiptypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + INSTANCE_RELATIONSHIP_TYPES_URL;
+    ResponseEntity<Instancerelationshiptypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Instancerelationshiptypes.class);
+    return response.getBody().getInstanceRelationshipTypes();
+  }
+
+  private List<HoldingsType> getHoldingsTypes(HttpHeaders headers) {
+    HttpEntity<Holdingstypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + HOLDINGS_TYPES_URL;
+    ResponseEntity<Holdingstypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Holdingstypes.class);
+    return response.getBody().getHoldingsTypes();
+  }
+
+  private List<HoldingsNoteType> getHoldingsNoteTypes(HttpHeaders headers) {
+    HttpEntity<Holdingsnotetypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + HOLDINGS_NOTE_TYPES_URL;
+    ResponseEntity<Holdingsnotetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Holdingsnotetypes.class);
+    return response.getBody().getHoldingsNoteTypes();
+  }
+
+  private List<IllPolicy> getIllPolicies(HttpHeaders headers) {
+    HttpEntity<Illpolicies> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + ILL_POLICIES_URL;
+    ResponseEntity<Illpolicies> response = restTemplate.exchange(url, HttpMethod.GET, entity, Illpolicies.class);
+    return response.getBody().getIllPolicies();
+  }
+
+  private List<CallNumberType> getCallNumberTypes(HttpHeaders headers) {
+    HttpEntity<Callnumbertypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + CALL_NUMBER_TYPES_URL;
+    ResponseEntity<Callnumbertypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Callnumbertypes.class);
+    return response.getBody().getCallNumberTypes();
+  }
+
+  private List<StatisticalCode> getStatisticalCodes(HttpHeaders headers) {
+    HttpEntity<Statisticalcodes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + STATISTICAL_CODES_URL;
+    ResponseEntity<Statisticalcodes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Statisticalcodes.class);
+    return response.getBody().getStatisticalCodes();
+  }
+
+  private List<StatisticalCodeType> getStatisticalCodeTypes(HttpHeaders headers) {
+    HttpEntity<Statisticalcodetypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + STATISTICAL_CODE_TYPES_URL;
+    ResponseEntity<Statisticalcodetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Statisticalcodetypes.class);
+    return response.getBody().getStatisticalCodeTypes();
+  }
+
+  private List<Location> getLocations(HttpHeaders headers) {
+    HttpEntity<Locations> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + LOCATIONS_URL;
+    ResponseEntity<Locations> response = restTemplate.exchange(url, HttpMethod.GET, entity, Locations.class);
+    return response.getBody().getLocations();
+  }
+
+  private List<Mtype> getMaterialTypes(HttpHeaders headers) {
+    HttpEntity<Materialtypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + MATERIAL_TYPES_URL;
+    ResponseEntity<Materialtypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Materialtypes.class);
+    return response.getBody().getMtypes();
+  }
+
+  private List<ItemDamageStatus> getItemDamagedStatuses(HttpHeaders headers) {
+    HttpEntity<Itemdamagedstatuses> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + ITEM_DAMAGED_STATUSES_URL;
+    ResponseEntity<Itemdamagedstatuses> response = restTemplate.exchange(url, HttpMethod.GET, entity, Itemdamagedstatuses.class);
+    return response.getBody().getItemDamageStatuses();
+  }
+
+  private List<Loantype> getLoanTypes(HttpHeaders headers) {
+    HttpEntity<Loantypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + LOAN_TYPES_URL;
+    ResponseEntity<Loantypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Loantypes.class);
+    return response.getBody().getLoantypes();
+  }
+
+  private List<ItemNoteType> getItemNoteTypes(HttpHeaders headers) {
+    HttpEntity<Itemnotetypes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + ITEM_NOTE_TYPES_URL;
+    ResponseEntity<Itemnotetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Itemnotetypes.class);
+    return response.getBody().getItemNoteTypes();
+  }
+
+  private List<MarcFieldProtectionSetting> getMarcFieldProtectionSettings(HttpHeaders headers) {
+    HttpEntity<MarcFieldProtectionSettingsCollection> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + FIELD_PROTECTION_SETTINGS_URL;
+    ResponseEntity<MarcFieldProtectionSettingsCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, MarcFieldProtectionSettingsCollection.class);
+    return response.getBody().getMarcFieldProtectionSettings();
+  }
+
+  private List<IssuanceMode> getIssuanceModes(HttpHeaders headers) {
+    HttpEntity<Issuancemodes> entity = new HttpEntity<>(headers);
+    String url = okapi.getUrl() + ISSUANCE_MODES_URL;
+    ResponseEntity<Issuancemodes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Issuancemodes.class);
+    return response.getBody().getIssuanceModes();
   }
 
   private HttpHeaders headers(String tenant, String token) {
@@ -505,34 +734,6 @@ public class OkapiService {
     headers.setContentType(MediaType.APPLICATION_JSON);
     headers.set("X-Okapi-Tenant", tenant);
     return headers;
-  }
-
-  private class ReferenceFetcher {
-
-    private final String url;
-
-    private final Class<?> collectionType;
-
-    private final String property;
-
-    public ReferenceFetcher(String url, Class<?> collectionType, String property) {
-      this.url = url;
-      this.collectionType = collectionType;
-      this.property = property;
-    }
-
-    public String getUrl() {
-      return url;
-    }
-
-    public Class<?> getCollectionType() {
-      return collectionType;
-    }
-
-    public String getProperty() {
-      return property;
-    }
-
   }
 
 }
