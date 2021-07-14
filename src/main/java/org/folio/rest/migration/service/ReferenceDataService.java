@@ -224,14 +224,7 @@ public class ReferenceDataService {
                   }
                   node = transformed;
                 }
-                for (String exclude : datum.getExcludedProperties()) {
-                  String property = exclude;
-                  int lastIndexOf = property.lastIndexOf(".");
-                  if (lastIndexOf >= 0) {
-                    property = property.substring(lastIndexOf + 1);
-                  }
-                  getNode(node, exclude).remove(property);
-                }
+                processExclude(datum, node);
                 return node;
               }).collect(Collectors.toList()));
               writeReferenceData(datum);
@@ -239,6 +232,7 @@ public class ReferenceDataService {
           }
         } else {
           List<JsonNode> data = new ArrayList<>();
+          processExclude(datum, response);
           data.add(response);
           datum.setData(data);
           writeReferenceData(datum);
@@ -259,6 +253,17 @@ public class ReferenceDataService {
       return current;
     }
     return getNode(current, path.substring(path.indexOf(".") + 1));
+  }
+
+  private void processExclude(ReferenceData datum, JsonNode node) {
+    for (String exclude : datum.getExcludedProperties()) {
+      String property = exclude;
+      int lastIndexOf = property.lastIndexOf(".");
+      if (lastIndexOf >= 0) {
+        property = property.substring(lastIndexOf + 1);
+      }
+      getNode(node, exclude).remove(property);
+    }
   }
 
   private void writeReferenceData(ReferenceData datum) throws JsonGenerationException, JsonMappingException, IOException {
