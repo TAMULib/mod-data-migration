@@ -285,10 +285,6 @@
     "userId" : "777b4e7c-bf57-3174-9c1a-76b38a20bde1",
     "permissions" : [ "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "945ff52a-7e81-4374-a8be-41cb481db236", "dfe8fa76-9e3f-420e-bada-10d077ddf1ae", "9ccfdbfe-ad7e-4103-9906-b06a47940eca", "ui-inventory.all-permissions.TEMPORARY", "ui-inventory.items.mark-in-process-non-requestable", "7b0b50d2-89b5-4a3c-9137-5513a23327b7" ]
   }, {
-    "id" : "356df9d1-56a3-421b-b27d-2387d18388bd",
-    "userId" : "a81b932c-4f1d-3b51-90ec-f4e91c128530",
-    "permissions" : [ "7fd42e23-08bf-4bf3-ad66-f6e27c446649", "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "cc4a6624-190c-4872-95dd-be090a74b61f", "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "module.data-import.enabled", "7301b3b0-7075-4e66-8c43-12ed005e6c6b", "61978e3d-e0aa-4329-a2c0-36c6191aa09b", "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1", "8e6f20f4-58ae-4051-b7e4-abb4b36966a1", "7b0b50d2-89b5-4a3c-9137-5513a23327b7", "ui-invoice.settings.all", "ui-tenant-settings.settings.addresses" ]
-  }, {
     "id" : "666251d4-a64f-48d4-844f-7d023784eea5",
     "userId" : "cb6715c2-5ede-32ba-a7d7-514f3ec96a8c",
     "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068", "60564d19-d5b9-4ed4-b4df-06b79b5efc5f", "50a15dba-6ea2-426a-9118-369084f1247b" ]
@@ -660,6 +656,10 @@
     "id" : "08f0cbcf-6cd6-4e59-82ed-143153c91046",
     "userId" : "64b28c18-a9d4-3361-8490-967ac0813be3",
     "permissions" : [ "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "module.data-import.enabled", "9ccfdbfe-ad7e-4103-9906-b06a47940eca", "ui-invoice.approve", "ui-invoice.invoice.create", "ui-invoice.invoice.delete", "ui-orders.order-lines.view", "ui-orders.order.view" ]
+  }, {
+    "id" : "356df9d1-56a3-421b-b27d-2387d18388bd",
+    "userId" : "a81b932c-4f1d-3b51-90ec-f4e91c128530",
+    "permissions" : [ "7fd42e23-08bf-4bf3-ad66-f6e27c446649", "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "cc4a6624-190c-4872-95dd-be090a74b61f", "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "module.data-import.enabled", "7301b3b0-7075-4e66-8c43-12ed005e6c6b", "61978e3d-e0aa-4329-a2c0-36c6191aa09b", "1f69dc6b-875a-468d-9f70-a7d9e0e2abd1", "8e6f20f4-58ae-4051-b7e4-abb4b36966a1", "7b0b50d2-89b5-4a3c-9137-5513a23327b7", "ui-invoice.settings.all", "ui-tenant-settings.settings.addresses" ]
   }, {
     "id" : "4ad34b7d-bb7b-4427-8afb-2a888d368213",
     "userId" : "a933a14d-6291-427b-8357-1b9575fd7273",
