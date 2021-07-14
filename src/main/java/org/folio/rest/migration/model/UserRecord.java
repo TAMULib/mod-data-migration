@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.rest.jaxrs.model.userimport.raml_util.schemas.tagged_record_example.Metadata;
+import org.folio.rest.jaxrs.model.Metadata;
 import org.folio.rest.jaxrs.model.userimport.schemas.Address;
 import org.folio.rest.jaxrs.model.userimport.schemas.Personal;
 import org.folio.rest.jaxrs.model.userimport.schemas.Userdataimport;
