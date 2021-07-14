@@ -329,11 +329,6 @@
     "servicePointsIds" : [ "3b80cfdf-438b-48c1-aadc-57965a0d7680", "382bbd83-8f05-4063-8d08-adf1d3316e0a" ],
     "defaultServicePointId" : "382bbd83-8f05-4063-8d08-adf1d3316e0a"
   }, {
-    "id" : "9e7ccad6-b603-4a1d-9dc4-70ad8875500f",
-    "userId" : "7c7f6a79-880d-3345-9732-4865f36af8cf",
-    "servicePointsIds" : [ "3b80cfdf-438b-48c1-aadc-57965a0d7680", "fc64d24e-5247-402a-ae19-21de454c025d" ],
-    "defaultServicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680"
-  }, {
     "id" : "7d6379c8-91ef-45db-90a0-6f02b402597f",
     "userId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
     "servicePointsIds" : [ "3b80cfdf-438b-48c1-aadc-57965a0d7680", "382bbd83-8f05-4063-8d08-adf1d3316e0a" ],
@@ -378,6 +373,11 @@
     "userId" : "f0c4cc32-f80d-38eb-8638-8a26e28be2b8",
     "servicePointsIds" : [ "3b80cfdf-438b-48c1-aadc-57965a0d7680" ],
     "defaultServicePointId" : "3b80cfdf-438b-48c1-aadc-57965a0d7680"
+  }, {
+    "id" : "9e7ccad6-b603-4a1d-9dc4-70ad8875500f",
+    "userId" : "7c7f6a79-880d-3345-9732-4865f36af8cf",
+    "servicePointsIds" : [ "3b80cfdf-438b-48c1-aadc-57965a0d7680", "fc64d24e-5247-402a-ae19-21de454c025d" ],
+    "defaultServicePointId" : "fc64d24e-5247-402a-ae19-21de454c025d"
   }, {
     "id" : "b83da176-e658-45f1-bb70-799df414a34a",
     "userId" : "e39aa7dc-a991-3318-9836-ffcd449a17f6",
@@ -638,5 +638,10 @@
     "userId" : "30968b92-64e3-3f8f-a018-f787817af34d",
     "servicePointsIds" : [ "3b80cfdf-438b-48c1-aadc-57965a0d7680", "fc64d24e-5247-402a-ae19-21de454c025d", "4aac1bd9-87ef-4247-a1ce-1506f304251a", "9311b907-0c9f-42d0-aea4-62d33a7ab7b7", "24f55faf-d42e-4fef-9ad3-43c34b75962f" ],
     "defaultServicePointId" : "4aac1bd9-87ef-4247-a1ce-1506f304251a"
+  }, {
+    "id" : "11bba8fe-1fae-41e7-b7ec-f99ccb9a915d",
+    "userId" : "8048a879-38f4-3f0c-a286-35cab3c449f2",
+    "servicePointsIds" : [ "24f55faf-d42e-4fef-9ad3-43c34b75962f" ],
+    "defaultServicePointId" : "24f55faf-d42e-4fef-9ad3-43c34b75962f"
   } ]
 }

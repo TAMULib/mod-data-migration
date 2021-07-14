@@ -1844,8 +1844,9 @@
         "applyRulesOnConcatenatedData" : true
       }, {
         "rules" : [ {
-          "value": "false",
-          "conditions": []
+          "conditions" : [ {
+            "type" : "set_note_staff_only_via_indicator"
+          } ]
         } ],
         "target" : "notes.staffOnly",
         "subfield" : [ "a", "b", "c", "d", "e", "f", "h", "n", "o", "3", "5" ],
@@ -1879,8 +1880,9 @@
         "applyRulesOnConcatenatedData" : true
       }, {
         "rules" : [ {
-          "value": "false",
-          "conditions": []
+          "conditions" : [ {
+            "type" : "set_note_staff_only_via_indicator"
+          } ]
         } ],
         "target" : "notes.staffOnly",
         "subfield" : [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "u", "3" ],
@@ -2186,8 +2188,9 @@
         "applyRulesOnConcatenatedData" : true
       }, {
         "rules" : [ {
-          "value": "false",
-          "conditions": []
+          "conditions" : [ {
+            "type" : "set_note_staff_only_via_indicator"
+          } ]
         } ],
         "target" : "notes.staffOnly",
         "subfield" : [ "a", "u", "3", "5" ],
@@ -2425,8 +2428,9 @@
         "applyRulesOnConcatenatedData" : true
       }, {
         "rules" : [ {
-          "value": "false",
-          "conditions": []
+          "conditions" : [ {
+            "type" : "set_note_staff_only_via_indicator"
+          } ]
         } ],
         "target" : "notes.staffOnly",
         "subfield" : [ "a", "b", "c", "d", "e", "f", "h", "i", "j", "k", "l", "n", "o", "u", "x", "z", "2", "3", "5" ],
