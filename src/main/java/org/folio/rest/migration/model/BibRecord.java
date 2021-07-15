@@ -1,17 +1,17 @@
 package org.folio.rest.migration.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
+import org.folio.Instance;
+import org.folio.Metadata;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.common.ExternalIdsHolder;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.AdditionalInfo;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.ParsedRecord;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.ParsedRecordDto.RecordType;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.RawRecord;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_source_record_storage.RecordModel;
-import org.folio.rest.jaxrs.model.inventory.Instance;
-import org.folio.rest.jaxrs.model.inventory.Metadata;
 import org.folio.rest.migration.mapping.InstanceMapper;
 
 import io.vertx.core.json.JsonObject;
@@ -21,7 +21,7 @@ public class BibRecord {
   private final String bibId;
   private final String statusId;
   private final Boolean suppressDiscovery;
-  private final Set<String> statisticalCodes;
+  private final List<String> statisticalCodes;
 
   private String marc;
   private String sourceRecordId;
@@ -34,7 +34,7 @@ public class BibRecord {
   private String createdByUserId;
   private Date createdDate;
 
-  public BibRecord(String bibId, String statusId, Boolean suppressDiscovery, Set<String> statisticalCodes) {
+  public BibRecord(String bibId, String statusId, Boolean suppressDiscovery, List<String> statisticalCodes) {
     this.bibId = bibId;
     this.statusId = statusId;
     this.suppressDiscovery = suppressDiscovery;

@@ -265,7 +265,7 @@
     <dependency>
       <groupId>org.folio</groupId>
       <artifactId>data-import-processing-core</artifactId>
-      <version>3.0.3</version>
+      <version>3.0.4-SNAPSHOT</version>
       <exclusions>
         <exclusion>
           <groupId>org.folio</groupId>
