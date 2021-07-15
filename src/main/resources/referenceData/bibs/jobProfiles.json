@@ -65,19 +65,6 @@
     "id" : "6e6edfb3-24fc-44f6-a496-1a959438a3fe"
   }, {
     "profile" : {
-      "name" : "KP TEST - Harr Invoice Profile",
-      "description" : "Serials Invoice Test",
-      "dataType" : "EDIFACT",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "078335c0-f031-4acc-a80d-6f3024f53c86"
-  }, {
-    "profile" : {
       "name" : "MSL test A",
       "description" : "",
       "dataType" : "MARC",
@@ -403,5 +390,18 @@
       }
     },
     "id" : "665ef678-a18a-4cd6-b5f9-8a541ce4ecab"
+  }, {
+    "profile" : {
+      "name" : "KP TEST - Harr Invoice Profile",
+      "description" : "Serials Invoice Test",
+      "dataType" : "EDIFACT",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Kimberly",
+        "lastName" : "Pamplin",
+        "userName" : "kpamplin"
+      }
+    },
+    "id" : "078335c0-f031-4acc-a80d-6f3024f53c86"
   } ]
 }

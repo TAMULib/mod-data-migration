@@ -55,20 +55,6 @@
     "id" : "0c726e57-f8ee-4aef-b54f-0b16cf5c520b"
   }, {
     "profile" : {
-      "name" : "KP TEST - Harr Invoice",
-      "description" : "Testing Serials Harrassowitz Invoice",
-      "action" : "CREATE",
-      "folioRecord" : "INVOICE",
-      "deleted" : false,
-      "userInfo" : {
-        "firstName" : "tamu",
-        "lastName" : "admin",
-        "userName" : "tamu_admin"
-      }
-    },
-    "id" : "e29d1ff3-6cb6-4476-ab8b-57da10b027f9"
-  }, {
-    "profile" : {
       "name" : "KP TEST - Monograph Invoice 2",
       "description" : "",
       "action" : "CREATE",
@@ -107,6 +93,20 @@
       }
     },
     "id" : "0f307154-4e04-44ed-9a5a-3631794a2200"
+  }, {
+    "profile" : {
+      "name" : "KP TEST - Harr Invoice",
+      "description" : "Testing Serials Harrassowitz Invoice",
+      "action" : "CREATE",
+      "folioRecord" : "INVOICE",
+      "deleted" : false,
+      "userInfo" : {
+        "firstName" : "Kimberly",
+        "lastName" : "Pamplin",
+        "userName" : "kpamplin"
+      }
+    },
+    "id" : "e29d1ff3-6cb6-4476-ab8b-57da10b027f9"
   }, {
     "profile" : {
       "name" : "MARCIVE LOAD-ACTION-CREATE Instance Record",

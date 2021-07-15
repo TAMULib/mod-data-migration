@@ -116,60 +116,6 @@
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   }, {
-    "id" : "49614473-be6e-4224-94da-314df8290471",
-    "courseListingId" : "9c77e7b9-ace8-419b-94a6-b546ed194d64",
-    "itemId" : "7d173bd1-87d0-3c06-9a3f-ba0025a3deac",
-    "copiedItem" : {
-      "barcode" : "A14842806557",
-      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
-      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
-      "title" : "Research design : qualitative, quantitative, and mixed methods approaches / John W. Creswell.",
-      "contributors" : [ {
-        "name" : "Creswell, John W",
-        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
-        "primary" : true
-      } ],
-      "publication" : [ {
-        "publisher" : "SAGE Publications",
-        "place" : "Thousand Oaks, California",
-        "dateOfPublication" : "[2014]",
-        "role" : "Publication"
-      }, {
-        "dateOfPublication" : "©2014"
-      } ],
-      "callNumber" : "H62 .C6963 2014",
-      "instanceId" : "0e2cedc6-60b6-3a1f-a82b-dd5e406e0dac",
-      "instanceHrid" : "in00003195118",
-      "holdingsId" : "b0ae7579-0caf-32f2-a13e-281581661dd3"
-    },
-    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
-  }, {
-    "id" : "ad26cb8a-8dc9-4dc3-894c-7bdf13d11903",
-    "courseListingId" : "85dd2c9d-d183-46e4-a638-65d874dc4a42",
-    "itemId" : "8f26aa84-1fa7-370e-a4ca-ec61eab777a3",
-    "copiedItem" : {
-      "barcode" : "A14804747504",
-      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
-      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
-      "title" : "Regional geomorphology of the United States / [by] William D. Thornbury.",
-      "contributors" : [ {
-        "name" : "Thornbury, William D. (William David), 1900-",
-        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
-        "primary" : true
-      } ],
-      "publication" : [ {
-        "publisher" : "Wiley",
-        "place" : "New York",
-        "dateOfPublication" : "[1965]",
-        "role" : "Publication"
-      } ],
-      "callNumber" : "QE77 .T5",
-      "instanceId" : "19580346-eab5-3942-81b7-8147db44ec74",
-      "instanceHrid" : "in00000381562",
-      "holdingsId" : "25cf59b1-86e8-3dfd-86a6-45e2d4dba5ef"
-    },
-    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
-  }, {
     "id" : "e858c008-7fe3-4b6a-8b46-6d19982e6c85",
     "courseListingId" : "0cb27999-978c-44f9-8aba-4659b8a7460e",
     "itemId" : "b83c7126-5b23-3ad8-9b78-a62cf6c021d8",
@@ -236,6 +182,9 @@
     "id" : "80f715b1-296a-4a36-8230-70e93a108af3",
     "courseListingId" : "86067ecb-69b3-4d88-af1d-6ad5aa1010f6",
     "itemId" : "93e294d7-26dc-3470-968c-3cc4bd9b38db",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2022-07-31",
+    "endDate" : "2022-12-25",
     "copiedItem" : {
       "barcode" : "A14818016339",
       "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -262,6 +211,9 @@
     "id" : "0a70b38c-4b1c-4b6b-b539-bf32982440c0",
     "courseListingId" : "3fddc6fb-c445-45bb-a95a-c6b1e1bb5270",
     "itemId" : "40e123b1-3118-3015-9c56-02228425251e",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-05-01",
+    "endDate" : "2021-08-21",
     "copiedItem" : {
       "barcode" : "A14850460628",
       "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -301,6 +253,9 @@
     "id" : "44986b08-c2cc-4d6d-ac78-63675a15b76a",
     "courseListingId" : "a256da97-5476-4b8c-9427-8f7578e0b17a",
     "itemId" : "3b4113f1-04cd-3187-8ac9-20506d880c76",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-05-01T05:00:00.000Z",
+    "endDate" : "2021-08-21T05:00:00.000Z",
     "copiedItem" : {
       "barcode" : "A14850451486",
       "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -327,35 +282,6 @@
       "instanceId" : "c31d3f05-346a-38ef-9d4a-5129153ca556",
       "instanceHrid" : "in00001617144",
       "holdingsId" : "6445fb41-2c45-34af-864c-ba81366abc0a"
-    },
-    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
-  }, {
-    "id" : "51eed8e6-41f9-44cc-9b8d-bd11195f844f",
-    "courseListingId" : "960db68d-b2ff-4b10-96e6-ab3469b6e141",
-    "itemId" : "f73aa624-0f12-30f9-aa89-67a798250b62",
-    "copiedItem" : {
-      "barcode" : "A14850451213",
-      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
-      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
-      "title" : "Becoming an academic writer : 50 exercises for paced, productive, and powerful writing / Patricia Goodson, Texas A&M University.",
-      "contributors" : [ {
-        "name" : "Goodson, Patricia, 1958-",
-        "contributorTypeText" : "author.",
-        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
-        "primary" : true
-      } ],
-      "publication" : [ {
-        "publisher" : "SAGE Publications",
-        "place" : "Thousand Oaks, California",
-        "dateOfPublication" : "[2017]",
-        "role" : "Publication"
-      }, {
-        "dateOfPublication" : "©2017"
-      } ],
-      "callNumber" : "PE1408 .G585 2017",
-      "instanceId" : "ea931960-0992-3c34-9557-eba6b61e09b5",
-      "instanceHrid" : "in00003542554",
-      "holdingsId" : "07feacba-015f-3b45-9279-021c26d06623"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   }, {
@@ -586,33 +512,6 @@
       "instanceId" : "614b3023-c895-3c54-8c8e-12f8e730c7cb",
       "instanceHrid" : "in00004057070",
       "holdingsId" : "b0c79ebe-4077-3b6d-900b-353115577832"
-    },
-    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
-  }, {
-    "id" : "e0bc2665-07a0-4098-9a5e-ab503e6fe0a0",
-    "courseListingId" : "308dfddb-0f79-4413-8c9c-7adfb501126a",
-    "itemId" : "6b960a2e-da87-323c-8224-2978fcd3a633",
-    "copiedItem" : {
-      "barcode" : "A14836913822",
-      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
-      "permanentLocationId" : "01efba3f-5feb-472a-a446-268c0e5f4634",
-      "title" : "Statistics : the art and science of learning from data.",
-      "contributors" : [ {
-        "name" : "Agresti, Alan",
-        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
-        "primary" : true
-      } ],
-      "publication" : [ {
-        "publisher" : "Pearson",
-        "place" : "Boston",
-        "dateOfPublication" : "[date of publication not identified]",
-        "role" : "Publication"
-      } ],
-      "callNumber" : "QA276.12 .A35 2017",
-      "enumeration" : "PROF COPY - Michael Longnecker",
-      "instanceId" : "35b3a6c5-25d8-3289-997e-ba8ead139e84",
-      "instanceHrid" : "in00003949034",
-      "holdingsId" : "591f6989-e267-3ab3-b988-7d2addfec186"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   }, {
@@ -2853,40 +2752,6 @@
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   }, {
-    "id" : "0e2d781d-7634-4a85-9258-d18b99b3be4e",
-    "courseListingId" : "9f721326-9f9d-4a1f-b448-352657f50b63",
-    "itemId" : "50ce3fd7-a439-38d7-81ea-62e5050252af",
-    "copiedItem" : {
-      "barcode" : "A14850429383",
-      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
-      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
-      "title" : "The lean builder : a builder's guide to applying lean tools in the field / Joe Donarumo & Keyan Zandy.",
-      "contributors" : [ {
-        "name" : "Donarumo, Joe,",
-        "contributorTypeText" : "author.",
-        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
-        "primary" : true
-      }, {
-        "name" : "Zandy, Keyan,",
-        "contributorTypeText" : "author.",
-        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
-        "primary" : false
-      } ],
-      "publication" : [ {
-        "publisher" : "Lulu Publishing Services",
-        "place" : "[United States]",
-        "dateOfPublication" : "[2019]",
-        "role" : "Publication"
-      }, {
-        "dateOfPublication" : "©2019"
-      } ],
-      "callNumber" : "HD9715.A2 D66 2019",
-      "instanceId" : "2c4860df-9053-3bb1-8f4b-c209abd42401",
-      "instanceHrid" : "in00004179773",
-      "holdingsId" : "b53a257c-2df7-3413-97b8-772e6b3db18d"
-    },
-    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
-  }, {
     "id" : "b1177924-5d48-45a5-a402-e009230130bc",
     "courseListingId" : "0af60209-a251-44f8-a166-1f45a7407f24",
     "itemId" : "b5c92319-76a2-3649-aba1-c5aba5565bf2",
@@ -3326,6 +3191,28 @@
       "instanceId" : "a2b89876-c997-3b89-a8bf-3a9b2ee322b3",
       "instanceHrid" : "in00003749255",
       "holdingsId" : "6845bcd6-76b4-350c-88f0-ef7670468ea8"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "39d80489-da08-4ee9-be10-469fd278cdd2",
+    "courseListingId" : "289c290d-43b4-4ff0-a976-ada45d2068d1",
+    "itemId" : "f5b10c32-ddc8-37b0-8c92-d7376e0a8a4e",
+    "copiedItem" : {
+      "barcode" : "A14833745979",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "title" : "Sentimental journey home.",
+      "contributors" : [ {
+        "name" : "LeUnes, Arnold D",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "LD5309 .L48 2018",
+      "enumeration" : "Vol.1",
+      "instanceId" : "83f8eb44-8ac2-3ff7-8667-570627cf1f4f",
+      "instanceHrid" : "in00004229297",
+      "holdingsId" : "25a96672-5c96-386d-8abf-fc4783ba8879"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   }, {
@@ -4642,6 +4529,27 @@
       "instanceId" : "798d790a-69db-3e43-8426-7e17294a0b7a",
       "instanceHrid" : "in00003570990",
       "holdingsId" : "bca12fee-ab6f-3a3f-b713-dec357c353d2"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ef44daba-aa65-47db-830e-02cbb31b2acb",
+    "courseListingId" : "289c290d-43b4-4ff0-a976-ada45d2068d1",
+    "itemId" : "26506754-b8cc-344b-97fe-1bea04bb7902",
+    "copiedItem" : {
+      "barcode" : "A14833745775",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "title" : "Abnormal psychology.",
+      "contributors" : [ {
+        "name" : "Comer, Ronald J",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "RC454 .C6343 2018",
+      "instanceId" : "3a5eef67-b2f3-389f-ba9c-a07d0707df63",
+      "instanceHrid" : "in00004157021",
+      "holdingsId" : "40fd0afd-58d3-3954-86e6-e9a8db248e95"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   }, {
@@ -6942,6 +6850,9 @@
     "id" : "086282e3-b9d0-4bf8-8fb5-8e8449e63401",
     "courseListingId" : "e3176e6d-2217-433d-8652-fca9ed7c14df",
     "itemId" : "51a24cef-60da-31f9-a2bd-61e3c5008456",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-07-30",
+    "endDate" : "2019-12-25",
     "copiedItem" : {
       "barcode" : "A14843471633",
       "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -13310,6 +13221,28 @@
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   }, {
+    "id" : "f6082b69-dffd-4d5a-bca8-b777e1c42523",
+    "courseListingId" : "289c290d-43b4-4ff0-a976-ada45d2068d1",
+    "itemId" : "4d45594a-7525-3e27-b3d8-cff9e32034d2",
+    "copiedItem" : {
+      "barcode" : "A14833745694",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "title" : "Sentimental journey home /.",
+      "contributors" : [ {
+        "name" : "LeUnes, Arnold D",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "LD5309 .L48 2018",
+      "enumeration" : "Vol.1",
+      "instanceId" : "d9a4b02b-30d6-350e-9907-546344545834",
+      "instanceHrid" : "in00004189237",
+      "holdingsId" : "88ce533f-245a-31fc-ba00-7a049b0404f8"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
     "id" : "d2ad1cc9-35fc-4c37-a8a3-50a82e348858",
     "courseListingId" : "21cd4c2e-f17b-4df5-994a-9d37b023a858",
     "itemId" : "0f69bf1a-1f57-3d0c-9c07-11760931b44d",
@@ -14148,6 +14081,1192 @@
       "instanceId" : "82f4dcc6-b2ab-3257-86e4-b293c615a3e7",
       "instanceHrid" : "in00003533589",
       "holdingsId" : "5caca920-756c-339c-86e7-a6c4c8090f65"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "64ac7069-3390-44da-a9a6-38108c3f12fd",
+    "courseListingId" : "10ba4a8f-de42-4f92-9332-b8ab166d78d9",
+    "itemId" : "344dc5df-89d4-303b-bf17-4e7017877ab2",
+    "copiedItem" : {
+      "barcode" : "A14833744957",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Analyzing American democracy : politics and political science / Jon R. Bond, Texas A&M University, Kevin B. Smith, University of Nebraska-Lincoln.",
+      "contributors" : [ {
+        "name" : "Bond, Jon R.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Smith, Kevin B., 1963-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Routledge",
+        "place" : "New York",
+        "dateOfPublication" : "2019",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "JK276 .B65 2019",
+      "instanceId" : "a056c53e-3be7-3def-827c-4c9d9905faeb",
+      "instanceHrid" : "in00004183583",
+      "holdingsId" : "bb1238d6-2967-3027-a758-53dddf6031f0"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "2fba8067-df04-4438-bcd8-d6baacb19362",
+    "courseListingId" : "10ba4a8f-de42-4f92-9332-b8ab166d78d9",
+    "itemId" : "83de23a8-1cf8-310d-9faf-136715d82b98",
+    "copiedItem" : {
+      "barcode" : "A14833744999",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Analyzing American democracy : politics and political science / Jon R. Bond, Texas A&M University, Kevin B. Smith, University of Nebraska-Lincoln.",
+      "contributors" : [ {
+        "name" : "Bond, Jon R.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Smith, Kevin B., 1963-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Routledge",
+        "place" : "New York",
+        "dateOfPublication" : "2019",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "JK276 .B65 2019",
+      "instanceId" : "a056c53e-3be7-3def-827c-4c9d9905faeb",
+      "instanceHrid" : "in00004183583",
+      "holdingsId" : "4ee801a8-b51e-3be2-b78d-c960fc5966b0"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "525dffb5-e443-42da-8331-5c306d814d8b",
+    "courseListingId" : "10ba4a8f-de42-4f92-9332-b8ab166d78d9",
+    "itemId" : "8fe15405-2e4c-3294-ba7e-db39ab282b10",
+    "copiedItem" : {
+      "barcode" : "A14833745149",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Analyzing American democracy : politics and political science / Jon R. Bond, Texas A&M University, Kevin B. Smith, University of Nebraska-Lincoln.",
+      "contributors" : [ {
+        "name" : "Bond, Jon R.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Smith, Kevin B., 1963-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Routledge",
+        "place" : "New York",
+        "dateOfPublication" : "2019",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "JK276 .B65 2019",
+      "instanceId" : "a056c53e-3be7-3def-827c-4c9d9905faeb",
+      "instanceHrid" : "in00004183583",
+      "holdingsId" : "763defcc-2e9b-377b-9e75-fca16616030c"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "93e1fad3-9eb4-4858-a71d-ef9cffe91f45",
+    "courseListingId" : "cd71835e-07eb-4131-8d20-a01f6c0b3d45",
+    "itemId" : "46bb06d9-9b99-30b7-ba18-d0808d0b1e67",
+    "copiedItem" : {
+      "barcode" : "A14850593733",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The fundamentals of political science research / Paul M. Kellstedt, Texas A&M University, Guy D. Whitten, Texas A&M University.",
+      "contributors" : [ {
+        "name" : "Kellstedt, Paul M., 1968-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Whitten, Guy D., 1965-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Cambridge University Press",
+        "place" : "Cambridge ; New York",
+        "dateOfPublication" : "[2018]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2018"
+      } ],
+      "callNumber" : "JA86 .K45 2018",
+      "instanceId" : "33dbf478-19ee-3d5a-bfa6-5eb26c859452",
+      "instanceHrid" : "in00004097210",
+      "holdingsId" : "0eee8ab6-0f09-3924-8413-a655e51c1f4d"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "edff30ee-1569-48f3-b9dc-0a8205217296",
+    "courseListingId" : "db240379-38a8-4027-bcbe-192c8c8b45bd",
+    "itemId" : "fef21301-9098-3cfb-b664-b51f66c36075",
+    "copiedItem" : {
+      "barcode" : "A14851145640",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Research methods in psychology : evaluating a world of information / Beth Morling, University of Delaware.",
+      "contributors" : [ {
+        "name" : "Morling, Beth,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "W. W. Norton & Company",
+        "place" : "New York",
+        "dateOfPublication" : "[2021]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2021"
+      } ],
+      "callNumber" : "BF76.5 .M667 2021",
+      "instanceId" : "7430942c-37e5-3ab8-abd6-758ff99a9baa",
+      "instanceHrid" : "in00004672582",
+      "holdingsId" : "e935b7a7-29f6-3574-8cf2-bc752b316b04"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "0648bdf1-f6a5-4b99-a41e-60d8341338d6",
+    "courseListingId" : "289c290d-43b4-4ff0-a976-ada45d2068d1",
+    "itemId" : "177e1dc9-9a51-3171-8a94-08992e3c2c83",
+    "copiedItem" : {
+      "barcode" : "A14833745733",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "title" : "Sentimental journey home.",
+      "contributors" : [ {
+        "name" : "LeUnes, Arnold D",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "LD5309 .L48 2018",
+      "enumeration" : "Vol.2",
+      "instanceId" : "83f8eb44-8ac2-3ff7-8667-570627cf1f4f",
+      "instanceHrid" : "in00004229297",
+      "holdingsId" : "25a96672-5c96-386d-8abf-fc4783ba8879"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "64fe4ad0-5ab7-46b9-a3fa-d540fbd674f8",
+    "courseListingId" : "289c290d-43b4-4ff0-a976-ada45d2068d1",
+    "itemId" : "ecacf424-683c-3a52-8129-0c88b8991a3d",
+    "copiedItem" : {
+      "barcode" : "A14833745937",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "title" : "Sentimental journey home.",
+      "contributors" : [ {
+        "name" : "LeUnes, Arnold D",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "LD5309 .L48 2018",
+      "enumeration" : "Vol.2",
+      "instanceId" : "83f8eb44-8ac2-3ff7-8667-570627cf1f4f",
+      "instanceHrid" : "in00004229297",
+      "holdingsId" : "25a96672-5c96-386d-8abf-fc4783ba8879"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "1bff8764-82c4-482d-9e6f-8e9171ac9711",
+    "courseListingId" : "cc420f2c-99e9-4ff3-b18e-01b4e296874f",
+    "itemId" : "f1d4df0b-3244-3bc4-94e6-df0b42a58ea8",
+    "copiedItem" : {
+      "barcode" : "A14841348804",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The power of habit : why we do what we do in life and business / Charles Duhigg.",
+      "contributors" : [ {
+        "name" : "Duhigg, Charles",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Random House",
+        "place" : "New York",
+        "dateOfPublication" : "[2012]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2012"
+      } ],
+      "callNumber" : "BF335 .D76 2012",
+      "instanceId" : "d537d66f-c94c-3aed-a2fc-3c91209b2912",
+      "instanceHrid" : "in00002732718",
+      "holdingsId" : "720a1d5f-4cb1-3c5d-bc63-8d437a4b5a82"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "f24c8fe6-5595-418a-95bd-4312eb7dfcde",
+    "courseListingId" : "9ad4080b-f38f-46c6-b90e-050b8f0ce74c",
+    "itemId" : "34e92816-bd81-3c1e-85da-84d9717ab07b",
+    "copiedItem" : {
+      "barcode" : "A14851145293",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The mind's machine : foundations of brain and behavior / Neil V. Watson, Simon Fraser University, S. Marc Breedlove, Michigan State University.",
+      "contributors" : [ {
+        "name" : "Watson, Neil V. (Neil Verne), 1962-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Breedlove, S. Marc,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Oxford University Press",
+        "place" : "New York",
+        "dateOfPublication" : "[2021]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2021"
+      } ],
+      "callNumber" : "QP376 .W26 2021",
+      "instanceId" : "960636f5-e7fa-311b-90f7-a22df8008104",
+      "instanceHrid" : "in00004626350",
+      "holdingsId" : "95c967ec-c592-300b-b239-9f75b6a614ed"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "d59c6edb-0c1e-449f-a1bb-24c8d514f531",
+    "courseListingId" : "34698f22-8253-4640-b37e-659eb1ea9e1b",
+    "itemId" : "8679e32c-c4fe-3cab-a831-062dc5af51ce",
+    "copiedItem" : {
+      "barcode" : "A14842740855",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Principles of animal behavior / Lee Alan Dugatkin.",
+      "contributors" : [ {
+        "name" : "Dugatkin, Lee Alan, 1962-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "W. W. Norton & Company, Inc.",
+        "place" : "New York",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "QL751 .D748 2014",
+      "instanceId" : "102ff303-1382-3767-9cd8-a830ac55388e",
+      "instanceHrid" : "in00003510486",
+      "holdingsId" : "947710ad-3efa-3b67-badc-dca2931e9abf"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "c26de65d-b154-4325-b5b9-0af3586ad37a",
+    "courseListingId" : "34698f22-8253-4640-b37e-659eb1ea9e1b",
+    "itemId" : "6a0fc33a-dd64-3412-88fb-119a45db43fe",
+    "copiedItem" : {
+      "barcode" : "A14851525999",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Principles of animal behavior / Lee Alan Dugatkin.",
+      "contributors" : [ {
+        "name" : "Dugatkin, Lee Alan, 1962-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "University of Chicago Press",
+        "place" : "Chicago",
+        "dateOfPublication" : "[2020]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2019"
+      } ],
+      "callNumber" : "QL751 .D748 2020",
+      "instanceId" : "d3e3b615-b4ef-3084-a718-461fa8c8ec87",
+      "instanceHrid" : "in00004478821",
+      "holdingsId" : "6f417a77-453f-3b9c-ad1c-721421f6fde7"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "8a64be0e-3c8d-42be-9058-1d28124b67f8",
+    "courseListingId" : "34698f22-8253-4640-b37e-659eb1ea9e1b",
+    "itemId" : "d00cbcf1-5572-3ee6-ba44-c42ae78e6fcb",
+    "copiedItem" : {
+      "barcode" : "A14850201360",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Principles of animal behavior / Lee Alan Dugatkin.",
+      "contributors" : [ {
+        "name" : "Dugatkin, Lee Alan, 1962-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "W. W. Norton & Company, Inc.",
+        "place" : "New York",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "QL751 .D748 2014",
+      "instanceId" : "102ff303-1382-3767-9cd8-a830ac55388e",
+      "instanceHrid" : "in00003510486",
+      "holdingsId" : "7b672f4f-f0a1-300a-9b1a-bd3e8516a6a7"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ccfb4f13-c63b-4b85-bc39-23238945605b",
+    "courseListingId" : "34698f22-8253-4640-b37e-659eb1ea9e1b",
+    "itemId" : "c69476b7-743b-3a20-8a36-a32739c74729",
+    "copiedItem" : {
+      "barcode" : "A14850964587",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Principles of animal behavior / Lee Alan Dugatkin.",
+      "contributors" : [ {
+        "name" : "Dugatkin, Lee Alan, 1962-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "W. W. Norton & Company, Inc.",
+        "place" : "New York",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "QL751 .D748 2014",
+      "instanceId" : "102ff303-1382-3767-9cd8-a830ac55388e",
+      "instanceHrid" : "in00003510486",
+      "holdingsId" : "a7de0e76-70f0-34ed-a9fb-b76109aab44e"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "15f4befb-b0ed-400d-b9d0-e9a3a2bba954",
+    "courseListingId" : "cc420f2c-99e9-4ff3-b18e-01b4e296874f",
+    "itemId" : "9b4426d5-8473-31fe-b1e2-c01ae81685b5",
+    "copiedItem" : {
+      "barcode" : "A14843622581",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Sensation and perception / E. Bruce Goldstein and James R. Brockmole.",
+      "contributors" : [ {
+        "name" : "Goldstein, E. Bruce, 1941-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Brockmole, James R., 1977-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Cengage Learning",
+        "place" : "Boston",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "QP431 .G64 2017",
+      "instanceId" : "55b9cec2-9324-3b70-b252-eb4c041b11cf",
+      "instanceHrid" : "in00003800060",
+      "holdingsId" : "1322cfde-7e4f-30ad-bed1-8d5d583d47c4"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "6ead3f33-f168-4459-8141-146281403c37",
+    "courseListingId" : "cc420f2c-99e9-4ff3-b18e-01b4e296874f",
+    "itemId" : "fc1f4f45-6ad3-3f5a-9a09-f967b8a6a96f",
+    "copiedItem" : {
+      "barcode" : "A14838746556",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Incognito : the secret lives of the brain / David M. Eagleman.",
+      "contributors" : [ {
+        "name" : "Eagleman, David",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Pantheon Books",
+        "place" : "New York",
+        "dateOfPublication" : "[2011]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2011"
+      } ],
+      "callNumber" : "BF315 .E25 2011",
+      "instanceId" : "585ae6bb-3071-362d-97ce-79262be8d578",
+      "instanceHrid" : "in00002705844",
+      "holdingsId" : "95116eb7-af12-31e7-92bf-8d227b821c51"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ebe06b81-a124-4b86-8ed1-86c10082d36b",
+    "courseListingId" : "cc420f2c-99e9-4ff3-b18e-01b4e296874f",
+    "itemId" : "e5ac7c05-3cde-340c-9e9b-498d631f387a",
+    "copiedItem" : {
+      "barcode" : "A14831763549",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Blink : the power of thinking without thinking / Malcolm Gladwell.",
+      "contributors" : [ {
+        "name" : "Gladwell, Malcolm, 1963-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Little, Brown and Company",
+        "place" : "New York",
+        "dateOfPublication" : "[2005]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2005"
+      } ],
+      "callNumber" : "BF448 .G53 2005",
+      "instanceId" : "ad5c4387-245b-388a-94ac-90577c2acf25",
+      "instanceHrid" : "in00001988453",
+      "holdingsId" : "8a1f9301-8717-3dae-8499-ad495dd84381"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "0e2d781d-7634-4a85-9258-d18b99b3be4e",
+    "courseListingId" : "9f721326-9f9d-4a1f-b448-352657f50b63",
+    "itemId" : "50ce3fd7-a439-38d7-81ea-62e5050252af",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-12-26",
+    "endDate" : "2021-05-17",
+    "copiedItem" : {
+      "barcode" : "A14850429383",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The lean builder : a builder's guide to applying lean tools in the field / Joe Donarumo & Keyan Zandy.",
+      "contributors" : [ {
+        "name" : "Donarumo, Joe,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Zandy, Keyan,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Lulu Publishing Services",
+        "place" : "[United States]",
+        "dateOfPublication" : "[2019]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2019"
+      } ],
+      "callNumber" : "HD9715.A2 D66 2019",
+      "instanceId" : "2c4860df-9053-3bb1-8f4b-c209abd42401",
+      "instanceHrid" : "in00004179773",
+      "holdingsId" : "b53a257c-2df7-3413-97b8-772e6b3db18d"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "5ac2c686-e57b-4fd0-b223-b05d0755019f",
+    "courseListingId" : "49d06582-6fa6-43a4-9e6f-ca2f7f00acdb",
+    "itemId" : "0edbb927-3db5-3246-a6b3-eae403d8d687",
+    "copiedItem" : {
+      "barcode" : "A14843208563",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The brain / David Eagleman.",
+      "contributors" : [ {
+        "name" : "Eagleman, David,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Pantheon Books",
+        "place" : "New York",
+        "dateOfPublication" : "[2015]",
+        "role" : "Publication"
+      }, {
+        "place" : "©2015"
+      } ],
+      "callNumber" : "QP376 .E24 2015",
+      "instanceId" : "62736c72-4124-3b6b-9477-65c96699b335",
+      "instanceHrid" : "in00003592751",
+      "holdingsId" : "c60e1fe4-fe88-3ef1-8db0-19783320949d"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "04739089-62ee-4b0d-b013-19a22905cc13",
+    "courseListingId" : "49d06582-6fa6-43a4-9e6f-ca2f7f00acdb",
+    "itemId" : "c9164a1a-25ee-3afc-bcf1-ef0d596e82a8",
+    "copiedItem" : {
+      "barcode" : "A14850206948",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The brain : the story of you / David Eagleman.",
+      "contributors" : [ {
+        "name" : "Eagleman, David,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Vintage Books",
+        "place" : "New York",
+        "dateOfPublication" : "2017",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "QP376 .E24 2017",
+      "instanceId" : "6f6513c2-387b-33d7-bbbc-536948a21b93",
+      "instanceHrid" : "in00004208781",
+      "holdingsId" : "582b8284-dec8-3570-b496-37fe468905b1"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "573b6029-5fce-4da5-bfa8-66c84c6f6d44",
+    "courseListingId" : "e2eee37f-cfe8-48fe-96d7-c60fed76f1d1",
+    "itemId" : "1fa8d9dd-88b2-356f-bc04-a0522aa4eff8",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30",
+    "endDate" : "2021-12-25",
+    "copiedItem" : {
+      "barcode" : "A14843623126",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Big bang, black holes, no math / David Toback ; foreword by Eiichiro Komatsu.",
+      "contributors" : [ {
+        "name" : "Toback, David, 1969-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Kendall Hunt Publishing Company",
+        "place" : "Dubuque, Iowa",
+        "dateOfPublication" : "[2013]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2013"
+      } ],
+      "callNumber" : "QB981 .T63 2013",
+      "instanceId" : "5e735f40-b84e-3f13-9d23-0ecb3400abe2",
+      "instanceHrid" : "in00003391979",
+      "holdingsId" : "6d1a0614-87e0-3ce4-9106-517c092e30fc"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "e0bc2665-07a0-4098-9a5e-ab503e6fe0a0",
+    "courseListingId" : "308dfddb-0f79-4413-8c9c-7adfb501126a",
+    "itemId" : "6b960a2e-da87-323c-8224-2978fcd3a633",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-05-01",
+    "endDate" : "2021-08-21",
+    "copiedItem" : {
+      "barcode" : "A14836913822",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "01efba3f-5feb-472a-a446-268c0e5f4634",
+      "title" : "Statistics : the art and science of learning from data.",
+      "contributors" : [ {
+        "name" : "Agresti, Alan",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson",
+        "place" : "Boston",
+        "dateOfPublication" : "[date of publication not identified]",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "QA276.12 .A35 2017",
+      "enumeration" : "PROF COPY - Michael Longnecker",
+      "instanceId" : "35b3a6c5-25d8-3289-997e-ba8ead139e84",
+      "instanceHrid" : "in00003949034",
+      "holdingsId" : "591f6989-e267-3ab3-b988-7d2addfec186"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "2cbd4c7a-b051-4d1c-a17d-c9a28ca02ef8",
+    "courseListingId" : "470f6e82-7507-4273-98e7-ce4ed2613026",
+    "itemId" : "f589a197-51ec-38c0-9d8c-5e1a17798e6e",
+    "copiedItem" : {
+      "barcode" : "A14851145111",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Psychopharmacology : drugs, the brain, and behavior / Jerrold S. Meyer, Linda F. Quenzer.",
+      "contributors" : [ {
+        "name" : "Meyer, Jerrold S., 1947-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Oxford University Press",
+        "place" : "New York",
+        "dateOfPublication" : "[2019]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2019"
+      } ],
+      "callNumber" : "RM315 .M478 2019",
+      "instanceId" : "fb761fae-7522-3bd0-8de0-26e3fc07f7b0",
+      "instanceHrid" : "in00004681386",
+      "holdingsId" : "10d2bbb3-6cfa-3e4c-b011-2557a305815d"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "b2604528-45ec-4fa0-8d45-7039c4cafcef",
+    "courseListingId" : "9d196de3-5a6a-4b68-8e74-e7dc195418a7",
+    "itemId" : "ac2dcbd6-04d6-3bd1-bedb-d0c2132d4432",
+    "copiedItem" : {
+      "barcode" : "A14842809452",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Fluid mechanics for chemical engineers / Noel de Nevers.",
+      "contributors" : [ {
+        "name" : "De Nevers, Noel, 1932-2019",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "McGraw-Hill Higher Education",
+        "place" : "Boston",
+        "dateOfPublication" : "[2005]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2005"
+      } ],
+      "callNumber" : "QC145.2 .D42 2005",
+      "instanceId" : "f7c8f3ff-366b-3566-9a9b-ea0e685d95fc",
+      "instanceHrid" : "in00002136802",
+      "holdingsId" : "eb294208-13d0-3b45-829f-261a11422c6a"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "fba2f3d9-55a8-4940-b97e-c6c3f03be8ea",
+    "courseListingId" : "5ac73ead-3677-4b73-891e-c758a5de0abd",
+    "itemId" : "3b3b617c-ba21-361b-a5cb-d4df186a5cd7",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30",
+    "endDate" : "2021-12-25",
+    "copiedItem" : {
+      "barcode" : "A14838746255",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Project economics and decision analysis / M.A. Mian.",
+      "contributors" : [ {
+        "name" : "Mian, M. A. (Mohammed A.)",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "PennWell Corporation",
+        "place" : "Tulsa, Okla.",
+        "dateOfPublication" : "[2011]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2011"
+      } ],
+      "callNumber" : "HD9560.5 .M525 2011",
+      "enumeration" : "v.2",
+      "instanceId" : "3bd8e4e9-82fd-30f5-9517-7584953fe425",
+      "instanceHrid" : "in00002681412",
+      "holdingsId" : "e4f532b2-4a69-3fc6-8b65-4aac9f6f7a05"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "1c2b6070-88f2-48a3-81c6-c7f37e207872",
+    "courseListingId" : "3a5e8c6f-33cc-4656-9105-fe7a48404a1d",
+    "itemId" : "25695abe-1697-34bb-8067-8bc9f079f558",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30T05:00:00.000Z",
+    "endDate" : "2021-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14841820237",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Fundamentals of reservoir engineering / L.P. Dake.",
+      "contributors" : [ {
+        "name" : "Dake, L. P",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Elsevier Scientific Pub. Co.",
+        "place" : "Amsterdam ; New York",
+        "dateOfPublication" : "1978",
+        "role" : "Publication"
+      }, {
+        "publisher" : "Distributors for the U.S. and Canada Elsevier North-Holland",
+        "place" : "New York",
+        "role" : "Distribution"
+      } ],
+      "callNumber" : "TN871 .D34",
+      "instanceId" : "6f285f9d-af0e-3619-be36-ffad3398ab28",
+      "instanceHrid" : "in00002159521",
+      "holdingsId" : "6f8b08aa-23ec-3477-8a07-9addc9cacf62"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "065da796-9d26-48b2-bbe1-4701923cd7af",
+    "courseListingId" : "2e97ac9b-5072-4cf1-9a77-1cc6184bfbe7",
+    "itemId" : "7fc08ec2-f641-31c0-a598-874684b94990",
+    "copiedItem" : {
+      "barcode" : "A14842804727",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Health psychology / Shelley E. Taylor, University of California, Los Angeles.",
+      "contributors" : [ {
+        "name" : "Taylor, Shelley E",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "McGraw-Hill Education",
+        "place" : "New York",
+        "dateOfPublication" : "[2015]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2015"
+      } ],
+      "callNumber" : "R726.7 .T39 2015",
+      "instanceId" : "cbcfb422-a119-3acd-90bd-52f19faca91b",
+      "instanceHrid" : "in00003502865",
+      "holdingsId" : "5733163d-4a61-3ae7-af02-ea1d298f4222"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "78d49f77-7e71-4013-b717-37f3a46dc123",
+    "courseListingId" : "104565a8-4a02-4bc7-b54e-db1e441a9d72",
+    "itemId" : "25695abe-1697-34bb-8067-8bc9f079f558",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30T05:00:00.000Z",
+    "endDate" : "2021-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14841820237",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Fundamentals of reservoir engineering / L.P. Dake.",
+      "contributors" : [ {
+        "name" : "Dake, L. P",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Elsevier Scientific Pub. Co.",
+        "place" : "Amsterdam ; New York",
+        "dateOfPublication" : "1978",
+        "role" : "Publication"
+      }, {
+        "publisher" : "Distributors for the U.S. and Canada Elsevier North-Holland",
+        "place" : "New York",
+        "role" : "Distribution"
+      } ],
+      "callNumber" : "TN871 .D34",
+      "instanceId" : "6f285f9d-af0e-3619-be36-ffad3398ab28",
+      "instanceHrid" : "in00002159521",
+      "holdingsId" : "6f8b08aa-23ec-3477-8a07-9addc9cacf62"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "c20a5a10-9faa-4b93-a972-35a3bc298113",
+    "courseListingId" : "992d0ec8-2de1-435d-9a84-11f05524f5ad",
+    "itemId" : "a446f461-3783-3deb-9362-addc76fc6f19",
+    "copiedItem" : {
+      "barcode" : "A14850457194",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Essentials of oceanography / Alan P. Trujillo, Distinguished Teaching Professional, Palomar College, Harold V. Thurman, Former Professor Emeritus, Mt. San Antonio College.",
+      "contributors" : [ {
+        "name" : "Trujillo, Alan P.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Thurman, Harold V.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2020]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2020"
+      } ],
+      "callNumber" : "GC11.2 .T49 2019",
+      "instanceId" : "c785ec82-88a4-3eca-996c-dd45cfb491e3",
+      "instanceHrid" : "in00004182827",
+      "holdingsId" : "df8fc1e1-8253-36d1-aa81-ed9f581c2056"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "cb9e2d89-4248-4f8c-a085-7c8c3d2c3b06",
+    "courseListingId" : "992d0ec8-2de1-435d-9a84-11f05524f5ad",
+    "itemId" : "d36ebb2c-f665-3ad7-bb9b-e0e4c15bd357",
+    "copiedItem" : {
+      "barcode" : "A14850457186",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Essentials of oceanography / Alan P. Trujillo, Distinguished Teaching Professional, Palomar College, Harold V. Thurman, Former Professor Emeritus, Mt. San Antonio College.",
+      "contributors" : [ {
+        "name" : "Trujillo, Alan P.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Thurman, Harold V.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2020]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2020"
+      } ],
+      "callNumber" : "GC11.2 .T49 2019",
+      "instanceId" : "c785ec82-88a4-3eca-996c-dd45cfb491e3",
+      "instanceHrid" : "in00004182827",
+      "holdingsId" : "26c86134-cc31-3564-a373-be52d7054e49"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "49614473-be6e-4224-94da-314df8290471",
+    "courseListingId" : "9c77e7b9-ace8-419b-94a6-b546ed194d64",
+    "itemId" : "7d173bd1-87d0-3c06-9a3f-ba0025a3deac",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-12-26T06:00:00.000Z",
+    "endDate" : "2021-05-17T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14842806557",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Research design : qualitative, quantitative, and mixed methods approaches / John W. Creswell.",
+      "contributors" : [ {
+        "name" : "Creswell, John W",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "SAGE Publications",
+        "place" : "Thousand Oaks, California",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "H62 .C6963 2014",
+      "instanceId" : "0e2cedc6-60b6-3a1f-a82b-dd5e406e0dac",
+      "instanceHrid" : "in00003195118",
+      "holdingsId" : "b0ae7579-0caf-32f2-a13e-281581661dd3"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "eb805b0c-281e-4896-a374-b47822c503a2",
+    "courseListingId" : "9d196de3-5a6a-4b68-8e74-e7dc195418a7",
+    "itemId" : "fe54a8b2-4c0f-3f19-8deb-2e5d3987dedb",
+    "copiedItem" : {
+      "barcode" : "A14836365299",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Fluid mechanics for chemical engineers / Noel de Nevers.",
+      "contributors" : [ {
+        "name" : "De Nevers, Noel, 1932-2019",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "McGraw-Hill Higher Education",
+        "place" : "Boston",
+        "dateOfPublication" : "[2005]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2005"
+      } ],
+      "callNumber" : "QC145.2 .D42 2005",
+      "instanceId" : "f7c8f3ff-366b-3566-9a9b-ea0e685d95fc",
+      "instanceHrid" : "in00002136802",
+      "holdingsId" : "4932b70c-c924-341d-9784-657d81b09891"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ad26cb8a-8dc9-4dc3-894c-7bdf13d11903",
+    "courseListingId" : "85dd2c9d-d183-46e4-a638-65d874dc4a42",
+    "itemId" : "8f26aa84-1fa7-370e-a4ca-ec61eab777a3",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-12-26T06:00:00.000Z",
+    "endDate" : "2021-05-17T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14804747504",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Regional geomorphology of the United States / [by] William D. Thornbury.",
+      "contributors" : [ {
+        "name" : "Thornbury, William D. (William David), 1900-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Wiley",
+        "place" : "New York",
+        "dateOfPublication" : "[1965]",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "QE77 .T5",
+      "instanceId" : "19580346-eab5-3942-81b7-8147db44ec74",
+      "instanceHrid" : "in00000381562",
+      "holdingsId" : "25cf59b1-86e8-3dfd-86a6-45e2d4dba5ef"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "51eed8e6-41f9-44cc-9b8d-bd11195f844f",
+    "courseListingId" : "960db68d-b2ff-4b10-96e6-ab3469b6e141",
+    "itemId" : "f73aa624-0f12-30f9-aa89-67a798250b62",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-05-01T05:00:00.000Z",
+    "endDate" : "2021-08-21T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14850451213",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Becoming an academic writer : 50 exercises for paced, productive, and powerful writing / Patricia Goodson, Texas A&M University.",
+      "contributors" : [ {
+        "name" : "Goodson, Patricia, 1958-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "SAGE Publications",
+        "place" : "Thousand Oaks, California",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "PE1408 .G585 2017",
+      "instanceId" : "ea931960-0992-3c34-9557-eba6b61e09b5",
+      "instanceHrid" : "in00003542554",
+      "holdingsId" : "07feacba-015f-3b45-9279-021c26d06623"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "e2081d55-f478-40f1-b9ca-6aadb1f47c0c",
+    "courseListingId" : "992d0ec8-2de1-435d-9a84-11f05524f5ad",
+    "itemId" : "32d4d697-43c8-3445-9df0-e0dfd5ad6fc1",
+    "copiedItem" : {
+      "barcode" : "A14850457202",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Essentials of oceanography / Alan P. Trujillo, Distinguished Teaching Professional, Palomar College, Harold V. Thurman, Former Professor Emeritus, Mt. San Antonio College.",
+      "contributors" : [ {
+        "name" : "Trujillo, Alan P.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Thurman, Harold V.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2020]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2020"
+      } ],
+      "callNumber" : "GC11.2 .T49 2019",
+      "instanceId" : "c785ec82-88a4-3eca-996c-dd45cfb491e3",
+      "instanceHrid" : "in00004182827",
+      "holdingsId" : "2dd9f279-bf0d-397b-9836-bc3eedb5e2c2"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ef5fa12b-c72c-4e05-8e95-18d755bfa973",
+    "courseListingId" : "98be80d8-01cf-4a6e-bba3-cea74cd18780",
+    "itemId" : "7fc08ec2-f641-31c0-a598-874684b94990",
+    "copiedItem" : {
+      "barcode" : "A14842804727",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Health psychology / Shelley E. Taylor, University of California, Los Angeles.",
+      "contributors" : [ {
+        "name" : "Taylor, Shelley E",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "McGraw-Hill Education",
+        "place" : "New York",
+        "dateOfPublication" : "[2015]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2015"
+      } ],
+      "callNumber" : "R726.7 .T39 2015",
+      "instanceId" : "cbcfb422-a119-3acd-90bd-52f19faca91b",
+      "instanceHrid" : "in00003502865",
+      "holdingsId" : "5733163d-4a61-3ae7-af02-ea1d298f4222"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "6c6f4541-02de-48af-99a8-ee434fd29f81",
+    "courseListingId" : "98be80d8-01cf-4a6e-bba3-cea74cd18780",
+    "itemId" : "28cf3bfb-b070-32e5-bb08-1cdcb7a56616",
+    "copiedItem" : {
+      "barcode" : "A14850452013",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Health psychology : biopsychosocial interactions / Edward P. Sarafino, Timothy W. Smith.",
+      "contributors" : [ {
+        "name" : "Sarafino, Edward P., 1940-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Smith, Timothy W.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "John Wiley & Sons",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "R726.7 .S27 2017",
+      "instanceId" : "404a2a5d-0782-39e3-8d6c-c65555fdb8c7",
+      "instanceHrid" : "in00004079444",
+      "holdingsId" : "b9e1e2e9-2ed2-33f3-8fc4-cb0ccad9a14c"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "be7e03d4-93a8-47c8-8f41-340c89e5c5d2",
+    "courseListingId" : "2e97ac9b-5072-4cf1-9a77-1cc6184bfbe7",
+    "itemId" : "28cf3bfb-b070-32e5-bb08-1cdcb7a56616",
+    "copiedItem" : {
+      "barcode" : "A14850452013",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Health psychology : biopsychosocial interactions / Edward P. Sarafino, Timothy W. Smith.",
+      "contributors" : [ {
+        "name" : "Sarafino, Edward P., 1940-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Smith, Timothy W.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "John Wiley & Sons",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "R726.7 .S27 2017",
+      "instanceId" : "404a2a5d-0782-39e3-8d6c-c65555fdb8c7",
+      "instanceHrid" : "in00004079444",
+      "holdingsId" : "b9e1e2e9-2ed2-33f3-8fc4-cb0ccad9a14c"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "300b94c3-2294-4fda-974e-b8b4f2f86fad",
+    "courseListingId" : "49d06582-6fa6-43a4-9e6f-ca2f7f00acdb",
+    "itemId" : "cfc7d889-9d44-3c4d-a27e-e6aa78f7656d",
+    "copiedItem" : {
+      "barcode" : "A14850454043",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Cognitive neuroscience / Marie T. Banich, University of Colorado Boulder, Rebecca J. Compton, Haverford College, Pennsylvania.",
+      "contributors" : [ {
+        "name" : "Banich, Marie T., 1957-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Compton, Rebecca J. (Rebecca Jean),",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Cambridge University Press",
+        "place" : "Cambridge ; New York",
+        "dateOfPublication" : "[2018]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2018"
+      } ],
+      "callNumber" : "QP360.5 .B359 2018",
+      "instanceId" : "d39c441b-da19-3fb0-8958-c55c04d0d9f9",
+      "instanceHrid" : "in00004115394",
+      "holdingsId" : "5b7a1bea-4f7c-3db2-bf16-f4f89124d83d"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "5f15aff9-a61c-49b3-8ed3-d6ef0cba0267",
+    "courseListingId" : "11678a6f-4bdc-46c6-8c28-fc811eafb1c3",
+    "itemId" : "c69476b7-743b-3a20-8a36-a32739c74729",
+    "copiedItem" : {
+      "barcode" : "A14850964587",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Principles of animal behavior / Lee Alan Dugatkin.",
+      "contributors" : [ {
+        "name" : "Dugatkin, Lee Alan, 1962-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "W. W. Norton & Company, Inc.",
+        "place" : "New York",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "QL751 .D748 2014",
+      "instanceId" : "102ff303-1382-3767-9cd8-a830ac55388e",
+      "instanceHrid" : "in00003510486",
+      "holdingsId" : "a7de0e76-70f0-34ed-a9fb-b76109aab44e"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   } ]
