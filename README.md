@@ -826,7 +826,8 @@ POST to http://localhost:9000/migrate/holdings
       "binding": "e19eabab-a85c-4aef-a7b2-33bd9acef24e",
       "reproduction": "6a41b714-8574-4084-8d64-a9373c3fbb59",
       "latest_in": "7ca7dc63-c053-4aec-8272-c03aeda4840c",
-      "note": "b160f13a-ddba-4053-b9c4-60ec5ea45d56"
+      "note": "b160f13a-ddba-4053-b9c4-60ec5ea45d56",
+      "source_of_acq": "ba85f1c3-db24-4618-80e1-dc4d601bbd26"
     },
     "receiptStatus": {
       "0": "Unknown",

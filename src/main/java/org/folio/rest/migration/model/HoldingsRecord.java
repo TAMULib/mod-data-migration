@@ -223,6 +223,10 @@ public class HoldingsRecord {
             note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("access"));
             break;
           case "541":
+            // source_of_acq
+            note.setStaffOnly(field.getIndicator1() != '1');
+            note.setHoldingsNoteTypeId(holdingMaps.getHoldingsNotesType().get("source_of_acq"));
+            break;
           case "561":
             // provenance
             note.setStaffOnly(field.getIndicator1() != '1');
