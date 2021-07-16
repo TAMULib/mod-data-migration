@@ -164,7 +164,7 @@ public class InventoryReferenceLinkMigration extends AbstractMigration<Inventory
       ) {
 
         while (pageResultSet.next()) {
-          String bibId = pageResultSet.getString(BIB_ID);
+          final String bibId = pageResultSet.getString(BIB_ID);
 
           holdingContext.put(BIB_ID, bibId);
 

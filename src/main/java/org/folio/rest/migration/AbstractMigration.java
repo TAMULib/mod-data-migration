@@ -135,10 +135,9 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
     return sub.replace(template);
   }
 
-  boolean exclude(Map<String, List<String>> exclusions, ResultSet pageResultSet) throws SQLException {
+  boolean exclude(Map<String, List<String>> exclusions, Map<String, String> row) throws SQLException {
     for (Map.Entry<String, List<String>> entry : exclusions.entrySet()) {
-      String column = entry.getKey();
-      String value = pageResultSet.getString(column);
+      String value = row.get(entry.getKey());
       if (entry.getValue().contains(value)) {
         return true;
       }

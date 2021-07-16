@@ -137,8 +137,8 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
       ) {
         while (pageResultSet.next()) {
 
-          String mfhdId = pageResultSet.getString(MFHD_ID);
-          String boundWith = pageResultSet.getString(BOUND_WITH);
+          final String mfhdId = pageResultSet.getString(MFHD_ID);
+          final String boundWith = pageResultSet.getString(BOUND_WITH);
 
           List<String> bibIds = Arrays.asList(boundWith.split(","));
 

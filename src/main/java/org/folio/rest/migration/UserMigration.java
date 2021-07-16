@@ -215,15 +215,15 @@ public class UserMigration extends AbstractMigration<UserContext> {
       ) {
 
         while (pageResultSet.next()) {
-          Integer nameType = pageResultSet.getInt(NAME_TYPE);
-          String patronId = pageResultSet.getString(PATRON_ID);
-          String externalSystemId = pageResultSet.getString(EXTERNAL_SYSTEM_ID);
-          String lastName = pageResultSet.getString(LAST_NAME);
-          String firstName = pageResultSet.getString(FIRST_NAME);
-          String middleName = pageResultSet.getString(MIDDLE_NAME);
-          String expireDate = pageResultSet.getString(EXPIRE_DATE);
-          String smsNumber = pageResultSet.getString(SMS_NUMBER);
-          String currentCharges = pageResultSet.getString(CURRENT_CHARGES);
+          final Integer nameType = pageResultSet.getInt(NAME_TYPE);
+          final String patronId = pageResultSet.getString(PATRON_ID);
+          final String externalSystemId = pageResultSet.getString(EXTERNAL_SYSTEM_ID);
+          final String lastName = pageResultSet.getString(LAST_NAME);
+          final String firstName = pageResultSet.getString(FIRST_NAME);
+          final String middleName = pageResultSet.getString(MIDDLE_NAME);
+          final String expireDate = pageResultSet.getString(EXPIRE_DATE);
+          final String smsNumber = pageResultSet.getString(SMS_NUMBER);
+          final String currentCharges = pageResultSet.getString(CURRENT_CHARGES);
 
           usernameContext.put(PATRON_ID, patronId);
           usernameContext.put(EXTERNAL_SYSTEM_ID, externalSystemId);

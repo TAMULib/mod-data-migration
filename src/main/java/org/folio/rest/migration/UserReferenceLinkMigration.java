@@ -149,17 +149,17 @@ public class UserReferenceLinkMigration extends AbstractMigration<UserReferenceL
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
       ) {
         while (pageResultSet.next()) {
-          String patronId = pageResultSet.getString(PATRON_ID);
-          String patronBarcode = pageResultSet.getString(PATRON_BARCODE);
-          String externalSystemId = pageResultSet.getString(EXTERNAL_SYSTEM_ID);
+          final String patronId = pageResultSet.getString(PATRON_ID);
+          final String patronBarcode = pageResultSet.getString(PATRON_BARCODE);
+          final String externalSystemId = pageResultSet.getString(EXTERNAL_SYSTEM_ID);
 
-          String existingUserFolioReference = EXTERNAL_ID_TO_FOLIO_REFERENCE.get(externalSystemId);
+          final String existingUserFolioReference = EXTERNAL_ID_TO_FOLIO_REFERENCE.get(externalSystemId);
 
-          String userRLId = UUID.randomUUID().toString();
-          String userBarcodeRLId = UUID.randomUUID().toString();
-          String userToBarcodeRLId = UUID.randomUUID().toString();
-          String userExternalRLId = UUID.randomUUID().toString();
-          String userToExternalRLId = UUID.randomUUID().toString();
+          final String userRLId = UUID.randomUUID().toString();
+          final String userBarcodeRLId = UUID.randomUUID().toString();
+          final String userToBarcodeRLId = UUID.randomUUID().toString();
+          final String userExternalRLId = UUID.randomUUID().toString();
+          final String userToExternalRLId = UUID.randomUUID().toString();
           String userFolioReference;
 
           if (StringUtils.isNotEmpty(existingUserFolioReference)) {

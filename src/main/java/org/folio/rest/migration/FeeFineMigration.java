@@ -201,23 +201,23 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
       ) {
         while (pageResultSet.next()) {
-          String patronId = pageResultSet.getString(PATRON_ID);
-          String itemId = pageResultSet.getString(ITEM_ID);
-          String itemBarcode = pageResultSet.getString(ITEM_BARCODE);
-          String finefeeId = pageResultSet.getString(FINE_FEE_ID);
-          String amount = pageResultSet.getString(AMOUNT);
-          String remaining = pageResultSet.getString(REMAINING);
-          String finefeeType = pageResultSet.getString(FINE_FEE_TYPE);
-          String finefeeNote = pageResultSet.getString(FINE_FEE_NOTE);
-          String createDate = pageResultSet.getString(CREATE_DATE);
-          String mfhdId = pageResultSet.getString(MFHD_ID);
-          String displayCallNo = pageResultSet.getString(DISPLAY_CALL_NO);
-          String itemEnum = pageResultSet.getString(ITEM_ENUM);
-          String chron = pageResultSet.getString(CHRON);
-          String effectiveLocation = pageResultSet.getString(EFFECTIVE_LOCATION);
-          String fineLocation = pageResultSet.getString(FINE_LOCATION);
-          String title = pageResultSet.getString(TITLE);
-          String bibId = pageResultSet.getString(BIB_ID);
+          final String patronId = pageResultSet.getString(PATRON_ID);
+          final String itemId = pageResultSet.getString(ITEM_ID);
+          final String itemBarcode = pageResultSet.getString(ITEM_BARCODE);
+          final String finefeeId = pageResultSet.getString(FINE_FEE_ID);
+          final String amount = pageResultSet.getString(AMOUNT);
+          final String remaining = pageResultSet.getString(REMAINING);
+          final String finefeeType = pageResultSet.getString(FINE_FEE_TYPE);
+          final String finefeeNote = pageResultSet.getString(FINE_FEE_NOTE);
+          final String createDate = pageResultSet.getString(CREATE_DATE);
+          final String mfhdId = pageResultSet.getString(MFHD_ID);
+          final String displayCallNo = pageResultSet.getString(DISPLAY_CALL_NO);
+          final String itemEnum = pageResultSet.getString(ITEM_ENUM);
+          final String chron = pageResultSet.getString(CHRON);
+          final String effectiveLocation = pageResultSet.getString(EFFECTIVE_LOCATION);
+          final String fineLocation = pageResultSet.getString(FINE_LOCATION);
+          final String title = pageResultSet.getString(TITLE);
+          final String bibId = pageResultSet.getString(BIB_ID);
 
           if (!processFeeFineId(schema, finefeeId)) {
             log.warn("{} fee/fine with id {} already processed", schema, finefeeId);

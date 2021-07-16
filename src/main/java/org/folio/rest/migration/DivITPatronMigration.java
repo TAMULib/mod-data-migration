@@ -138,31 +138,31 @@ public class DivITPatronMigration extends AbstractMigration<DivITPatronContext> 
       ) {
 
         while (resultSet.next()) {
-          String username = resultSet.getString(USERNAME);
-          String externalSystemId = resultSet.getString(EXTERNALSYSTEMID);
-          String barcode = resultSet.getString(BARCODE);
-          Boolean active = resultSet.getBoolean(ACTIVE);
-          String patronGroup = resultSet.getString(PATRONGROUP);
-          String personal_lastName = resultSet.getString(PERSONAL_LASTNAME);
-          String personal_firstName = resultSet.getString(PERSONAL_FIRSTNAME);
-          String personal_middleName = resultSet.getString(PERSONAL_MIDDLENAME);
-          String personal_email = resultSet.getString(PERSONAL_EMAIL);
-          String personal_phone = resultSet.getString(PERSONAL_PHONE);
-          String addresses_permanent_addressTypeId = resultSet.getString(ADDRESSES_PERMANENT_ADDRESSTYPEID);
-          String addresses_permanent_countryId = resultSet.getString(ADDRESSES_PERMANENT_COUNTRYID);
-          String addresses_permanent_addressLine1 = resultSet.getString(ADDRESSES_PERMANENT_ADDRESSLINE1);
-          String addresses_permanent_addressLine2 = resultSet.getString(ADDRESSES_PERMANENT_ADDRESSLINE2);
-          String addresses_permanent_city = resultSet.getString(ADDRESSES_PERMANENT_CITY);
-          String addresses_permanent_region = resultSet.getString(ADDRESSES_PERMANENT_REGION);
-          String addresses_permanent_postalCode = resultSet.getString(ADDRESSES_PERMANENT_POSTALCODE);
-          String addresses_temporary_addressTypeId = resultSet.getString(ADDRESSES_TEMPORARY_ADDRESSTYPEID);
-          String addresses_temporary_addressLine1 = resultSet.getString(ADDRESSES_TEMPORARY_ADDRESSLINE1);
-          String addresses_temporary_addressLine2 = resultSet.getString(ADDRESSES_TEMPORARY_ADDRESSLINE2);
-          String addresses_temporary_city = resultSet.getString(ADDRESSES_TEMPORARY_CITY);
-          String addresses_temporary_region = resultSet.getString(ADDRESSES_TEMPORARY_REGION);
-          String addresses_temporary_postalCode = resultSet.getString(ADDRESSES_TEMPORARY_POSTALCODE);
-          String departments_0 = resultSet.getString(DEPARTMENTS_0);
-          String expirationDate = resultSet.getString(EXPIRATIONDATE);
+          final String username = resultSet.getString(USERNAME);
+          final String externalSystemId = resultSet.getString(EXTERNALSYSTEMID);
+          final String barcode = resultSet.getString(BARCODE);
+          final Boolean active = resultSet.getBoolean(ACTIVE);
+          final String patronGroup = resultSet.getString(PATRONGROUP);
+          final String personal_lastName = resultSet.getString(PERSONAL_LASTNAME);
+          final String personal_firstName = resultSet.getString(PERSONAL_FIRSTNAME);
+          final String personal_middleName = resultSet.getString(PERSONAL_MIDDLENAME);
+          final String personal_email = resultSet.getString(PERSONAL_EMAIL);
+          final String personal_phone = resultSet.getString(PERSONAL_PHONE);
+          final String addresses_permanent_addressTypeId = resultSet.getString(ADDRESSES_PERMANENT_ADDRESSTYPEID);
+          final String addresses_permanent_countryId = resultSet.getString(ADDRESSES_PERMANENT_COUNTRYID);
+          final String addresses_permanent_addressLine1 = resultSet.getString(ADDRESSES_PERMANENT_ADDRESSLINE1);
+          final String addresses_permanent_addressLine2 = resultSet.getString(ADDRESSES_PERMANENT_ADDRESSLINE2);
+          final String addresses_permanent_city = resultSet.getString(ADDRESSES_PERMANENT_CITY);
+          final String addresses_permanent_region = resultSet.getString(ADDRESSES_PERMANENT_REGION);
+          final String addresses_permanent_postalCode = resultSet.getString(ADDRESSES_PERMANENT_POSTALCODE);
+          final String addresses_temporary_addressTypeId = resultSet.getString(ADDRESSES_TEMPORARY_ADDRESSTYPEID);
+          final String addresses_temporary_addressLine1 = resultSet.getString(ADDRESSES_TEMPORARY_ADDRESSLINE1);
+          final String addresses_temporary_addressLine2 = resultSet.getString(ADDRESSES_TEMPORARY_ADDRESSLINE2);
+          final String addresses_temporary_city = resultSet.getString(ADDRESSES_TEMPORARY_CITY);
+          final String addresses_temporary_region = resultSet.getString(ADDRESSES_TEMPORARY_REGION);
+          final String addresses_temporary_postalCode = resultSet.getString(ADDRESSES_TEMPORARY_POSTALCODE);
+          final String departments_0 = resultSet.getString(DEPARTMENTS_0);
+          final String expirationDate = resultSet.getString(EXPIRATIONDATE);
 
           Userdataimport userImport = new Userdataimport();
           userImport.setUsername(username);

@@ -354,24 +354,24 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
         List<CompositePoLine> poLines = new ArrayList<>();
         try (ResultSet poLinesResultSet = getResultSet(poLinesStatement, poLinesContext)) {
           while (poLinesResultSet.next()) {
-            String bibId = poLinesResultSet.getString(BIB_ID);
-            String lineItemId = poLinesResultSet.getString(LINE_ITEM_ID);
+            final String bibId = poLinesResultSet.getString(BIB_ID);
+            final String lineItemId = poLinesResultSet.getString(LINE_ITEM_ID);
             // NOTE: ignored
-            // String linePrice = poLinesResultSet.getString(LINE_PRICE);
-            String poType = poLinesResultSet.getString(PO_TYPE);
-            String locationCode = poLinesResultSet.getString(LOCATION_CODE);
-            String locationId = poLinesResultSet.getString(LOCATION_ID);
-            String title = poLinesResultSet.getString(TITLE);
-            String issn = poLinesResultSet.getString(ISSN);
-            String lineItemStatus = poLinesResultSet.getString(LINE_ITEM_STATUS);
-            String requester = poLinesResultSet.getString(REQUESTER);
-            String vendorTitleNumber = poLinesResultSet.getString(VENDOR_TITLE_NUM);
-            String vendorRefQual = poLinesResultSet.getString(VENDOR_REF_QUAL);
-            String vendorRefNumber = poLinesResultSet.getString(VENDOR_REF_NUM);
-            String accountName = poLinesResultSet.getString(ACCOUNT_NAME);
-            String fundCode = poLinesResultSet.getString(FUND_CODE);
+            // final String linePrice = poLinesResultSet.getString(LINE_PRICE);
+            final String poType = poLinesResultSet.getString(PO_TYPE);
+            final String locationCode = poLinesResultSet.getString(LOCATION_CODE);
+            final String locationId = poLinesResultSet.getString(LOCATION_ID);
+            final String title = poLinesResultSet.getString(TITLE);
+            final String issn = poLinesResultSet.getString(ISSN);
+            final String lineItemStatus = poLinesResultSet.getString(LINE_ITEM_STATUS);
+            final String requester = poLinesResultSet.getString(REQUESTER);
+            final String vendorTitleNumber = poLinesResultSet.getString(VENDOR_TITLE_NUM);
+            final String vendorRefQual = poLinesResultSet.getString(VENDOR_REF_QUAL);
+            final String vendorRefNumber = poLinesResultSet.getString(VENDOR_REF_NUM);
+            final String accountName = poLinesResultSet.getString(ACCOUNT_NAME);
+            final String fundCode = poLinesResultSet.getString(FUND_CODE);
             // NOTE: ignored
-            // String note = poLinesResultSet.getString(NOTE);
+            // final String note = poLinesResultSet.getString(NOTE);
 
             Optional<ReferenceLink> instanceRL = migrationService.referenceLinkRepo.findByTypeIdAndExternalReference(instanceRLTypeId, bibId);
             if (!instanceRL.isPresent()) {
@@ -433,9 +433,11 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
             locations.add(location);
             compositePoLine.setLocations(locations);
 
-            if (StringUtils.isNotEmpty(fundCode)) {
+            String fCode = fundCode;
 
-              fundCode = fundCode.toLowerCase();
+            if (StringUtils.isNotEmpty(fCode)) {
+
+              fCode = fCode.toLowerCase();
 
               List<FundDistribution> fundDistributions = new ArrayList<>();
               FundDistribution fundDistribution = new FundDistribution();
@@ -445,30 +447,30 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
               // NOTE: conditioning on schema :(
               if (job.getSchema().equals("AMDB")) {
 
-                if (fundCode.startsWith("msv")) {
-                  fundCode = fundCode.substring(3);
+                if (fCode.startsWith("msv")) {
+                  fCode = fCode.substring(3);
                 }
 
-                switch (fundCode) {
+                switch (fCode) {
                   case "seri":
                   case "serial":
-                    fundCode = "serials";
+                    fCode = "serials";
                     break;
                   case "qatar":
-                    fundCode = "etxtqatar";
+                    fCode = "etxtqatar";
                     break;
                   case "btetext":
                   case "btetxt":
-                    fundCode = "etxt";
+                    fCode = "etxt";
                     break;
                   case "e-72997":
-                    fundCode = "barclay";
+                    fCode = "barclay";
                     break;
                   case "chargeback":
                   case "access":
                   case "galveston":
-                    fundDistribution.setExpenseClassId(expenseClasses.get(fundCode));
-                    fundCode = "etxt";
+                    fundDistribution.setExpenseClassId(expenseClasses.get(fCode));
+                    fCode = "etxt";
                     break;
                   case "costshare":
                     // delete po ref by po id
@@ -477,20 +479,20 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
                   break;
                 }
 
-                if (fundCode.equals("etxt") && Objects.isNull(fundDistribution.getExpenseClassId())) {
+                if (fCode.equals("etxt") && Objects.isNull(fundDistribution.getExpenseClassId())) {
                   fundDistribution.setExpenseClassId(expenseClasses.get("etxtnorm"));
                 }
 
-                if (fundsMap.containsKey(fundCode)) {
-                  fundDistribution.setFundId(fundsMap.get(fundCode));
+                if (fundsMap.containsKey(fCode)) {
+                  fundDistribution.setFundId(fundsMap.get(fCode));
                 } else {
-                  log.warn("{} fund code {} not found for po {}", job.getSchema(), fundCode, poId);
+                  log.warn("{} fund code {} not found for po {}", job.getSchema(), fCode, poId);
                   continue;
                 }
 
               } else if (job.getSchema().equals("MSDB")) {
 
-                String fundCodePrefix = fundCode.substring(0, 2);
+                String fundCodePrefix = fCode.substring(0, 2);
                 if (fundCodes.containsKey(fundCodePrefix)) {
                   String mappedFundCode = fundCodes.get(fundCodePrefix);
                   if (fundsMap.containsKey(mappedFundCode)) {
@@ -499,13 +501,13 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
                     log.warn("{} fund code {} not found for po {}", job.getSchema(), mappedFundCode, poId);
                   }
                 } else {
-                  log.warn("{} fund code {} as {} not mapped", job.getSchema(), fundCode, fundCodePrefix);
+                  log.warn("{} fund code {} as {} not mapped", job.getSchema(), fCode, fundCodePrefix);
                 }
 
-                if (expenseClasses.containsKey(fundCode)) {
-                  fundDistribution.setExpenseClassId(expenseClasses.get(fundCode));
+                if (expenseClasses.containsKey(fCode)) {
+                  fundDistribution.setExpenseClassId(expenseClasses.get(fCode));
                 } else {
-                  log.warn("{} expense class not mapped from {}", job.getSchema(), fundCode);
+                  log.warn("{} expense class not mapped from {}", job.getSchema(), fCode);
                 }
 
               }

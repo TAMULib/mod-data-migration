@@ -241,13 +241,13 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
       ) {
 
         while (pageResultSet.next()) {
-          String vendorId = pageResultSet.getString(VENDOR_ID);
-          String vendorCode = pageResultSet.getString(VENDOR_CODE);
-          String vendorName = pageResultSet.getString(VENDOR_NAME);
-          String vendorTaxId = pageResultSet.getString(VENDOR_FEDERAL_TAX_ID);
-          String vendorType = pageResultSet.getString(VENDOR_TYPE);
-          String vendorDefaultCurrency = pageResultSet.getString(VENDOR_DEFAULT_CURRENCY);
-          Integer vendorClaimingInterval = pageResultSet.getInt(VENDOR_CLAIMING_INTERVAL);
+          final String vendorId = pageResultSet.getString(VENDOR_ID);
+          final String vendorCode = pageResultSet.getString(VENDOR_CODE);
+          final String vendorName = pageResultSet.getString(VENDOR_NAME);
+          final String vendorTaxId = pageResultSet.getString(VENDOR_FEDERAL_TAX_ID);
+          final String vendorType = pageResultSet.getString(VENDOR_TYPE);
+          final String vendorDefaultCurrency = pageResultSet.getString(VENDOR_DEFAULT_CURRENCY);
+          final Integer vendorClaimingInterval = pageResultSet.getInt(VENDOR_CLAIMING_INTERVAL);
 
           vendorAccountsContext.put(VENDOR_ID, vendorId);
           vendorAddressesContext.put(VENDOR_ID, vendorId);
@@ -263,11 +263,12 @@ public class VendorMigration extends AbstractMigration<VendorContext> {
 
           String referenceId = vendorRL.get().getFolioReference();
 
-          if (maps.getVendorTypes().containsKey(vendorType)) {
-            vendorType = maps.getVendorTypes().get(vendorType);
+          String vType = vendorType;
+          if (maps.getVendorTypes().containsKey(vType)) {
+            vType = maps.getVendorTypes().get(vType);
           }
 
-          VendorRecord vendorRecord = new VendorRecord(referenceId, vendorId, vendorCode, vendorType, vendorName, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
+          VendorRecord vendorRecord = new VendorRecord(referenceId, vendorId, vendorCode, vType, vendorName, vendorTaxId, vendorDefaultCurrency, vendorClaimingInterval);
 
           List<String> notes = new ArrayList<>();
 

@@ -168,16 +168,16 @@ public class LoanMigration extends AbstractMigration<LoanContext> {
       ) {
         while (pageResultSet.next()) {
 
-          String chargeLocation = pageResultSet.getString(CHARGE_LOCATION);
-          Integer renewalCount = pageResultSet.getInt(RENEWAL_COUNT);
+          final String chargeLocation = pageResultSet.getString(CHARGE_LOCATION);
+          final Integer renewalCount = pageResultSet.getInt(RENEWAL_COUNT);
 
-          String patronId = pageResultSet.getString(PATRON_ID);
+          final String patronId = pageResultSet.getString(PATRON_ID);
 
-          String itemId = pageResultSet.getString(ITEM_ID);
-          String itemBarcode = pageResultSet.getString(ITEM_BARCODE);
+          final String itemId = pageResultSet.getString(ITEM_ID);
+          final String itemBarcode = pageResultSet.getString(ITEM_BARCODE);
 
-          String loanDate = pageResultSet.getString(LOAN_DATE);
-          String dueDate = pageResultSet.getString(DUE_DATE);
+          final String loanDate = pageResultSet.getString(LOAN_DATE);
+          final String dueDate = pageResultSet.getString(DUE_DATE);
 
           if (Objects.isNull(itemBarcode)) {
             log.info("{} no item barcode found for item id {}", schema, itemId);

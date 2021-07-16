@@ -164,20 +164,20 @@ public class RequestMigration extends AbstractMigration<RequestContext> {
       ) {
         while (pageResultSet.next()) {
 
-          String requestType = pageResultSet.getString(REQUESTTYPE);
-          String requestDate = pageResultSet.getString(REQUESTDATE);
-          String status = pageResultSet.getString(STATUS);
-          Integer position = pageResultSet.getInt(POSITION);
-          String itemId = pageResultSet.getString(ITEM_ID);
-          String itemTitle = pageResultSet.getString(ITEM_TITLE);
-          String itemBarcode = pageResultSet.getString(ITEM_BARCODE);
-          String requesterExternalSystemId = pageResultSet.getString(REQUESTER_EXTERNAL_SYSTEM_ID);
-          String requesterLastname = pageResultSet.getString(REQUESTER_LASTNAME);
-          String requesterFirstname = pageResultSet.getString(REQUESTER_FIRSTNAME);
-          String fulfilmentPreference = pageResultSet.getString(FULFILMENTPREFERENCE);
-          String requestExpirationDate = pageResultSet.getString(REQUESTEXPIRATIONDATE);
-          String holdshelfExpirationDate = pageResultSet.getString(HOLDSHELFEXPIRATIONDATE);
-          String locationId = pageResultSet.getString(LOCATION_ID);
+          final String requestType = pageResultSet.getString(REQUESTTYPE);
+          final String requestDate = pageResultSet.getString(REQUESTDATE);
+          final String status = pageResultSet.getString(STATUS);
+          final Integer position = pageResultSet.getInt(POSITION);
+          final String itemId = pageResultSet.getString(ITEM_ID);
+          final String itemTitle = pageResultSet.getString(ITEM_TITLE);
+          final String itemBarcode = pageResultSet.getString(ITEM_BARCODE);
+          final String requesterExternalSystemId = pageResultSet.getString(REQUESTER_EXTERNAL_SYSTEM_ID);
+          final String requesterLastname = pageResultSet.getString(REQUESTER_LASTNAME);
+          final String requesterFirstname = pageResultSet.getString(REQUESTER_FIRSTNAME);
+          final String fulfilmentPreference = pageResultSet.getString(FULFILMENTPREFERENCE);
+          final String requestExpirationDate = pageResultSet.getString(REQUESTEXPIRATIONDATE);
+          final String holdshelfExpirationDate = pageResultSet.getString(HOLDSHELFEXPIRATIONDATE);
+          final String locationId = pageResultSet.getString(LOCATION_ID);
 
           List<ReferenceLink> userReferenceLinks = migrationService.referenceLinkRepo.findAllByExternalReference(requesterExternalSystemId);
 
@@ -204,11 +204,13 @@ public class RequestMigration extends AbstractMigration<RequestContext> {
             continue;
           }
 
-          if (requestType.equals("Hold")) {
+          String rType = requestType;
+
+          if (rType.equals("Hold")) {
             try {
               Item item = migrationService.okapiService.fetchItemById(tenant, token, itemRL.get().getFolioReference());
               if (item.getStatus().getName().equals(Name.AVAILABLE)) {
-                requestType = "Page";
+                rType = "Page";
               }
             } catch(Exception e) {
               log.error("{} could not find corresponding item {}", schema, itemRL.get().getFolioReference());
@@ -222,7 +224,7 @@ public class RequestMigration extends AbstractMigration<RequestContext> {
           request.put("id", UUID.randomUUID().toString());
 
           request.put("requesterId", userReferenceId);
-          request.put("requestType", requestType);
+          request.put("requestType", rType);
           request.put("requestDate", requestDate);
           request.put("status", status);
           request.put("position", position);

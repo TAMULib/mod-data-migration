@@ -303,13 +303,13 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
       ) {
 
         while (pageResultSet.next()) {
-          String itemId = pageResultSet.getString(ITEM_ID);
-          String voyagerPermTypeId = pageResultSet.getString(PERM_ITEM_TYPE_ID);
-          String voyagerPermLocationId = pageResultSet.getString(PERM_LOCATION_ID);
-          String voyagerTempTypeId = pageResultSet.getString(TEMP_TYPE_ID);
-          String voyagerTempLocationId = pageResultSet.getString(TEMP_LOCATION_ID);
-          int numberOfPieces = pageResultSet.getInt(PIECES);
-          String spineLabel = pageResultSet.getString(SPINE_LABEL);
+          final String itemId = pageResultSet.getString(ITEM_ID);
+          final String voyagerPermTypeId = pageResultSet.getString(PERM_ITEM_TYPE_ID);
+          final String voyagerPermLocationId = pageResultSet.getString(PERM_LOCATION_ID);
+          final String voyagerTempTypeId = pageResultSet.getString(TEMP_TYPE_ID);
+          final String voyagerTempLocationId = pageResultSet.getString(TEMP_LOCATION_ID);
+          final int numberOfPieces = pageResultSet.getInt(PIECES);
+          final String spineLabel = pageResultSet.getString(SPINE_LABEL);
 
           mfhdContext.put(ITEM_ID, itemId);
           barcodeContext.put(ITEM_ID, itemId);

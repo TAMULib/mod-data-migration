@@ -246,22 +246,36 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
       ) {
 
         while (pageResultSet.next()) {
-          String mfhdId = pageResultSet.getString(MFHD_ID);
-          String operatorId = pageResultSet.getString(OPERATOR_ID);
+          final String mfhdId = pageResultSet.getString(MFHD_ID);
+          final String operatorId = pageResultSet.getString(OPERATOR_ID);
 
-          String permanentLocationId = pageResultSet.getString(LOCATION_ID);
+          final String permanentLocationId = pageResultSet.getString(LOCATION_ID);
 
-          String suppressInOpac = pageResultSet.getString(SUPPRESS_IN_OPAC);
-          String displayCallNumber = pageResultSet.getString(CALL_NUMBER);
+          final String suppressInOpac = pageResultSet.getString(SUPPRESS_IN_OPAC);
+          final String displayCallNumber = pageResultSet.getString(CALL_NUMBER);
 
-          String callNumberType = pageResultSet.getString(CALL_NUMBER_TYPE);
-          String holdingsType = pageResultSet.getString(HOLDINGS_TYPE);
+          final String callNumberType = pageResultSet.getString(CALL_NUMBER_TYPE);
+          final String holdingsType = pageResultSet.getString(HOLDINGS_TYPE);
 
-          String receiptStatusCode = pageResultSet.getString(RECEIPT_STATUS);
-          String acqMethodCode = pageResultSet.getString(ACQ_METHOD);
-          String retentionCode = pageResultSet.getString(RETENTION);
+          final String receiptStatusCode = pageResultSet.getString(RECEIPT_STATUS);
+          final String acqMethodCode = pageResultSet.getString(ACQ_METHOD);
+          final String retentionCode = pageResultSet.getString(RETENTION);
 
-          if (exclude(job.getExclusions(), pageResultSet)) {
+          Map<String, String> row = new HashMap<>() {{
+            put(MFHD_ID, mfhdId);
+            put(OPERATOR_ID, operatorId);
+            put(SUPPRESS_IN_OPAC, suppressInOpac);
+            put(LOCATION_ID, permanentLocationId);
+            put(SUPPRESS_IN_OPAC, suppressInOpac);
+            put(CALL_NUMBER, displayCallNumber);
+            put(CALL_NUMBER_TYPE, callNumberType);
+            put(HOLDINGS_TYPE, holdingsType);
+            put(RECEIPT_STATUS, receiptStatusCode);
+            put(ACQ_METHOD, acqMethodCode);
+            put(RETENTION, retentionCode);
+          }};
+
+          if (exclude(job.getExclusions(), row)) {
             continue;
           }
 
@@ -292,16 +306,18 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
             discoverySuppress = holdingDefaults.getDiscoverySuppress();
           }
 
-          if (StringUtils.isNotEmpty(callNumberType) && holdingMaps.getCallNumberType().containsKey(callNumberType)) {
-            callNumberType = holdingMaps.getCallNumberType().get(callNumberType);
+          String cnType = callNumberType;
+          if (StringUtils.isNotEmpty(cnType) && holdingMaps.getCallNumberType().containsKey(cnType)) {
+            cnType = holdingMaps.getCallNumberType().get(cnType);
           } else {
-            callNumberType = holdingDefaults.getCallNumberTypeId();
+            cnType = holdingDefaults.getCallNumberTypeId();
           }
 
-          if (holdingMaps.getHoldingsType().containsKey(holdingsType)) {
-            holdingsType = holdingMaps.getHoldingsType().get(holdingsType);
+          String hrType = holdingsType;
+          if (holdingMaps.getHoldingsType().containsKey(hrType)) {
+            hrType = holdingMaps.getHoldingsType().get(hrType);
           } else {
-            holdingsType = holdingDefaults.getHoldingsTypeId();
+            hrType = holdingDefaults.getHoldingsTypeId();
           }
 
           if (locationsMap.containsKey(permanentLocationId)) {
@@ -344,15 +360,16 @@ public class HoldingsMigration extends AbstractMigration<HoldingsContext> {
 
             Set<String> matchedCodes;
             if (StringUtils.isNotEmpty(operatorId)) {
-              if (holdingMaps.getStatisticalCode().containsKey(operatorId)) {
-                operatorId = holdingMaps.getStatisticalCode().get(operatorId);
+              String opId = operatorId;
+              if (holdingMaps.getStatisticalCode().containsKey(opId)) {
+                opId = holdingMaps.getStatisticalCode().get(opId);
               }
-              matchedCodes = getMatchingStatisticalCodes(operatorId, statisticalcodes);
+              matchedCodes = getMatchingStatisticalCodes(opId, statisticalcodes);
             } else {
               matchedCodes = new HashSet<>();
             }
 
-            HoldingsRecord holdingsRecord = new HoldingsRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, matchedCodes, discoverySuppress, displayCallNumber, callNumberType, holdingsType, receiptStatus, acquisitionMethod, retentionPolicy);
+            HoldingsRecord holdingsRecord = new HoldingsRecord(holdingMaps, potentialRecord.get(), mfhdId, locationId, matchedCodes, discoverySuppress, displayCallNumber, cnType, hrType, receiptStatus, acquisitionMethod, retentionPolicy);
 
             holdingsRecord.setHoldingId(holdingId);
             holdingsRecord.setInstanceId(instanceId);

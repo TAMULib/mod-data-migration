@@ -13,8 +13,6 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-import com.fasterxml.jackson.core.io.JsonStringEncoder;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.folio.rest.jaxrs.model.users.Metadata;
@@ -136,8 +134,6 @@ public class ProxyForMigration extends AbstractMigration<ProxyForContext> {
 
       Database voyagerSettings = context.getExtraction().getDatabase();
 
-      JsonStringEncoder jsonStringEncoder = new JsonStringEncoder();
-
       String userRLTypeId = job.getReferences().get(USER_REFERENCE_ID);
 
       ThreadConnections threadConnections = getThreadConnections(voyagerSettings);
@@ -147,9 +143,9 @@ public class ProxyForMigration extends AbstractMigration<ProxyForContext> {
         ResultSet pageResultSet = getResultSet(pageStatement, partitionContext);
       ) {
         while (pageResultSet.next()) {
-          String patronId = pageResultSet.getString(PATRON_ID);
-          String proxyPatronId = pageResultSet.getString(PROXY_PATRON_ID);
-          String expirationDate = pageResultSet.getString(EXPIRATION_DATE);
+          final String patronId = pageResultSet.getString(PATRON_ID);
+          final String proxyPatronId = pageResultSet.getString(PROXY_PATRON_ID);
+          final String expirationDate = pageResultSet.getString(EXPIRATION_DATE);
 
           Optional<ReferenceLink> userRL = migrationService.referenceLinkRepo
               .findByTypeIdAndExternalReference(userRLTypeId, patronId);

@@ -261,11 +261,17 @@ public class BibMigration extends AbstractMigration<BibContext> {
       ) {
 
         while (pageResultSet.next()) {
-          String bibId = pageResultSet.getString(BIB_ID);
-          String suppressInOpac = pageResultSet.getString(SUPPRESS_IN_OPAC);
-          String operatorId = pageResultSet.getString(OPERATOR_ID);
+          final String bibId = pageResultSet.getString(BIB_ID);
+          final String suppressInOpac = pageResultSet.getString(SUPPRESS_IN_OPAC);
+          final String operatorId = pageResultSet.getString(OPERATOR_ID);
 
-          if (exclude(job.getExclusions(), pageResultSet)) {
+          Map<String, String> row = new HashMap<>() {{
+            put(BIB_ID, bibId);
+            put(SUPPRESS_IN_OPAC, suppressInOpac);
+            put(OPERATOR_ID, operatorId);
+          }};
+
+          if (exclude(job.getExclusions(), row)) {
             continue;
           }
 
@@ -283,12 +289,13 @@ public class BibMigration extends AbstractMigration<BibContext> {
               continue;
             }
 
+            String opId = operatorId;
             List<String> matchedCodes = new ArrayList<>();
-            if (StringUtils.isNotEmpty(operatorId)) {
-              if (bibMaps.getStatisticalCode().containsKey(operatorId)) {
-                operatorId = bibMaps.getStatisticalCode().get(operatorId);
+            if (StringUtils.isNotEmpty(opId)) {
+              if (bibMaps.getStatisticalCode().containsKey(opId)) {
+                opId = bibMaps.getStatisticalCode().get(opId);
               }
-              matchedCodes = getMatchingStatisticalCodes(operatorId, statisticalcodes);
+              matchedCodes = getMatchingStatisticalCodes(opId, statisticalcodes);
             }
 
             BibRecord bibRecord = new BibRecord(bibId, job.getInstanceStatusId(), suppressDiscovery, matchedCodes);
