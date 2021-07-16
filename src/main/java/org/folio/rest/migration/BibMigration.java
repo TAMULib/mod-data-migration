@@ -25,20 +25,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.folio.Instance;
 import org.folio.Statisticalcodes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
-import org.folio.rest.jaxrs.model.ProfileSnapshotWrapper;
-import org.folio.rest.jaxrs.model.ProfileSnapshotWrapper.ProfileSnapshotType;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.common.ProfileInfo;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.InitJobExecutionsRqDto;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.InitJobExecutionsRqDto.SourceType;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.InitJobExecutionsRsDto;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.JobExecution;
+import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.common.Status;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.ParsedRecord;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.RawRecord;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.RawRecordsDto;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.RawRecordsMetadata;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.RawRecordsMetadata.ContentType;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_data_import_converter_storage.JobProfile;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_source_record_storage.RecordModel;
+import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_source_record_storage.Snapshot;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.InstanceMapper;
@@ -149,9 +140,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       countContext.put(SCHEMA, job.getSchema());
 
-      JobProfile profile = migrationService.okapiService.getOrCreateJobProfile(tenant, token, job.getProfile());
-      job.setProfile(profile);
-
       int count = getCount(voyagerSettings, countContext);
 
       log.info("{} count: {}", job.getSchema(), count);
@@ -228,35 +216,18 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
       int index = this.getIndex();
 
-      ProfileInfo profileInfo = new ProfileInfo();
-      profileInfo.setId(job.getProfile().getId());
-      profileInfo.setName(job.getProfile().getName());
-      profileInfo.setDataType(job.getProfile().getDataType());
+      Snapshot snapshot = new Snapshot();
 
-      InitJobExecutionsRqDto jobExecutionRqDto = new InitJobExecutionsRqDto();
-      jobExecutionRqDto.setSourceType(SourceType.ONLINE);
-      jobExecutionRqDto.setJobProfileInfo(profileInfo);
-      jobExecutionRqDto.setUserId(userId);
-
-      InitJobExecutionsRsDto jobExecutionRsDto;
+      snapshot.setJobExecutionId(UUID.randomUUID().toString());
+      snapshot.setStatus(Status.COMMITTED);
       try {
-        jobExecutionRsDto = migrationService.okapiService.createJobExecution(tenant, token, jobExecutionRqDto);
+        snapshot = migrationService.okapiService.createSnapshot(snapshot, tenant, token);
       } catch (Exception e) {
-        log.error("failed to create job execution: {}", e.getMessage());
+        log.error("failed to create snapshot: {}", e.getMessage());
         return this;
       }
 
-      JobExecution jobExecution = jobExecutionRsDto.getJobExecutions().get(0);
-
-      ProfileSnapshotWrapper snapshotWrapper = new ProfileSnapshotWrapper();
-      snapshotWrapper.setProfileId(job.getProfile().getId());
-      snapshotWrapper.setContent(job.getProfile());
-      snapshotWrapper.setContentType(ProfileSnapshotType.JOB_PROFILE);
-
-      jobExecution.setJobProfileSnapshotWrapper(snapshotWrapper);
-      jobExecution = migrationService.okapiService.putJobExecution(tenant, token, jobExecution);
-
-      String jobExecutionId = jobExecution.getId();
+      String jobExecutionId = snapshot.getJobExecutionId();
 
       Database voyagerSettings = context.getExtraction().getDatabase();
 
@@ -447,21 +418,6 @@ public class BibMigration extends AbstractMigration<BibContext> {
         e.printStackTrace();
       } finally {
         threadConnections.closeAll();
-      }
-
-      RawRecordsDto rawRecordsDto = new RawRecordsDto();
-      RawRecordsMetadata recordsMetadata = new RawRecordsMetadata();
-      recordsMetadata.setLast(true);
-      recordsMetadata.setCounter(count);
-      recordsMetadata.setTotal(count);
-      recordsMetadata.setContentType(ContentType.MARC_RAW);
-      rawRecordsDto.setRecordsMetadata(recordsMetadata);
-      rawRecordsDto.setId(UUID.randomUUID().toString());
-
-      try {
-        migrationService.okapiService.finishJobExecution(tenant, token, jobExecutionId, rawRecordsDto);
-      } catch (Exception e) {
-        log.error("failed to finish job execution: {}", e.getMessage());
       }
 
       log.info("{} {} finished {}-{} in {} milliseconds", schema, index, hrid - count, hrid, TimingUtility.getDeltaInMilliseconds(startTime));

@@ -1,10 +1,8 @@
 package org.folio.rest.migration.service;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.folio.AlternativeTitleType;
@@ -58,18 +56,8 @@ import org.folio.Statisticalcodes;
 import org.folio.Statisticalcodetypes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
 import org.folio.rest.jaxrs.model.MarcFieldProtectionSetting;
-
 import org.folio.rest.jaxrs.model.circulation.Loan;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.common.Status;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.InitJobExecutionsRqDto;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.InitJobExecutionsRsDto;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.JobExecution;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.JobExecution.UiStatus;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.Progress;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.RawRecordsDto;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_data_import_converter_storage.JobProfile;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_data_import_converter_storage.JobProfileCollection;
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_data_import_converter_storage.JobProfileUpdateDto;
+import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_source_record_storage.Snapshot;
 import org.folio.rest.jaxrs.model.feesfines.Accountdata;
 import org.folio.rest.jaxrs.model.feesfines.actions.Feefineactiondata;
 import org.folio.rest.jaxrs.model.inventory.Holdingsrecord;
@@ -96,7 +84,6 @@ import org.folio.rest.migration.config.model.Okapi;
 import org.folio.rest.migration.model.ReferenceData;
 import org.folio.rest.migration.model.ReferenceDatum;
 import org.folio.rest.migration.model.request.ExternalOkapi;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -107,7 +94,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import io.vertx.core.json.JsonObject;
-import io.vertx.core.json.jackson.DatabindCodec;
 
 @Service
 public class OkapiService {
@@ -233,6 +219,13 @@ public class OkapiService {
     return response.getBody();
   }
 
+  public Snapshot createSnapshot(Snapshot snapshot, String tenant, String token) {
+    String url = okapi.getUrl() + "/source-storage/snapshots";
+    HttpEntity<Snapshot> entity = new HttpEntity<>(snapshot, headers(tenant, token));
+    ResponseEntity<Snapshot> response = restTemplate.exchange(url, HttpMethod.POST, entity, Snapshot.class);
+    return response.getBody();
+  }
+
   public JsonNode createRequest(JsonNode request, String tenant, String token) {
     String url = okapi.getUrl() + "/circulation/requests";
     HttpEntity<JsonNode> entity = new HttpEntity<>(request, headers(tenant, token));
@@ -274,11 +267,10 @@ public class OkapiService {
     restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
   }
 
-  public Servicepoints fetchServicepoints(String tenant, String token) {
-    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
-    String url = okapi.getUrl() + "/service-points?limit=9999";
-    ResponseEntity<Servicepoints> response = restTemplate.exchange(url, HttpMethod.GET, entity, Servicepoints.class);
-    return response.getBody();
+  public void updateHridSettings(JsonObject hridSettings, String tenant, String token) {
+    HttpEntity<?> entity = new HttpEntity<>(hridSettings.getMap(), headers(tenant, token));
+    String url = okapi.getUrl() + "/hrid-settings-storage/hrid-settings";
+    restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
   }
 
   public Userdata lookupUserByUsername(String tenant, String token, String username) {
@@ -296,6 +288,13 @@ public class OkapiService {
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/users/" + id;
     ResponseEntity<Userdata> response = restTemplate.exchange(url, HttpMethod.GET, entity, Userdata.class);
+    return response.getBody();
+  }
+
+  public Servicepoints fetchServicepoints(String tenant, String token) {
+    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
+    String url = okapi.getUrl() + "/service-points?limit=9999";
+    ResponseEntity<Servicepoints> response = restTemplate.exchange(url, HttpMethod.GET, entity, Servicepoints.class);
     return response.getBody();
   }
 
@@ -318,12 +317,6 @@ public class OkapiService {
     String url = okapi.getUrl() + "/mapping-rules";
     ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
     return new JsonObject(response.getBody());
-  }
-
-  public void updateHridSettings(JsonObject hridSettings, String tenant, String token) {
-    HttpEntity<?> entity = new HttpEntity<>(hridSettings.getMap(), headers(tenant, token));
-    String url = okapi.getUrl() + "/hrid-settings-storage/hrid-settings";
-    restTemplate.exchange(url, HttpMethod.PUT, entity, Void.class);
   }
 
   public JsonObject fetchHridSettings(String tenant, String token) {
@@ -354,69 +347,6 @@ public class OkapiService {
     return response.getBody();
   }
 
-  public JobProfile getOrCreateJobProfile(String tenant, String token, JobProfile jobProfile) {
-    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
-    String url = String.format("%s/data-import-profiles/jobProfiles?query=name='%s'", okapi.getUrl(), jobProfile.getName());
-    ResponseEntity<JobProfileCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, JobProfileCollection.class);
-    JobProfileCollection jobProfileCollection = response.getBody();
-    if (jobProfileCollection.getTotalRecords() > 0) {
-      return jobProfileCollection.getJobProfiles().get(0);
-    } else {
-      JobProfileUpdateDto jobProfileUpdateDto = new JobProfileUpdateDto();
-      jobProfileUpdateDto.setProfile(jobProfile);
-      return createJobProfile(tenant, token, jobProfileUpdateDto);
-    }
-  }
-
-  public JobProfile createJobProfile(String tenant, String token, JobProfileUpdateDto jobProfileUpdateDto) {
-    HttpEntity<JobProfileUpdateDto> entity = new HttpEntity<>(jobProfileUpdateDto, headers(tenant, token));
-    String url = okapi.getUrl() + "/data-import-profiles/jobProfiles";
-    ResponseEntity<JobProfileUpdateDto> response = restTemplate.exchange(url, HttpMethod.POST, entity, JobProfileUpdateDto.class);
-    return DatabindCodec.mapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-      .convertValue(response.getBody().getProfile(), JobProfile.class);
-  }
-
-  public InitJobExecutionsRsDto createJobExecution(String tenant, String token, InitJobExecutionsRqDto jobExecutionDto) {
-    HttpEntity<InitJobExecutionsRqDto> entity = new HttpEntity<>(jobExecutionDto, headers(tenant, token));
-    String url = okapi.getUrl() + "/change-manager/jobExecutions";
-    ResponseEntity<InitJobExecutionsRsDto> response = restTemplate.exchange(url, HttpMethod.POST, entity, InitJobExecutionsRsDto.class);
-    return response.getBody();
-  }
-
-  public void finishJobExecution(String tenant, String token, String jobExecutionId, RawRecordsDto rawRecordsDto) {
-    postJobExecutionRecords(tenant, token, jobExecutionId, rawRecordsDto);
-    JobExecution jobExecution = getJobExecution(tenant, token, jobExecutionId);
-    jobExecution.setCompletedDate(new Date());
-    jobExecution.setStatus(Status.COMMITTED);
-    jobExecution.setUiStatus(UiStatus.RUNNING_COMPLETE);
-    Progress progress = new Progress();
-    progress.setCurrent(rawRecordsDto.getRecordsMetadata().getCounter());
-    progress.setTotal(rawRecordsDto.getRecordsMetadata().getTotal());
-    progress.setJobExecutionId(jobExecution.getId());
-    jobExecution.setProgress(progress);
-    putJobExecution(tenant, token, jobExecution);
-  }
-
-  public void postJobExecutionRecords(String tenant, String token, String jobExecutionId, RawRecordsDto rawRecordsDto) {
-    HttpEntity<RawRecordsDto> entity = new HttpEntity<>(rawRecordsDto, headers(tenant, token));
-    String url = okapi.getUrl() + "/change-manager/jobExecutions/" + jobExecutionId + "/records";
-    restTemplate.exchange(url, HttpMethod.POST, entity, JobExecution.class);
-  }
-
-  public JobExecution getJobExecution(String tenant, String token, String jobExecutionId) {
-    HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
-    String url = okapi.getUrl() + "/change-manager/jobExecutions/" + jobExecutionId;
-    ResponseEntity<JobExecution> response = restTemplate.exchange(url, HttpMethod.GET, entity, JobExecution.class);
-    return response.getBody();
-  }
-
-  public JobExecution putJobExecution(String tenant, String token, JobExecution jobExecution) {
-    HttpEntity<JobExecution> entity = new HttpEntity<>(jobExecution, headers(tenant, token));
-    String url = okapi.getUrl() + "/change-manager/jobExecutions/" + jobExecution.getId();
-    ResponseEntity<JobExecution> response = restTemplate.exchange(url, HttpMethod.PUT, entity, JobExecution.class);
-    return response.getBody();
-  }
-
   public Locations fetchLocations(String tenant, String token) {
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/locations?limit=9999";
@@ -424,14 +354,14 @@ public class OkapiService {
     return response.getBody();
   }
 
-  public Loantypes fetchLoanTypes(String tenant, String token) {
+  public Loantypes fetchLoantypes(String tenant, String token) {
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/loan-types?limit=999";
     ResponseEntity<Loantypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Loantypes.class);
     return response.getBody();
   }
 
-  public Holdingsrecords fetchHoldingsRecordsByIdAndInstanceId(String tenant, String token, String id, String instanceId) {
+  public Holdingsrecords fetchHoldingsrecordsByIdAndInstanceId(String tenant, String token, String id, String instanceId) {
     HttpEntity<?> entity = new HttpEntity<>(headers(tenant, token));
     String url = okapi.getUrl() + "/holdings-storage/holdings?query=(id==" + id + " AND instanceId==" + instanceId + ")";
     ResponseEntity<Holdingsrecords> response = restTemplate.exchange(url, HttpMethod.GET, entity, Holdingsrecords.class);

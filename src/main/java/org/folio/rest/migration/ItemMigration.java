@@ -126,7 +126,7 @@ public class ItemMigration extends AbstractMigration<ItemContext> {
 
     JsonObject hridSettings = migrationService.okapiService.fetchHridSettings(tenant, token);
 
-    Loantypes loanTypes = migrationService.okapiService.fetchLoanTypes(tenant, token);
+    Loantypes loanTypes = migrationService.okapiService.fetchLoantypes(tenant, token);
     Locations locations = migrationService.okapiService.fetchLocations(tenant, token);
 
     Database voyagerSettings = context.getExtraction().getDatabase();

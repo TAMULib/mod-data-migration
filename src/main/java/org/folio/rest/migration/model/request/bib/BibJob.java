@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
-import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_data_import_converter_storage.JobProfile;
 import org.folio.rest.migration.model.request.AbstractJob;
 
 public class BibJob extends AbstractJob {
@@ -16,9 +15,6 @@ public class BibJob extends AbstractJob {
 
   @NotNull
   private String instanceStatusId;
-
-  @NotNull
-  private JobProfile profile;
 
   @NotNull
   private String controlNumberIdentifier;
@@ -47,14 +43,6 @@ public class BibJob extends AbstractJob {
 
   public void setInstanceStatusId(String instanceStatusId) {
     this.instanceStatusId = instanceStatusId;
-  }
-
-  public JobProfile getProfile() {
-    return profile;
-  }
-
-  public void setProfile(JobProfile profile) {
-    this.profile = profile;
   }
 
   public String getControlNumberIdentifier() {

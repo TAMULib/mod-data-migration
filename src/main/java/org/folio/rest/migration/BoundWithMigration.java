@@ -184,7 +184,7 @@ public class BoundWithMigration extends AbstractMigration<BoundWithContext> {
 
           for (ReferenceLink instanceRL : instanceRLs) {
             String instanceId = instanceRL.getFolioReference();
-            Holdingsrecords holdingsRecords = migrationService.okapiService.fetchHoldingsRecordsByIdAndInstanceId(tenant, token, existingHoldingsRecordId, instanceId);
+            Holdingsrecords holdingsRecords = migrationService.okapiService.fetchHoldingsrecordsByIdAndInstanceId(tenant, token, existingHoldingsRecordId, instanceId);
             if (holdingsRecords.getTotalRecords() == 0) {
               Holdingsrecord childHoldingsRecord = existingHoldingsRecord;
               String bibId = instanceRL.getExternalReference();
