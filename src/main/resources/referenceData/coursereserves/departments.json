@@ -932,5 +932,9 @@
     "id" : "46b50516-6ebd-4359-8e4c-a1b7995b2932",
     "name" : "BIOT",
     "description" : "Biotechnology"
+  }, {
+    "id" : "ab707165-e4df-4dd2-a26f-5e2eff4e479e",
+    "name" : "LDTC",
+    "description" : "Learning Design & Tech"
   } ]
 }

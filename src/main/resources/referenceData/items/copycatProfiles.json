@@ -23,7 +23,7 @@
     "enabled" : false
   }, {
     "id" : "f26df83c-aa25-40b6-876e-96852c3d4fd4",
-    "name" : "OCLC WorldCat",
+    "name" : "OCLC WorldCat (TXA)",
     "url" : "zcat.oclc.org/OLUCWorldCat",
     "authentication" : "100338383/hismith7",
     "externalIdQueryMap" : "@attr 1=1211 $identifier",

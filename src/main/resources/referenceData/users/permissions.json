@@ -76,14 +76,6 @@
     "mutable" : true,
     "visible" : true
   }, {
-    "permissionName" : "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
-    "displayName" : "Permission_sets_assign",
-    "id" : "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
-    "description" : "Can assign permission sets to users",
-    "subPermissions" : [ "ui-users.editperms" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
     "permissionName" : "50a15dba-6ea2-426a-9118-369084f1247b",
     "displayName" : "ILS_Staff",
     "id" : "50a15dba-6ea2-426a-9118-369084f1247b",
@@ -92,18 +84,18 @@
     "mutable" : true,
     "visible" : true
   }, {
+    "permissionName" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
+    "displayName" : "Acquisitions_Financial_Admin",
+    "id" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
+    "subPermissions" : [ "ui-finance.allocations.create", "ui-finance.transfers.create", "ui-finance.acq.unit.assignment.manage", "ui-finance.fiscal-year.view", "ui-finance.fund-budget.view", "ui-finance.group.view", "ui-finance.ledger.view", "ui-finance.fiscal-year.edit", "ui-finance.fund-budget.edit", "ui-finance.group.edit", "ui-finance.ledger.edit", "ui-finance.fiscal-year.create", "ui-finance.fund-budget.create", "ui-finance.group.create", "ui-finance.ledger.create", "ui-finance.fiscal-year.delete", "ui-finance.fund-budget.delete", "ui-finance.group.delete", "ui-finance.ledger.delete", "module.invoice.enabled" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
     "permissionName" : "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
     "displayName" : "Permission_sets_create_edit",
     "id" : "5b92a0a0-25a2-42a4-95e1-775f118d3ef2",
     "description" : "Ability to create permission sets",
     "subPermissions" : [ "ui-users.settings.permsets", "ui-users.settings.profilePictures" ],
-    "mutable" : true,
-    "visible" : true
-  }, {
-    "permissionName" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
-    "displayName" : "Acquisitions_Financial_Admin",
-    "id" : "bbc81742-5f20-4517-9e38-a1ed0631d874",
-    "subPermissions" : [ "ui-finance.allocations.create", "ui-finance.transfers.create", "ui-finance.acq.unit.assignment.manage", "ui-finance.fiscal-year.view", "ui-finance.fund-budget.view", "ui-finance.group.view", "ui-finance.ledger.view", "ui-finance.fiscal-year.edit", "ui-finance.fund-budget.edit", "ui-finance.group.edit", "ui-finance.ledger.edit", "ui-finance.fiscal-year.create", "ui-finance.fund-budget.create", "ui-finance.group.create", "ui-finance.ledger.create", "ui-finance.fiscal-year.delete", "ui-finance.fund-budget.delete", "ui-finance.group.delete", "ui-finance.ledger.delete", "module.invoice.enabled" ],
     "mutable" : true,
     "visible" : true
   }, {
@@ -126,6 +118,14 @@
     "id" : "80a761b1-fdb8-4bfa-988e-65760ff72ec5",
     "description" : "Student Workers doing maintenance operations ",
     "subPermissions" : [ "ui-inventory.items.mark-items-withdrawn", "ui-inventory.instance.view-staff-suppressed-records", "ui-inventory.instance.view", "ui-inventory.holdings.delete", "ui-inventory.item.delete", "ui-inventory.item.markasmissing", "ui-tags.view" ],
+    "mutable" : true,
+    "visible" : true
+  }, {
+    "permissionName" : "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
+    "displayName" : "Permission_sets_assign",
+    "id" : "7b0b50d2-89b5-4a3c-9137-5513a23327b7",
+    "description" : "Can assign permission sets to users",
+    "subPermissions" : [ "ui-users.editperms" ],
     "mutable" : true,
     "visible" : true
   }, {

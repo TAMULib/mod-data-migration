@@ -206,6 +206,25 @@
     "courseTypeId" : "11168498-5a28-4ea4-9cf1-dab80aaf5794",
     "instructorObjects" : [ ]
   }, {
+    "id" : "932fa828-79b4-4bb6-8b16-e32aa1b547e6",
+    "registrarId" : "2021:Fall:HIST205503",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "8179b9b3-c90f-47bd-88dd-598e5eb1b292",
+      "userId" : "6d74ec24-50d0-30a8-b3e4-3efacdfee83b",
+      "name" : "Darrell Lynch",
+      "barcode" : "6016426592352898",
+      "courseListingId" : "932fa828-79b4-4bb6-8b16-e32aa1b547e6",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:19:12.824+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:19:12.824+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
     "id" : "0cb27999-978c-44f9-8aba-4659b8a7460e",
     "registrarId" : "2021:Summer:EHRD203200",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -248,30 +267,18 @@
       }
     } ]
   }, {
-    "id" : "e0fb5b59-724e-4362-a2cc-2ab2e97ad159",
-    "registrarId" : "2021:Spring:ANTH201599",
-    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
-    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
-    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
-    "instructorObjects" : [ {
-      "id" : "22d54b7c-bfe3-4069-9ef7-4ca0a5dc1223",
-      "userId" : "aaff4099-87f8-3fef-9588-9cc3b463b5de",
-      "name" : "Vaughn Bryant",
-      "barcode" : "6016426591666819",
-      "courseListingId" : "e0fb5b59-724e-4362-a2cc-2ab2e97ad159",
-      "metadata" : {
-        "createdDate" : "2021-07-09T18:34:00.703+00:00",
-        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
-        "updatedDate" : "2021-07-09T18:34:00.703+00:00",
-        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
-      }
-    } ]
-  }, {
     "id" : "d5ff0a71-aa62-484c-9848-057fd1b53daf",
     "registrarId" : "2021:Summer:STAT641700",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
     "termId" : "eca0adf4-f3ba-4a8a-be37-7d77305bdb8c",
     "courseTypeId" : "11168498-5a28-4ea4-9cf1-dab80aaf5794",
+    "instructorObjects" : [ ]
+  }, {
+    "id" : "e0fb5b59-724e-4362-a2cc-2ab2e97ad159",
+    "registrarId" : "2021:Spring:ANTH201599",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
     "instructorObjects" : [ ]
   }, {
     "id" : "8050df24-7490-48e8-82cb-18191b724025",
@@ -1049,6 +1056,37 @@
       }
     } ]
   }, {
+    "id" : "74ab7b5d-5e75-4e5d-8ab3-89268c462000",
+    "registrarId" : "2021:Spring:HIST280906",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "52469dd6-3426-4af4-95fc-09646f0fc04c",
+      "userId" : "ba07ae75-da16-37be-af23-8ca86cfe670c",
+      "name" : "Erika Weidemann",
+      "barcode" : "6016426592317222",
+      "courseListingId" : "74ab7b5d-5e75-4e5d-8ab3-89268c462000",
+      "metadata" : {
+        "createdDate" : "2021-07-14T14:30:50.614+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-14T14:30:50.614+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    }, {
+      "id" : "8375f365-5072-434e-b16e-37a10180c846",
+      "userId" : "6d65d066-6d4e-376a-8a73-58c9b5569c6e",
+      "name" : "Verity McInnis",
+      "barcode" : "6016426591622291",
+      "courseListingId" : "74ab7b5d-5e75-4e5d-8ab3-89268c462000",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:19:49.006+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:19:49.006+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
     "id" : "15065b30-0050-4ec8-a446-6f607c3aa401",
     "registrarId" : "2021:Fall:THAR321900",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -1139,6 +1177,25 @@
         "createdDate" : "2021-07-09T19:22:29.393+00:00",
         "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
         "updatedDate" : "2021-07-09T19:22:29.393+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "54587aaf-e6a7-41af-8437-8702f39f6c76",
+    "registrarId" : "2021:Fall:HLTH231503",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "41d2f5ae-4abc-40f4-840d-9b326669c522",
+      "userId" : "43e398b8-4e7c-3b4f-8954-0d431aa4e841",
+      "name" : "Bruce Hanik",
+      "barcode" : "6016420293899661",
+      "courseListingId" : "54587aaf-e6a7-41af-8437-8702f39f6c76",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:20:57.193+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:20:57.193+00:00",
         "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
       }
     } ]
@@ -1408,6 +1465,25 @@
       }
     } ]
   }, {
+    "id" : "cc23d483-d0d3-459b-895b-e95a13d308bd",
+    "registrarId" : "2021:Fall:ISEN350",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "fd84caf7-35d8-4436-943c-62ecc16bed29",
+      "userId" : "76649f03-d191-31ca-910c-6bf350d36c57",
+      "name" : "George Bennett",
+      "barcode" : "102009862",
+      "courseListingId" : "cc23d483-d0d3-459b-895b-e95a13d308bd",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:22:18.905+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:22:18.905+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
     "id" : "f4991d5d-7a6b-4baa-b8e8-c7c808facccf",
     "registrarId" : "2021:Spring:CVEN633",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -1499,6 +1575,25 @@
         "createdDate" : "2021-07-09T20:10:42.164+00:00",
         "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
         "updatedDate" : "2021-07-09T20:10:42.164+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "b219ce1e-5df2-4437-9c49-71c72f8bbd9e",
+    "registrarId" : "2021:Fall:ISEN460",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "800afb20-d413-4a04-b7a8-f6f3d3968981",
+      "userId" : "1eba0a37-6f8a-30e1-82e8-a3b21c6a6670",
+      "name" : "Nancy Currie-Gregg",
+      "barcode" : "6016426593523471",
+      "courseListingId" : "b219ce1e-5df2-4437-9c49-71c72f8bbd9e",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:23:28.405+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:23:28.405+00:00",
         "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
       }
     } ]
@@ -1646,6 +1741,25 @@
       }
     } ]
   }, {
+    "id" : "e15dc63c-c2f0-4a23-b04d-52ec041706a0",
+    "registrarId" : "2021:Fall:ISEN623700",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "e4930f7c-9aa6-44f6-846e-9cd3a4e4b1f0",
+      "userId" : "13275a86-bf17-3432-945b-1d717777829d",
+      "name" : "Erick Moreno Centeno",
+      "barcode" : "6016426594465854",
+      "courseListingId" : "e15dc63c-c2f0-4a23-b04d-52ec041706a0",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:25:53.734+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:25:53.734+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
     "id" : "1fb0a559-9a70-431e-abd0-8a97bd29bb8a",
     "registrarId" : "2021:Fall:WGST410500",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -1760,6 +1874,42 @@
         "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
         "updatedDate" : "2021-07-09T21:47:58.045+00:00",
         "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
+      }
+    } ]
+  }, {
+    "id" : "b3a035e4-64f0-4a59-86bf-3f8ab7fae484",
+    "registrarId" : "2021:Fall:JOUR102201",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "e85cb84c-712b-4e38-bde0-207df6c1a491",
+      "name" : "Tom Burton",
+      "courseListingId" : "b3a035e4-64f0-4a59-86bf-3f8ab7fae484",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:29:31.161+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:29:43.892+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "eb5150ce-b952-4c87-befe-18b2fb9da6e9",
+    "registrarId" : "2019:Fall:GEOG301500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "d25939d0-8c84-435f-9e76-e1b4c55e5ce0",
+      "userId" : "3dfd0c40-22a2-3aea-9502-293f4758173f",
+      "name" : "Bonnie Bounds",
+      "barcode" : "6016426594340297",
+      "courseListingId" : "eb5150ce-b952-4c87-befe-18b2fb9da6e9",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:27:42.540+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-16T15:27:42.540+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
       }
     } ]
   }, {
@@ -1892,6 +2042,25 @@
         "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
         "updatedDate" : "2021-07-15T14:32:50.940+00:00",
         "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
+      }
+    } ]
+  }, {
+    "id" : "6ff508e6-85de-41e7-a039-6d33a2ee5e59",
+    "registrarId" : "2019:Fall:EHRD481500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "5c862df3-084e-4fc8-ac30-14f863c1d078",
+      "userId" : "3855fa92-f9bd-3e62-8bc9-7be34c4a7f71",
+      "name" : "Rhonda Fowler",
+      "barcode" : "6016426592657767",
+      "courseListingId" : "6ff508e6-85de-41e7-a039-6d33a2ee5e59",
+      "metadata" : {
+        "createdDate" : "2021-07-16T16:06:27.103+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-16T16:06:27.103+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
       }
     } ]
   }, {
@@ -2134,6 +2303,25 @@
       }
     } ]
   }, {
+    "id" : "72e2c922-303d-4234-9cab-5e663aa59183",
+    "registrarId" : "2021:Spring:SOCI206500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "f3b6006e-f135-4573-bd93-a6f542647804",
+      "userId" : "41fa5cd5-e53b-316d-83f8-33de95f69f16",
+      "name" : "Samuel Cohn",
+      "barcode" : "6016426592989566",
+      "courseListingId" : "72e2c922-303d-4234-9cab-5e663aa59183",
+      "metadata" : {
+        "createdDate" : "2021-07-15T15:23:20.589+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T15:23:20.589+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
     "id" : "e0f6c22f-d21d-41a4-8749-95cdd247c0a9",
     "registrarId" : "2021:EPSY602600",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -2172,6 +2360,37 @@
       }
     } ]
   }, {
+    "id" : "1925557a-22cb-4690-a998-b9473d1b5823",
+    "registrarId" : "2021:Fall:KINE307",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "2494a98c-2e37-41f3-af22-10b5503f7402",
+      "userId" : "8927f8c5-bba8-3c15-81a1-f8833130525b",
+      "name" : "Deanna Kennedy",
+      "barcode" : "6016426592671453",
+      "courseListingId" : "1925557a-22cb-4690-a998-b9473d1b5823",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:31:08.200+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:31:08.200+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    }, {
+      "id" : "0034f427-4ad6-489e-a201-7a2ae19efa33",
+      "userId" : "90c615a7-7919-3e8b-9a6c-6ca9e68b881d",
+      "name" : "Jiling Liu",
+      "barcode" : "6016426593509876",
+      "courseListingId" : "1925557a-22cb-4690-a998-b9473d1b5823",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:32:27.551+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:32:27.551+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
     "id" : "98b5029a-c2de-4942-a5d6-04759cebbe13",
     "registrarId" : "2021:Spring:HIST106504",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -2187,6 +2406,25 @@
         "createdDate" : "2021-07-11T20:20:29.306+00:00",
         "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
         "updatedDate" : "2021-07-11T20:20:29.306+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "9a338bc8-cae4-49a8-b89c-60cbd4dfc23c",
+    "registrarId" : "2021:Fall:MATH308501",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "e7817eb6-6364-4e81-b865-037bff37061a",
+      "userId" : "cfd2138b-6001-3bd1-a327-5cd4dc5d2958",
+      "name" : "Yangyang Xu",
+      "barcode" : "6016426593097674",
+      "courseListingId" : "9a338bc8-cae4-49a8-b89c-60cbd4dfc23c",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:43:28.713+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:43:28.713+00:00",
         "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
       }
     } ]
@@ -2229,6 +2467,25 @@
       }
     } ]
   }, {
+    "id" : "e6cd0e0b-050e-4190-899b-215ec8cd61c0",
+    "registrarId" : "2019:Fall:GEOG202501",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "5e0eb785-37dc-435f-b398-bcc71d4e8e84",
+      "userId" : "84feffcc-60c1-3375-a3a2-1840f479b0a3",
+      "name" : "Kathleen O'Reilly",
+      "barcode" : "6016426592402602",
+      "courseListingId" : "e6cd0e0b-050e-4190-899b-215ec8cd61c0",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:32:25.608+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-16T15:32:25.608+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
     "id" : "95c6bc7b-4339-4283-becf-98354aeac976",
     "registrarId" : "2021:Spring:GEOG361",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -2244,6 +2501,63 @@
         "createdDate" : "2021-07-11T19:38:34.060+00:00",
         "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
         "updatedDate" : "2021-07-11T19:38:34.060+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "0ee0829f-6000-43a9-aa5a-7c83d2959a32",
+    "registrarId" : "2021:Fall:MATH168500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "a4cbe349-baa7-4c9f-b017-75cb16fc58b5",
+      "userId" : "cfd2138b-6001-3bd1-a327-5cd4dc5d2958",
+      "name" : "Yangyang Xu",
+      "barcode" : "6016426593097674",
+      "courseListingId" : "0ee0829f-6000-43a9-aa5a-7c83d2959a32",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:41:38.644+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:41:38.644+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "b992d5a9-f425-4279-858e-64aef4d68955",
+    "registrarId" : "2021:Fall:LDTC602699",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "419b3a26-0774-4ac7-a463-62a5e3bdf088",
+      "userId" : "b760dc8c-d09b-3c70-8633-174f2c7e45de",
+      "name" : "Susan Pedersen",
+      "barcode" : "6016422121990787",
+      "courseListingId" : "b992d5a9-f425-4279-858e-64aef4d68955",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:47:07.326+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:47:07.326+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "69389cf8-582e-41c8-9d7c-99ecff2cb2d4",
+    "registrarId" : "2021:Fall:ENGL338501",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "5252aafe-487d-4249-8427-f2f40f7038c8",
+      "userId" : "7fa5345c-2143-34f8-bbe7-e94cfddf8070",
+      "name" : "Vanita Reddy",
+      "barcode" : "6016426590560161",
+      "courseListingId" : "69389cf8-582e-41c8-9d7c-99ecff2cb2d4",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:50:46.765+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:50:46.765+00:00",
         "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
       }
     } ]
@@ -2302,6 +2616,86 @@
         "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
         "updatedDate" : "2021-07-11T20:14:13.655+00:00",
         "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "e982d630-8620-4a2e-9931-d9f5a77c86db",
+    "registrarId" : "2021:Fall:MASC351500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "af40c7f8-382c-4d56-a073-9a570ad0f304",
+      "userId" : "fb28b007-9179-32c1-b452-3ae729b33dd9",
+      "name" : "Hyunkyung Kwon",
+      "barcode" : "6016426594482503",
+      "courseListingId" : "e982d630-8620-4a2e-9931-d9f5a77c86db",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:36:42.698+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:36:42.698+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    }, {
+      "id" : "7a595df4-ab8e-4e01-87df-290fa3ec670d",
+      "userId" : "e9290808-0b2b-3fad-b097-e6e030ab965d",
+      "name" : "Mary Capraro",
+      "barcode" : "6016426593484062",
+      "courseListingId" : "e982d630-8620-4a2e-9931-d9f5a77c86db",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:36:59.318+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:36:59.318+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    }, {
+      "id" : "7eaa7f75-9a35-460d-a6bf-1786fb8fcdc0",
+      "userId" : "046f4030-b955-368e-8ab3-6fcbc3946e0a",
+      "name" : "Dorothy Todd",
+      "barcode" : "6016426593505924",
+      "courseListingId" : "e982d630-8620-4a2e-9931-d9f5a77c86db",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:37:50.388+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:37:50.388+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "3e8b2597-5184-4395-9988-75275c84ae27",
+    "registrarId" : "2019:Fall:ENGL667600",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "instructorObjects" : [ {
+      "id" : "d0fd029b-ce0b-4307-af75-9c9728a151a2",
+      "userId" : "ac348010-d179-3857-9f17-f019f2bb006f",
+      "name" : "Sara Dicaglio",
+      "barcode" : "6016426593093566",
+      "courseListingId" : "3e8b2597-5184-4395-9988-75275c84ae27",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:40:21.217+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-16T15:40:21.217+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "f781c695-017f-4d16-98bc-6e81775c3e87",
+    "registrarId" : "2019:Fall:ENGL210571",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "7e5c4bf6-0a2e-465c-bc86-e9614ac79b07",
+      "userId" : "ac348010-d179-3857-9f17-f019f2bb006f",
+      "name" : "Sara Dicaglio",
+      "barcode" : "6016426593093566",
+      "courseListingId" : "f781c695-017f-4d16-98bc-6e81775c3e87",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:50:33.613+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-16T15:50:33.613+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
       }
     } ]
   }, {
@@ -2558,6 +2952,25 @@
       }
     } ]
   }, {
+    "id" : "cca2ce68-4bce-4dd9-a492-aa19fd72f250",
+    "registrarId" : "2021:Fall:MATH325501",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "525e5a7a-ebc8-4eaa-8191-205dc222753f",
+      "userId" : "139009df-7dfb-31bb-86b0-a01d524d29ca",
+      "name" : "Heather Ramsey",
+      "barcode" : "6016426591504572",
+      "courseListingId" : "cca2ce68-4bce-4dd9-a492-aa19fd72f250",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:48:29.155+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:48:29.155+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
     "id" : "af92dfd5-b732-4648-9e49-c561b136fd06",
     "registrarId" : " 2019:Fall:ASIA463500",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -2675,6 +3088,44 @@
       }
     } ]
   }, {
+    "id" : "ac1542a1-32d4-49d9-88c4-2632b33f8baf",
+    "registrarId" : "2021:Fall:MATH467900",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "55fa3e5f-0866-47ea-b38b-c5f8bc9d120e",
+      "userId" : "f8804347-cc57-3417-9d81-8eb5f30d0079",
+      "name" : "Stephen Fulling",
+      "barcode" : "6016424836031881",
+      "courseListingId" : "ac1542a1-32d4-49d9-88c4-2632b33f8baf",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:49:20.503+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:49:20.503+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "571762a7-99f6-415f-b9d5-1433e03140e1",
+    "registrarId" : "2019:Fall:ENGL305500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "aa829908-62f6-4236-80f5-96dad0dea640",
+      "userId" : "71bad938-d45d-3624-aafd-09c30db2bbce",
+      "name" : "Amy Earhart",
+      "barcode" : "6016423593817946",
+      "courseListingId" : "571762a7-99f6-415f-b9d5-1433e03140e1",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:59:08.709+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-16T15:59:08.709+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
     "id" : "e65651ed-486a-4156-a083-7d609ee12c2e",
     "registrarId" : "2019:Fall:SOCI445500 ",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -2737,28 +3188,22 @@
       }
     } ]
   }, {
-    "id" : "0d3596f7-f6d0-4e05-bddf-107a507365af",
-    "registrarId" : "2021:Fall:SPMT304500",
+    "id" : "3ee4656f-138f-4561-9147-973b89ccbe9c",
+    "registrarId" : "2019:Fall:EHRD601600",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
-    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
     "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
     "instructorObjects" : [ {
-      "id" : "c950b51e-933b-4a82-b0ae-91882c6bd451",
-      "userId" : "a11a3a65-f005-3479-b9a4-9f81f8d03449",
-      "name" : "John Eliot",
-      "barcode" : "6016426591999939",
-      "patronGroup" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
-      "patronGroupObject" : {
-        "id" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
-        "desc" : "Faculty/Staff",
-        "group" : "fast"
-      },
-      "courseListingId" : "0d3596f7-f6d0-4e05-bddf-107a507365af",
+      "id" : "0e57eb19-1284-495f-b10a-079d5d094bf3",
+      "userId" : "65943b38-5f4d-3f00-be88-c061fbaff916",
+      "name" : "Lynn Burlbaw",
+      "barcode" : "6016426594644060",
+      "courseListingId" : "3ee4656f-138f-4561-9147-973b89ccbe9c",
       "metadata" : {
-        "createdDate" : "2021-07-12T21:51:53.510+00:00",
-        "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
-        "updatedDate" : "2021-07-12T21:51:53.510+00:00",
-        "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
+        "createdDate" : "2021-07-16T16:01:50.996+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-16T16:01:50.996+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
       }
     } ]
   }, {
@@ -2812,6 +3257,25 @@
       }
     } ]
   }, {
+    "id" : "07991618-8739-4442-92bd-74507f2dce02",
+    "registrarId" : "2021:Fall:ENGL376200",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "bb167d90-81f1-42d0-aaec-f3b551c46ab9",
+      "userId" : "ce27f2db-97fa-3434-8c3a-147dd9caf496",
+      "name" : "Jason Harris",
+      "barcode" : "6016426592293415",
+      "courseListingId" : "07991618-8739-4442-92bd-74507f2dce02",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:51:48.330+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:51:48.330+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
     "id" : "d7a7edb5-f5f1-4803-baed-6edd35195b80",
     "registrarId" : "2020:Spring:EDAD650600",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -2837,6 +3301,43 @@
       }
     } ]
   }, {
+    "id" : "d4d17321-f43d-4822-9a87-716a525d29d8",
+    "registrarId" : "2021:Fall:MATH415502",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "0ce043bd-0230-4f76-a174-12e3787dd9ad",
+      "userId" : "e3f0b4b9-f728-3927-b185-e0c6085dbbaa",
+      "name" : "Eric Rowell",
+      "barcode" : "6016425885993459",
+      "courseListingId" : "d4d17321-f43d-4822-9a87-716a525d29d8",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:52:56.177+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:52:56.177+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "b3fb67f6-0f01-49d6-af7c-735512d0f987",
+    "registrarId" : "2019:Fall:ECON323501",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "40efbc7f-eda1-48e6-8cd7-39b3179b83fb",
+      "userId" : "cf894286-bfe9-348c-8291-eaef03389959",
+      "name" : "Nataliya Pakhotina",
+      "courseListingId" : "b3fb67f6-0f01-49d6-af7c-735512d0f987",
+      "metadata" : {
+        "createdDate" : "2021-07-16T16:16:53.139+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-16T16:16:53.139+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
     "id" : "9e0dc9f1-746b-4de6-8251-978773a99777",
     "registrarId" : "2021:Fall:SOCI207501",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -2859,6 +3360,43 @@
         "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
         "updatedDate" : "2021-07-12T21:55:26.991+00:00",
         "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
+      }
+    } ]
+  }, {
+    "id" : "02b1acbd-a72a-407f-9719-9540f74743e3",
+    "registrarId" : "2021:Fall:WGST200500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "8c28ce8a-7a4f-4a61-8a32-3feb513bece4",
+      "userId" : "ac348010-d179-3857-9f17-f019f2bb006f",
+      "name" : "Sara Dicaglio",
+      "courseListingId" : "02b1acbd-a72a-407f-9719-9540f74743e3",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:56:05.465+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-16T15:56:05.465+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "11bbf4e2-7ffd-4983-92f6-db78d98e497a",
+    "registrarId" : "2019:Fall:EHRD614699",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "d7af02e6-6b2f-4e7c-ae60-01b2728fa420",
+      "userId" : "22abfb27-c376-39e0-9e13-af9e5e9489d7",
+      "name" : "Michael Beyerlein",
+      "barcode" : "6016426591892001",
+      "courseListingId" : "11bbf4e2-7ffd-4983-92f6-db78d98e497a",
+      "metadata" : {
+        "createdDate" : "2021-07-16T16:11:12.037+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-16T16:11:12.037+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
       }
     } ]
   }, {
@@ -3117,6 +3655,25 @@
         "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
         "updatedDate" : "2021-07-13T15:36:56.203+00:00",
         "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
+      }
+    } ]
+  }, {
+    "id" : "fe60740d-3444-48d9-827f-661d4be1d79c",
+    "registrarId" : "2019:Fall:ECON203501",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "ad3017a2-ae14-4688-84fe-f777c3aec783",
+      "userId" : "cf894286-bfe9-348c-8291-eaef03389959",
+      "name" : "Nataliya Pakhotina",
+      "barcode" : "6016426591335076",
+      "courseListingId" : "fe60740d-3444-48d9-827f-661d4be1d79c",
+      "metadata" : {
+        "createdDate" : "2021-07-16T16:14:14.248+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-16T16:14:14.248+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
       }
     } ]
   }, {
@@ -3891,25 +4448,6 @@
         "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
         "updatedDate" : "2021-07-13T21:39:31.515+00:00",
         "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
-      }
-    } ]
-  }, {
-    "id" : "74ab7b5d-5e75-4e5d-8ab3-89268c462000",
-    "registrarId" : "2021:Spring:HIST280906",
-    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
-    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
-    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
-    "instructorObjects" : [ {
-      "id" : "52469dd6-3426-4af4-95fc-09646f0fc04c",
-      "userId" : "ba07ae75-da16-37be-af23-8ca86cfe670c",
-      "name" : "Erika Weidemann",
-      "barcode" : "6016426592317222",
-      "courseListingId" : "74ab7b5d-5e75-4e5d-8ab3-89268c462000",
-      "metadata" : {
-        "createdDate" : "2021-07-14T14:30:50.614+00:00",
-        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
-        "updatedDate" : "2021-07-14T14:30:50.614+00:00",
-        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
       }
     } ]
   }, {
@@ -4801,43 +5339,6 @@
       }
     } ]
   }, {
-    "id" : "ae741ac0-3881-48f9-b2a3-7cbee2392ba7",
-    "registrarId" : "2021:Fall:INTA671600",
-    "locationId" : "e8a5154e-71a3-4daa-a2d6-f4626c99ffe6",
-    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
-    "instructorObjects" : [ {
-      "id" : "14a0d04e-4045-402f-9900-1163e6a06399",
-      "userId" : "50c5dbce-e6b9-3170-ac65-99b063d73a85",
-      "name" : "Erin Snider",
-      "barcode" : "6016426591945478",
-      "courseListingId" : "ae741ac0-3881-48f9-b2a3-7cbee2392ba7",
-      "metadata" : {
-        "createdDate" : "2021-07-14T16:05:18.671+00:00",
-        "createdByUserId" : "fcd360d7-ce7d-3771-903c-f0b25af0861f",
-        "updatedDate" : "2021-07-14T16:05:18.671+00:00",
-        "updatedByUserId" : "fcd360d7-ce7d-3771-903c-f0b25af0861f"
-      }
-    } ]
-  }, {
-    "id" : "0347c1f6-a583-4ba4-a991-57dbd8f45fe1",
-    "registrarId" : "2019:Fall:ENGL303903",
-    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
-    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
-    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
-    "instructorObjects" : [ {
-      "id" : "c95fda60-aaf9-40ca-8b47-2e9dc5d29995",
-      "userId" : "ac348010-d179-3857-9f17-f019f2bb006f",
-      "name" : "Sara Dicaglio",
-      "barcode" : "6016426593093566",
-      "courseListingId" : "0347c1f6-a583-4ba4-a991-57dbd8f45fe1",
-      "metadata" : {
-        "createdDate" : "2021-07-14T17:18:46.891+00:00",
-        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
-        "updatedDate" : "2021-07-14T17:18:46.891+00:00",
-        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
-      }
-    } ]
-  }, {
     "id" : "534e4f7a-942c-4753-ab07-2c5d817ad2c6",
     "registrarId" : "2021:Spring:INTS321500",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -5099,24 +5600,6 @@
         "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
         "updatedDate" : "2021-07-14T17:52:08.886+00:00",
         "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
-      }
-    } ]
-  }, {
-    "id" : "a4441455-fc02-4690-840f-4048fb3232ff",
-    "registrarId" : "2019:Fall:FILM251501 2019:Fall:FILM251502",
-    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
-    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
-    "instructorObjects" : [ {
-      "id" : "a9a07d45-dab2-472f-97ba-9231da93103c",
-      "userId" : "d3b5faac-0555-39a9-a69b-0dea24026983",
-      "name" : "MICHELLE SIMMS",
-      "barcode" : "6016426593944867",
-      "courseListingId" : "a4441455-fc02-4690-840f-4048fb3232ff",
-      "metadata" : {
-        "createdDate" : "2021-07-14T18:02:58.957+00:00",
-        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
-        "updatedDate" : "2021-07-14T18:02:58.957+00:00",
-        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
       }
     } ]
   }, {
@@ -5571,6 +6054,18 @@
         "createdDate" : "2021-07-14T19:17:21.204+00:00",
         "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
         "updatedDate" : "2021-07-14T19:17:21.204+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    }, {
+      "id" : "52a1ac77-3c77-4cd0-a20a-d835f29d9b44",
+      "userId" : "5900e977-d840-394f-a6e7-1ead71892773",
+      "name" : "Heather Burte",
+      "barcode" : "6016426594395382",
+      "courseListingId" : "cc420f2c-99e9-4ff3-b18e-01b4e296874f",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:53:33.244+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:53:33.244+00:00",
         "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
       }
     } ]
@@ -6114,31 +6609,6 @@
       }
     } ]
   }, {
-    "id" : "992d0ec8-2de1-435d-9a84-11f05524f5ad",
-    "registrarId" : "2021:Fall:OCNG251500",
-    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
-    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
-    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
-    "instructorObjects" : [ {
-      "id" : "66c40c29-5662-47c7-9e82-c93e25ce15e3",
-      "userId" : "893eaf18-2c65-3865-8758-b8171aab4440",
-      "name" : "Mary Richardson",
-      "barcode" : "6016420455700251",
-      "patronGroup" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
-      "patronGroupObject" : {
-        "id" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
-        "desc" : "Faculty/Staff",
-        "group" : "fast"
-      },
-      "courseListingId" : "992d0ec8-2de1-435d-9a84-11f05524f5ad",
-      "metadata" : {
-        "createdDate" : "2021-07-15T14:34:45.048+00:00",
-        "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
-        "updatedDate" : "2021-07-15T14:34:45.048+00:00",
-        "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
-      }
-    } ]
-  }, {
     "id" : "49d06582-6fa6-43a4-9e6f-ca2f7f00acdb",
     "registrarId" : "2021:Spring:PSYC350",
     "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
@@ -6172,6 +6642,2109 @@
         "createdDate" : "2021-07-15T14:53:36.512+00:00",
         "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
         "updatedDate" : "2021-07-15T14:53:36.512+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "1994cb5b-760e-48aa-8df4-57accdcc1a58",
+    "registrarId" : "2021:Spring:RDNG473500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "1e5dee7f-21d8-49a5-9344-5fc902e77f88",
+      "userId" : "b2e7489d-166b-3ffe-9c38-191bc42f55cd",
+      "name" : "Misty Stiles",
+      "barcode" : "6016426594085025",
+      "courseListingId" : "1994cb5b-760e-48aa-8df4-57accdcc1a58",
+      "metadata" : {
+        "createdDate" : "2021-07-15T15:10:39.949+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T15:10:39.949+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "b1b286a2-38e3-4de1-8a9d-0ece34a191a7",
+    "registrarId" : "2021:Spring:RELS220500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "201155d9-8ce1-4dd2-bdb8-51f32c350df0",
+      "userId" : "85d47025-900f-357e-ad4d-fee5e6a6a4c5",
+      "name" : "Daniel Schwartz",
+      "barcode" : "6016426590862815",
+      "courseListingId" : "b1b286a2-38e3-4de1-8a9d-0ece34a191a7",
+      "metadata" : {
+        "createdDate" : "2021-07-15T15:17:10.684+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T15:17:10.684+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "cb122086-15cd-4dd4-a895-e9cea10e389f",
+    "registrarId" : "2021:Spring:SOCI421500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "5ad049f9-1223-441a-a31e-373e0b0bbaf3",
+      "userId" : "ef76f5ca-af86-3247-a367-ced1d8744a69",
+      "name" : "Defne Over",
+      "barcode" : "6016426594392504",
+      "courseListingId" : "cb122086-15cd-4dd4-a895-e9cea10e389f",
+      "metadata" : {
+        "createdDate" : "2021-07-15T15:52:32.896+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T15:52:32.896+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "0e85a996-b061-42a5-88ed-556fc498e515",
+    "registrarId" : "2021:Spring:RPTS321500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "3c000011-2c52-4612-bd4a-eece128734de",
+      "userId" : "fb31c91a-ce80-3015-ac68-440dc44b6c79",
+      "name" : "Donna Sullins",
+      "barcode" : "6016426593699149",
+      "courseListingId" : "0e85a996-b061-42a5-88ed-556fc498e515",
+      "metadata" : {
+        "createdDate" : "2021-07-15T15:18:52.634+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T15:18:52.634+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "6c3914e1-592e-431a-a18f-a5b4d4d2c0c5",
+    "registrarId" : "2021:Spring:SOCI217502",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "2f872c58-7cf9-4a8a-bc7b-700b9c937803",
+      "userId" : "5b5b8196-f5e9-3db9-99e6-f46254c37d3e",
+      "name" : "Gabriel Miller",
+      "barcode" : "729008553",
+      "courseListingId" : "6c3914e1-592e-431a-a18f-a5b4d4d2c0c5",
+      "metadata" : {
+        "createdDate" : "2021-07-15T15:26:10.887+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T15:26:10.887+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "2174f37c-f303-4b3c-b4bb-9f210b0e3c05",
+    "registrarId" : "2021:Spring:SOCI345500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "c66bea46-421b-4c03-b5cf-7784aa721147",
+      "userId" : "5900e977-d840-394f-a6e7-1ead71892773",
+      "name" : "Heather Burte",
+      "barcode" : "6016426594395382",
+      "courseListingId" : "2174f37c-f303-4b3c-b4bb-9f210b0e3c05",
+      "metadata" : {
+        "createdDate" : "2021-07-15T15:32:23.149+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T15:32:23.149+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "6360aa78-ef4a-4b22-ace9-f188bc46c8fc",
+    "registrarId" : "2019:Fall:LAND601600",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "83d81353-484a-4879-ae07-526a9cc931fa",
+      "userId" : "585a58e4-05ab-3915-bd01-30fbdd05f7c7",
+      "name" : "Bruce Dvorak",
+      "barcode" : "6016420309691383",
+      "courseListingId" : "6360aa78-ef4a-4b22-ace9-f188bc46c8fc",
+      "metadata" : {
+        "createdDate" : "2021-07-15T16:02:11.024+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T16:02:11.024+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "5195de0a-99c1-40f0-a5c5-ef1dc0827005",
+    "registrarId" : "2019:Fall:LAND620600",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "cf4870c0-a55a-4bf6-9aaa-b14e8e2d6ee8",
+      "userId" : "ed11add5-a175-3e83-bb98-65a82f417f0a",
+      "name" : "William Winslow",
+      "barcode" : "6016426593845791",
+      "courseListingId" : "5195de0a-99c1-40f0-a5c5-ef1dc0827005",
+      "metadata" : {
+        "createdDate" : "2021-07-15T16:04:36.779+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T16:04:36.779+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "c8e644a8-0e49-4e96-bbe1-fd95daf5bb52",
+    "registrarId" : "2019:Fall:",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "c36b5305-b3af-408b-92bd-4a3db6f72d71",
+      "userId" : "a23764da-337b-3d18-a47b-58eda9127c52",
+      "name" : "Hope Hui Rising",
+      "barcode" : "6016426593934421",
+      "courseListingId" : "c8e644a8-0e49-4e96-bbe1-fd95daf5bb52",
+      "metadata" : {
+        "createdDate" : "2021-07-15T16:06:35.635+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T16:06:35.635+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "35e271b6-e793-4764-aaf1-14e8195297a1",
+    "registrarId" : "2019:Fall:MATH142515",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "45c8b1d7-6c9d-4688-b385-3f5768d6b98b",
+      "name" : "STAFF",
+      "courseListingId" : "35e271b6-e793-4764-aaf1-14e8195297a1",
+      "metadata" : {
+        "createdDate" : "2021-07-15T16:10:10.249+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T16:10:10.249+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "6cbd4350-e74b-43d3-ba21-3c62c78f2105",
+    "registrarId" : "2021:Spring:SOCI615600",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "d85cb78c-0b09-4817-9cbc-1bb87b93d3ce",
+      "userId" : "faaa7d27-9387-3053-aa41-fccf29333238",
+      "name" : "Joe Feagin",
+      "barcode" : "6016424563860684",
+      "courseListingId" : "6cbd4350-e74b-43d3-ba21-3c62c78f2105",
+      "metadata" : {
+        "createdDate" : "2021-07-15T17:44:36.697+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T17:44:36.697+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "3f00b419-5eb7-4609-ac69-b9416d81abb7",
+    "registrarId" : "2019:Fall:MATH152503",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "f65ce32c-4af3-4da1-aad2-1754440448e9",
+      "name" : "STAFF",
+      "courseListingId" : "3f00b419-5eb7-4609-ac69-b9416d81abb7",
+      "metadata" : {
+        "createdDate" : "2021-07-15T16:12:40.029+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T16:12:40.029+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "a374cb72-b181-4c61-a717-d0d66e350b74",
+    "registrarId" : "2019:Fall:",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "d2be8e39-19c2-4bf0-998f-71bff39581f3",
+      "name" : "STAFF",
+      "courseListingId" : "a374cb72-b181-4c61-a717-d0d66e350b74",
+      "metadata" : {
+        "createdDate" : "2021-07-15T16:15:50.443+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T16:15:50.443+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "a1e5368c-6643-4b9f-b871-83640d4fb989",
+    "registrarId" : "2019:Fall:",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "d2a2640e-8e05-41e8-8826-b8a002a787f8",
+      "userId" : "955b9480-203b-3757-b31a-2651f79de378",
+      "name" : "Chun-Hung Liu",
+      "barcode" : "6016426594090579",
+      "courseListingId" : "a1e5368c-6643-4b9f-b871-83640d4fb989",
+      "metadata" : {
+        "createdDate" : "2021-07-15T16:17:51.135+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T16:17:51.135+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "4b672e83-b614-40f5-bc28-55a1db5459ea",
+    "registrarId" : "2019:Fall:",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "09258c59-5c6f-4460-a29d-c3cfc47ea368",
+      "userId" : "6c577e31-9e60-3925-a297-0bd7f741969a",
+      "name" : "Beth Netherland",
+      "barcode" : "6016427863508457",
+      "courseListingId" : "4b672e83-b614-40f5-bc28-55a1db5459ea",
+      "metadata" : {
+        "createdDate" : "2021-07-15T16:23:29.349+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T16:23:29.349+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "3403c285-732a-4587-bf31-1df2dd27536f",
+    "registrarId" : "2019:Fall:JAPN101503",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "d03cf57d-e64b-49a1-8594-77821622f456",
+      "userId" : "a2d29f59-35ee-35e5-b1eb-ba6767f9b47e",
+      "name" : "George Adams",
+      "barcode" : "6016426593008812",
+      "courseListingId" : "3403c285-732a-4587-bf31-1df2dd27536f",
+      "metadata" : {
+        "createdDate" : "2021-07-15T16:26:17.798+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T16:26:17.798+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "1e4cad1b-dd5a-4d98-8bb3-8c6d90142bd3",
+    "registrarId" : "2019:Fall:",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "fadcb714-09d4-448a-b986-67304c43b745",
+      "userId" : "fe27df11-41a6-3d95-8fac-1df69bb9db3c",
+      "name" : "Alyssa Locklear",
+      "barcode" : "6016426591617804",
+      "courseListingId" : "1e4cad1b-dd5a-4d98-8bb3-8c6d90142bd3",
+      "metadata" : {
+        "createdDate" : "2021-07-15T16:20:22.744+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T16:20:22.744+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "671298fe-9f6f-4f38-bb1f-9fe4a5753f0a",
+    "registrarId" : "2021:Spring:SOCI680600",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "36a240ea-f7a0-46b8-928d-262bdceee685",
+      "userId" : "2496c0f1-faf3-3d02-9c35-42d01a8e5a71",
+      "name" : "Judith Linneman",
+      "barcode" : "6016427612903421",
+      "courseListingId" : "671298fe-9f6f-4f38-bb1f-9fe4a5753f0a",
+      "metadata" : {
+        "createdDate" : "2021-07-15T17:54:43.030+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T17:54:43.030+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "a68305ee-7119-4902-a63b-e589c4fbc59e",
+    "registrarId" : "2021:Spring:SPAN407500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "7bbd89b9-0c93-4fe9-8f2f-bc7653a806b7",
+      "userId" : "b63f116f-6185-36fb-ac44-b3ad87daa1af",
+      "name" : "Adriana Perez Smith",
+      "barcode" : "6016426594477628",
+      "courseListingId" : "a68305ee-7119-4902-a63b-e589c4fbc59e",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:04:41.383+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T18:04:41.383+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "0d3596f7-f6d0-4e05-bddf-107a507365af",
+    "registrarId" : "2021:Fall:SPMT304500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "c950b51e-933b-4a82-b0ae-91882c6bd451",
+      "userId" : "a11a3a65-f005-3479-b9a4-9f81f8d03449",
+      "name" : "John Eliot",
+      "barcode" : "6016426591999939",
+      "patronGroup" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+      "patronGroupObject" : {
+        "id" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+        "desc" : "Faculty/Staff",
+        "group" : "fast"
+      },
+      "courseListingId" : "0d3596f7-f6d0-4e05-bddf-107a507365af",
+      "metadata" : {
+        "createdDate" : "2021-07-12T21:51:53.510+00:00",
+        "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
+        "updatedDate" : "2021-07-12T21:51:53.510+00:00",
+        "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
+      }
+    }, {
+      "id" : "3287e8bf-822b-46c7-b746-12f5d492bce2",
+      "userId" : "16ab22f0-db3f-308b-b78e-bc46c7cbb38e",
+      "name" : "Arnold Leunes",
+      "barcode" : "6016426594207710",
+      "courseListingId" : "0d3596f7-f6d0-4e05-bddf-107a507365af",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:06:02.187+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T18:06:02.187+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "5ce9dc2f-040a-4fff-b59f-49e4c56946ef",
+    "registrarId" : "2019:Fall:ISEN320501",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "30569d7d-940e-4c7a-a778-37091f96db2b",
+      "userId" : "13275a86-bf17-3432-945b-1d717777829d",
+      "name" : "Erick Moreno Centeno",
+      "barcode" : "6016426594465854",
+      "courseListingId" : "5ce9dc2f-040a-4fff-b59f-49e4c56946ef",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:06:28.556+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T18:06:28.556+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "17eed5cb-4bcd-469b-86c9-a13454b22888",
+    "registrarId" : "2019:Fall:INTS481903",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "747e30ee-c9aa-46d2-91af-9229531a01e0",
+      "userId" : "9c836c79-dcd5-35f9-afad-380583093355",
+      "name" : "Dinah Hannaford",
+      "barcode" : "6016426592288613",
+      "courseListingId" : "17eed5cb-4bcd-469b-86c9-a13454b22888",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:09:00.745+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T18:09:00.745+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "7a490b31-7970-48af-b76c-814003b9dbff",
+    "registrarId" : "2021:Spring:TEFB322500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "3e50b9f0-0fc4-4bee-85a0-d3f88cba6735",
+      "userId" : "4df221e6-5c06-3d15-b8a8-a0f2e433f6dd",
+      "name" : "Bart Taylor",
+      "barcode" : "6016426594144624",
+      "courseListingId" : "7a490b31-7970-48af-b76c-814003b9dbff",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:10:31.250+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T18:10:31.250+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "6a685f66-a644-4c01-b5ea-31c7032617b6",
+    "registrarId" : "2021:Spring:TEFB410503",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "5fc6eb0d-4320-4892-baeb-12f28d1789ad",
+      "userId" : "1f6e21f8-8b20-3fcf-9119-7f89fd68a5e7",
+      "name" : "Karee Griffith",
+      "barcode" : "6016425839414628",
+      "courseListingId" : "6a685f66-a644-4c01-b5ea-31c7032617b6",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:12:05.591+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T18:12:05.591+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "b61836fa-ff01-452f-bd1f-5d37739ebdcc",
+    "registrarId" : "2021:Spring:URPN202500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "2385548b-180d-4b50-a323-a81b4d5bfece",
+      "userId" : "3dd6abd6-9abd-32f2-a426-75a31a2a7dab",
+      "name" : "Gabriela Campagnol Abuabara",
+      "barcode" : "6016425421483734",
+      "courseListingId" : "b61836fa-ff01-452f-bd1f-5d37739ebdcc",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:15:34.856+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T18:15:34.856+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "ea93fd0f-5e68-4c2c-a29b-a21ee11c3835",
+    "registrarId" : "2019:Fall:",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "efb435c5-8797-4c6a-94b2-c6d0b75652dc",
+      "userId" : "620d2c4d-9743-3179-9d39-7a396e3e3dc4",
+      "name" : "Andrew Kirkendall",
+      "barcode" : "6016426592242958",
+      "courseListingId" : "ea93fd0f-5e68-4c2c-a29b-a21ee11c3835",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:45:18.212+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T18:45:18.212+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "ef1ed25e-18a0-4668-9801-2367eef1d3ed",
+    "registrarId" : "2019:Fall:",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "42ca5d68-a2f4-4880-8dc7-be9e66ca3735",
+      "userId" : "ffc4f174-e72b-3e36-883e-7d23ef833128",
+      "name" : "Hoi-Eun Kim",
+      "barcode" : "6016426608476905",
+      "courseListingId" : "ef1ed25e-18a0-4668-9801-2367eef1d3ed",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:51:33.057+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T18:51:33.057+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "d2ac7e6a-bfc1-419b-9a51-1392dcd51f92",
+    "registrarId" : "2021:Fall:COMM305200",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "6949754c-acb4-4cd3-85fa-4864c7c8e8ba",
+      "userId" : "68e65035-b1a4-3f70-a998-55281027c780",
+      "name" : "Nancy Street",
+      "barcode" : "6016423626267739",
+      "courseListingId" : "d2ac7e6a-bfc1-419b-9a51-1392dcd51f92",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:31:18.942+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:31:18.942+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "1208615d-1147-4fe2-a8de-5f30b9044a5d",
+    "registrarId" : "2019:Fall:",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "2fc8112b-5034-432d-92f5-1e03f1123003",
+      "name" : "Natalie Khazaal",
+      "courseListingId" : "1208615d-1147-4fe2-a8de-5f30b9044a5d",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:16:13.499+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T18:16:13.499+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    }, {
+      "id" : "ff69537b-565a-4cbf-8443-8c3c42f3b2ca",
+      "userId" : "9c836c79-dcd5-35f9-afad-380583093355",
+      "name" : "Dinah Hannaford",
+      "barcode" : "6016426592288613",
+      "courseListingId" : "1208615d-1147-4fe2-a8de-5f30b9044a5d",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:21:14.507+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T18:21:14.507+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "8ab9c98f-3fe5-4999-b704-19bbbd16239c",
+    "registrarId" : "2021:Fall:BAEN651",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "418698e8-f80d-4ec0-85d9-4f200a40b192",
+      "userId" : "a601c8b2-3a22-3a18-8c08-a8fa5015c62b",
+      "name" : "Andrew Klein",
+      "barcode" : "6016426593185255",
+      "courseListingId" : "8ab9c98f-3fe5-4999-b704-19bbbd16239c",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:19:24.599+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:19:24.599+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "340fba6a-412f-48a2-9eb0-054358f06a2a",
+    "registrarId" : "2021:Fall:COSC333500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "22c033da-0ba6-4e3d-b4ac-75b9d82d745e",
+      "userId" : "715a4db8-20d4-372a-b327-4ad4b3c76172",
+      "name" : "Sarel Lavy",
+      "barcode" : "6016426594150407",
+      "courseListingId" : "340fba6a-412f-48a2-9eb0-054358f06a2a",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:38:06.436+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:38:06.436+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "c00f6301-5b8f-4ff6-8aee-1c4c3079bffb",
+    "registrarId" : "2021:Spring:CHEN482200",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "0811659b-c8ed-416c-8d32-0389a66fea87",
+      "userId" : "9dbbfa5f-a3b6-36bb-90d8-35ba03705e10",
+      "name" : "Sandun Fernando",
+      "barcode" : "6016426594793412",
+      "courseListingId" : "c00f6301-5b8f-4ff6-8aee-1c4c3079bffb",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:07:41.044+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:07:41.044+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "6e23fb4d-f151-4ec6-9db5-2649994065f8",
+    "registrarId" : "2019:Fall:",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "c942dfd6-2dd2-4b67-ab79-dc74ef156ec4",
+      "userId" : "d06780b7-599f-33b2-bd5c-8de60d06c736",
+      "name" : "Lisa Wigfall",
+      "barcode" : "525007180",
+      "courseListingId" : "6e23fb4d-f151-4ec6-9db5-2649994065f8",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:23:22.941+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T18:23:22.941+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "c9255e64-bbd7-4278-8850-0b7d57802e11",
+    "registrarId" : "2019:Fall:HIST102100",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "a4d2aec1-194f-4bcb-8c7c-f8fb9ecd3939",
+      "userId" : "be5f778c-beb6-38fc-a190-5c47fdd7af53",
+      "name" : "Roger Reese",
+      "barcode" : "6016425641019458",
+      "courseListingId" : "c9255e64-bbd7-4278-8850-0b7d57802e11",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:35:56.867+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T18:35:56.867+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    }, {
+      "id" : "4230399a-41e4-4dd8-8e9a-d423a93860f7",
+      "userId" : "93e81547-57c1-39c2-9a9a-1d622db17e4c",
+      "name" : "David Hudson",
+      "barcode" : "6016428234970574",
+      "courseListingId" : "c9255e64-bbd7-4278-8850-0b7d57802e11",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:36:18.264+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T18:36:18.264+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "e2523743-87aa-45e7-931d-89c0a3381c5f",
+    "registrarId" : "2019:Fall:",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "3c09d28f-0c93-406b-a8cc-97678302883f",
+      "userId" : "d06780b7-599f-33b2-bd5c-8de60d06c736",
+      "name" : "Lisa Wigfall",
+      "barcode" : "525007180",
+      "courseListingId" : "e2523743-87aa-45e7-931d-89c0a3381c5f",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:25:56.041+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T18:25:56.041+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "4e76efda-e8ae-41c6-ba1d-35d6711f1322",
+    "registrarId" : "2019:Fall:",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "a61de4b2-457e-49cc-9c55-e6ffb7e8ba29",
+      "userId" : "16181107-1856-3bc6-8407-3f5b2ecc662c",
+      "name" : "Albert Broussard",
+      "barcode" : "6016420679562859",
+      "courseListingId" : "4e76efda-e8ae-41c6-ba1d-35d6711f1322",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:38:55.111+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T18:38:55.111+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "d176b90a-6ca6-4483-9d8b-e8be9acac48e",
+    "registrarId" : "2019:Fall:",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "1440db01-d8d1-4391-b187-d5a8bebe4a53",
+      "userId" : "d764de80-01a3-3644-a4fa-6d2665d1af44",
+      "name" : "Cameron Davidson",
+      "barcode" : "6016426594473296",
+      "courseListingId" : "d176b90a-6ca6-4483-9d8b-e8be9acac48e",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:41:25.320+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T18:41:25.320+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "e0136235-33bd-4170-876d-cfe0d7c6246a",
+    "registrarId" : "2019:Fall:",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "4d2bf10e-044a-448d-9baa-af1e9655aac9",
+      "userId" : "a54dcd45-f0c0-3316-9c08-ec7993ca2d39",
+      "name" : "Armando Alonzo",
+      "barcode" : "6016420872415046",
+      "courseListingId" : "e0136235-33bd-4170-876d-cfe0d7c6246a",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:43:04.308+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T18:43:04.308+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "e4167440-f1a3-409b-ac76-8d5bf08155cc",
+    "registrarId" : "2019:Fall:HST432500",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "03b6d810-7c85-431d-81f5-89defa4fa10a",
+      "userId" : "93e81547-57c1-39c2-9a9a-1d622db17e4c",
+      "name" : "David Hudson",
+      "barcode" : "6016428234970574",
+      "courseListingId" : "e4167440-f1a3-409b-ac76-8d5bf08155cc",
+      "metadata" : {
+        "createdDate" : "2021-07-15T18:55:16.777+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T18:55:16.777+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "6f614a7d-d739-4d26-9fe9-ecdf8dc70cd8",
+    "registrarId" : "2019:Fall:",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "29b70fd7-96ea-432c-a379-62f473009ae9",
+      "userId" : "ff996d33-35cd-3ba5-9e57-cde1a515a294",
+      "name" : "Joel Kitchens",
+      "barcode" : "6016420475865340",
+      "courseListingId" : "6f614a7d-d739-4d26-9fe9-ecdf8dc70cd8",
+      "metadata" : {
+        "createdDate" : "2021-07-15T19:04:33.618+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T19:04:33.618+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "d598128e-bae0-469b-825e-b497eae11781",
+    "registrarId" : "2021:Spring:WFSC302",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "a818b076-d4d4-48b5-9d76-41b0f6d70e54",
+      "userId" : "065694ce-97ab-3693-8b90-34abc289a6dc",
+      "name" : "Kevin Conway",
+      "barcode" : "6016426590852840",
+      "courseListingId" : "d598128e-bae0-469b-825e-b497eae11781",
+      "metadata" : {
+        "createdDate" : "2021-07-15T19:08:31.175+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T19:08:31.175+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "f0984578-4eca-498c-beda-c639cb3be6fc",
+    "registrarId" : "2021:Spring:WFSC433",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "2a25a88d-3dd9-4d0b-b927-b28e44e0c9f3",
+      "userId" : "d87ff53d-352e-38cf-9630-324453da155f",
+      "name" : "Luis Hurtado Clavijo",
+      "barcode" : "6016426509262644",
+      "courseListingId" : "f0984578-4eca-498c-beda-c639cb3be6fc",
+      "metadata" : {
+        "createdDate" : "2021-07-15T19:10:06.885+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T19:10:06.885+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "6c8a9bf7-ccc2-44da-9dce-82cf7fafece3",
+    "registrarId" : "2021:Spring:AGEC105200",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "a392e91e-2740-46ae-aaca-9cc1ce00e77a",
+      "userId" : "9ef28d6c-2ea2-321e-b14c-d81fbd26a009",
+      "name" : "Yu Zhang",
+      "barcode" : "6016426594045292",
+      "courseListingId" : "6c8a9bf7-ccc2-44da-9dce-82cf7fafece3",
+      "metadata" : {
+        "createdDate" : "2021-07-15T19:13:44.762+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T19:13:44.762+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "6a6ec8b9-d844-4a11-b5dd-f6abf6e298d1",
+    "registrarId" : "2021:Fall:ALED341500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "fbeefc98-b17d-4cdf-855d-6c5a7ae72000",
+      "userId" : "9ef22d42-d403-37ed-bffe-3bb2332a26ff",
+      "name" : "Shawna Thomas",
+      "barcode" : "6016426594780237",
+      "courseListingId" : "6a6ec8b9-d844-4a11-b5dd-f6abf6e298d1",
+      "metadata" : {
+        "createdDate" : "2021-07-15T19:44:51.743+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T19:44:51.743+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "e0b3bf40-f6cf-4463-8458-98baaaa95c18",
+    "registrarId" : "2021:Fall:ANTH205503",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "44c958a2-6f2b-41e5-98f3-8fa70155accf",
+      "userId" : "6d74ec24-50d0-30a8-b3e4-3efacdfee83b",
+      "name" : "Darrell Lynch",
+      "barcode" : "6016426592352898",
+      "courseListingId" : "e0b3bf40-f6cf-4463-8458-98baaaa95c18",
+      "metadata" : {
+        "createdDate" : "2021-07-15T19:58:32.860+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T19:58:32.860+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "d28b3f73-ca14-4cff-8af5-a461d7e2bc61",
+    "registrarId" : "2021:Fall:BAEN302901",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "cbc306b9-64bb-45f8-aaa5-1def9e2359a4",
+      "userId" : "9dbbfa5f-a3b6-36bb-90d8-35ba03705e10",
+      "name" : "Sandun Fernando",
+      "barcode" : "6016426594793412",
+      "courseListingId" : "d28b3f73-ca14-4cff-8af5-a461d7e2bc61",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:02:55.908+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:02:55.908+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "c117ff47-80f7-4496-8eba-4172d0cf68e1",
+    "registrarId" : "2021:Fall:CHEN471500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "df284e9d-0395-4048-ae8c-34f8f764a037",
+      "userId" : "9dbbfa5f-a3b6-36bb-90d8-35ba03705e10",
+      "name" : "Sandun Fernando",
+      "barcode" : "6016426594793412",
+      "courseListingId" : "c117ff47-80f7-4496-8eba-4172d0cf68e1",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:06:24.859+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:06:24.859+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "3a75b4ba-0452-4525-9eef-37c41c882f5c",
+    "registrarId" : "2021:Fall:CHEN651600",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "ece7c08f-819d-44db-9ed4-6a9f4ca830fd",
+      "userId" : "9dbbfa5f-a3b6-36bb-90d8-35ba03705e10",
+      "name" : "Sandun Fernando",
+      "barcode" : "6016426594793412",
+      "courseListingId" : "3a75b4ba-0452-4525-9eef-37c41c882f5c",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:11:54.254+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:11:54.254+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "14f80835-7f95-4e95-92f0-691b6626aa47",
+    "registrarId" : "2021:Fall:BAEN340200",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "d41c485d-f34f-4d38-be85-c8184b639053",
+      "userId" : "5915871b-58c6-37d1-bad1-55eb74b14a41",
+      "name" : "Patricia Smith",
+      "barcode" : "6016426591387408",
+      "courseListingId" : "14f80835-7f95-4e95-92f0-691b6626aa47",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:17:10.656+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:17:10.656+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "c241f16c-b18e-4c96-a3a3-41c29b7eb325",
+    "registrarId" : "2021:Fall:ESSM351",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "ab0b1320-350f-4a0d-a9d6-0f6aa466ba22",
+      "userId" : "a601c8b2-3a22-3a18-8c08-a8fa5015c62b",
+      "name" : "Andrew Klein",
+      "courseListingId" : "c241f16c-b18e-4c96-a3a3-41c29b7eb325",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:19:42.736+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:19:42.736+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "e97ecb46-a4b0-46c2-9a3c-e29e535f7a86",
+    "registrarId" : "2021:Fall:ESSM651",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "3c52cfbf-3606-47de-92fb-b76737932beb",
+      "userId" : "a601c8b2-3a22-3a18-8c08-a8fa5015c62b",
+      "name" : "Andrew Klein",
+      "courseListingId" : "e97ecb46-a4b0-46c2-9a3c-e29e535f7a86",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:20:18.273+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:20:18.273+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "3a71c15c-7cc9-46e5-a07f-4ba268911a0b",
+    "registrarId" : "2021:Fall:GEOG390",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "efbc2067-e6db-4ab5-9242-161c4f866a9d",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "d032032b-5169-4679-baa3-5b0fb2008c21",
+      "userId" : "a601c8b2-3a22-3a18-8c08-a8fa5015c62b",
+      "name" : "Andrew Klein",
+      "courseListingId" : "3a71c15c-7cc9-46e5-a07f-4ba268911a0b",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:21:19.227+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:21:19.227+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "d2c82d1c-e387-49e1-a8cd-3d4d9cddb7d3",
+    "registrarId" : "2021:Fall:RENR405",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "ebb298ec-0151-4ae3-b0ec-43206589b898",
+      "userId" : "a601c8b2-3a22-3a18-8c08-a8fa5015c62b",
+      "name" : "Andrew Klein",
+      "courseListingId" : "d2c82d1c-e387-49e1-a8cd-3d4d9cddb7d3",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:21:59.063+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:21:59.063+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "e5ce7592-4ce7-4617-862b-783c58aaaf5a",
+    "registrarId" : "2021:Fall:BIOL319320",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "11e8dda3-3219-4473-9d52-56961f821e53",
+      "userId" : "14045072-5533-35ef-9108-abbcd61f43f5",
+      "name" : "William Cohn",
+      "barcode" : "6016426593929678",
+      "courseListingId" : "e5ce7592-4ce7-4617-862b-783c58aaaf5a",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:23:42.171+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:23:42.171+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "3a22c3b3-b7a2-4f5b-b831-aca6fec91c82",
+    "registrarId" : "2021:Spring:CHEN604",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "f7b0f46e-55d0-4a44-8d16-c288f68ed3f8",
+      "userId" : "ae6a7ca9-cc3e-3ea6-a5c6-578887e623dd",
+      "name" : "Jorge Seminario",
+      "barcode" : "6016426593291467",
+      "courseListingId" : "3a22c3b3-b7a2-4f5b-b831-aca6fec91c82",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:29:07.712+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:29:07.712+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "b91b128f-c7a4-44d0-9d1c-7741d27e1c6e",
+    "registrarId" : "2021:Spring:BIOL466500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "2b961168-26db-4379-a86d-2dff2b79cf03",
+      "userId" : "ca746536-2cd1-3382-89ba-2f9aeb44f7e1",
+      "name" : "Ira Greenbaum",
+      "barcode" : "6016426592639716",
+      "courseListingId" : "b91b128f-c7a4-44d0-9d1c-7741d27e1c6e",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:24:47.679+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:24:47.679+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "ae741ac0-3881-48f9-b2a3-7cbee2392ba7",
+    "registrarId" : "2021:Fall:INTA671600",
+    "locationId" : "e8a5154e-71a3-4daa-a2d6-f4626c99ffe6",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "instructorObjects" : [ ]
+  }, {
+    "id" : "3723c18e-cfb0-443a-ba65-0ded56d5f66b",
+    "registrarId" : "2021:Fall:COMM411900",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "936f95eb-a5b3-4ed5-80b7-9ebb77728e20",
+      "userId" : "18681137-dbf2-34bc-86cd-5081608d5b3a",
+      "name" : "Stacy Aschenbeck",
+      "barcode" : "6016426593109990",
+      "courseListingId" : "3723c18e-cfb0-443a-ba65-0ded56d5f66b",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:32:30.866+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:32:30.866+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "3a18145a-9090-4ce2-8ffd-5fa094f8aea6",
+    "registrarId" : "2021:Fall:COSC184501",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "9c96e15f-e9c0-4bd8-8369-bdb4bdf2b478",
+      "userId" : "01123e54-cdc3-3566-bf42-54fa0ac6d5ef",
+      "name" : "Kunhee Choi",
+      "barcode" : "6016426590858656",
+      "courseListingId" : "3a18145a-9090-4ce2-8ffd-5fa094f8aea6",
+      "metadata" : {
+        "createdDate" : "2021-07-15T20:35:04.458+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-15T20:35:04.458+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "7aab6a97-6501-4fc4-beda-382a698fa282",
+    "registrarId" : "2021:KINE406502",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "b79eab92-fc55-4b83-ad10-e4ddc2b4b606",
+      "userId" : "ad44a788-e5ef-3295-b1e6-3ef76a2c2ea7",
+      "name" : "John Buchanan",
+      "barcode" : "6016426594482628",
+      "patronGroup" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+      "patronGroupObject" : {
+        "id" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+        "desc" : "Faculty/Staff",
+        "group" : "fast"
+      },
+      "courseListingId" : "7aab6a97-6501-4fc4-beda-382a698fa282",
+      "metadata" : {
+        "createdDate" : "2021-07-15T22:26:38.893+00:00",
+        "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
+        "updatedDate" : "2021-07-15T22:26:38.893+00:00",
+        "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
+      }
+    } ]
+  }, {
+    "id" : "992d0ec8-2de1-435d-9a84-11f05524f5ad",
+    "registrarId" : "2021:Summer:OCNG600777",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "eca0adf4-f3ba-4a8a-be37-7d77305bdb8c",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "67ecedb4-70b4-4e58-9c0e-845f4c183595",
+      "userId" : "0cad22fd-363b-3914-aa25-fb4e7adea810",
+      "name" : "Leila Baghdad Brahim",
+      "barcode" : "6016426594345288",
+      "patronGroup" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+      "patronGroupObject" : {
+        "id" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+        "desc" : "Faculty/Staff",
+        "group" : "fast"
+      },
+      "courseListingId" : "992d0ec8-2de1-435d-9a84-11f05524f5ad",
+      "metadata" : {
+        "createdDate" : "2021-07-15T22:36:23.686+00:00",
+        "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
+        "updatedDate" : "2021-07-15T22:36:23.686+00:00",
+        "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
+      }
+    } ]
+  }, {
+    "id" : "fd7e362f-1872-46b9-89cb-72e1d9471796",
+    "registrarId" : "2020:Fall:HIST410500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "81ed3144-9001-4cec-888c-17242c1200e9",
+      "userId" : "bf077bc0-291d-32f2-b1c2-ec769d03261e",
+      "name" : "Stephen Riegg",
+      "barcode" : "6016426593058338",
+      "courseListingId" : "fd7e362f-1872-46b9-89cb-72e1d9471796",
+      "metadata" : {
+        "createdDate" : "2021-07-15T23:49:10.236+00:00",
+        "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+        "updatedDate" : "2021-07-15T23:49:10.236+00:00",
+        "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+      }
+    } ]
+  }, {
+    "id" : "a4441455-fc02-4690-840f-4048fb3232ff",
+    "registrarId" : "2021:Fall:FILM251501",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "a9a07d45-dab2-472f-97ba-9231da93103c",
+      "userId" : "d3b5faac-0555-39a9-a69b-0dea24026983",
+      "name" : "MICHELLE SIMMS",
+      "barcode" : "6016426593944867",
+      "courseListingId" : "a4441455-fc02-4690-840f-4048fb3232ff",
+      "metadata" : {
+        "createdDate" : "2021-07-14T18:02:58.957+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-14T18:02:58.957+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "e29912a6-0f67-41a1-821c-e1bff9b9bc82",
+    "registrarId" : "2019:Fall:",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "569847eb-9dc6-460a-99f5-4c46b87835fd",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "834c3c9d-64c1-49ed-a53d-826ed22d9518",
+      "userId" : "4606502f-5760-3e85-85e9-a35b9d5515b8",
+      "name" : "Angela Hudson",
+      "barcode" : "6016427635972544",
+      "courseListingId" : "e29912a6-0f67-41a1-821c-e1bff9b9bc82",
+      "metadata" : {
+        "createdDate" : "2021-07-15T22:48:47.749+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T22:48:47.749+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    }, {
+      "id" : "95bae6c7-a365-44ab-86a2-4d6a70e87771",
+      "userId" : "93e81547-57c1-39c2-9a9a-1d622db17e4c",
+      "name" : "David Hudson",
+      "barcode" : "6016428234970574",
+      "courseListingId" : "e29912a6-0f67-41a1-821c-e1bff9b9bc82",
+      "metadata" : {
+        "createdDate" : "2021-07-15T22:52:14.279+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-15T22:52:14.279+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "2cc49919-1a30-4637-bc9b-c0dbc73cfb57",
+    "registrarId" : "2021:Fall:ENGL361500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "e750e9ac-efb5-4415-8698-b5663e0bdd6d",
+      "userId" : "970dd305-9490-3f9b-a4ba-8edb36018f9d",
+      "name" : "Elizabeth Robinson",
+      "barcode" : "6016423375078428",
+      "patronGroup" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+      "patronGroupObject" : {
+        "id" : "fc44aee5-c385-4847-aadd-c1bd181c8894",
+        "desc" : "Faculty/Staff",
+        "group" : "fast"
+      },
+      "courseListingId" : "2cc49919-1a30-4637-bc9b-c0dbc73cfb57",
+      "metadata" : {
+        "createdDate" : "2021-07-15T23:10:47.322+00:00",
+        "createdByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b",
+        "updatedDate" : "2021-07-15T23:10:47.322+00:00",
+        "updatedByUserId" : "fefd380d-884a-333f-9cd6-2fd387d3b03b"
+      }
+    } ]
+  }, {
+    "id" : "080ad2be-02ec-4d4e-bf6a-bff3d6fa10e6",
+    "registrarId" : "2019:SPRING:ITAL303500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "7ea579d2-6723-43bf-bc52-6fcc9cd25331",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "2f9164b3-8509-4b9c-9b09-1f4b23e5a675",
+      "userId" : "5c524bd5-3ec6-3e60-ae2d-ce6ec59af6ae",
+      "name" : "Manuela Marchesini",
+      "barcode" : "6016425817544693",
+      "courseListingId" : "080ad2be-02ec-4d4e-bf6a-bff3d6fa10e6",
+      "metadata" : {
+        "createdDate" : "2021-07-16T02:11:49.238+00:00",
+        "createdByUserId" : "89ec9905-02eb-3d90-93ad-0bb32451f209",
+        "updatedDate" : "2021-07-16T02:11:49.238+00:00",
+        "updatedByUserId" : "89ec9905-02eb-3d90-93ad-0bb32451f209"
+      }
+    } ]
+  }, {
+    "id" : "5507a47f-c599-4876-b9e4-5ed165aedd62",
+    "registrarId" : "2020:Fall:HIST425500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "5ec05416-8061-418e-8d53-299d3559439e",
+      "userId" : "85d47025-900f-357e-ad4d-fee5e6a6a4c5",
+      "name" : "Daniel Schwartz",
+      "barcode" : "6016426590862815",
+      "courseListingId" : "5507a47f-c599-4876-b9e4-5ed165aedd62",
+      "metadata" : {
+        "createdDate" : "2021-07-16T04:18:34.642+00:00",
+        "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+        "updatedDate" : "2021-07-16T04:18:34.642+00:00",
+        "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+      }
+    } ]
+  }, {
+    "id" : "41df01ef-ca2d-4d22-bed5-56ecc5bc43f3",
+    "registrarId" : "2020:Spring:HIST462500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "6ce4e5f5-d4a2-4ede-b0c9-a7efae816760",
+      "userId" : "d9970330-4d00-3b34-a8bc-b66c8c3e205d",
+      "name" : "Jason Parker",
+      "barcode" : "6016426603526423",
+      "courseListingId" : "41df01ef-ca2d-4d22-bed5-56ecc5bc43f3",
+      "metadata" : {
+        "createdDate" : "2021-07-16T04:27:59.984+00:00",
+        "createdByUserId" : "3a643914-313f-353c-8085-8f312953c89b",
+        "updatedDate" : "2021-07-16T04:27:59.984+00:00",
+        "updatedByUserId" : "3a643914-313f-353c-8085-8f312953c89b"
+      }
+    } ]
+  }, {
+    "id" : "75c21227-eea2-4ddc-814f-7d3438675f39",
+    "registrarId" : "2020:Fall:HIST439100",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "ffc85421-9d08-409e-96fb-5a6c5df14e59",
+      "userId" : "93e81547-57c1-39c2-9a9a-1d622db17e4c",
+      "name" : "David Hudson",
+      "barcode" : "6016428234970574",
+      "courseListingId" : "75c21227-eea2-4ddc-814f-7d3438675f39",
+      "metadata" : {
+        "createdDate" : "2021-07-16T04:38:24.159+00:00",
+        "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+        "updatedDate" : "2021-07-16T04:38:24.159+00:00",
+        "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+      }
+    } ]
+  }, {
+    "id" : "ca849c0d-e834-4591-bc64-542e46ebb39f",
+    "registrarId" : "2020:Fall:HIST432500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "4c9deb71-59e6-40d1-b095-424566c0f3f5",
+      "userId" : "d9970330-4d00-3b34-a8bc-b66c8c3e205d",
+      "name" : "Jason Parker",
+      "barcode" : "6016426603526423",
+      "courseListingId" : "ca849c0d-e834-4591-bc64-542e46ebb39f",
+      "metadata" : {
+        "createdDate" : "2021-07-16T04:26:00.321+00:00",
+        "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+        "updatedDate" : "2021-07-16T04:26:00.321+00:00",
+        "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+      }
+    } ]
+  }, {
+    "id" : "20b217d1-3f23-49b8-9bf7-e5ace1840388",
+    "registrarId" : "2020:Spring:INTS481901",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "5aa005d4-e9aa-4715-a994-fbcb83f9d18a",
+      "userId" : "0c801982-caac-3928-9280-50a6592a423e",
+      "name" : "Sena Karasipahi",
+      "barcode" : "6016424172049729",
+      "courseListingId" : "20b217d1-3f23-49b8-9bf7-e5ace1840388",
+      "metadata" : {
+        "createdDate" : "2021-07-16T05:50:24.696+00:00",
+        "createdByUserId" : "3a643914-313f-353c-8085-8f312953c89b",
+        "updatedDate" : "2021-07-16T05:50:24.696+00:00",
+        "updatedByUserId" : "3a643914-313f-353c-8085-8f312953c89b"
+      }
+    } ]
+  }, {
+    "id" : "4a16059e-565f-4cb6-9731-6a1390a782f6",
+    "registrarId" : "2020:Spring:HIST469500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "4ba44e5a-684e-48ae-856d-141767b9628a",
+      "userId" : "44318cb1-4624-39ed-b282-5b73436ca6e5",
+      "name" : "Julia Wood",
+      "barcode" : "6016426591187899",
+      "courseListingId" : "4a16059e-565f-4cb6-9731-6a1390a782f6",
+      "metadata" : {
+        "createdDate" : "2021-07-16T04:39:25.733+00:00",
+        "createdByUserId" : "3a643914-313f-353c-8085-8f312953c89b",
+        "updatedDate" : "2021-07-16T04:39:25.733+00:00",
+        "updatedByUserId" : "3a643914-313f-353c-8085-8f312953c89b"
+      }
+    } ]
+  }, {
+    "id" : "84fb1be2-c5d6-46fa-aa0b-06cf87ee1e99",
+    "registrarId" : "2020:Fall:HIST481904",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "28e17158-1404-4fed-9e59-1e2ede759b17",
+      "userId" : "ff996d33-35cd-3ba5-9e57-cde1a515a294",
+      "name" : "Joel Kitchens",
+      "barcode" : "6016420475865340",
+      "courseListingId" : "84fb1be2-c5d6-46fa-aa0b-06cf87ee1e99",
+      "metadata" : {
+        "createdDate" : "2021-07-16T05:15:21.843+00:00",
+        "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+        "updatedDate" : "2021-07-16T05:15:21.843+00:00",
+        "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+      }
+    } ]
+  }, {
+    "id" : "76f9b9e0-174b-4a3a-8417-9491143ad5bc",
+    "registrarId" : "2020:Fall:HIST106503",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "0290f46d-5520-4590-ab4f-310246d70bd3",
+      "userId" : "e1b78d31-990b-3c64-9a31-df511a0f1f80",
+      "name" : "Lawrence MacNamara",
+      "barcode" : "6016426593037621",
+      "courseListingId" : "76f9b9e0-174b-4a3a-8417-9491143ad5bc",
+      "metadata" : {
+        "createdDate" : "2021-07-16T05:47:20.489+00:00",
+        "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+        "updatedDate" : "2021-07-16T05:47:20.489+00:00",
+        "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+      }
+    } ]
+  }, {
+    "id" : "228f8ed9-bb9c-4b47-905b-52473a5a33d3",
+    "registrarId" : "2020:Spring:HIST474500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "17e69db8-0cfd-4e48-b816-48dd5305e85c",
+      "userId" : "93e81547-57c1-39c2-9a9a-1d622db17e4c",
+      "name" : "David Hudson",
+      "barcode" : "6016428234970574",
+      "courseListingId" : "228f8ed9-bb9c-4b47-905b-52473a5a33d3",
+      "metadata" : {
+        "createdDate" : "2021-07-16T04:54:19.605+00:00",
+        "createdByUserId" : "3a643914-313f-353c-8085-8f312953c89b",
+        "updatedDate" : "2021-07-16T04:54:19.605+00:00",
+        "updatedByUserId" : "3a643914-313f-353c-8085-8f312953c89b"
+      }
+    } ]
+  }, {
+    "id" : "5d252c0a-0ff0-4b3c-81be-d164bee64cf6",
+    "registrarId" : "2020:Spring:HIST613500",
+    "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "b09ceca4-1df0-436b-9176-37afc6c6b687",
+      "userId" : "d9970330-4d00-3b34-a8bc-b66c8c3e205d",
+      "name" : "Jason Parker",
+      "barcode" : "6016426603526423",
+      "courseListingId" : "5d252c0a-0ff0-4b3c-81be-d164bee64cf6",
+      "metadata" : {
+        "createdDate" : "2021-07-16T05:00:16.412+00:00",
+        "createdByUserId" : "3a643914-313f-353c-8085-8f312953c89b",
+        "updatedDate" : "2021-07-16T05:00:16.412+00:00",
+        "updatedByUserId" : "3a643914-313f-353c-8085-8f312953c89b"
+      }
+    } ]
+  }, {
+    "id" : "64aeaa21-c572-45e4-abd1-c526bd81aaea",
+    "registrarId" : "2020:Fall:HIST462500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "a96afcfa-5988-44dc-9b7d-bb91540323bf",
+      "userId" : "d9970330-4d00-3b34-a8bc-b66c8c3e205d",
+      "name" : "Jason Parker",
+      "barcode" : "6016426603526423",
+      "courseListingId" : "64aeaa21-c572-45e4-abd1-c526bd81aaea",
+      "metadata" : {
+        "createdDate" : "2021-07-16T05:01:45.434+00:00",
+        "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+        "updatedDate" : "2021-07-16T05:01:45.434+00:00",
+        "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+      }
+    } ]
+  }, {
+    "id" : "9d22cdf9-3ee3-4b5b-885b-109dab117490",
+    "registrarId" : "2020:Fall:HIST463500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "2b40c121-8f95-4d37-92f5-8a97ad4f5a18",
+      "userId" : "d9970330-4d00-3b34-a8bc-b66c8c3e205d",
+      "name" : "Jason Parker",
+      "barcode" : "6016426603526423",
+      "courseListingId" : "9d22cdf9-3ee3-4b5b-885b-109dab117490",
+      "metadata" : {
+        "createdDate" : "2021-07-16T05:03:44.042+00:00",
+        "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+        "updatedDate" : "2021-07-16T05:03:44.042+00:00",
+        "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+      }
+    } ]
+  }, {
+    "id" : "164d2f47-7968-4137-bd03-5cc04a8bd759",
+    "registrarId" : "2020:Spring:HIST613600",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "2a05a642-1d24-4ddd-90a6-56ed473c1621",
+      "userId" : "184d0547-5353-38d1-98f6-af0184ecb617",
+      "name" : "Elizabeth Cobbs",
+      "barcode" : "6016426592593251",
+      "courseListingId" : "164d2f47-7968-4137-bd03-5cc04a8bd759",
+      "metadata" : {
+        "createdDate" : "2021-07-16T05:05:04.423+00:00",
+        "createdByUserId" : "3a643914-313f-353c-8085-8f312953c89b",
+        "updatedDate" : "2021-07-16T05:05:04.423+00:00",
+        "updatedByUserId" : "3a643914-313f-353c-8085-8f312953c89b"
+      }
+    } ]
+  }, {
+    "id" : "77a54926-0560-466d-a4fc-39f8efdef401",
+    "registrarId" : "2020:Spring:HIST632600",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "5af46878-6bd2-4b1c-b734-8cb84a85f86a",
+      "userId" : "e1b78d31-990b-3c64-9a31-df511a0f1f80",
+      "name" : "Lawrence MacNamara",
+      "barcode" : "6016426593037621",
+      "courseListingId" : "77a54926-0560-466d-a4fc-39f8efdef401",
+      "metadata" : {
+        "createdDate" : "2021-07-16T05:07:23.671+00:00",
+        "createdByUserId" : "3a643914-313f-353c-8085-8f312953c89b",
+        "updatedDate" : "2021-07-16T05:07:23.671+00:00",
+        "updatedByUserId" : "3a643914-313f-353c-8085-8f312953c89b"
+      }
+    } ]
+  }, {
+    "id" : "2abb9f15-1d42-47ab-94ca-3f372a900b42",
+    "registrarId" : "2020:Spring:INTS211500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "c5f7087c-8cef-485e-93eb-12071ecd5405",
+      "userId" : "7455aa7c-2d84-3cbb-83c3-eeb99aaecd08",
+      "name" : "Carmela Garritano",
+      "barcode" : "6016426592233791",
+      "courseListingId" : "2abb9f15-1d42-47ab-94ca-3f372a900b42",
+      "metadata" : {
+        "createdDate" : "2021-07-16T05:26:14.255+00:00",
+        "createdByUserId" : "3a643914-313f-353c-8085-8f312953c89b",
+        "updatedDate" : "2021-07-16T05:26:14.255+00:00",
+        "updatedByUserId" : "3a643914-313f-353c-8085-8f312953c89b"
+      }
+    } ]
+  }, {
+    "id" : "670359df-0f9b-4526-85ff-6280fcf47b0e",
+    "registrarId" : "2020:Spring:INTS409",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "343cc500-ab5c-4dd8-aba1-33932c644f58",
+      "userId" : "7455aa7c-2d84-3cbb-83c3-eeb99aaecd08",
+      "name" : "Carmela Garritano",
+      "barcode" : "6016426592233791",
+      "courseListingId" : "670359df-0f9b-4526-85ff-6280fcf47b0e",
+      "metadata" : {
+        "createdDate" : "2021-07-16T05:29:57.948+00:00",
+        "createdByUserId" : "3a643914-313f-353c-8085-8f312953c89b",
+        "updatedDate" : "2021-07-16T05:29:57.948+00:00",
+        "updatedByUserId" : "3a643914-313f-353c-8085-8f312953c89b"
+      }
+    } ]
+  }, {
+    "id" : "b7c1bf9c-8215-408b-a4b2-e96b9bb9fd6c",
+    "registrarId" : "2020:Spring:INTS409500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "ea8e87e1-f74c-4d75-b03d-33a754af528a",
+      "userId" : "7455aa7c-2d84-3cbb-83c3-eeb99aaecd08",
+      "name" : "Carmela Garritano",
+      "barcode" : "6016426592233791",
+      "courseListingId" : "b7c1bf9c-8215-408b-a4b2-e96b9bb9fd6c",
+      "metadata" : {
+        "createdDate" : "2021-07-16T05:33:30.431+00:00",
+        "createdByUserId" : "3a643914-313f-353c-8085-8f312953c89b",
+        "updatedDate" : "2021-07-16T05:33:30.431+00:00",
+        "updatedByUserId" : "3a643914-313f-353c-8085-8f312953c89b"
+      }
+    } ]
+  }, {
+    "id" : "1f19788f-1a92-499d-bfd4-f73e371c4b1b",
+    "registrarId" : "2020:Spring:ITAL451500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "69be878e-a6eb-486f-8c63-a568da72833e",
+      "userId" : "5c524bd5-3ec6-3e60-ae2d-ce6ec59af6ae",
+      "name" : "Manuela Marchesini",
+      "barcode" : "6016425817544693",
+      "courseListingId" : "1f19788f-1a92-499d-bfd4-f73e371c4b1b",
+      "metadata" : {
+        "createdDate" : "2021-07-16T05:52:43.097+00:00",
+        "createdByUserId" : "3a643914-313f-353c-8085-8f312953c89b",
+        "updatedDate" : "2021-07-16T05:52:43.097+00:00",
+        "updatedByUserId" : "3a643914-313f-353c-8085-8f312953c89b"
+      }
+    } ]
+  }, {
+    "id" : "679a04a7-19e5-42f4-9f66-bb0a9e4c25dc",
+    "registrarId" : "2020:Fall:HLTH334598",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ ]
+  }, {
+    "id" : "2f6a946e-4a66-4054-8f1b-6f072dddb9c3",
+    "registrarId" : "2020:Spring:LMAS201500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "64bd0e11-9552-40e3-93bc-f28cf9d846b2",
+      "userId" : "850f82ff-423e-3094-85be-d4059a552bb1",
+      "name" : "Nancy Plankey Videla",
+      "barcode" : "6016427446975777",
+      "courseListingId" : "2f6a946e-4a66-4054-8f1b-6f072dddb9c3",
+      "metadata" : {
+        "createdDate" : "2021-07-16T05:54:43.916+00:00",
+        "createdByUserId" : "3a643914-313f-353c-8085-8f312953c89b",
+        "updatedDate" : "2021-07-16T05:54:43.916+00:00",
+        "updatedByUserId" : "3a643914-313f-353c-8085-8f312953c89b"
+      }
+    } ]
+  }, {
+    "id" : "382e2e9f-7699-4206-9986-d92980d379c3",
+    "registrarId" : "2021:Fall:CSCE121200",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "b6afd0fd-3808-49e3-8056-ab7cba593d54",
+      "userId" : "8711e7ed-f0b2-30a7-a4c8-b7945fd3a66d",
+      "name" : "Martin Carlisle",
+      "barcode" : "6016426594344281",
+      "courseListingId" : "382e2e9f-7699-4206-9986-d92980d379c3",
+      "metadata" : {
+        "createdDate" : "2021-07-16T12:51:00.381+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T12:51:00.381+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "9b9c7622-fba9-4a68-9423-1fc5237b26c0",
+    "registrarId" : "2021:Fall:CSCE312501",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "c1e19c65-eebb-4097-b7b4-e5e96993841e",
+      "userId" : "bf3c1210-98c8-3df8-876e-a34c21569964",
+      "name" : "Daniel Jimenez",
+      "barcode" : "6016426594780336",
+      "courseListingId" : "9b9c7622-fba9-4a68-9423-1fc5237b26c0",
+      "metadata" : {
+        "createdDate" : "2021-07-16T14:05:17.513+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T14:05:17.513+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "b14bd27e-de69-472f-8b31-abf061711c51",
+    "registrarId" : "2021:Fall:CVEN301502",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "cc658b83-e088-496e-806e-619ad9f79925",
+      "userId" : "9e15b5a7-848a-3490-843c-86e679501352",
+      "name" : "Mara London",
+      "barcode" : "6016426593047752",
+      "courseListingId" : "b14bd27e-de69-472f-8b31-abf061711c51",
+      "metadata" : {
+        "createdDate" : "2021-07-16T14:07:05.410+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T14:07:05.410+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "4f1e7ee0-4b72-4182-ac2e-2a05b7c24ff9",
+    "registrarId" : "2021:Fall:SVEN363",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "8d260b48-1199-4792-ad57-16b0aea50a71",
+      "userId" : "3131d92e-bd3b-33e6-be66-d8779c701b7b",
+      "name" : "Stephanie Paal",
+      "barcode" : "6016426593050483",
+      "courseListingId" : "4f1e7ee0-4b72-4182-ac2e-2a05b7c24ff9",
+      "metadata" : {
+        "createdDate" : "2021-07-16T14:13:10.288+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T14:13:10.288+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "f19a2ca5-3cf1-405d-8d9f-f0a5cfea3302",
+    "registrarId" : "2021:Fall:CVEN635204",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ ]
+  }, {
+    "id" : "506b6ba0-be2b-415a-84c4-5741c409ce51",
+    "registrarId" : "2021:Fall:CVEN365204",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "4c85c55e-8943-46c0-944d-befb512dc25b",
+      "userId" : "a302ef84-9ca2-3466-a8a8-2ae016b30052",
+      "name" : "Jean-Louis Briaud",
+      "barcode" : "6016426591690546",
+      "courseListingId" : "506b6ba0-be2b-415a-84c4-5741c409ce51",
+      "metadata" : {
+        "createdDate" : "2021-07-16T14:19:28.628+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T14:19:28.628+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "9174a7ef-aaff-426e-bb39-62f8d8d60ade",
+    "registrarId" : "2021:Fall:CVEN",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "889f11c8-6417-4b2d-8445-064de452265a",
+      "userId" : "89b84d56-0ff4-3a03-8705-f3a0c8c8eec1",
+      "name" : "Mohammed Haque",
+      "barcode" : "6016421800920495",
+      "courseListingId" : "9174a7ef-aaff-426e-bb39-62f8d8d60ade",
+      "metadata" : {
+        "createdDate" : "2021-07-16T14:43:00.959+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T14:43:00.959+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "ff66a3e0-fe29-4aaa-ab94-23ab545dd8b7",
+    "registrarId" : "2021:Fall:CVEN654600",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "3d85b487-e788-421c-b2ff-2c2885bf0a59",
+      "userId" : "d4b72d0f-c7c2-35ee-85d9-7aba3e8350ef",
+      "name" : "David Ford",
+      "barcode" : "6016426593923317",
+      "courseListingId" : "ff66a3e0-fe29-4aaa-ab94-23ab545dd8b7",
+      "metadata" : {
+        "createdDate" : "2021-07-16T14:47:14.338+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T14:47:14.338+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "6fe01e73-994c-478e-b628-4f9b4d1afb30",
+    "registrarId" : "2021:Fall:CVEN657600",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "00b51fda-ed07-4414-b811-03e881d55e36",
+      "userId" : "4dc87a51-c3ea-39b2-8e5c-519a87f8f146",
+      "name" : "John Niedzwecki",
+      "barcode" : "6016423330371082",
+      "courseListingId" : "6fe01e73-994c-478e-b628-4f9b4d1afb30",
+      "metadata" : {
+        "createdDate" : "2021-07-16T14:50:26.066+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T14:50:26.066+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "10a6a038-acdc-4cc7-ae6d-76fb666dbe99",
+    "registrarId" : "2021:Fall:ECEN350200",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "b22b8210-107f-454a-b626-163049f44973",
+      "userId" : "da76a649-e01d-3967-9723-c4c5ddfc7e87",
+      "name" : "Paul Gratz",
+      "barcode" : "6016426594109924",
+      "courseListingId" : "10a6a038-acdc-4cc7-ae6d-76fb666dbe99",
+      "metadata" : {
+        "createdDate" : "2021-07-16T14:51:48.052+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T14:51:48.052+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "9a341d4e-6946-4ac1-beae-c4116eff13cd",
+    "registrarId" : "2021:Fall:EHRD405599",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "047a0b31-4eca-48ef-9c9a-2992754f0a2c",
+      "userId" : "4f1848d0-e104-3f33-8c25-63a31c113496",
+      "name" : "Katherine Cammarata",
+      "barcode" : "405008071",
+      "courseListingId" : "9a341d4e-6946-4ac1-beae-c4116eff13cd",
+      "metadata" : {
+        "createdDate" : "2021-07-16T14:53:01.456+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T14:53:01.456+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "5485ba5d-cbf8-495a-afe8-7001c7b13d2e",
+    "registrarId" : "2021:Fall:ENGL391501",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "8b73b174-f2c5-40e7-9fae-1d69a585f983",
+      "userId" : "ce27f2db-97fa-3434-8c3a-147dd9caf496",
+      "name" : "Jason Harris",
+      "barcode" : "6016426592293415",
+      "courseListingId" : "5485ba5d-cbf8-495a-afe8-7001c7b13d2e",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:06:28.854+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:06:28.854+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "4e381c6f-518a-4008-b10c-864b558f42a1",
+    "registrarId" : "2021:Fall:EHRD490901",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "9a28d53e-ada1-4708-aa8f-852941b9d076",
+      "userId" : "5d248ed3-a4f2-3414-82c5-3ac627e85b59",
+      "name" : "Ji Hee Hwang",
+      "barcode" : "330008193",
+      "courseListingId" : "4e381c6f-518a-4008-b10c-864b558f42a1",
+      "metadata" : {
+        "createdDate" : "2021-07-16T14:55:09.962+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T14:55:09.962+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "db498a6d-0ff8-45b3-b29e-b982e1dedac2",
+    "registrarId" : "2021:Fall:ENGL203517",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "c07389dc-eef3-44ca-87ce-3aec5e1bcfab",
+      "userId" : "c1ce1c4a-2d76-3cab-a4b6-549ab9934df0",
+      "name" : "HYOUNGGEON Lee",
+      "barcode" : "6016426594484822",
+      "courseListingId" : "db498a6d-0ff8-45b3-b29e-b982e1dedac2",
+      "metadata" : {
+        "createdDate" : "2021-07-16T14:56:57.127+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T14:56:57.127+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "cac21eaa-7d9e-41b4-ae2d-54e04d13e19a",
+    "registrarId" : "2021:Fall:ENGL251501",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "b6949b35-f816-4db4-85e9-e07d49777052",
+      "userId" : "d3b5faac-0555-39a9-a69b-0dea24026983",
+      "name" : "MICHELLE SIMMS",
+      "barcode" : "6016426593944867",
+      "courseListingId" : "cac21eaa-7d9e-41b4-ae2d-54e04d13e19a",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:02:49.025+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:02:49.025+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "c7438f6c-da8c-45cc-b259-3986fc1e240e",
+    "registrarId" : "2021:Fall:GEOL203",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "cf0dcd10-c95b-484d-b1ce-63b7e9ee470c",
+      "userId" : "a0c608ef-c4e3-3420-aac9-509c00b2fc13",
+      "name" : "Joseph Balta",
+      "barcode" : "6016426593052034",
+      "courseListingId" : "c7438f6c-da8c-45cc-b259-3986fc1e240e",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:14:00.104+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:14:00.104+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "097a0177-6a80-4887-8ca6-8d46ade910cf",
+    "registrarId" : "2021:Fall:GEOL208500",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "1eb0db61-b29e-4b2b-b440-a3637cb17692",
+      "userId" : "1fea48ac-3eba-3fda-ae41-9774599af48a",
+      "name" : "Christina Belanger",
+      "barcode" : "6016426593519743",
+      "courseListingId" : "097a0177-6a80-4887-8ca6-8d46ade910cf",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:15:14.941+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:15:14.941+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "0347c1f6-a583-4ba4-a991-57dbd8f45fe1",
+    "registrarId" : "2021:Fall:ENGL303903",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "c95fda60-aaf9-40ca-8b47-2e9dc5d29995",
+      "userId" : "ac348010-d179-3857-9f17-f019f2bb006f",
+      "name" : "Sara Dicaglio",
+      "barcode" : "6016426593093566",
+      "courseListingId" : "0347c1f6-a583-4ba4-a991-57dbd8f45fe1",
+      "metadata" : {
+        "createdDate" : "2021-07-14T17:18:46.891+00:00",
+        "createdByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a",
+        "updatedDate" : "2021-07-14T17:18:46.891+00:00",
+        "updatedByUserId" : "1dd0a377-7019-37f1-a4d5-f6f0839a754a"
+      }
+    } ]
+  }, {
+    "id" : "0a80fe96-d2ea-41d8-bfe2-e37cba6ed0a6",
+    "registrarId" : "2021:Fall:ENGL210",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "76ab04ee-9d8b-4be7-897e-e4b6972cff65",
+      "userId" : "e3cf60f4-97cb-38ef-8002-95ed21e23956",
+      "name" : "Nicole Hagstrom Schmidt",
+      "barcode" : "6016426594354082",
+      "courseListingId" : "0a80fe96-d2ea-41d8-bfe2-e37cba6ed0a6",
+      "metadata" : {
+        "createdDate" : "2021-07-16T14:59:27.098+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T14:59:27.098+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "55ee0552-e401-46bc-844e-b17795d8939d",
+    "registrarId" : "2021:Fall:ENGL303902",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "ab4eb53f-1227-4215-843f-519e75c24a61",
+      "userId" : "027d2ec3-615f-342a-89a5-cad9b9433820",
+      "name" : "Ira Dworkin",
+      "barcode" : "6016426592329250",
+      "courseListingId" : "55ee0552-e401-46bc-844e-b17795d8939d",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:04:23.574+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:04:23.574+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "7589f6c2-0a16-4163-8412-559caed300e8",
+    "registrarId" : "2021:Fall:EPSY642600",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "678e841d-2532-4d71-9bb1-c2ef6b1527ba",
+      "userId" : "35fb3873-652e-3f2b-992e-7333349263a3",
+      "name" : "Christopher Thompson",
+      "barcode" : "6016426593499557",
+      "courseListingId" : "7589f6c2-0a16-4163-8412-559caed300e8",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:09:49.943+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:09:49.943+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "acdde13b-5ab4-44ef-8e2f-7331e903c84c",
+    "registrarId" : "2021:Fall:EPSY637600",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "6256ae74-759c-4f69-b8fe-329ca398031f",
+      "userId" : "3bd8bacd-2fd1-32a6-8f03-0465b292300a",
+      "name" : "Laura Stough",
+      "barcode" : "6016427350481945",
+      "courseListingId" : "acdde13b-5ab4-44ef-8e2f-7331e903c84c",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:08:25.572+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:08:25.572+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    } ]
+  }, {
+    "id" : "92f501a2-7188-4bef-a780-1de01f9535cd",
+    "registrarId" : "2021:Fall:HIST105504",
+    "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+    "termId" : "952ca6be-90f1-40c8-8739-b6ca23e1ee9f",
+    "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+    "instructorObjects" : [ {
+      "id" : "3e169bf8-ae17-495c-88e7-5e8444e252c2",
+      "userId" : "f84dc02b-224b-3f73-a979-7413da82d90b",
+      "name" : "Damon Bach",
+      "barcode" : "6016426593420009",
+      "courseListingId" : "92f501a2-7188-4bef-a780-1de01f9535cd",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:16:36.829+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:16:36.829+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    }, {
+      "id" : "967c9178-863e-4dbf-8cba-d9978dc46d03",
+      "userId" : "6d65d066-6d4e-376a-8a73-58c9b5569c6e",
+      "name" : "Verity McInnis",
+      "barcode" : "6016426591622291",
+      "courseListingId" : "92f501a2-7188-4bef-a780-1de01f9535cd",
+      "metadata" : {
+        "createdDate" : "2021-07-16T15:17:12.246+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-16T15:17:12.246+00:00",
         "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
       }
     } ]
