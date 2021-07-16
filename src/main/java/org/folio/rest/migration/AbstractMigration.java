@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -138,7 +139,7 @@ public abstract class AbstractMigration<C extends AbstractContext> implements Mi
   boolean exclude(Map<String, List<String>> exclusions, Map<String, String> row) throws SQLException {
     for (Map.Entry<String, List<String>> entry : exclusions.entrySet()) {
       String value = row.get(entry.getKey());
-      if (entry.getValue().contains(value)) {
+      if (Objects.nonNull(value) && entry.getValue().contains(value)) {
         return true;
       }
     }
