@@ -13,7 +13,7 @@ import org.folio.rest.migration.model.request.AbstractJob;
 public class PurchaseOrderJob extends AbstractJob {
 
   @NotNull
-  private Map<String, String> pageAdditionalContext;
+  private String query;
 
   @NotNull
   private String poNumberPrefix;
@@ -41,18 +41,17 @@ public class PurchaseOrderJob extends AbstractJob {
 
   public PurchaseOrderJob() {
     super();
-    pageAdditionalContext = new HashMap<>();
     references = new HashMap<>();
     poLinesAdditionalContext = new HashMap<>();
     additionalHoldingsNotes = new ArrayList<>();
   }
 
-  public Map<String, String> getPageAdditionalContext() {
-    return pageAdditionalContext;
+  public String getQuery() {
+    return query;
   }
 
-  public void setPageAdditionalContext(Map<String, String> pageAdditionalContext) {
-    this.pageAdditionalContext = pageAdditionalContext;
+  public void setQuery(String query) {
+    this.query = query;
   }
 
   public String getPoNumberPrefix() {
