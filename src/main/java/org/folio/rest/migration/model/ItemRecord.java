@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.Materialtypes;
-import org.folio.StatisticalCode;
-import org.folio.Statisticalcodes;
 import org.folio.rest.jaxrs.model.inventory.CirculationNote;
 import org.folio.rest.jaxrs.model.inventory.EffectiveCallNumberComponents;
 import org.folio.rest.jaxrs.model.inventory.Item;
+import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.inventory.Metadata;
 import org.folio.rest.jaxrs.model.inventory.Note__1;
+import org.folio.rest.jaxrs.model.inventory.Statisticalcode;
+import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
 import org.folio.rest.jaxrs.model.inventory.Status;
 import org.folio.rest.jaxrs.model.inventory.Status.Name;
 import org.folio.rest.migration.model.request.item.ItemDefaults;
@@ -329,7 +329,7 @@ public class ItemRecord {
       if (s.getItemStatusDesc().equals("Damaged")) {
         item.setItemDamagedStatusId(itemDamagedStatusId);
       } else {
-        Optional<StatisticalCode> potentialStatisticalcode = statisticalcodes.getStatisticalCodes().stream()
+        Optional<Statisticalcode> potentialStatisticalcode = statisticalcodes.getStatisticalCodes().stream()
           .filter(sc -> sc.getName().equals(s.getItemStatusDesc()))
           .findFirst();
         if (potentialStatisticalcode.isPresent()) {

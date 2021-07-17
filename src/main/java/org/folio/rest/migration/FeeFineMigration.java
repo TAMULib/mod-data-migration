@@ -15,12 +15,12 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.Location;
-import org.folio.Locations;
-import org.folio.Materialtypes;
-import org.folio.Mtype;
 import org.folio.rest.jaxrs.model.feesfines.Accountdata;
 import org.folio.rest.jaxrs.model.feesfines.actions.Feefineactiondata;
+import org.folio.rest.jaxrs.model.inventory.Location;
+import org.folio.rest.jaxrs.model.inventory.Locations;
+import org.folio.rest.jaxrs.model.inventory.Materialtype;
+import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.model.FeeFineRecord;
@@ -333,7 +333,7 @@ public class FeeFineMigration extends AbstractMigration<FeeFineContext> {
       try (ResultSet resultSet = getResultSet(statement, context)) {
         while (resultSet.next()) {
           String materialTypeCode = resultSet.getString(MTYPE_CODE);
-          Optional<Mtype> potentialMaterialType = materialtypes.getMtypes().stream().filter(mt -> mt.getSource().equals(materialTypeCode)).findFirst();
+          Optional<Materialtype> potentialMaterialType = materialtypes.getMtypes().stream().filter(mt -> mt.getSource().equals(materialTypeCode)).findFirst();
           if (potentialMaterialType.isPresent()) {
             materialTypeId = Optional.of(potentialMaterialType.get().getId());
           }

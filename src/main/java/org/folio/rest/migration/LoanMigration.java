@@ -15,13 +15,13 @@ import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import org.folio.Location;
-import org.folio.Locations;
 import org.folio.rest.jaxrs.model.circulation.CheckOutByBarcodeRequest;
 import org.folio.rest.jaxrs.model.circulation.ItemNotLoanableBlock;
 import org.folio.rest.jaxrs.model.circulation.Loan;
 import org.folio.rest.jaxrs.model.circulation.OverrideBlocks;
 import org.folio.rest.jaxrs.model.circulation.PatronBlock;
+import org.folio.rest.jaxrs.model.inventory.Location;
+import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Servicepoint;
 import org.folio.rest.jaxrs.model.inventory.Servicepoints;
 import org.folio.rest.jaxrs.model.users.Userdata;

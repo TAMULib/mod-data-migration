@@ -5,57 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import org.folio.AlternativeTitleType;
-import org.folio.Alternativetitletypes;
-import org.folio.CallNumberType;
-import org.folio.Callnumbertypes;
-import org.folio.ClassificationType;
-import org.folio.Classificationtypes;
-import org.folio.ContributorNameType;
-import org.folio.ContributorType;
-import org.folio.Contributornametypes;
-import org.folio.Contributortypes;
-import org.folio.ElectronicAccessRelationship;
-import org.folio.Electronicaccessrelationships;
-import org.folio.HoldingsNoteType;
-import org.folio.HoldingsType;
-import org.folio.Holdingsnotetypes;
-import org.folio.Holdingstypes;
-import org.folio.IdentifierType;
-import org.folio.Identifiertypes;
-import org.folio.IllPolicy;
-import org.folio.Illpolicies;
-import org.folio.InstanceFormat;
-import org.folio.InstanceNoteType;
-import org.folio.InstanceRelationshipType;
-import org.folio.InstanceStatus;
-import org.folio.InstanceType;
-import org.folio.Instanceformats;
-import org.folio.Instancenotetypes;
-import org.folio.Instancerelationshiptypes;
-import org.folio.Instancestatuses;
-import org.folio.Instancetypes;
-import org.folio.IssuanceMode;
-import org.folio.Issuancemodes;
-import org.folio.ItemDamageStatus;
-import org.folio.ItemNoteType;
-import org.folio.Itemdamagedstatuses;
-import org.folio.Itemnotetypes;
-import org.folio.Loantype;
-import org.folio.Loantypes;
-import org.folio.Location;
-import org.folio.Locations;
-import org.folio.MarcFieldProtectionSettingsCollection;
-import org.folio.Materialtypes;
-import org.folio.Mtype;
-import org.folio.NatureOfContentTerm;
-import org.folio.Natureofcontentterms;
-import org.folio.StatisticalCode;
-import org.folio.StatisticalCodeType;
-import org.folio.Statisticalcodes;
-import org.folio.Statisticalcodetypes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
-import org.folio.rest.jaxrs.model.MarcFieldProtectionSetting;
 import org.folio.rest.jaxrs.model.circulation.Loan;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_source_record_storage.Snapshot;
 import org.folio.rest.jaxrs.model.feesfines.Accountdata;
@@ -66,7 +16,11 @@ import org.folio.rest.jaxrs.model.inventory.Instance;
 import org.folio.rest.jaxrs.model.inventory.Instancerelationship;
 import org.folio.rest.jaxrs.model.inventory.Item;
 import org.folio.rest.jaxrs.model.inventory.Items;
+import org.folio.rest.jaxrs.model.inventory.Loantypes;
+import org.folio.rest.jaxrs.model.inventory.Locations;
+import org.folio.rest.jaxrs.model.inventory.Materialtypes;
 import org.folio.rest.jaxrs.model.inventory.Servicepoints;
+import org.folio.rest.jaxrs.model.inventory.Statisticalcodes;
 import org.folio.rest.jaxrs.model.notes.types.notes.Note;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_finance.schemas.FundCollection;
 import org.folio.rest.jaxrs.model.orders.acq_models.mod_orders.schemas.CompositePurchaseOrder;
@@ -476,178 +430,178 @@ public class OkapiService {
       .withMarcFieldProtectionSettings(getMarcFieldProtectionSettings(headers));
   }
   
-  private List<IdentifierType> getIdentifierTypes(HttpHeaders headers) {
-    HttpEntity<Identifiertypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.IdentifierType> getIdentifierTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Identifiertypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + IDENTIFIER_TYPES_URL;
-    ResponseEntity<Identifiertypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Identifiertypes.class);
+    ResponseEntity<org.folio.Identifiertypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Identifiertypes.class);
     return response.getBody().getIdentifierTypes();
   }
 
-  private List<ClassificationType> getClassificationTypes(HttpHeaders headers) {
-    HttpEntity<Classificationtypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.ClassificationType> getClassificationTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Classificationtypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + CLASSIFICATION_TYPES_URL;
-    ResponseEntity<Classificationtypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Classificationtypes.class);
+    ResponseEntity<org.folio.Classificationtypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Classificationtypes.class);
     return response.getBody().getClassificationTypes();
   }
 
-  private List<InstanceType> getInstanceTypes(HttpHeaders headers) {
-    HttpEntity<Instancetypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.InstanceType> getInstanceTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Instancetypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + INSTANCE_TYPES_URL;
-    ResponseEntity<Instancetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Instancetypes.class);
+    ResponseEntity<org.folio.Instancetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Instancetypes.class);
     return response.getBody().getInstanceTypes();
   }
 
-  private List<ElectronicAccessRelationship> getElectronicAccessRelationships(HttpHeaders headers) {
-    HttpEntity<Electronicaccessrelationships> entity = new HttpEntity<>(headers);
+  private List<org.folio.ElectronicAccessRelationship> getElectronicAccessRelationships(HttpHeaders headers) {
+    HttpEntity<org.folio.Electronicaccessrelationships> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + ELECTRONIC_ACCESS_URL;
-    ResponseEntity<Electronicaccessrelationships> response = restTemplate.exchange(url, HttpMethod.GET, entity, Electronicaccessrelationships.class);
+    ResponseEntity<org.folio.Electronicaccessrelationships> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Electronicaccessrelationships.class);
     return response.getBody().getElectronicAccessRelationships();
   }
 
-  private List<InstanceFormat> getInstanceFormats(HttpHeaders headers) {
-    HttpEntity<Instanceformats> entity = new HttpEntity<>(headers);
+  private List<org.folio.InstanceFormat> getInstanceFormats(HttpHeaders headers) {
+    HttpEntity<org.folio.Instanceformats> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + INSTANCE_FORMATS_URL;
-    ResponseEntity<Instanceformats> response = restTemplate.exchange(url, HttpMethod.GET, entity, Instanceformats.class);
+    ResponseEntity<org.folio.Instanceformats> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Instanceformats.class);
     return response.getBody().getInstanceFormats();
   }
 
-  private List<ContributorType> getContributorTypes(HttpHeaders headers) {
-    HttpEntity<Contributortypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.ContributorType> getContributorTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Contributortypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + CONTRIBUTOR_TYPES_URL;
-    ResponseEntity<Contributortypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Contributortypes.class);
+    ResponseEntity<org.folio.Contributortypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Contributortypes.class);
     return response.getBody().getContributorTypes();
   }
 
-  private List<ContributorNameType> getContributorNameTypes(HttpHeaders headers) {
-    HttpEntity<Contributornametypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.ContributorNameType> getContributorNameTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Contributornametypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + CONTRIBUTOR_NAME_TYPES_URL;
-    ResponseEntity<Contributornametypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Contributornametypes.class);
+    ResponseEntity<org.folio.Contributornametypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Contributornametypes.class);
     return response.getBody().getContributorNameTypes();
   }
 
-  private List<InstanceNoteType> getInstanceNoteTypes(HttpHeaders headers) {
-    HttpEntity<Instancenotetypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.InstanceNoteType> getInstanceNoteTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Instancenotetypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + INSTANCE_NOTE_TYPES_URL;
-    ResponseEntity<Instancenotetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Instancenotetypes.class);
+    ResponseEntity<org.folio.Instancenotetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Instancenotetypes.class);
     return response.getBody().getInstanceNoteTypes();
   }
 
-  private List<AlternativeTitleType> getAlternativeTitleTypes(HttpHeaders headers) {
-    HttpEntity<Alternativetitletypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.AlternativeTitleType> getAlternativeTitleTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Alternativetitletypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + INSTANCE_ALTERNATIVE_TITLE_TYPES_URL;
-    ResponseEntity<Alternativetitletypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Alternativetitletypes.class);
+    ResponseEntity<org.folio.Alternativetitletypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Alternativetitletypes.class);
     return response.getBody().getAlternativeTitleTypes();
   }
 
-  private List<NatureOfContentTerm> getNatureOfContentTerms(HttpHeaders headers) {
-    HttpEntity<Natureofcontentterms> entity = new HttpEntity<>(headers);
+  private List<org.folio.NatureOfContentTerm> getNatureOfContentTerms(HttpHeaders headers) {
+    HttpEntity<org.folio.Natureofcontentterms> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + NATURE_OF_CONTENT_TERMS_URL;
-    ResponseEntity<Natureofcontentterms> response = restTemplate.exchange(url, HttpMethod.GET, entity, Natureofcontentterms.class);
+    ResponseEntity<org.folio.Natureofcontentterms> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Natureofcontentterms.class);
     return response.getBody().getNatureOfContentTerms();
   }
 
-  private List<InstanceStatus> getInstanceStatuses(HttpHeaders headers) {
-    HttpEntity<Instancestatuses> entity = new HttpEntity<>(headers);
+  private List<org.folio.InstanceStatus> getInstanceStatuses(HttpHeaders headers) {
+    HttpEntity<org.folio.Instancestatuses> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + INSTANCE_STATUSES_URL;
-    ResponseEntity<Instancestatuses> response = restTemplate.exchange(url, HttpMethod.GET, entity, Instancestatuses.class);
+    ResponseEntity<org.folio.Instancestatuses> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Instancestatuses.class);
     return response.getBody().getInstanceStatuses();
   }
 
-  private List<InstanceRelationshipType> getInstanceRelationshipTypes(HttpHeaders headers) {
-    HttpEntity<Instancerelationshiptypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.InstanceRelationshipType> getInstanceRelationshipTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Instancerelationshiptypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + INSTANCE_RELATIONSHIP_TYPES_URL;
-    ResponseEntity<Instancerelationshiptypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Instancerelationshiptypes.class);
+    ResponseEntity<org.folio.Instancerelationshiptypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Instancerelationshiptypes.class);
     return response.getBody().getInstanceRelationshipTypes();
   }
 
-  private List<HoldingsType> getHoldingsTypes(HttpHeaders headers) {
-    HttpEntity<Holdingstypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.HoldingsType> getHoldingsTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Holdingstypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + HOLDINGS_TYPES_URL;
-    ResponseEntity<Holdingstypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Holdingstypes.class);
+    ResponseEntity<org.folio.Holdingstypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Holdingstypes.class);
     return response.getBody().getHoldingsTypes();
   }
 
-  private List<HoldingsNoteType> getHoldingsNoteTypes(HttpHeaders headers) {
-    HttpEntity<Holdingsnotetypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.HoldingsNoteType> getHoldingsNoteTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Holdingsnotetypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + HOLDINGS_NOTE_TYPES_URL;
-    ResponseEntity<Holdingsnotetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Holdingsnotetypes.class);
+    ResponseEntity<org.folio.Holdingsnotetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Holdingsnotetypes.class);
     return response.getBody().getHoldingsNoteTypes();
   }
 
-  private List<IllPolicy> getIllPolicies(HttpHeaders headers) {
-    HttpEntity<Illpolicies> entity = new HttpEntity<>(headers);
+  private List<org.folio.IllPolicy> getIllPolicies(HttpHeaders headers) {
+    HttpEntity<org.folio.Illpolicies> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + ILL_POLICIES_URL;
-    ResponseEntity<Illpolicies> response = restTemplate.exchange(url, HttpMethod.GET, entity, Illpolicies.class);
+    ResponseEntity<org.folio.Illpolicies> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Illpolicies.class);
     return response.getBody().getIllPolicies();
   }
 
-  private List<CallNumberType> getCallNumberTypes(HttpHeaders headers) {
-    HttpEntity<Callnumbertypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.CallNumberType> getCallNumberTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Callnumbertypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + CALL_NUMBER_TYPES_URL;
-    ResponseEntity<Callnumbertypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Callnumbertypes.class);
+    ResponseEntity<org.folio.Callnumbertypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Callnumbertypes.class);
     return response.getBody().getCallNumberTypes();
   }
 
-  private List<StatisticalCode> getStatisticalCodes(HttpHeaders headers) {
-    HttpEntity<Statisticalcodes> entity = new HttpEntity<>(headers);
+  private List<org.folio.StatisticalCode> getStatisticalCodes(HttpHeaders headers) {
+    HttpEntity<org.folio.Statisticalcodes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + STATISTICAL_CODES_URL;
-    ResponseEntity<Statisticalcodes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Statisticalcodes.class);
+    ResponseEntity<org.folio.Statisticalcodes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Statisticalcodes.class);
     return response.getBody().getStatisticalCodes();
   }
 
-  private List<StatisticalCodeType> getStatisticalCodeTypes(HttpHeaders headers) {
-    HttpEntity<Statisticalcodetypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.StatisticalCodeType> getStatisticalCodeTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Statisticalcodetypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + STATISTICAL_CODE_TYPES_URL;
-    ResponseEntity<Statisticalcodetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Statisticalcodetypes.class);
+    ResponseEntity<org.folio.Statisticalcodetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Statisticalcodetypes.class);
     return response.getBody().getStatisticalCodeTypes();
   }
 
-  private List<Location> getLocations(HttpHeaders headers) {
-    HttpEntity<Locations> entity = new HttpEntity<>(headers);
+  private List<org.folio.Location> getLocations(HttpHeaders headers) {
+    HttpEntity<org.folio.Locations> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + LOCATIONS_URL;
-    ResponseEntity<Locations> response = restTemplate.exchange(url, HttpMethod.GET, entity, Locations.class);
+    ResponseEntity<org.folio.Locations> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Locations.class);
     return response.getBody().getLocations();
   }
 
-  private List<Mtype> getMaterialTypes(HttpHeaders headers) {
-    HttpEntity<Materialtypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.Mtype> getMaterialTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Materialtypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + MATERIAL_TYPES_URL;
-    ResponseEntity<Materialtypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Materialtypes.class);
+    ResponseEntity<org.folio.Materialtypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Materialtypes.class);
     return response.getBody().getMtypes();
   }
 
-  private List<ItemDamageStatus> getItemDamagedStatuses(HttpHeaders headers) {
-    HttpEntity<Itemdamagedstatuses> entity = new HttpEntity<>(headers);
+  private List<org.folio.ItemDamageStatus> getItemDamagedStatuses(HttpHeaders headers) {
+    HttpEntity<org.folio.Itemdamagedstatuses> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + ITEM_DAMAGED_STATUSES_URL;
-    ResponseEntity<Itemdamagedstatuses> response = restTemplate.exchange(url, HttpMethod.GET, entity, Itemdamagedstatuses.class);
+    ResponseEntity<org.folio.Itemdamagedstatuses> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Itemdamagedstatuses.class);
     return response.getBody().getItemDamageStatuses();
   }
 
-  private List<Loantype> getLoanTypes(HttpHeaders headers) {
-    HttpEntity<Loantypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.Loantype> getLoanTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Loantypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + LOAN_TYPES_URL;
-    ResponseEntity<Loantypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Loantypes.class);
+    ResponseEntity<org.folio.Loantypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Loantypes.class);
     return response.getBody().getLoantypes();
   }
 
-  private List<ItemNoteType> getItemNoteTypes(HttpHeaders headers) {
-    HttpEntity<Itemnotetypes> entity = new HttpEntity<>(headers);
+  private List<org.folio.ItemNoteType> getItemNoteTypes(HttpHeaders headers) {
+    HttpEntity<org.folio.Itemnotetypes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + ITEM_NOTE_TYPES_URL;
-    ResponseEntity<Itemnotetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Itemnotetypes.class);
+    ResponseEntity<org.folio.Itemnotetypes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Itemnotetypes.class);
     return response.getBody().getItemNoteTypes();
   }
 
-  private List<MarcFieldProtectionSetting> getMarcFieldProtectionSettings(HttpHeaders headers) {
-    HttpEntity<MarcFieldProtectionSettingsCollection> entity = new HttpEntity<>(headers);
+  private List<org.folio.rest.jaxrs.model.MarcFieldProtectionSetting> getMarcFieldProtectionSettings(HttpHeaders headers) {
+    HttpEntity<org.folio.MarcFieldProtectionSettingsCollection> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + FIELD_PROTECTION_SETTINGS_URL;
-    ResponseEntity<MarcFieldProtectionSettingsCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, MarcFieldProtectionSettingsCollection.class);
+    ResponseEntity<org.folio.MarcFieldProtectionSettingsCollection> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.MarcFieldProtectionSettingsCollection.class);
     return response.getBody().getMarcFieldProtectionSettings();
   }
 
-  private List<IssuanceMode> getIssuanceModes(HttpHeaders headers) {
-    HttpEntity<Issuancemodes> entity = new HttpEntity<>(headers);
+  private List<org.folio.IssuanceMode> getIssuanceModes(HttpHeaders headers) {
+    HttpEntity<org.folio.Issuancemodes> entity = new HttpEntity<>(headers);
     String url = okapi.getUrl() + ISSUANCE_MODES_URL;
-    ResponseEntity<Issuancemodes> response = restTemplate.exchange(url, HttpMethod.GET, entity, Issuancemodes.class);
+    ResponseEntity<org.folio.Issuancemodes> response = restTemplate.exchange(url, HttpMethod.GET, entity, org.folio.Issuancemodes.class);
     return response.getBody().getIssuanceModes();
   }
 

@@ -15,9 +15,9 @@ import java.util.concurrent.CompletableFuture;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.Location;
-import org.folio.Locations;
 import org.folio.rest.jaxrs.model.inventory.Item;
+import org.folio.rest.jaxrs.model.inventory.Location;
+import org.folio.rest.jaxrs.model.inventory.Locations;
 import org.folio.rest.jaxrs.model.inventory.Servicepoint;
 import org.folio.rest.jaxrs.model.inventory.Servicepoints;
 import org.folio.rest.jaxrs.model.inventory.Status.Name;
