@@ -8,13 +8,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.ZoneOffset;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -22,7 +23,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.io.JsonStringEncoder;
 
 import org.apache.commons.lang3.StringUtils;
-import org.folio.Instance;
 import org.folio.Statisticalcodes;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.common.Status;
@@ -30,6 +30,7 @@ import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.ParsedReco
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.dto.RawRecord;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_source_record_storage.RecordModel;
 import org.folio.rest.jaxrs.model.dataimport.raml_storage.schemas.mod_source_record_storage.Snapshot;
+import org.folio.rest.jaxrs.model.inventory.Instance;
 import org.folio.rest.jaxrs.model.users.Userdata;
 import org.folio.rest.migration.config.model.Database;
 import org.folio.rest.migration.mapping.InstanceMapper;
@@ -290,7 +291,7 @@ public class BibMigration extends AbstractMigration<BibContext> {
             }
 
             String opId = operatorId;
-            List<String> matchedCodes = new ArrayList<>();
+            Set<String> matchedCodes = new HashSet<>();
             if (StringUtils.isNotEmpty(opId)) {
               if (bibMaps.getStatisticalCode().containsKey(opId)) {
                 opId = bibMaps.getStatisticalCode().get(opId);
@@ -439,11 +440,11 @@ public class BibMigration extends AbstractMigration<BibContext> {
 
   }
 
-  private List<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalcodes) {
+  private Set<String> getMatchingStatisticalCodes(String operatorId, Statisticalcodes statisticalcodes) {
     return statisticalcodes.getStatisticalCodes().stream()
       .filter(sc -> sc.getCode().equals(operatorId))
       .map(sc -> sc.getId())
-      .collect(Collectors.toList());
+      .collect(Collectors.toSet());
   }
 
   private String recordToJson(Record record) throws IOException {
