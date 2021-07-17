@@ -1619,8 +1619,8 @@ POST to http://localhost:9000/migrate/purchaseorders
 ```
 {
   "extraction": {
-    "countSql": "WITH orders AS (SELECT DISTINCT ${COLUMNS} FROM ${TABLES} WHERE ${CONDITIONS}) SELECT COUNT(*) AS total FROM orders",
-    "pageSql": "SELECT DISTINCT ${COLUMNS} FROM ${TABLES} WHERE ${CONDITIONS} ORDER BY po.po_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
+    "countSql": "WITH orders AS (${QUERY}) SELECT COUNT(*) AS total FROM orders",
+    "pageSql": "${QUERY} ORDER BY po.po_id OFFSET ${OFFSET} ROWS FETCH NEXT ${LIMIT} ROWS ONLY",
     "lineItemNotesSql": "SELECT DISTINCT note FROM ${SCHEMA}.line_item_notes lin, ${SCHEMA}.line_item li WHERE li.line_item_id = lin.line_item_id AND li.po_id = ${PO_ID}",
     "poLinesSql": "SELECT DISTINCT ${COLUMNS} FROM ${TABLES} WHERE ${CONDITIONS}",
     "receivingHistorySql": "SELECT component.predict AS predict, opac_suppressed, component.note AS receiving_note, enumchron, TO_CHAR(cast(ir.receipt_date as timestamp) at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS received_date, lics.mfhd_id AS mfhd_id FROM ${SCHEMA}.line_item_copy_status lics, ${SCHEMA}.issues_received ir, ${SCHEMA}.component, ${SCHEMA}.serial_issues si WHERE lics.line_item_id = ${LINE_ITEM_ID} AND ir.copy_id = lics.copy_id AND ir.component_id = component.component_id AND si.component_id = component.component_id AND si.issue_id = ir.issue_id AND component.predict = 'Y' AND opac_suppressed = 1 ORDER BY lics.line_item_id, ir.receipt_date desc",
@@ -1639,11 +1639,7 @@ POST to http://localhost:9000/migrate/purchaseorders
     {
       "schema": "AMDB",
       "partitions": 10,
-      "pageAdditionalContext": {
-        "COLUMNS": "po.po_id, po.po_number, po.po_status, po.vendor_id, shipto.location_code AS shiploc, billto.location_code AS billloc",
-        "TABLES": "AMDB.purchase_order po, AMDB.po_status stat, AMDB.location shipto, AMDB.location billto",
-        "CONDITIONS": "po.ship_location = shipto.location_id AND po.bill_location = billto.location_id AND shipto.location_code in ('SR','SRDB','SRDBProcar','SRDIR','SRDIRM','SRDIRMP','SRDIRN','SRDIRO','SRDIRP','SRGFT', 'SRMSV','SRMSVM','SRMSVMO','SRMSVO','SRMSVP','SRMSVPM','SRMSVW','SRMSVWM','SRProcard','SRSOV','SRSOVM','SRVSVO','SRSUSPENDED') AND po.po_status = stat.po_status AND po_status_desc in ('Approved/Sent','Pending')"
-      },
+      "query": "SELECT DISTINCT po.po_id, shipto.location_code AS shiploc, billto.location_code AS billloc, po.po_status, po.po_number AS po_number, vendor_id FROM amdb.purchase_order po, amdb.location shipto, amdb.location billto, amdb.po_status stat WHERE po.ship_location = shipto.location_id AND po.bill_location = billto.location_id AND shipto.location_code IN( 'SR', 'SRDB', 'SRDBProcar', 'SRDIR', 'SRDIRM', 'SRDIRMP', 'SRDIRN', 'SRDIRO', 'SRDIRP', 'SRGFT', 'SRMSV', 'SRMSVM', 'SRMSVMO', 'SRMSVO', 'SRMSVP', 'SRMSVPM', 'SRMSVW', 'SRMSVWM', 'SRProcard', 'SRSOV', 'SRSOVM', 'SRVSVO', 'SRSUSPENDED') AND po.po_status = stat.po_status AND po_status_desc IN ( 'Approved/Sent', 'Pending' ) UNION SELECT DISTINCT po.po_id, shipto.location_code AS shiploc, billto.location_code AS billloc, po.po_status, po.po_number AS po_number, vendor_id FROM amdb.purchase_order po, amdb.location shipto, amdb.location billto, amdb.po_status stat, amdb.po_type WHERE po.ship_location = shipto.location_id AND po.bill_location = billto.location_id AND shipto.location_code IN ( 'CANCEL', 'COMPLETE' ) AND po.po_status = stat.po_status AND po_status_desc IN ( 'Approved/Sent' ) AND po.po_type = po_type.po_type AND po_type.po_type_desc = 'Continuation' UNION SELECT DISTINCT po.po_id, shipto.location_code AS shiploc, billto.location_code AS billloc, po.po_status, po.po_number AS po_number, vendor_id FROM amdb.purchase_order po, amdb.location shipto, amdb.location billto, amdb.po_status stat, amdb.po_type, amdb.po_notes pon WHERE po.ship_location = shipto.location_id AND po.bill_location = billto.location_id AND shipto.location_code IN ( 'CANCEL', 'COMPLETE' ) AND po.po_status = stat.po_status AND po_status_desc IN ( 'Pending' ) AND po.po_type = po_type.po_type AND po_type.po_type_desc = 'Continuation' AND pon.po_id = po.po_id AND Lower(pon.note) NOT LIKE '%done%'",
       "poNumberPrefix": "evans",
       "includeAddresses": true,
       "references": {
@@ -1663,11 +1659,7 @@ POST to http://localhost:9000/migrate/purchaseorders
     {
       "schema": "MSDB",
       "partitions": 2,
-      "pageAdditionalContext": {
-        "COLUMNS": "po.po_id, po.po_number, po.po_status, po.vendor_id, null as shiploc, null as billloc",
-        "TABLES": "MSDB.purchase_order po, MSDB.po_status stat, MSDB.po_type, MSDB.location shipto",
-        "CONDITIONS": "po.po_type = po_type.po_type AND po.ship_location = shipto.location_id AND shipto.location_code = 'AcqCleanUp' AND stat.po_status = po.po_status AND po_type_desc = 'Continuation' AND po_status_desc in ('Approved/Sent','Pending','Received Complete') AND po.po_number not in ('1AAA4132','1AAA4766','1AAA5586','1AAF8902')"
-      },
+      "query": "SELECT DISTINCT po.po_id, po.po_number, po.po_status, po.vendor_id, NULL AS shiploc, NULL AS billloc FROM msdb.purchase_order po, msdb.po_status stat, msdb.po_type, msdb.location shipto WHERE po.po_type = po_type.po_type AND po.ship_location = shipto.location_id AND shipto.location_code = 'AcqCleanUp' AND stat.po_status = po.po_status AND po_type_desc = 'Continuation' AND po_status_desc IN( 'Approved/Sent', 'Pending', 'Received Complete') AND po.po_number NOT IN ( '1AAA4132', '1AAA4766', '1AAA5586', '1AAF8902' ) ",
       "poNumberPrefix": "msl",
       "includeAddresses": false,
       "references": {

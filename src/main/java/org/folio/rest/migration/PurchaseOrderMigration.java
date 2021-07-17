@@ -49,6 +49,8 @@ import org.folio.rest.model.ReferenceLink;
 
 public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderContext> {
 
+  private static final String QUERY = "QUERY";
+
   private static final String COLUMNS = "COLUMNS";
   private static final String TABLES = "TABLES";
   private static final String CONDITIONS = "CONDITIONS";
@@ -133,9 +135,7 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
     for (PurchaseOrderJob job : context.getJobs()) {
 
       countContext.put(SCHEMA, job.getSchema());
-      countContext.put(COLUMNS, job.getPageAdditionalContext().get(COLUMNS));
-      countContext.put(TABLES, job.getPageAdditionalContext().get(TABLES));
-      countContext.put(CONDITIONS, job.getPageAdditionalContext().get(CONDITIONS));
+      countContext.put(QUERY, job.getQuery());
 
       Map<String, String> locationsMap = getLocationsMap(locations, job.getSchema());
 
@@ -150,9 +150,7 @@ public class PurchaseOrderMigration extends AbstractMigration<PurchaseOrderConte
         Map<String, Object> partitionContext = new HashMap<String, Object>();
         partitionContext.put(SQL, context.getExtraction().getPageSql());
         partitionContext.put(SCHEMA, job.getSchema());
-        partitionContext.put(COLUMNS, job.getPageAdditionalContext().get(COLUMNS));
-        partitionContext.put(TABLES, job.getPageAdditionalContext().get(TABLES));
-        partitionContext.put(CONDITIONS, job.getPageAdditionalContext().get(CONDITIONS));
+        partitionContext.put(QUERY, job.getQuery());
         partitionContext.put(OFFSET, offset);
         partitionContext.put(LIMIT, limit);
         partitionContext.put(INDEX, index);
