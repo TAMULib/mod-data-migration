@@ -936,5 +936,9 @@
     "id" : "ab707165-e4df-4dd2-a26f-5e2eff4e479e",
     "name" : "LDTC",
     "description" : "Learning Design & Tech"
+  }, {
+    "id" : "78dd6472-766f-44e1-bef2-8eb033060015",
+    "name" : "BMEN",
+    "description" : "Biomechanics"
   } ]
 }
