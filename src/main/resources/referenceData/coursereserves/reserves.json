@@ -28898,6 +28898,97 @@
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   }, {
+    "id" : "d4b0a80d-ee6b-4125-8e2c-f94ec30fa026",
+    "courseListingId" : "b1410695-f462-4a8b-abd2-62060dbd8645",
+    "itemId" : "f488c378-cbdc-3a31-9a40-2f1ae4285bb2",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14843208241",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Student study guide : Linear algebra with applications, Eighth edition / Steven J. Leon.",
+      "contributors" : [ {
+        "name" : "Leon, Steven J",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Leon, Steven J. Linear algebra with applications",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson Prentice Hall",
+        "place" : "Boston",
+        "dateOfPublication" : "[2010]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2010"
+      } ],
+      "callNumber" : "QA184.2 .L462 2010",
+      "instanceId" : "6bc0e2d6-4583-3205-895d-5d5bbd0b38cd",
+      "instanceHrid" : "in00002588697",
+      "holdingsId" : "3d3a1346-b82a-3bb3-bdaf-355a44cdacd4"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "20ea241e-b95b-4981-9862-39862cb9e41b",
+    "courseListingId" : "076c5fc2-8cd1-472c-8bc2-2b7892f3e539",
+    "itemId" : "f8ff06f1-641a-3e60-9a1b-ecf7d4148a9c",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14850458457",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "MATLAB : an introduction with applications / Amos Gilat, Department of Mechanical and Aerospace Engineering, the Ohio State University.",
+      "contributors" : [ {
+        "name" : "Gilat, Amos,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "John Wiley & Sons",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "QA297 .G48 2017",
+      "instanceId" : "8cfa0cbd-4685-3f0a-80a0-c29696e39b15",
+      "instanceHrid" : "in00004131293",
+      "holdingsId" : "2b5f8651-6196-37d6-8d2c-3d2ea79c8a00"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "a6fdca23-341f-4e92-86ee-fb7ac6ae8ffd",
+    "courseListingId" : "81c7850c-f9a6-4463-bf1a-4a98626d6530",
+    "itemId" : "325a5533-a664-3651-840e-c41a39d612c3",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14830056818",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "title" : "An introduction to abstract mathematics.",
+      "contributors" : [ {
+        "name" : "Bond, Robert J",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "QA37.2 .B63 2017",
+      "instanceId" : "07227e77-1d80-350c-8f8c-770782922d79",
+      "instanceHrid" : "in00004161395",
+      "holdingsId" : "6e50adb2-9179-38c5-990a-8a2c47604726"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
     "id" : "5c0a05ba-385d-4375-8633-ee6e41c1b306",
     "courseListingId" : "c38552b2-c0bc-44ef-8fe2-e7e0f35112cb",
     "itemId" : "3f448eec-29d1-3f54-b24a-d5563deeaf0e",
@@ -28969,6 +29060,1765 @@
       "instanceId" : "790b5e0f-c4cf-3670-b25b-8c1a78aba463",
       "instanceHrid" : "in00004470453",
       "holdingsId" : "da3af113-d9d8-3588-ad53-5beebeaebc61"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "4b013975-00bf-4378-84e1-cb85225be990",
+    "courseListingId" : "323df0ca-7d2d-40ea-8e54-45158e892c5c",
+    "itemId" : "fd44dffe-add5-337d-8b49-c335ca61e865",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26",
+    "endDate" : "2020-05-18",
+    "copiedItem" : {
+      "barcode" : "A14842806953",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "For all practical purposes : mathematical literacy in today's world.",
+      "contributors" : [ {
+        "name" : "Consortium for Mathematics and Its Applications (U.S.)",
+        "contributorNameTypeId" : "2e48e713-17f3-4c13-a9f8-23845bb210aa",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "W.H. Freeman and Co.",
+        "place" : "New York",
+        "dateOfPublication" : "[2013]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2013"
+      } ],
+      "callNumber" : "QA7 .F68 2013",
+      "instanceId" : "d5e41d32-4713-3b0f-b117-89af03fad151",
+      "instanceHrid" : "in00003614173",
+      "holdingsId" : "cd12cb5f-06b5-32c9-bdd6-5c41b79ec5ad"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "96de0096-fc6f-4e3b-b3bb-818924db6e9f",
+    "courseListingId" : "323df0ca-7d2d-40ea-8e54-45158e892c5c",
+    "itemId" : "e1ff8845-feb4-3cf3-9c72-8ca23c749ee7",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14842806961",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "For all practical purposes : mathematical literacy in today's world.",
+      "contributors" : [ {
+        "name" : "Consortium for Mathematics and Its Applications (U.S.)",
+        "contributorNameTypeId" : "2e48e713-17f3-4c13-a9f8-23845bb210aa",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "W.H. Freeman and Co.",
+        "place" : "New York",
+        "dateOfPublication" : "[2013]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2013"
+      } ],
+      "callNumber" : "QA7 .F68 2013",
+      "instanceId" : "d5e41d32-4713-3b0f-b117-89af03fad151",
+      "instanceHrid" : "in00003614173",
+      "holdingsId" : "497a89a8-d88a-3ba3-9de3-06f9c5a2be19"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "415394fc-9c08-4682-855c-28854f9e4761",
+    "courseListingId" : "9d9ee905-3e90-4a5a-8a9e-4aeaf8a7b254",
+    "itemId" : "e1ff8845-feb4-3cf3-9c72-8ca23c749ee7",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14842806961",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "For all practical purposes : mathematical literacy in today's world.",
+      "contributors" : [ {
+        "name" : "Consortium for Mathematics and Its Applications (U.S.)",
+        "contributorNameTypeId" : "2e48e713-17f3-4c13-a9f8-23845bb210aa",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "W.H. Freeman and Co.",
+        "place" : "New York",
+        "dateOfPublication" : "[2013]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2013"
+      } ],
+      "callNumber" : "QA7 .F68 2013",
+      "instanceId" : "d5e41d32-4713-3b0f-b117-89af03fad151",
+      "instanceHrid" : "in00003614173",
+      "holdingsId" : "497a89a8-d88a-3ba3-9de3-06f9c5a2be19"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "8609cfed-fe9a-44d7-b586-e2c670d017cb",
+    "courseListingId" : "9d9ee905-3e90-4a5a-8a9e-4aeaf8a7b254",
+    "itemId" : "fd44dffe-add5-337d-8b49-c335ca61e865",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14842806953",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "For all practical purposes : mathematical literacy in today's world.",
+      "contributors" : [ {
+        "name" : "Consortium for Mathematics and Its Applications (U.S.)",
+        "contributorNameTypeId" : "2e48e713-17f3-4c13-a9f8-23845bb210aa",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "W.H. Freeman and Co.",
+        "place" : "New York",
+        "dateOfPublication" : "[2013]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2013"
+      } ],
+      "callNumber" : "QA7 .F68 2013",
+      "instanceId" : "d5e41d32-4713-3b0f-b117-89af03fad151",
+      "instanceHrid" : "in00003614173",
+      "holdingsId" : "cd12cb5f-06b5-32c9-bdd6-5c41b79ec5ad"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "a8394d42-d00d-4554-946f-a7bee3814fc9",
+    "courseListingId" : "9949059c-cc85-4c77-90de-b9f93cc5cab1",
+    "itemId" : "271007ff-1aea-3ef0-b422-fe13de003fb1",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14835008030",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The ethnic cleansing of Palestine / Ilan Pappe.",
+      "contributors" : [ {
+        "name" : "Pappé, Ilan",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Oneworld",
+        "place" : "Oxford",
+        "dateOfPublication" : "2006",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "DS119.7 .P28882 2006",
+      "instanceId" : "83307fe8-d622-3f66-b850-1bcecb49b707",
+      "instanceHrid" : "in00002179040",
+      "holdingsId" : "35a16c77-eae5-3011-b1bc-479a11d6e020"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "6e44744f-2697-4a46-8f7d-2bdb067cff4f",
+    "courseListingId" : "5191d522-6cfe-4dcc-973b-50c0f005801c",
+    "itemId" : "42ef5f18-69ac-3872-9165-9a3a5dc238bd",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14843440075",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Extinction : a radical history / Ashely Dawson.",
+      "contributors" : [ {
+        "name" : "Dawson, Ashley, 1965-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Or Books Llc",
+        "place" : "New York",
+        "dateOfPublication" : "[2016]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2016"
+      } ],
+      "callNumber" : "QE721.2.E97 D39 2016",
+      "instanceId" : "57c1051c-659f-3738-b281-52a73de010bf",
+      "instanceHrid" : "in00003795194",
+      "holdingsId" : "22ad8109-73bd-3859-a55f-c92b3fa4f845"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "c6f0b98e-5bf9-436b-9efb-a7f1ac392e89",
+    "courseListingId" : "81c7850c-f9a6-4463-bf1a-4a98626d6530",
+    "itemId" : "337525aa-cf83-30c0-ad45-47919c13caa4",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14830056787",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "title" : "An introduction to abstract mathematics.",
+      "contributors" : [ {
+        "name" : "Bond, Robert J",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ ],
+      "callNumber" : "QA37.2 .B63 2017",
+      "instanceId" : "07227e77-1d80-350c-8f8c-770782922d79",
+      "instanceHrid" : "in00004161395",
+      "holdingsId" : "6e50adb2-9179-38c5-990a-8a2c47604726"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "acf094a6-f1c2-4d25-8a7d-0705b9ca5684",
+    "courseListingId" : "9949059c-cc85-4c77-90de-b9f93cc5cab1",
+    "itemId" : "ce73a6d2-60a8-3df1-a798-6ca2e42b4a30",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14840008516",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Life as politics : how ordinary people change the Middle East / Asef Bayat.",
+      "contributors" : [ {
+        "name" : "Bayat, Asef",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Stanford University Press",
+        "place" : "Stanford, Calif.",
+        "dateOfPublication" : "[2010]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2010"
+      } ],
+      "callNumber" : "HN656.A8 B378 2010",
+      "instanceId" : "e3d56dac-8fd7-3d40-bc65-940ceac2b990",
+      "instanceHrid" : "in00002484885",
+      "holdingsId" : "73daa23c-075e-3435-9661-697a7da04ff6"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "d4d237c1-d32f-4c37-b722-5b5040abd4df",
+    "courseListingId" : "076c5fc2-8cd1-472c-8bc2-2b7892f3e539",
+    "itemId" : "7502e025-4046-3fc7-ac1a-e553103d6066",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14850458440",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "MATLAB : an introduction with applications / Amos Gilat, Department of Mechanical and Aerospace Engineering, the Ohio State University.",
+      "contributors" : [ {
+        "name" : "Gilat, Amos,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "John Wiley & Sons",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "QA297 .G48 2017",
+      "instanceId" : "8cfa0cbd-4685-3f0a-80a0-c29696e39b15",
+      "instanceHrid" : "in00004131293",
+      "holdingsId" : "e344481e-2360-3c68-a906-bad1d31bbe29"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "477174ee-49a1-48c1-9186-116709a57097",
+    "courseListingId" : "9502751e-efe9-49af-b591-45a01706a847",
+    "itemId" : "b777ae02-df92-3b87-a0ab-458d7b8725c8",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14842803224",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "A problem solving approach to mathematics for elementary school teachers / Rick Billstein, Shlomo Libeskind, Johnny W. Lott.",
+      "contributors" : [ {
+        "name" : "Billstein, Rick",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Libeskind, Shlomo",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Lott, Johnny W., 1944-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson",
+        "place" : "Boston",
+        "dateOfPublication" : "[2013]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2013"
+      } ],
+      "callNumber" : "QA135.6 .B55 2013",
+      "instanceId" : "1ec968b4-4687-3ddc-8255-8e4d952b0d94",
+      "instanceHrid" : "in00003510045",
+      "holdingsId" : "af4e5349-1576-35c7-9b41-2d2416be3e10"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "3f111b4d-3fbe-4a2f-b2e2-d69d401d0fb7",
+    "courseListingId" : "e47723de-91cf-4c71-bfcc-d1d3d874cfab",
+    "itemId" : "8ae66034-1517-3bea-af17-f121aad46527",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14842802333",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "On revolution / Hannah Arendt ; introduction by Jonathan Schell.",
+      "contributors" : [ {
+        "name" : "Arendt, Hannah, 1906-1975",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Penguin Books",
+        "place" : "New York",
+        "dateOfPublication" : "2006",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "JC491 .A68 2006",
+      "instanceId" : "ec4a47d3-8e77-3afe-b5d6-1ce56f4d6a53",
+      "instanceHrid" : "in00003534711",
+      "holdingsId" : "b4b55c43-f5f8-349d-b8f2-4c3c09c85181"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "14c1e1ec-ffb3-4103-8ed7-48b561a5a9c5",
+    "courseListingId" : "9949059c-cc85-4c77-90de-b9f93cc5cab1",
+    "itemId" : "00729e2b-3609-3a02-a083-40a4ff8c6219",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14831053716",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "02142700-be62-4c6e-85ae-adcd9582fa91",
+      "title" : "Islamic activism : a social movement theory approach / edited by Quintan Wiktorowicz.",
+      "contributors" : [ {
+        "name" : "Wiktorowicz, Quintan, 1970-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Indiana University Press",
+        "place" : "Bloomington, Ind.",
+        "dateOfPublication" : "[2004]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2004"
+      } ],
+      "callNumber" : "HN766.A8 I85 2004",
+      "instanceId" : "7023d6a0-8cd9-3e5b-98ed-066de8ac162a",
+      "instanceHrid" : "in00001791223",
+      "holdingsId" : "c7034546-6ab5-308a-ae7f-d36ccc4287e2"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "12928ead-a448-479e-87ce-ca20d78acf93",
+    "courseListingId" : "9949059c-cc85-4c77-90de-b9f93cc5cab1",
+    "itemId" : "a430e38b-a14e-3c29-a475-d4fd3b9a4904",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14839820418",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Engaging the Muslim world / Juan Cole.",
+      "contributors" : [ {
+        "name" : "Cole, Juan Ricardo",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Palgrave Macmillan",
+        "place" : "New York",
+        "dateOfPublication" : "2009",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "DS35.74.U6 C65 2009",
+      "instanceId" : "8dad6be5-ced0-3149-bccd-36513e652c3d",
+      "instanceHrid" : "in00002508156",
+      "holdingsId" : "520d0a9c-af6f-381a-b6f2-af7fc6f51b93"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "9a4a0be0-b249-43b5-ac66-aa318ae1cc6d",
+    "courseListingId" : "bf267f9f-c2bc-490e-b31a-2c35c4de9a79",
+    "itemId" : "76086af4-b9e1-3920-a41c-0cf1b434afd3",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26",
+    "endDate" : "2020-05-18",
+    "copiedItem" : {
+      "barcode" : "A14843622904",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Elementary linear algebra / Stephen Andrilli, David Hecker.",
+      "contributors" : [ {
+        "name" : "Andrilli, Stephen Francis, 1952-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Hecker, David",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Elsevier Academic Press",
+        "place" : "Amsterdam ; Boston",
+        "dateOfPublication" : "[2010]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2010"
+      } ],
+      "callNumber" : "QA184.2 .A53 2010",
+      "instanceId" : "64a08dcc-a2d2-3cfe-b5d4-431ed4e81c0e",
+      "instanceHrid" : "in00003766996",
+      "holdingsId" : "db28d20a-0342-3721-a1f1-fe16f3817b95"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "5bd11e80-78d5-47c6-a7a1-941fa7a6f5f1",
+    "courseListingId" : "a9fd80ac-7f87-46b6-bc90-7ab40b6d87c3",
+    "itemId" : "70e5fbf7-e3c2-390b-aaf6-1e0ae76ddb4f",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14851521386",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Pandemic! : COVID-19 shakes the world / Slavoj Zizek.",
+      "contributors" : [ {
+        "name" : "Žižek, Slavoj,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Polity Press",
+        "place" : "New York",
+        "dateOfPublication" : "2020",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "RA644.C67 Z59 2020",
+      "instanceId" : "fb33660d-2e56-3f04-8f9f-0905cbba38ca",
+      "instanceHrid" : "in00004518797",
+      "holdingsId" : "e03204ae-22a4-304b-b4c4-1710b01e9a27"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "60f085f9-3a86-4df6-90f0-8099b1704db6",
+    "courseListingId" : "5191d522-6cfe-4dcc-973b-50c0f005801c",
+    "itemId" : "70e5fbf7-e3c2-390b-aaf6-1e0ae76ddb4f",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14851521386",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Pandemic! : COVID-19 shakes the world / Slavoj Zizek.",
+      "contributors" : [ {
+        "name" : "Žižek, Slavoj,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Polity Press",
+        "place" : "New York",
+        "dateOfPublication" : "2020",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "RA644.C67 Z59 2020",
+      "instanceId" : "fb33660d-2e56-3f04-8f9f-0905cbba38ca",
+      "instanceHrid" : "in00004518797",
+      "holdingsId" : "e03204ae-22a4-304b-b4c4-1710b01e9a27"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "927c4655-9d57-4539-9b2b-a1a862d2d018",
+    "courseListingId" : "9f44a40a-22c3-4a4a-bd06-b06d99cc1979",
+    "itemId" : "b6b2a772-52a0-3f5a-8c30-dd65f2b5b520",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2021-07-30",
+    "endDate" : "2021-12-25",
+    "copiedItem" : {
+      "barcode" : "A14850985731",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The Bedford handbook / Diana Hacker, Nancy Sommers, Harvard University.",
+      "contributors" : [ {
+        "name" : "Hacker, Diana, 1942-2004,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Sommers, Nancy I.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Bedford/St. Martin's",
+        "place" : "Boston",
+        "dateOfPublication" : "[2020]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2020"
+      } ],
+      "callNumber" : "PE1408 .H277 2020",
+      "instanceId" : "2b437eae-4abd-3431-9925-5460750e816a",
+      "instanceHrid" : "in00004206008",
+      "holdingsId" : "43adad4f-9504-3bf6-a2b4-2d6a778a5a21"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "8d719906-0ba0-490d-82df-5b86564e0ca7",
+    "courseListingId" : "a038e4cb-4a55-455b-a322-77b7e8fc0f3c",
+    "itemId" : "f289cce2-e0c8-332e-a49c-3a3da8a1248e",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14842808827",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Lean thinking : banish waste and create wealth in your corporation / James P. Womack and Daniel T. Jones.",
+      "contributors" : [ {
+        "name" : "Womack, James P",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Jones, Daniel T",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Free Press",
+        "place" : "New York",
+        "dateOfPublication" : "[2003]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2003"
+      } ],
+      "callNumber" : "HD58.9 .W659 2003",
+      "instanceId" : "56195e83-8766-32bd-96f0-fd76064efe9d",
+      "instanceHrid" : "in00001764391",
+      "holdingsId" : "b1323fdd-9155-3086-9b04-bc8e93bd71c5"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "e3c65f14-f8c6-4051-a8b6-8d9e9ce8de39",
+    "courseListingId" : "8a0e0839-7556-4c71-a613-73e45e9d8366",
+    "itemId" : "9924387c-dfb7-309e-a2b4-3d74173c216a",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26",
+    "endDate" : "2020-05-18",
+    "copiedItem" : {
+      "barcode" : "A14850009508",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Queer cinema in the world / Karl Schoonover, Rosalind Galt.",
+      "contributors" : [ {
+        "name" : "Schoonover, Karl,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Galt, Rosalind,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Duke University Press",
+        "place" : "Durham, North Carolina",
+        "dateOfPublication" : "[2016]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2016"
+      } ],
+      "callNumber" : "PN1995.9.H55 S37 2016",
+      "instanceId" : "d44b41f5-ac5b-3cdd-b9b1-ff0508518ce5",
+      "instanceHrid" : "in00003809247",
+      "holdingsId" : "5a959034-fed4-3cba-948d-ac94268137ec"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "6a9c8cff-44e6-46b7-b732-0d9995362c0a",
+    "courseListingId" : "b7c1bf9c-8215-408b-a4b2-e96b9bb9fd6c",
+    "itemId" : "a81659c4-8083-39f5-9de4-3b0e064dbb99",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14843570392",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "I do not come to you by chance / Adaobi Tricia Nwaubani.",
+      "contributors" : [ {
+        "name" : "Nwaubani, Adaobi,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Hachette Books",
+        "place" : "New York",
+        "dateOfPublication" : "2015",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2009"
+      } ],
+      "callNumber" : "PR9387.9.N9335 I3 2015",
+      "instanceId" : "7387e7bd-a56d-3af8-b115-cbc857e4e586",
+      "instanceHrid" : "in00003779155",
+      "holdingsId" : "15725983-5f23-3cff-86f6-d25153c3de5e"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "31d4595a-402f-4c8c-a4e0-45ddb5c03795",
+    "courseListingId" : "caf18e3c-2114-4f13-a948-e79d4fcb5620",
+    "itemId" : "00729e2b-3609-3a02-a083-40a4ff8c6219",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14831053716",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "02142700-be62-4c6e-85ae-adcd9582fa91",
+      "title" : "Islamic activism : a social movement theory approach / edited by Quintan Wiktorowicz.",
+      "contributors" : [ {
+        "name" : "Wiktorowicz, Quintan, 1970-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Indiana University Press",
+        "place" : "Bloomington, Ind.",
+        "dateOfPublication" : "[2004]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2004"
+      } ],
+      "callNumber" : "HN766.A8 I85 2004",
+      "instanceId" : "7023d6a0-8cd9-3e5b-98ed-066de8ac162a",
+      "instanceHrid" : "in00001791223",
+      "holdingsId" : "c7034546-6ab5-308a-ae7f-d36ccc4287e2"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "8d230853-7972-42fb-8447-72c6cb914ae7",
+    "courseListingId" : "8a81e853-9f68-4693-b0a7-ff1ae485e937",
+    "itemId" : "572a2ba8-7781-39f1-950f-f0b4822c107e",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14836210800",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The performance studies reader / edited by Henry Bial.",
+      "contributors" : [ {
+        "name" : "Bial, Henry, 1970-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Routledge",
+        "place" : "London ; New York",
+        "dateOfPublication" : "2007",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "PN2041.A57 P49 2007",
+      "instanceId" : "b67ac46d-230c-33a9-b0fd-2d90c2a37bc5",
+      "instanceHrid" : "in00002193926",
+      "holdingsId" : "36d44372-4954-3afc-a4eb-2d5a127c3313"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "f155a68f-9291-4f0d-9e3d-6278e2f41cb3",
+    "courseListingId" : "29f30d4b-c5e8-4196-a320-d80ec3cf1758",
+    "itemId" : "a1848f8f-e53b-3c21-859b-0cf0f3c434df",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14851521998",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The art of the graphic memoir : tell your story, change your life / Tom Hart.",
+      "contributors" : [ {
+        "name" : "Hart, Tom, 1969-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "St. Martin's Griffin",
+        "place" : "New York",
+        "dateOfPublication" : "[2018]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2018"
+      } ],
+      "callNumber" : "PN6714 .H37 2018",
+      "instanceId" : "02c1d966-49cc-33e7-bf3a-a5bc10353818",
+      "instanceHrid" : "in00004658463",
+      "holdingsId" : "7a0b812e-06e7-3577-ad2c-dd28e2d0f2bf"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "271d3859-e85c-49ac-bede-97fee4f9fa0b",
+    "courseListingId" : "caf18e3c-2114-4f13-a948-e79d4fcb5620",
+    "itemId" : "ce73a6d2-60a8-3df1-a798-6ca2e42b4a30",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14840008516",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Life as politics : how ordinary people change the Middle East / Asef Bayat.",
+      "contributors" : [ {
+        "name" : "Bayat, Asef",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Stanford University Press",
+        "place" : "Stanford, Calif.",
+        "dateOfPublication" : "[2010]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2010"
+      } ],
+      "callNumber" : "HN656.A8 B378 2010",
+      "instanceId" : "e3d56dac-8fd7-3d40-bc65-940ceac2b990",
+      "instanceHrid" : "in00002484885",
+      "holdingsId" : "73daa23c-075e-3435-9661-697a7da04ff6"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "db09c845-17bb-4411-868c-d18ef8d1215d",
+    "courseListingId" : "114cfa47-a829-4f44-aa31-cef71d99770b",
+    "itemId" : "edef2992-839a-31c9-8530-edc1d6d1080b",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14842807266",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Engineering mechanics. Statics / R.C. Hibbeler.",
+      "contributors" : [ {
+        "name" : "Hibbeler, R. C.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson Prentice Hall",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2016]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2016"
+      } ],
+      "callNumber" : "TA351 .H5 2016",
+      "instanceId" : "dc3a3036-b4e6-3ce8-92d9-2f7587d9877a",
+      "instanceHrid" : "in00003627879",
+      "holdingsId" : "87ce535a-f6b4-332e-b277-bdccef5f9504"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "2d649a01-33f5-4c1c-8833-faaa12c1f1e4",
+    "courseListingId" : "f684b203-a6a5-4ca1-a7f2-3a19c4404b08",
+    "itemId" : "2740ab9b-b682-3f98-a61a-8310a7e92b47",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14828504897",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Nonlinear systems / Hassan K. Khalil.",
+      "contributors" : [ {
+        "name" : "Khalil, Hassan K., 1950-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Prentice Hall",
+        "place" : "Upper Saddle River, NJ",
+        "dateOfPublication" : "[2002]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2002"
+      } ],
+      "callNumber" : "QA427 .K48 2002",
+      "instanceId" : "b552295e-8dd5-3d79-90d5-38abe5d671ff",
+      "instanceHrid" : "in00001667465",
+      "holdingsId" : "8000a807-a164-3330-96da-b3ee7c642632"
+    }
+  }, {
+    "id" : "ed74fa44-e061-4d4e-919b-8efa848c2b14",
+    "courseListingId" : "c82d5f85-eb21-4991-a2bd-589d95309c62",
+    "itemId" : "ca16bc14-3138-33e5-a424-819dbfc0d22b",
+    "copiedItem" : {
+      "barcode" : "A14850460065",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The Norton Anthology of African American literature / Henry Louis Gates, Jr., general editor, Alphonse Fletcher University Professor and Director of the W.E.B. Du Bois Institute for African and American Research, Harvard University ; Valerie Smith, general editor, Dean of the College, Woodrow Wilson Professor of Literature, Professor of English and African American Studies, Princeton University.",
+      "contributors" : [ {
+        "name" : "Gates, Henry Louis, Jr.,",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Smith, Valerie, 1956-",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "W.W. Norton & Company",
+        "place" : "New York",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "PS508.N3 N67 2014",
+      "enumeration" : "v.1",
+      "instanceId" : "cfaeec33-d2e6-3a15-89c8-203cad0ec8ca",
+      "instanceHrid" : "in00004078055",
+      "holdingsId" : "d4bc3312-6c39-39d4-881c-58f128d42766"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "0211c70b-e609-4a41-b530-427b81f28da7",
+    "courseListingId" : "a5720cdd-97bd-44ae-887f-21c2919da428",
+    "itemId" : "91a26cf1-db3e-30e7-8775-09514425c852",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14840139676",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "An introduction to analysis / William R. Wade.",
+      "contributors" : [ {
+        "name" : "Wade, W. R",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson/Prentice Hall",
+        "place" : "Upper Saddle River, N.J.",
+        "dateOfPublication" : "[2010]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2010"
+      } ],
+      "callNumber" : "QA300 .W25 2010",
+      "instanceId" : "c97f0f38-6394-3f0c-96f7-e555819225b6",
+      "instanceHrid" : "in00002544305",
+      "holdingsId" : "64763119-685f-31f9-b5dc-2d90157c738c"
+    }
+  }, {
+    "id" : "23e6cf03-f84c-4e21-b79d-0f45c8aa3467",
+    "courseListingId" : "6aa0244b-03c5-450d-be13-94c76c5895b9",
+    "itemId" : "22aded6c-faf7-38a3-bba8-cb0195a3df9f",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30",
+    "endDate" : "2020-12-25",
+    "copiedItem" : {
+      "barcode" : "A14850824476",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Engineering economic analysis / Donald G. Newnan, San Jose State University, Ted G. Eschenbach, University of Alaska Anchorage, Jerome P. Lavelle, North Carolina State University, Neal A. Lewis, University of New Haven.",
+      "contributors" : [ {
+        "name" : "Newnan, Donald G.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Eschenbach, Ted G., 1951-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Lavelle, Jerome P.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Lewis, Neal A.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Oxford University Press",
+        "place" : "New York",
+        "dateOfPublication" : "[2020]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2020"
+      } ],
+      "callNumber" : "TA177.4 .N48 2020",
+      "instanceId" : "c448bd2c-4ca4-3931-a66f-203bbe9ce67e",
+      "instanceHrid" : "in00004138750",
+      "holdingsId" : "be37cb38-d5b9-3706-9a48-fff6806d078f"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "24bba541-12b5-432a-94bb-2da98549029f",
+    "courseListingId" : "9eea0267-2ea4-40bb-8902-8ca860f20e66",
+    "itemId" : "33ad0776-4034-3d70-821e-c44bf94fc3ad",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14811653855",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Theory of vibration with applications / [by] William T. Thomson.",
+      "contributors" : [ {
+        "name" : "Thomson, William Tyrrell",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Prentice-Hall",
+        "place" : "Englewood Cliffs, N.J.",
+        "dateOfPublication" : "[1972]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "[©1972]"
+      } ],
+      "callNumber" : "TA355 .T47 1972",
+      "instanceId" : "9ca1943e-aa14-3717-b102-4cda0c587307",
+      "instanceHrid" : "in00000715592",
+      "holdingsId" : "e73a05bc-d90f-3020-a033-c24dfd2f2d72"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "553ff3f1-3d4f-4490-a498-6edad161dd3f",
+    "courseListingId" : "a038e4cb-4a55-455b-a322-77b7e8fc0f3c",
+    "itemId" : "26c89852-68ff-399e-9089-15d8b9dbf88f",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14843621997",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The lean toolbox : a handbook for lean transformation / by John Bicheno and Matthias Holweg.",
+      "contributors" : [ {
+        "name" : "Bichero, John,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Holweg, Matthias,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "PICSIE Books",
+        "place" : "Buckingham, England",
+        "dateOfPublication" : "[2016]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2016"
+      } ],
+      "callNumber" : "HD58.9 .B53 2016",
+      "instanceId" : "ce639b69-d6cd-328b-820e-74e732699f13",
+      "instanceHrid" : "in00003802745",
+      "holdingsId" : "1e8f33c6-8172-3a95-98e1-4c799c25cb52"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "7cda131c-8f27-4834-ba89-97059d840175",
+    "courseListingId" : "43c144dc-17dc-476d-ad64-0ae0b2d2899f",
+    "itemId" : "429cdc2e-b4f9-3c35-9bf1-3bd3f0b27e07",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14850204471",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The writer's field guide to the craft of fiction / Michael Noll.",
+      "contributors" : [ {
+        "name" : "Noll, Michael,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "A Strange Object",
+        "place" : "Austin",
+        "dateOfPublication" : "[2018]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2018"
+      } ],
+      "callNumber" : "PN3355 .N65 2018",
+      "instanceId" : "9787ffde-3ecf-3b35-95c9-e816d5514ce2",
+      "instanceHrid" : "in00004147423",
+      "holdingsId" : "7adb7ceb-de11-3457-86f8-8877e0ffb445"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "f5baa5fc-5df1-4aae-82d2-8b69b2a8e201",
+    "courseListingId" : "9fd8ca31-dccc-48f0-9f28-1400ed927a21",
+    "itemId" : "c31e6c7b-b344-38a5-912f-0ef3520643b4",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14851520594",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "L'Italia come storia : primato, decadenza, eccezione / a cura di Francesco Benigno e E. Igor Mineo.",
+      "contributors" : [ {
+        "name" : "Benigno, Francesco,",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Mineo, E. Igor,",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Discutere la storia d'Italia (Conference) (2012 : Istituto storico italo-germanico)",
+        "contributorNameTypeId" : "e8b311a6-3b21-43f2-a269-dd9310cb2d0a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Viella",
+        "place" : "Roma",
+        "dateOfPublication" : "[2020]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2020"
+      } ],
+      "callNumber" : "DG465 .I78 2020",
+      "instanceId" : "3b95f922-9224-3b11-84e2-28f3f31d228e",
+      "instanceHrid" : "in00004505869",
+      "holdingsId" : "6e5d232a-a64a-364e-b75e-581d4e3fd877"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "a9a7afeb-5cd2-4a67-b588-8f5ca48d46b2",
+    "courseListingId" : "4c8d10f8-6f40-43bd-a806-fc8b6e2fc9d8",
+    "itemId" : "03517265-b58d-3f8b-b6b0-f2307d04e0e6",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14843438988",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Restoring neighborhood streams : planning, design, and construction / Ann L. Riley.",
+      "contributors" : [ {
+        "name" : "Riley, Ann L. (Ann Lawrence), 1950-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Island Press",
+        "place" : "Washington, D.C.",
+        "dateOfPublication" : "[2016]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2016"
+      } ],
+      "callNumber" : "QH 75 .R54 2016",
+      "instanceId" : "14aba6f2-d1ac-3222-be44-1734df139b2d",
+      "instanceHrid" : "in00003756337",
+      "holdingsId" : "69219e27-da84-37a9-8cf4-8847428f722d"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "6334fc8a-eca4-4254-b125-c62bac44eec9",
+    "courseListingId" : "8a81e853-9f68-4693-b0a7-ff1ae485e937",
+    "itemId" : "7111aaa0-ad82-3e55-b0e8-ee54b56bee0f",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14850459612",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The performance studies reader / edited by Henry Bial and Sara Brady.",
+      "contributors" : [ {
+        "name" : "Bial, Henry, 1970-",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Brady, Sara,",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Routledge",
+        "place" : "London ; New York",
+        "dateOfPublication" : "[2016]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2016"
+      } ],
+      "callNumber" : "PN2041.A57 P49 2016",
+      "instanceId" : "c13058f4-7484-39d7-a2db-d4e56a87dba6",
+      "instanceHrid" : "in00004074839",
+      "holdingsId" : "f2cf9a95-8038-3e02-bc9b-5d27193b5b58"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "1cfcc6d5-448e-4dc0-9703-c15a0b232450",
+    "courseListingId" : "a29c6d6a-bada-4489-bf7e-9e62d6e1d86b",
+    "itemId" : "cc749419-bb8a-3dab-8d54-3c7de90e2f44",
+    "copiedItem" : {
+      "barcode" : "A14850457962",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The secret history of fantasy / edited by Peter S. Beagle.",
+      "contributors" : [ {
+        "name" : "Beagle, Peter S.,",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Tachyon",
+        "place" : "San Francisco",
+        "dateOfPublication" : "[2010]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2010"
+      } ],
+      "callNumber" : "PS648.F3 S42 2010",
+      "instanceId" : "7dc7445b-fe08-39c0-b41d-caa9c0f28105",
+      "instanceHrid" : "in00004065331",
+      "holdingsId" : "d6eab4ce-20c7-3d8b-b15b-3743478809d9"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ad3e2a1b-1be1-411c-ace6-db32a447c5f1",
+    "courseListingId" : "b04415be-85ee-42ab-8129-815e162c813a",
+    "itemId" : "752b38d2-8978-368d-a30c-2dd8ffc340b0",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14840327928",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "River of angels / Alejandro Morales.",
+      "contributors" : [ {
+        "name" : "Morales, Alejandro, 1944-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Arte Público Press",
+        "place" : "Houston, Texas",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "PS3563.O759 R58 2014",
+      "instanceId" : "e09087b3-bb21-38e5-851f-a2d7433f5983",
+      "instanceHrid" : "in00003502519",
+      "holdingsId" : "c7a3c918-2793-3cf3-81dc-7ae8257aa39c"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "708eb93e-4901-4f7b-8a4c-9afc6364401b",
+    "courseListingId" : "68db9854-8361-40d9-95fb-b04ee9cea6e8",
+    "itemId" : "4ccf774b-2d81-3111-ad67-60a4023aff04",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26T06:00:00.000Z",
+    "endDate" : "2020-05-18T05:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14817352130",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Intoxicated by my illness : and other writings on life and death / Anatole Broyard ; compiled and edited by Alexandra Broyard ; foreword by Oliver Sacks.",
+      "contributors" : [ {
+        "name" : "Broyard, Anatole",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "C. Potter",
+        "place" : "New York",
+        "dateOfPublication" : "[1992]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©1992"
+      } ],
+      "callNumber" : "PS29.B76 A3 1992",
+      "instanceId" : "a28df087-9622-345a-84fa-2e6ab978e62e",
+      "instanceHrid" : "in00001171549",
+      "holdingsId" : "a4b85a65-71c1-341c-858f-31263827aa66"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "954c2d46-b411-4406-8947-b00cdad08e6a",
+    "courseListingId" : "e80356a3-0154-4c05-a9f6-db08f93c267e",
+    "itemId" : "189f30b3-5742-3ad5-841d-694575d2374b",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2019-12-26",
+    "endDate" : "2020-05-18",
+    "copiedItem" : {
+      "barcode" : "A14835623733",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Fundamentals of rock mechanics / J.C. Jaeger, N.G.W. Cook, and R.W. Zimmerman.",
+      "contributors" : [ {
+        "name" : "Jaeger, J. C. (John Conrad), 1907-1979",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Cook, Neville G. W",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Zimmerman, Robert Wayne",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Blackwell Pub.",
+        "place" : "Malden, MA",
+        "dateOfPublication" : "2007",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "TA706 .J32 2007",
+      "instanceId" : "1b8882d6-abf4-3dd1-a1aa-312ec26095b1",
+      "instanceHrid" : "in00002176269",
+      "holdingsId" : "2b20a37f-1d04-33ae-95a6-6d8ccc52297f"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "d9fb66a3-9b95-4190-be16-e1514a2bc242",
+    "courseListingId" : "29f30d4b-c5e8-4196-a320-d80ec3cf1758",
+    "itemId" : "0322365a-5451-3f85-8902-9c7b6a8285be",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14850266371",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Why comics? : from underground to everywhere / Hillary Chute.",
+      "contributors" : [ {
+        "name" : "Chute, Hillary L.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Harper, an imprint of HarperCollinsPublishers",
+        "place" : "New York",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "PN6710 .C48 2017",
+      "instanceId" : "722fa2f4-f5a4-3362-9cd4-24a560d0348e",
+      "instanceHrid" : "in00004015619",
+      "holdingsId" : "1d964d5d-9ec1-343d-8db3-d81044d25831"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "7ae161e6-c7fd-4e18-82c8-6cdb9665e77e",
+    "courseListingId" : "bda180d6-c255-41bc-8227-89edde100b95",
+    "itemId" : "ca16bc14-3138-33e5-a424-819dbfc0d22b",
+    "copiedItem" : {
+      "barcode" : "A14850460065",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The Norton Anthology of African American literature / Henry Louis Gates, Jr., general editor, Alphonse Fletcher University Professor and Director of the W.E.B. Du Bois Institute for African and American Research, Harvard University ; Valerie Smith, general editor, Dean of the College, Woodrow Wilson Professor of Literature, Professor of English and African American Studies, Princeton University.",
+      "contributors" : [ {
+        "name" : "Gates, Henry Louis, Jr.,",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Smith, Valerie, 1956-",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "W.W. Norton & Company",
+        "place" : "New York",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "PS508.N3 N67 2014",
+      "enumeration" : "v.1",
+      "instanceId" : "cfaeec33-d2e6-3a15-89c8-203cad0ec8ca",
+      "instanceHrid" : "in00004078055",
+      "holdingsId" : "d4bc3312-6c39-39d4-881c-58f128d42766"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "5dd2812e-c3c5-4b84-93b3-5133a730d605",
+    "courseListingId" : "a5e02c7b-ef5a-45d7-a9ac-8eefc94fd7fa",
+    "itemId" : "4c89d004-1aed-3b2e-a89f-5f64de8c8e65",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30",
+    "endDate" : "2020-12-25",
+    "copiedItem" : {
+      "barcode" : "A14836364976",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The essential theatre / Oscar G. Brockett, Robert J. Ball.",
+      "contributors" : [ {
+        "name" : "Brockett, Oscar G. (Oscar Gross), 1923-2010",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Ball, Robert J",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Thomson Wadsworth",
+        "place" : "Boston, MA, USA",
+        "dateOfPublication" : "[2008]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2008"
+      } ],
+      "callNumber" : "PN2101 .B72 2008",
+      "instanceId" : "12d03b16-195e-3907-aa3f-c6f3a15b74ed",
+      "instanceHrid" : "in00002322144",
+      "holdingsId" : "8ed4ae78-ae82-370e-a5e1-e8fa727d79b2"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "e86cfb4d-346d-4a82-9fc0-bd96b1853b66",
+    "courseListingId" : "29f30d4b-c5e8-4196-a320-d80ec3cf1758",
+    "itemId" : "ea404827-57a4-38c8-b7a9-92852e1932ef",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14837007713",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Black hole / Charles Burns.",
+      "contributors" : [ {
+        "name" : "Burns, Charles, 1955-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Pantheon Books",
+        "place" : "New York",
+        "dateOfPublication" : "[2005]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2005"
+      } ],
+      "callNumber" : "PN6727.B87 B53 2005",
+      "instanceId" : "dd392b88-9811-3079-bd58-54bc04bf9218",
+      "instanceHrid" : "in00002084987",
+      "holdingsId" : "97093aaf-4a74-3a0f-8339-d829f0c89f00"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "a9565771-88a8-40e9-9278-8ae60c26868c",
+    "courseListingId" : "a4f4dc87-1cbc-4b49-a326-899f44bdc028",
+    "itemId" : "c7b790ba-9f1e-3b8a-928e-380041227586",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14850557035",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Drawn to Berlin : comic workshops in refugee shelters and other stories from a new Europe / Ali Fitzgerald.",
+      "contributors" : [ {
+        "name" : "Fitzgerald, Ali,",
+        "contributorTypeText" : "author, illustrator.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Fantagraphics Books",
+        "place" : "Seattle",
+        "dateOfPublication" : "[2018]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2018"
+      } ],
+      "callNumber" : "PN6727.F49 D73 2018",
+      "instanceId" : "efb87e59-a106-37e9-a6a6-55442f724da8",
+      "instanceHrid" : "in00004063444",
+      "holdingsId" : "06d04e66-5254-3eca-9504-92248e1f6558"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "3ff7470b-6903-4a02-bfa5-5d9913d7641c",
+    "courseListingId" : "3f27dc48-ebf1-4ed1-b65d-ef6cab0e909a",
+    "itemId" : "aabc6079-86b0-37cc-bfea-058efaff1e3f",
+    "copiedItem" : {
+      "barcode" : "A14850624165",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The Norton Anthology of African American literature / Henry Louis Gates, Jr., general editor, Alphonse Fletcher University Professor and Director of the W.E.B. Du Bois Institute for African and American Research, Harvard University ; Valerie Smith, general editor, Dean of the College, Woodrow Wilson Professor of Literature, Professor of English and African American Studies, Princeton University.",
+      "contributors" : [ {
+        "name" : "Gates, Henry Louis, Jr.,",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Smith, Valerie, 1956-",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "W.W. Norton & Company",
+        "place" : "New York",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "PS508.N3 N67 2014",
+      "enumeration" : "v.2",
+      "instanceId" : "cfaeec33-d2e6-3a15-89c8-203cad0ec8ca",
+      "instanceHrid" : "in00004078055",
+      "holdingsId" : "d4bc3312-6c39-39d4-881c-58f128d42766"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "3936d362-1703-45d6-b68a-ec13b8f9d54f",
+    "courseListingId" : "a5720cdd-97bd-44ae-887f-21c2919da428",
+    "itemId" : "0a1de8cf-03f3-3bd1-a288-48b5adff1b33",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14850204901",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "An introduction to analysis / William R. Wade, University of Tennessee.",
+      "contributors" : [ {
+        "name" : "Wade, W. R",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson",
+        "place" : "New York",
+        "dateOfPublication" : "[2018]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2018"
+      } ],
+      "callNumber" : "QA300 .W25 2018",
+      "instanceId" : "46fbfb77-0b55-39c5-8d75-f6444d0c1904",
+      "instanceHrid" : "in00004135375",
+      "holdingsId" : "a21a28cf-74cf-387b-8b67-7927cad1376f"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "55a05fc6-e5f2-40f2-93e8-41cd8d0a1066",
+    "courseListingId" : "cfcc84b2-809d-4407-8b57-68e5a300a023",
+    "itemId" : "a05ee80b-eaea-37f6-bead-f47acf5bfbc9",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30",
+    "endDate" : "2020-12-25",
+    "copiedItem" : {
+      "barcode" : "A14842806946",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Engineering mechanics. Dynamics / R.C. Hibbeler.",
+      "contributors" : [ {
+        "name" : "Hibbeler, R. C",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2016]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2016"
+      } ],
+      "callNumber" : "TA352 .H5 2016",
+      "instanceId" : "3b68d1a4-f5c5-3dd3-bd12-046ceb8aaffc",
+      "instanceHrid" : "in00003546474",
+      "holdingsId" : "99888121-fb20-3c45-bbf4-41b11b0589a0"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "f2106478-c715-43d6-9340-00cd17aed6e5",
+    "courseListingId" : "8ce5b1f5-fa11-47ee-b77a-1cab6ac1c944",
+    "itemId" : "4c89d004-1aed-3b2e-a89f-5f64de8c8e65",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14836364976",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The essential theatre / Oscar G. Brockett, Robert J. Ball.",
+      "contributors" : [ {
+        "name" : "Brockett, Oscar G. (Oscar Gross), 1923-2010",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Ball, Robert J",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Thomson Wadsworth",
+        "place" : "Boston, MA, USA",
+        "dateOfPublication" : "[2008]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2008"
+      } ],
+      "callNumber" : "PN2101 .B72 2008",
+      "instanceId" : "12d03b16-195e-3907-aa3f-c6f3a15b74ed",
+      "instanceHrid" : "in00002322144",
+      "holdingsId" : "8ed4ae78-ae82-370e-a5e1-e8fa727d79b2"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "32aeb8ba-9e04-46fb-b068-54204eac6f44",
+    "courseListingId" : "c9a018f4-bc23-4b7c-bf8f-b06a4f579e5c",
+    "itemId" : "26b851a1-ec8b-3d6a-a171-33ea04f81820",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14851523606",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "History of the theatre / Oscar G. Brockett, Franklin J. Hildy.",
+      "contributors" : [ {
+        "name" : "Brockett, Oscar G. (Oscar Gross), 1923-2010,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Hildy, Franklin J. (Franklin Joseph), 1953-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson Education, Inc.",
+        "place" : "Boston",
+        "dateOfPublication" : "[2008]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2008"
+      } ],
+      "callNumber" : "PN2101 .B68 2008",
+      "instanceId" : "a8188682-8cd1-3f59-8b69-645417f0424a",
+      "instanceHrid" : "in00004671221",
+      "holdingsId" : "157e7a46-1cfc-31ad-9679-537210a07ec0"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "7a5f4ba1-1306-4047-a454-d4198da55d48",
+    "courseListingId" : "e4059100-c909-4a0a-b957-9b611bfccdde",
+    "itemId" : "aabc6079-86b0-37cc-bfea-058efaff1e3f",
+    "copiedItem" : {
+      "barcode" : "A14850624165",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "The Norton Anthology of African American literature / Henry Louis Gates, Jr., general editor, Alphonse Fletcher University Professor and Director of the W.E.B. Du Bois Institute for African and American Research, Harvard University ; Valerie Smith, general editor, Dean of the College, Woodrow Wilson Professor of Literature, Professor of English and African American Studies, Princeton University.",
+      "contributors" : [ {
+        "name" : "Gates, Henry Louis, Jr.,",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      }, {
+        "name" : "Smith, Valerie, 1956-",
+        "contributorTypeText" : "editor.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "W.W. Norton & Company",
+        "place" : "New York",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "PS508.N3 N67 2014",
+      "enumeration" : "v.2",
+      "instanceId" : "cfaeec33-d2e6-3a15-89c8-203cad0ec8ca",
+      "instanceHrid" : "in00004078055",
+      "holdingsId" : "d4bc3312-6c39-39d4-881c-58f128d42766"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "5c978936-9a14-4922-a2fc-e354781f4005",
+    "courseListingId" : "02433047-cb2f-4a76-b1f1-32d01547cd7b",
+    "itemId" : "ca12e4b7-2af7-34ca-8f74-bfff78a255ed",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30",
+    "endDate" : "2020-12-25",
+    "copiedItem" : {
+      "barcode" : "A14851522350",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Analysis : with an introduction to Proof / Steven R. Lay, Lee University.",
+      "contributors" : [ {
+        "name" : "Lay, Steven R., 1944-",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Pearson",
+        "place" : "Boston",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "QA300 .L427 2014",
+      "instanceId" : "ddd86159-185d-3693-895d-86d3a1884ec3",
+      "instanceHrid" : "in00004669401",
+      "holdingsId" : "3cfe9d97-bf8e-39d5-bd3b-f1ea8c1088c9"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "26bbdff9-f021-4acc-9795-cc56554b5584",
+    "courseListingId" : "a827ca56-e8d3-46f9-9e69-a1fc8bd0e2c5",
+    "itemId" : "ed985d66-8785-38e6-8367-025647600aa6",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14803696213",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Brecht on theatre ; the development of an aesthetic / Edited and translated by John Willett.",
+      "contributors" : [ {
+        "name" : "Brecht, Bertolt, 1898-1956",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Hill and Wang",
+        "place" : "New York",
+        "dateOfPublication" : "[1964]",
+        "role" : "Publication"
+      } ],
+      "callNumber" : "PN2021 .B68",
+      "instanceId" : "c51fe838-bf0f-3a06-97bb-b6e63b7c7620",
+      "instanceHrid" : "in00000137803",
+      "holdingsId" : "0d1cca6e-8a65-3b34-bf9b-2605809e0b78"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "17fb6b3e-04ce-4770-8a93-fe354addf85b",
+    "courseListingId" : "b6cd161d-6ce4-4392-9851-f752f701c83c",
+    "itemId" : "a9d49ec7-8747-33f9-8ddd-5c99d0ff8187",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14836173820",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "8998706e-e4a9-4780-be2f-4c927a9187c1",
+      "title" : "The Watsons go to Birmingham--1963 / a novel by Christopher Paul Curtis.",
+      "contributors" : [ {
+        "name" : "Curtis, Christopher Paul",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Delacorte Press",
+        "place" : "New York",
+        "dateOfPublication" : "[1995]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©1995"
+      } ],
+      "callNumber" : "PZ7.C94137 Wat 1995",
+      "instanceId" : "8cf4db87-e786-3d88-b4bc-8a76da288b75",
+      "instanceHrid" : "in00001308241",
+      "holdingsId" : "d6040796-be6f-32f2-a01e-c84d9ed71560"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "4193e43d-f0bf-429b-9ef8-93fc5b3dcf23",
+    "courseListingId" : "ab9d7417-ab64-4481-8a05-00315835491b",
+    "itemId" : "2fb40bf4-4097-3b99-86a6-44c6a3b55d43",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30",
+    "endDate" : "2020-12-25",
+    "copiedItem" : {
+      "barcode" : "A14850460099",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Neural networks and deep learning : a textbook / Charu C. Aggarwal.",
+      "contributors" : [ {
+        "name" : "Aggarwal, Charu C",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Springer",
+        "place" : "Cham, Switzerland",
+        "dateOfPublication" : "[2018]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2018"
+      } ],
+      "callNumber" : "QA76.87 .A486 2018",
+      "instanceId" : "d4b9d784-4ef9-3d9a-973a-716b9bfcd6f3",
+      "instanceHrid" : "in00004091356",
+      "holdingsId" : "9bb7b77f-ff5e-3f65-995b-d63353d39b51"
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   } ]

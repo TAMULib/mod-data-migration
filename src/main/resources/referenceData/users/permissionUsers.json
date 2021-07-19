@@ -93,10 +93,6 @@
     "userId" : "2e4195b4-9280-3bf2-83f8-be832699edb6",
     "permissions" : [ "df294639-9886-44ae-a215-257e3f0bdfd2", "8641feeb-07f3-495e-86cb-93df4eb85068", "dfe8fa76-9e3f-420e-bada-10d077ddf1ae" ]
   }, {
-    "id" : "6d3eca20-1b42-4629-bc50-2af8cc9def79",
-    "userId" : "96497b64-84be-313f-9a34-609ca97281a9",
-    "permissions" : [ "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "dfe8fa76-9e3f-420e-bada-10d077ddf1ae" ]
-  }, {
     "id" : "2128b489-4a64-4567-8e40-77a689028b24",
     "userId" : "1d1f5d98-cc98-3a54-8507-7663553356b5",
     "permissions" : [ "8641feeb-07f3-495e-86cb-93df4eb85068" ]
@@ -776,5 +772,9 @@
     "id" : "14297959-7ba6-488d-8044-29cd0e09ba48",
     "userId" : "f0c4cc32-f80d-38eb-8638-8a26e28be2b8",
     "permissions" : [ "7fd42e23-08bf-4bf3-ad66-f6e27c446649", "bbc81742-5f20-4517-9e38-a1ed0631d874", "2347a558-b532-4b28-971f-3dd05420375a", "09f9b0a3-6be0-4fac-ac18-2f379337868b", "1b58f2d9-728c-4f8a-b1b6-19da7e23bae3", "cc4a6624-190c-4872-95dd-be090a74b61f", "560116fb-772e-4a00-90a2-fdc2b748ea2b", "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "bd76b150-f075-4bdc-a93a-e6f7a563067e", "module.data-import.enabled", "9ccfdbfe-ad7e-4103-9906-b06a47940eca", "7301b3b0-7075-4e66-8c43-12ed005e6c6b", "7b0b50d2-89b5-4a3c-9137-5513a23327b7", "5b92a0a0-25a2-42a4-95e1-775f118d3ef2", "ui-orders.settings.view", "ui-orders.settings.all", "ui-orders.settings.order-templates.view", "ui-orders.settings.order-templates.edit", "ui-orders.settings.order-templates.create", "ui-orders.settings.order-templates.delete" ]
+  }, {
+    "id" : "6d3eca20-1b42-4629-bc50-2af8cc9def79",
+    "userId" : "96497b64-84be-313f-9a34-609ca97281a9",
+    "permissions" : [ "b03402f4-b8e2-45c9-b791-3d1197ab9d86", "dfe8fa76-9e3f-420e-bada-10d077ddf1ae", "9ccfdbfe-ad7e-4103-9906-b06a47940eca" ]
   } ]
 }
