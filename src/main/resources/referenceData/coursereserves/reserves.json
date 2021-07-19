@@ -28693,6 +28693,35 @@
     },
     "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   }, {
+    "id" : "f63dc938-5282-49c4-b73a-186b52211a5f",
+    "courseListingId" : "f5cce2da-56c3-41c0-9205-f5480acb43af",
+    "itemId" : "c7a3db64-1068-39cd-8308-abda5790f961",
+    "copiedItem" : {
+      "barcode" : "A14850200388",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Calculus : early transcendentals / James Stewart, McMaster University and University of Toronto.",
+      "contributors" : [ {
+        "name" : "Stewart, James, 1941-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "Cengage Learning",
+        "place" : "Boston",
+        "dateOfPublication" : "[2016]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2016"
+      } ],
+      "callNumber" : "QA303.2 .S7315 2016",
+      "instanceId" : "9ed87c32-e77b-39b0-8b35-02d9af8c2d8c",
+      "instanceHrid" : "in00003895579",
+      "holdingsId" : "c134591e-02fa-3d26-9a4d-1150a5b9ccf9"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
     "id" : "50b95ca0-4bd0-4d77-87b8-1c0f429e90b8",
     "courseListingId" : "e2db28d0-0bfd-4154-933f-d5a26c5c1748",
     "itemId" : "62635f4a-5c21-3851-9f60-e9fbe62c7c88",
@@ -28748,5 +28777,199 @@
       "instanceHrid" : "in00000996922",
       "holdingsId" : "3cd1f56d-e09b-38d2-983c-33c9ac4ccd2b"
     }
+  }, {
+    "id" : "aa393afb-9300-439c-a64d-2525ed630755",
+    "courseListingId" : "a6abfa5a-dc03-4493-87d4-faefaa4dd0d4",
+    "itemId" : "7502e025-4046-3fc7-ac1a-e553103d6066",
+    "copiedItem" : {
+      "barcode" : "A14850458440",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "MATLAB : an introduction with applications / Amos Gilat, Department of Mechanical and Aerospace Engineering, the Ohio State University.",
+      "contributors" : [ {
+        "name" : "Gilat, Amos,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "John Wiley & Sons",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "QA297 .G48 2017",
+      "instanceId" : "8cfa0cbd-4685-3f0a-80a0-c29696e39b15",
+      "instanceHrid" : "in00004131293",
+      "holdingsId" : "e344481e-2360-3c68-a906-bad1d31bbe29"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "c6df3745-1bf4-48bb-bc15-0ac7cb6ade1b",
+    "courseListingId" : "a6abfa5a-dc03-4493-87d4-faefaa4dd0d4",
+    "itemId" : "f8ff06f1-641a-3e60-9a1b-ecf7d4148a9c",
+    "copiedItem" : {
+      "barcode" : "A14850458457",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "MATLAB : an introduction with applications / Amos Gilat, Department of Mechanical and Aerospace Engineering, the Ohio State University.",
+      "contributors" : [ {
+        "name" : "Gilat, Amos,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "John Wiley & Sons",
+        "place" : "Hoboken, New Jersey",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "QA297 .G48 2017",
+      "instanceId" : "8cfa0cbd-4685-3f0a-80a0-c29696e39b15",
+      "instanceHrid" : "in00004131293",
+      "holdingsId" : "2b5f8651-6196-37d6-8d2c-3d2ea79c8a00"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ebdbe94b-090a-458c-8f7d-f2f357445f40",
+    "courseListingId" : "679a04a7-19e5-42f4-9f66-bb0a9e4c25dc",
+    "itemId" : "91f7623e-9fca-38a8-8aba-4b6618107da1",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14842400518",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Contemporary women's health : issues for today and the future / Cheryl A. Kolander, Danny Ramsey Ballard, Cynthia K. Chandler.",
+      "contributors" : [ {
+        "name" : "Kolander, Cheryl A",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "McGraw Hill Higher Education",
+        "place" : "Boston",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "RA778 .K7245 2014",
+      "instanceId" : "379053cd-bf45-38d5-b049-b289fb0680d6",
+      "instanceHrid" : "in00003498138",
+      "holdingsId" : "72f7b5bc-a60a-389f-89a0-3fee978ea85e"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "111c5afc-2f85-45ef-95e6-8d45d4737c60",
+    "courseListingId" : "679a04a7-19e5-42f4-9f66-bb0a9e4c25dc",
+    "itemId" : "78b47434-3aa8-3fd5-956d-69a21a2bde64",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14842400526",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Contemporary women's health : issues for today and the future / Cheryl A. Kolander, Danny Ramsey Ballard, Cynthia K. Chandler.",
+      "contributors" : [ {
+        "name" : "Kolander, Cheryl A",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      } ],
+      "publication" : [ {
+        "publisher" : "McGraw Hill Higher Education",
+        "place" : "Boston",
+        "dateOfPublication" : "[2014]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2014"
+      } ],
+      "callNumber" : "RA778 .K7245 2014",
+      "instanceId" : "379053cd-bf45-38d5-b049-b289fb0680d6",
+      "instanceHrid" : "in00003498138",
+      "holdingsId" : "dd1bfa31-180e-3ace-bcb6-a27888f49669"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "5c0a05ba-385d-4375-8633-ee6e41c1b306",
+    "courseListingId" : "c38552b2-c0bc-44ef-8fe2-e7e0f35112cb",
+    "itemId" : "3f448eec-29d1-3f54-b24a-d5563deeaf0e",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14850201345",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Human sexuality : making informed decisions / David Knox, Susan Milstein.",
+      "contributors" : [ {
+        "name" : "Knox, David, 1943-",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Milstein, Susan,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "BVT Publishing",
+        "place" : "Redding, California",
+        "dateOfPublication" : "[2017]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2017"
+      } ],
+      "callNumber" : "HQ21 .K66 2017",
+      "instanceId" : "0460a78b-dff5-3f4b-b425-2a260ea29cd8",
+      "instanceHrid" : "in00003941810",
+      "holdingsId" : "f6858e67-a2fc-3a03-b112-85af410fc5c5"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
+  }, {
+    "id" : "ad4ccd98-b77a-491c-a9a4-6b6749afb1f1",
+    "courseListingId" : "38343ae5-7d27-43bc-b8ee-73ec204fe8d8",
+    "itemId" : "004e9eff-4d6c-3753-b047-548541edb302",
+    "processingStatusId" : "b17dd175-1e66-490c-ac93-e8f5f65f3918",
+    "startDate" : "2020-07-30T05:00:00.000Z",
+    "endDate" : "2020-12-25T06:00:00.000Z",
+    "copiedItem" : {
+      "barcode" : "A14851520586",
+      "temporaryLocationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "permanentLocationId" : "1d1ca55a-86a1-489b-a645-2d52742c196a",
+      "title" : "Crossing borders : international studies for the 21st century / Harry I. Chernotsky, Heidi H. Hobbs.",
+      "contributors" : [ {
+        "name" : "Chernotsky, Harry Ira,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : true
+      }, {
+        "name" : "Hobbs, Heidi H.,",
+        "contributorTypeText" : "author.",
+        "contributorNameTypeId" : "2b94c631-fca9-4892-a730-03ee529ffe2a",
+        "primary" : false
+      } ],
+      "publication" : [ {
+        "publisher" : "SAGE/CQ Press",
+        "place" : "Thousand Oaks, California",
+        "dateOfPublication" : "[2018]",
+        "role" : "Publication"
+      }, {
+        "dateOfPublication" : "©2018"
+      } ],
+      "callNumber" : "HC79.T4 C4574 2018",
+      "instanceId" : "790b5e0f-c4cf-3670-b25b-8c1a78aba463",
+      "instanceHrid" : "in00004470453",
+      "holdingsId" : "da3af113-d9d8-3588-ad53-5beebeaebc61"
+    },
+    "temporaryLoanTypeId" : "886d8b42-267d-4308-bab2-3ea56a1df0dc"
   } ]
 }

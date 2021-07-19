@@ -25156,7 +25156,31 @@
         "name" : "Face to face",
         "description" : "Face to face"
       },
-      "instructorObjects" : [ ],
+      "instructorObjects" : [ {
+        "id" : "9f40e3c8-11eb-4829-a876-214645a3b11f",
+        "userId" : "43e398b8-4e7c-3b4f-8954-0d431aa4e841",
+        "name" : "Bruce Hanik",
+        "barcode" : "6016420293899661",
+        "courseListingId" : "679a04a7-19e5-42f4-9f66-bb0a9e4c25dc",
+        "metadata" : {
+          "createdDate" : "2021-07-18T23:15:04.719+00:00",
+          "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+          "updatedDate" : "2021-07-18T23:15:04.719+00:00",
+          "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+        }
+      }, {
+        "id" : "52eb1558-63a9-4f41-9653-21de108d641a",
+        "userId" : "f2ced7f5-8f8c-3484-941a-c687f0cb7afc",
+        "name" : "Erica Collins",
+        "barcode" : "6016426594639482",
+        "courseListingId" : "679a04a7-19e5-42f4-9f66-bb0a9e4c25dc",
+        "metadata" : {
+          "createdDate" : "2021-07-18T23:15:21.827+00:00",
+          "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+          "updatedDate" : "2021-07-18T23:15:21.827+00:00",
+          "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+        }
+      } ],
       "metadata" : {
         "createdDate" : "2021-07-16T05:53:08.801+00:00",
         "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
@@ -25211,7 +25235,31 @@
         "name" : "Face to face",
         "description" : "Face to face"
       },
-      "instructorObjects" : [ ],
+      "instructorObjects" : [ {
+        "id" : "9f40e3c8-11eb-4829-a876-214645a3b11f",
+        "userId" : "43e398b8-4e7c-3b4f-8954-0d431aa4e841",
+        "name" : "Bruce Hanik",
+        "barcode" : "6016420293899661",
+        "courseListingId" : "679a04a7-19e5-42f4-9f66-bb0a9e4c25dc",
+        "metadata" : {
+          "createdDate" : "2021-07-18T23:15:04.719+00:00",
+          "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+          "updatedDate" : "2021-07-18T23:15:04.719+00:00",
+          "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+        }
+      }, {
+        "id" : "52eb1558-63a9-4f41-9653-21de108d641a",
+        "userId" : "f2ced7f5-8f8c-3484-941a-c687f0cb7afc",
+        "name" : "Erica Collins",
+        "barcode" : "6016426594639482",
+        "courseListingId" : "679a04a7-19e5-42f4-9f66-bb0a9e4c25dc",
+        "metadata" : {
+          "createdDate" : "2021-07-18T23:15:21.827+00:00",
+          "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+          "updatedDate" : "2021-07-18T23:15:21.827+00:00",
+          "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+        }
+      } ],
       "metadata" : {
         "createdDate" : "2021-07-16T05:53:08.801+00:00",
         "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
@@ -31433,73 +31481,6 @@
     "courseNumber" : "INTS 481",
     "sectionName" : "902"
   }, {
-    "id" : "63182466-0094-48e7-9b82-a3d01368cbf6",
-    "name" : "INTS",
-    "departmentId" : "5760180d-95af-46c7-9fec-c3682b9327a7",
-    "departmentObject" : {
-      "id" : "5760180d-95af-46c7-9fec-c3682b9327a7",
-      "name" : "INTS",
-      "description" : "International Studies",
-      "metadata" : {
-        "createdDate" : "2021-07-01T10:45:37.811+00:00",
-        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
-        "updatedDate" : "2021-07-01T10:45:37.811+00:00",
-        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
-      }
-    },
-    "courseListingId" : "c82cdfa2-d2f4-4f0b-a765-51b87e73f269",
-    "courseListingObject" : {
-      "id" : "c82cdfa2-d2f4-4f0b-a765-51b87e73f269",
-      "registrarId" : "2020:Fall:INTS251500",
-      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
-      "locationObject" : {
-        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
-        "name" : "Evans Media and Reserves Reserve Coll.",
-        "code" : "media,res",
-        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
-        "isActive" : true,
-        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
-        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
-        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
-        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
-        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
-      },
-      "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
-      "termObject" : {
-        "id" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
-        "name" : "2020 Spring",
-        "startDate" : "2019-12-26T06:00:00.000Z",
-        "endDate" : "2020-05-18T05:00:00.000Z"
-      },
-      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
-      "courseTypeObject" : {
-        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
-        "name" : "Face to face",
-        "description" : "Face to face"
-      },
-      "instructorObjects" : [ {
-        "id" : "83c8cdde-7a7a-452d-9570-426bd044504a",
-        "userId" : "0c801982-caac-3928-9280-50a6592a423e",
-        "name" : "Sena Karasipahi",
-        "barcode" : "6016424172049729",
-        "courseListingId" : "c82cdfa2-d2f4-4f0b-a765-51b87e73f269",
-        "metadata" : {
-          "createdDate" : "2021-07-16T20:20:42.073+00:00",
-          "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
-          "updatedDate" : "2021-07-16T20:20:42.073+00:00",
-          "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
-        }
-      } ],
-      "metadata" : {
-        "createdDate" : "2021-07-16T20:20:28.121+00:00",
-        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
-        "updatedDate" : "2021-07-16T20:20:28.121+00:00",
-        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
-      }
-    },
-    "courseNumber" : "INTS 251",
-    "sectionName" : "500"
-  }, {
     "id" : "ccc91cd8-5425-48a4-9427-21e1e55ce518",
     "name" : "MATH",
     "departmentId" : "0dda7995-960f-4f6f-bf5e-7b911c84a457",
@@ -31899,5 +31880,461 @@
     },
     "courseNumber" : "SOCI 600",
     "sectionName" : "515, 600, 900"
+  }, {
+    "id" : "2839c270-e18a-4bab-a084-e43fc40a3e7a",
+    "name" : "MATH",
+    "departmentId" : "0dda7995-960f-4f6f-bf5e-7b911c84a457",
+    "departmentObject" : {
+      "id" : "0dda7995-960f-4f6f-bf5e-7b911c84a457",
+      "name" : "MATH",
+      "description" : "Mathematics",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:38.890+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:38.890+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "f5cce2da-56c3-41c0-9205-f5480acb43af",
+    "courseListingObject" : {
+      "id" : "f5cce2da-56c3-41c0-9205-f5480acb43af",
+      "registrarId" : "2020:Spring:MATH151507",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+      "termObject" : {
+        "id" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+        "name" : "2020 Spring",
+        "startDate" : "2019-12-26T06:00:00.000Z",
+        "endDate" : "2020-05-18T05:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "0207bc3d-eca8-452f-96cb-a617a9d44d04",
+        "userId" : "7d874f08-6ca6-32cf-9214-3733a8e63508",
+        "name" : "Bret Lockhart",
+        "barcode" : "6016426594667251",
+        "courseListingId" : "f5cce2da-56c3-41c0-9205-f5480acb43af",
+        "metadata" : {
+          "createdDate" : "2021-07-18T20:56:12.256+00:00",
+          "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+          "updatedDate" : "2021-07-18T20:56:12.256+00:00",
+          "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-18T20:55:54.347+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-18T20:55:54.347+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    },
+    "courseNumber" : "MATH 151",
+    "sectionName" : "507"
+  }, {
+    "id" : "4fb6ec7b-b68a-479c-bf43-e71d7380d989",
+    "name" : "MATH",
+    "departmentId" : "0dda7995-960f-4f6f-bf5e-7b911c84a457",
+    "departmentObject" : {
+      "id" : "0dda7995-960f-4f6f-bf5e-7b911c84a457",
+      "name" : "MATH",
+      "description" : "Mathematics",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:38.890+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:38.890+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "a6abfa5a-dc03-4493-87d4-faefaa4dd0d4",
+    "courseListingObject" : {
+      "id" : "a6abfa5a-dc03-4493-87d4-faefaa4dd0d4",
+      "registrarId" : "2020:Spring:MATH",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+      "termObject" : {
+        "id" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+        "name" : "2020 Spring",
+        "startDate" : "2019-12-26T06:00:00.000Z",
+        "endDate" : "2020-05-18T05:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "d3a8eb01-539c-4c15-a128-4caa737a6e20",
+        "userId" : "2674b405-8b22-3439-9fe4-f71ebdcf0e94",
+        "name" : "Joseph Kahlig",
+        "barcode" : "6016424809002513",
+        "courseListingId" : "a6abfa5a-dc03-4493-87d4-faefaa4dd0d4",
+        "metadata" : {
+          "createdDate" : "2021-07-18T20:57:41.312+00:00",
+          "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+          "updatedDate" : "2021-07-18T20:57:41.312+00:00",
+          "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-18T20:57:19.258+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-18T20:57:19.258+00:00",
+        "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+      }
+    },
+    "courseNumber" : "MATH 152"
+  }, {
+    "id" : "c6cd4768-320b-4e69-b809-1be13c0fe6da",
+    "name" : "HLTH",
+    "departmentId" : "5386f8a2-7d12-4b03-b5be-dd5723b88718",
+    "departmentObject" : {
+      "id" : "5386f8a2-7d12-4b03-b5be-dd5723b88718",
+      "name" : "HLTH",
+      "description" : "Health",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:37.750+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:37.750+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "c38552b2-c0bc-44ef-8fe2-e7e0f35112cb",
+    "courseListingObject" : {
+      "id" : "c38552b2-c0bc-44ef-8fe2-e7e0f35112cb",
+      "registrarId" : "2020:Fall:HLTH342502",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+      "termObject" : {
+        "id" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+        "name" : "2020 Fall",
+        "startDate" : "2020-07-30T05:00:00.000Z",
+        "endDate" : "2020-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "d31828f5-cc70-43e0-936d-6437a4907930",
+        "userId" : "d443dbf1-3643-3fe5-b451-375d7dead9a4",
+        "name" : "Sara Fehr",
+        "barcode" : "6016426594732386",
+        "courseListingId" : "c38552b2-c0bc-44ef-8fe2-e7e0f35112cb",
+        "metadata" : {
+          "createdDate" : "2021-07-18T23:28:26.380+00:00",
+          "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+          "updatedDate" : "2021-07-18T23:28:26.380+00:00",
+          "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-18T23:27:07.163+00:00",
+        "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+        "updatedDate" : "2021-07-18T23:27:07.163+00:00",
+        "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+      }
+    },
+    "courseNumber" : "HLTH 342",
+    "sectionName" : "502"
+  }, {
+    "id" : "62347c48-3514-46bd-9cca-10ed06da744f",
+    "name" : "INTS",
+    "departmentId" : "5760180d-95af-46c7-9fec-c3682b9327a7",
+    "departmentObject" : {
+      "id" : "5760180d-95af-46c7-9fec-c3682b9327a7",
+      "name" : "INTS",
+      "description" : "International Studies",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:37.811+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:37.811+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "38343ae5-7d27-43bc-b8ee-73ec204fe8d8",
+    "courseListingObject" : {
+      "id" : "38343ae5-7d27-43bc-b8ee-73ec204fe8d8",
+      "registrarId" : "2020:FALL:INTS201501",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+      "termObject" : {
+        "id" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+        "name" : "2020 Fall",
+        "startDate" : "2020-07-30T05:00:00.000Z",
+        "endDate" : "2020-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "5511c02f-85e7-428c-858f-e0c08fe0fa6b",
+        "userId" : "bd6ea5a6-ba04-353d-aebe-82bce022d10e",
+        "name" : "Maddalena Cerrato",
+        "barcode" : "6016426593611664",
+        "courseListingId" : "38343ae5-7d27-43bc-b8ee-73ec204fe8d8",
+        "metadata" : {
+          "createdDate" : "2021-07-18T23:32:31.634+00:00",
+          "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+          "updatedDate" : "2021-07-18T23:32:31.634+00:00",
+          "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-18T23:31:18.090+00:00",
+        "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+        "updatedDate" : "2021-07-18T23:34:01.628+00:00",
+        "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+      }
+    },
+    "courseNumber" : "INTS 201",
+    "sectionName" : "501"
+  }, {
+    "id" : "08d0adc8-1744-410e-b26e-50c8648b3fab",
+    "name" : "INTS",
+    "departmentId" : "5760180d-95af-46c7-9fec-c3682b9327a7",
+    "departmentObject" : {
+      "id" : "5760180d-95af-46c7-9fec-c3682b9327a7",
+      "name" : "INTS",
+      "description" : "International Studies",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:37.811+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:37.811+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "38343ae5-7d27-43bc-b8ee-73ec204fe8d8",
+    "courseListingObject" : {
+      "id" : "38343ae5-7d27-43bc-b8ee-73ec204fe8d8",
+      "registrarId" : "2020:FALL:INTS201501",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+      "termObject" : {
+        "id" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+        "name" : "2020 Fall",
+        "startDate" : "2020-07-30T05:00:00.000Z",
+        "endDate" : "2020-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "5511c02f-85e7-428c-858f-e0c08fe0fa6b",
+        "userId" : "bd6ea5a6-ba04-353d-aebe-82bce022d10e",
+        "name" : "Maddalena Cerrato",
+        "barcode" : "6016426593611664",
+        "courseListingId" : "38343ae5-7d27-43bc-b8ee-73ec204fe8d8",
+        "metadata" : {
+          "createdDate" : "2021-07-18T23:32:31.634+00:00",
+          "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+          "updatedDate" : "2021-07-18T23:32:31.634+00:00",
+          "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-18T23:31:18.090+00:00",
+        "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+        "updatedDate" : "2021-07-18T23:34:01.628+00:00",
+        "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+      }
+    },
+    "courseNumber" : "INTS 201",
+    "sectionName" : "505"
+  }, {
+    "id" : "759c17d2-8ca6-438a-8465-745aac7e8035",
+    "name" : "INTS",
+    "departmentId" : "5760180d-95af-46c7-9fec-c3682b9327a7",
+    "departmentObject" : {
+      "id" : "5760180d-95af-46c7-9fec-c3682b9327a7",
+      "name" : "INTS",
+      "description" : "International Studies",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:37.811+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:37.811+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "9949059c-cc85-4c77-90de-b9f93cc5cab1",
+    "courseListingObject" : {
+      "id" : "9949059c-cc85-4c77-90de-b9f93cc5cab1",
+      "registrarId" : "2020:FALL:INTS251500",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+      "termObject" : {
+        "id" : "fcacd1f0-5327-42da-a9db-01ade8cf35f9",
+        "name" : "2020 Fall",
+        "startDate" : "2020-07-30T05:00:00.000Z",
+        "endDate" : "2020-12-25T06:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ ],
+      "metadata" : {
+        "createdDate" : "2021-07-18T23:37:45.699+00:00",
+        "createdByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771",
+        "updatedDate" : "2021-07-18T23:37:45.699+00:00",
+        "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+      }
+    },
+    "courseNumber" : "INTS 251",
+    "sectionName" : "500"
+  }, {
+    "id" : "63182466-0094-48e7-9b82-a3d01368cbf6",
+    "name" : "INTS",
+    "departmentId" : "5760180d-95af-46c7-9fec-c3682b9327a7",
+    "departmentObject" : {
+      "id" : "5760180d-95af-46c7-9fec-c3682b9327a7",
+      "name" : "INTS",
+      "description" : "International Studies",
+      "metadata" : {
+        "createdDate" : "2021-07-01T10:45:37.811+00:00",
+        "createdByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88",
+        "updatedDate" : "2021-07-01T10:45:37.811+00:00",
+        "updatedByUserId" : "5a108ce6-f80c-4108-b82b-4547f72cce88"
+      }
+    },
+    "courseListingId" : "c82cdfa2-d2f4-4f0b-a765-51b87e73f269",
+    "courseListingObject" : {
+      "id" : "c82cdfa2-d2f4-4f0b-a765-51b87e73f269",
+      "registrarId" : "2020:SPRING:INTS251500",
+      "locationId" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+      "locationObject" : {
+        "id" : "96445779-5afc-4bd6-b3f0-d46b37b7f58f",
+        "name" : "Evans Media and Reserves Reserve Coll.",
+        "code" : "media,res",
+        "discoveryDisplayName" : "Media and Reserves (Annex  1st floor)",
+        "isActive" : true,
+        "institutionId" : "786bccb0-1795-4896-9452-a6e5bd5f28ac",
+        "campusId" : "addb918a-5b84-48a2-81d2-0a086948c347",
+        "libraryId" : "e19f62b7-5e0d-490f-b469-80a2b0940e74",
+        "primaryServicePoint" : "382bbd83-8f05-4063-8d08-adf1d3316e0a",
+        "servicePointIds" : [ "382bbd83-8f05-4063-8d08-adf1d3316e0a" ]
+      },
+      "termId" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+      "termObject" : {
+        "id" : "21eba83e-f15b-4c2b-94b7-c1f6026c7326",
+        "name" : "2020 Spring",
+        "startDate" : "2019-12-26T06:00:00.000Z",
+        "endDate" : "2020-05-18T05:00:00.000Z"
+      },
+      "courseTypeId" : "32bba348-00b6-49f1-9150-6704db6983c3",
+      "courseTypeObject" : {
+        "id" : "32bba348-00b6-49f1-9150-6704db6983c3",
+        "name" : "Face to face",
+        "description" : "Face to face"
+      },
+      "instructorObjects" : [ {
+        "id" : "83c8cdde-7a7a-452d-9570-426bd044504a",
+        "userId" : "0c801982-caac-3928-9280-50a6592a423e",
+        "name" : "Sena Karasipahi",
+        "barcode" : "6016424172049729",
+        "courseListingId" : "c82cdfa2-d2f4-4f0b-a765-51b87e73f269",
+        "metadata" : {
+          "createdDate" : "2021-07-16T20:20:42.073+00:00",
+          "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+          "updatedDate" : "2021-07-16T20:20:42.073+00:00",
+          "updatedByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981"
+        }
+      } ],
+      "metadata" : {
+        "createdDate" : "2021-07-16T20:20:28.121+00:00",
+        "createdByUserId" : "4dc6caea-0b69-3d54-8661-4333e35a3981",
+        "updatedDate" : "2021-07-18T23:38:54.417+00:00",
+        "updatedByUserId" : "bc4a2cc0-9dc3-3c60-ad26-3cc7a3594771"
+      }
+    },
+    "courseNumber" : "INTS 251",
+    "sectionName" : "500"
   } ]
 }
